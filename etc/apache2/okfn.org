@@ -1,0 +1,225 @@
+
+## =======================================
+## SquirrelMail
+## This has to go before main config as main part uses wildcards in ServerAlias
+## and apache reads config in order
+## Have the directory config for squirrelmail in the sharedssl config file
+
+<VirtualHost 67.19.124.106:80>
+  DocumentRoot /usr/share/squirrelmail
+  ServerName webmail.okfn.org
+  RedirectPermanent / https://webmail.okfn.org/squirrelmail/
+</VirtualHost>
+
+# this won't work until sharedssl is refactored
+#<VirtualHost 67.19.124.106:443>
+#  DocumentRoot /usr/share/squirrelmail
+#  ServerName webmail.okfn.org
+#</VirtualHost>
+
+<VirtualHost 67.19.124.106:80>
+ServerName okfn.org
+ServerAlias *.okfn.org
+DocumentRoot /var/www/okfn.org
+DirectoryIndex index.html index.php
+PerlModule Apache2
+CustomLog /var/log/apache2/okfn.org.access.log combined-with-servetime
+ErrorLog  /var/log/apache2/okfn.org.error.log
+Options -Indexes
+
+## ========================================
+## Blog
+
+<Directory /var/www/okfn.org/weblog/>
+	Options +ExecCGI
+	DirectoryIndex pyblosxom.cgi
+</Directory>
+
+<Files weblog-add.cgi>
+	Options +ExecCGI
+	AuthType Basic
+	AuthName "DRN Submitters"
+	AuthUserFile /etc/apache2/passwd/okfn_passwords 
+	Require user drn
+</Files>
+
+## ========================================
+## Digital Rights News
+# all access stuff is done in an .htaccess in the directory
+# This does not work with clean urls. Why?
+# because e.g /drn/admin/settings becomes /var/www/okfn.org_drupal/admin/settings
+# this then never gets processed by rewrite engine.
+
+# SOLN 1: use symlinks
+# SOLN 2: use RewriteBase in the htaccess file (this is commented out in .htaccess file)
+# this is precisely what this directive is for:
+# http://httpd.apache.org/docs-2.0/mod/mod_rewrite.html#rewritebase
+# issue with rewrite base soln is that this then limits the drupal installation
+# to a single directory in a given virtual host (that could be solved by moving
+# the htaccess stuff here ...)
+
+# Alias /drn /var/www/okfn.org_drupal
+
+## ========================================
+## GEO section
+
+Alias /geo/private/www /var/www/okfn.org/geo
+<Location /geo/private>
+	DAV On
+	
+	AuthType Basic
+	AuthName "Geo Group Private Area"
+	AuthUserFile /etc/apache2/passwd/okfn_passwords 
+	Require user geo
+
+	Options +Indexes
+</Location>
+
+<Location /geo/private/www>
+	# ensure that php files can be read an uploaded ok
+	# see http://httpd.apache.org/docs-2.0/mod/mod_dav.html
+	
+	ForceType text/plain
+</Location>
+
+## ========================================
+## WSFII section
+
+Alias /wsfii/private/www /var/www/okfn.org/wsfii
+<Location /wsfii/private>
+	DAV On
+	
+	AuthType Basic
+	AuthName "WSFII Group Private Area"
+	AuthUserFile /etc/apache2/passwd/okfn_passwords 
+	Require user wsfii
+
+	Options +Indexes
+</Location>
+
+<Location /wsfii/private/www>
+	# ensure that php files can be read and uploaded ok
+	# see http://httpd.apache.org/docs-2.0/mod/mod_dav.html
+	
+	ForceType text/plain
+</Location>
+
+## ========================================
+## MOINMOIN Stuff 
+
+# MOIN WIKI
+# create one alias that can be used by all the others
+Alias /wikihtdocs/ "/usr/share/moin/htdocs/"
+
+Alias /codeabode/wikihtdocs/ "/usr/share/moin/htdocs/"
+<Directory /usr/share/moin/htdocs/>
+  Order allow,deny
+  Allow from all
+</Directory>
+
+ScriptAlias /codeabode/moin "/var/moin/codeabodewiki/moin.cgi"
+ScriptAlias /codeabode/wiki  "/var/moin/codeabodewiki/moin.cgi"
+<Directory /var/moin/codeabodewiki/>
+	AllowOverride All
+	Order allow,deny
+	Allow from all
+
+	Options Indexes Includes FollowSymLinks MultiViews
+	
+	AuthType Basic
+	AuthName "codeabode wiki"
+	AuthUserFile /etc/apache2/passwd/okfn_passwords 
+	Require user codeabode 
+</Directory>
+
+ScriptAlias /fcd/private/wiki  "/var/moin/okfn_fcd_private_wiki/moin.cgi"
+<Directory /var/moin/okfn_fcd_private_wiki/>
+	AllowOverride All
+	Order allow,deny
+	Allow from all
+
+	AuthType Basic
+	AuthName "FCD"
+	AuthUserFile /etc/apache2/passwd/fcd_passwords 
+	Require valid-user 
+
+	Options Indexes Includes FollowSymLinks MultiViews
+</Directory>
+
+ScriptAlias /fcd/wiki  "/var/moin/okfn_fcd_public_wiki/moin.cgi"
+<Directory /var/moin/okfn_fcd_public_wiki/>
+	AllowOverride All
+	Order allow,deny
+	Allow from all
+
+	Options Indexes Includes FollowSymLinks MultiViews
+</Directory>
+
+ScriptAlias /iai/wiki  "/var/moin/okfn_iai_wiki/moin.cgi"
+<Directory /var/moin/okfn_iai_wiki/>
+	AllowOverride All
+	Order allow,deny
+	Allow from all
+
+	Options Indexes Includes FollowSymLinks MultiViews
+</Directory>
+
+ScriptAlias /wiki  "/var/moin/okfn_public_wiki/moin.cgi"
+<Directory /var/moin/okfn_public_wiki/>
+	AllowOverride All
+	Order allow,deny
+	Allow from all
+
+	Options Indexes Includes FollowSymLinks MultiViews
+</Directory>
+
+ScriptAlias /kforge/wiki  "/var/moin/okfn_kforge_wiki/moin.cgi"
+<Directory /var/moin/okfn_kforge_wiki/>
+	AllowOverride All
+	Order allow,deny
+	Allow from all
+
+	Options Indexes Includes FollowSymLinks MultiViews
+</Directory>
+
+ScriptAlias /ffii/private/wiki  "/var/moin/okfn_ffii_private_wiki/moin.cgi"
+<Directory /var/moin/okfn_ffii_private_wiki/>
+	AllowOverride All
+	Order allow,deny
+	Allow from all
+
+	AuthType Basic
+	AuthName "FFII private wiki"
+	AuthUserFile /etc/apache2/passwd/okfn_passwords 
+	Require user ffii
+
+	Options Indexes Includes FollowSymLinks MultiViews
+</Directory>
+
+## ================================================================
+## Mailman
+
+ScriptAlias /mailman/ /var/lib/mailman/cgi-bin/
+<Directory /usr/lib/mailman/cgi-bin/>
+	AllowOverride None
+	Options ExecCGI
+	Order allow,deny
+	Allow from all
+</Directory>
+Alias /pipermail/ /var/lib/mailman/archives/public/
+<Directory /var/lib/mailman/archives/public>
+	Options Indexes MultiViews FollowSymLinks
+	AllowOverride None
+	Order allow,deny
+	Allow from all
+</Directory>
+
+Alias /mmimages/ /usr/share/doc/mailman/images/
+<Directory /usr/share/doc/mailman/images>
+	Options Indexes MultiViews
+	AllowOverride None
+	Order allow,deny
+	Allow from all
+</Directory>
+
+</VirtualHost>
