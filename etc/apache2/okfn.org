@@ -28,22 +28,6 @@ ErrorLog  /var/log/apache2/okfn.org.error.log
 Options -Indexes
 
 ## ========================================
-## Blog
-
-<Directory /var/www/okfn.org/weblog/>
-	Options +ExecCGI
-	DirectoryIndex pyblosxom.cgi
-</Directory>
-
-<Files weblog-add.cgi>
-	Options +ExecCGI
-	AuthType Basic
-	AuthName "DRN Submitters"
-	AuthUserFile /etc/apache2/passwd/okfn_passwords 
-	Require user drn
-</Files>
-
-## ========================================
 ## Digital Rights News
 # all access stuff is done in an .htaccess in the directory
 # This does not work with clean urls. Why?
