@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:wi="http://www.witbd.org/xmlns/sitebuilder/template" xmlns:st="http://www.witbd.org/xmlns/text/structure" xmlns:te="http://www.witbd.org/xmlns/text/basic/" xmlns:bib="http://www.witbd.org/xmlns/biblio/" xmlns:ch="http://xmlchar.sf.net/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/" >
+<head>
+	<title>Making Your Views Known</title>
+	<wi:Metadata>
+		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/">
+			<rdf:Description rdf:about="">
+				<dc:title>Making Your Views Known</dc:title>
+				<dc:creator>Rufus Pollock</dc:creator>
+				<dct:created>2004-07-05</dct:created>
+				<dct:modified></dct:modified>
+			</rdf:Description>
+		</rdf:RDF>
+	</wi:Metadata>
+</head>
+
+<body>
+	<h1>Making Your Views Known</h1>
+	<p>
+		There are various things you can do:
+	</p>
+	<ul>
+		<li>
+			<a href="#write_mp">Write to your MP and DCMS</a>
+		</li>
+		<li>
+			Subscribe to the <a href="http://lists.essential.org/mailman/listinfo/creative-friends">creative-friends mailing list</a>
+		</li>
+	</ul>
+	
+	<h2>
+		<a name="write_mp">
+			Writing to Your MP or DCMS
+		</a>
+	</h2>
+	<p>
+		To write to your MP we recommend you use <a href="http://www.faxyourmp.com">http://www.faxyourmp.com</a>.	If you have or are going to write it would be great if you <a href="contact.shtml">let us know</a> - this allows us to track how many people have written and to whom. We have also provided below a list of 'talking points' to assist in the drafting of a letter.
+	</p>
+	<p>
+		To write to DCMS address your comments to:
+<pre>  Matthew Hill
+  Programme Manager, BBC Charter Review
+  Broadcasting Policy Division
+  Department for Culture, Media and Sport
+  2-4 Cockspur Street
+  London SW1Y 5DH
+  UNITED KINGDOM
+</pre>
+	</p>
+	
+	<h3>
+		Talking Points
+	</h3>
+	<p>
+		Below are some of the things you might write to your MP. We haven't provided a form letter as they tend to be ignored or have significantly less impact (see <a href="http://www.faxyourmp.com/q_a.php3#formletters">here</a> for why). Drafting your own letter, even if is only to flesh out the points below, will result in your efforts having a far greater effect. At the same time if you would like any assistance or comments please <a href="contact.shtml">contact us</a>.
+	</p>
+	<ul>
+		<li>
+			Indicate that you are in their district.
+		</li>
+		<li>
+			Note that you are a TV license-payer.
+		</li>
+		<li>
+			Explain why this is an important issue to you, and how you would use the Creative Archive.
+		</li>
+	</ul>
+	<ul>
+		<li>
+			Urge them to support language in the new charter that would ensure a
+			robust Creative Archive, and to express this support to the charter
+			renewal committee. Good charter language would protect the BBC's
+			ambitions for an archive which:
+			<ul>
+				<li>
+					Draws from all areas of the BBC's broadcasting from news to sport.
+				</li>
+				<li>
+					Is available without "digital rights management" or other
+					technology locks that will keep Britons from creatively re-using
+					the BBC's offerings.
+				</li>
+				<li>
+					Provides material licensed under conditions that do not
+					restrict any licence-payer from accessing, storing, modifying or
+					sharing archive material for non-commercial use.
+				</li>
+				<li>
+					Provides material in its entirety for non-commercial use and
+					not only in excerpted form.
+				</li>
+				<li>
+					Includes material that the BBC already owns the rights in at
+					its launch or as soon after its launch as is possible, with
+					other material to follow as soon as rights are cleared.
+				</li>
+				<li>
+					Benefits from future licensing agreements with independent
+					producers that allow the BBC to make the works freely available
+					for non-commercial use.
+				</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+
+</html>

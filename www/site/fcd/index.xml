@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:wi="http://www.witbd.org/xmlns/sitebuilder/template" xmlns:st="http://www.witbd.org/xmlns/text/structure" xmlns:te="http://www.witbd.org/xmlns/text/basic/" xmlns:bib="http://www.witbd.org/xmlns/biblio/" xmlns:ch="http://xmlchar.sf.net/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/" >
+<head>
+	<title>Friends of the Creative Domain - Home Page</title>
+	<wi:Metadata>
+		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/">
+			<rdf:Description rdf:about="">
+				<dc:title>Friends of the Creative Domain - Home Page</dc:title>
+				<dc:creator>Rufus Pollock</dc:creator>
+				<dct:created>2004-07-05</dct:created>
+				<dct:modified></dct:modified>
+			</rdf:Description>
+		</rdf:RDF>
+	</wi:Metadata>
+</head>
+
+<body>
+	<h1>
+		Friends of the Creative Domain
+	</h1>
+	
+	<st:TableOfContents />
+	
+	<st:Section>
+		<h2>
+			The Wiki
+		</h2>
+		<p>
+			Friends of the Creative Domain primarily uses a <a href="wiki/">public wiki</a> for managing information. Go there if you are looking to contribute or to find information on FCD activities.
+		</p>
+	</st:Section>
+	
+	<st:Section>
+		<h2>
+			Contacting FCD
+		</h2>
+		<p>
+			If you want more information please contact Rufus Pollock (email: fcd-info [at] okfn.org, phone: 07795 176 976).
+		</p>
+	</st:Section>
+	
+	<st:Section>
+		<h2>
+			About Friends of the Creative Domain
+		</h2>
+		<p>
+			Friends of the Creative Domain was formed in mid 2004. Primarily created to encourage and support the BBC's efforts to make an open <a href="wiki/CreativeArchive">Creative Archive</a>. It brought together groups who have a stake in the archive such as artists, archivists, academics, educators, and of course the license paying general public.
+		</p>
+		<p>
+			Since then it has retained its structure as a open community while the focus has evolved into a more general promotion of the public domain and of the creative commons.
+		</p>
+		<p>
+			For more information about the organization see the <a href="about.html">about</a> page
+		</p>
+	</st:Section>
+	
+	<st:Section>
+		<h2>How can I get involved?</h2>
+		<p>
+			There are various things you can do to participate:
+		</p>
+		<ul>
+			<li>
+				Contribute to the <a href="wiki/">wiki</a>
+			</li>
+			<li>
+				<a href="making_your_views_known.html">Make your views known about the Creative Archive</a> or about <a href="wiki/PublicDomainElvis">music copyright extensions</a>. For example you could write to your MP. This is extremely valuable way of demonstrating support or concern about an issue.
+			</li>
+			<li>
+				Join the creative-friends mailing list for discussion of this project, which you
+				can sign up to <a href="http://lists.essential.org/mailman/listinfo/creative-friends">here</a>.
+			</li>
+			<li>
+				Tell others about Friends of the Creative Domain and the issues it promotes such as Creative Commons and the Creative Archive.
+			</li>
+		</ul>
+	</st:Section>
+	
+</body>
+</html>
