@@ -88,6 +88,15 @@ Alias /wsfii/private/www /var/www/okfn.org/wsfii
 	ForceType text/plain
 </Location>
 
+ScriptAlias /wsfii/wiki  "/var/moin/okfn_wsfii_wiki/moin.cgi"
+<Directory /var/moin/okfn_wsfii_wiki/>
+	AllowOverride All
+	Order allow,deny
+	Allow from all
+
+	Options Indexes Includes FollowSymLinks MultiViews
+</Directory>
+
 ## ========================================
 ## MOINMOIN Stuff 
 
