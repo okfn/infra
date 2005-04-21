@@ -9,6 +9,7 @@
 				<dc:creator>Rufus Pollock</dc:creator>
 				<dc:modifier>Peter Lockley</dc:modifier>
 				<dct:created>2004-07-15</dct:created>
+				<dct:modified>2005-04-21</dct:modified>
 			</rdf:Description>
 		</rdf:RDF>
 	</wi:Metadata>
@@ -20,7 +21,10 @@
 	</h1>
 	
 	<p>
-		For individual projects please see their own pages for information on how to contact them. For general enquiries please email:	info [at] okfn.org
+		To contact individual projects please see their own pages. 
+	</p>
+	<p>	
+		For general enquiries please email:	info [at] okfn.org
 	</p>
 </body>
 </html>
