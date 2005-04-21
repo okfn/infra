@@ -9,7 +9,7 @@
 				<dc:creator>Rufus Pollock</dc:creator>
 				<dc:creator>Peter Lockley</dc:creator>
 				<dct:created>2004-07-15</dct:created>
-				<dct:modified>2005-01-20</dct:modified>
+				<dct:modified>2005-04-21</dct:modified>
 			</rdf:Description>
 		</rdf:RDF>
 	</wi:Metadata>
@@ -20,10 +20,11 @@
 	</h1>
 	
 	<p>
-		The Open Knowledge Foundation Network (OKFN) exists to support a diverse set of communities, each focused on a different aspect of <q>open knowledge</q>, but all united by a common set of concerns, and a common set of traditions in both etiquette and process.
+
+		The Open Knowledge Foundation Network (OKFN) exists to support a diverse set of communities, each focused on a different aspect of <q>open knowledge</q>, but united by a common set of concerns, and a commmon set of traditions in both etiquette and process.
 	</p>
 	<p>
-		These separate communities are referred to as <q>projects</q> and while similar in general issues they address each of them has a different focus. In order to reduce friction and allow for diversity to emerge, rather than forcing a monoculture from the top, the projects are the central decision-making organizations of the Network. Each project is delegated authority over its activities, and is given a great deal of latitude in both what it does and how it does it (the <a href="governance.html">governance</a> document provides more detail).
+		These separate communities are referred to as <q>projects</q>, and while they are similar in the general issues they address, each has a different focus. The projects are the main decision-making units of the Network, a system which generates less friction and more diversity than a top-down monoculture.  Each project is delegated authority over its activities, and is given a great deal of latitude in both what it does and how it does it (the <a href="governance.html">governance</a> document provides more detail).
 	</p>
 	<p>
 		The Network has been organized by the <a href='http://www.openknowledgefoundation.org'>Open Knowledge Foundation</a> and there is significant sharing of infrastructure and personnel between the two (in particular members of the Foundation sit on the Network's Exec group). At the same time, the Network, and in particular its projects, are entirely autonomous.
