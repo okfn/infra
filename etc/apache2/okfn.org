@@ -6,9 +6,9 @@
 ## Have the directory config for squirrelmail in the sharedssl config file
 
 <VirtualHost 67.19.124.106:80>
-  DocumentRoot /usr/share/squirrelmail
-  ServerName webmail.okfn.org
-  RedirectPermanent / https://webmail.okfn.org/squirrelmail/
+	DocumentRoot /usr/share/squirrelmail
+	ServerName webmail.okfn.org
+	RedirectPermanent / https://webmail.okfn.org/squirrelmail/
 </VirtualHost>
 
 # this won't work until sharedssl is refactored
@@ -18,14 +18,14 @@
 #</VirtualHost>
 
 <VirtualHost 67.19.124.106:80>
-ServerName okfn.org
-ServerAlias *.okfn.org
-DocumentRoot /var/www/okfn.org
-DirectoryIndex index.html index.php
-PerlModule Apache2
-CustomLog /var/log/apache2/okfn.org.access.log combined-with-servetime
-ErrorLog  /var/log/apache2/okfn.org.error.log
-Options -Indexes
+	ServerName okfn.org
+	ServerAlias *.okfn.org
+	DocumentRoot /var/www/okfn.org
+	DirectoryIndex index.html index.php
+	PerlModule Apache2
+	CustomLog /var/log/apache2/okfn.org.access.log combined
+	ErrorLog  /var/log/apache2/okfn.org.error.log
+	Options -Indexes
 
 ## ========================================
 ## Digital Rights News
@@ -47,7 +47,6 @@ Options -Indexes
 ## ========================================
 ## GEO section
 
-Alias /geo/private/www /var/www/okfn.org/geo
 <Location /geo/private>
 	DAV On
 	
@@ -64,6 +63,8 @@ Alias /geo/private/www /var/www/okfn.org/geo
 	# see http://httpd.apache.org/docs-2.0/mod/mod_dav.html
 	
 	ForceType text/plain
+	# have no directory index
+	DirectoryIndex none.html
 </Location>
 
 ## ========================================
