@@ -1,0 +1,37 @@
+<VirtualHost 67.19.124.106:80>
+	ServerName openknowledgefoundation.org
+	ServerAlias *.openknowledgefoundation.org
+	DocumentRoot /var/www/openknowledgefoundation.org
+	DirectoryIndex index.html index.php
+	PerlModule Apache2
+	CustomLog /var/log/apache2/openknowledgefoundation.org.access.log combined
+	ErrorLog  /var/log/apache2/openknowledgefoundation.org.error.log
+	Options -Indexes
+
+<Location /private>
+	Options +Indexes
+	
+	AuthType Basic
+	AuthName "OKF private area"
+	AuthUserFile /etc/apache2/passwd/okfn_passwords 
+	Require user okf
+</Location>
+
+# MOIN WIKI
+# create one alias that can be used by all the others
+Alias /wikihtdocs/ "/usr/share/moin/htdocs/"
+
+ScriptAlias /private/wiki  "/var/moin/okf_private_wiki/moin.cgi"
+<Directory /var/moin/okf_private_wiki/>
+	AllowOverride All
+	Order allow,deny
+	Allow from all
+
+	Options Indexes Includes FollowSymLinks MultiViews
+</Directory>
+
+<Location /private/webdav>
+	DAV on
+</Location>
+
+</VirtualHost>
