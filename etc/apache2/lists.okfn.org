@@ -1,0 +1,60 @@
+# HTTP
+<VirtualHost 64.92.174.186:80>
+  ServerName lists.okfn.org
+  AddHandler cgi-script .cgi
+
+  ScriptAlias /mailman/ /var/lib/mailman/cgi-bin/
+
+  Alias /pipermail /var/lib/mailman/archives/public
+  <Directory /var/lib/mailman/archives/public>
+    AllowOverride Options
+    Options FollowSymLinks
+  </Directory>
+
+  Alias /images/mailman /usr/share/images/mailman
+  <Location /images/mailman>
+    order allow,deny
+    allow from all
+  </Location>
+
+  RedirectMatch permanent ^/$ http://lists.okfn.org/mailman/listinfo
+  LogFormat "%h %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" common
+  CustomLog /var/log/kforge/kforge.log gforge
+</VirtualHost>
+
+# HTTPS
+<VirtualHost 64.92.174.186:443>
+  ServerName lists.okfn.org
+  AddHandler cgi-script .cgi
+
+  <IfModule mod_ssl.c>
+    SSLEngine on
+    SSLCertificateFile /etc/apache2/ssl/okfn.org.cert
+    SSLCertificateKeyFile /etc/apache2/ssl/okfn.org.key
+    <Files ~ "\.(cgi|shtml)$">
+      SSLOptions +StdEnvVars
+    </Files>
+    <Directory "/usr/lib/cgi-bin">
+      SSLOptions +StdEnvVars
+    </Directory>
+    SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown
+  </IfModule>
+
+  ScriptAlias /mailman/ /var/lib/mailman/cgi-bin/
+
+  Alias /pipermail /var/lib/mailman/archives/public
+  <Directory /var/lib/mailman/archives/public>
+    AllowOverride Options
+    Options FollowSymLinks
+  </Directory>
+
+  Alias /images/mailman /usr/share/images/mailman
+  <Location /images/mailman>
+    order allow,deny
+    allow from all
+  </Location>
+
+  RedirectMatch permanent ^/$ https://lists.okfn.org/mailman/listinfo
+  LogFormat "%h %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" gforge
+  CustomLog /var/log/kforge/kforge.log gforge
+</VirtualHost>
