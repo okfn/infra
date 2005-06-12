@@ -1,9 +1,8 @@
-<VirtualHost 67.19.124.106:80>
+<VirtualHost 64.92.174.186:80>
 	ServerName openknowledgefoundation.org
 	ServerAlias *.openknowledgefoundation.org
 	DocumentRoot /var/www/openknowledgefoundation.org
 	DirectoryIndex index.html index.php
-	PerlModule Apache2
 	CustomLog /var/log/apache2/openknowledgefoundation.org.access.log combined
 	ErrorLog  /var/log/apache2/openknowledgefoundation.org.error.log
 	Options -Indexes
@@ -21,7 +20,7 @@
 # create one alias that can be used by all the others
 Alias /wikihtdocs/ "/usr/share/moin/htdocs/"
 
-ScriptAlias /private/wiki  "/var/moin/okf_private_wiki/moin.cgi"
+ScriptAlias /private/wiki  "/var/lib/moin/okf_private_wiki/moin.cgi"
 <Directory /var/moin/okf_private_wiki/>
 	AllowOverride All
 	Order allow,deny
