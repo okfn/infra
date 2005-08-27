@@ -1,6 +1,6 @@
-<VirtualHost 64.92.174.186:80>
+<VirtualHost *:80>
 	ServerName openknowledgefoundation.org
-	ServerAlias *.openknowledgefoundation.org
+	ServerAlias www.openknowledgefoundation.org
 	DocumentRoot /var/www/openknowledgefoundation.org
 	DirectoryIndex index.html index.php
 	CustomLog /var/log/apache2/openknowledgefoundation.org.access.log combined
@@ -33,4 +33,13 @@ ScriptAlias /private/wiki  "/var/lib/moin/okf_private_wiki/moin.cgi"
 	DAV on
 </Location>
 
+</VirtualHost>
+
+<VirtualHost *:80>
+	ServerName test.openknowledgefoundation.org
+	DocumentRoot /home/okfn/var/www/test.openknowledgefoundation.org/
+	DirectoryIndex index.html index.php
+	CustomLog /var/log/apache2/openknowledgefoundation.org.access.log combined
+	ErrorLog  /var/log/apache2/openknowledgefoundation.org.error.log
+	Options -Indexes
 </VirtualHost>
