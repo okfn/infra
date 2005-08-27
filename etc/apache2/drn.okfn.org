@@ -1,0 +1,7 @@
+<VirtualHost 67.19.124.106:80>
+	ServerName drn.okfn.org
+	DocumentRoot /var/www/okfn.org_drupal
+	DirectoryIndex index.php
+	CustomLog /var/log/apache2/okfn.org.access.log combined
+	ErrorLog  /var/log/apache2/okfn.org.error.log
+</VirtualHost>
