@@ -1,5 +1,5 @@
 # HTTP
-<VirtualHost 64.92.174.186:80>
+<VirtualHost *:80>
   ServerName lists.okfn.org
   AddHandler cgi-script .cgi
 
@@ -23,7 +23,7 @@
 </VirtualHost>
 
 # HTTPS
-<VirtualHost 64.92.174.186:443>
+<VirtualHost *:443>
   ServerName lists.okfn.org
   AddHandler cgi-script .cgi
 
