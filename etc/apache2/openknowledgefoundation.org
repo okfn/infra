@@ -1,7 +1,7 @@
 <VirtualHost *:80>
 	ServerName openknowledgefoundation.org
 	ServerAlias www.openknowledgefoundation.org
-	DocumentRoot /var/www/openknowledgefoundation.org
+	DocumentRoot /home/okfn/var/www/openknowledgefoundation.org
 	DirectoryIndex index.html index.php
 	CustomLog /var/log/apache2/openknowledgefoundation.org.access.log combined
 	ErrorLog  /var/log/apache2/openknowledgefoundation.org.error.log
@@ -29,17 +29,19 @@ ScriptAlias /private/wiki  "/var/lib/moin/okf_private_wiki/moin.cgi"
 	Options Indexes Includes FollowSymLinks MultiViews
 </Directory>
 
+ScriptAlias /wiki  "/home/okfn/var/moin/okf_public_wiki/moin.cgi"
+
 <Location /private/webdav>
 	DAV on
 </Location>
 
 </VirtualHost>
 
-<VirtualHost *:80>
-	ServerName test.openknowledgefoundation.org
-	DocumentRoot /home/okfn/var/www/test.openknowledgefoundation.org/
-	DirectoryIndex index.html index.php
-	CustomLog /var/log/apache2/openknowledgefoundation.org.access.log combined
-	ErrorLog  /var/log/apache2/openknowledgefoundation.org.error.log
-	Options -Indexes
-</VirtualHost>
+#<VirtualHost *:80>
+#	ServerName test.openknowledgefoundation.org
+#	DocumentRoot /home/okfn/var/www/test.openknowledgefoundation.org/
+#	DirectoryIndex index.html index.php
+#	CustomLog /var/log/apache2/openknowledgefoundation.org.access.log combined
+#	ErrorLog  /var/log/apache2/openknowledgefoundation.org.error.log
+#	Options -Indexes
+#</VirtualHost>
