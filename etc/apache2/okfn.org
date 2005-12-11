@@ -43,7 +43,7 @@ Alias /wsfii/private/www /var/www/okfn.org/wsfii
 	AuthName "WSFII Group Private Area"
 	AuthUserFile /etc/apache2/passwd/okfn_passwords 
 	Require user wsfii
-
+	DirectoryIndex nothing.abc 
 	Options +Indexes
 </Location>
 
@@ -104,5 +104,19 @@ ScriptAlias /kforge/wiki  "/var/moin/okfn_kforge_wiki/moin.cgi"
 
 	Options Indexes Includes FollowSymLinks MultiViews
 </Directory>
+
+ScriptAlias /ffii/wiki "/home/okfn/var/moin/okfn_ffii_private_wiki/moin.cgi"
+
+# FFII Stuff
+ScriptAlias /sysadmin/wiki "/home/okfn/var/moin/okfn_sysadmin_wiki/moin.cgi"
+
+<Location /ffii>
+	AuthType Basic
+	AuthName "FFII Group Private Area"
+	AuthUserFile /etc/apache2/passwd/okfn_passwords 
+	Require user ffii
+	Options +Indexes
+</Location>
+
 
 </VirtualHost>
