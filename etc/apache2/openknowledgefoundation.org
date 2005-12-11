@@ -20,15 +20,7 @@
 # create one alias that can be used by all the others
 Alias /wikihtdocs/ "/usr/share/moin/htdocs/"
 
-ScriptAlias /private/wiki  "/var/lib/moin/okf_private_wiki/moin.cgi"
-<Directory /var/moin/okf_private_wiki/>
-	AllowOverride All
-	Order allow,deny
-	Allow from all
-
-	Options Indexes Includes FollowSymLinks MultiViews
-</Directory>
-
+ScriptAlias /private/wiki  "/home/okfn/var/moin/okf_private_wiki/moin.cgi"
 ScriptAlias /wiki  "/home/okfn/var/moin/okf_public_wiki/moin.cgi"
 
 <Location /private/webdav>
