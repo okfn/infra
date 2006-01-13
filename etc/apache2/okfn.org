@@ -1,6 +1,6 @@
 <VirtualHost *:80>
 	ServerName okfn.org
- 	ServerAlias www.okfn.org test2.okfn.org
+ 	ServerAlias www.okfn.org test2.okfn.org wsfii.org www.wsfii.org
 	DocumentRoot /var/www/okfn.org
 	DirectoryIndex index.html index.php
 	CustomLog /var/log/apache2/okfn.org.access.log combined
@@ -63,11 +63,16 @@ ScriptAlias /wsfii/wiki  "/var/moin/okfn_wsfii_wiki/moin.cgi"
 	Options Indexes Includes FollowSymLinks MultiViews
 </Directory>
 
+RewriteEngine on
+RewriteCond %{HTTP_HOST}  wsfii.org$     [NC]
+RewriteCond %{REQUEST_URI} !^/wsfii/.*$
+RewriteRule ^(.*)$  http://www.okfn.org/wsfii$1 [R]
+
 ## ========================================
 ## MOINMOIN Stuff 
 
 # create one alias that can be used by all the others
-Alias /wikihtdocs/ "/usr/share/moin/htdocs/"
+Alias /moinhtdocs/ "/usr/share/moin/htdocs/"
 
 ScriptAlias /fcd/wiki  "/var/moin/okfn_fcd_public_wiki/moin.cgi"
 <Directory /var/moin/okfn_fcd_public_wiki/>
