@@ -1,0 +1,9 @@
+<VirtualHost *:80>
+	ServerName blog.okfn.org
+	ServerAlias blog.openknowledgefoundation.org
+	DocumentRoot /home/okfn/var/www/blog.okfn.org
+	DirectoryIndex index.html index.php
+	CustomLog /var/log/apache2/blog.okfn.org.access.log combined
+	ErrorLog  /var/log/apache2/blog.okfn.org.error.log
+	Options -Indexes
+</VirtualHost>
