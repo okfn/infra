@@ -1,0 +1,20 @@
+<VirtualHost *:80>
+	ServerName publicgeodata.org
+	ServerAlias www.publicgeodata.org
+	DocumentRoot /var/www/publicgeodata.org
+	DirectoryIndex index.cgi index.php
+	CustomLog /var/log/apache2/publicgeodata.org.access.log combined
+	ErrorLog  /var/log/apache2/publicgeodata.org.error.log
+	AddHandler cgi-script .cgi
+	
+	Alias /moinhtdocs/ "/usr/share/moin/htdocs/"
+	Alias /files/ "/var/www/publicgeodata.org/files/"
+	<Directory /var/www/publicgeodata.org>
+	Options +ExecCGI
+	</Directory>
+	<Directory /var/www/petition.publicgeodata.org>
+	AddType application/x-httpd-php .php3
+	Action application/x-httpd-php /cgi-bin/php
+	</Directory>
+	Alias / /var/www/publicgeodata.org/index.cgi/
+</VirtualHost>
