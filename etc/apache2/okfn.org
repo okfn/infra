@@ -1,6 +1,6 @@
 <VirtualHost *:80>
 	ServerName okfn.org
- 	ServerAlias www.okfn.org test2.okfn.org wsfii.org www.wsfii.org
+ 	ServerAlias www.okfn.org openknowledgefoundation.org www.openknowledgefoundation.org wsfii.org www.wsfii.org
 	DocumentRoot /var/www/okfn.org
 	DirectoryIndex index.html index.php
 	CustomLog /var/log/apache2/okfn.org.access.log combined
@@ -31,6 +31,14 @@ Alias /geo/private/www /var/www/okfn.org/geo
 	
 	ForceType text/plain
 </Location>
+
+# see the directory listing for research PDFs
+
+<Directory /var/www/okfn.org/geo/pdf>
+	Options +indexes
+</Directory>
+
+ScriptAlias /geo/wiki  "/var/moin/okfn_geo_wiki/moin.cgi"
 
 ## ========================================
 ## WSFII section

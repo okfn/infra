@@ -1,6 +1,5 @@
 <VirtualHost *:80>
-	ServerName openknowledgefoundation.org
-	ServerAlias www.openknowledgefoundation.org
+	ServerName old.openknowledgefoundation.org
 	DocumentRoot /home/okfn/var/www/openknowledgefoundation.org
 	DirectoryIndex index.html index.php
 	CustomLog /var/log/apache2/openknowledgefoundation.org.access.log combined
@@ -18,7 +17,7 @@
 
 # MOIN WIKI
 # create one alias that can be used by all the others
-Alias /wikihtdocs/ "/usr/share/moin/htdocs/"
+Alias /moinhtdocs/ "/usr/share/moin/htdocs/"
 
 ScriptAlias /private/wiki  "/home/okfn/var/moin/okf_private_wiki/moin.cgi"
 ScriptAlias /wiki  "/home/okfn/var/moin/okf_public_wiki/moin.cgi"
