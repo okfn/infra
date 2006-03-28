@@ -1,0 +1,72 @@
+License: under CC-EW 'by' v2.0 (http://creativecommons.org/licenses/by/2.0/uk/)
+Author: Rufus Pollock
+
+Hi and welcome to this, the second open knowledge forum. I'm Rufus Pollock from
+the Open Knowledge Foundation and before we get into the speakers I'm just
+going to say a few words. First what is /open/ knowledge?
+
+Knowledge can be open in three distinct senses:
+
+  1. Legal. Knowledge is legally open if you are /allowed/ to get it. So to
+  take an example that came up last time but is relevant here: US Zip codes and
+  UK postcodes. Zip codes are open that is anyone is allowed to have and use
+  the database. UK postcodes by contrast are not -- they are covered by Crown
+  Copyright and owned I believe by the Post Office.
+  
+  2. Social. Knowledge is socially open if you /can/ (easily) get it, for
+  example by downloading from a website. To illustrate consider another example
+  from the last forum: your MP's voting record. While it has always been the
+  case that there was nothing illegal about providing a database of MPs voting
+  records there wasn't one actually available until recently when the site
+  publicwhip came along.
+  
+  3. Technological. Knowledge is technologically open if it is in a form that
+  you can actually read/manipulate once you have it. Conversely providing a
+  document in a closed format that you would need special proprietary software
+  to access would be make break this.
+
+Now we have got a clear idea of what open means in this context you might be
+wondering what is the purpose of a forum on open /geodata/?
+
+Well, to give you an idea consider the story of a friend of mine. He's a
+serious environmentalist type -- volunteers for the Green Party, rides a bike
+/everywhere/, thinks about the eco-consequences of every consumption decision
+... you get the picture. Now because of this he decided to buy Ecover, which
+I'm told is an extra special eco-friendly type of washing up powder. But guess
+what, it comes in a plastic bottle -- and in small amounts which means a lot of
+these plastic bottles. Serious environmental minus points, right?
+
+But Ecover aren't dumb, they can see this is a bit of a problem so they provide
+a service by which you can take your bottle along to special 'filling stations'
+and top it up. Great! But /where/ is your local filling station? It's really
+hard to find out. Wouldn't it be great if you could just go to some website and
+type in your postcode (currently closed data) and hey presto there it is a
+little map (currently closed data) with the nearest station marked on it. And
+wouldn't it be even better if I don't have to wait until Ecover do this, or
+some other commercial group but anyone could put up the site.
+
+But right now what I have just described is impossible because most of the data
+needed isn't open. The maps aren't open (they're Crown Copyright of the Ordance
+Survey) and the postcode data isn't open (it's Crown Copyright of the Post
+Office). So without even trying we've got one great example of what a bit of
+coding skills and more open information could do for a whole group of people
+who've probably never even thought about geodata, let alone open geodata, in
+their lives.
+
+What is this telling us? It's telling us that everyday we are affected by
+whether information is open or closed. Yet there is little awareneess of these
+issues, be it among policy-makers, the public or among other communities. In
+several areas we have started to see awareness and activity beginning, for
+example:
+
+  * in academia over open access for scholarly publications
+  * in the development community around medicines
+  * in culture with creative commons
+
+But most of these are still small and, more importantly, unconnected.
+Unconnected both with each other but also with other core constituencies be it
+in policy-making, among consumers, or with technologists.
+
+Thus the purpose of these forums is to address that and, in an informal
+setting, go some way to bringing these communities together and getting these
+diverse constituencies talking.

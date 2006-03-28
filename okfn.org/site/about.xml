@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:wi="http://www.witbd.org/xmlns/sitebuilder/template" xmlns:st="http://www.witbd.org/xmlns/text/structure" xmlns:te="http://www.witbd.org/xmlns/text/basic/" xmlns:bib="http://www.witbd.org/xmlns/biblio/" xmlns:ch="http://xmlchar.sf.net/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/" >
+<head>
+	<wi:Metadata>
+		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/">
+			<rdf:Description rdf:about="">
+				<dc:title>Open Knowledge Foundation - About</dc:title>
+				<dc:creator>Rufus Pollock</dc:creator>
+				<dct:created>2004-07-15</dct:created>
+			</rdf:Description>
+		</rdf:RDF>
+	</wi:Metadata>
+</head>
+
+<body>
+	<h1>
+		About the Open Knowledge Foundation
+	</h1>
+	<st:Section>
+		<h2>
+			Our Purpose
+		</h2>
+		<p>
+			The <strong>Open Knowledge Foundation</strong> exists to promote the <a href="okd/">openness</a> of knowledge in all its forms, in the belief that greater access to information will have far-reaching social and commercial benefits. In particular, we
+		</p>
+		<ul>
+			<li>
+				Promote the idea of <a href="okd/">open knowledge</a>, for example by running a series of <a href="okforums/">forums</a>.
+			</li>
+			<li>
+				Develop, support and promote projects, communities and tools that foster and facilitate open knowledge creation, access and dissemination. See the <a href="projects.html">projects page</a> for more details.
+			</li>
+			<li>
+				Campaign against restrictions, both legal and non-legal, on open knowledge. See the <a href='ok_trail/'>Open Knowledge Trail</a> to learn more.
+			</li>
+		</ul>
+	</st:Section>
+	
+	<st:Section>
+		<h2>
+			Advisory Board
+		</h2>
+		<p>
+			The OKF is privileged to have the benefit of a distinguished advisory board. Members of the board are:
+		</p>
+		<ul>
+			<li>
+				<strong>Dr Tim Hubbard.</strong> Dr Hubbard is responsible for the bioinformatics groups that carry out analysis and annotation of the vertebrate genome sequence produced by the Sanger Institute. He is joint head of the Ensembl genome annotation project, which is the leading database and access point for the human genome sequence. Following the controversy surrounding the ownership and access to the human genome sequence, he has become a leading advocate of the benefits of openness in science and in society as a whole. He is involved in a number of NGO/Industry forums regarding the world patent system and access to essential drugs, including the plan by Medecin Sans Frontieres to set up a public domain drug development industry, DNDi
+			</li>
+			<li>
+				<strong>Paula Le Dieu.</strong> Paula Le Dieu is the Director of Creative Commons International. Prior to joining Creative Commons, Paula worked for the BBC in the role of Project Director for the Creative Archive. This is a public service initiative to provide the fuel for digital creativity by opening up access to, and allowing for re-use of Britain's cultural heritage starting with the BBC's radio and television archive.
+			</li>
+			<li>
+				<strong>Dr Peter Murray-Rust.</strong> Dr Murray-Rust leads a research group in the Department of Chemistry at Cambridge University. Co-creator of the Chemical Markup Language (CML), he has long been a pioneer of data exchange and information-mining in the chemical sciences. Firmly committed to promoting openness and data availability throughout the discipline, he recently started the world-wide molecular matrix, the largest open online repository of molecular information in the world.
+			</li>
+			<li>
+				<strong>Professor John Naughton.</strong> John Naughton is Professor of the Public Understanding of Technology at the Open University, and a Fellow of Wolfson College, Cambridge, where he is Director of the Wolfson Press Fellowship Programme. He is also the <em>Observer's</em> Internet columnist, with a weekly column in the Business section of the paper. He co-founded livingwithoutmicrosoft.org and is a long-time advocate of open source software. His other commitments include chairmanship of One World international, membership of the Public Advisory Board of Creative Commons UK, and a co-founder of the Ndiyo project.
+			</li>
+		</ul>
+	</st:Section>
+	
+	<st:Section>
+		<h2>
+			Legal Status
+		</h2>
+		<p>
+			The OKF is a not-for-profit organization. It is incorporated in the United Kingdom as a company limited by guarantee with company number 5133759. The registered office is 37 Panton Street, Cambridge, CB2 1HL and it is to this address that all correspondence should be addressed.
+		</p>
+	</st:Section>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:wi="http://www.witbd.org/xmlns/sitebuilder/template" xmlns:st="http://www.witbd.org/xmlns/text/structure" xmlns:te="http://www.witbd.org/xmlns/text/basic/" xmlns:bib="http://www.witbd.org/xmlns/biblio/" xmlns:ch="http://xmlchar.sf.net/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/" >
+<head>
+	<wi:Metadata>
+		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/">
+			<rdf:Description rdf:about="">
+				<dc:title>The Open Knowledge Foundation - Home Page</dc:title>
+				<dc:creator>Peter Lockley</dc:creator>
+				<dc:creator>Rufus Pollock</dc:creator>
+				<dct:created>2005-01-23</dct:created>
+				<dct:modified></dct:modified>
+			</rdf:Description>
+		</rdf:RDF>
+	</wi:Metadata>
+</head>
+<body>
+	<h1>
+		Welcome to the Open Knowledge Foundation
+	</h1>
+	
+	<p>
+		<strong>We live in an information age.</strong> A technological revolution has created immense opportunities for increased and more equitable access to knowledge, as well as for its collaborative development. But we are yet to realize much of this potential, and in order to do so two main challengges must be met.
+	</p>
+	<p>
+		First, we must to develop the tools and the institutions to take advantage of these new possibilities for the creation and distribution of knowledge. Second, we must ensure that these opportunities are not eliminated by the ever increasing proprietization of knowledge as individuals and corporations seek to fence off knowledge for the sake of short term profit.
+	</p>
+	<p>
+		The <strong>Open Knowledge Foundation</strong> exists to address these challenges by promoting the <a href="okd/">openness</a> of knowledge in all its forms, in the belief that greater access to information will have far-reaching social and commercial benefits. In particular, we
+	</p>
+	<ul>
+		<li>
+			Promote the idea of <a href="okd/">open knowledge</a>, for example by running a series of <a href="okforums/">forums</a>.
+		</li>
+		<li>
+			Instigate and support <a href="project.html">projects</a> related to the creation and distribution of open knowledge.
+		</li>
+		<li>
+			Campaign against restrictions, both legal and non-legal, on open knowledge. See the <a href='ok_trail/'>Open Knowledge Trail</a> to learn more.
+		</li>
+	</ul>
+	
+</body>
+</html>

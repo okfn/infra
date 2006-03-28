@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:wi="http://www.witbd.org/xmlns/sitebuilder/template" xmlns:st="http://www.witbd.org/xmlns/text/structure" xmlns:te="http://www.witbd.org/xmlns/text/basic/" xmlns:bib="http://www.witbd.org/xmlns/biblio/" xmlns:ch="http://xmlchar.sf.net/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/" >
+<head>
+	<wi:Metadata>
+		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/">
+			<rdf:Description rdf:about="">
+				<dc:title>OKF KnowledgeForge Project - Home Page</dc:title>
+				<dc:creator>Rufus Pollock</dc:creator>
+				<dct:created>2004-07-15</dct:created>
+				<dct:modified></dct:modified>
+			</rdf:Description>
+		</rdf:RDF>
+	</wi:Metadata>
+</head>
+
+<body>
+	<h1>
+		OKF KnowledgeForge Project
+	</h1>
+	
+	<st:Section>
+		<h2>
+			Overview
+		</h2>
+		<p>
+			KnowledgeForge (KForge) is a digitally-based open knowledge community. The KnowledgeForge project works to provide the resources and technological infrastructure to give KForge life. The KForge system itself enables a self sustaining community to create works of intellectual and artistic value. KnowledgeForge is one of the core projects of the <a href="http://www.openknowledgefoundation.org/">Open Knowledge Foundation</a>. To find out more:
+		</p>
+		<ul>
+			<li>
+				See the in depth <a href="overview.html">Overview</a>
+			</li>
+			<li>
+				Understand the project's background and motivation by reading <a href="http://www.openknowledgefoundation.org/why_the_okf.html">Why the OKF?</a>
+			</li>
+			<li>
+				Check out the beta site <a href="http://www.kforge.net/">www.kforge.net</a>
+			</li>
+			<li>
+				Read the <a href="wiki/">wiki</a>
+			</li>
+		</ul>
+	</st:Section>
+	
+	<st:Section>
+		<h2>
+			Resources and Further Information
+		</h2>
+		<ul>
+			<li>
+				See the <a href="wiki/">wiki</a> - this includes information on how to get involved.
+			</li>
+			<li>
+				Join the kforge-dev mailing list via <a href="http://lists.okfn.org/mailman/listinfo/kforge-dev">here</a>
+			</li>
+			<li>
+				Contact Email: kforge-info [at] okfn.org
+			</li>
+		</ul>
+	</st:Section>
+</body>
+</html>
