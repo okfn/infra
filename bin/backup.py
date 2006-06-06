@@ -2,15 +2,6 @@
 import os
 import shutil
 
-def backupKforge(src, dest):
-    kforgeBase = src
-    os.environ['KFORGEHOME'] = kforgeBase
-    os.environ['PYTHONPATH'] = os.path.join(kforgeBase, 'lib', 'python')
-    cmd3 = os.path.join(kforgeBase, 'bin', 'kforge-backup')
-    cmd3 += ' ' + dest
-    if os.system(cmd3):
-        print 'Error on command %s' % cmd3
-
 if __name__ == '__main__':
     backupBase = '/home/okfn/backup'
     if os.path.exists(backupBase):
@@ -31,6 +22,8 @@ if __name__ == '__main__':
 
     src = '/home/okfn/kforge'
     dest = '/home/okfn/backup/kforge'
-    backupKforge(src, dest)
+    cmd3 = 'kforge-admin --env %s backup %s' % (src, dest)
+    if os.system(cmd3):
+        print 'Error on command %s' % cmd3
     
     # TODO: backup publicgeodata stuff
