@@ -8,6 +8,16 @@ if __name__ == '__main__':
     	shutil.rmtree(backupBase)
     os.makedirs(backupBase)
     
+    blogDbBackupPath = os.path.join(backupBase, 'blog.okfn.org.sql.gz')
+    mysqlcmd = 'mysqldump okfn_blog_wp -c | gzip > %s' % blogDbBackupPath
+    if os.system(mysqlcmd):
+        print 'Error on command %s' % mysqlcmd
+    
+    drnDbBackupPath = os.path.join(backupBase, 'drn.okfn.org.sql.gz')
+    mysqlcmd = 'mysqldump okfn_drn_drupal -c | gzip > %s' % drnDbBackupPath
+    if os.system(mysqlcmd):
+        print 'Error on command %s' % mysqlcmd
+    
     wikiPath = '/home/okfn/var/moin'
     backupPath = os.path.join(backupBase, 'moin.tgz')
     cmd = 'tar -czf %s %s' % (backupPath, wikiPath)
