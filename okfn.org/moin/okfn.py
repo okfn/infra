@@ -74,27 +74,32 @@ class Theme(ThemeBase):
         etc
         """
         request = self.request
-        found = {} # pages we found. prevent duplicates
         items = [] # navibar items
         item = u'<li class="%s">%s</li>'
+        heading = u'<h3>%s</h3>'
         current = d['page_name']
+        default_heading = heading % u'Links'
         # Process config navi_bar
         if request.cfg.navi_bar:
             for text in request.cfg.navi_bar:
-                pagename, link = self.splitNavilink(text)
-                cls = ''
-                if pagename == current:
-                    cls = 'current'
-                items.append(item % (cls, link))
-                found[pagename] = 1
+                if text.startswith(u'SECTIONHEADING:'):
+                    if len(items) > 0: items.append(u'</ul>')
+                    items.append(heading % text[15:])
+                    items.append(u'<ul>')
+                else:
+                    if len(items) == 0: # no initial section heading
+                        items.append(default_heading + u'<ul>')
+                    pagename, link = self.splitNavilink(text)
+                    cls = ''
+                    if pagename == current:
+                        cls = 'current'
+                    items.append(item % (cls, link))
+            items.append(u'</ul>')
         
         # Assemble html
         items = u'\n'.join(items)
         html = u"""<div id="sidebar">
-            <h3>Links</h3>
-            <ul>
             %s
-            </ul>
         </div>
         """ % items
         return html
