@@ -12,6 +12,21 @@
  * tweaks
  */
 
+/**
+ * unfortunately moinmoin does not consistently use class external on the 'a'
+ * tag of external links
+ */
+a > img
+{
+  display: none;
+  /* border: none; */
+}
+
+a.display
+{
+  display: block;
+}
+
 /* moinmoin only provides h2 - h6 in main content section
    so copy #content h1 from master
  */
