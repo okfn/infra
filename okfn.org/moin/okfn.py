@@ -68,10 +68,26 @@ class Theme(ThemeBase):
         return u'\n'.join(html)
     
     def sideBar(self, d):
-        """Use navibar to generate sidebar links.
+        """Use sidebar or navi_bar configuration variable to generate sidebar
+        links.
+        """
+        html = u"""<div id="sidebar">
+            %s
+        </div>
+        """
+        sideBarContent = None
+        request = self.request
+        try: # sidebar attribute may not exist
+            sideBarContent = request.cfg.sidebar
+        except:
+            sideBarContent = self.naviBar(d)
+        return html % sideBarContent
+    
+    def naviBar(self, d):
+        """Use navi_bar configuration variable to generate sidebar links.
         
-        Borrowed from self.navibar in modern and modified to exclude userlinks
-        etc
+        Borrowed from self.navibar in modern and modified to exclude userlinks,
+        and support headers
         """
         request = self.request
         items = [] # navibar items
@@ -97,11 +113,7 @@ class Theme(ThemeBase):
             items.append(u'</ul>')
         
         # Assemble html
-        items = u'\n'.join(items)
-        html = u"""<div id="sidebar">
-            %s
-        </div>
-        """ % items
+        html = u'\n'.join(items)
         return html
     
     def footer(self, d, **keywords):
