@@ -11,14 +11,16 @@ ScriptAlias /kforge/wiki  "/var/moin/okfn_kforge_wiki/moin.cgi"
 
 # Redirect for old files
 Redirect permanent /drn http://drn.okfn.org
-Redirect permanent /resources http://www.okfn.org/files
+Redirect permanent /resources/etech06 http://www.okfn.org/files/etech06
 Redirect permanent /okd http://okd.okfn.org
 Redirect permanent /ok_trail http://www.okfn.org/open_knowledge_trail
 # Redirect permanent /three_meanings_of_open.html http://okd.okfn.org/three_meanings_of_open/
+Redirect permanent /kforge/wiki http://project.knowledgeforge.net/kforge/trac/wiki
 
 RewriteEngine  on
 RewriteRule    ^/okd/(.*)  http://okd.okfn.org/  [R]
 
+RewriteCond %{REQUEST_URI} !^/files/.*$
 RewriteEngine  on
 RewriteRule    ^(.*)\.html$  $1/  [R]
 
