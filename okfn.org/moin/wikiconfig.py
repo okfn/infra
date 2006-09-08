@@ -35,42 +35,30 @@ class Config(FarmConfig):
     acl_rights_before = u'rgrp,zool:read,write,delete,revert,admin'
 
     sidebar = u'''
-            <h3>General Information</h3>
+            <h3><a href="/">General</a></h3>
             <ul>
-              	<li><a href="/">Home</a></li>
-                <li><a href="/activities/">Activities</a></li>
-                <li><a href="/roadmap/">Roadmap</a></li>
-                <li><a href="http://blog.okfn.org/">Blog and News</a></li>
-                <li><a href="/wiki/">Wiki</a></li>
-                <li><a href="/about/">About</a></li>
-                <li><a href="/contact/">Contact</a></li>
+                <li><a href="http://blog.okfn.org/">Weblog and News</a></li>
+                <li><a href="/projects/">Projects</a></li>
+                <li><a href="/participate/">Participate</a></li>
                 <li><a href="/support/">Support the Foundation</a></li>
-            </ul>
-            <h3>Open Knowledge Trail</h3>
-            <ul>
-                <li><a href="/ok_trail/">Home</a></li>
-                <li><a href="/ok_trail/think_again/">Think Again</a></li>
-                <li><a href="/ok_trail/copyright/">Copyright</a></li>
-                <li><a href="/ok_trail/drug_patents/">Drug Patents</a></li>
-                <li><a href="/ok_trail/file_sharing/">File sharing</a></li>
-                <li><a href="/ok_trail/open_source_software/">Open Source Software</a></li>
-                <li><a href="/ok_trail/open_projects/">Open Information</a></li>
+                <li><a href="/contact/">Contact Us</a></li>
             </ul>
             
-            <h3>
-                Projects
-            </h3>
+            <h3><a href="/resources/">Resources</a></h3>
             <ul>
-              <li><a href="/projects/">Home</a></li>
-                <li><a href="/okforums/">Open Knowledge Forums</a></li>
-                <li><a href="/okd/">Open Knowledge Definition</a></li>
-                <li><a href="/drn/">Digital Rights Network</a></li>
-                <li><a href="http://www.freeculture.org.uk/">Free Culture UK</a></li>
-                <li><a href="/iai/">Information Accessibility Initiative</a></li>
-                <li><a href="/kforge/">KnowledgeForge</a></li>
-                <li><a href="/geo/">Open Geodata</a></li>
-                <li><a href="http://www.witbd.org/">What is To be Done</a></li>
-                <li><a href="/wsfii/">WSFII</a></li>
+                <li><a href="/wiki/">Wiki</a></li>
+                <li><a href="http://lists.okfn.org/mailman/listinfo">Mailing Lists</a></li>
+                <li><a href="/search/">Search</a></li>
+                <li><a href="/ok_trail/">Open Knowledge Trail</a></li>
+                <li><a href="/research/">Research</a></li>
+            </ul>
+            
+            <h3><a href="/about/">About</a></h3>
+            <ul>
+                <li><a href="/advisory_board/">Advisory Board</a></li>
+                <li><a href="/activities/">Activities</a></li>
+                <li><a href="/roadmap/">Roadmap</a></li>
+                <li><a href="/governance/">Governance</a></li>
             </ul>
 	    '''
 

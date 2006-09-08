@@ -136,6 +136,13 @@ body>#top
   padding: 0;
 }
 
+#sidebar h3 a:link, #sidebar h3 a:visited,
+#sidebar h3 a:hover, #sidebar h3 a:active
+{
+  text-decoration: none;
+  color: #fff;
+}
+
 #sidebar ul, #sidebar ol
 {
   padding: 0 0 0 25px;
