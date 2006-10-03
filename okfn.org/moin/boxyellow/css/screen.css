@@ -24,6 +24,10 @@ body {
     padding: 0 0 2em 0;
 }
 
+#wrap {
+  background: #fff;
+}
+
 input {
     font-size: 1em;
     font-family: Arial, Lucida Grande, sans-serif;
@@ -242,6 +246,10 @@ textarea {
   FOOTER
   */
 
+#clear {
+  clear: both;
+  height: 10px;
+}
 
 /*#footer {
 	clear: both;
@@ -251,6 +259,7 @@ textarea {
 
 #footer
 {
+  clear: both;
   background: #eee;
   margin: 0;
   padding: 0;
@@ -395,7 +404,7 @@ textarea {
 {
   background: #E8E7EF url(../images/side-corner-br.png) no-repeat bottom right;
   float: right;
-  margin: 3.5em 2em 0 0; 
+  margin: 1em 2em 0 0; 
   padding: 0;
   width: 16em;
 }

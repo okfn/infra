@@ -14,7 +14,7 @@ class Theme(ThemeBase):
 
     """
 
-    name = "fcuk"
+    name = "boxyellow"
 
     def userCanWrite(self, page):
         return self.request.user.may.write(page.page_name)
@@ -29,6 +29,7 @@ class Theme(ThemeBase):
         html = [
             # Pre header custom html
             self.emit_custom_html(self.cfg.page_header1),
+            u'<div id="wrap">',
             
             # Header
             u'<div id="header">',
@@ -111,7 +112,9 @@ class Theme(ThemeBase):
             
             # Pre footer custom html (not recommended!)
             self.emit_custom_html(self.cfg.page_footer1),
-            
+            u'''<div id="clear">
+                &nbsp;
+            </div><!-- /clear -->''',
             # Footer
             u'<div id="footer">',
             editbar,
@@ -123,6 +126,7 @@ class Theme(ThemeBase):
             self.emit_custom_html(self.cfg.page_footer2),
             u'</div>',
             u'</div>',
+            u'</div><!-- wrap -->', 
             ]
         return u'\n'.join(html)
         
