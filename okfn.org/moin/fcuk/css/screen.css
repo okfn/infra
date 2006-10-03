@@ -1,0 +1,503 @@
+/*  screen.css - MoinMoin Default Styles
+
+Copyright (c) 2001, 2002, 2003 by Juergen Hermann
+*/
+
+/* content styles */
+
+/* debug 
+* {border: 1px dotted blue;}
+*/
+
+html {
+    background-color: #eee;
+}
+
+body {
+    color: #333;
+    margin: 2em;
+    background-color: #fff;
+    background: #eee;
+    font-family: Helvetica, Tahoma, "Bitstream Vera Sans", sans-serif;
+    font-size: 85%;
+    line-height: 1.4em;
+    padding: 0 0 2em 0;
+}
+
+input {
+    font-size: 1em;
+    font-family: Arial, Lucida Grande, sans-serif;
+}
+
+textarea {
+    font-size: 1em;
+    font-family: monospace;
+}
+
+.disabled {
+    /* IE ignore disabled attribute, but at least show items in gray */
+    color: gray;
+}
+
+/* user interface styles */
+
+#header {
+    margin: 0;
+    padding: 0;
+    /* background: #3D4551; */
+    background: #feed93 url(http://www.freeculture.org.uk/images/top-linerepeat.png) repeat-x top left;
+}
+
+#logo {
+    font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", "Lucida", "Bitstream Vera Sans", Verdana, sans-serif;
+    color: #4F4786;
+    background: transparent url(http://www.freeculture.org.uk/images/logo.png) no-repeat right top;
+    font-size: 3em;
+    letter-spacing: -0.1em;
+    margin: 0 0.5em 0 0;
+    padding: 1.4em 0 1.4em 0.5em;
+}
+
+#logo a:link, #logo a:visited
+{
+  color: #4F4786;
+  text-decoration: none;
+}
+
+#logo a:hover, #logo a:active
+{
+  color: #7f73b7;
+  text-decoration: none;
+}
+
+
+
+#logo img {
+    vertical-align: middle;
+}
+
+#logo a {
+    color: black;
+    text-decoration: none;
+}
+
+*[dir="rtl"] #logo {
+    float: right;
+}
+
+#username {
+    margin: 0 10px;
+    padding: 8px 0 0 0;
+    text-align: right;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+*[dir="rtl"] #username {
+    text-align: left;
+}
+
+#username li {
+    display: inline;
+    padding: 0 2px;
+}
+
+#username li:before {
+	content: "| ";
+    color: black;
+}
+
+#username li:first-child:before {
+	content: "";
+}
+
+#searchform {
+	float: right;
+	margin: 5px 10px;
+	padding: 0;
+	white-space: nowrap;
+	font-size: 13px;
+}
+
+*[dir="rtl"] #searchform {
+	float: left;
+}
+
+#searchform form div {
+    display: inline;
+}
+
+
+/**
+  *********************
+  NAV BAR
+  */
+
+#navibar
+{
+  margin: 0 0 0 1.55em;
+  padding: 0;
+  font-size: 0.95em;
+  list-style-type: none;
+}
+
+#navibar li
+{
+  display: block;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+
+#navibar li a
+{
+  display: block;
+}
+
+#navibar li a:link, #navibar li a:visited
+{
+  text-align: center;
+  color: #777;
+  background: #eee;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 0 0.3em 0 0;
+  padding: 0.5em 0.5em 0.35em 0.5em;
+  text-decoration: none;
+}
+
+#navibar li a:hover, #navibar li a:active, #navibar li.current a:link, #navibar li.current a:visited
+{
+  color: #4F4786;
+  background: #feed93;
+  border-right: 1px solid #D4C262;
+  border-bottom: 1px solid #D4C262;
+  text-decoration: none;
+}
+
+#header .editbar {
+	border-bottom: 1px dotted #9C9C9C;
+}
+
+#message {
+	clear: both;
+	margin: 0;
+	padding: 5px 10px;
+	border-bottom: 1px solid #c9c9c9;
+	background: #E6EAF0;
+}
+
+#message p{
+	margin: 5px 0;
+	padding: 0;
+	font-weight: bold;
+}
+
+#message div.buttons {
+	font-weight: normal;
+}
+
+.dialog form {
+    margin: 0 15px;
+}
+
+.dialog td {
+    border: none;
+    padding: 5px;
+}
+
+.dialog td.label {
+    text-align: right;
+    font-weight: bold;
+    width: 25%;
+}
+
+*[dir="rtl"] .dialog td.label {
+    text-align: left;
+}
+
+.dialog td.content input {
+    width: 100%;
+}
+
+#page {
+  line-height: 1.3em;
+  background: #fff;
+  margin: 0 0 0em 0;
+  padding: 2.5em 19.5em 1.5em 1.5em;
+}
+
+/* We use here dumb css1 ids because of IE suckiness */
+#editor-textarea, #editor-comment {
+    width: 100%;
+}
+
+#preview {
+	border: 1px solid #6C7680;
+	padding: 10px 30px 20px 30px;
+	background: url(../img/draft.png);
+}
+
+
+/**
+  ******************************
+  FOOTER
+  */
+
+
+/*#footer {
+	clear: both;
+	margin: 0;
+	padding: 0;
+}*/
+
+#footer
+{
+  background: #eee;
+  margin: 0;
+  padding: 0;
+}
+
+#footer p
+{
+  color: #888;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9em;
+}
+
+#footer a
+{
+  color: #888;
+}
+
+#footer .editbar {
+	border-top: 1px dotted #9C9C9C;
+	border-bottom: 1px solid #9C9C9C;
+}
+
+.editbar {
+	clear: both;
+	margin: 0;
+	padding: 0 8px;
+	white-space: nowrap;
+	height: 26px;
+	background: white;
+}
+
+.editbar form, .editbar form div {
+    display: inline;
+	margin: 0;
+}
+
+.editbar li {
+	float: left;
+	display: block;
+	padding: 0;
+	margin: 2px 6px;
+}
+
+*[dir="rtl"] .editbar li {
+	float: right;
+}
+
+#pagetrail {
+	margin: 0;
+	padding: 0 10px;
+  clear: both;
+	margin: 0;
+	padding: 0 10px;
+	white-space: nowrap;
+	height: 26px;
+	background: white;
+}
+
+#pagetrail li {
+	float: left;
+	display: block;
+	padding: 0;
+	margin: 2px 4px;
+  background: white;
+}
+
+*[dir="rtl"] #pagetrail {
+	float: right;
+}
+
+*[dir="rtl"] #pagetrail li:after {
+	content: " « ";
+}
+
+/* XXX Warning: non-ascii characters! */
+#pagetrail li:after {
+	content: " » ";
+	color: black;
+}
+
+#new-credits {
+  margin-top: 2em;
+  margin-left: 10px;
+}
+  
+
+#credits, #version, #timings{
+	margin: 5px 10px;
+	padding: 0;
+	text-align: center;
+	font-size: 0.88em;
+	color: #6C7680;
+	font-size: 12px;
+}
+
+#credits li, #timings li {
+	display: inline;
+	padding: 0 2px;
+	margin: 0 4px;
+}
+
+#credits img {
+	vertical-align: middle;
+}
+
+.diff {
+	width:99%;
+}
+
+.diff-header {
+	font-weight: bold;
+}
+
+.diff-title {
+	background-color: #C0C0C0;
+}
+
+.diff-added {
+	background-color: #E0FFE0;
+	vertical-align: sub;
+}
+
+.diff-removed {
+	background-color: #FFFFE0;
+	vertical-align: sub;
+}
+
+.diff-added span {
+	background-color: #80FF80;
+}
+
+.diff-removed span {
+	background-color: #FFFF80;
+}
+
+/*
+ * sidebar stuff: entirely new by RP
+ */
+
+#sidewrap
+{
+  background: #E8E7EF url(http://www.freeculture.org.uk/images/side-corner-br.png) no-repeat bottom right;
+  float: right;
+  margin: 3.5em 2em 0 0; 
+  padding: 0;
+  width: 16em;
+}
+
+* html #sidewrap
+{
+  margin-right: 1em;
+}
+
+#sidebartop
+{
+  background: transparent url(http://www.freeculture.org.uk/images/side-corner-tl.png) no-repeat top left;
+  padding: 0;
+}
+
+#sidebartop span
+{
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: transparent url(http://www.freeculture.org.uk/images/side-corner-tr.png) no-repeat top right;
+}
+
+#sidebar ul,
+#sidebar ol,
+#sidebar p,
+#sidebar h2, /* please don't use */
+#sidebar h3,
+#sidebar h4
+{
+  margin: 0 0 1em 0;
+}
+
+#sidebar
+{
+  margin: 0;
+  padding: 0 1em 1em 1em;
+  background: transparent url(http://www.freeculture.org.uk/images/side-corner-bl.png) no-repeat bottom left;
+}
+
+/**
+ * Original text stuff: added by rgrp
+ */
+a:link, a:visited
+{
+  color: #4f4786;
+}
+
+a:hover, a:active
+{
+  color: #7f73b7;
+}
+
+a.nonexistent:link, a.nonexistent:visited
+{
+  color: #7f73b7;
+}
+
+em
+{
+  font-style: normal;
+  background: #FCF1BA;
+}
+
+h1,h2,h3,h4
+{
+  color: #4F4786;
+  margin: 1em 0 0 0;
+  font-weight: normal;
+}
+
+ul,ol,p,form,p,blockquote,fieldset,input 
+{
+  margin: 1em 0 0 0;
+}
+
+ul, ol
+{
+  padding-left: 2em;
+}
+
+ul
+{
+	list-style: square;
+}
+
+li ul, li ol
+{
+  margin: 0.5em 0;
+}
+
+a img
+{
+  border: 0;
+}
+
+blockquote
+{
+  margin: 1em 1em 0 1em;
+  padding: 0.2em 1em 1em 1em;
+  background: #E8E7EF;
+  border-left: 0.5em solid #8579bd;
+}
