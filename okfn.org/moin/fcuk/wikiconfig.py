@@ -5,34 +5,37 @@
 # encoding) you MUST use: coding: utf-8
 # That setting must match the encoding your editor uses when you modify the
 # settings below. If it does not, special non-ASCII chars will be wrong.
+from MoinMoin.multiconfig import DefaultConfig
 
-"""
-This is a sample config for a wiki that isn't part of a farm but does use
-farmconfig for common stuff. Here we define what has to be different from
-the farm's common settings.
-"""
-# Need to set the path since file will be installed in wiki instance dir
-import sys
-sys.path.insert(0, '/etc/moin')
-# we import the FarmConfig class for common defaults of our wikis:
-from farmconfig import FarmConfig
-
-# now we subclass that config (inherit from it) and change what's different:
-class Config(FarmConfig):
-
-    show_timings = 0
+class Config(DefaultConfig):
 
     # basic options (you normally need to change these)
-    sitename = u'Free Culture UK' # [Unicode]
-    interwikiname = 'MoinMaster'
-    # data_dir = './data/'
-    acl_rights_default = '+RufusPollock:admin Known:read,write,delete,revert All:read'
+    sitename = u'FCUK theme' # [Unicode]
+
+    # if you have a logo you can do
+    # logo_string = u'
 
     theme_default = 'fcuk'
     theme_force = True
+
     navi_bar = [ u'[FrontPage Home]',
                  u'[GetInvolved Get Involved]',
                  u'[projects Projects]',
                  u'[FindPage Search]',
                  u'[RecentChanges Recent Changes]',
     ]
+
+    sidebar = u'''
+            <h3>
+                Demo Heading     
+            </h3>
+            <ul>
+                <li><a href="/">First Item</a></li>
+                <li><a href="/">Second Item</a></li>
+            </ul>
+            '''
+
+    # show the edit bar even if the user does not have write permissions
+    # show_editbar = True
+
+    page_footer2 = u'<p>Some extra footer stuff</p>'

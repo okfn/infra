@@ -10,10 +10,14 @@ from MoinMoin.theme import ThemeBase
 
 
 class Theme(ThemeBase):
+    """OKFN fcuk theme adapated from the moinmoin modern theme.
+
+    """
 
     name = "fcuk"
 
-# Public functions #####################################################
+    def userCanWrite(self, page):
+        return self.request.user.may.write(page.page_name)
 
     def header(self, d, **kw):
         """ Assemble wiki header
@@ -28,7 +32,7 @@ class Theme(ThemeBase):
             
             # Header
             u'<div id="header">',
-            self.logo(),
+            self.special_logo(),
             # self.searchform(d),
             # self.username(d),
             # self.trail(d),
@@ -43,7 +47,7 @@ class Theme(ThemeBase):
             self.emit_custom_html(self.cfg.page_header2),
             
             # sidebar (ADDED by rgrp):
-            self.sideBarFcuk(),
+            self.sidebar(),
             
             # Start of page
             self.startPage(),
@@ -51,10 +55,15 @@ class Theme(ThemeBase):
         ]
         return u'\n'.join(html)
     
-    def newNaviBar(self):
-        pass
-        
-    def sideBarFcuk(self):
+    def special_logo(self):
+        special_logo_string = ''
+        try: # sidebar attribute may not exist
+            special_logo_string = self.cfg.special_logo_string
+            return u'''<div id="logo">%s</div>''' % special_logo_string
+        except:
+            return self.logo()
+    
+    def sidebar(self):
         html = u"""
         <div id="sidewrap">
 	        <div id="sidebartop">
@@ -62,20 +71,20 @@ class Theme(ThemeBase):
 	        </div><!-- /sidebartop -->
 	        
 	        <div id="sidebar">
-              <h3>
-                Projects
-              </h3>
-              <ul>
-                <li><a href="http://www.freeculture.org.uk/PublicDomainBurn">Public Domain Burn</a></li>
-                <li><a href="http://www.freeculture.org.uk/creative_archive/">BBC Creative Archive</a></li>
-                <li><a href="http://www.freeculture.org.uk/creative_commons/">Creative Commons</a></li>
-                <li><a href="http://www.freeculture.org.uk/term_extn/">Recording Copyright Extension</a></li>
-              </ul>
+                %s
 	        </div><!-- /sidebar -->
 	        
         </div><!-- /sidewrap -->
         """
-        return html
+        sideBarContent = None
+        try: # sidebar attribute may not exist
+            sideBarContent = self.cfg.sidebar
+        except:
+            sideBarContent = ''
+        if sideBarContent:
+            return html % sideBarContent
+        else:
+            return ''
     
     def footer(self, d, **keywords):
         """ Assemble wiki footer
@@ -86,6 +95,15 @@ class Theme(ThemeBase):
         @return: page footer html
         """
         page = d['page']
+        editbar = u''
+        show_edit_bar = False
+        try:
+            show_edit_bar = self.cfg.show_editbar
+        except:
+            pass
+        if self.userCanWrite(page) or show_edit_bar:
+            editbar = self.editbar(d)
+
         html = [
             # End of page
             self.pageinfo(page),
@@ -96,57 +114,19 @@ class Theme(ThemeBase):
             
             # Footer
             u'<div id="footer">',
-            self.editbar(d),
-            # self.credits(d),
-            # self.showversion(d, **keywords),
-            # added by rgrp:
+            editbar,
             u'<div id="div-pagetrail">',
             self.trail(d),
             u'</div>',
-            self.extraFooter(),
-            u'</div>',
-            
+            u'<div id="new-credits">',
             # Post footer custom html
             self.emit_custom_html(self.cfg.page_footer2),
+            u'</div>',
+            u'</div>',
             ]
         return u'\n'.join(html)
-    
-    def extraFooter(self):
-        return u"""
-        <div id="new-credits">
-        <p>
-            Content licensed under <a href="http://creativecommons.org/licenses/by-sa/2.5/">Creative Commons Attribution-ShareAlike</a>
-        </p>
-        <p>
-	        
-        </p>
-        <p>
-	        Designed by <a href="http://whiteink.com/">WhiteInk</a>, 2005
-            &mdash;
-            <a href="http://validator.w3.org/check/referer">HTML4.01</a> | 
-	        <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>
-	        &mdash; <a href="http://creativecommons.org/licenses/by-sa/2.5/">"Some Rights Reserved"</a>
-	    </p>
-        </div>
-	      <!--
-	      <rdf:RDF xmlns="http://web.resource.org/cc/"
-	          xmlns:dc="http://purl.org/dc/elements/1.1/"
-	          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-	      <Work rdf:about="">
-	         <dc:type rdf:resource="http://purl.org/dc/dcmitype/Interactive" />
-	         <license rdf:resource="http://creativecommons.org/licenses/by-sa/2.5/" />
-	      </Work>
-	      <License rdf:about="http://creativecommons.org/licenses/by-sa/2.5/">
-	         <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
-	         <permits rdf:resource="http://web.resource.org/cc/Distribution" />
-	         <requires rdf:resource="http://web.resource.org/cc/Notice" />
-	         <requires rdf:resource="http://web.resource.org/cc/Attribution" />
-	         <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
-	         <requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
-	      </License>
-	      </rdf:RDF>
-	      -->"""
         
+
 def execute(request):
     """
     Generate and return a theme object

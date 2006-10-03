@@ -44,14 +44,12 @@ textarea {
 #header {
     margin: 0;
     padding: 0;
-    /* background: #3D4551; */
-    background: #feed93 url(http://www.freeculture.org.uk/images/top-linerepeat.png) repeat-x top left;
+    background: #feed93 url(../images/top-linerepeat.png) repeat-x top left;
 }
 
 #logo {
     font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", "Lucida", "Bitstream Vera Sans", Verdana, sans-serif;
     color: #4F4786;
-    background: transparent url(http://www.freeculture.org.uk/images/logo.png) no-repeat right top;
     font-size: 3em;
     letter-spacing: -0.1em;
     margin: 0 0.5em 0 0;
@@ -395,7 +393,7 @@ textarea {
 
 #sidewrap
 {
-  background: #E8E7EF url(http://www.freeculture.org.uk/images/side-corner-br.png) no-repeat bottom right;
+  background: #E8E7EF url(../images/side-corner-br.png) no-repeat bottom right;
   float: right;
   margin: 3.5em 2em 0 0; 
   padding: 0;
@@ -409,7 +407,7 @@ textarea {
 
 #sidebartop
 {
-  background: transparent url(http://www.freeculture.org.uk/images/side-corner-tl.png) no-repeat top left;
+  background: transparent url(../images/side-corner-tl.png) no-repeat top left;
   padding: 0;
 }
 
@@ -418,7 +416,7 @@ textarea {
   display: block;
   margin: 0;
   padding: 0;
-  background: transparent url(http://www.freeculture.org.uk/images/side-corner-tr.png) no-repeat top right;
+  background: transparent url(../images/side-corner-tr.png) no-repeat top right;
 }
 
 #sidebar ul,
@@ -435,7 +433,7 @@ textarea {
 {
   margin: 0;
   padding: 0 1em 1em 1em;
-  background: transparent url(http://www.freeculture.org.uk/images/side-corner-bl.png) no-repeat bottom left;
+  background: transparent url(../images/side-corner-bl.png) no-repeat bottom left;
 }
 
 /**
