@@ -463,12 +463,6 @@ a.nonexistent:link, a.nonexistent:visited
   color: #7f73b7;
 }
 
-em
-{
-  font-style: normal;
-  background: #FCF1BA;
-}
-
 h1,h2,h3,h4
 {
   color: #4F4786;
