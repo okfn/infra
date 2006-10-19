@@ -18,6 +18,8 @@ class Config(DefaultConfig):
     theme_default = 'fcuk'
     theme_force = True
 
+    # this will produce the buttons across the top
+    # format is just as for moinmoin navi_bar
     navi_bar = [ u'[FrontPage Home]',
                  u'[GetInvolved Get Involved]',
                  u'[projects Projects]',
@@ -25,6 +27,8 @@ class Config(DefaultConfig):
                  u'[RecentChanges Recent Changes]',
     ]
 
+    # contents of this goes into the sidebar
+    # format should be html which will be directly inserted
     sidebar = u'''
             <h3>
                 Demo Heading     
@@ -38,4 +42,6 @@ class Config(DefaultConfig):
     # show the edit bar even if the user does not have write permissions
     # show_editbar = True
 
+    # this will be added at the very bottom of the page.
+    # format should be raw html
     page_footer2 = u'<p>Some extra footer stuff</p>'

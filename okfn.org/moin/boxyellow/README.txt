@@ -1,6 +1,6 @@
-# OKF moinmoin theme #
+# boxyellow moinmoin theme #
 
-fcuk.py  # the moinmoin python theme file
+theme.py  # the moinmoin python theme file
 css/     # altered css
   screen.css: new screen.css 
 images/  # images for theme
@@ -9,15 +9,21 @@ images/  # images for theme
 
 These are instructions for installation site wide (for use by multiple wikis)
 
-1. python theme: Symlink okfn.py into
-   [site-wide-moinmoin-python-directory]/theme
+1. python theme: this is in theme.py. You need to install this in the normal
+fashion for moinmoin themes:
+
+   [site-wide-moinmoin-python-directory]/boxyellow.py
 
 2. htdocs
+
   1. In the site-wide htdocs directory copy the modern theme and rename it as
-     fcuk
+     boxyellow 
 
-  2. Delete (site-wide)/htdocs/fcuk/css/screen.cs and replace by
-     ./css/screen.css (fcuk css)
+  2. Delete (site-wide)/htdocs/boxyellow/css/screen.cs and replace by
+     ./css/screen.css
 
-  3. symlink ./images to (site-wide)/htdocs/fcuk/images
+  3. symlink ./images to (site-wide)/htdocs/boxyellow/images
+
+There is a demo wikiconfig.py file in this directory showing some of the
+configuration options you can use.
 
