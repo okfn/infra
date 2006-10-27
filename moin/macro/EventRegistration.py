@@ -5,6 +5,10 @@ are stored.
 
 Registration details are stored as 'name <email>' in the file.
 
+@author: Rufus Pollock (Open Knowledge Foundation)
+@copyright: (c) 2006, Open Knowledge Foundation
+@license: MIT license <www.opensource.org/licenses/mit-license.php> 
+
 TODO:
 =====
 
@@ -43,7 +47,7 @@ def execute(macro, args):
     # return macro.formatter.text("I got these args from a macro %s: %s" % (str(macro), args))
     filepath = args.strip()
 
-    pagename = macro.formatter.page.page_name
+    pageurl = macro.formatter.page.url(macro.request)
 
     name = macro.form.get('name', [''])[0]
     email = macro.form.get('email', [''])[0]
@@ -66,7 +70,7 @@ def execute(macro, args):
             except:
                 msg = 'Unable to save registration. Please contact the system administrator'
     template_values = {
-            'pagename' : pagename,
+            'pageurl' : pageurl,
             'msg'      : msg,
             'name'     : name,
             'email'    : email,
@@ -108,7 +112,7 @@ def make_form(template_values):
         
     template = '''
 <span style="color: red; font-weight: bold;">%(msg)s</span>
-<form name="add_attendee" action="%(pagename)s#register" METHOD="POST">
+<form name="add_attendee" action="%(pageurl)s#register" METHOD="POST">
 '''
     template += text_form_field('Name:', 'name', template_values['name'])
     template += text_form_field('Email:', 'email', template_values['email'])

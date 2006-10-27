@@ -16,7 +16,7 @@ class Test1:
     
     def test_make_form(self):
         values = {
-            'pagename' : 'TestMacro',
+            'pageurl' : 'TestMacro',
             'msg'      : '',
             'name' : '',
             'email' : '',
@@ -24,7 +24,7 @@ class Test1:
             }
         out = EventRegistration.make_form(values)
         assert '<form' in out
-        assert values['pagename'] in out
+        assert values['pageurl'] in out
 
     def test_check_data(self):
         fail_set = [
