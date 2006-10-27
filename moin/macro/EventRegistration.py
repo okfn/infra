@@ -100,7 +100,7 @@ def save_data(fileobj, name, email):
 def make_form(template_values):
     def text_form_field(label, name, value=''):
         res = '<label for="%s">%s</label>' % (name, label)
-        res += '<br />\n'
+        # res += '<br />\n'
         res += ' <input type="text" id="%s" name="%s" value="%s" />' % (name,
             name, value)
         res += '<br />'
@@ -116,7 +116,7 @@ def make_form(template_values):
         template_values['email2'])
     template += '''
     <input type="hidden" name="form_submitted" value="y" />
-    <input type="submit" name="button_save" value="Save" />
+    <input type="submit" name="button_save" value="Register" />
 </form>
         '''
     html = template % template_values 
