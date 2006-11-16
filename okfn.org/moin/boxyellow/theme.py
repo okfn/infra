@@ -63,6 +63,33 @@ class Theme(ThemeBase):
             return u'''<div id="logo">%s</div>''' % special_logo_string
         except:
             return self.logo()
+
+    def navibar(self, d):
+        """Standard navibar function modified to exclude userlinks, and
+        current page.
+        """
+        request = self.request
+        items = [] # navibar items
+        item = u'<li class="%s">%s</li>'
+        current = d['page_name']
+
+        # Process config navi_bar
+        if request.cfg.navi_bar:
+            for text in request.cfg.navi_bar:
+                pagename, link = self.splitNavilink(text)
+                cls = 'wikilink'
+                if pagename == current:
+                    cls = 'wikilink current'
+                items.append(item % (cls, link))
+
+        # Assemble html
+        items = u'\n'.join(items)
+        html = u'''
+<ul id="navibar">
+%s
+</ul>
+''' % items
+        return html
     
     def sidebar(self):
         html = u"""
@@ -107,7 +134,7 @@ class Theme(ThemeBase):
 
         html = [
             # End of page
-            self.pageinfo(page),
+            # self.pageinfo(page),
             self.endPage(),
             
             # Pre footer custom html (not recommended!)
