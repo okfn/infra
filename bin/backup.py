@@ -32,7 +32,8 @@ if __name__ == '__main__':
 
     src = '/home/okfn/kforge'
     dest = '/home/okfn/backup/kforge'
-    cmd3 = 'kforge-admin --env %s backup %s' % (src, dest)
+    config = os.path.join(src, 'kforge.conf')
+    cmd3 = 'kforge-admin --config %s backup %s' % (config, dest)
     if os.system(cmd3):
         print 'Error on command %s' % cmd3
     
