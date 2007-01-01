@@ -4,12 +4,19 @@
 Import moin wiki pages into a Trac database (with version
 history).
 
-Thomas Munro <munro@ip9.org>
+@author: Thomas Munro <munro@ip9.org>
+
+Modifications by Rufus Pollock <rufus.pollock@okfn.org>
 """
 
 import sys
 import os
 import trac.env
+
+def convert_moin_markup(page_string):
+    out = page_string
+    out = out.replace('[[TableOfContents]]', '[[PageOutline(0-6,Table of Contents,inline)]]')
+    return out
 
 def convert(trac_path, moin_path):
     # connect to trac DB
@@ -45,9 +52,8 @@ def convert(trac_path, moin_path):
             if revision == "99999999" or not os.path.isfile(data_file_name):
                 continue # missing revision?
             #print time, revision, operation, dunno, ip, dns, user_id
-            if user_id == "":
-                user_name = ""
-            else:
+            user_name = ""
+            if user_id in users:
                 user_name = users[user_id]
             time = time[:-6]
             comment = comment.strip()
@@ -55,6 +61,7 @@ def convert(trac_path, moin_path):
             data_file = open(data_file_name, "r")
             body = data_file.read()
             data_file.close()
+            body = convert_moin_markup(body)
             # insert into database
             cursor.execute("INSERT INTO wiki (name, version, time, author, ipnr, text, comment, readonly) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (page, revision, time, user_name, ip, body, comment, 0))
         log_file.close()
