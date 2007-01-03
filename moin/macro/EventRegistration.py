@@ -112,7 +112,7 @@ def make_form(template_values):
         
     template = '''
 <span style="color: red; font-weight: bold;">%(msg)s</span>
-<form name="add_attendee" action="%(pageurl)s#register" METHOD="POST">
+<form id="register" name="register" action="%(pageurl)s#register" METHOD="POST">
 '''
     template += text_form_field('Name:', 'name', template_values['name'])
     template += text_form_field('Email:', 'email', template_values['email'])
@@ -125,14 +125,4 @@ def make_form(template_values):
         '''
     html = template % template_values 
     return html
-
-def make_form_test(macro):
-    template = '''
-<form action="TestMacro#add" name="comment" METHOD="POST" >
-<textarea name="comtext" rows="4" cols="60" style="font-size: 9pt;" 
-Add your comment</textarea>
-<input type="submit" name="button_save" value="Save">
-</form>
-'''
-    return template
 
