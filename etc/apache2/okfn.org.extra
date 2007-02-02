@@ -16,11 +16,15 @@ Redirect permanent /okd http://okd.okfn.org
 Redirect permanent /ok_trail http://www.okfn.org/open_knowledge_trail
 # Redirect permanent /three_meanings_of_open.html http://okd.okfn.org/three_meanings_of_open/
 Redirect permanent /kforge/wiki http://project.knowledgeforge.net/kforge/trac/wiki
+Redirect permanent /okforums/okcon http://www.okfn.org/okcon
+# typo means programme was at okfcon/programme
+Redirect permanent /okforums/okfcon http://www.okfn.org/okcon
+Redirect permanent /okfcon http://www.okfn.org/okcon
 
 RewriteEngine  on
 RewriteRule    ^/okd/(.*)  http://okd.okfn.org/  [R]
 
-RewriteCond %{REQUEST_URI} !^/files/.*$
+RewriteCond %{REQUEST_URI} !^/(files|geo)/.*$
 RewriteEngine  on
 RewriteRule    ^(.*)\.html$  $1/  [R]
 
