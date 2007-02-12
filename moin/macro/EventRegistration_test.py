@@ -13,6 +13,9 @@ class Test1:
         fileobj.seek(0)
         out = fileobj.read()
         assert out == entry
+        fileobj.seek(0)
+        numregs = EventRegistration.count_registrations(fileobj)
+        assert numregs == 1
     
     def test_make_form(self):
         values = {
@@ -21,6 +24,7 @@ class Test1:
             'name' : '',
             'email' : '',
             'email2' : '',
+            'registered_total' : 0,
             }
         out = EventRegistration.make_form(values)
         assert '<form' in out

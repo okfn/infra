@@ -66,15 +66,25 @@ def execute(macro, args):
             try:
                 fileobj = file(filepath, 'a')
                 save_data(fileobj, name, email)
+                fileobj.close()
                 msg = 'Registration successful'
             except:
                 msg = 'Unable to save registration. Please contact the system administrator'
+
+    # do this after saving so that new registration shows up
+    registered_total = 0
+    # allow for case where file not yet created
+    try:
+         registered_total = count_registrations(file(filepath))
+    except:
+        pass
     template_values = {
             'pageurl' : pageurl,
             'msg'      : msg,
             'name'     : name,
             'email'    : email,
-            'email2'   : email2
+            'email2'   : email2,
+            'registered_total' : registered_total,
             }
     result = make_form(template_values)
     if DEBUG:
@@ -101,6 +111,13 @@ def save_data(fileobj, name, email):
     entry = '%s <%s>\n' % (name, email)
     fileobj.write(entry)
 
+def count_registrations(fileobj):
+    try:
+        lines = fileobj.readlines()
+        return len(lines)
+    except:
+        return 0
+
 def make_form(template_values):
     def text_form_field(label, name, value=''):
         res = '<label for="%s">%s</label>' % (name, label)
@@ -111,6 +128,7 @@ def make_form(template_values):
         return res
         
     template = '''
+<p>%(registered_total)s people have registered so far.</p>
 <span style="color: red; font-weight: bold;">%(msg)s</span>
 <form id="register" name="register" action="%(pageurl)s#register" METHOD="POST">
 '''
