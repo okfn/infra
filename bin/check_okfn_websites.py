@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import twill.commands as web
 
 import unittest
@@ -10,6 +11,7 @@ class TestSites(unittest.TestCase):
             'http://okd.okfn.org/',
             'http://www.publicgeodata.org/',
             'http://m.okfn.org/',
+            'http://dev.okfn.org/',
             ]
 
     other_sites = [ 
@@ -17,6 +19,8 @@ class TestSites(unittest.TestCase):
             'http://www.freeculture.org.uk/',
             'http://www.publicdomainworks.net/',
             'http://www.wsfii.org/',
+            'http://www.knowledgeforge.net/',
+            'http://www.kforgeproject.com/',
             ]
 
     def test_okfn(self):
