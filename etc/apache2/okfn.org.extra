@@ -24,7 +24,7 @@ Redirect permanent /okfcon http://www.okfn.org/okcon
 RewriteEngine  on
 RewriteRule    ^/okd/(.*)  http://okd.okfn.org/  [R]
 
-RewriteCond %{REQUEST_URI} !^/(files|geo)/.*$
+RewriteCond %{REQUEST_URI} !^/(files|geo|sysadmin)/.*$
 RewriteEngine  on
 RewriteRule    ^(.*)\.html$  $1/  [R]
 
