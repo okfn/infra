@@ -7,7 +7,6 @@ Alias /files /home/okfn/svn-okfn/trunk/okfn.org/site/files
 Alias /scripts /home/okfn/svn-okfn/trunk/okfn.org/site/scripts
 
 ScriptAlias /wiki  "/var/moin/okfn_public_wiki/moin.cgi"
-ScriptAlias /kforge/wiki  "/var/moin/okfn_kforge_wiki/moin.cgi"
 
 # Redirect for old files
 Redirect permanent /drn http://drn.okfn.org
@@ -20,6 +19,8 @@ Redirect permanent /okforums/okcon http://www.okfn.org/okcon
 # typo means programme was at okfcon/programme
 Redirect permanent /okforums/okfcon http://www.okfn.org/okcon
 Redirect permanent /okfcon http://www.okfn.org/okcon
+# wsfii now should go on its site
+Redirect permanent /wsfii http://www.wsfii.org
 
 RewriteEngine  on
 RewriteRule    ^/okd/(.*)  http://okd.okfn.org/  [R]
