@@ -21,6 +21,9 @@ class TestSites(unittest.TestCase):
             'http://www.wsfii.org/',
             'http://www.knowledgeforge.net/',
             'http://www.kforgeproject.com/',
+            'http://www.openshakespeare.org/',
+            'http://demo.openshakespeare.org/',
+            'http://www.ckan.net',
             ]
 
     def test_okfn(self):
