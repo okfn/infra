@@ -1,6 +1,6 @@
 <VirtualHost *:80>
 	ServerName okd.okfn.org
-	ServerAlias def.okfn.org okd.eu0.okfn.org
+	ServerAlias opendefinition.org www.opendefinition.org def.okfn.org okd.eu0.okfn.org
 
   	Alias /moinhtdocs/ "/usr/share/moin/htdocs/"
   	ScriptAlias / "/home/okfn/kforge/var/project_data/okd/moin/12/moin.fcg/"
