@@ -12,6 +12,7 @@ class TestSites(unittest.TestCase):
             'http://www.publicgeodata.org/',
             'http://m.okfn.org/',
             'http://dev.okfn.org/',
+            'http://drn.okfn.org/',
             ]
 
     other_sites = [ 
