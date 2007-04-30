@@ -21,6 +21,7 @@ Redirect permanent /okforums/okfcon http://www.okfn.org/okcon
 Redirect permanent /okfcon http://www.okfn.org/okcon
 # wsfii now should go on its site
 Redirect permanent /wsfii http://www.wsfii.org
+Redirect permanent /witbd/svn https://p.knowledgeforge.net/witbd/svn
 
 RewriteEngine  on
 RewriteRule    ^/okd/(.*)  http://okd.okfn.org/  [R]
