@@ -1,0 +1,89 @@
+<VirtualHost *:80>
+    # DEFAULT HOST STUFF
+    ServerAlias okfn.org www.okfn.org eu0.okfn.org
+    
+    Alias /trac /usr/share/trac/htdocs 
+    Alias /moinhtdocs /usr/share/moin/htdocs
+
+    # Alias must be in this order!
+    Alias /geo/dav /home/okfn/kforge/var/project_data/geo
+    Alias /geo /home/okfn/kforge/var/project_data/geo/www
+    <Location /geo/dav>
+        DAV On
+        Options +Indexes
+        # Remove use DirectoryIndex
+        DirectoryIndex none.none.none
+        ForceType text/plain
+        
+        AuthType Basic
+        AuthName "Open Knowledge Foundation Restricted Area"
+        AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
+        AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
+
+        Require group geo sysadmin
+    </Location>
+
+
+    <Location /fcuk/svn>
+        DAV svn 
+        SVNPath /home/okfn/kforge/var/project_data/fcuk/svn/1
+
+        <LimitExcept GET PROPFIND OPTIONS REPORT>
+            AuthType Basic
+            AuthName "Open Knowledge Foundation Restricted Area"
+            AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
+            AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
+
+            Require group fcuk
+        </LimitExcept>
+        
+    </Location>
+
+    <Location /sysadmin/svn>
+        DAV svn 
+        SVNPath /home/okfn/kforge/var/project_data/sysadmin/svn/9
+        
+        <LimitExcept GET PROPFIND OPTIONS REPORT>
+            AuthType Basic
+            AuthName "Open Knowledge Foundation Restricted Area"
+            AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
+            AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
+
+            Require group sysadmin
+        </LimitExcept>
+    </Location>
+
+    <Location /sysadmin/trac>
+      <IfModule mod_python.c>
+        SetHandler mod_python
+        PythonHandler trac.web.modpython_frontend
+        PythonOption TracEnv /home/okfn/kforge/var/project_data/sysadmin/trac/11
+        PythonOption TracUriRoot /sysadmin/trac
+      </IfModule>
+    </Location>
+
+    ScriptAlias /fcd/wiki /home/okfn/kforge/var/project_data/fcd/moin/5/moin.cgi
+
+    Include /home/okfn/svn-okfn/trunk/etc/apache2/okfn.org.extra
+    
+    # Logging
+    ErrorLog /var/log/apache2/okfn.org.error.log
+    CustomLog /var/log//apache2/okfn.org.log combined
+
+</VirtualHost>
+
+
+<VirtualHost *:443>
+    # SSL
+    <IfModule mod_ssl.c>
+      # SSLEngine on
+      # SSLCertificateFile /etc/apache2/ssl/okfn.org.cert
+      # SSLCertificateKeyFile /etc/apache2/ssl/okfn.org.key
+    </IfModule>
+
+    
+    # Logging
+    ErrorLog /home/okfn/kforge/var/log/apache.project.okfn.org.error.log
+    CustomLog /home/okfn/kforge/var/log/apache.project.okfn.org.log combined
+</VirtualHost>
+
