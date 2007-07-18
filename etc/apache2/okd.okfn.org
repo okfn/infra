@@ -1,10 +1,15 @@
 <VirtualHost *:80>
-	ServerName okd.okfn.org
-	ServerAlias opendefinition.org www.opendefinition.org def.okfn.org okd.eu0.okfn.org
+	ServerName opendefinition.org
+	ServerAlias www.opendefinition.org def.okfn.org okd.eu0.okfn.org us0.okfn.org
 
   	Alias /moinhtdocs/ "/usr/share/moin/htdocs/"
   	ScriptAlias / "/home/okfn/kforge/var/project_data/okd/moin/12/moin.fcg/"
 	
 	ErrorLog /var/log/apache2/okd.okfn.org.error.log
 	CustomLog /var/log/apache2/okd.okfn.org.access.log combined
+</VirtualHost>
+
+<VirtualHost *:80>
+	ServerName okd.okfn.org
+	Redirect permanent / http://www.opendefinition.org/
 </VirtualHost>
