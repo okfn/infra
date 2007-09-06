@@ -25,6 +25,8 @@ class TestSites(unittest.TestCase):
             'http://www.openshakespeare.org/',
             'http://demo.openshakespeare.org/',
             'http://www.ckan.net',
+            'http://db.publicdomainworks.net/',
+            'http://www.openeconomics.net/'
             ]
 
     def test_okfn(self):
