@@ -1,11 +1,4 @@
 # -*- coding: iso-8859-1 -*-
-"""
-    MoinMoin modern theme
-
-    @copyright: (c) 2003-2004 by Nir Soffer, Thomas Waldmann
-    @license: GNU GPL, see COPYING for details.
-"""
-
 from MoinMoin.theme import ThemeBase
 
 
@@ -124,6 +117,7 @@ class Theme(ThemeBase):
         """
         page = d['page']
         editbar = u''
+        userinfo = u''
         show_edit_bar = False
         try:
             show_edit_bar = self.cfg.show_editbar
@@ -131,6 +125,7 @@ class Theme(ThemeBase):
             pass
         if self.userCanWrite(page) or show_edit_bar:
             editbar = self.editbar(d)
+            userinfo = self.username(d)
 
         html = [
             # End of page
@@ -144,6 +139,7 @@ class Theme(ThemeBase):
             </div><!-- /clear -->''',
             # Footer
             u'<div id="footer">',
+            userinfo,
             editbar,
             u'<div id="div-pagetrail">',
             self.trail(d),
