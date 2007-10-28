@@ -101,12 +101,18 @@ Alias /geo /home/okfn/kforge/var/project_data/geo/www
 </Location>
 
 <Location /sysadmin/trac>
-  <IfModule mod_python.c>
-    SetHandler mod_python
-    PythonHandler trac.web.modpython_frontend
-    PythonOption TracEnv /home/okfn/kforge/var/project_data/sysadmin/trac/11
-    PythonOption TracUriRoot /sysadmin/trac
-  </IfModule>
+    <IfModule mod_python.c>
+      SetHandler mod_python
+      PythonHandler trac.web.modpython_frontend
+      PythonOption TracEnv /home/okfn/kforge/var/project_data/sysadmin/trac/11
+      PythonOption TracUriRoot /sysadmin/trac
+    </IfModule>
+
+    AuthType Basic
+    AuthName "Open Knowledge Foundation Restricted Area"
+    AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
+    AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
+    Require group sysadmin
 </Location>
 
 ScriptAlias /fcd/wiki /home/okfn/kforge/var/project_data/fcd/moin/5/moin.cgi
