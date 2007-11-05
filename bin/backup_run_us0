@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+
+import os.path
+import shutil
+import sys
+
+BACKUP_BASE = '/home/rgrp/backup'
+
+def backupUser(userName):
+    os.system('/home/%s/bin/backup.py' % userName)
+    shutil.copytree('/home/%s/backup' % userName, os.path.join(BACKUP_BASE, userName))
+
+def backupCore():
+    dest = os.path.join(BACKUP_BASE, 'repo_sysadmin.gz')
+    cmd = 'svnadmin -q dump /root/repo_sysadmin | gzip > ' + dest
+    if os.system(cmd):
+        print 'Error executing command: %s' % cmd
+    
+    dest = os.path.join(BACKUP_BASE, 'mailman.tgz')
+    cmd = 'tar -czf %s %s' % (dest, '/var/lib/mailman/data /var/lib/mailman/archives')
+    if os.system(cmd):
+        print 'Error executing command: %s' % cmd
+
+def backupKforge():
+    backupBase = '/home/kforge/backup' 
+    if os.path.exists(backupBase):
+        shutil.rmtree(backupBase)
+    os.makedirs(backupBase)
+    
+    src  = '/home/kforge/knowledgeforge.net'
+    dest = os.path.join(backupBase, 'knowledgeforge.net')
+    config = os.path.join(src, 'kforge.conf')
+    knowledgeforgeBackupCmd = 'kforge-admin --config %s backup %s' % (config, dest)
+    if os.system(knowledgeforgeBackupCmd):
+        print 'Error on command %s' % knowledgeforgeBackupCmd
+    
+    dbName = 'gforge'
+    cmd = 'sudo -u postgres pg_dump --user postgres --inserts ' + dbName
+    cmd += ' | gzip > ' + os.path.join(backupBase, dbName + '.sql.gz')
+    if os.system(cmd):
+        print 'Error executing command: %s' % cmd
+    
+    blogDbBackupPath = os.path.join(backupBase, 'kforgeproject.com.sql.gz')
+    mysqlcmd = 'mysqldump kforgeproject_wp -c | gzip > %s' % blogDbBackupPath
+    if os.system(mysqlcmd):
+        print 'Error on command %s' % mysqlcmd
+    # shutil.copytree(backupBase, os.path.join(BACKUP_BASE, 'kforge'))
+
+def backupRgrp():
+    dest = os.path.join(BACKUP_BASE, 'rgrp_mail.tgz')
+    cmd = 'tar -czf %s /home/rgrp/Maildir' % dest
+    if os.system(cmd):
+        print 'Error executing command: %s' % cmd
+
+if __name__ == '__main__':
+    if os.path.exists(BACKUP_BASE):
+        shutil.rmtree(BACKUP_BASE)
+    os.makedirs(BACKUP_BASE)
+
+    backupUser('fcuk')
+    os.system('/home/okfn/bin/backup.py')
+    backupCore()
+    backupKforge()
+    backupRgrp()
