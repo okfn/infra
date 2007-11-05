@@ -6,11 +6,11 @@ import sys
 
 BACKUP_BASE = '/home/rgrp/backup'
 
-def backupUser(userName):
+def backup_user(userName):
     os.system('/home/%s/bin/backup.py' % userName)
     shutil.copytree('/home/%s/backup' % userName, os.path.join(BACKUP_BASE, userName))
 
-def backupCore():
+def backup_core():
     dest = os.path.join(BACKUP_BASE, 'repo_sysadmin.gz')
     cmd = 'svnadmin -q dump /root/repo_sysadmin | gzip > ' + dest
     if os.system(cmd):
@@ -21,7 +21,7 @@ def backupCore():
     if os.system(cmd):
         print 'Error executing command: %s' % cmd
 
-def backupKforge():
+def backup_kforge():
     backupBase = '/home/kforge/backup' 
     if os.path.exists(backupBase):
         shutil.rmtree(backupBase)
@@ -46,7 +46,7 @@ def backupKforge():
         print 'Error on command %s' % mysqlcmd
     # shutil.copytree(backupBase, os.path.join(BACKUP_BASE, 'kforge'))
 
-def backupRgrp():
+def backup_rgrp():
     dest = os.path.join(BACKUP_BASE, 'rgrp_mail.tgz')
     cmd = 'tar -czf %s /home/rgrp/Maildir' % dest
     if os.system(cmd):
@@ -57,8 +57,8 @@ if __name__ == '__main__':
         shutil.rmtree(BACKUP_BASE)
     os.makedirs(BACKUP_BASE)
 
-    backupUser('fcuk')
+    backup_user('fcuk')
     os.system('/home/okfn/bin/backup.py')
-    backupCore()
-    backupKforge()
-    backupRgrp()
+    backup_core()
+    backup_kforge()
+    backup_rgrp()
