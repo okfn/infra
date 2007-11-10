@@ -5,10 +5,17 @@ import backupcmds
 
 BACKUP_BASE = '/home/rgrp/backup'
 
-if __name__ == '__main__':
-    if os.path.exists(BACKUP_BASE):
-        shutil.rmtree(BACKUP_BASE)
-    os.makedirs(BACKUP_BASE)
-
+def core():
+    backupcmds.clean_directory(BACKUP_BASE)
     backupcmds.backup_etc_repo(BACKUP_BASE)
     backupcmds.backup_ckan(BACKUP_BASE)
+
+def okfn():
+    base = '/home/okfn/backup'
+    backupcmds.clean_directory(base)
+    backupcmds.okfn_wikis(base)
+    backupcmds.okfn_www(base)
+
+if __name__ == '__main__':
+    core()
+    okfn()
