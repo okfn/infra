@@ -511,3 +511,22 @@ blockquote
   background: #E8E7EF;
   border-left: 0.5em solid #8579bd;
 }
+
+table, table td, table th
+{
+  background-color: white;
+  border: solid black 1px;
+  border-collapse: collapse;
+  padding: 2px;
+}
+
+table
+{
+  margin-top: 1.5em;
+  margin-left: 0.5em;
+}
+
+#content td
+{
+	vertical-align: top;
+}
