@@ -1,0 +1,7 @@
+<VirtualHost *:80>
+  ServerName activity.okfn.org
+  ServerAlias activity.eu0.okfn.org activity.us0.okfn.org
+	DocumentRoot /home/okfn/svn-okfn/trunk/aggregator/activity.okfn.org/output
+	CustomLog /var/log/apache2/activity.okfn.org.access.log combined
+	ErrorLog  /var/log/apache2/activity.okfn.org.error.log
+</VirtualHost>

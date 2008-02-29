@@ -25,3 +25,10 @@ Currently we use planetplanet [1][] to provide this facility.
 3. symlink the output directory (usually in same directory as config.ini) to
    wherever the webserver is expecting the directory to be (or alternatively
    point the webserver at this output directory).
+
+4. Create a cron job to regularly update the planet feeds using the
+   runplanet.py script (this is needed to ensure that planetplanet is run in
+   the right directory). Probably should do this ~ once a day so cron job is:
+
+       30 0  *  *  * /home/okfn/svn-okfn/trunk/aggregator/runplanet.py
+
