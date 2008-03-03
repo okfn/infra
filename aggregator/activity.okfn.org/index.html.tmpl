@@ -87,13 +87,21 @@
 
 
 <div class="sidebar">
-<img src="images/logo.png" width="136" height="136" alt="">
+<img src="http://okfn.org/images/logo/okf_logo_white_and_green.png" style="display: block; width: 50px; margin: auto;" alt="">
+
+<h2>Aggregator Feed</h2>
+<ul>
+  <li><a href="atom.xml">Atom</a></li>
+  <li><a href="rss10.xml">RSS 1.0</a></li>
+  <li><a href="rss20.xml">RSS 2.0</a></li>
+  <li><a href="opml.xml">OPML</a></li>
+</ul>
 
 <h2>Subscriptions</h2>
 <ul>
 <TMPL_LOOP Channels>
 <li>
-<a href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"><img src="images/feed-icon-10x10.png" alt="(feed)"></a> <a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF><TMPL_IF message>class="message" title="<TMPL_VAR message ESCAPE="HTML">"</TMPL_IF><TMPL_UNLESS message>title="<TMPL_VAR title_plain ESCAPE="HTML">"</TMPL_UNLESS>><TMPL_VAR name></a>
+<a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF><TMPL_IF message>class="message" title="<TMPL_VAR message ESCAPE="HTML">"</TMPL_IF><TMPL_UNLESS message>title="<TMPL_VAR title_plain ESCAPE="HTML">"</TMPL_UNLESS>><TMPL_VAR name></a> <a href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"><img src="images/feed-icon-10x10.png" alt="(feed)"></a> 
 </li>
 </TMPL_LOOP>
 </ul>

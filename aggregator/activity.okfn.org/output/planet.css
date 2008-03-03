@@ -98,10 +98,9 @@ img.face {
 }
 
 .sidebar ul {
-	padding-left: 1em;
+	padding-left: 2em;
 	margin-left: 0px;
 
-	list-style-type: none;
 }
 
 .sidebar ul li:hover {
