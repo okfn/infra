@@ -17,7 +17,9 @@ For each domain copy awstats.conf.template to:
 
   awstats.${DOMAIN_NAME}.conf
 
-Edit the file as necessary (instructions in file). T
+Edit the file as necessary (instructions in file). If you wish to use zmergelog
+(as is often the case you will need to install the mergelog package (on debian:
+apt-get intall mergelog).
 
 ### 2. Symlink
 
