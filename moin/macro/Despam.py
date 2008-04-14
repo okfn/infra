@@ -166,7 +166,8 @@ def execute(pagename, request):
             msg = _('You are not allowed to use this action.'))
 
     editor = request.form.get('editor', [None])[0]
-    timestamp = time.time() - 24 * 3600
+    days = 7
+    timestamp = time.time() - days * 24 * 3600
        # request.form.get('timestamp', [None])[0]
     ok = request.form.get('ok', [0])[0]
 
