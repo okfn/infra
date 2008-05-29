@@ -1,0 +1,42 @@
+<VirtualHost *:80>
+	ServerName test.ckan.net
+  # you need this for PythonOption path to wsgi app to work
+  # Directory where startup is 
+  DocumentRoot /home/rgrp/svn-ckan/ckan/trunk/
+
+#	<Proxy *>
+#		Allow from .ckan.net
+#	</Proxy>
+#	ProxyPass / http://localhost:5051/
+#	ProxyPassReverse / http://localhost:5051/
+#  ScriptAliasMatch ^(/.*)$ /tmp/test.ckan.net.fcgi$1
+  SetHandler mod_python
+  PythonHandler mod_python.wsgi
+  PythonAutoReload Off
+  PythonOption wsgi.application test_modpython_startup::app 
+
+	ErrorLog /var/log/apache2/test.ckan.net.error.log
+	CustomLog /var/log/apache2/test.ckan.net.custom.log combined
+</VirtualHost>
+
+<VirtualHost *:80>
+	ServerName ckan.net
+	ServerAlias www.ckan.net *.ckan.net
+  DocumentRoot /home/rgrp/svn-ckan/ckan/trunk/
+
+  SetHandler mod_python
+  PythonHandler mod_python.wsgi
+  PythonAutoReload Off
+  PythonOption wsgi.application modpython_startup_ckan_net::app 
+
+  # ScriptAliasMatch ^(/.*)$ /home/rgrp/svn-ckan/ckan/trunk/dispatch.fcgi$1
+  # ScriptAliasMatch ^(/.*)$ /some/path/to/app/myapp.fcgi$1
+#	<Proxy *>
+#		Allow from .ckan.net
+#	</Proxy>
+#	ProxyPass / http://localhost:5050/
+#	ProxyPassReverse / http://localhost:5050/
+
+	ErrorLog /var/log/apache2/ckan.net.error.log
+	CustomLog /var/log/apache2/ckan.net.custom.log combined
+</VirtualHost>

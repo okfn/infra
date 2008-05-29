@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+  ServerName db.publicdomainworks.net
+  <Proxy *>
+	Allow from .publicdomainworks.net
+  </Proxy>
+  ProxyPass / http://localhost:5060/
+  ProxyPassReverse / http://localhost:5060/
+
+  ErrorLog /var/log/apache2/db.publicdomainworks.net.error.log
+  CustomLog /var/log/apache2/db.publicdomainworks.net.custom.log combined
+</VirtualHost>
+

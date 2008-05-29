@@ -1,0 +1,14 @@
+<VirtualHost *:80>
+	ServerName microfacts.org
+  	ServerAlias microfacts.org www.microfacts.org weavinghistory.org www.weavinghistory.org
+	<Proxy *>
+		Allow from .microfacts.org
+	</Proxy>
+	ProxyPass / http://localhost:5060/
+	ProxyPassReverse / http://localhost:5060/
+	SetOutputFilter  proxy-html
+	ProxyHTMLURLMap http://localhost:5060 http://www.microfacts.org
+	ErrorLog /var/log/apache2/microfacts.org.error.log
+	CustomLog /var/log/apache2/microfacts.org.access.log combined
+</VirtualHost>
+

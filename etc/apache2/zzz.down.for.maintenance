@@ -1,0 +1,5 @@
+<VirtualHost *:80>
+	ServerName downformaintenance.org
+	ServerAlias www.ckan.net ckan.net openeconomics.net www.openeconomics.net
+	DocumentRoot /var/www/down_for_maintenance
+</VirtualHost>

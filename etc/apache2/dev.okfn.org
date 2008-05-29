@@ -1,0 +1,27 @@
+<VirtualHost *:80>
+	ServerName econ.dev.okfn.org
+	RedirectPermanent / http://openeconomics.net/
+</VirtualHost>
+
+<VirtualHost *:80>
+	ServerName shakespeare.dev.okfn.org
+	ServerAlias demo.openshakespeare.org
+	<Proxy *>
+		Allow from .dev.okfn.org
+	</Proxy>
+	ProxyPass / http://localhost:8080/
+	ProxyPassReverse / http://localhost:8080/
+</VirtualHost>
+
+<VirtualHost *:80>
+	ServerName dev.okfn.org
+	DocumentRoot /var/www/dev.okfn.org
+	ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+	<Directory "/usr/lib/cgi-bin">
+		AllowOverride None
+		Options ExecCGI -MultiViews +SymLinksIfOwnerMatch
+		Order allow,deny
+		Allow from all
+	</Directory>
+</VirtualHost>
+
