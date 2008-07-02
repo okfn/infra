@@ -3,16 +3,13 @@
 
 Configuration Options:
 
-    bibtex_bib2html_cmd -- path and command name of bib2xhtml, needs to
-                           be set if bib2xhtml is not in PATH
-    bibtex_bst_path     -- path to bib2xhtml bst-style files, needs to
+    bibtex_bib2html_cmd -- path and command name of bibtex2html, needs to
+                           be set if not already in PATH
+    bibtex_bst_path     -- path to bst-style files, needs to
                            be set if these are not found by bibtex
                            automatically
 
-Notes:
-This parser depends on bibtex and bib2xhtml, see
-http://en.wikipedia.org/wiki/Bibtex and
-http://www.spinellis.gr/sw/textproc/bib2xhtml/ for more information.
+Notes: This parser depends on bibtex and bibtex2html
 
 TODO:
  - attachement links
@@ -25,7 +22,7 @@ $Log: bibtex.py,v $
 Revision 1.1.1.1  2007-06-07 20:36:15  gber
 initial import into CVS
 
-
+2008-07-02: Modified by Rufus Pollock to use bibtex2html rather than bib2xhtml.
 """
 
 import os
@@ -33,7 +30,7 @@ import tempfile
 import subprocess
 import codecs
 import re
-from MoinMoin import wikiutil
+from StringIO import StringIO
 
 Dependencies = []
 
@@ -79,7 +76,8 @@ class BibtexRenderer:
     def __init__(self, bibtex, request, citations=[], abstracts=False,\
             label=False, chronological=False, style=None):
         cfg = request.cfg
-        self.bib2html_cmd = "bib2xhtml"
+        # self.bib2html_cmd = "bib2xhtml"
+        self.bib2html_cmd = 'bibtex2html'
         self.bst_path = None
 
         # retrieve configuration
@@ -94,56 +92,67 @@ class BibtexRenderer:
 
         # the original bibtex implementation is not 8-bit clean, replace
         # non-ASCII characters with "?"
+        # rgrp: is this necesssary?
         self.bibtex = bibtex.encode("ascii", "replace")
 
-        self.args = [self.bib2html_cmd, "-u", "-dMoinMoin"]
+        # bib2xthml had -u for conversion to unicode but best we an do is
+        # --unicode (and this is not always present ...)
+        self.args = [self.bib2html_cmd, '-nobibsource',
+                '-noheader', '-nodoc',
+                '-dl' # use definition lists
+                ]
+        self.citations = '\n'.join(citations)
+        self.citations = self.citations.encode("ascii", "replace")
 
-        if citations:
-            cit_list = []
-            cit_list.append(u"<!-- BEGIN CITATIONS MoinMoin -->")
-            cit_list.append(u"<!--")
-            cit_list.extend([ur"\citation{%s}" % c for c in citations])
-            cit_list.append(u"-->")
-            cit_list.append(u"<!-- END CITATIONS MoinMoin -->")
-            self.citations = u"\n".join(cit_list)
-            # also encode as ASCII
-            self.citations = self.citations.encode("ascii", "replace")
-            self.args.append("-i")
-        else:
-            self.citations = None
-
-        if abstracts:
-            self.args.append("-a")
-        if label:
-            self.args.append("-k")
+        if not abstracts:
+            self.args.append("-noabstract")
+        # no equivalent in bibtex2html
+        # maybe -nokeys
+        # if label:
+        #    self.args.append("-k")
         if chronological and chronological == "reversed":
-            self.args.extend(["-c", "-r"])
+            self.args.extend(["-d", "-r"])
         elif chronological:
-            self.args.append("-c")
+            self.args.append("-d")
         if style in ("empty", "plain", "alpha", "named", "unsort", "unsortlist"):
+            # bibtex2html and bib2xhtml the same
             self.args.extend(["-s", style])
 
     def render(self):
         """Render the bibtex markup (if requested, only cited entries)
         and return HTML output in a string.
         """
+        ftd2, output_file = tempfile.mkstemp('.html')
+        # output_file = os.path.abspath('output.html')
+        self.args += ['-o', '-']
+        tfd, citations_file = tempfile.mkstemp()
+        # citations_file = os.path.abspath('cites.txt')
+        if self.citations:
+            # write citations to temporary output file
+            f = open(citations_file, "w")
+            f.write(self.citations)
+            f.close()
+            self.args += ['-citefile', citations_file]
+
         output = []
-        # create temporary files for Bibtex input, HTML output, and logging
+        # create temporary files for Bibtex input and logging
         bibfd, bibfile = tempfile.mkstemp(".bib")
-        xhtmlfd, xhtmlfile = tempfile.mkstemp(".xhtml")
+        # bibfile = os.path.abspath('myinput.bib')
         #logfd, logfile = tempfile.mkstemp(".log")
-        self.args.extend([bibfile, xhtmlfile])
+        self.args.append(bibfile)
 
         # write Bibtex input to temporary file
         f = open(bibfile, "w")
         f.write(self.bibtex)
         f.close()
 
-        if self.citations:
-            # write citations to temporary output file
-            f = open(xhtmlfile, "w")
-            f.write(self.citations)
-            f.close()
+        def clean_up():
+            if self.citations:
+                os.remove(citations_file)
+            if os.path.exists(output_file):
+                os.remove(output_file)
+            os.remove(bibfile)
+            #os.remove(logfile)
 
         # execute bib2xhtml converter subprocess on forementionened
         # temporary files, bib2xhtml creates its temporary files in the
@@ -155,57 +164,39 @@ class BibtexRenderer:
         else:
             bstinputs = None
         try:
+            import sys
             retcode = subprocess.call(self.args,
                 env=bstinputs, cwd=tempfile.gettempdir(),
-                stdout=open(os.devnull, "w"), stderr=open(os.devnull, "w"))
+                stdout=open(output_file, 'w'),
+                stderr=open(os.devnull, "w"))
+                # stderr=sys.stderr)
             #retcode = subprocess.call(self.args,
             #    env=bstinputs, cwd=tempfile.gettempdir(),
             #    stdout=open(os.devnull, "w"), stderr=open(logfile, "w"))
             if retcode:
-                raise CalledProcessError(retcode, "".join(self.args))
+                raise CalledProcessError(retcode, " ".join(self.args))
         except OSError, error:
             # bib2xhtml not found or not executable
-            os.remove(bibfile)
-            os.remove(xhtmlfile)
+            clean_up()
             raise
         except CalledProcessError, error:
             # non-zero exit status
-            os.remove(bibfile)
-            os.remove(xhtmlfile)
-            #os.remove(logfile)
+            clean_up()
             raise
-
-        os.remove(bibfile)
-        #os.remove(logfile)
 
         name_pattern = re.compile('<a name="(?P<anchor>[^"]*)">', re.UNICODE)
         href_pattern = re.compile('<a href="#(?P<anchor>[^"]*)">', re.UNICODE)
-        inside_dl = False
+        try:
+            # read the output (encoded as utf-8) back in
+            f = codecs.open(output_file, "r", encoding="utf-8")
+            output = f.read()
+            output = name_pattern.sub(ur'<a id="ref:\g<anchor>">', output)
+            output = href_pattern.sub(ur'<a href="#ref:\g<anchor>">', output)
+            f.close()
+        except:
+            clean_up()
+            raise
 
-        # read the output (encoded as utf-8) back in
-        f = codecs.open(xhtmlfile, "r", encoding="utf-8")
-
-        for line in f.readlines():
-            if line.startswith(u'<!-- Generated by: '):
-                # throw away comments at the beginning...
-                inside_dl = True
-                continue
-            elif line == u'<!-- END BIBLIOGRAPHY MoinMoin -->\n':
-                # ...and the end
-                break
-            if inside_dl:
-                # use a ref:-prefix for anchor links in order to avoid
-                # interference with other anchors and replace the name- with
-                # the id-attribute (it would be more appropriate to fix this in
-                # the bst-file)
-                line = name_pattern.sub(ur'<a id="ref:\g<anchor>">', line)
-                line = href_pattern.sub(ur'<a href="#ref:\g<anchor>">', line)
-                output.append(line)
-
-        f.close()
-        os.remove(xhtmlfile)
-
-        output = "".join(output)
         return output
 
 
@@ -227,6 +218,7 @@ class Parser:
         self._ = request.getText
 
         # parse format arguments
+        from MoinMoin import wikiutil
         attrs, msg = wikiutil.parseAttributes(self.request, kw.get(
                                                              'format_args',''))
         if not msg:
