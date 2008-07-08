@@ -106,10 +106,8 @@ class BibtexRenderer:
 
         if not abstracts:
             self.args.append("-noabstract")
-        # no equivalent in bibtex2html
-        # maybe -nokeys
-        # if label:
-        #    self.args.append("-k")
+        if label:
+            self.args.append("-use-keys")
         if chronological and chronological == "reversed":
             self.args.extend(["-d", "-r"])
         elif chronological:
