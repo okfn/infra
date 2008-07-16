@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Backup /home/okfn stuff on us0
 import os
 import shutil
 
@@ -30,11 +31,11 @@ if __name__ == '__main__':
     if os.system(cmd):
     	print 'Error executing command: %s' % cmd
 
-    src = '/home/okfn/kforge'
-    dest = '/home/okfn/backup/kforge'
-    config = os.path.join(src, 'kforge.conf')
-    cmd3 = 'kforge-admin --config %s backup %s' % (config, dest)
-    if os.system(cmd3):
-        print 'Error on command %s' % cmd3
+    # src = '/home/okfn/kforge'
+    # dest = '/home/okfn/backup/kforge'
+    # config = os.path.join(src, 'kforge.conf')
+    # cmd3 = 'kforge-admin --config %s backup %s' % (config, dest)
+    # if os.system(cmd3):
+    #     print 'Error on command %s' % cmd3
     
     # TODO: backup publicgeodata stuff
