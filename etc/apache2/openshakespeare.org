@@ -1,0 +1,19 @@
+<VirtualHost *:80>
+    ServerName demo.openshakespeare.org
+    ServerAlias eu0.demo.openshakespeare.org
+    <Proxy *>
+        Allow from .openshakespeare.org
+    </Proxy>
+    ProxyPass / http://localhost:8080/
+    ProxyPassReverse / http://localhost:8080/
+    ErrorLog /var/log/apache2/openshakespeare.org.error.log
+    CustomLog /var/log/apache2/openshakespeare.org.access.log combined
+</VirtualHost>
+
+# <VirtualHost *:80>
+#     ServerName openshakespeare.org
+#     ServerAlias eu0.openshakespeare.org www.openshakespeare.org
+#     ErrorLog /var/log/apache2/openshakespeare.org.error.log
+#     CustomLog /var/log/apache2/openshakespeare.org.log combined
+# </VirtualHost>
+ 

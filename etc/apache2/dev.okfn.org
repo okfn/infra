@@ -5,12 +5,7 @@
 
 <VirtualHost *:80>
 	ServerName shakespeare.dev.okfn.org
-	ServerAlias demo.openshakespeare.org
-	<Proxy *>
-		Allow from .dev.okfn.org
-	</Proxy>
-	ProxyPass / http://localhost:8080/
-	ProxyPassReverse / http://localhost:8080/
+	RedirectPermanent / http://demo.openshakespeare.org/
 </VirtualHost>
 
 <VirtualHost *:80>
