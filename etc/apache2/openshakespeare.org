@@ -1,6 +1,6 @@
 <VirtualHost *:80>
-    ServerName demo.openshakespeare.org
-    ServerAlias eu0.demo.openshakespeare.org
+    ServerName openshakespeare.org
+    ServerAlias demo.openshakespeare.org eu0.openshakespeare.org us0.openshakespeare.org
     <Proxy *>
         Allow from .openshakespeare.org
     </Proxy>
@@ -10,10 +10,15 @@
     CustomLog /var/log/apache2/openshakespeare.org.access.log combined
 </VirtualHost>
 
-# <VirtualHost *:80>
-#     ServerName openshakespeare.org
-#     ServerAlias eu0.openshakespeare.org www.openshakespeare.org
-#     ErrorLog /var/log/apache2/openshakespeare.org.error.log
-#     CustomLog /var/log/apache2/openshakespeare.org.log combined
-# </VirtualHost>
+<VirtualHost *:80>
+    ServerName blog.openshakespeare.org
+    ServerAlias eu0.blog.openshakespeare.org openshakespeare.org www.openshakespeare.org
+
+	  DocumentRoot /home/kforge/openshakespeare.org
+	  DirectoryIndex index.html index.php
+	  Options -Indexes
+
+    ErrorLog /var/log/apache2/blog.openshakespeare.org.error.log
+    CustomLog /var/log/apache2/blog.openshakespeare.org.log combined
+</VirtualHost>
  
