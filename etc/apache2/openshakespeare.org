@@ -3,13 +3,13 @@
     ServerAlias www.openshakespeare.org demo.openshakespeare.org eu0.openshakespeare.org us0.openshakespeare.org
 
     # is not optimal but Redirect do not work with proxy it seems...
-    # add redirect to blog site below when adding a proxypass here
-    ProxyPass /texts/eb11 http://blog.openshakespeare.org/texts/eb11
-    ProxyPass /category http://blog.openshakespeare.org/category
+    # use blogred so rewrite on blog host works correctly
+    ProxyPass /texts/eb11 http://blogred.openshakespeare.org/texts/eb11
+    ProxyPass /category http://blogred.openshakespeare.org/category
     # article links ...
-    ProxyPass /2008 http://blog.openshakespeare.org/2008
-    ProxyPass /2007 http://blog.openshakespeare.org/2007
-    ProxyPass /2006 http://blog.openshakespeare.org/2006
+    ProxyPass /2008 http://blogred.openshakespeare.org/2008
+    ProxyPass /2007 http://blogred.openshakespeare.org/2007
+    ProxyPass /2006 http://blogred.openshakespeare.org/2006
 
     <Proxy *>
         Allow from .openshakespeare.org
@@ -22,19 +22,16 @@
 
 <VirtualHost *:80>
     ServerName blog.openshakespeare.org
-    ServerAlias eu0.blog.openshakespeare.org openshakespeare.org www.openshakespeare.org
+    ServerAlias blogred.openshakespeare.org eu0.blog.openshakespeare.org openshakespeare.org www.openshakespeare.org
 
-	  DocumentRoot /home/kforge/openshakespeare.org
-	  DirectoryIndex index.html index.php
-	  Options -Indexes
+    DocumentRoot /home/kforge/openshakespeare.org
+    DirectoryIndex index.html index.php
+    Options -Indexes
 
     # To deal with proxying from main site
-    Redirect /texts/eb11 http://blog.openshakespeare.org/texts/eb11
-    Redirect /category http://blog.openshakespeare.org/category
-    # article links ...
-    Redirect /2008 http://blog.openshakespeare.org/2008
-    Redirect /2007 http://blog.openshakespeare.org/2007
-    Redirect /2006 http://blog.openshakespeare.org/2006
+    RewriteCond %{HTTP_HOST}   !^blog\.openshakespeare\.org [NC]
+    RewriteCond %{HTTP_HOST}   !^$
+    RewriteRule ^/(.*)         http://blog.openshakespeare.org/$1 [L,R]
 
     ErrorLog /var/log/apache2/blog.openshakespeare.org.error.log
     CustomLog /var/log/apache2/blog.openshakespeare.org.log combined
