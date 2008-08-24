@@ -1,6 +1,16 @@
 <VirtualHost *:80>
     ServerName openshakespeare.org
-    ServerAlias demo.openshakespeare.org eu0.openshakespeare.org us0.openshakespeare.org
+    ServerAlias www.openshakespeare.org demo.openshakespeare.org eu0.openshakespeare.org us0.openshakespeare.org
+
+    # is not optimal but Redirect do not work with proxy it seems...
+    # add redirect to blog site below when adding a proxypass here
+    ProxyPass /texts/eb11 http://blog.openshakespeare.org/texts/eb11
+    ProxyPass /category http://blog.openshakespeare.org/category
+    # article links ...
+    ProxyPass /2008 http://blog.openshakespeare.org/2008
+    ProxyPass /2007 http://blog.openshakespeare.org/2007
+    ProxyPass /2006 http://blog.openshakespeare.org/2006
+
     <Proxy *>
         Allow from .openshakespeare.org
     </Proxy>
@@ -17,6 +27,14 @@
 	  DocumentRoot /home/kforge/openshakespeare.org
 	  DirectoryIndex index.html index.php
 	  Options -Indexes
+
+    # To deal with proxying from main site
+    Redirect /texts/eb11 http://blog.openshakespeare.org/texts/eb11
+    Redirect /category http://blog.openshakespeare.org/category
+    # article links ...
+    Redirect /2008 http://blog.openshakespeare.org/2008
+    Redirect /2007 http://blog.openshakespeare.org/2007
+    Redirect /2006 http://blog.openshakespeare.org/2006
 
     ErrorLog /var/log/apache2/blog.openshakespeare.org.error.log
     CustomLog /var/log/apache2/blog.openshakespeare.org.log combined
