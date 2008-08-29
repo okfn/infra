@@ -98,7 +98,7 @@ class BibtexRenderer:
         # bib2xthml had -u for conversion to unicode but best we an do is
         # --unicode (and this is not always present ...)
         self.args = [self.bib2html_cmd, '-nobibsource',
-                '-noheader', '-nodoc',
+                '-noheader', '-nodoc', '-nofooter',
                 '-dl', # use definition lists
                 '-a', # sort by author
                 ]
