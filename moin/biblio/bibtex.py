@@ -74,7 +74,7 @@ class BibtexRenderer:
     """
 
     def __init__(self, bibtex, request, citations=[], abstracts=False,\
-            label=False, chronological=False, style=None):
+            label=False, chronological=True, style=None):
         cfg = request.cfg
         # self.bib2html_cmd = "bib2xhtml"
         self.bib2html_cmd = 'bibtex2html'
