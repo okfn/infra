@@ -4,7 +4,7 @@ bibtex_text = '''
 @thesis{gillett_1970,
   title={{Phase transitions in Bak-Sneppen avalanches and in a continuum percolation model}},
   author={Gillett, A.J.},
-  year={2007},
+  year={1970},
   month={sep},
   url={http://dare.ubvu.vu.nl//handle/1871/10887},
 }

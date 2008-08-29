@@ -74,7 +74,7 @@ class BibtexRenderer:
     """
 
     def __init__(self, bibtex, request, citations=[], abstracts=False,\
-            label=False, chronological=True, style=None):
+            label=False, chronological=False, style=None):
         cfg = request.cfg
         # self.bib2html_cmd = "bib2xhtml"
         self.bib2html_cmd = 'bibtex2html'
@@ -99,7 +99,8 @@ class BibtexRenderer:
         # --unicode (and this is not always present ...)
         self.args = [self.bib2html_cmd, '-nobibsource',
                 '-noheader', '-nodoc',
-                '-dl' # use definition lists
+                '-dl', # use definition lists
+                '-a', # sort by author
                 ]
         self.citations = '\n'.join(citations)
         self.citations = self.citations.encode("ascii", "replace")
