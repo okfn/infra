@@ -53,27 +53,11 @@ ScriptAlias /board/wiki  "/home/okfn/var/moin/okfn_private_wiki/moin.cgi"
 
 
 # Alias must be in this order!
-Alias /geo/dav /home/okfn/kforge/var/project_data/geo
-Alias /geo /home/okfn/kforge/var/project_data/geo/www
-<Location /geo/dav>
-    DAV On
-    Options +Indexes
-    # Remove use DirectoryIndex
-    DirectoryIndex none.none.none
-    ForceType text/plain
-    
-    AuthType Basic
-    AuthName "Open Knowledge Foundation Restricted Area"
-    AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
-    AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
-
-    Require group geo sysadmin
-</Location>
-
+Alias /geo /home/okfn/var/www/okfn.org/geo
 
 <Location /fcuk/svn>
     DAV svn 
-    SVNPath /home/okfn/kforge/var/project_data/fcuk/svn/1
+    SVNPath /home/okfn/var/svn/fcuk
 
     <LimitExcept GET PROPFIND OPTIONS REPORT>
         AuthType Basic
@@ -88,7 +72,7 @@ Alias /geo /home/okfn/kforge/var/project_data/geo/www
 
 <Location /sysadmin/svn>
     DAV svn 
-    SVNPath /home/okfn/kforge/var/project_data/sysadmin/svn/9
+    SVNPath /home/okfn/var/svn/okfn
     
     <LimitExcept GET PROPFIND OPTIONS REPORT>
         AuthType Basic
@@ -104,7 +88,7 @@ Alias /geo /home/okfn/kforge/var/project_data/geo/www
     <IfModule mod_python.c>
       SetHandler mod_python
       PythonHandler trac.web.modpython_frontend
-      PythonOption TracEnv /home/okfn/kforge/var/project_data/sysadmin/trac/11
+      PythonOption TracEnv /home/okfn/var/trac/okfn
       PythonOption TracUriRoot /sysadmin/trac
     </IfModule>
 
@@ -115,14 +99,14 @@ Alias /geo /home/okfn/kforge/var/project_data/geo/www
     Require group sysadmin
 </Location>
 
-ScriptAlias /fcd/wiki /home/okfn/kforge/var/project_data/fcd/moin/5/moin.cgi
+ScriptAlias /fcd/wiki /home/okfn/var/moin/okfn_fcd_wiki/moin.cgi
 ScriptAlias /iai/wiki /home/okfn/var/moin/okfn_iai_wiki/moin.cgi
 
 
 # ====================================
 # Main Site
 # Must come at end because aliasing '/' 
-ScriptAlias / /home/okfn/kforge/var/project_data/sysadmin/moin/13/moin.fcg/
+ScriptAlias / /home/okfn/var/moin/okfn_main_site/moin.fcg/
     
 # Logging
 ErrorLog /var/log/apache2/okfn.org.error.log
