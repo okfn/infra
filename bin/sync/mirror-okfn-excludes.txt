@@ -1,0 +1,3 @@
+kforge/var/log/*
+cache/*
+*.pyc

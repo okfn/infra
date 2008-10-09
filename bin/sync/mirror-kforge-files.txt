@@ -1,0 +1,18 @@
+- cache/*
+- *.pyc
+- *.bak*
+- /knowledgeforge.net/var/log/*
+- /demo.kforgeproject.com/var/log/*
++ /knowledgeforge.net
++ /kforgeproject.com
++ /demo.kforgeproject.com
++ /openshakespeare.org
+# exclude everything else
+- /*
+
+#/trash
+#/tmp
+#/install
+#/svn-dm
+#/svn-kforge
+#/backup
