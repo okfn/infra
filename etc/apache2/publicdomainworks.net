@@ -3,8 +3,8 @@
   <Proxy *>
 	Allow from .publicdomainworks.net
   </Proxy>
-  ProxyPass / http://localhost:5060/
-  ProxyPassReverse / http://localhost:5060/
+  ProxyPass / http://localhost:5070/
+  ProxyPassReverse / http://localhost:5070/
 
   ErrorLog /var/log/apache2/db.publicdomainworks.net.error.log
   CustomLog /var/log/apache2/db.publicdomainworks.net.custom.log combined

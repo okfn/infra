@@ -1,5 +1,11 @@
 <VirtualHost *:80>
 	ServerName downformaintenance.org
-	ServerAlias www.ckan.net ckan.net openeconomics.net www.openeconomics.net
+	ServerAlias okfn.org www.okfn.org
+	ServerAlias opendefinition.org www.opendefinition.org
+	ServerAlias www.ckan.net ckan.net
+	ServerAlias openeconomics.net www.openeconomics.net
+	ServerAlias openshakespeare.org www.openshakespeare.org
+	ServerAlias db.publicdomainworks.net 
+	ServerAlias publicgeodata.org www.publicgeodata.org
 	DocumentRoot /var/www/down_for_maintenance
 </VirtualHost>
