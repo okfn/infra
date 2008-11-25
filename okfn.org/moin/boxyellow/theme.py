@@ -3,8 +3,11 @@ from MoinMoin.theme import ThemeBase
 
 
 class Theme(ThemeBase):
-    """OKFN fcuk theme adapated from the moinmoin modern theme.
-
+    """OKFN theme adapated from the moinmoin modern theme.
+    
+    TODO: sort out some way to have normal links in navibar e.g.
+    item like [/?action=login Login]
+              [?action=edit Edit This Page]
     """
 
     name = "boxyellow"

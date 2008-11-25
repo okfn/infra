@@ -530,3 +530,37 @@ table
 {
 	vertical-align: top;
 }
+
+/* front page stuff */
+
+div.fpbutton
+{
+    background: #feed93 url(../images/top-linerepeat.png) repeat-x top left;
+
+    font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", "Lucida", "Bitstream Vera Sans", Verdana, sans-serif;
+    color: #4F4786;
+
+    margin: 2.5%;
+    padding: 2.5%;
+}
+
+#topblock 
+{
+}
+
+#fpcontainer .fpbutton
+{
+    width: 40%;
+    height: 170px;
+    float: left;
+    font-size: 0.9em;
+}
+
+div.fpbutton h3
+{
+    font-size: 2em;
+    letter-spacing: -0.1em;
+    margin: 0 0.5em 0 0;
+    padding: 0.2em 0;
+}
+
