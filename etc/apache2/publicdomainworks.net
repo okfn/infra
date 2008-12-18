@@ -23,7 +23,6 @@
   ServerName wiki.publicdomainworks.net
   ServerAlias alpha.publicdomainworks.net
 
-  Alias /moinhtdocs /usr/share/moin/htdocs
-  ScriptAlias / /home/kforge/knowledgeforge.net/var/project_data/pdw/moin/34/moin.fcg/
+  RedirectPermanent / http://db.publicdomainworks.net/	
 </VirtualHost>
 
