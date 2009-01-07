@@ -162,10 +162,26 @@ textarea {
 	margin: 5px 0;
 	padding: 0;
 	font-weight: bold;
+  color: red;
 }
 
 #message div.buttons {
 	font-weight: normal;
+}
+
+#textcha {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#textcha-question:before {
+  content: "Captcha/Textcha question: ";
+}
+
+/* errors from textchas */
+#message .info {
+  color: red;
+  font-size: 1.5em;
 }
 
 .dialog form {
