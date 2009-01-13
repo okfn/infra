@@ -4,9 +4,12 @@
 # DEFAULT HOST STUFF
 ServerAlias okfn.org www.okfn.org eu0.okfn.org openknowledgefoundation.org www.openknowledgefoundation.org
 
-Alias /images /home/okfn/svn-okfn/trunk/okfn.org/site/images
-Alias /files /home/okfn/svn-okfn/trunk/okfn.org/site/files
-Alias /scripts /home/okfn/svn-okfn/trunk/okfn.org/site/scripts
+# DEPRECATED (2009-01). Should remove at some point.
+# No longer used for site itself as use moin
+Alias /images /home/okfn/svn-okfn/trunk/m.okfn.org/images
+# DEPRECATED (2009-01). Remove once sure it is safe.
+# all links for files should be direct to m.okfn.org
+Alias /files /home/okfn/svn-okfn/trunk/m.okfn.org/files
 
 Alias /trac /usr/share/trac/htdocs 
 Alias /moinhtdocs /usr/share/moin/htdocs
