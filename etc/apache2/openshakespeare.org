@@ -14,10 +14,23 @@
     <Proxy *>
         Allow from .openshakespeare.org
     </Proxy>
-    ProxyPass / http://localhost:8080/
-    ProxyPassReverse / http://localhost:8080/
+    ProxyPass / http://localhost:5080/
+    ProxyPassReverse / http://localhost:5080/
     ErrorLog /var/log/apache2/openshakespeare.org.error.log
     CustomLog /var/log/apache2/openshakespeare.org.access.log combined
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName openmilton.org
+    ServerAlias www.openmilton.org eu0.openmilton.org us0.openmilton.org
+
+    <Proxy *>
+        Allow from .openmilton.org
+    </Proxy>
+    ProxyPass / http://localhost:5081/
+    ProxyPassReverse / http://localhost:5081/
+    ErrorLog /var/log/apache2/openmilton.org.error.log
+    CustomLog /var/log/apache2/openmilton.org.access.log combined
 </VirtualHost>
 
 <VirtualHost *:80>

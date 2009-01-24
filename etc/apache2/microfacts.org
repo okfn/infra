@@ -1,19 +1,12 @@
 <VirtualHost *:80>
 	ServerName microfacts.org
-  	ServerAlias microfacts.org www.microfacts.org weavinghistory.org www.weavinghistory.org
-	<Proxy *>
-		Allow from .microfacts.org
-	</Proxy>
-	ProxyPass / http://localhost:5060/
-	ProxyPassReverse / http://localhost:5060/
-	# Results in weird bucket read error (think it is something to do with applying proxy-html to json data ...)
-	# SetOutputFilter  proxy-html
-	# [Sun Sep 28 13:10:14 2008] [error] [client 81.101.140.207] Error in bucket read, referer: http://www.microfacts.org/thread/read_timeline/b6f9b907-3033-4acc-accd-e7b8f7f29deb
-	# [Sun Sep 28 13:10:14 2008] [error] [client 81.101.140.207] Error in bucket read, referer: http://www.microfacts.org/thread/read_timeline/b6f9b907-3033-4acc-accd-e7b8f7f29deb
-	# [Sun Sep 28 13:10:15 2008] [error] [client 81.101.140.207] Error in bucket read
-	# [Sun Sep 28 13:10:15 2008] [error] [client 81.101.140.207] Error in bucket read
-	# [Sun Sep 28 13:10:15 2008] [error] [client 81.101.140.207] Error in bucket read
-	ProxyHTMLURLMap http://localhost:5060 http://www.microfacts.org
+  	ServerAlias eu0.microfacts.org www.microfacts.org weavinghistory.org www.weavinghistory.org
+    DocumentRoot /home/rgrp/svn-microfacts/trunk/
+
+	SetHandler python-program
+	PythonHandler paste.modpython
+	PythonOption paste.ini /home/rgrp/svn-microfacts/trunk/production.ini
+
 	ErrorLog /var/log/apache2/microfacts.org.error.log
 	CustomLog /var/log/apache2/microfacts.org.access.log combined
 </VirtualHost>
