@@ -1,4 +1,4 @@
-/* content styles */
+/* aontent styles */
 
 /* debug 
 * {border: 1px dotted blue;}
@@ -10,17 +10,21 @@ html {
 
 body {
     color: #333;
-    margin: 2em;
-    background-color: #fff;
+    margin: 0.5em 1.5em;
     background: #eee;
-    font-family: Helvetica, Tahoma, "Bitstream Vera Sans", sans-serif;
-    font-size: 85%;
-    line-height: 1.4em;
+    /* font-family: Helvetica, Tahoma, "Bitstream Vera Sans", sans-serif; */
+    font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", "Lucida", "Bitstream Vera Sans", Verdana, sans-serif;
+    font-size: 0.9em;
+    line-height: 1.2em;
     padding: 0 0 2em 0;
 }
 
 #wrap {
   background: #fff;
+  /* 48 em when font-size = 1em; */
+  width: 53.3em;
+  margin: 0 auto;
+  padding: 0;
 }
 
 input {
@@ -52,7 +56,11 @@ textarea {
     font-size: 3em;
     letter-spacing: -0.1em;
     margin: 0 0.5em 0 0;
-    padding: 1.4em 0 1.4em 0.5em;
+    padding: 0.6em 0 0.4em 0.5em;
+}
+
+#logo img {
+  margin-right: -0.3em;
 }
 
 #logo a:link, #logo a:visited
@@ -106,9 +114,9 @@ textarea {
 
 #navibar
 {
-  margin: 0 0 0 1.55em;
+  margin: 0 0 0 1em;
   padding: 0;
-  font-size: 0.95em;
+  font-size: 0.9em;
   list-style-type: none;
 }
 
@@ -210,8 +218,15 @@ textarea {
 #page {
   line-height: 1.3em;
   background: #fff;
-  margin: 0 0 0em 0;
+  margin: 0;
+  padding: 2em 0 1.55em 0.9em;
+}
+
+/* with sidebar version */
+#sidewrap + #page {
+  margin: 0;
   padding: 2.5em 19.5em 1.5em 1.5em;
+
 }
 
 /* We use here dumb css1 ids because of IE suckiness */
@@ -444,7 +459,7 @@ textarea {
 #sidebar ul,
 #sidebar ol,
 #sidebar p,
-#sidebar h2, /* please don't use */
+#sidebar h2,
 #sidebar h3,
 #sidebar h4
 {
@@ -557,34 +572,40 @@ img.projects {
 
 /* front page stuff */
 
-div.fpbutton
-{
-    background: #feed93 url(../images/top-linerepeat.png) repeat-x top left;
+div.fpbutton {
+  background: #feed93 url(../images/top-linerepeat.png) repeat-x top left;
 
-    font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", "Lucida", "Bitstream Vera Sans", Verdana, sans-serif;
-    color: #4F4786;
+  font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", "Lucida", "Bitstream Vera Sans", Verdana, sans-serif;
+  color: #4F4786;
 
-    margin: 2.5%;
-    padding: 2.5%;
+  margin: 10px;
+  margin-left: 0;
+  padding: 10px;
+  height: 180px;
+
+  border: 1px solid #eee;
 }
 
-#topblock 
-{
+#topblock img {
+  width: 200px;
+  float: left;
+  margin-right: 30px;
+  margin-top: 2%;
 }
 
-#fpcontainer .fpbutton
-{
-    width: 40%;
-    height: 170px;
-    float: left;
-    font-size: 0.9em;
+#topblock p {
+  margin-left: 230px;
 }
 
-div.fpbutton h3
-{
-    font-size: 2em;
-    letter-spacing: -0.1em;
-    margin: 0 0.5em 0 0;
-    padding: 0.2em 0;
+div.fpbutton h3 {
+  font-size: 1.5em;
+  letter-spacing: -0.1em;
+  margin: 0 0.5em 0 0;
+  padding: 0.2em 0;
+}
+
+#fpcontainer .fpbutton {
+  width: 45.5%;
+  float: left;
 }
 
