@@ -1,10 +1,18 @@
 <VirtualHost *:80>
   ServerName db.publicdomainworks.net
-  <Proxy *>
-	Allow from .publicdomainworks.net
-  </Proxy>
-  ProxyPass / http://localhost:5070/
-  ProxyPassReverse / http://localhost:5070/
+  ServerAlias www.publicdomainworks.net publicdomainworks.net
+
+  # <Proxy *>
+	# Allow from .publicdomainworks.net
+  # </Proxy>
+  # ProxyPass / http://localhost:5070/
+  # ProxyPassReverse / http://localhost:5070/
+
+  DocumentRoot /home/rgrp/hg-pdw/
+
+  SetHandler python-program
+  PythonHandler paste.modpython
+  PythonOption paste.ini /home/rgrp/hg-pdw/production.ini
 
   ErrorLog /var/log/apache2/db.publicdomainworks.net.error.log
   CustomLog /var/log/apache2/db.publicdomainworks.net.custom.log combined

@@ -1,13 +1,12 @@
 <VirtualHost *:80>
-	ServerName openeconomics.net
-  	ServerAlias openeconomics.net www.openeconomics.net
-	<Proxy *>
-		Allow from .openeconomics.net
-	</Proxy>
-	ProxyPass / http://localhost:8081/
-	ProxyPassReverse / http://localhost:8081/
-  SetOutputFilter  proxy-html
-  ProxyHTMLURLMap http://localhost:8081 http://www.openeconomics.net
+    ServerName openeconomics.net
+    ServerAlias openeconomics.net www.openeconomics.net
+    DocumentRoot /home/rgrp/hg-econ/
+
+    SetHandler python-program
+    PythonHandler paste.modpython
+    PythonOption paste.ini /home/rgrp/hg-econ/production.ini
+
 	ErrorLog /var/log/apache2/openeconomics.net.error.log
 	CustomLog /var/log/apache2/openeconomics.net.log combined
 </VirtualHost>

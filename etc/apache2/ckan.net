@@ -11,6 +11,19 @@
 </VirtualHost>
 
 <VirtualHost *:80>
+    ServerName isitopen.ckan.net
+    DocumentRoot /home/rgrp/hg-isitopen/
+
+    SetHandler python-program
+    PythonHandler paste.modpython
+    PythonOption paste.ini /home/rgrp/hg-isitopen/isitopen.ckan.net.ini
+    PythonAutoReload On
+
+    ErrorLog /var/log/apache2/isitopen.ckan.net.error.log
+    CustomLog /var/log/apache2/isitopen.ckan.net.custom.log combined
+</VirtualHost>
+
+<VirtualHost *:80>
     ServerName ckan.net
     ServerAlias www.ckan.net *.ckan.net
     DocumentRoot /home/rgrp/svn-ckan/ckan/trunk/
