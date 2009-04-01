@@ -1,0 +1,41 @@
+## Pylons/Paste Applications
+
+### Under Mod-Python
+
+Follow: <http://wiki.pylonshq.com/display/pylonscookbook/Production+deployment+using+mod_python>
+
+See examples in etc/apache2/*
+
+For instructions for doing this with virtualenv see deploy-venv.py
+
+### WSGI (not tested)
+
+<VirtualHost *:80>
+	ServerName ckan.net
+	ServerAlias www.ckan.net *.ckan.net
+  DocumentRoot /path/to/your/app/directory
+
+  SetHandler mod_python
+  PythonHandler mod_python.wsgi
+  PythonAutoReload Off
+  PythonOption wsgi.application modpython_startup_ckan_net::app 
+</VirtualHost>
+
+### Proxy Deployment
+
+Usually using paster serve e.g.:
+
+paster serve config.ini --daemon --log-file my.log
+paster serve config.ini --stop-daemon
+
+  <Proxy *>
+    Allow from .<the-domain-name>
+  </Proxy>
+  ProxyPass / http://localhost:5050/
+  ProxyPassReverse / http://localhost:5050/
+
+### Fast CGI Deployment (Not Tested)
+
+  # ScriptAliasMatch ^(/.*)$ /home/rgrp/svn-ckan/ckan/trunk/dispatch.fcgi$1
+  # ScriptAliasMatch ^(/.*)$ /some/path/to/app/myapp.fcgi$1
+

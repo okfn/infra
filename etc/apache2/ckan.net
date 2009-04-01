@@ -3,7 +3,10 @@
     DocumentRoot /home/rgrp/svn-ckan/ckan/trunk/
 
     SetHandler python-program
-    PythonHandler paste.modpython
+    # PythonHandler paste.modpython
+    # PythonOption paste.ini /home/rgrp/svn-ckan/ckan/trunk/test.ckan.net.ini
+    PythonPath "['/home/rgrp/svn-ckan/ckan/trunk/pyenv/bin'] + sys.path"
+    PythonHandler pylonsapp
     PythonOption paste.ini /home/rgrp/svn-ckan/ckan/trunk/test.ckan.net.ini
 
     ErrorLog /var/log/apache2/test.ckan.net.error.log
@@ -29,14 +32,11 @@
     DocumentRoot /home/rgrp/svn-ckan/ckan/trunk/
 
     SetHandler python-program
-    PythonHandler paste.modpython
+    # PythonHandler paste.modpython
+    # PythonOption paste.ini /home/rgrp/svn-ckan/ckan/trunk/www.ckan.net.ini
+    PythonPath "['/home/rgrp/svn-ckan/ckan/trunk/pyenv/bin'] + sys.path"
+    PythonHandler pylonsapp
     PythonOption paste.ini /home/rgrp/svn-ckan/ckan/trunk/www.ckan.net.ini
-
-#     <Proxy *>
-# 	    Allow from .ckan.net
-#     </Proxy>
-#     ProxyPass / http://localhost:5050/
-#     ProxyPassReverse / http://localhost:5050/
 
     ErrorLog /var/log/apache2/ckan.net.error.log
     CustomLog /var/log/apache2/ckan.net.custom.log combined
