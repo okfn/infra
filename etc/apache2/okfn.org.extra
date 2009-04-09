@@ -28,7 +28,10 @@ Redirect permanent /okfcon http://www.okfn.org/okcon
 # wsfii now should go on its site
 Redirect permanent /wsfii http://www.wsfii.org
 Redirect permanent /witbd/svn https://p.knowledgeforge.net/witbd/svn
+# 2009-04-09. Move of wiki to dedicated vhost
+Redirect permanent /wiki http://wiki.okfn.org
 
+# Old opendefinition (okd.okfn.org now redirects to opendefinition.org
 RewriteEngine  on
 RewriteRule    ^/okd/(.*)  http://okd.okfn.org/  [R]
 
@@ -41,8 +44,6 @@ ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
 
 ## ------------------------------
 ## Specific sub projects
-
-ScriptAlias /wiki  "/home/okfn/var/moin/okfn_public_wiki/moin.cgi"
 
 ScriptAlias /board/wiki  "/home/okfn/var/moin/okfn_private_wiki/moin.cgi"
 <Location /board/wiki>
