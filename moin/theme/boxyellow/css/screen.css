@@ -615,3 +615,9 @@ div.fpbutton h3 {
   margin-right: 0;
 }
 
+/* moinmoin table of contents heading
+  hide for present (can be put in page if wanted)
+ */
+.table-of-contents-heading {
+  display: none;
+}
