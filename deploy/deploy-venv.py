@@ -1,14 +1,21 @@
 #!/usr/bin/env python
 # Based off instructions like:
+# http://pypi.python.org/pypi/virtualenv#using-virtualenv-without-bin-python
 # http://paste.lisp.org/display/59757
 # http://svn.pythonpaste.org/Paste/trunk/paste/modpython.py
 
 import os
 
-binfile = '''
-import os
-import site
-site.addsitedir('%s')
+# Follows
+# http://pypi.python.org/pypi/virtualenv#using-virtualenv-without-bin-python 
+# simpler approach just uses site.addsitedir but not sufficient
+# (does not result in correct ordering of sys.path)
+# activate_this also messes with sys.prefix which can be a problem see
+# http://code.google.com/p/modwsgi/wiki/VirtualEnvironments
+binfile = '''import os
+here = os.path.abspath(os.path.dirname(__file__))
+activate_this = os.path.join(here, 'activate_this.py')
+execfile(activate_this, dict(__file__=activate_this))
 
 from paste.modpython import handler
 '''
@@ -18,14 +25,6 @@ apache_config = \
 PythonPath "['%s'] + sys.path"
 PythonHandler %s
 PythonOption paste.ini %s'''
-
-def get_site_packages(venv):
-    lib = os.path.join(venv, 'lib')
-    # do not know the python version
-    # lib/pythonVERSION/site-packages'
-    fn = os.listdir(lib)[0]
-    sp = os.path.join(lib, fn, 'site-packages')
-    return sp
 
 def doit(venv, paste_config_fp='production.ini'):
     bin = os.path.abspath(os.path.join(venv, u'bin'))
@@ -41,7 +40,7 @@ def doit(venv, paste_config_fp='production.ini'):
 
     print '### Step 2: Create frontend script for mod python'
     print 'Creating script'
-    ourbinfile = binfile % sitepackages
+    ourbinfile = binfile
     print 'Installing script %s' % (binfile_path)
     if os.path.exists(binfile_path):
         print
@@ -58,6 +57,15 @@ def doit(venv, paste_config_fp='production.ini'):
     ourapache = apache_config % (bin, binfilename, paste_config_fp)
     print ourapache
     print '-------------'
+
+# 2009-04-27 no longer needed but left as may be useful
+def get_site_packages(venv):
+    lib = os.path.join(venv, 'lib')
+    # do not know the python version
+    # lib/pythonVERSION/site-packages'
+    fn = os.listdir(lib)[0]
+    sp = os.path.abspath(os.path.join(lib, fn, 'site-packages'))
+    return sp
 
 
 import optparse
