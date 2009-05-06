@@ -96,6 +96,9 @@ Alias /geo /home/okfn/var/www/okfn.org/geo
       PythonOption TracUriRoot /sysadmin/trac
     </IfModule>
 
+</Location>
+
+<Location /sysadmin/trac/login>
     AuthType Basic
     AuthName "Open Knowledge Foundation Restricted Area"
     AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords

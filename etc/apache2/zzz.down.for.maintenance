@@ -7,5 +7,6 @@
 	ServerAlias openshakespeare.org www.openshakespeare.org
 	ServerAlias db.publicdomainworks.net 
 	ServerAlias publicgeodata.org www.publicgeodata.org
+	ServerAlias microfacts.org www.microfacts.org
 	DocumentRoot /var/www/down_for_maintenance
 </VirtualHost>

@@ -8,11 +8,12 @@
   # ProxyPass / http://localhost:5070/
   # ProxyPassReverse / http://localhost:5070/
 
-  DocumentRoot /home/rgrp/hg-pdw/
+  DocumentRoot /home/okfn/var/srvc/pdw/pyenv/src/pdw
 
   SetHandler python-program
-  PythonHandler paste.modpython
-  PythonOption paste.ini /home/rgrp/hg-pdw/production.ini
+  PythonPath "['/home/okfn/var/srvc/pdw/pyenv/bin'] + sys.path"
+  PythonHandler pylonsapp
+  PythonOption paste.ini /home/okfn/var/srvc/pdw/production.ini
 
   ErrorLog /var/log/apache2/db.publicdomainworks.net.error.log
   CustomLog /var/log/apache2/db.publicdomainworks.net.custom.log combined
@@ -31,6 +32,6 @@
   ServerName wiki.publicdomainworks.net
   ServerAlias alpha.publicdomainworks.net
 
-  RedirectPermanent / http://db.publicdomainworks.net/	
+  RedirectPermanent / http://www.publicdomainworks.net/	
 </VirtualHost>
 
