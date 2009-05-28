@@ -11,7 +11,6 @@ Alias /images /home/okfn/svn-okfn/trunk/m.okfn.org/images
 # all links for files should be direct to m.okfn.org
 Alias /files /home/okfn/svn-okfn/trunk/m.okfn.org/files
 
-Alias /trac /usr/share/trac/htdocs 
 Alias /moinhtdocs /usr/share/moin/htdocs
 
 # Redirect for old files
@@ -30,6 +29,8 @@ Redirect permanent /wsfii http://www.wsfii.org
 Redirect permanent /witbd/svn https://p.knowledgeforge.net/witbd/svn
 # 2009-04-09. Move of wiki to dedicated vhost
 Redirect permanent /wiki http://wiki.okfn.org
+# 2009-05-28
+Redirect permanent /sysadmin/trac http://knowledgeforge.net/okfn/tasks
 
 # Old opendefinition (okd.okfn.org now redirects to opendefinition.org
 RewriteEngine  on
@@ -86,24 +87,6 @@ Alias /geo /home/okfn/var/www/okfn.org/geo
 
         Require group sysadmin
     </LimitExcept>
-</Location>
-
-<Location /sysadmin/trac>
-    <IfModule mod_python.c>
-      SetHandler mod_python
-      PythonHandler trac.web.modpython_frontend
-      PythonOption TracEnv /home/okfn/var/trac/okfn
-      PythonOption TracUriRoot /sysadmin/trac
-    </IfModule>
-
-</Location>
-
-<Location /sysadmin/trac/login>
-    AuthType Basic
-    AuthName "Open Knowledge Foundation Restricted Area"
-    AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
-    AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
-    Require group sysadmin
 </Location>
 
 ScriptAlias /fcd/wiki /home/okfn/var/moin/okfn_fcd_wiki/moin.cgi
