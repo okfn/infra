@@ -22,7 +22,9 @@ body {
 #wrap {
   background: #fff;
   /* 48 em when font-size = 1em; */
-  width: 53.3em;
+  /* width: 53.3em; */
+  width: 85%;
+  min-width: 53.3em;
   margin: 0 auto;
   padding: 0;
 }
@@ -606,13 +608,12 @@ div.fpbutton h3 {
 }
 
 #fpcontainer .fpbutton {
-  width: 46.5%;
-  margin-right: 1%;
-  float: left;
+  width: 46%;
 }
 
 #fpcontainer .right {
   margin-right: 0;
+  float: right;
 }
 
 /* moinmoin table of contents heading
