@@ -3,6 +3,8 @@
   Alias /moinhtdocs /usr/share/moin/htdocs
   ScriptAlias / /home/okfn/var/moin/okfn_public_wiki/moin.cgi/
 
+  Redirect permanent /projects http://wiki.okfn.org/p
+
   ErrorLog /var/log/apache2/wiki.okfn.org.error.log
   CustomLog /var/log//apache2/wiki.okfn.org.log combined
 </VirtualHost>
@@ -11,6 +13,8 @@
   ServerName wiki.okfn.org
   Alias /moinhtdocs /usr/share/moin/htdocs
   ScriptAlias / /home/okfn/var/moin/okfn_public_wiki/moin.cgi/
+
+  Redirect permanent /projects https://wiki.okfn.org/p
 
   ErrorLog /var/log/apache2/wiki.okfn.org.error.log
   CustomLog /var/log//apache2/wiki.okfn.org.log combined
