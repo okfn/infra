@@ -2,20 +2,12 @@
     ServerName openshakespeare.org
     ServerAlias www.openshakespeare.org demo.openshakespeare.org eu0.openshakespeare.org us0.openshakespeare.org
 
-    # is not optimal but Redirect do not work with proxy it seems...
-    # use blogred so rewrite on blog host works correctly
-    ProxyPass /texts/eb11 http://blogred.openshakespeare.org/texts/eb11
-    ProxyPass /category http://blogred.openshakespeare.org/category
-    # article links ...
-    ProxyPass /2008 http://blogred.openshakespeare.org/2008
-    ProxyPass /2007 http://blogred.openshakespeare.org/2007
-    ProxyPass /2006 http://blogred.openshakespeare.org/2006
 
-    <Proxy *>
-        Allow from .openshakespeare.org
-    </Proxy>
-    ProxyPass / http://localhost:5080/
-    ProxyPassReverse / http://localhost:5080/
+    SetHandler python-program
+    PythonPath "['/home/rgrp/svn-shakespeare/pyenv/bin'] + sys.path"
+    PythonHandler pylonsapp
+    PythonOption paste.ini /home/rgrp/svn-shakespeare/trunk/shakespeare.org.ini
+
     ErrorLog /var/log/apache2/openshakespeare.org.error.log
     CustomLog /var/log/apache2/openshakespeare.org.access.log combined
 </VirtualHost>
@@ -24,11 +16,11 @@
     ServerName openmilton.org
     ServerAlias www.openmilton.org eu0.openmilton.org us0.openmilton.org
 
-    <Proxy *>
-        Allow from .openmilton.org
-    </Proxy>
-    ProxyPass / http://localhost:5081/
-    ProxyPassReverse / http://localhost:5081/
+    SetHandler python-program
+    PythonPath "['/home/rgrp/svn-shakespeare/pyenv/bin'] + sys.path"
+    PythonHandler pylonsapp
+    PythonOption paste.ini /home/rgrp/svn-shakespeare/trunk/milton.org.ini
+
     ErrorLog /var/log/apache2/openmilton.org.error.log
     CustomLog /var/log/apache2/openmilton.org.access.log combined
 </VirtualHost>
