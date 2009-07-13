@@ -23,7 +23,7 @@ body {
   background: #fff;
   /* 48 em when font-size = 1em; */
   /* width: 53.3em; */
-  width: 85%;
+  width: 75%;
   min-width: 53.3em;
   margin: 0 auto;
   padding: 0;
@@ -612,7 +612,6 @@ div.fpbutton h3 {
 }
 
 #fpcontainer .right {
-  margin-right: 0;
   float: right;
 }
 
@@ -621,4 +620,8 @@ div.fpbutton h3 {
  */
 .table-of-contents-heading {
   display: none;
+}
+
+.strike {
+  text-decoration: line-through;
 }
