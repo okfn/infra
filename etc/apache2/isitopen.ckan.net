@@ -1,0 +1,23 @@
+<VirtualHost *:80>
+    ServerName isitopen.ckan.net
+
+    SetHandler python-program
+    PythonPath "['/home/okfn/var/srvc/isitopen.ckan.net/pyenv/bin'] + sys.path"
+    PythonHandler pylonsapp
+    PythonOption paste.ini /home/okfn/var/srvc/isitopen.ckan.net/isitopen.ckan.net.ini
+    # PythonAutoReload On
+
+    <Location /admin>
+        AuthType Basic
+        AuthName "Is It Open Administration"
+        AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
+        AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
+
+        Require group okfn
+    </Location>
+
+    ErrorLog /var/log/apache2/isitopen.ckan.net.error.log
+    CustomLog /var/log/apache2/isitopen.ckan.net.custom.log combined
+</VirtualHost>
+
+

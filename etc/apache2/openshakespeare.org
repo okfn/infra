@@ -8,6 +8,15 @@
     PythonHandler pylonsapp
     PythonOption paste.ini /home/rgrp/svn-shakespeare/trunk/shakespeare.org.ini
 
+    <Location /admin>
+        AuthType Basic
+        AuthName "Administration"
+        AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
+        AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
+
+        Require group okfn
+    </Location>
+
     ErrorLog /var/log/apache2/openshakespeare.org.error.log
     CustomLog /var/log/apache2/openshakespeare.org.access.log combined
 </VirtualHost>
@@ -20,6 +29,15 @@
     PythonPath "['/home/rgrp/svn-shakespeare/pyenv/bin'] + sys.path"
     PythonHandler pylonsapp
     PythonOption paste.ini /home/rgrp/svn-shakespeare/trunk/milton.org.ini
+
+    <Location /admin>
+        AuthType Basic
+        AuthName "Is It Open Administration"
+        AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
+        AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
+
+        Require group okfn
+    </Location>
 
     ErrorLog /var/log/apache2/openmilton.org.error.log
     CustomLog /var/log/apache2/openmilton.org.access.log combined

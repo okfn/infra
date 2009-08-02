@@ -1,13 +1,13 @@
 <VirtualHost *:80>
     ServerName openeconomics.net
     ServerAlias openeconomics.net www.openeconomics.net
-    DocumentRoot /home/rgrp/hg-econ/
 
     SetHandler python-program
-    PythonHandler paste.modpython
-    PythonOption paste.ini /home/rgrp/hg-econ/production.ini
+    PythonPath "['/home/okfn/var/srvc/openeconomics.net/pyenv/bin'] + sys.path"
+    PythonHandler pylonsapp
+    PythonOption paste.ini /home/okfn/var/srvc/openeconomics.net/openeconomics.ini
 
-	ErrorLog /var/log/apache2/openeconomics.net.error.log
-	CustomLog /var/log/apache2/openeconomics.net.log combined
+    ErrorLog /var/log/apache2/openeconomics.net.error.log
+    CustomLog /var/log/apache2/openeconomics.net.log combined
 </VirtualHost>
 
