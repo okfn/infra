@@ -56,8 +56,6 @@ def backup_mailman(base):
 def backup_ckan(base):
     path = os.path.join(base, 'ckan.sql.gz')
     pgdump('ckan', path)
-    cfg = '/home/rgrp/svn-ckan/ckan/trunk/www.ckan.net.ini'
-    shutil.copy(cfg, base)
 
 # ---------------------------------------------------------
 # OKFN Core
