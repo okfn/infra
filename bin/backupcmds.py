@@ -71,7 +71,7 @@ def okfn_drn(base):
 def okfn_wikis(base):
     wikiPath = '/home/okfn/var/moin'
     backupPath = os.path.join(base, 'moin.tgz')
-    cmd = 'tar -czf %s %s' % (backupPath, wikiPath)
+    cmd = 'tar --exclude=event-log -czf %s %s' % (backupPath, wikiPath)
     if os.system(cmd):
     	print 'Error executing command: %s' % cmd
 
