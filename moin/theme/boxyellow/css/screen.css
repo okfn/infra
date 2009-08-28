@@ -565,14 +565,6 @@ table
 	vertical-align: top;
 }
 
-/* project page pictures */
-img.projects {
-  float: left;
-  height: 100px;
-  margin: 2px 15px 5px 0;
-  padding: 0;
-}
-
 /* front page stuff */
 
 div.fpbutton {
@@ -625,3 +617,34 @@ div.fpbutton h3 {
 .strike {
   text-decoration: line-through;
 }
+
+/* project listing page */
+
+div.project-summary {
+  /* at least as high as largest image */
+  min-height: 100px;
+  margin-bottom: 2.5em;
+  max-width: 50em;
+}
+
+div.project-summary img {
+  float: left;
+  margin: 2px 15px 25px 0;
+  padding: 0;
+}
+
+div.project-summary .project-text {
+  /* width of the images ... */
+  margin-left: 125px; 
+}
+
+/* class for tables without borders
+  2009-08-28: probably can remove as no longer used on projects page
+*/
+table.noborder, table td.noborder, table th.noborder {
+  background-color: white;
+  border: 0px;
+  border-collapse: collapse;
+  padding: 2px;
+}
+
