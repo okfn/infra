@@ -1,11 +1,7 @@
 <VirtualHost *:80>
     ServerName test.ckan.net
-    # DocumentRoot /home/rgrp/svn-ckan/ckan/trunk/
 
-    SetHandler python-program
-    PythonPath "['/home/okfn/var/srvc/test.ckan.net/pyenv/bin'] + sys.path"
-    PythonHandler pylonsapp
-    PythonOption paste.ini /home/okfn/var/srvc/test.ckan.net/test.ckan.net.ini
+    WSGIScriptAlias / /home/okfn/var/srvc/test.ckan.net/pyenv/bin/pylonsapp_modwsgi.py
 
     ErrorLog /var/log/apache2/test.ckan.net.error.log
     CustomLog /var/log/apache2/test.ckan.net.custom.log combined

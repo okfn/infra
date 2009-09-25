@@ -1,22 +1,28 @@
 <VirtualHost *:80>
-	ServerName econ.dev.okfn.org
-	RedirectPermanent / http://www.openeconomics.net/
+    ServerName annotater.dev.okfn.org
+
+    WSGIScriptAlias / /home/okfn/var/srvc/annotater.dev.okfn.org/pyenv/bin/demoapp.py
 </VirtualHost>
 
 <VirtualHost *:80>
-	ServerName shakespeare.dev.okfn.org
-	RedirectPermanent / http://www.openshakespeare.org/
+    ServerName econ.dev.okfn.org
+    RedirectPermanent / http://www.openeconomics.net/
 </VirtualHost>
 
 <VirtualHost *:80>
-	ServerName dev.okfn.org
-	DocumentRoot /home/okfn/var/www/dev.okfn.org
-	ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
-	<Directory "/usr/lib/cgi-bin">
-		AllowOverride None
-		Options ExecCGI -MultiViews +SymLinksIfOwnerMatch
-		Order allow,deny
-		Allow from all
-	</Directory>
+    ServerName shakespeare.dev.okfn.org
+    RedirectPermanent / http://www.openshakespeare.org/
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName dev.okfn.org
+    DocumentRoot /home/okfn/var/www/dev.okfn.org
+    ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+    <Directory "/usr/lib/cgi-bin">
+        AllowOverride None
+        Options ExecCGI -MultiViews +SymLinksIfOwnerMatch
+        Order allow,deny
+        Allow from all
+    </Directory>
 </VirtualHost>
 
