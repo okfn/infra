@@ -2,11 +2,8 @@
     ServerName openshakespeare.org
     ServerAlias www.openshakespeare.org demo.openshakespeare.org eu0.openshakespeare.org us0.openshakespeare.org
 
-
-    SetHandler python-program
-    PythonPath "['/home/rgrp/svn-shakespeare/pyenv/bin'] + sys.path"
-    PythonHandler pylonsapp
-    PythonOption paste.ini /home/rgrp/svn-shakespeare/trunk/shakespeare.org.ini
+    Alias /pdf /home/okfn/var/srvc/openshakespeare.org/cache/moby/pdf
+    WSGIScriptAlias / /home/okfn/var/srvc/openshakespeare.org/pyenv/bin/pylonsapp_modwsgi.py
 
     <Location /admin>
         AuthType Basic

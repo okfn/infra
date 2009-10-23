@@ -12,6 +12,7 @@
     ServerAlias www.ckan.net
 
     Alias /dump/ /home/okfn/var/srvc/ckan.net/dumps/
+    RedirectMatch permanent /package/read/(.*)$ /package/$1
 
     # Disable the mod_python handler for static files
     <Location /dump>
@@ -19,10 +20,9 @@
         Options +Indexes
     </Location>
 
-    SetHandler python-program
-    PythonPath "['/home/okfn/var/srvc/ckan.net/pyenv/bin'] + sys.path"
-    PythonHandler pylonsapp
-    PythonOption paste.ini /home/okfn/var/srvc/ckan.net/www.ckan.net.ini
+    WSGIScriptAlias / /home/okfn/var/srvc/ckan.net/pyenv/bin/pylonsapp_modwsgi.py
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
 
     ErrorLog /var/log/apache2/ckan.net.error.log
     CustomLog /var/log/apache2/ckan.net.custom.log combined

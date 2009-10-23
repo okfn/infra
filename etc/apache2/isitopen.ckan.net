@@ -1,5 +1,6 @@
 <VirtualHost *:80>
     ServerName isitopen.ckan.net
+    ServerAlias isitopendata.org www.isitopendata.org
 
     SetHandler python-program
     PythonPath "['/home/okfn/var/srvc/isitopen.ckan.net/pyenv/bin'] + sys.path"
