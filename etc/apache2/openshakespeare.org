@@ -11,7 +11,7 @@
         AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
         AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
 
-        Require group okfn
+        Require group shakespeare
     </Location>
 
     ErrorLog /var/log/apache2/openshakespeare.org.error.log
