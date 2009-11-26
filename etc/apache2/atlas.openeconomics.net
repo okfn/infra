@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+    ServerName atlas.openeconomics.net
+    ServerAlias www.atlas.openeconomics.net
+
+    Alias /moinhtdocs /usr/share/moin/htdocs
+    ScriptAlias / /home/kforge/knowledgeforge.net/var/project_data/econ/moin/95/moin.cgi/
+    
+    ErrorLog /var/log/apache2/atlas.openeconomics.net.error.log
+    CustomLog /var/log/apache2/atlas.openeconomics.net.access.log combined
+</VirtualHost>
