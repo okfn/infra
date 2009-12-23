@@ -1,0 +1,6 @@
+syntax: glob
+
+# aggregator
+*.tmplc
+cache/**
+aggregator/**/output/**
