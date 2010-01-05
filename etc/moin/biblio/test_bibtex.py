@@ -34,6 +34,8 @@ assert 'alexander_1977' in out
 assert 'gillett_1970' in out
 assert out.index('alexander_1977') < out.index('gillett_1970')
 assert not 'This file has been generated' in out
+# print renderer.bib2html_cmd
+# print renderer.args
 # print out
 
 renderer = bibtex.BibtexRenderer(bibtex_text, Request(),

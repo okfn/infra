@@ -16,6 +16,7 @@ import trac.env
 def convert_moin_markup(page_string):
     out = page_string
     out = out.replace('[[TableOfContents]]', '[[PageOutline(0-6,Table of Contents,inline)]]')
+    # todo ["Email"] to [wiki:Email]
     return out
 
 def convert(trac_path, moin_path):

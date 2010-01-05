@@ -8,7 +8,7 @@ class TestSites(unittest.TestCase):
     core_sites = [
             'http://www.okfn.org/',
             'http://blog.okfn.org/',
-            'http://okd.okfn.org/',
+            'http://opendefinition.org/',
             'http://www.publicgeodata.org/',
             'http://m.okfn.org/',
             'http://dev.okfn.org/',
@@ -19,14 +19,15 @@ class TestSites(unittest.TestCase):
             'http://www.witbd.org/',
             'http://www.freeculture.org.uk/',
             'http://www.publicdomainworks.net/',
-            'http://www.wsfii.org/',
+            # 'http://www.wsfii.org/',
             'http://www.knowledgeforge.net/',
             'http://www.kforgeproject.com/',
             'http://www.openshakespeare.org/',
             'http://demo.openshakespeare.org/',
             'http://www.ckan.net',
             'http://db.publicdomainworks.net/',
-            'http://www.openeconomics.net/'
+            'http://www.openeconomics.net/',
+            'http://isitopen.ckan.net/',
             ]
 
     def test_okfn(self):
