@@ -19,7 +19,8 @@
 
   RedirectMatch permanent ^/$ http://lists.okfn.org/mailman/listinfo
   LogFormat "%h %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" common
-  CustomLog /var/log/kforge/kforge.log gforge
+  CustomLog /var/log/apache2/lists.okfn.org.log common
+  ErrorLog /var/log/apache2/lists.okfn.org.error.log
 </VirtualHost>
 
 # HTTPS
@@ -29,8 +30,10 @@
 
   <IfModule mod_ssl.c>
     SSLEngine on
-    SSLCertificateFile /etc/apache2/ssl/okfn.org.cert
-    SSLCertificateKeyFile /etc/apache2/ssl/okfn.org.key
+    # SSLCertificateFile /etc/apache2/ssl/okfn.org.cert
+    # SSLCertificateKeyFile /etc/apache2/ssl/okfn.org.key
+    SSLCertificateFile /etc/ssl/certs/okfn.org.cert
+    SSLCertificateKeyFile /etc/ssl/certs/okfn.org.unsecure.key
     <Files ~ "\.(cgi|shtml)$">
       SSLOptions +StdEnvVars
     </Files>
@@ -55,6 +58,7 @@
   </Location>
 
   RedirectMatch permanent ^/$ https://lists.okfn.org/mailman/listinfo
-  LogFormat "%h %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" gforge
-  CustomLog /var/log/kforge/kforge.log gforge
+  LogFormat "%h %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" common
+  CustomLog /var/log/apache2/lists.okfn.org.log common
+  ErrorLog /var/log/apache2/lists.okfn.org.error.log
 </VirtualHost>
