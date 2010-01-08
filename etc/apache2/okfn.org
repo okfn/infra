@@ -1,5 +1,5 @@
 <VirtualHost *:80>
-    Include /home/okfn/svn-okfn/trunk/etc/apache2/okfn.org.extra
+    Include /home/okfn/etc/apache2/okfn.org.extra
 </VirtualHost>
 
 
@@ -11,6 +11,6 @@
       SSLCertificateKeyFile /etc/apache2/ssl/okfn.org.key
     </IfModule>
 
-    Include /home/okfn/svn-okfn/trunk/etc/apache2/okfn.org.extra
+    Include /home/okfn/etc/apache2/okfn.org.extra
 </VirtualHost>
 

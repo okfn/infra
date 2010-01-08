@@ -19,7 +19,7 @@ Redirect permanent /resources/etech06 http://www.okfn.org/files/etech06
 Redirect permanent /okd http://okd.okfn.org
 Redirect permanent /ok_trail http://www.okfn.org/open_knowledge_trail
 # Redirect permanent /three_meanings_of_open.html http://okd.okfn.org/three_meanings_of_open/
-Redirect permanent /kforge/wiki http://project.knowledgeforge.net/kforge/trac/wiki
+Redirect permanent /kforge/wiki http://knowledgeforge.net/kforge/trac/wiki
 Redirect permanent /okforums/okcon http://www.okfn.org/okcon
 # typo means programme was at okfcon/programme
 Redirect permanent /okforums/okfcon http://www.okfn.org/okcon
@@ -31,6 +31,8 @@ Redirect permanent /witbd/svn https://p.knowledgeforge.net/witbd/svn
 Redirect permanent /wiki http://wiki.okfn.org
 # 2009-05-28
 Redirect permanent /sysadmin/trac http://knowledgeforge.net/okfn/tasks
+# 2010-01
+RedirectPermanent /sysadmin/svn http://knowledgeforge.net/okfn/sysadmin
 
 # Old opendefinition (okd.okfn.org now redirects to opendefinition.org
 RewriteEngine  on
@@ -73,20 +75,6 @@ Alias /geo /home/okfn/var/www/okfn.org/geo
         Require group fcuk
     </LimitExcept>
     
-</Location>
-
-<Location /sysadmin/svn>
-    DAV svn 
-    SVNPath /home/okfn/var/svn/okfn
-    
-    <LimitExcept GET PROPFIND OPTIONS REPORT>
-        AuthType Basic
-        AuthName "Open Knowledge Foundation Restricted Area"
-        AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
-        AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
-
-        Require group sysadmin
-    </LimitExcept>
 </Location>
 
 ScriptAlias /fcd/wiki /home/okfn/var/moin/okfn_fcd_wiki/moin.cgi
