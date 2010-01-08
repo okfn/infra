@@ -10,6 +10,8 @@ def okfn():
     backupcmds.okfn_www(base)
     backupcmds.backup_etc_repo(base)
     backupcmds.backup_ckan(base)
+    path = os.path.join(base, 'microfacts.sql.gz')
+    backupcmds.pgdump('microfacts', path)
 
 if __name__ == '__main__':
     okfn()
