@@ -1,5 +1,21 @@
 ## Pylons/Paste Applications
 
+### Using virtualenv and pip
+
+Create virtualenv:
+
+    virtualenv pyenv
+
+To use a requirements file: (assumes you want virtualenv at ./pyenv)
+
+    pip -E pyenv install -r pip-requirements.txt
+
+Tips:
+  * you may need to do --ignore-installed to avoid version conflicts
+  * Warning: if you to use site-packages you should create a virtualenv
+environment first (pip automatically does --no-site-packages)
+  * To install a local distribution using pyenv do: pip install -e ./path/to/distbn
+
 ### Under Mod-Python
 
 Follow: <http://wiki.pylonshq.com/display/pylonscookbook/Production+deployment+using+mod_python>
