@@ -19,32 +19,9 @@
 </VirtualHost>
 
 <VirtualHost *:80>
-    ServerName openmilton.org
-    ServerAlias www.openmilton.org eu0.openmilton.org us0.openmilton.org
-
-    SetHandler python-program
-    PythonPath "['/home/rgrp/svn-shakespeare/pyenv/bin'] + sys.path"
-    PythonHandler pylonsapp
-    PythonOption paste.ini /home/rgrp/svn-shakespeare/trunk/milton.org.ini
-
-    <Location /admin>
-        AuthType Basic
-        AuthName "Is It Open Administration"
-        AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
-        AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
-
-        Require group okfn
-    </Location>
-
-    ErrorLog /var/log/apache2/openmilton.org.error.log
-    CustomLog /var/log/apache2/openmilton.org.access.log combined
-</VirtualHost>
-
-<VirtualHost *:80>
     ServerName blog.openshakespeare.org
     ServerAlias blogred.openshakespeare.org eu0.blog.openshakespeare.org openshakespeare.org www.openshakespeare.org
 
-    DocumentRoot /home/kforge/openshakespeare.org
     DirectoryIndex index.html index.php
     Options -Indexes
 

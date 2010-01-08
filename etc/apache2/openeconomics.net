@@ -2,10 +2,9 @@
     ServerName openeconomics.net
     ServerAlias openeconomics.net www.openeconomics.net
 
-    SetHandler python-program
-    PythonPath "['/home/okfn/var/srvc/openeconomics.net/pyenv/bin'] + sys.path"
-    PythonHandler pylonsapp
-    PythonOption paste.ini /home/okfn/var/srvc/openeconomics.net/openeconomics.ini
+    WSGIScriptAlias / /home/okfn/var/srvc/openeconomics.net/pyenv/bin/pylonsapp_modwsgi.py
+    # pass authorization info on (needed for e.g. rest apis)
+    WSGIPassAuthorization On
 
     ErrorLog /var/log/apache2/openeconomics.net.error.log
     CustomLog /var/log/apache2/openeconomics.net.log combined

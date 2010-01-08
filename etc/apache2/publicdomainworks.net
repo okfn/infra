@@ -1,29 +1,20 @@
 <VirtualHost *:80>
-  ServerName db.publicdomainworks.net
-  ServerAlias www.publicdomainworks.net publicdomainworks.net
+  ServerName www.publicdomainworks.net 
+  ServerAlias publicdomainworks.net db.publicdomainworks.net
 
-  # <Proxy *>
-	# Allow from .publicdomainworks.net
-  # </Proxy>
-  # ProxyPass / http://localhost:5070/
-  # ProxyPassReverse / http://localhost:5070/
-
-  DocumentRoot /home/okfn/var/srvc/pdw/pyenv/src/pdw
-
-  SetHandler python-program
-  PythonPath "['/home/okfn/var/srvc/pdw/pyenv/bin'] + sys.path"
-  PythonHandler pylonsapp
-  PythonOption paste.ini /home/okfn/var/srvc/pdw/production.ini
+  WSGIScriptAlias / /home/okfn/var/srvc/pdw/pyenv/bin/pylonsapp_modwsgi.py
+  # pass authorization info on (needed for e.g. rest apis)
+  WSGIPassAuthorization On
 
   ErrorLog /var/log/apache2/db.publicdomainworks.net.error.log
   CustomLog /var/log/apache2/db.publicdomainworks.net.custom.log combined
 </VirtualHost>
 
 <VirtualHost *:80>
-  ServerName www.publicdomainworks.net
-  ServerAlias blog.publicdomainworks.net
+  ServerName blog.publicdomainworks.net
+
+  RedirectPermanent / http://blog.okfn.org/taxonomy/okf-projects/public-domain-works/
 	
-  DocumentRoot /home/kforge/knowledgeforge.net/var/project_data/pdw/wordpress/53
   ErrorLog /var/log/apache2/blog.publicdomainworks.net.error.log
   CustomLog /var/log/apache2/blog.publicdomainworks.net.custom.log combined
 </VirtualHost>

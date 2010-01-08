@@ -1,14 +1,10 @@
 <VirtualHost *:80>
     ServerName microfacts.org
     ServerAlias eu0.microfacts.org www.microfacts.org weavinghistory.org www.weavinghistory.org
-    DocumentRoot /home/rgrp/svn-microfacts/trunk/
 
-    SetHandler python-program
-    # PythonHandler paste.modpython
-    # PythonOption paste.ini /home/rgrp/svn-microfacts/trunk/production.ini
-    PythonPath "['/home/okfn/var/srvc/microfacts/pyenv/bin'] + sys.path"
-    PythonHandler pylonsapp
-    PythonOption paste.ini /home/okfn/var/srvc/microfacts/production.ini
+    WSGIScriptAlias / /home/okfn/var/srvc/microfacts/pyenv/bin/pylonsapp_modwsgi.py
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
 
     ErrorLog /var/log/apache2/microfacts.org.error.log
     CustomLog /var/log/apache2/microfacts.org.access.log combined
