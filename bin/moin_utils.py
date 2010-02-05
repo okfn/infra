@@ -134,6 +134,7 @@ class MoinUtilsTest(object):
 import urllib2
 import xml.dom.minidom
 import urlparse
+import re
 def page_list(site_url, strict_exclude=True):
     '''Get a list of pages associated with moinmoin site at `site_url`.
 
@@ -161,7 +162,7 @@ def page_list(site_url, strict_exclude=True):
             ):
             return False
         # pretty hardcore: exclude all items starting with uppercase
-        elif len(path) > 1 and path[1].upper() == path[1] and not path == '/FrontPage':
+        elif re.match('^/[A-Z].*', path) and not path == '/FrontPage':
             return False
         else:
             return True
@@ -191,8 +192,7 @@ actions:
         utils.createWiki(args[2])
     elif action == 'page_list':
         out = page_list(args[1])
-        for item in out:
-            print(','.join(item))
+        print '\n'.join(out)
     else:
         print usage
         sys.exit(1)

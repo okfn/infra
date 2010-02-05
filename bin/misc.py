@@ -18,5 +18,5 @@ def check_site_migration(dest, paths):
 import moin_utils
 src = 'http://www.opendefinition.org'
 dest = 'http://staging.opendefinition.org'
-check_site_migration(src, dest, moin_utils.page_list(src))
+check_site_migration(dest, moin_utils.page_list(src))
 
