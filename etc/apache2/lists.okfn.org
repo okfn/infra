@@ -4,6 +4,7 @@
   AddHandler cgi-script .cgi
 
   ScriptAlias /mailman/ /var/lib/mailman/cgi-bin/
+  RedirectMatch permanent /cgi-bin/(.*) /$1
 
   Alias /pipermail /var/lib/mailman/archives/public
   <Directory /var/lib/mailman/archives/public>
@@ -18,9 +19,8 @@
   </Location>
 
   RedirectMatch permanent ^/$ http://lists.okfn.org/mailman/listinfo
-  LogFormat "%h %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" common
-  CustomLog /var/log/apache2/lists.okfn.org.log common
-  ErrorLog /var/log/apache2/lists.okfn.org.error.log
+    ErrorLog /var/log/apache2/lists.okfn.org.error.log
+    CustomLog /var/log/apache2/lists.okfn.org.log combined
 </VirtualHost>
 
 # HTTPS
@@ -30,10 +30,8 @@
 
   <IfModule mod_ssl.c>
     SSLEngine on
-    # SSLCertificateFile /etc/apache2/ssl/okfn.org.cert
-    # SSLCertificateKeyFile /etc/apache2/ssl/okfn.org.key
-    SSLCertificateFile /etc/ssl/certs/okfn.org.cert
-    SSLCertificateKeyFile /etc/ssl/certs/okfn.org.unsecure.key
+    SSLCertificateFile /etc/apache2/ssl/okfn.org.cert
+    SSLCertificateKeyFile /etc/apache2/ssl/okfn.org.key
     <Files ~ "\.(cgi|shtml)$">
       SSLOptions +StdEnvVars
     </Files>
@@ -44,6 +42,7 @@
   </IfModule>
 
   ScriptAlias /mailman/ /var/lib/mailman/cgi-bin/
+  RedirectMatch permanent /cgi-bin/(.*) /$1
 
   Alias /pipermail /var/lib/mailman/archives/public
   <Directory /var/lib/mailman/archives/public>
@@ -58,7 +57,6 @@
   </Location>
 
   RedirectMatch permanent ^/$ https://lists.okfn.org/mailman/listinfo
-  LogFormat "%h %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" common
-  CustomLog /var/log/apache2/lists.okfn.org.log common
-  ErrorLog /var/log/apache2/lists.okfn.org.error.log
+    ErrorLog /var/log/apache2/lists.okfn.org.error.log
+    CustomLog /var/log/apache2/lists.okfn.org.log combined
 </VirtualHost>
