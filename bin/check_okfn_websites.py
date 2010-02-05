@@ -30,22 +30,34 @@ class TestSites(unittest.TestCase):
             'http://www.isitopendata.org/',
             'http://www.wheredoesmymoneygo.org/',
             'http://www.openmilton.org/',
+            'http://www.opentextbook.org/',
             ]
 
     def _print(self, msg):
         if self.VERBOSE:
             print(msg)
 
-    def _check_site(self, url):
-        self._print('Visiting: %s' % url)
+    @classmethod
+    def check_url(self, url):
+        '''Check status of a url.
+
+        @return (code,info): where code is status code and info is further
+        information.
+        '''
         try:
             res = urllib2.urlopen(url)
             code = res.code
+            reason = ''
         except urllib2.HTTPError as e:
             code = e.code
             reason = e.read()
         except urllib2.URLError, e:
-            code,info = e.reason
+            code,reason = e.reason
+        return code,reason
+
+    def _check_site(self, url):
+        self._print('Visiting: %s' % url)
+        code,info = self.check_url(url)
         assert code in [200,302], '\tFAILED (%s): %s' % (code,url)
         # o/w ok
         self._print('\tOK: %s' % url)
