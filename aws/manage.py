@@ -28,9 +28,12 @@ much removed (now 160GB on instance)?
   * EBS does have nicer snapshotting than instance but is possible
 '''
 import os
+import uuid
+import time
 
 import boto
 import boto.ec2
+
 
 def get_regions():
     regions = dict([ (x.name,x) for x in
@@ -40,8 +43,16 @@ def get_regions():
 class Manager(object):
     # Alestic Debian Lenny images (see http://alestic.com/)
     # unfortunately images have different names on different instances ..
-    ami_debian_euwest = 'ami-b8446fcc'
-    ami_debian_useast = 'ami-dcf615b5'
+    amis = {
+        'eu-west-1':  {
+            'debian-lenny': 'ami-b8446fcc',
+            'debian-squeeze': 'ami-8c446ff8',
+            },
+        'us-east-1':  {
+            'debian-lenny': 'ami-dcf615b5',
+            }
+        }
+    default_ami = amis['eu-west-1']['debian-lenny']
 
     def __init__(self, region='us-east-1'):
         '''
@@ -57,15 +68,25 @@ class Manager(object):
 
         @return: boto instance object representing created instance.
         '''
-        secgroups = self.security_groups()
+        # create a dedicated secgroup for this machine
+        secname = 'instance-%s' % uuid.uuid4()
+        oursecgroup = self.conn.create_security_group(secname, secname)
+        # secgroups = self.instance_security_groups()
+        # secgroups.append(oursecgroup)
+        secgroups = [ 'default', 'www-only', 'ssh-only', secname ]
+        
+        # TODO: tie together AMI and placement with our region?
         # use default keypair
         reservation = self.conn.run_instances(
-            self.ami_debian_euwest,
+            self.amis['eu-west-1']['debian-squeeze'],
             instance_type='m1.small',
+            placement='eu-west-1b',
+            key_name='okfn-eu1-kp',
             security_groups=secgroups)
         instance = reservation.instances[0]
         while instance.state == 'pending':
             time.sleep(10)
+            print('Waiting for instance to go active')
             instance.update()
         # TODO: now do post-boot stuff
         # attach ip
@@ -75,6 +96,10 @@ class Manager(object):
         # b) relocate var on /mnt (which is the large volume)
         #    (see aws_fabfile.py)
         return instance
+    
+    def associate_address(self, instance_id, ipaddr):
+        '''Associate address.'''
+        conn.associate_address(instance_id, ipaddr)
 
     def create_security_groups(self):
         '''Create standard security groups (web, ssh).
@@ -83,7 +108,7 @@ class Manager(object):
         web.authorize('tcp', 80, 80, '0.0.0.0/0')
         web.authorize('tcp', 443, 443, '0.0.0.0/0')
         ssh = self.conn.create_security_group('ssh-only', 'ssh-only')
-        ssh.authorize('ssh', 22, 22, '0.0.0.0/0')
+        ssh.authorize('tcp', 22, 22, '0.0.0.0/0')
 
     def instance_security_groups(self):
         '''Get security groups to apply to a given instance'''
@@ -118,23 +143,17 @@ class Manager(object):
         '''Print results of info() to stdout'''
         res = self.info()
         print('Regions', get_regions())
-        print res
-        for inst in res['instances'][0].instances:
-            print inst, inst.state, inst.dns_name
+        for instset in res['instances']:
+            for inst in instset.instances:
+                # TODO: describe an instance better
+                print inst, inst.state, inst.dns_name
+        return ''
 
     def image_info(self, image_id):
         '''Print information about image specified by image_id'''
         m = Manager()
         image = m.conn.get_image(image_id)
         print image
-
-
-class TestManager:
-    def test_info(self):
-        regionstr = 'eu-west-1'
-        m = Manager(regionstr)
-        out = m.info()
-        assert out['region'].name == regionstr
 
 
 import os
@@ -149,7 +168,8 @@ def _object_methods(obj):
 
 if __name__ == '__main__':
     # image_info(Manager.ami_debian_euwest)
-    manager = Manager()
+    # manager = Manager()
+    manager = Manager('eu-west-1')
     _methods = _object_methods(manager)
     usage = '''%prog {action} [args]
 
@@ -164,5 +184,6 @@ if __name__ == '__main__':
         parser.print_help()
         sys.exit(1)
     method = args[0]
-    getattr(manager, method)(*args[1:])
+    out = getattr(manager, method)(*args[1:])
+    print out
 
