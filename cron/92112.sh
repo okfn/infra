@@ -21,8 +21,8 @@ CP=/bin/cp;
 TOUCH=/bin/touch;
 LOCKFILE=/usr/bin/lockfile;
 NICE=/usr/bin/nice
-RSYNC=/usr/bin/rsync;
-
+RSYNC=/usr/bin/rsync
+MKDIR=/bin/mkdir
 
 # ------------- file locations -----------------------------------------
 
@@ -80,6 +80,7 @@ function onexit () {
 trap onexit EXIT
 
 ${MOUNT} ${MOUNT_DEVICE} ${SNAPSHOT_RW}
+${MKDIR} -p ${SNAPSHOT_RW}/${HOST}
 
 # rotating snapshots of /home (fixme: this should be more general)
 
