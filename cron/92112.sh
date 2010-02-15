@@ -76,6 +76,7 @@ function onexit () {
 
 trap onexit EXIT
 
+mount ${MOUNT_DEVICE} ${SNAPSHOT_RW}
 
 # rotating snapshots of /home (fixme: this should be more general)
 
@@ -88,6 +89,7 @@ fi ;
 if [ -d $SNAPSHOT_RW/$HOST/daily.2 ] ; then			\
 $MV $SNAPSHOT_RW/$HOST/daily.2 $SNAPSHOT_RW/$HOST/daily.3 ;	\
 fi;
+
 if [ -d $SNAPSHOT_RW/$HOST/daily.1 ] ; then			\
 $MV $SNAPSHOT_RW/$HOST/daily.1 $SNAPSHOT_RW/$HOST/daily.2 ;	\
 fi;
@@ -114,7 +116,7 @@ $NICE -n 19 $RSYNC								\
 	-aR --delete --delete-excluded				\
         --include-from="$INCLUDES"                              \
 	--exclude-from="$EXCLUDES"				\
-	/home/ $SNAPSHOT_RW/$HOST/daily.0 ;
+	/ $SNAPSHOT_RW/$HOST/daily.0 ;
 
 # step 5: update the mtime of daily.0 to reflect the snapshot time
 $TOUCH $SNAPSHOT_RW/$HOST/daily.0 ;
