@@ -46,6 +46,12 @@ if (( $? )); then
 }
 fi;
 
+function onexit () {
+    umount ${MOUNT_DEVICE}
+}
+
+trap onexit EXIT
+
 
 # rotating snapshots of /home (fixme: this should be more general)
 
