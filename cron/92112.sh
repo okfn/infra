@@ -7,7 +7,7 @@
 # ----------------------------------------------------------------------
 
 unset PATH	# suggestion from H. Milz: avoid accidental use of $PATH
-set -x
+set -e
 
 # ------------- system commands used by this script --------------------
 ID=/usr/bin/id;
