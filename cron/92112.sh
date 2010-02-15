@@ -71,12 +71,12 @@ if [ -z "${SNAPSHOT_RW}" ]; then
 fi
 
 function onexit () {
-    umount ${MOUNT_DEVICE}
+    ${UMOUNT} ${MOUNT_DEVICE}
 }
 
 trap onexit EXIT
 
-mount ${MOUNT_DEVICE} ${SNAPSHOT_RW}
+${MOUNT} ${MOUNT_DEVICE} ${SNAPSHOT_RW}
 
 # rotating snapshots of /home (fixme: this should be more general)
 
