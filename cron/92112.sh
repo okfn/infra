@@ -30,6 +30,7 @@ SNAPSHOT_RW=/mnt/backup;
 EXCLUDES=/etc/backup_exclude;
 HOST=eu0;
 LOCK=/tmp/lock.snapshot;
+BACKUP_SCRIPTDIR=/etc/backupscripts
 
 # ------------- the script itself --------------------------------------
 
@@ -66,6 +67,14 @@ fi;
 if [ -d $SNAPSHOT_RW/$HOST/daily.0 ] ; then			\
 $NICE -n 19 $CP -al $SNAPSHOT_RW/$HOST/daily.0 $SNAPSHOT_RW/$HOST/daily.1 ;	\
 fi;
+
+# step 3.5: run /etc/backupscripts/00mysql, 01syncfoo, etc
+#
+for scr in ${BACKUP_SCRIPTDIR}/[0-9][0-9]*; do
+	if [ -x ${scr} ]; then
+		${scr}
+	fi
+done
 
 # step 4: rsync from the system into the latest snapshot (notice that
 # rsync behaves like cp --remove-destination by default, so the destination
