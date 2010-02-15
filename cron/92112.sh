@@ -7,6 +7,7 @@
 # ----------------------------------------------------------------------
 
 unset PATH	# suggestion from H. Milz: avoid accidental use of $PATH
+set -x
 
 # ------------- system commands used by this script --------------------
 ID=/usr/bin/id;
@@ -25,8 +26,10 @@ RSYNC=/usr/bin/rsync;
 
 # ------------- file locations -----------------------------------------
 
-MOUNT_DEVICE=/dev/sdb1;
-SNAPSHOT_RW=/mnt/backup;
+# need ${MOUNT_DEVICE} and ${SNAPSHOT_RW} from the following file
+# (their locations will differ from host to host)
+. /etc/backup_config
+
 EXCLUDES=/etc/backup_exclude;
 INCLUDES=/etc/backup_include
 HOST=eu0;
@@ -42,8 +45,8 @@ if (( `$ID -u` != 0 )); then { $ECHO "Sorry, must be root.  Exiting..."; exit; }
 $LOCKFILE -r0 $LOCK;
 if (( $? )); then
 {
-	$ECHO "snapshot: could not acquire lock exiting";
-	exit;
+    $ECHO "snapshot: could not acquire lock exiting";
+    exit;
 }
 fi;
 
@@ -54,6 +57,16 @@ fi
 
 if [ ! -e "${INCLUDES}" ]; then
     echo The includes file: ${INCLUDES} does not exist
+    exit 1
+fi
+
+if [ -z "${MOUNT_DEVICE}" ]; then
+    echo You must specify a \$MOUNT_DEVICE
+    exit 1
+fi
+
+if [ -z "${SNAPSHOT_RW}" ]; then
+    echo You must specify a \$SNAPSHOT_RW
     exit 1
 fi
 
@@ -99,6 +112,7 @@ done
 # snapshot(s) too!
 $NICE -n 19 $RSYNC								\
 	-aR --delete --delete-excluded				\
+        --include-from="$INCLUDES"                              \
 	--exclude-from="$EXCLUDES"				\
 	/home/ $SNAPSHOT_RW/$HOST/daily.0 ;
 
