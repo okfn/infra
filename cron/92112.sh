@@ -71,6 +71,9 @@ if [ -z "${SNAPSHOT_RW}" ]; then
 fi
 
 function onexit () {
+    # release lock
+    $RM $LOCK
+
     ${UMOUNT} ${MOUNT_DEVICE}
 }
 
@@ -122,7 +125,3 @@ $NICE -n 19 $RSYNC								\
 $TOUCH $SNAPSHOT_RW/$HOST/daily.0 ;
 
 # and thats it for home.
-
-# release lock
-$RM $LOCK
-
