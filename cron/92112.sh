@@ -28,6 +28,7 @@ RSYNC=/usr/bin/rsync;
 MOUNT_DEVICE=/dev/sdb1;
 SNAPSHOT_RW=/mnt/backup;
 EXCLUDES=/etc/backup_exclude;
+INCLUDES=/etc/backup_include
 HOST=eu0;
 LOCK=/tmp/lock.snapshot;
 BACKUP_SCRIPTDIR=/etc/backupscripts
@@ -45,6 +46,16 @@ if (( $? )); then
 	exit;
 }
 fi;
+
+if [ ! -e "${EXCLUDES}" ]; then
+    echo The excludes file: ${EXCLUDES} does not exist
+    exit 1
+fi
+
+if [ ! -e "${INCLUDES}" ]; then
+    echo The includes file: ${INCLUDES} does not exist
+    exit 1
+fi
 
 function onexit () {
     umount ${MOUNT_DEVICE}
