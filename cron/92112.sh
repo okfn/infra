@@ -32,7 +32,7 @@ RSYNC=/usr/bin/rsync;
 
 EXCLUDES=/etc/backup_exclude;
 INCLUDES=/etc/backup_include
-HOST=eu0;
+HOST=$(/usr/bin/hostname -s)
 LOCK=/tmp/lock.snapshot;
 BACKUP_SCRIPTDIR=/etc/backupscripts
 
