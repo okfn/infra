@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 '''Automate standard tasks with AWS (EC2) using boto.
 
 You should specify credentials (access key, secret key) either via ~/.boto or
@@ -50,20 +51,55 @@ class Manager(object):
             },
         'us-east-1':  {
             'debian-lenny': 'ami-dcf615b5',
+            'debian-squeeze': 'ami-dcf615b5',
+            },
+        'us-west-1': {
+            'debian-lenny': 'ami-b33a6bf6'
             }
         }
-    default_ami = amis['eu-west-1']['debian-lenny']
+    # yes, i know they are inconsistent!
+    key_pairs = {
+        'eu-west-1': 'okfn-eu1-kp',
+        'us-east-1': 'okfn-kp',
+        'us-west-1': 'okfn-kp-us-west-1'
+        }
+    default_ami_type = 'debian-lenny'
+    region_names = [ 'us-east-1', 'us-west-1', 'eu-west-1' ]
 
-    def __init__(self, region='us-east-1'):
+    def __init__(self, region=None):
         '''
         @param region: AWS region identifier (us-east-1, us-west-1, eu-west-1)
         '''
         # simple default self.connection
         # self.conn = boto.self.connect_ec2(AKEY, SKEY)
-        region = get_regions()[region]
+        self.conn = None
+        self.regions = get_regions()
+        self.region = region
+
+    def _connect(self):
+        region = self.regions[self._region]
         self.conn = region.connect()
 
-    def create_instance(self):
+    @property
+    def region(self):
+        return self._region
+
+    @region.setter
+    def region(self, value):
+        self._region = value
+        if self._region is not None:
+            self._connect()
+    
+    def placement(self):
+        '''The placement of an existing instance in this region (or None if no
+        instance).
+        '''
+        reservation = self.conn.get_all_instances()
+        existing = reservation[0].instances[0] if reservation else None
+        placement = getattr(existing, 'placement', None)
+        return placement
+
+    def create_instance(self, ami=None, **kwargs):
         '''Create a standard EC2 instance using our default security groups.
 
         @return: boto instance object representing created instance.
@@ -71,35 +107,37 @@ class Manager(object):
         # create a dedicated secgroup for this machine
         secname = 'instance-%s' % uuid.uuid4()
         oursecgroup = self.conn.create_security_group(secname, secname)
-        # secgroups = self.instance_security_groups()
-        # secgroups.append(oursecgroup)
         secgroups = [ 'default', 'www-only', 'ssh-only', secname ]
-        
-        # TODO: tie together AMI and placement with our region?
-        # use default keypair
-        reservation = self.conn.run_instances(
-            self.amis['eu-west-1']['debian-squeeze'],
-            instance_type='m1.small',
-            placement='eu-west-1b',
-            key_name='okfn-eu1-kp',
-            security_groups=secgroups)
+
+        ourami = ami if ami else self.amis[self.region][self.default_ami_type]
+        ourkwargs = {
+            'placement': self.placement(),
+            'instance_type': 'm1.small',
+            'key_name': self.key_pairs[self.region],
+            'security_groups': secgroups
+        }
+        ourkwargs.update(kwargs)
+
+        reservation = self.conn.run_instances(ourami, **ourkwargs)
         instance = reservation.instances[0]
         while instance.state == 'pending':
             time.sleep(10)
             print('Waiting for instance to go active')
             instance.update()
         # TODO: now do post-boot stuff
-        # attach ip
-        # install standard software
-        # either
-        # a) attach EBS instances
-        # b) relocate var on /mnt (which is the large volume)
-        #    (see aws_fabfile.py)
+        # 1. attach ip
+        ipaddr = self.conn.allocate_address()
+        self.conn.associate_address(instance.id, ipaddr.public_ip)
+        # 2. Set up storage, either of:
+        #   a) attach EBS instances
+        #   b) relocate var on /mnt (which is the large volume) (see
+        #   aws_fabfile.py)
+        # 3. install standard software
         return instance
     
     def associate_address(self, instance_id, ipaddr):
         '''Associate address.'''
-        conn.associate_address(instance_id, ipaddr)
+        self.conn.associate_address(instance_id, ipaddr)
 
     def create_security_groups(self):
         '''Create standard security groups (web, ssh).
@@ -135,18 +173,21 @@ class Manager(object):
         res = {
             'region': self.conn.region,
             'security-groups': self.conn.get_all_security_groups(),
+            'addresses': self.conn.get_all_addresses(),
             }
         res['instances'] = self.conn.get_all_instances()
         return res
 
     def print_info(self):
         '''Print results of info() to stdout'''
+        print('Available Regions', get_regions())
         res = self.info()
-        print('Regions', get_regions())
+        print('Current Region', res['region'])
+        print('Addresses', res['addresses'])
         for instset in res['instances']:
             for inst in instset.instances:
                 # TODO: describe an instance better
-                print inst, inst.state, inst.dns_name
+                print inst, inst.state, inst.dns_name, inst.placement
         return ''
 
     def image_info(self, image_id):
@@ -168,9 +209,7 @@ def _object_methods(obj):
 
 if __name__ == '__main__':
     # image_info(Manager.ami_debian_euwest)
-    # manager = Manager()
-    manager = Manager('eu-west-1')
-    _methods = _object_methods(manager)
+    _methods = _object_methods(Manager)
     usage = '''%prog {action} [args]
 
     '''
@@ -178,11 +217,15 @@ if __name__ == '__main__':
         [ '%s: %s' % (name, m.__doc__.split('\n')[0] if m.__doc__ else '') for (name,m)
         in _methods.items() ])
     parser = optparse.OptionParser(usage)
+    parser.add_option('-r', '--region', dest='region',
+            help='Region to connect to (default: %s)' % ','.join(Manager.region_names),
+            default=Manager.region_names[0])
     options, args = parser.parse_args()
 
     if not args or not args[0] in _methods:
         parser.print_help()
         sys.exit(1)
+    manager = Manager(options.region)
     method = args[0]
     out = getattr(manager, method)(*args[1:])
     print out
