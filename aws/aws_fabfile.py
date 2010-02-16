@@ -12,6 +12,16 @@ from fabric.api import *
 from fabric.contrib.console import *
 from fabric.contrib.files import *
 
+def fix_profile():
+    '''Fix up root profile on ec2 (o/w complaints about:
+    err: stdin: is not a tty).
+    '''
+    #TODO
+    text = '''if `tty -s`; then
+    mesg n
+fi
+'''
+
 def move_directories_to_mnt():
     '''Move /var, /home to /mnt/root/XXX and fstab them in.
 
@@ -25,13 +35,13 @@ def move_directories_to_mnt():
     assert not exists('/mnt/root'), '/mnt/root already exists!'
     run('mkdir /mnt/root')
     dirs = [ 'var', 'home' ]
-    for dir in dirs[1:]:
+    for dir in dirs:
         # avoid possible problem with being in dir that is being moved
         with cd('/'):
+            run('mv /%s /mnt/root' % dir)
             run('mkdir /%s' % dir)
             append('/mnt/root/%s /%s     none bind' % (dir, dir), '/etc/fstab',
                     use_sudo=False)
-            run('mv /%s /mnt/root' % dir)
             run('mount /%s' % dir)
 
 def adduser_okfn():
@@ -40,9 +50,23 @@ def adduser_okfn():
     # use useradd rather than adduser so as to not be prompted for info
     run('useradd --create-home okfn')
 
-def add_standard_public_keys():
-    '''Add public keys for main sysadmins'''
-    pass
+def add_ssh_keys(authorized_keys_file, user='root'):
+    '''Add ssh keys provided in `authorized_keys_file` for user `user`.
+    
+    NB: assumes root access (TODO: change this)
+    '''
+    data = open(authorized_keys_file).read()
+    if user == 'root':
+        append(data, '/root/.ssh/authorized_keys')
+    else:
+        userdir = '/home/%s' % user
+        assert exists(userdir), 'No home directory for user: %s' % user
+        sshdir = userdir + '/.ssh'
+        if not exists(sshdir):
+            run('mkdir %s' % sshdir)
+        append(data, '%s/authorized_keys' % sshdir)
+        run('chown -R %s:%s %s' % (user, user, sshdir))
+        run('chmod go-rwx -R %s' % sshdir)
 
 package_sets = {
     # TODO visudo and add relevant users to sudo list
@@ -69,6 +93,22 @@ package_sets = {
     'fabric': [
         'python-paramiko'
         # no fabric in debian lenny
+    ],
+    'kforge': [
+        'python-dev',
+        'build-essential',
+        # django apparently needs this!
+        'apache2-mpm-prefork',
+        'libapache2-mod-python',
+        # unnecessary dependency on mx datetime so install from source
+        # 'python-psycopg2',
+        'postgresql',
+        'exim4'
+        ],
+    'kforge-plugins': [
+        'python-moinmoin',
+        'subversion',
+        'libapache2-svn',
     ]
 }
 
