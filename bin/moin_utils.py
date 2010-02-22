@@ -130,17 +130,69 @@ class MoinUtilsTest(object):
             print 'Error: new wiki does not exist'
             return
         moinUtils.removeWiki(wikiName)
+    
+import urllib2
+import xml.dom.minidom
+import urlparse
+import re
+def page_list(site_url, strict_exclude=True):
+    '''Get a list of pages associated with moinmoin site at `site_url`.
 
+    Attempt to strip out standard 'underlay' wiki pages (e.g. HelpOn*)
+
+    @param strict_exclude: exclude all url paths starting with capital except
+    FrontPage.
+    '''
+    sitemap = '%s?action=sitemap' % site_url
+    content = urllib2.urlopen(sitemap).read()
+    doc = xml.dom.minidom.parseString(content)
+    urls = doc.documentElement.getElementsByTagName('url')
+    def process(tag):
+        loc = tag.getElementsByTagName('loc')[0].childNodes[0].nodeValue
+        path = urlparse.urlsplit(loc).path
+        lastmod = tag.getElementsByTagName('lastmod')[0].childNodes[0].nodeValue
+        return [path, lastmod]
+    results = map(process, urls)
+    def exclude(item):
+        path = item[0]
+        # TODO: look through underlay directory?
+        if ( path.startswith('/HelpOn') or
+            path.startswith('/Wiki') or
+            'Template' in path
+            ):
+            return False
+        # pretty hardcore: exclude all items starting with uppercase
+        elif re.match('^/[A-Z].*', path) and not path == '/FrontPage':
+            return False
+        else:
+            return True
+    results = filter(exclude, results)
+    # return results
+    # only return paths -- lastmods aren't needed
+    return map(lambda x: x[0], results)
+
+import optparse
+import sys
 if __name__ == '__main__':
-    usage = 'moin_utils.py create {path}'
-    import sys
-    args = sys.argv
-    if len(args) <= 2:
-        print usage
+    usage = '''%(prog)s {action} [args]
+
+actions:
+    create {path}: create wiki at path
+    page_list {url}: list page in wiki at url using sitemap
+    '''
+    parser = optparse.OptionParser(usage)
+    options, args = parser.parse_args()
+
+    if len(args) == 0:
+        parser.print_help()
         sys.exit(1)
-    elif args[1] == 'create':
-        utils = MoinUtils()
+    action = args[0]
+    utils = MoinUtils()
+    if action  == 'create':
         utils.createWiki(args[2])
+    elif action == 'page_list':
+        out = page_list(args[1])
+        print '\n'.join(out)
     else:
         print usage
         sys.exit(1)

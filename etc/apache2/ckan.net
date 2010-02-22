@@ -1,13 +1,4 @@
 <VirtualHost *:80>
-    ServerName test.ckan.net
-
-    WSGIScriptAlias / /home/okfn/var/srvc/test.ckan.net/pyenv/bin/pylonsapp_modwsgi.py
-
-    ErrorLog /var/log/apache2/test.ckan.net.error.log
-    CustomLog /var/log/apache2/test.ckan.net.custom.log combined
-</VirtualHost>
-
-<VirtualHost *:80>
     ServerName ckan.net
     ServerAlias www.ckan.net
 
