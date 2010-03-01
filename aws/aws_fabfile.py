@@ -12,6 +12,7 @@ from fabric.api import *
 from fabric.contrib.console import *
 from fabric.contrib.files import *
 
+
 def fix_profile():
     '''Fix up root profile on ec2 (o/w complaints about:
     err: stdin: is not a tty).
@@ -21,6 +22,7 @@ def fix_profile():
     mesg n
 fi
 '''
+
 
 def move_directories_to_mnt():
     '''Move /var, /home to /mnt/root/XXX and fstab them in.
@@ -44,11 +46,13 @@ def move_directories_to_mnt():
                     use_sudo=False)
             run('mount /%s' % dir)
 
+
 def adduser_okfn():
     '''Create the okfn users.'''
     assert not exists('/home/okfn'), 'okfn user already exists'
     # use useradd rather than adduser so as to not be prompted for info
     run('useradd --create-home okfn')
+
 
 def add_ssh_keys(authorized_keys_file, user='root'):
     '''Add ssh keys provided in `authorized_keys_file` for user `user`.
@@ -67,6 +71,7 @@ def add_ssh_keys(authorized_keys_file, user='root'):
         append(data, '%s/authorized_keys' % sshdir)
         run('chown -R %s:%s %s' % (user, user, sshdir))
         run('chmod go-rwx -R %s' % sshdir)
+
 
 package_sets = {
     # TODO visudo and add relevant users to sudo list
@@ -109,7 +114,16 @@ package_sets = {
         'python-moinmoin',
         'subversion',
         'libapache2-svn',
-    ]
+    ],
+    'isitopen': [
+        'postgresql',
+        'python-psycopg2',
+        'mercurial',
+        'set::python-installers'
+        ]
+    'mercurial': [
+        'mercurial'
+        ]
 }
 
 def install_packages(package_set='basics', update_first=False):
@@ -123,5 +137,34 @@ installed yet.
     if update_first:
         run('apt-get update')
     for pkgname in package_sets[package_set]:
-        run('apt-get -y install %s' % pkgname)
+        if '::' not in pkgname:
+            run('apt-get -y install %s' % pkgname)
+        else:
+            setname = pkg.split('::')[1]
+            install_packages(package_set=setname)
+
+
+def etc_in_mercurial():
+    etc_hgignore = '''syntax: glob
+*.lock*
+ld.so.cache
+links.cfg
+adjtime
+udev
+ppp
+localtime
+ssl/private/ssl-cert-snakeoil.key
+ssl/certs
+*.swp
+*.dpkg-old
+*.old
+
+syntax: regexp
+.*~$
+'''
+    install_packages('mercurial')
+    append(etc_ignore, '/etc/.hgignore')
+    with cd('/etc/'):
+        run('hg add')
+        run('hg commit -m "[all][l]: import existing /etc contents into hg"')
 
