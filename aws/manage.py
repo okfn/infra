@@ -100,8 +100,17 @@ class Manager(object):
         return placement
 
     def create_instance(self, ami=None, **kwargs):
-        '''Create a standard EC2 instance using our default security groups.
+        '''Create a standard EC2 instance using our default security groups,
+        attach an IP.
 
+        Post-boot you may want to:
+            1. relocate var on /mnt (which is the large volume) (see
+            aws_fabfile.py)
+            2. install standard software
+
+        @param ami: name of ami to use (see self.amis for options). If None use
+            self.default_ami_type.
+        @param **kwargs: passed directly into boto `run_instances`
         @return: boto instance object representing created instance.
         '''
         # create a dedicated secgroup for this machine
@@ -124,15 +133,8 @@ class Manager(object):
             time.sleep(10)
             print('Waiting for instance to go active')
             instance.update()
-        # TODO: now do post-boot stuff
-        # 1. attach ip
         ipaddr = self.conn.allocate_address()
         self.conn.associate_address(instance.id, ipaddr.public_ip)
-        # 2. Set up storage, either of:
-        #   a) attach EBS instances
-        #   b) relocate var on /mnt (which is the large volume) (see
-        #   aws_fabfile.py)
-        # 3. install standard software
         return instance
     
     def associate_address(self, instance_id, ipaddr):
@@ -174,8 +176,8 @@ class Manager(object):
         return v
 
     def info(self):
-        '''Get dictionary of info about this region's instances, security
-        groups etc.
+        '''Get info dict about this region's instances, security groups etc (if
+        using from the cli recommend `print_info`).
         '''
         res = {
             'region': self.conn.region,
@@ -195,6 +197,8 @@ class Manager(object):
             for inst in instset.instances:
                 # TODO: describe an instance better
                 print inst, inst.state, inst.dns_name, inst.placement
+        for addr in res['addresses']:
+            print(addr.public_ip, addr.instance_id)
         return ''
 
     def image_info(self, image_id):

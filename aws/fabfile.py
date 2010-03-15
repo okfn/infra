@@ -1,5 +1,6 @@
-'''usage:
-    fab -f aws_fabfile.py
+'''A fabric fabfile. See available commands do::
+
+    fab -l
 
 You can specify host and username using --hosts and --user options
 '''
@@ -14,14 +15,16 @@ from fabric.contrib.files import *
 
 
 def fix_profile():
-    '''Fix up root profile on ec2 (o/w complaints about:
-    err: stdin: is not a tty).
+    '''(NOT WORKING) Fix up root profile on ec2 (o/w complaints about: err: stdin: is
+    not a tty).
     '''
-    #TODO
     text = '''if `tty -s`; then
     mesg n
 fi
 '''
+    fn = '/root/.profile'
+    comment(fn, '^mesg n', backup='')
+    append(fn, text)
 
 
 def move_directories_to_mnt():
@@ -120,7 +123,7 @@ package_sets = {
         'python-psycopg2',
         'mercurial',
         'set::python-installers'
-        ]
+        ],
     'mercurial': [
         'mercurial'
         ]
@@ -145,6 +148,7 @@ installed yet.
 
 
 def etc_in_mercurial():
+    '''Start versioning /etc in mercurial.'''
     etc_hgignore = '''syntax: glob
 *.lock*
 ld.so.cache
