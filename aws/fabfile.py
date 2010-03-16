@@ -147,6 +147,20 @@ installed yet.
             install_packages(package_set=setname)
 
 
+def setup_sudoers():
+    '''Add standard okfn as admin config to sudoers'''
+    fn = '/etc/sudoers'
+    # double escape as passed through to sed ...
+    after = '# User alias specification\\nUser_Alias      ADMINS = okfn'
+    sed(fn, '# User alias specification', after)
+
+    in2 = r'root.*ALL=\(ALL\) ALL'
+    # double escape as passed through to sed ...
+    out2 = 'root   ALL=(ALL) ALL' + '\\n' + 'ADMINS  ALL = (ALL) NOPASSWD: ALL'
+    print out2
+    sed(fn, in2, out2, backup='')
+
+
 def etc_in_mercurial():
     '''Start versioning /etc in mercurial.'''
     etc_hgignore = '''syntax: glob
@@ -167,8 +181,9 @@ syntax: regexp
 .*~$
 '''
     install_packages('mercurial')
-    append(etc_ignore, '/etc/.hgignore')
+    append(etc_hgignore, '/etc/.hgignore')
     with cd('/etc/'):
+        run('hg init')
         run('hg add')
-        run('hg commit -m "[all][l]: import existing /etc contents into hg"')
+        run('hg commit --user "okfn sysadmin" -m "[all][l]: import existing /etc contents into hg"')
 
