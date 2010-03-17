@@ -87,15 +87,21 @@ package_sets = {
         'libapache2-mod-wsgi'
     ],
     'ckan': [
-        'postgresql'
+        'postgresql',
+        'python-psycopg2',
+        'set::web',
     ],
     'python_basics': [
-        'python-setuptools'
-        # probably not recent enough
+        'python',
+        # may be recent enough
         # in which case do: e.g. easy_install --always-unzip setuptools
-        'python-virtualenv'
-        # pip as well but not in debian
-        # easy_install --always-unzip pip
+        'python-setuptools',
+        # not recent enough
+        # 'python-virtualenv'
+        'cmd::easy_install --always-unzip virtualenv',
+        # pip not yet in debian
+        # 'python-pip'
+        'cmd::easy_install --always-unzip pip',
     ],
     # unlikely to need this on the *remote* host
     'fabric': [
@@ -140,11 +146,17 @@ installed yet.
     if update_first:
         run('apt-get update')
     for pkgname in package_sets[package_set]:
-        if '::' not in pkgname:
+        if '::' not in pkgname: # default
             run('apt-get -y install %s' % pkgname)
-        else:
-            setname = pkg.split('::')[1]
+        elif pkgname.startswith('set::'):
+            setname = pkgname.split('::')[1]
             install_packages(package_set=setname)
+        elif pkgname.startswith('cmd::'):
+            cmd = pkgname.split('::')[1]
+            run(cmd)
+        else:
+            print 'Unrecognized package format'
+
 
 
 def setup_sudoers():
