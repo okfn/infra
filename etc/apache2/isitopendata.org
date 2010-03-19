@@ -2,13 +2,18 @@
     ServerName www.isitopendata.org 
     ServerAlias isitopendata.org isitopen.ckan.net
 
-    WSGIScriptAlias / /home/okfn/var/srvc/isitopen.ckan.net/pyenv/bin/pylonsapp_modwsgi.py
+    RewriteEngine on
+    RewriteCond %{HTTP_HOST}   !^www\.isitopendata\.org [NC]
+    RewriteCond %{HTTP_HOST}   !^$
+    RewriteRule ^/?(.*)        http://www.isitopendata.org/$1 [L,R,NE]
+
+    WSGIScriptAlias / /home/okfn/var/srvc/isitopendata.org/pyenv/bin/pylonsapp_modwsgi.py
 
     <Location /admin>
         AuthType Basic
         AuthName "Is It Open Administration"
-        AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
-        AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
+        AuthUserFile /home/okfn/etc/apache2/okfn_auth_passwords
+        AuthGroupFile /home/okfn/etc/apache2/okfn_auth_groups
 
         Require group okfn
     </Location>
