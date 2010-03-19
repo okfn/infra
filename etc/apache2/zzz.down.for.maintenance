@@ -8,5 +8,8 @@
 	ServerAlias db.publicdomainworks.net 
 	ServerAlias publicgeodata.org www.publicgeodata.org
 	ServerAlias microfacts.org www.microfacts.org
+	# ServerAlias isitopendata.org www.isitopendata.org
+	ServerAlias *
+
 	DocumentRoot /var/www/down_for_maintenance
 </VirtualHost>
