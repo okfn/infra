@@ -2,7 +2,7 @@
     ServerName de.ckan.net
     ServerAlias data.oddir.de
 
-    WSGIScriptAlias / /home/okfn/var/srvc/de.ckan.net/pyenv/bin/pylonsapp_modwsgi.py
+    WSGIScriptAlias / /home/okfn/var/srvc/de.ckan.net/pyenv/bin/de.ckan.net.py
     # pass authorization info on (needed for rest api)
     WSGIPassAuthorization On
 
