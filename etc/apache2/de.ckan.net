@@ -1,6 +1,7 @@
 <VirtualHost *:80>
     ServerName de.ckan.net
     ServerAlias data.oddir.de
+    ServerAlias katalog.offenedaten.de
 
     WSGIScriptAlias / /home/okfn/var/srvc/de.ckan.net/pyenv/bin/de.ckan.net.py
     # pass authorization info on (needed for rest api)

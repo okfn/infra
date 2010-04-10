@@ -1,7 +1,7 @@
 <VirtualHost *:80>
     ServerName test.ckan.net
 
-    WSGIScriptAlias / /home/okfn/var/srvc/test.ckan.net/pyenv/bin/pylonsapp_modwsgi.py
+    WSGIScriptAlias / /home/okfn/var/srvc/test.ckan.net/pyenv/bin/test.ckan.net.py
     WSGIPassAuthorization On
 
     ErrorLog /var/log/apache2/test.ckan.net.error.log
