@@ -1,0 +1,25 @@
+/* 2010-04-10 Very much in progress */
+
+The full open knowledge "stack".
+
+  * Storage
+  * Search
+
+The Unix Philosophy for Services
+
+The Open Knowledge Stack
+========================
+
+Technical infrastructure:
+
+  * Storage
+  * Discovery (Search)
+  * Workers (Processing)
+  * Apps
+
+Social infrastructure:
+
+  * Legal definition
+  * Governance
+  * Community
+
