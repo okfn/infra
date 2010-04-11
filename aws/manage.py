@@ -47,11 +47,15 @@ class Manager(object):
     amis = {
         'eu-west-1':  {
             'debian-lenny': 'ami-b8446fcc',
+            'debian-lenny-64': 'ami-80446ff4',
             'debian-squeeze': 'ami-8c446ff8',
+            'debian-squeeze-64': 'ami-745b7000',
             },
         'us-east-1':  {
             'debian-lenny': 'ami-dcf615b5',
+            'debian-lenny-64': 'ami-f0f61599',
             'debian-squeeze': 'ami-dcf615b5',
+            'debian-squeeze-64': 'ami-fcf61595',
             },
         'us-west-1': {
             'debian-lenny': 'ami-b33a6bf6'
