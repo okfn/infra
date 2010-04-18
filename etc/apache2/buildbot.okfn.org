@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+    ServerAdmin sysadmin@okfn.org
+    ServerName buildbot.okfn.org
+    DocumentRoot /var/www/
+    <Location />
+        Order allow,deny
+        allow from all
+    </Location>
+    RewriteEngine On   
+    RewriteRule /(.*) http://localhost:8010/$1 [P,L]
+</VirtualHost>
+
