@@ -56,6 +56,7 @@ class Manager(object):
             'debian-lenny-64': 'ami-f0f61599',
             'debian-squeeze': 'ami-dcf615b5',
             'debian-squeeze-64': 'ami-fcf61595',
+            'ubuntu-karmic': 'ami-bb709dd2',
             },
         'us-west-1': {
             'debian-lenny': 'ami-b33a6bf6'
@@ -109,7 +110,7 @@ class Manager(object):
 
         Post-boot you may want to:
             1. relocate var on /mnt (which is the large volume) (see
-            aws_fabfile.py)
+                fabfile.py)
             2. install standard software
 
         @param ami: name of ami to use (see self.amis for options). If None use
@@ -123,6 +124,8 @@ class Manager(object):
         secgroups = [ 'default', 'www-only', 'ssh-only', secname ]
 
         ourami = ami if ami else self.amis[self.region][self.default_ami_type]
+        if not ourami.startswith('ami-'): # it a dist name e.g. debian-squeeze
+            ourami = self.amis[self.region][ourami]
         ourkwargs = {
             'placement': self.placement(),
             'instance_type': 'm1.small',
@@ -153,6 +156,14 @@ class Manager(object):
         web.authorize('tcp', 443, 443, '0.0.0.0/0')
         ssh = self.conn.create_security_group('ssh-only', 'ssh-only')
         ssh.authorize('tcp', 22, 22, '0.0.0.0/0')
+
+    def update_security_group(self, name, port, protocol='tcp',
+            ip='0.0.0.0/0'):
+        '''Add permission to security group `name` for port `port`.
+        '''
+        secgroup = self.conn.get_security_group
+        self.conn.authorize_security_group(name, ip_protocol=protocol,
+                from_port=port, to_port=to_port, cidr_ip=ip)
 
     def instance_security_groups(self):
         '''Get security groups to apply to a given instance'''
@@ -229,7 +240,7 @@ if __name__ == '__main__':
 
     '''
     usage += '\n    '.join(
-        [ '%s: %s' % (name, m.__doc__.split('\n')[0] if m.__doc__ else '') for (name,m)
+        [ '%s: %s' % (name, m.__doc__ if m.__doc__ else '') for (name,m)
         in _methods.items() ])
     parser = optparse.OptionParser(usage)
     parser.add_option('-r', '--region', dest='region',
