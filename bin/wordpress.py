@@ -3,8 +3,8 @@ import os
 import urllib
 
 # http://codex.wordpress.org/Installing/Updating_WordPress_with_Subversion
-def install_svn(path):
-    cmd = 'svn co http://core.svn.wordpress.org/tags/2.7.1 %s' % path
+def install_svn(path, version='2.9.2'):
+    cmd = 'svn co http://core.svn.wordpress.org/tags/%s %s' % (version, path)
     print 'Running: %s' % cmd
     os.system(cmd)
 
@@ -23,6 +23,9 @@ if __name__ == '__main__':
     secretkey # generate secret keys for config
     '''
     parser = optparse.OptionParser(usage)
+    parser.add_option('-w', '--wp-version',
+            help='Wordpress version (e.g. 2.9.2) to use',
+            default='2.9.2')
     options, args = parser.parse_args()
     if len(args) < 1:
         parser.print_help()
@@ -30,7 +33,7 @@ if __name__ == '__main__':
     action = args[0] 
     if action == 'install-svn':
         path = args[1]
-        install_svn(path)
+        install_svn(path, options.wp_version)
     elif action == 'secretkey':
         secretkey()
     else:
