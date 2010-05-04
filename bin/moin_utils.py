@@ -1,6 +1,6 @@
 """
 Scripts to assist with setting up moinmoin wikis:
-  1. Wiki creation and delet ion
+  1. Wiki creation and deletion
   2. Automate upgrading moin wikis from version 1.2 to version 1.3
   3. Creation of apache config
 
@@ -12,6 +12,8 @@ TODO:
 import os
 import shutil
 import logging
+import re
+
 logging.basicConfig()
 # set the log level
 # logging.basicConfig(level=logging.INFO) does NOT work for some reason
@@ -115,22 +117,6 @@ class MoinUtils(object):
         # need to redo permissions because of data directory
         self.setPermissions(newWikiName)
 
-class MoinUtilsTest(object):
-    
-    def setUp(self):
-        import tempfile
-        tempdir = tempfile.mkdtemp()
-        self.moinUtils = MoinUtils(tempdir)
-    
-    def testCreateWiki(self):
-        moinUtils = self.moinUtils
-        wikiName = 'test-create-new-wiki'
-        moinUtils.createWiki(wikiName)
-        if not(moinUtils.wikiExists(wikiName)):
-            print 'Error: new wiki does not exist'
-            return
-        moinUtils.removeWiki(wikiName)
-    
 import urllib2
 import xml.dom.minidom
 import urlparse
@@ -171,6 +157,43 @@ def page_list(site_url, strict_exclude=True):
     # only return paths -- lastmods aren't needed
     return map(lambda x: x[0], results)
 
+
+def moin2mkd(fileobj_or_str):
+    '''Convert moin markup to markdown
+    
+    TODO:
+        * tables: || || ...
+        * pre: {{{ }}}
+        * moinmoin absolute and relative links
+    '''
+    if isinstance(fileobj_or_str, basestring):
+        text = fileobj_or_str
+    else:
+        text = fileobj_or_str.read()
+    flags = re.UNICODE | re.MULTILINE
+    regex = re.compile("'''''(.+)''''", flags)
+    text = regex.sub(r'***\1***', text)
+
+    regex = re.compile("'''(.*)'''", flags)
+    text = regex.sub(r'**\1**', text)
+
+    regex = re.compile("''(.+)''", flags)
+    text = regex.sub(r'*\1*', text)
+
+    # headings
+    for x in reversed(range(1,6)):
+        moin_head = '=' * x
+        section = re.compile('%s\s*(.+)\s*%s' % (moin_head, moin_head), flags)
+        text = section.sub('%s \\1' % ('#' * x), text)
+    
+    # links
+    regex = re.compile(r'\[\[([^|]+)\|([^]]+)\]\]', flags)
+    text = regex.sub(r'[\2](\1)', text)
+    # for html
+    # text = regex.sub(r'<a href="\1">\2</a>', text)
+    return text
+
+
 import optparse
 import sys
 if __name__ == '__main__':
@@ -179,6 +202,8 @@ if __name__ == '__main__':
 actions:
     create {path}: create wiki at path
     page_list {url}: list page in wiki at url using sitemap
+    moin2mkd {file-path}: convert material in file at {file-path} (- for stdin)
+        in moin markup to markdown and print to stdout.
     '''
     parser = optparse.OptionParser(usage)
     options, args = parser.parse_args()
@@ -193,6 +218,15 @@ actions:
     elif action == 'page_list':
         out = page_list(args[1])
         print '\n'.join(out)
+    elif action == 'moin2mkd':
+        fp = args[1]
+        if fp == '-':
+            input = sys.stdin.read()
+        else:
+            input = open(fp).read()
+        out = moin2mkd(input)
+        print out
     else:
         print usage
         sys.exit(1)
+
