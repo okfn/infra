@@ -3,6 +3,8 @@
     fab -l
 
 You can specify host and username using --hosts and --user options
+
+TODO: 2010-05-06 start writing tests.
 '''
 from __future__ import with_statement
 import os
@@ -13,31 +15,66 @@ from fabric.api import *
 from fabric.contrib.console import *
 from fabric.contrib.files import *
 
+## ==============================
+## Helper methods/classes
 
-def adduser_okfn():
-    '''Create the okfn users.'''
-    assert not exists('/home/okfn'), 'okfn user already exists'
+# work whether on windows or linux
+def _join(*paths):
+    '/'.join(paths)
+
+class _SSH(object):
+    @classmethod
+    def ssh_dir(self, user):
+        if user == 'root':
+            userdir = '/root/.ssh'
+        else:
+            userdir = '/home/%s' % user
+        return userdir
+
+    @classmethod
+    def authorized_keys_path(self, user):
+        return _join(self.ssh_dir, 'authorized_keys')
+
+
+## ==============================
+## Fabric commands
+
+
+def adduser(username='okfn'):
+    '''Create a user with username `username` (defaults to okfn).
+    '''
+    assert not exists('/home/%s' % username), '%s user already exists' % username
     # use useradd rather than adduser so as to not be prompted for info
-    run('useradd --create-home okfn')
+    run('useradd --create-home %s' % username)
 
-
-def add_ssh_keys(authorized_keys_file, user='root'):
+def ssh_add_to_authorized_keys(authorized_keys_file, user='root'):
     '''Add ssh keys provided in `authorized_keys_file` for user `user`.
     
     NB: assumes root access (TODO: change this)
     '''
     data = open(authorized_keys_file).read()
+    authorized_keys = _SSH.authorized_keys_path(user)
     if user == 'root':
-        append(data, '/root/.ssh/authorized_keys')
+        append(data, authorized_keys)
     else:
         userdir = '/home/%s' % user
         assert exists(userdir), 'No home directory for user: %s' % user
         sshdir = userdir + '/.ssh'
         if not exists(sshdir):
             run('mkdir %s' % sshdir)
-        append(data, '%s/authorized_keys' % sshdir)
+        append(data, authorized_keys)
         run('chown -R %s:%s %s' % (user, user, sshdir))
         run('chmod go-rwx -R %s' % sshdir)
+
+def ssh_add_key(key_path, user='root'):
+    '''Add private key at `key_path` for `user`.
+
+    @param key_path: path to key
+    @parm user: (default: root) user to add key for.
+    '''
+    key_name = os.path.basename(key_path)
+    dest = _join(_SSH.ssh_dir(user), key_name)
+    put(key_path, dest)
 
 
 package_sets = {
@@ -162,4 +199,48 @@ syntax: regexp
         run('hg init')
         run('hg add')
         run('hg commit --user "okfn sysadmin" -m "[all][l]: import existing /etc contents into hg"')
+
+
+import tempfile
+def _setup_rsync(key_name, remote_dir, local_dir):
+    '''
+
+    1. Set up a new key pair just for this rsync (or use existing if already
+        there ...)
+    2. Install key pair on relevant machines
+    3. Install rsync command into relevant cron ...
+    '''
+    tmpdir = tempfile.gettempdir()
+    privatekey = os.path.join(tmpdir, key_name)
+    # TODO: customize pub key to restrict usage
+    # see http://www.eng.cam.ac.uk/help/jpmg/ssh/authorized_keys_howto.html 
+    # see http://www.nardol.org/2009/4/15/rsync-logs-with-restricted-ssh 
+    commandtorun = 'rsync -avz ...'
+    pubkey = privatekey + '.pub'
+    # -N '' = no passphrase
+    cmd = 'ssh-keygen -N "" -f %s' % privatekey
+    local(cmd)
+    ssh_add_authorized
+    # set host and user ...
+    # env.host = 
+    ssh_add_key(privatekey)
+    ssh_add_to_authorized_keys(pubkey, user)
+
+
+## ============================
+## Wordpress
+
+def wordpress_install(path, version='2.9.2'):
+    '''Install wordpress at `path` using svn method.
+    
+    http://codex.wordpress.org/Installing/Updating_WordPress_with_Subversion
+
+    @param path: path to install to (created if not already existent)
+    @param version: (defaults to 2.9.2) version of worpdress to use.
+    '''
+    if not exists(path):
+        run('mkdir %s' % path)
+    with cd(path):
+        cmd = 'svn co http://core.svn.wordpress.org/tags/%s .' % version
+        run(cmd)
 
