@@ -26,14 +26,17 @@ class Config(FarmConfig):
     page_front_page = u'FrontPage'
 
     # The default theme anonymous or new users get
-    theme_default = 'boxyellow'
+    theme_default = 'monobook'
     theme_force = 'true'
 
     logo_string = u'''
-        <a href="/">
-            <img class="logo" src="http://m.okfn.org/gfx/logo/okf_logo_white_and_green.png" alt="OKF Logo" style="height: 55px;" />
-        </a>
-    <a href="/">The Open Knowledge Foundation Wiki</a>
+    <div style="text-align: center;">
+    <img style="width: 100px;" src="http://m.okfn.org/gfx/logo/okf_logo_white_and_green.png" alt="OKF Logo"/></span>
+    <br />
+    <h1 style="border-bottom: none; font-size: 1.3em; color: #666;">
+    Open Knowledge Foundation
+    </h1>
+    </div>
     '''
 
     # follow HelpOnAccessControlLists example for a CMS
@@ -47,14 +50,6 @@ class Config(FarmConfig):
     '''
 
     stylesheets = [ ('screen', 'http://m.okfn.org/tmp/wiki.okfn.org.css') ]
-
-    navi_bar = [
-        u'[[/|Home]]',
-        u'RecentChanges',
-        u'FindPage',
-        u'HelpContents',
-        u'[[http://www.okfn.org/|OKF Main Site]]',
-    ]
 
     sidebar = u'''
             <h3>This Page</h3>
