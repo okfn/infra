@@ -42,6 +42,10 @@ class Config(FarmConfig):
     acl_rights_default = u'All:read'
     acl_rights_before = u'rgrp,AdminGroup:read,write,delete,revert,admin'
 
+    # enable email
+    mail_smarthost = "localhost"
+    mail_from = u'no-reply@okfn.org'
+
     html_head = u'''
     <link rel="shortcut icon" href="/images/favicon.ico">
     <!-- ... more header stuff ... -->
