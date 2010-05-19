@@ -244,3 +244,41 @@ def wordpress_install(path, version='2.9.2'):
         cmd = 'svn co http://core.svn.wordpress.org/tags/%s .' % version
         run(cmd)
 
+
+def backup_report():
+    
+    backup_device = run('. /etc/backup_config && echo $MOUNT_DEVICE')
+    snapshot_ro = run('. /etc/backup_config && echo $SNAPSHOT_RO')
+    hostname = run('hostname')
+    assert backup_device != ''
+    assert snapshot_ro != ''
+        
+    print 'backup device on %s is %s' % (env['host'], backup_device)
+    print 'checking for device node and mount point...'
+    run('ls %(backup_device)s' % locals())
+    run('ls %(snapshot_ro)s' % locals())
+    
+    print 'getting times of latest backups'
+    try:
+        sudo('mount -r %(backup_device)s %(snapshot_ro)s' % locals())
+        backups = sudo('ls -l %(snapshot_ro)s/%(hostname)s' % locals())
+        print 'backups...'
+        dates = [x.split()[5] for x in backups.split('\n')[1:]]
+        dates = map(lambda x: datetime.datetime.strptime(x, "%Y-%m-%d"), dates)
+        deltas = map(lambda x: datetime.datetime.now() - x, dates)
+        min_delta = min(deltas)
+        print 'last backup occured %(min_delta)s ago' % locals() 
+        if min_delta > datetime.timedelta(days=1):
+            print 'WARNING no backup in 24 hours on', env['host']
+        else: 
+            print 'backups look good'
+    finally: 
+        sudo('umount %(snapshot_ro)s' % locals())
+
+    
+    
+    
+    
+    
+    
+    
