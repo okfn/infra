@@ -10,6 +10,10 @@ from __future__ import with_statement
 import os
 import datetime
 import urllib2
+try:
+    import json
+except ImportError:
+    import simplejson as json
 
 from fabric.api import *
 from fabric.contrib.console import *
@@ -20,7 +24,8 @@ from fabric.contrib.files import *
 
 # work whether on windows or linux
 def _join(*paths):
-    '/'.join(paths)
+    # TODO: ? rstrip '/' from paths?
+    return '/'.join(paths)
 
 def _run(*args, **kwargs):
     if env.use_sudo:
@@ -28,19 +33,19 @@ def _run(*args, **kwargs):
     else:
         run(*args, **kwargs)
 
-
 class _SSH(object):
     @classmethod
     def ssh_dir(self, user):
         if user == 'root':
-            userdir = '/root/.ssh'
+            userdir = '/root'
         else:
             userdir = '/home/%s' % user
+        return _join(userdir, '.ssh')
         return userdir
 
     @classmethod
     def authorized_keys_path(self, user):
-        return _join(self.ssh_dir, 'authorized_keys')
+        return _join(self.ssh_dir(user), 'authorized_keys')
 
 
 ## ==============================
@@ -54,26 +59,48 @@ def adduser(username='okfn'):
     # use useradd rather than adduser so as to not be prompted for info
     run('useradd --create-home %s' % username)
 
-def ssh_add_to_authorized_keys(authorized_keys_file, user='root'):
-    '''Add ssh keys provided in `authorized_keys_file` for user `user`.
+def ssh_add_public_key_from_config(key_config, user, dest_user):
+    '''Add public key from a config file to `dest_user` on remote host.
+
+    :param key_config: json file giving key config
+    :param user: user to add from config file.
+    :param dest_user: user on dest host to add public key to.
+    '''
+    info = json.load(open(key_config))
+    key = info['users'][user]['key']
+    _ssh_add_public_key(key, dest_user)
+
+def ssh_add_to_authorized_keys(authorized_keys_file, dest_user='root'):
+    '''Add ssh keys provided in `authorized_keys_file` for user `dest_user`.
     
     NB: assumes root access (TODO: change this)
+
+    :param  authorized_keys: list of authorized keys (in correct format) to
+        add.
     '''
     data = open(authorized_keys_file).read()
-    authorized_keys = _SSH.authorized_keys_path(user)
-    if user == 'root':
-        append(data, authorized_keys)
+    _ssh_add_public_key(data, dest_user)
+
+def _ssh_add_public_key(public_key, dest_user):
+    '''Add `key`(s) string to authorized_keys file for `dest_user`.'''
+    # unbelievably fabric will interpret unicode string as a list leading to
+    # very weird results on e.g. appending (since it does not append if string
+    # already in file)
+    public_key = str(public_key)
+    authorized_keys_path = _SSH.authorized_keys_path(dest_user)
+    if dest_user == 'root':
+        append(public_key, authorized_keys_path)
     else:
-        userdir = '/home/%s' % user
-        assert exists(userdir), 'No home directory for user: %s' % user
+        userdir = '/home/%s' % dest_user
+        assert exists(userdir), 'No home directory for user: %s' % dest_user
         sshdir = userdir + '/.ssh'
         if not exists(sshdir):
             run('mkdir %s' % sshdir)
-        append(data, authorized_keys)
-        run('chown -R %s:%s %s' % (user, user, sshdir))
+        append(public_key, authorized_keys_path)
+        run('chown -R %s:%s %s' % (dest_user, dest_user, sshdir))
         run('chmod go-rwx -R %s' % sshdir)
 
-def ssh_add_key(key_path, user='root'):
+def ssh_add_private_key(key_path, user='root'):
     '''Add private key at `key_path` for `user`.
 
     @param key_path: path to key
