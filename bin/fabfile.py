@@ -22,6 +22,13 @@ from fabric.contrib.files import *
 def _join(*paths):
     '/'.join(paths)
 
+def _run(*args, **kwargs):
+    if env.use_sudo:
+        sudo(*args, **kwargs)
+    else:
+        run(*args, **kwargs)
+
+
 class _SSH(object):
     @classmethod
     def ssh_dir(self, user):
@@ -133,31 +140,55 @@ package_sets = {
         ],
     'mercurial': [
         'mercurial'
-        ]
+        ],
+    'supervisor': [
+        'cmd::easy_install --always-unzip supervisor'
+        ],
 }
 
-def install_packages(package_set='basics', update_first=False):
-    '''Install packages onto host.
+import pprint
+def install(package_set='basics', update_first=False):
+    '''Install package set onto host.
     
     Should try to login as root for this as may not have sudo
 installed yet.
 
     Primarily system packages provided by apt.
+
+    :param package: string specifying package set (list of package sets given
+        below).
+    :param update_first: run apt-get update first.
+
+    Package Sets
+    ============
+    
+    %s
     '''
     if update_first:
-        run('apt-get update')
+        _run('apt-get update')
     for pkgname in package_sets[package_set]:
         if '::' not in pkgname: # default
-            run('apt-get -y install %s' % pkgname)
+            _run('apt-get -y install %s' % pkgname)
         elif pkgname.startswith('set::'):
             setname = pkgname.split('::')[1]
             install_packages(package_set=setname)
         elif pkgname.startswith('cmd::'):
             cmd = pkgname.split('::')[1]
-            run(cmd)
+            _run(cmd)
         else:
             print 'Unrecognized package format'
+install.__doc__ = install.__doc__ % pprint.pformat(package_sets)
 
+
+def install_supervisor():
+    '''Install supervisor(d) including /etc/init.d and standard /etc script.
+
+    NB: supervisor is a proper package in debian squeeze and ubuntu lucid
+    onwards
+    '''
+    install('supervisor')
+    _initd = 'http://svn.supervisord.org/initscripts/debian-norrgard'
+    get(initd, '/etc/init.d/supervisord')
 
 
 def setup_sudoers():
@@ -245,11 +276,21 @@ def wordpress_install(path, version='2.9.2'):
         run(cmd)
 
 
+## ============================
+## Backup
+
+def _setup_backup():
+    '''Set up backup for host specified by --host.'''
+    # standard locations -- you can configure as you want ...
+    backup_device = '/dev/sdp'
+    snapshot_rw = '/mnt/backup'
+    snapshot_ro = snapshot_rw + '_ro'
+
 def backup_report():
-    
+    '''Provide a backup report for host specified by --host.'''
     backup_device = run('. /etc/backup_config && echo $MOUNT_DEVICE')
     snapshot_ro = run('. /etc/backup_config && echo $SNAPSHOT_RO')
-    hostname = run('hostname')
+    hostname = run('hostname -s')
     assert backup_device != ''
     assert snapshot_ro != ''
         
@@ -275,10 +316,3 @@ def backup_report():
     finally: 
         sudo('umount %(snapshot_ro)s' % locals())
 
-    
-    
-    
-    
-    
-    
-    
