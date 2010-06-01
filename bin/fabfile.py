@@ -28,7 +28,7 @@ def _join(*paths):
     return '/'.join(paths)
 
 def _run(*args, **kwargs):
-    if env.use_sudo:
+    if hasattr(env, 'use_sudo') and env.use_sudo:
         sudo(*args, **kwargs)
     else:
         run(*args, **kwargs)
@@ -191,6 +191,9 @@ installed yet.
     
     %s
     '''
+    # avoid using sudo when root (so we can e.g. install sudo package!)
+    if not env.user == 'root':
+        env.use_sudo = True
     if update_first:
         _run('apt-get update')
     for pkgname in package_sets[package_set]:
@@ -198,7 +201,7 @@ installed yet.
             _run('apt-get -y install %s' % pkgname)
         elif pkgname.startswith('set::'):
             setname = pkgname.split('::')[1]
-            install_packages(package_set=setname)
+            install(package_set=setname)
         elif pkgname.startswith('cmd::'):
             cmd = pkgname.split('::')[1]
             _run(cmd)
@@ -251,12 +254,12 @@ ssl/certs
 syntax: regexp
 .*~$
 '''
-    install_packages('mercurial')
-    append(etc_hgignore, '/etc/.hgignore')
+    install('mercurial')
+    append(etc_hgignore, '/etc/.hgignore', use_sudo=True)
     with cd('/etc/'):
-        run('hg init')
-        run('hg add')
-        run('hg commit --user "okfn sysadmin" -m "[all][l]: import existing /etc contents into hg"')
+        sudo('hg init')
+        sudo('hg add')
+        sudo('hg commit --user "okfn sysadmin" -m "[all][l]: import existing /etc contents into hg"')
 
 
 import tempfile
