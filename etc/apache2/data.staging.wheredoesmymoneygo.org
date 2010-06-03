@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+    ServerName data.staging.wheredoesmymoneygo.org
+    ServerAlias london.wheredoesmymoneygo.org
+
+    WSGIScriptAlias / /home/okfn/var/srvc/data.staging.wheredoesmymoneygo.org/pyenv/bin/data.staging.wheredoesmymoneygo.org.py
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    ErrorLog /var/log/apache2/data.staging.wheredoesmymoneygo.org.error.log
+    CustomLog /var/log/apache2/data.staging.wheredoesmymoneygo.org.custom.log combined
+</VirtualHost>
