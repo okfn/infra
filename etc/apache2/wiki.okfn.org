@@ -22,8 +22,8 @@
   # SSL
   <IfModule mod_ssl.c>
     SSLEngine on
-    SSLCertificateFile /etc/apache2/ssl/okfn.org.cert
-    SSLCertificateKeyFile /etc/apache2/ssl/okfn.org.key
+    SSLCertificateFile /etc/apache2/ssl/okfn.crt
+    SSLCertificateKeyFile /etc/apache2/ssl/okfn.2010.key
   </IfModule>
 </VirtualHost>
 
