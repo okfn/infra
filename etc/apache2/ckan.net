@@ -5,6 +5,21 @@
     Alias /dump/ /home/okfn/var/srvc/ckan.net/dumps/
     RedirectMatch permanent /package/read/(.*)$ /package/$1
 
+    # hacks to control java robot that is hammering the site 2010-05-07
+    <Location />
+    Deny from 64.93.41.50
+    Deny from 76.87.90.4
+    </Location>
+
+    # <LocationMatch ^/package/rate.*>
+    #    Deny from all
+    #</LocationMatch>
+
+RewriteEngine on
+RewriteCond %{HTTP_user_agent} Java/1.6.0_20 [NC]
+RewriteRule .* - [F] 
+    # end hacks
+
     # Disable the mod_python handler for static files
     <Location /dump>
         SetHandler None
