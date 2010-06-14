@@ -24,8 +24,6 @@ Redirect permanent /okforums/okcon http://www.okfn.org/okcon
 # typo means programme was at okfcon/programme
 Redirect permanent /okforums/okfcon http://www.okfn.org/okcon
 Redirect permanent /okfcon http://www.okfn.org/okcon
-# wsfii now should go on its site
-Redirect permanent /wsfii http://www.wsfii.org
 Redirect permanent /witbd/svn https://p.knowledgeforge.net/witbd/svn
 # 2009-04-09. Move of wiki to dedicated vhost
 Redirect permanent /wiki http://wiki.okfn.org
@@ -38,7 +36,7 @@ RedirectPermanent /sysadmin/svn http://knowledgeforge.net/okfn/sysadmin
 RewriteEngine  on
 RewriteRule    ^/okd/(.*)  http://okd.okfn.org/  [R]
 
-RewriteCond %{REQUEST_URI} !^/(files|geo|sysadmin)/.*$
+RewriteCond %{REQUEST_URI} !^/(files|geo|wsfii|sysadmin)/.*$
 RewriteEngine  on
 RewriteRule    ^(.*)\.html$  $1/  [R]
 
@@ -61,6 +59,7 @@ ScriptAlias /board/wiki  "/home/okfn/var/moin/okfn_private_wiki/moin.cgi"
 
 # Alias must be in this order!
 Alias /geo /home/okfn/var/www/okfn.org/geo
+Alias /wsfii /home/okfn/var/www/okfn.org/wsfii
 
 <Location /fcuk/svn>
     DAV svn 
