@@ -28,13 +28,13 @@ MKDIR=/bin/mkdir
 
 # need ${MOUNT_DEVICE} and ${SNAPSHOT_RW} from the following file
 # (their locations will differ from host to host)
-. /etc/backup_config
+. /etc/backup/backuprc
 
-EXCLUDES=/etc/backup_exclude;
-INCLUDES=/etc/backup_include
+EXCLUDES=/etc/backup/backup_exclude;
+INCLUDES=/etc/backup/backup_include
 HOST=$(/bin/hostname -s)
 LOCK=/tmp/lock.snapshot;
-BACKUP_SCRIPTDIR=/etc/backupscripts
+BACKUP_SCRIPTDIR=/etc/backup/backup.d
 
 # ------------- the script itself --------------------------------------
 

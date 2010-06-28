@@ -1,0 +1,9 @@
+#!/bin/bash
+
+. /etc/backupscripts/common
+
+OUTPUT=${DB_DUMP_DIR}/mysqldump.sql
+
+mkdir -p ${DB_DUMP_DIR}
+rm -f -- ${OUTPUT}
+mysqldump --opt --all > ${OUTPUT}

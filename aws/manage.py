@@ -178,12 +178,14 @@ class Manager(object):
     # see here for details on attaching and checking volume is available
     # http://groups.google.com/group/boto-users/browse_thread/thread/c4051181a1b8904d
     def create_ebs(self, instance, size=50, mount_point='/dev/sdp'):
-        '''Create EBS volume of `size` GB and attach to instance at
-        `mount_point`.
-
+        '''Create ebs volume attached to `instance` of `size` gb and attach to
+        instance at `mount_point`.
+ 
         NB: instance can be a string in which case assumed to be an instance.id
+        :param instance: instance can be a string in which case assumed to be an instance.id
+        :param size: size in GB (defaults to 50)
+        :param mount_point: mount point (defaults to /dev/sdp)
         '''
-        mount_point = '/dev/sdp'
         if isinstance(instance, basestring):
             instance = self.conn.get_all_instances([instance])[0].instances[0]
         v = self.conn.create_volume(size, instance.placement)

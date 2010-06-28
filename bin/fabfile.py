@@ -327,17 +327,46 @@ def wordpress_install(path, version='2.9.2'):
 ## ============================
 ## Backup
 
-def _setup_backup():
+
+def backup_setup():
     '''Set up backup for host specified by --host.'''
+    scripts_dest = '/etc/backup/backup.d'
+    config_dest = '/etc/backup/backuprc'
     # standard locations -- you can configure as you want ...
-    backup_device = '/dev/sdp'
-    snapshot_rw = '/mnt/backup'
-    snapshot_ro = snapshot_rw + '_ro'
+    config = {
+        'mount_device' : '/dev/sdp',
+        'snapshot_rw' : '/mnt/backup',
+        'snapshot_ro' : '/mnt/backup_ro'
+        }
+    if exists(config_dest):
+        print 'Config already exists at: %s' % config_dest
+        print 'Overwriting!'
+    sudo('mkdir -p %s' % scripts_dest)
+    # ../etc/backup
+    local_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),
+            'etc', 'backup')
+    for fn in os.listdir(local_path):
+        fp = os.path.join(local_path, fn)
+        print fp
+        if os.path.isdir(fp):
+            put(os.path.join(fp, '*'), '/etc/backup/%s' % fn)
+        else:
+            put(os.path.join(fp), '/etc/backup/')
+    cron_file = os.path.join(os.path.dirname(os.path.dirname(__file__)),
+        'cron', 'backuprotatingsnapshot')
+    put(cron_file, '/etc/cron.daily/')
+    if not exists(config['snapshot_rw']):
+        sudo('mkdir -p %s' % config['snapshot_rw'])
+    if not exists(config['snapshot_ro']):
+        sudo('mkdir -p %s' % config['snapshot_ro'])
+    print 'You may now wish to run backup_report to check backup mount device exists and can be mounted'
+
 
 def backup_report():
     '''Provide a backup report for host specified by --host.'''
-    backup_device = run('. /etc/backup_config && echo $MOUNT_DEVICE')
-    snapshot_ro = run('. /etc/backup_config && echo $SNAPSHOT_RO')
+    config_dest = '/etc/backup/backuprc'
+    backup_device = run('. %s && echo $MOUNT_DEVICE' % config_dest)
+    snapshot_ro = run('. %s && echo $SNAPSHOT_RO' % config_dest)
     hostname = run('hostname -s')
     assert backup_device != ''
     assert snapshot_ro != ''
