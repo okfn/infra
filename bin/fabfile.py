@@ -289,6 +289,22 @@ def _setup_rsync(key_name, remote_dir, local_dir):
 
 
 ## ============================
+## Databases
+
+def mysql_create(dbname, username, password):
+    '''Create mysql database (DOES NOT SEEM TO WORK).
+
+    :param dbname:
+    :param username:
+    :param password:
+    '''
+    sql = '''CREATE DATABASE %(db)s; GRANT ALL PRIVILEGES ON %(db)s.* TO "%(user)s"@"localhost" IDENTIFIED BY "%(password)s"; FLUSH PRIVILEGES;'''
+    sql = sql % { 'db': dbname.replace('.','_'), 'user': username, 'password': password }
+    cmd = "mysql -p --execute '%s'" % sql
+    sudo(cmd)
+
+
+## ============================
 ## Wordpress
 
 def wordpress_install(path, version='2.9.2'):
@@ -302,8 +318,10 @@ def wordpress_install(path, version='2.9.2'):
     if not exists(path):
         run('mkdir %s' % path)
     with cd(path):
-        cmd = 'svn co http://core.svn.wordpress.org/tags/%s .' % version
-        run(cmd)
+        if not exists(path + '/index.php'):
+            cmd = 'svn co http://core.svn.wordpress.org/tags/%s .' % version
+            run(cmd)
+    print 'You may wish to now set up a database using the mysql_create command'
 
 
 ## ============================
