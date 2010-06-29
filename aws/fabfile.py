@@ -52,4 +52,18 @@ def move_directories_to_mnt():
                     use_sudo=False)
             run('mount /%s' % dir)
 
+def format_ebs(attach_point='/dev/sdp'):
+    '''BROKEN. Format an EBS volume at `attach_point`
+
+    Unfortunately fabric swallows prompt following warning::
+    
+    /dev/sdp is entire device, not just one partition!
+    Proceed anyway? (y,n) n
+
+    So you cannot answer 'y'.
+
+    :param attach_point: attach point (defaults to /dev/sdp)
+    '''
+    cmd = 'mke2fs -m0 -j %s' % attach_point
+    run(cmd)
 
