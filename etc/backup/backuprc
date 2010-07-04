@@ -1,3 +1,3 @@
 MOUNT_DEVICE=/dev/sdp
-SNAPSHOT_RW=/backup
+SNAPSHOT_RW=/mnt/backup
 SNAPSHOT_RO=/mnt/backup_ro

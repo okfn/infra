@@ -289,6 +289,29 @@ def _setup_rsync(key_name, remote_dir, local_dir):
 
 
 ## ============================
+## Misc
+
+SYSADMIN_REPO_PATH = '/home/okfn/hg-sysadmin'
+def sysadmin_repo_clone():
+    '''Clone okfn sysadmin repo onto machine and symlink to /home/okfn/etc'''
+    # adduser(okfn)
+    # install('mercurial')
+    okfn_etc = '/home/okfn/etc'
+    okfn_bin = '/home/okfn/bin'
+    if not exists(SYSADMIN_REPO_PATH):
+        run('hg clone https://knowledgeforge.net/okfn/sysadmin %s' %
+                SYSADMIN_REPO_PATH)
+    if not exists(okfn_etc):
+        run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/etc', okfn_etc))
+    if not exists(okfn_etc):
+        run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/bin', okfn_bin))
+
+def sysadmin_repo_update():
+    '''Update okfn sysadmin repo'''
+    run('hg pull -u -R %s' % SYSADMIN_REPO_PATH)
+
+
+## ============================
 ## Databases
 
 def mysql_create(dbname, username, password):
@@ -327,34 +350,19 @@ def wordpress_install(path, version='2.9.2'):
 ## ============================
 ## Backup
 
-
 def backup_setup():
     '''Set up backup for host specified by --host.'''
-    scripts_dest = '/etc/backup/backup.d'
-    config_dest = '/etc/backup/backuprc'
+    if not exists('/etc/backup'):
+        sudo('ln -s /home/okfn/etc/backup /etc/backup')
+    else:
+        print 'WARNING: /etc/backup already exists'
+    sudo('ln -s /home/okfn/etc/cron/backuprotatingsnapshot /etc/cron.daily/')
     # standard locations -- you can configure as you want ...
     config = {
         'mount_device' : '/dev/sdp',
         'snapshot_rw' : '/mnt/backup',
         'snapshot_ro' : '/mnt/backup_ro'
         }
-    if exists(config_dest):
-        print 'Config already exists at: %s' % config_dest
-        print 'Overwriting!'
-    sudo('mkdir -p %s' % scripts_dest)
-    # ../etc/backup
-    local_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),
-            'etc', 'backup')
-    for fn in os.listdir(local_path):
-        fp = os.path.join(local_path, fn)
-        print fp
-        if os.path.isdir(fp):
-            put(os.path.join(fp, '*'), '/etc/backup/%s' % fn)
-        else:
-            put(os.path.join(fp), '/etc/backup/')
-    cron_file = os.path.join(os.path.dirname(os.path.dirname(__file__)),
-        'cron', 'backuprotatingsnapshot')
-    put(cron_file, '/etc/cron.daily/')
     if not exists(config['snapshot_rw']):
         sudo('mkdir -p %s' % config['snapshot_rw'])
     if not exists(config['snapshot_ro']):
