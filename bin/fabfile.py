@@ -356,11 +356,14 @@ def backup_setup():
         sudo('ln -s /home/okfn/etc/backup /etc/backup')
     else:
         print 'WARNING: /etc/backup already exists'
-    sudo('ln -s /home/okfn/etc/cron/backuprotatingsnapshot /etc/cron.daily/')
+    filedest = '/etc/cron.daily/backuprotatingsnapshot'
+    if not exists(filedest):
+        sudo('ln -s /home/okfn/etc/cron/backuprotatingsnapshot %s' % filedest)
     # standard locations -- you can configure as you want ...
+    # TODO: source this info from /etc/backup/backuprc for DRY reasons
     config = {
         'mount_device' : '/dev/sdp',
-        'snapshot_rw' : '/mnt/backup',
+        'snapshot_rw' : '/mnt/backup_rw',
         'snapshot_ro' : '/mnt/backup_ro'
         }
     if not exists(config['snapshot_rw']):
