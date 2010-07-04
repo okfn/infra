@@ -33,22 +33,12 @@ MKDIR=/bin/mkdir
 EXCLUDES=/etc/backup/backup_exclude;
 INCLUDES=/etc/backup/backup_include
 HOST=$(/bin/hostname -s)
-LOCK=/tmp/lock.snapshot;
 BACKUP_SCRIPTDIR=/etc/backup/backup.d
 
 # ------------- the script itself --------------------------------------
 
 # make sure we're running as root
 if (( `$ID -u` != 0 )); then { $ECHO "Sorry, must be root.  Exiting..."; exit; } fi
-
-# attempt to get a lock
-$LOCKFILE -r0 $LOCK;
-if (( $? )); then
-{
-    $ECHO "snapshot: could not acquire lock exiting";
-    exit;
-}
-fi;
 
 if [ ! -e "${EXCLUDES}" ]; then
     echo The excludes file: ${EXCLUDES} does not exist
@@ -71,9 +61,6 @@ if [ -z "${SNAPSHOT_RW}" ]; then
 fi
 
 function onexit () {
-    # release lock
-    $RM $LOCK
-
     ${UMOUNT} ${MOUNT_DEVICE}
 }
 
