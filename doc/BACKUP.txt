@@ -1,0 +1,164 @@
+= Current Status =
+
+Summary: we are storing to S3 (via EBS from Amazon EC2 hosts).
+
+  * We take rsync snapshots of the machine to, say, /backup using browser:cron/backup
+  * On non-EC2 servers these results are rsynced over to an EC2 instance
+  * On EC2 instances /backup is an EBS volume
+  * These EBS volumes are regularly snapshotted to S3
+
+== Details ==
+
+Configuration is done via:
+
+  * /etc/backup_config: set three basic params
+  * /etc/backup_exclude
+  * /etc/backup_include
+  * /etc/backupscripts -- classic *.d/ file for extra backup scripts to be run *prior* to backup of files to new backup location
+
+= Possibilities for the future =
+
+  * Bacula: very mature
+  * Duplicity: python and simple
+
+Dicusssion:
+
+  * http://stackoverflow.com/questions/15208/whats-the-best-linux-backup-solution
+
+= Old Discussion =
+
+We've just had an IRC meeting (logs below).  Here are some of the options
+
+== Raid 1 mirroring ==
+
+ * +ves: This is the cheapest and quickest option for dealing with disk failure.  We can have smart notifications of disk warnings and get the hosts to hot swap a disk.
+ * -ves: doesn't help in the event the server goes
+
+It looks as if /dev/sdb is available on both us0/eu0, this would therefore be an easy way to do it.
+
+== EC2/EBS/rsync technique ==
+
+This involves creating an EBS that can store all the server backups.  Once a day, you bring up a small EC2 instance attach the EBS backup disk and rsync the server to it. 
+
+In the event of DR, it should be possible to bring up an EC2 instance attach the EBS, chroot into the server image and launch processes.
+
+ * +ves: scales well, provides an easy DR option 
+ * -ves: costs around $200 per year at current data sizes
+
+== rsync.net or similar == 
+
+Just rsync to a commercial provider 
+
+ * +ves:  no managing EBS/EC2, scales without any problem
+ * -ves: cost is 10 times amazon, need to provide separate DR solution
+
+== Back up us0/eu0 to each other ==
+
+We can rsync each machine to the other one, using http://www.mikerubel.org/computers/rsync_snapshots/
+
+ * +ves: cheap, data remains on our servers 
+ * -ves: separate DR solution needed, disk space limits 
+
+As above, we could use /dev/sdb for this.
+
+
+
+== IRC log ==
+
+{{{
+rgrp: so backup strateguy
+[18:32] casbon: as I was saying - you have got app backups, but we should have server backups
+[18:32] casbon: i.e. rsync the whole damn thin g
+[18:33] mk270: btw the trac tickets are public
+[18:33] mk270: but we have the names of potential sponsors in there
+[18:33] casbon: ok
+[18:33] mk270: #15
+[18:33] casbon: and the ibiblio ticket
+[18:33] casbon: does it matter?
+[18:34] rgrp: mk270: we only put wellknown people like ibiblio and xs4all
+[18:34] rgrp: don't see why this should be private?
+[18:35] rgrp: casbon: where do we rsync to?
+[18:35] rgrp: a subdirectory of another machine?
+[18:36] casbon: could be
+[18:36] casbon: or can we use an EBS?
+[18:36] rgrp: EBS?
+[18:36] casbon: elastic block store - up to 5tB amazon disks - but there is cost involved
+[18:36] casbon: this is a good scheme : http://www.mikerubel.org/computers/rsync_snapshots/
+[18:37] casbon: but may be overkill
+[18:37] soultcer: Why do you not store the stuff on your tahoe grid?
+[18:37] rgrp: soultcer: we can put public stuff there but not private backups or our main machines
+[18:38] rgrp: (e.g. they contain passwords for dbs, /etc/passwd ...)
+[18:38] casbon: it would work for app backups
+[18:38] soultcer: rgrp: Tahoe is encrypted. As long as you don't share the uri for your backups, nobody will ever be able to read them.
+[18:39] rgrp: soultcer: yes that is true though it the purpose of the open data grid is to store material that is open (and therefore to which we give out hte read cap)
+[18:39] casbon: 1. you want to rsync, 2. you need something stable (these machines are part of the grid)
+[18:39] rgrp: however you are right that we could store private stuff on some part of it
+[18:39] rgrp: casbon: yes
+[18:39] rgrp: soultcer: my impression with tahoe is that encryption stuff makes rsync type stuff harder
+[18:41] soultcer: Well, it offers it's own backup client. But casbon is right, it doesn't make sense to store a backup on the machines you are backing up.
+[18:41] casbon: eu0 has 27GB - you could have a 50GB partition for 5$ per month
+[18:41] casbon: bring up an EC2 server each day, rsync and take it down
+[18:42] casbon: shouldn't take over an hour : cost 10c
+[18:42] rgrp: soultcer: yes i've looked at the backup client
+[18:42] rgrp: my impression that it wasn't yet 'primetime'
+[18:42] casbon: keep one week of backups
+[18:42] casbon: should be fine
+[18:42] rgrp: so we're looking at $100 / year for the backup?
+[18:43] rgrp: casbon: so ec2 supports rysnc
+[18:43] casbon: has the added advantage that in a DR situation, you can bring up an EC2 host, attach the EBS chroot and start your serivces
+[18:43] casbon: pretty much yes
+[18:43] rgrp: my impression from looking at s3 a couple of years ago was that you couldn't do rsync
+[18:43] soultcer: rgrp: S3 != EBS
+[18:43] rgrp: reads:
+[18:43] rgrp: http://www.callum-macdonald.com/2007/10/27/incremental-backup-on-amazon-ec2-s3/
+[18:44] rgrp: right 
+[18:44] casbon: no you can't but I solved this before you use Ec2 instance to rsync with an attached disk
+[18:44] soultcer: EBS is like a physical harddisk at your EC2 instance, S3 is like a bucket of files with no directories, file attributes, etc.
+[18:44] rgrp: right let's do this
+[18:44] casbon: ok great, we need to get an account going which needs a credit card
+[18:45] rgrp: mk270: any thoughts
+[18:45] casbon: mk270 is keeping v quiet
+[18:46] rgrp: what do we estimate our cost is for this on a per year basis
+[18:46] rgrp: also how do we failover should one or our servers go south
+[18:46] casbon: what's the disk space on us0
+[18:46] rgrp: 50 GB
+[18:46] rgrp: 40 GB?
+[18:47] casbon: in failover - bring up Ec2 host and attach EBS then chroot into your server image and run what you need
+[18:48] casbon: maybe 200$ tops for the year - but we can monitor on a month by month basis
+[18:49] casbon: also, if you don't daily backups kept less
+[18:50] jwyg joined the chat room.
+[18:50] rgrp: so i think we should enter this plan on the ticket
+[18:50] rgrp: in a comment
+[18:50] jwyg: thats where you are! 
+[18:50] casbon: suer
+[18:50] casbon: sure
+[18:50] casbon: so rufus, you are ok on the cost
+[18:51] rgrp: i think so
+[18:51] casbon: http://rsync.net/ are very good as well, but the cost is ten times amazon
+[18:51] rgrp: what are our alternatives?
+[18:52] rgrp: our alternative is to sync onto our existing machines following
+[18:52] casbon: this is cool : http://www.rsync.net/resources/notices/canary.txt
+[18:52] rgrp: http://www.mikerubel.org/computers/rsync_snapshots/
+[18:53] casbon: yes it looks like we have a lot of space on the machines, so perhaps we should consider using that
+[18:53] rgrp: i think we should note 2 options
+[18:53] rgrp: i think this is big enough it shoud get a dedicated wiki page 
+[18:53] rgrp: and we can link from ticket
+[18:54] casbon: btw - can we get raid1 on these machines?
+[18:54] rgrp: ok ticket:81 is definitely fixed
+[18:54] rgrp: mk270: ???
+[18:54] casbon: good work
+[18:54] rgrp: probably but would hvae to ask
+[18:54] rgrp: is it worth it?
+[18:54] rgrp: also wanted to ask about using nginx or lighttpd to solve our load problems on us0
+[18:54] casbon: well all disks fail eventually and it prevents downtime in that event
+[18:55] casbon: 100Gb disk is nothing really
+[18:55] casbon: price wise I mean
+[18:56] casbon: ok I have some experience with lightttpd - is it really apache that is taking all the cpu?
+[18:57] rgrp: i think it is
+[18:57] rgrp: though again mk270 would be useful here 
+[18:58] mk270: sorry, i have been pulled into a meeting
+[18:58] mk270: (as ever)
+[18:59] rgrp: mk270: any news on munin front
+[19:00] rgrp: also we should work on moving our mailhost stuff off us0
+[19:00] mk270: i have only today fixed eu0
+}}}

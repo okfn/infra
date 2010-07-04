@@ -8,3 +8,9 @@ Jumping off point for sysadmin documentation is:
 
   http://knowledgeforge.net/okfn/tasks/wiki/Sysadmin
 
+
+Backup
+======
+
+See doc/BACKUP.txt 
+
