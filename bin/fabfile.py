@@ -387,7 +387,7 @@ def backup_report():
     print 'getting times of latest backups'
     try:
         sudo('mount -r %(backup_device)s %(snapshot_ro)s' % locals())
-        backups = sudo('ls -l %(snapshot_ro)s/%(hostname)s' % locals())
+        backups = sudo('ls -l --time-style=long-iso %(snapshot_ro)s/%(hostname)s' % locals())
         print 'backups...'
         dates = [x.split()[5] for x in backups.split('\n')[1:]]
         dates = map(lambda x: datetime.datetime.strptime(x, "%Y-%m-%d"), dates)
