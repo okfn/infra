@@ -31,15 +31,22 @@ much removed (now 160GB on instance)?
 import os
 import uuid
 import time
+from pprint import pprint
 
 import boto
 import boto.ec2
 
 
+if boto.Version.startswith('2'):
+    print 'Boto version 2 will not connect to the eu-west-1 region as of'
+    print 'July 7th 2010, aborting.  (JC)'
+    sys.exit(1)
+
 def get_regions():
     regions = dict([ (x.name,x) for x in
         boto.ec2.regions() ])
     return regions
+
 
 class Manager(object):
     # Alestic Debian Lenny images (see http://alestic.com/)
@@ -84,16 +91,19 @@ class Manager(object):
     def _connect(self):
         region = self.regions[self._region]
         self.conn = region.connect()
-
+        
     @property
-    def region(self):
+    def _get_region(self):
         return self._region
-
-    @region.setter
-    def region(self, value):
+        
+    def _set_region(self, value):
         self._region = value
         if self._region is not None:
             self._connect()
+        
+
+    region = property(_get_region, _set_region)
+
     
     def placement(self):
         '''The placement of an existing instance in this region (or None if no

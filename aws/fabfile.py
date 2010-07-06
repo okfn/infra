@@ -64,6 +64,6 @@ def format_ebs(attach_point='/dev/sdp'):
 
     :param attach_point: attach point (defaults to /dev/sdp)
     '''
-    cmd = 'mke2fs -m0 -j %s' % attach_point
-    run(cmd)
+    cmd = 'mke2fs -m0 -F -j %s' % attach_point
+    sudo(cmd)
 
