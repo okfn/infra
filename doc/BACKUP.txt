@@ -16,17 +16,46 @@ Summary: we are storing to S3 (via EBS from Amazon EC2 hosts).
 Details
 =======
 
-Configuration is done via /etc/backup::
+1. Allocate space/device for the backup
+---------------------------------------
 
-  /etc/backup/backuprc -- set three basic params
-  /etc/backup/backup_exclude
-  /etc/backup/backup_include
-  /etc/backup/backup.d/ --classic *.d/ file for extra backup scripts to be
-    run *prior* to backup of files to new backup location
+For EC2 we allocate an EBS volume for the back to the given amazon instance.
+You can do this automatically using the aws scripts::
+
+  # cd aws
+  # ./manage.py -h to get details
+  # you can find out instance-ids by doing ./manage.py print_info
+  ./manage.py create_ebs {instance-id}
+
+  # you now need to format the extension
+  # use aws/fabfile.py for this
+  cd aws
+
+
+2. Setup backup (scripts and config)
+------------------------------------
+
+We install scripts and config automatically via symlinks from this sysadmin
+repo. This is automated by fabfile commands::
+
+    cd bin
+    # to install/update sysadmin repo see
+    # fab sysadmin_repo_* commands
+    fab backup_setup --host XX.okfn.org --user YYY
+
+This installs the following material (NB: probably best to read the code for
+the authorative statement on this -- docs go out of date faster than code!)::
+
+    /etc/backup/backuprc -- set three basic params
+    /etc/backup/backup_exclude
+    /etc/backup/backup_include
+    # classic *.d/ file for extra backup scripts to be
+    # run *prior* to backup of files to new backup location
+    /etc/backup/backup.d/
 
 Actual backup script is:
 
-  /etc/cron.daily/backuprotatingsnapshot -- found at cron in this repo
+    /etc/cron/backuprotatingsnapshot
    
 
 Possibilities for the future
