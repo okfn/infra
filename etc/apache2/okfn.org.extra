@@ -50,10 +50,10 @@ ScriptAlias /board/wiki  "/home/okfn/var/moin/okfn_private_wiki/moin.cgi"
 <Location /board/wiki>
     AuthType Basic
     AuthName "Open Knowledge Foundation Restricted Area"
-    AuthUserFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_passwords
-    AuthGroupFile /home/okfn/svn-okfn/trunk/etc/apache2/okfn_auth_groups
+    AuthUserFile /home/okfn/etc/apache2/okfn_auth_passwords
+    AuthGroupFile /home/okfn/etc/apache2/okfn_auth_groups
 
-    Require group okfn
+    Require group board
 </Location>
 
 

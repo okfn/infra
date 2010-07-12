@@ -9,6 +9,14 @@
     <Location />
     Deny from 64.93.41.50
     Deny from 76.87.90.4
+
+    # Uncomment to make CKAN read-only
+    #<LimitExcept GET HEAD>
+    #Order Allow,Deny 
+    #Deny from all
+    #Satisfy all
+    #</LimitExcept>
+
     </Location>
 
     # <LocationMatch ^/package/rate.*>
