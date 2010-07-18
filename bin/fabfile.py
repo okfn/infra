@@ -19,6 +19,11 @@ from fabric.api import *
 from fabric.contrib.console import *
 from fabric.contrib.files import *
 
+import server_roles
+
+env.roledefs = server_roles.get_roles()
+
+
 ## ==============================
 ## Helper methods/classes
 
