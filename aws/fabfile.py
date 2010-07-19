@@ -59,7 +59,7 @@ def move_directories_to_mnt():
 
 
 def format_ebs(attach_point='/dev/sdp'):
-    '''BROKEN. Format an EBS volume at `attach_point`
+    '''Format an EBS volume at `attach_point` (may have issues).
 
     Unfortunately fabric swallows prompt following warning::
     
@@ -71,5 +71,8 @@ def format_ebs(attach_point='/dev/sdp'):
     :param attach_point: attach point (defaults to /dev/sdp)
     '''
     cmd = 'mke2fs -m0 -F -j %s' % attach_point
-    sudo(cmd)
+    if env.user != 'root':
+        sudo(cmd)
+    else:
+        run(cmd)
 

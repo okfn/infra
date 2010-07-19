@@ -30,6 +30,8 @@ You can do this automatically using the aws scripts::
   # you now need to format the extension
   # use aws/fabfile.py for this
   cd aws
+  fab format_ebs --host {the-host}
+
 
 
 2. Setup backup (scripts and config)
