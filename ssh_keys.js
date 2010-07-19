@@ -1,7 +1,7 @@
 {
     "groups":
     {
-        "okfn-sysadmin": ["rgrp", "pudo", "ww", "mk270", "casbon", "benosteen" ]
+        "okfn-sysadmin": ["rgrp", "pudo", "ww", "mk270", "casbon", "benosteen", "okfn-sysadmin"]
     },
     "users":
     {
@@ -51,6 +51,11 @@
 		{
 			"name": "Graham Higgins",
 			"key": "ssh-dss AAAAB3NzaC1kc3MAAACBAIa9cT2n/CjA91FstDZbWNtu2Zd+WyIO1PbUa8djtituMvOfcweqIU5YhO9CK6qmFbzF9PvAAsQ3pDI920rcEdHsdCszyy49Pu5OoYUHo0BbBpx41Kl7doXZ81gGWOx3C86klsdUCnqbdRM0yj1UHQ9ET9vS6evxJmrmGgiSRP8tAAAAFQCqRjqSZ74UTw53Wd3FRpAW4bXTVwAAAIAwJxzme1JZ5rmJLZAr3k/LyMK8eOpyMR9HtYj7a+HD7U7ZXUyz+K11u1iZkQTDD+IvwTzzWluxbNwUebv+KaZ+0GG2y4AL9Z9sq/HYfxF9j1LC7otC4+CnfSo4CQmF8fvKqjdJQ+D6luOyuLM5kYc/6fwkuS7TLS2A0N6Zny0jTAAAAIBpUFST8FSVCzoAXD+CC4WL+N/pr0LGa1R3wu5EO5gprX8dRUjBaG2UD9gVmpTcyaWJX63YMg0cTWj5Ipb5EiGUydoaLSjS5lz7Y+CcjGRhWD/ZHSB+OMUC6gSrVXLlJPtELOmMUy/tF5tRzl71jIWdX/oiFMWp8MCBp+d029ezVQ=="
+		},
+		"okfn-sysadmin":
+		{
+			"name": "Generic OKFN Sysadmin Key",
+			"key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAxq7gQFquU36xmLaiqgKZp2/nvvwUPEQurfp1sg+OL+mgoOl2ShfKjJ8lVSdSsKZS8sVWn5b1cvkAaYUvUmc0p1JatmOOhjIJGWeC9236M/bJPtWgR9yO+WZL1m665zX6s5w7xJPIePpxoUfdsaoiHR6snES0nadqTG/SHM6tA6mnmNIMtLrOJImA+RwnpsXxKGf9F0Qt4cto3phJrpk/AE7Ia8HTMoZKILOViaaeKxPhZHvNXo2qbaRKNs82f5E8IzaaVACt8cX9rw4IxL+OhWfTBwGwj5DnhM5GVfrAlqMLZsUcsr4uKh5hjWXvANULTo7DNlvGb9zhODrJS7yGmw== okfn-sysadmin"
 		}
     }
 }
