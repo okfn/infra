@@ -51,6 +51,12 @@ def move_directories_to_mnt():
             append('/mnt/root/%s /%s     none bind' % (dir, dir), '/etc/fstab',
                     use_sudo=False)
             run('mount /%s' % dir)
+    # now restart services which have been using /var/log
+    # NB: at this point (just after machine instantiation) there should be
+    # nothing much on the machine)
+    run('/etc/init.d/rsyslogd restart')
+    run('/etc/init.d/cron restart')
+
 
 def format_ebs(attach_point='/dev/sdp'):
     '''BROKEN. Format an EBS volume at `attach_point`
