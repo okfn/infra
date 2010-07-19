@@ -87,7 +87,7 @@
         "cost per month": null, 
         "type": "ec2", 
         "spec": "small"
-    }
+    },
 	"bkn-1": {
 		"owner": "bkn",
 		"aws_id": "i-29720e42",
@@ -104,7 +104,7 @@
 		"notes": "krichel",
 		"aws_id": "i-b18dbbda",
 		"ip": "184.73.164.129",
-		"provider": "aws"
+		"provider": "aws",
 		"type": "ec2",
 		"location": "us-east-1d",
 		"spec": "m1.small",
