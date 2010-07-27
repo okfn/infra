@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 Scripts to assist with setting up moinmoin wikis:
   1. Wiki creation and deletion
