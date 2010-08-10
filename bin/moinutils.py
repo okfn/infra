@@ -122,13 +122,27 @@ import urllib2
 import xml.dom.minidom
 import urlparse
 import re
-def page_list(site_url, strict_exclude=True):
+def _default_includer(url_path):
+    '''Exclude all url paths starting with capital except FrontPage.
+    '''
+    # TODO: look through underlay directory?
+    if ( url_path.startswith('/HelpOn') or
+        url_path.startswith('/Wiki') or
+        'Template' in url_path
+        ):
+        return False
+    # pretty hardcore: exclude all items starting with uppercase
+    elif re.match('^/[A-Z].*', path) and not path == '/FrontPage':
+        return False
+    else:
+        return True
+
+def page_list(site_url, includer=_default_includer):
     '''Get a list of pages associated with moinmoin site at `site_url`.
 
     Attempt to strip out standard 'underlay' wiki pages (e.g. HelpOn*)
 
-    @param strict_exclude: exclude all url paths starting with capital except
-    FrontPage.
+    :param includer: filter method for page url pathes
     '''
     sitemap = '%s?action=sitemap' % site_url
     content = urllib2.urlopen(sitemap).read()
@@ -140,38 +154,27 @@ def page_list(site_url, strict_exclude=True):
         lastmod = tag.getElementsByTagName('lastmod')[0].childNodes[0].nodeValue
         return [path, lastmod]
     results = map(process, urls)
-    def exclude(item):
-        path = item[0]
-        # TODO: look through underlay directory?
-        if ( path.startswith('/HelpOn') or
-            path.startswith('/Wiki') or
-            'Template' in path
-            ):
-            return False
-        # pretty hardcore: exclude all items starting with uppercase
-        elif re.match('^/[A-Z].*', path) and not path == '/FrontPage':
-            return False
-        else:
-            return True
-    results = filter(exclude, results)
-    # return results
-    # only return paths -- lastmods aren't needed
-    return map(lambda x: x[0], results)
+    # strip out lastmods -- only paths are needed
+    results = map(lambda x: x[0], results)
+    results = filter(includer, results)
+    return results
 
 
 def moin2mkd(fileobj_or_str):
     '''Convert moin markup to markdown
     
+    :param fileobj_or_str: file-like object or string containing moin text to
+        convert.
+    :return: converted text.
+
     TODO:
         * tables: || || ...
-        * pre: {{{ }}}
-        * moinmoin absolute and relative links
     '''
     if isinstance(fileobj_or_str, basestring):
         text = fileobj_or_str
     else:
         text = fileobj_or_str.read()
-    flags = re.UNICODE | re.MULTILINE
+    flags = re.UNICODE | re.MULTILINE | re.DOTALL | re.VERBOSE
     regex = re.compile("'''''(.+)''''", flags)
     text = regex.sub(r'***\1***', text)
 
@@ -188,11 +191,76 @@ def moin2mkd(fileobj_or_str):
         text = section.sub('%s \\1' % ('#' * x), text)
     
     # links
-    regex = re.compile(r'\[\[([^|]+)\|([^]]+)\]\]', flags)
-    text = regex.sub(r'[\2](\1)', text)
+    regex = re.compile(r'\[\[ ([^|]+) \| ([^]]+) \]\]', flags)
+    def link_maker(match):
+        url = match.group(1)
+        # moin relative links start with '/'
+        if url.startswith('/'):
+            url = url.lstrip('/')
+        # not a normal full url so absolute url
+        elif not '://' in url:
+            url = '/' + url
+        return '[%s](%s)' % (match.group(2), url)
+    text = regex.sub(link_maker, text)
     # for html
     # text = regex.sub(r'<a href="\1">\2</a>', text)
+
+    text = text.replace('<<TableOfContents>>', "[toc title='Table of Contents']")
+    
+    # verbatim and stuff and special blocks
+    regex = re.compile(r'{{{\#!html\s*\n (.+?) }}}', flags)
+    text = regex.sub(r'\1', text)
+    regex = re.compile(r'{{{\s*\n (.+?) }}}', flags)
+    text = regex.sub(r'<pre>\n\1</pre>', text)
+
     return text
+
+
+def get_title(content):
+    '''Get the title of moinmoin page (i.e. content of first main (1st or 2nd
+    level) heading.
+
+    '''
+    t = re.findall(r'^=([^=].+?)=', content, re.MULTILINE)
+    if not t:
+        t = re.findall('^==([^=].+?)==', content, re.MULTILINE)
+    if not t: # no match at 1st or 2nd level so assume no title!
+        return ''
+    else:
+        t = t[0]
+        return t.strip()
+
+
+def convert_moin(site_url, page_list):
+    '''Convert set of moin pages to 'page dict' form with content in markdown
+    form.
+
+    :param site_url: base url (without trailing slash) for moin site.
+    :param pagelist: list of page url pathes (as output by `page_list` method
+        above).
+    :return: dictionary of pages in page dict form::
+
+            {
+                page_url: {
+                    'title': title,
+                    'description': description
+                    }
+                ...
+            }
+    '''
+    results = {}
+    for count,page_url in enumerate(page_list):
+        urlfo = urllib.urlopen(site_url + page_url + '?action=raw')
+        content = urlfo.read()
+        urlfo.close()
+        title = get_title(content)
+        description = moin2mkd(content)
+        description.replace('\r\n', '\n')
+        results[page_url] = {
+            'title': title,
+            'description': description
+            }
+    return results
 
 
 import optparse
@@ -202,7 +270,8 @@ if __name__ == '__main__':
 
 actions:
     create {path}: create wiki at path
-    page_list {url}: list page in wiki at url using sitemap
+    page_list {url}: list page in wiki at url using sitemap (attempt to exclude
+        all standard moinmoin pages)
     moin2mkd {file-path}: convert material in file at {file-path} (- for stdin)
         in moin markup to markdown and print to stdout.
     '''

@@ -1,9 +1,8 @@
 import sys
 sys.path.insert(0, '../')
-from moin_utils import *
+from moinutils import *
 
 class TestMoinUtils(object):
-    
     def setUp(self):
         import tempfile
         tempdir = tempfile.mkdtemp()
@@ -19,17 +18,31 @@ class TestMoinUtils(object):
         moinUtils.removeWiki(wikiName)
     
 
-def test_moin2mkd():
-    out = moin2mkd("''abc''")
-    assert out == '*abc*', out
+class TestMoin2Mkd:
+    def test_01(self):
+        out = moin2mkd("''abc''")
+        assert out == '*abc*', out
 
-    out = moin2mkd("'''abc'''")
-    assert out == '**abc**', out
+    def test_02(self):
+        out = moin2mkd("'''abc'''")
+        assert out == '**abc**', out
     
     in_ = '''
 = H1 =
 
+<<TableOfContents>>
+
 == H2 ==
+
+{{{
+Some pre stuff
+
+Another line too
+}}}
+
+{{{#!html
+Our own html
+}}}
 
 === H3 ===
 
@@ -38,11 +51,25 @@ def test_moin2mkd():
 ===== H5 =====
 
  * [[http://rufuspollock.org/|website]] [[http://rufuspollock.org/|again]]
+
+[[/relative|relative-link]]
+
+[[about|absolute-link]]
     '''
     expout = '''
 # H1
 
+[toc title='Table of Contents']
+
 ## H2
+
+<pre>
+Some pre stuff
+
+Another line too
+</pre>
+
+Our own html
 
 ### H3
 
@@ -51,9 +78,30 @@ def test_moin2mkd():
 ##### H5
 
  * [website](http://rufuspollock.org/) [again](http://rufuspollock.org/)
+
+[relative-link](relative)
+
+[absolute-link](/about)
     '''
-    out = moin2mkd(in_)
-    # assert out == expout, out
-    print out
-    for line1,line2 in zip(expout.split(), out.split()):
-        assert line1 == line2, line2
+    def test_03(self):
+        out = moin2mkd(self.in_)
+        # assert out == expout, out
+        print out
+        for line1,line2 in zip(self.expout.split(), out.split()):
+            assert line1 == line2, line2
+
+
+def test_get_title():
+    out = get_title(TestMoin2Mkd.in_)
+    assert out == 'H1', out
+
+    in2_ = '''
+
+== H2 ==
+
+=== H3 ===
+'''
+    out = get_title(in2_)
+    assert out == 'H2', out
+
+
