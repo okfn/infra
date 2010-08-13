@@ -14,6 +14,7 @@ import os
 import shutil
 import logging
 import re
+import urllib2
 
 logging.basicConfig()
 # set the log level
@@ -118,10 +119,9 @@ class MoinUtils(object):
         # need to redo permissions because of data directory
         self.setPermissions(newWikiName)
 
-import urllib2
+
 import xml.dom.minidom
 import urlparse
-import re
 def _default_includer(url_path):
     '''Exclude all url paths starting with capital except FrontPage.
     '''
@@ -132,7 +132,7 @@ def _default_includer(url_path):
         ):
         return False
     # pretty hardcore: exclude all items starting with uppercase
-    elif re.match('^/[A-Z].*', path) and not path == '/FrontPage':
+    elif re.match('^/[A-Z].*', url_path) and not url_path == '/FrontPage':
         return False
     else:
         return True
@@ -145,6 +145,7 @@ def page_list(site_url, includer=_default_includer):
     :param includer: filter method for page url pathes
     '''
     sitemap = '%s?action=sitemap' % site_url
+    print sitemap
     content = urllib2.urlopen(sitemap).read()
     doc = xml.dom.minidom.parseString(content)
     urls = doc.documentElement.getElementsByTagName('url')
@@ -175,20 +176,23 @@ def moin2mkd(fileobj_or_str):
     else:
         text = fileobj_or_str.read()
     flags = re.UNICODE | re.MULTILINE | re.DOTALL | re.VERBOSE
-    regex = re.compile("'''''(.+)''''", flags)
+    regex = re.compile("'''''(.+?)'''''", flags)
     text = regex.sub(r'***\1***', text)
 
-    regex = re.compile("'''(.*)'''", flags)
+    regex = re.compile("'''(.+?)'''", flags)
     text = regex.sub(r'**\1**', text)
 
-    regex = re.compile("''(.+)''", flags)
+    regex = re.compile("''(.+?)''", flags)
     text = regex.sub(r'*\1*', text)
 
-    # headings
+    ## headings
+    ## do from bottom level up (i.e. start with =====, and finish with =)
     for x in reversed(range(1,6)):
         moin_head = '=' * x
-        section = re.compile('%s\s*(.+)\s*%s' % (moin_head, moin_head), flags)
-        text = section.sub('%s \\1' % ('#' * x), text)
+        section = re.compile('^\s*%s(.+?)%s' % (moin_head, moin_head), flags)
+        def _heading(heading):
+            return '%s %s' % ('#'*x, heading.group(1).strip())
+        text = section.sub(_heading, text)
     
     # links
     regex = re.compile(r'\[\[ ([^|]+) \| ([^]]+) \]\]', flags)
@@ -200,7 +204,8 @@ def moin2mkd(fileobj_or_str):
         # not a normal full url so absolute url
         elif not '://' in url:
             url = '/' + url
-        return '[%s](%s)' % (match.group(2), url)
+        return '[%s](%s)' % (match.group(2).strip(), url)
+
     text = regex.sub(link_maker, text)
     # for html
     # text = regex.sub(r'<a href="\1">\2</a>', text)
@@ -212,6 +217,12 @@ def moin2mkd(fileobj_or_str):
     text = regex.sub(r'\1', text)
     regex = re.compile(r'{{{\s*\n (.+?) }}}', flags)
     text = regex.sub(r'<pre>\n\1</pre>', text)
+
+    ## img links
+    ## must be done after verbatim
+    regex = re.compile(r'{{(.+?)}}', flags)
+    text = regex.sub(r'<img src="\1" alt="" />', text)
+
 
     return text
 
@@ -250,12 +261,12 @@ def convert_moin(site_url, page_list):
     '''
     results = {}
     for count,page_url in enumerate(page_list):
-        urlfo = urllib.urlopen(site_url + page_url + '?action=raw')
+        urlfo = urllib2.urlopen(site_url + page_url + '?action=raw')
         content = urlfo.read()
         urlfo.close()
         title = get_title(content)
         description = moin2mkd(content)
-        description.replace('\r\n', '\n')
+        description = description.replace('\r\n', '\n')
         results[page_url] = {
             'title': title,
             'description': description

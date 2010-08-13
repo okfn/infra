@@ -2,6 +2,7 @@
 import os
 import urllib
 import pprint
+from ConfigParser import SafeConfigParser
 
 # http://codex.wordpress.org/Installing/Updating_WordPress_with_Subversion
 def install_svn(path, version='2.9.2'):
@@ -21,11 +22,27 @@ import xmlrpclib
 class Wordpress(object):
     '''Interact with an existing wordpress install via xml-rpc'''
 
-    def __init__(self, wp_url, username, password, blog_id=0):
+    def __init__(self, wp_url, username, password, blog_id=0, verbose=False):
         self.user = username
         self.password = password
-        self.server = xmlrpclib.ServerProxy(wp_url)
+        self.wp_url = wp_url
+        xmlrpc_url = wp_url.rstrip('/') + '/xmlrpc.php'
+        self.server = xmlrpclib.ServerProxy(xmlrpc_url)
         self.blog_id = blog_id
+        self.verbose = verbose
+
+    @classmethod
+    def init_from_config(self, config_fp):
+        cfg = SafeConfigParser()
+        cfg.readfp(open(config_fp))
+        wp_url = cfg.get('wordpress', 'url')
+        wp_user = cfg.get('wordpress', 'user')
+        wp_password = cfg.get('wordpress', 'password')
+        return self(wp_url, wp_user, wp_password)
+
+    def _print(self, msg):
+        if self.verbose:
+            print(msg)
 
     def get_page_list(self):
         '''http://codex.wordpress.org/XML-RPC_wp#wp.getPageList'''
@@ -90,6 +107,7 @@ class Wordpress(object):
 
     def delete_all_pages(self):
         for pagedict in self.get_page_list():
+            self._print('Deleting: %s' % pagedict)
             self.delete_page(pagedict['page_id'])
 
     def edit_page(self, page_id, **kwargs):
@@ -113,8 +131,7 @@ class Wordpress(object):
         return bool(result)
 
     def create_many_pages(self, pages_dict):
-        '''Create many pages at once (and only create pages which do not already
-        exist).
+        '''Create many pages at once (and only create pages which do not already exist).
 
         pages_dict = {
             '/about/': {
@@ -142,10 +159,10 @@ class Wordpress(object):
         existing_pages = dict(
                 [(get_page_url(p), p) for p in pagelist]
         )
-        pprint.pprint(existing_pages)
         changes = []
         # sort by key (url_path) so we can create in right order
         for url_path in sorted(pages_dict.keys()):
+            self._print('Processing: %s' % url_path)
             v = pages_dict[url_path]
             content_struct = dict(v)
             if url_path.startswith('/'):
@@ -154,7 +171,6 @@ class Wordpress(object):
                 url_path = url_path[:-1]
             segments = url_path.split('/')
             content_struct['wp_slug'] = segments[-1]
-            print url_path
             if len(segments) > 1:
                 # must either already exist of have been created
                 parent_url_path = '/'.join(segments[:-1])
@@ -163,26 +179,50 @@ class Wordpress(object):
             if not url_path in existing_pages:
                 page_id = self.new_page(**content_struct)
                 existing_pages[url_path] = { 'page_id': page_id }
-                changes.append([page_id, 'new'])
+                changes.append([url_path, page_id, 'new'])
             else:
                 page_id = existing_pages[url_path]['page_id']
                 self.edit_page(page_id, **content_struct)
-                changes.append([page_id, 'edited'])
+                changes.append([url_path, page_id, 'edited'])
         return changes
 
 
+
+import sys
+import optparse
+import inspect
+def _object_methods(obj):
+    methods = inspect.getmembers(obj, inspect.ismethod)
+    methods = filter(lambda (name,y): not name.startswith('_'), methods)
+    methods = dict(methods)
+    return methods
+
+def _module_functions(functions):
+    local_functions = dict(functions)
+    for k,v in local_functions.items():
+        if not inspect.isfunction(v) or k.startswith('_'):
+            del local_functions[k]
+    return local_functions
+
 if __name__ == '__main__':
-    import optparse
-    import sys
+    wpusage = '\n        '.join(
+        [ '%s: %s' % (name, m.__doc__.split('\n')[0] if m.__doc__ else '') for (name,m)
+        in sorted(_object_methods(Wordpress).items()) ])
     usage = '''%prog {action}
 
     install-svn path  # install wp via svn method to path
     secretkey # generate secret keys for config
-    '''
+    wordpress {command} [args]: work with wordpress site (via xmlrpc) specified
+            in config (url, username, password).
+        '''
+    usage += wpusage
     parser = optparse.OptionParser(usage)
     parser.add_option('-w', '--wp-version',
             help='Wordpress version (e.g. 2.9.2) to use',
             default='2.9.2')
+    parser.add_option('-c', '--config',
+            help='configuration file to use (e.g. for wordpress config)',
+            default='config.ini')
     options, args = parser.parse_args()
     if len(args) < 1:
         parser.print_help()
@@ -193,6 +233,14 @@ if __name__ == '__main__':
         install_svn(path, options.wp_version)
     elif action == 'secretkey':
         secretkey()
+    elif action == 'migrate_okfn_dot_org':
+        migrate_okfn_dot_org()
+    elif action == 'wordpress':
+        wordpress = Wordpress.init_from_config(options.config)
+        wordpress.verbose = True
+        assert len(args) >= 2, 'Need a command for wordpress'
+        action = args[1]
+        getattr(wordpress, action)(*args[2:])
     else:
         parser.print_help()
         sys.exit(1)

@@ -5,7 +5,7 @@ from wordpress import *
 
 
 class TestWordpress:
-    url = 'http://localhost/~rgrp/wp/wp3.0/xmlrpc.php'
+    url = 'http://localhost/~rgrp/wp/wp3.0/'
     wordpress = Wordpress(url, 'admin', 'pass')
 
     @classmethod

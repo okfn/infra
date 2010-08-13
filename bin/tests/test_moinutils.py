@@ -27,8 +27,8 @@ class TestMoin2Mkd:
         out = moin2mkd("'''abc'''")
         assert out == '**abc**', out
     
-    in_ = '''
-= H1 =
+    in_ = """
+= H1 and More =
 
 <<TableOfContents>>
 
@@ -44,9 +44,20 @@ Another line too
 Our own html
 }}}
 
+
+{{{#!html
+<img src="http://www.okfn.org/images/myimage.png" title="xyz" alt="xyz" />
+}}}
+
 === H3 ===
 
+Some ''italics'', some '''strong''', some '''''strong and italics'''''.
+
 ==== H4 ====
+
+Something = something else
+
+{{http://www.okfn.org/images/image.png}}
 
 ===== H5 =====
 
@@ -55,9 +66,9 @@ Our own html
 [[/relative|relative-link]]
 
 [[about|absolute-link]]
-    '''
+    """
     expout = '''
-# H1
+# H1 and More
 
 [toc title='Table of Contents']
 
@@ -71,9 +82,17 @@ Another line too
 
 Our own html
 
+<img src="http://www.okfn.org/images/myimage.png" title="xyz" alt="xyz" />
+
 ### H3
 
+Some *italics*, some **strong**, some ***strong and italics***.
+
 #### H4
+
+Something = something else
+
+<img src="http://www.okfn.org/images/image.png" alt="" />
 
 ##### H5
 
@@ -90,10 +109,45 @@ Our own html
         for line1,line2 in zip(self.expout.split(), out.split()):
             assert line1 == line2, line2
 
+    in2 = """
+= About Us =
+
+== Our Vision ==
+
+We seek a world in which open knowledge is ubiquitous and routine. We seek to promote open knowledge because of its potential to deliver far-reaching societal benefits. Read more about [[vision/|our vision]].
+
+== What is Open Knowledge? ==
+
+'Open knowledge' is any content, information or data that people are free to use, re-use and redistribute -- without any legal, technological or social restriction. We detail '''exactly''' what openness entails in the [[http://opendefinition.org/1.0/|Open Knowledge Definition]]. The main principles are:
+
+  1. Free and open '''access''' to the material
+  2. Freedom to '''redistribute''' the material
+"""
+
+    expout2 = """
+# About Us
+
+## Our Vision
+
+We seek a world in which open knowledge is ubiquitous and routine. We seek to promote open knowledge because of its potential to deliver far-reaching societal benefits. Read more about [our vision](/vision/).
+
+##  What is Open Knowledge?
+
+'Open knowledge' is any content, information or data that people are free to use, re-use and redistribute -- without any legal, technological or social restriction. We detail **exactly** what openness entails in the [Open Knowledge Definition](http://opendefinition.org/1.0/). The main principles are:
+
+  1. Free and open **access** to the material
+  2. Freedom to **redistribute** the material
+"""
+    def test_04(self):
+        out = moin2mkd(self.in2)
+        print out
+        for line1,line2 in zip(self.expout2.split(), out.split()):
+            assert line1 == line2, line2
+
 
 def test_get_title():
     out = get_title(TestMoin2Mkd.in_)
-    assert out == 'H1', out
+    assert out == 'H1 and More', out
 
     in2_ = '''
 
