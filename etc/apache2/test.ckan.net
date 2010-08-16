@@ -3,6 +3,14 @@
 
     WSGIScriptAlias / /home/okfn/var/srvc/test.ckan.net/pyenv/bin/test.ckan.net.py
     WSGIPassAuthorization On
+    
+    
+    <Location /server-status>
+      SetHandler server-status
+
+      Order Deny,Allow
+      Allow from all
+    </Location>
 
     ErrorLog /var/log/apache2/test.ckan.net.error.log
     CustomLog /var/log/apache2/test.ckan.net.custom.log combined

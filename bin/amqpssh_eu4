@@ -1,0 +1,3 @@
+#!/bin/bash 
+
+ssh -f eu4.okfn.org -L 5672:eu4.okfn.org:5672 -N

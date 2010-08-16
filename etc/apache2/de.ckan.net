@@ -4,6 +4,8 @@
     ServerAlias katalog.offenedaten.de
     ServerAlias ckan.de
     ServerAlias www.ckan.de
+    ServerAlias offenedaten.de
+    ServerAlias www.offenedaten.de
 
     WSGIScriptAlias / /home/okfn/var/srvc/de.ckan.net/pyenv/bin/de.ckan.net.py
     # pass authorization info on (needed for rest api)
