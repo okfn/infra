@@ -1,7 +1,23 @@
 {
     "groups":
     {
-        "okfn-sysadmin": ["rgrp", "pudo", "ww", "mk270", "casbon", "benosteen", "okfn-sysadmin"]
+        "sysadmin": [
+			"rgrp",
+			"pudo",
+			"ww",
+			"mk270",
+			"casbon",
+			"benosteen",
+			"okfn-sysadmin",
+			"johnbywater"
+			],
+		"ckan": [
+			"rgrp",
+			"dread",
+			"johnbywater",
+			"pudo",
+			"ww"
+			]
     },
     "users":
     {

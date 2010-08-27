@@ -64,8 +64,8 @@ def adduser(username='okfn'):
     # use useradd rather than adduser so as to not be prompted for info
     run('useradd --create-home %s' % username)
 
-def ssh_add_public_key_from_config(key_config, user, dest_user):
-    '''Add public key from a config file to `dest_user` on remote host.
+def ssh_add_public_key(key_config, user, dest_user):
+    '''Add public key of user in config file to `dest_user` on remote host.
 
     :param key_config: json file giving key config
     :param user: user to add from config file.
@@ -75,16 +75,18 @@ def ssh_add_public_key_from_config(key_config, user, dest_user):
     key = info['users'][user]['key']
     _ssh_add_public_key(key, dest_user)
 
-def ssh_add_to_authorized_keys(authorized_keys_file, dest_user='root'):
-    '''Add ssh keys provided in `authorized_keys_file` for user `dest_user`.
-    
-    NB: assumes root access (TODO: change this)
+def ssh_add_public_key_group(key_config, group, dest_user):
+    '''Add public keys of users listed in `group` in config file to
+    `dest_user` on remote host.
 
-    :param  authorized_keys: list of authorized keys (in correct format) to
-        add.
+    :param key_config: json file giving key config
+    :param group: group to add from config file.
+    :param dest_user: user on dest host to add public key to.
     '''
-    data = open(authorized_keys_file).read()
-    _ssh_add_public_key(data, dest_user)
+    info = json.load(open(key_config))
+    for user in info['groups'][group]:
+        key = info['users'][user]['key']
+        _ssh_add_public_key(key, dest_user)
 
 def _ssh_add_public_key(public_key, dest_user):
     '''Add `key`(s) string to authorized_keys file for `dest_user`.'''
@@ -408,4 +410,11 @@ def backup_report():
             print 'backups look good'
     finally: 
         sudo('umount %(snapshot_ro)s' % locals())
+
+
+## ============================
+## Backup
+
+def munin_node_install():
+    install('munin-node')
 
