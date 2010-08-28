@@ -1,6 +1,6 @@
 <VirtualHost *:80>
 	ServerName munin.okfn.org
-	ServerAlias munin.us0.okfn.org munin.eu0.okfn.org
+	ServerAlias munin.*.okfn.org
 	
 	DocumentRoot /var/www/munin
 </VirtualHost>
