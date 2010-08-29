@@ -8,6 +8,7 @@ TODO: 2010-05-06 start writing tests.
 '''
 from __future__ import with_statement
 import os
+import pprint
 import datetime
 import urllib2
 try:
@@ -53,9 +54,12 @@ class _SSH(object):
         return _join(self.ssh_dir(user), 'authorized_keys')
 
 
-## ==============================
+## ++++++++++++++++++++++++++++
 ## Fabric commands
 
+
+## ============================
+## User and sudo
 
 def adduser(username='okfn'):
     '''Create a user with username `username` (defaults to okfn).
@@ -63,6 +67,73 @@ def adduser(username='okfn'):
     assert not exists('/home/%s' % username), '%s user already exists' % username
     # use useradd rather than adduser so as to not be prompted for info
     run('useradd --create-home %s' % username)
+
+def setup_sudoers():
+    '''Add standard okfn as admin config to sudoers'''
+    fn = '/etc/sudoers'
+    # double escape as passed through to sed ...
+    after = '# User alias specification\\nUser_Alias      ADMINS = okfn'
+    sed(fn, '# User alias specification', after)
+
+    in2 = r'root.*ALL=\(ALL\) ALL'
+    # double escape as passed through to sed ...
+    out2 = 'root   ALL=(ALL) ALL' + '\\n' + 'ADMINS  ALL = (ALL) NOPASSWD: ALL'
+    print out2
+    sed(fn, in2, out2, backup='')
+
+
+## ============================
+## Miscellaneous sysadmin setup
+
+SYSADMIN_REPO_PATH = '/home/okfn/hg-sysadmin'
+def sysadmin_repo_clone():
+    '''Clone okfn sysadmin repo onto machine and symlink to /home/okfn/etc'''
+    # adduser(okfn)
+    # install_set('mercurial')
+    okfn_etc = '/home/okfn/etc'
+    okfn_bin = '/home/okfn/bin'
+    if not exists(SYSADMIN_REPO_PATH):
+        run('hg clone https://knowledgeforge.net/okfn/sysadmin %s' %
+                SYSADMIN_REPO_PATH)
+    if not exists(okfn_etc):
+        run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/etc', okfn_etc))
+    if not exists(okfn_etc):
+        run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/bin', okfn_bin))
+
+def sysadmin_repo_update():
+    '''Update okfn sysadmin repo'''
+    run('hg pull -u -R %s' % SYSADMIN_REPO_PATH)
+
+
+def etc_in_mercurial():
+    '''Start versioning /etc in mercurial.'''
+    etc_hgignore = '''syntax: glob
+*.lock*
+ld.so.cache
+links.cfg
+adjtime
+udev
+ppp
+localtime
+ssl/private/ssl-cert-snakeoil.key
+ssl/certs
+*.swp
+*.dpkg-old
+*.old
+
+syntax: regexp
+.*~$
+'''
+    install_set('mercurial')
+    append(etc_hgignore, '/etc/.hgignore', use_sudo=True)
+    with cd('/etc/'):
+        sudo('hg init')
+        sudo('hg add')
+        sudo('hg commit --user "okfn sysadmin" -m "[all][l]: import existing /etc contents into hg"')
+
+
+## ============================
+## SSH Keys
 
 def ssh_add_public_key(key_config, user, dest_user):
     '''Add public key of user in config file to `dest_user` on remote host.
@@ -117,6 +188,9 @@ def ssh_add_private_key(key_path, user='root'):
     dest = _join(_SSH.ssh_dir(user), key_name)
     put(key_path, dest)
 
+
+## =========================================
+## Installation of packages and applications
 
 package_sets = {
     # TODO visudo and add relevant users to sudo list
@@ -180,12 +254,30 @@ package_sets = {
         ],
 }
 
-import pprint
-def install(package_set='basics', update_first=False):
+def install(package, update_first=False):
+    '''Install package onto host.
+    
+    Should try to login as root for this as may not have sudo installed yet.
+
+    :param package: apt package name or a command if starts with cmd:: (e.g. 
+        cmd::easy_install --always-unzip supervisor)
+    :param update_first: run apt-get update first.
+    '''
+    # avoid using sudo when root (so we can e.g. install sudo package!)
+    if update_first:
+        _run('apt-get update')
+    if '::' not in package: # default
+        _run('apt-get -y install %s' % package)
+    elif package.startswith('cmd::'):
+        cmd = package.split('::')[1]
+        _run(cmd)
+    else:
+        print 'Unrecognized package format: %s' % package
+
+def install_set(package_set='basics', update_first=False):
     '''Install package set onto host.
     
-    Should try to login as root for this as may not have sudo
-installed yet.
+    Should try to login as root for this as may not have sudo installed yet.
 
     Primarily system packages provided by apt.
 
@@ -199,74 +291,15 @@ installed yet.
     %s
     '''
     # avoid using sudo when root (so we can e.g. install sudo package!)
-    if not env.user == 'root':
-        env.use_sudo = True
     if update_first:
         _run('apt-get update')
     for pkgname in package_sets[package_set]:
-        if '::' not in pkgname: # default
-            _run('apt-get -y install %s' % pkgname)
-        elif pkgname.startswith('set::'):
+        if pkgname.startswith('set::'):
             setname = pkgname.split('::')[1]
-            install(package_set=setname)
-        elif pkgname.startswith('cmd::'):
-            cmd = pkgname.split('::')[1]
-            _run(cmd)
+            install_set(package_set=setname)
         else:
-            print 'Unrecognized package format'
-install.__doc__ = install.__doc__ % pprint.pformat(package_sets)
-
-
-def install_supervisor():
-    '''Install supervisor(d) including /etc/init.d and standard /etc script.
-
-    NB: supervisor is a proper package in debian squeeze and ubuntu lucid
-    onwards
-    '''
-    install('supervisor')
-    _initd = 'http://svn.supervisord.org/initscripts/debian-norrgard'
-    get(initd, '/etc/init.d/supervisord')
-
-
-def setup_sudoers():
-    '''Add standard okfn as admin config to sudoers'''
-    fn = '/etc/sudoers'
-    # double escape as passed through to sed ...
-    after = '# User alias specification\\nUser_Alias      ADMINS = okfn'
-    sed(fn, '# User alias specification', after)
-
-    in2 = r'root.*ALL=\(ALL\) ALL'
-    # double escape as passed through to sed ...
-    out2 = 'root   ALL=(ALL) ALL' + '\\n' + 'ADMINS  ALL = (ALL) NOPASSWD: ALL'
-    print out2
-    sed(fn, in2, out2, backup='')
-
-
-def etc_in_mercurial():
-    '''Start versioning /etc in mercurial.'''
-    etc_hgignore = '''syntax: glob
-*.lock*
-ld.so.cache
-links.cfg
-adjtime
-udev
-ppp
-localtime
-ssl/private/ssl-cert-snakeoil.key
-ssl/certs
-*.swp
-*.dpkg-old
-*.old
-
-syntax: regexp
-.*~$
-'''
-    install('mercurial')
-    append(etc_hgignore, '/etc/.hgignore', use_sudo=True)
-    with cd('/etc/'):
-        sudo('hg init')
-        sudo('hg add')
-        sudo('hg commit --user "okfn sysadmin" -m "[all][l]: import existing /etc contents into hg"')
+            install(pkgname)
+install_set.__doc__ = install_set.__doc__ % pprint.pformat(package_sets)
 
 
 import tempfile
@@ -294,28 +327,6 @@ def _setup_rsync(key_name, remote_dir, local_dir):
     ssh_add_key(privatekey)
     ssh_add_to_authorized_keys(pubkey, user)
 
-
-## ============================
-## Misc
-
-SYSADMIN_REPO_PATH = '/home/okfn/hg-sysadmin'
-def sysadmin_repo_clone():
-    '''Clone okfn sysadmin repo onto machine and symlink to /home/okfn/etc'''
-    # adduser(okfn)
-    # install('mercurial')
-    okfn_etc = '/home/okfn/etc'
-    okfn_bin = '/home/okfn/bin'
-    if not exists(SYSADMIN_REPO_PATH):
-        run('hg clone https://knowledgeforge.net/okfn/sysadmin %s' %
-                SYSADMIN_REPO_PATH)
-    if not exists(okfn_etc):
-        run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/etc', okfn_etc))
-    if not exists(okfn_etc):
-        run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/bin', okfn_bin))
-
-def sysadmin_repo_update():
-    '''Update okfn sysadmin repo'''
-    run('hg pull -u -R %s' % SYSADMIN_REPO_PATH)
 
 
 ## ============================
@@ -413,8 +424,23 @@ def backup_report():
 
 
 ## ============================
-## Backup
+## Munin
 
 def munin_node_install():
     install('munin-node')
+
+
+## ============================
+## Supervisor
+
+def supervisor_install():
+    '''Install supervisor(d) including /etc/init.d and standard /etc script.
+
+    NB: supervisor is a proper package in debian squeeze and ubuntu lucid
+    onwards
+    '''
+    install_set('supervisor')
+    _initd = 'http://svn.supervisord.org/initscripts/debian-norrgard'
+    get(initd, '/etc/init.d/supervisord')
+
 
