@@ -1,7 +1,9 @@
 {
-    "us3": {
+    "us1": {
         "owner": "okfn",
-        "created": "2010-02", 
+		"os": "debian-lenny",
+        "created": "2009-10", 
+		"aws_id": "i-a83bb6c0",
         "notes": null, 
         "location": "us-east-1d", 
         "provider": "aws", 
@@ -19,44 +21,15 @@
         "type": "shared", 
         "spec": "small"
     }, 
-    "us1": {
-        "owner": "okfn",
-        "created": "2009-10", 
+    "us3": {
+        "owner": "kforge",
+        "created": "2010-02", 
         "notes": null, 
         "location": "us-east-1d", 
         "provider": "aws", 
         "cost per month": null, 
         "type": "ec2", 
         "spec": "small"
-    }, 
-    "eu4": {
-        "owner": "okfn",
-        "created": "2010-04", 
-        "notes": "i-38f1414f", 
-        "location": "eu-west-1b", 
-        "provider": "aws", 
-        "cost per month": "100", 
-        "type": "ec2", 
-        "spec": "large"
-    }, 
-    "eu5": {
-        "owner": "okfn",
-        "created": "2010-06", 
-        "notes": "", 
-        "location": "eu-west-1b", 
-        "provider": "aws", 
-        "type": "ec2", 
-        "spec": "large"
-    }, 
-    "eu1": {
-        "owner": "okfn",
-        "created": "2008", 
-        "notes": null, 
-        "location": "uk", 
-        "provider": "bytemark", 
-        "cost per month": null, 
-        "type": "dedicated-virtual", 
-        "spec": null
     }, 
     "eu0": {
         "owner": "okfn",
@@ -68,19 +41,19 @@
         "type": "dedicated", 
         "spec": ""
     }, 
-    "eu3": {
+    "eu1": {
         "owner": "okfn",
-        "aws_id": "i-2275d655",
-        "created": "2010-03-15", 
+        "created": "2008", 
         "notes": null, 
-        "location": "eu-west-1b", 
-        "provider": "aws", 
+        "location": "uk", 
+        "provider": "bytemark", 
         "cost per month": null, 
-        "type": "ec2", 
-        "spec": "small"
+        "type": "dedicated-virtual", 
+        "spec": null
     }, 
     "eu2": {
         "owner": "okfn",
+		"os": "debian-squeeze",
         "aws_id": "i-2221f355",
         "created": "2010", 
         "notes": null, 
@@ -90,6 +63,51 @@
         "type": "ec2", 
         "spec": "small"
     },
+    "eu3": {
+        "owner": "okfn",
+		"os": "debian-lenny",
+        "aws_id": "i-2275d655",
+        "created": "2010-03-15", 
+        "notes": null, 
+        "location": "eu-west-1b", 
+        "provider": "aws", 
+        "cost per month": null, 
+        "type": "ec2", 
+        "spec": "small"
+    }, 
+    "eu4": {
+        "owner": "okfn",
+		"os": "debian-squeeze",
+        "created": "2010-04", 
+        "aws_id": "i-38f1414f", 
+        "location": "eu-west-1b", 
+        "provider": "aws", 
+        "cost per month": "100", 
+        "type": "ec2", 
+        "spec": "large"
+    }, 
+    "eu5": {
+        "owner": "okfn",
+		"os": "debian-squeeze",
+        "created": "2010-06", 
+		"aws_id": "i-76ac2701", 
+        "notes": "", 
+        "location": "eu-west-1b", 
+        "provider": "aws", 
+        "type": "ec2", 
+        "spec": "large"
+    }, 
+    "eu6": {
+        "owner": "okfn",
+		"os": "ubuntu-lucid",
+        "created": "2010-08", 
+		"aws_id": "i-972153e0", 
+        "notes": "", 
+        "location": "eu-west-1b", 
+        "provider": "aws", 
+        "type": "ec2", 
+        "spec": "small"
+    }, 
     "bkn-1": {
         "owner": "bkn",
         "aws_id": "i-29720e42",
