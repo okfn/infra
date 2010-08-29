@@ -131,7 +131,7 @@ class Manager(object):
         # create a dedicated secgroup for this machine
         secname = 'instance-%s' % uuid.uuid4()
         oursecgroup = self.conn.create_security_group(secname, secname)
-        secgroups = [ 'default', 'www-only', 'ssh-only', secname ]
+        secgroups = [ 'default', 'www-only', 'ssh-only', 'munin-only', secname ]
 
         ourami = ami if ami else self.amis[self.region][self.default_ami_type]
         if not ourami.startswith('ami-'): # it a dist name e.g. debian-squeeze
@@ -166,6 +166,8 @@ class Manager(object):
         web.authorize('tcp', 443, 443, '0.0.0.0/0')
         ssh = self.conn.create_security_group('ssh-only', 'ssh-only')
         ssh.authorize('tcp', 22, 22, '0.0.0.0/0')
+        munin = self.conn.create_security_group('munin-only', 'munin-only')
+        munin.authorize('tcp', 4949, 4949, '79.125.8.34/32')
 
     def update_security_group(self, name, port, protocol='tcp',
             ip='0.0.0.0/0'):
