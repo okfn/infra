@@ -86,18 +86,18 @@ def setup_sudoers():
 ## Miscellaneous sysadmin setup
 
 SYSADMIN_REPO_PATH = '/home/okfn/hg-sysadmin'
+OKFN_ETC = '/home/okfn/etc'
 def sysadmin_repo_clone():
     '''Clone okfn sysadmin repo onto machine and symlink to /home/okfn/etc'''
     # adduser(okfn)
     # install_set('mercurial')
-    okfn_etc = '/home/okfn/etc'
     okfn_bin = '/home/okfn/bin'
     if not exists(SYSADMIN_REPO_PATH):
         run('hg clone https://knowledgeforge.net/okfn/sysadmin %s' %
                 SYSADMIN_REPO_PATH)
-    if not exists(okfn_etc):
-        run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/etc', okfn_etc))
-    if not exists(okfn_etc):
+    if not exists(OKFN_ETC):
+        run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/etc', OKFN_ETC))
+    if not exists(OKFN_ETC):
         run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/bin', okfn_bin))
 
 def sysadmin_repo_update():
@@ -120,6 +120,8 @@ ssl/certs
 *.swp
 *.dpkg-old
 *.old
+*.bak
+*.orig
 
 syntax: regexp
 .*~$
@@ -264,6 +266,8 @@ def install(package, update_first=False):
     :param update_first: run apt-get update first.
     '''
     # avoid using sudo when root (so we can e.g. install sudo package!)
+    if env.user != 'root':
+        env.use_sudo = True
     if update_first:
         _run('apt-get update')
     if '::' not in package: # default
@@ -427,7 +431,15 @@ def backup_report():
 ## Munin
 
 def munin_node_install():
+    '''Install munin node on a host.'''
     install('munin-node')
+    nodeconf = '/etc/munin/munin-node.conf'
+    sysadmin_repo_update()
+    if exists(nodeconf):
+        sudo('mv %s %s.orig' % (nodeconf, nodeconf))
+    repo_nodeconf = OKFN_ETC + '/munin/munin-node.conf'
+    sudo('ln -s %s %s' % (repo_nodeconf, nodeconf))
+    sudo('/etc/init.d/munin-node restart')
 
 
 ## ============================
