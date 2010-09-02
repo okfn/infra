@@ -53,6 +53,22 @@ class _SSH(object):
     def authorized_keys_path(self, user):
         return _join(self.ssh_dir(user), 'authorized_keys')
 
+def _get_unique_filepath(dir_, filename):
+    '''Create (what should be) a unique filepath in `dir_` by appending to `filename` a timestamp (including microseconds).
+    
+    :param dir_: dir_ in which to create the filename.
+    :param filename: base filename to use in dir_.
+    '''
+    date = datetime.datetime.today().strftime('%Y-%m-%dT%H%M.%f')
+    filepath = os.path.join(dir_, filename + '.' + date)
+    return filepath
+
+def _mkdir(dir):
+    '''Create a directory if it does not already exist.'''
+    if not exists(dir):
+        run('mkdir -p %s' % dir)
+    else:
+        print 'Path already exists: %s' % dir
 
 ## ++++++++++++++++++++++++++++
 ## Fabric commands
@@ -348,6 +364,40 @@ def mysql_create(dbname, username, password):
     cmd = "mysql -p --execute '%s'" % sql
     sudo(cmd)
 
+    
+
+def db_pg_dump(db_name, db_user, db_pass, db_host='localhost'):
+    '''Dump postgres database `db_name` accessed with `db_user` and `db_pass`
+    and retrieve dump to local machine (at ~/db_backup/{remote-host}).
+
+    :param db_name: name of the db.
+    :param db_user: name of db user.
+    :param db_pass: db password.
+    :param db_host: (default localhost) host string to connect with (from
+        remote machine)
+    '''
+    # if hasattr(env, 'db_backup_dir_remote')
+    remote_backup_dir = '/home/%s/db_backup/localhost' % env.user
+    _mkdir(remote_backup_dir)
+    pg_dump_filepath = _get_unique_filepath(remote_backup_dir, db_name + '.pg_dump') + '.gz'
+    assert not exists(pg_dump_filepath), 'Dump filepath exists!'
+
+    run('export PGPASSWORD=%s&&pg_dump -U %s -h %s %s | gzip > %s' % (db_pass, db_user, db_host, db_name, pg_dump_filepath), shell=False)
+    assert exists(pg_dump_filepath)
+    run('ls -l %s' % pg_dump_filepath)
+    ## copy backup locally
+    if env.host_string == 'localhost': # already on the machine
+        return
+
+    local_backup_dir = os.path.join(os.path.expanduser('~'), 'db_backup',
+            env.host_string)
+    if not os.path.exists(local_backup_dir):
+        os.makedirs(local_backup_dir)
+    local_filepath = get(pg_dump_filepath, local_backup_dir)
+    ## unzip it
+    # subprocess.check_call('gunzip %s' % local_zip_filepath, shell=True)
+    # local_filepath = os.path.join(local_backup_dir, pg_dump_filename)
+    print 'Backup saved locally: %s' % local_filepath
 
 ## ============================
 ## Wordpress
