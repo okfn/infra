@@ -57,6 +57,8 @@ class Manager(object):
             'debian-lenny-64': 'ami-80446ff4',
             'debian-squeeze': 'ami-8c446ff8',
             'debian-squeeze-64': 'ami-745b7000',
+            'ubuntu-lucid-32-ebs': 'ami-38bf954c',
+            'ubuntu-lucid-32': 'ami-fabe948e',
             },
         'us-east-1':  {
             'debian-lenny': 'ami-dcf615b5',
@@ -92,7 +94,6 @@ class Manager(object):
         region = self.regions[self._region]
         self.conn = region.connect()
         
-    @property
     def _get_region(self):
         return self._region
         
@@ -100,7 +101,6 @@ class Manager(object):
         self._region = value
         if self._region is not None:
             self._connect()
-        
 
     region = property(_get_region, _set_region)
 
@@ -115,8 +115,8 @@ class Manager(object):
         return placement
 
     def create_instance(self, ami=None, **kwargs):
-        '''Create a standard EC2 instance using our default security groups,
-        attach an IP.
+        '''Create a standard EC2 instance using `ami`, associate default security
+        groups, attach an IP.
 
         Post-boot you may want to:
             1. relocate var on /mnt (which is the large volume) (see
@@ -150,8 +150,14 @@ class Manager(object):
             time.sleep(10)
             print('Waiting for instance to go active')
             instance.update()
-        ipaddr = self.conn.allocate_address()
-        self.conn.associate_address(instance.id, ipaddr.public_ip)
+        print('Instance active')
+        allocate_ip = raw_input('Allocate ip address? (y/[n])')
+        if allocate_ip == 'y':
+            print('Allocating IP')
+            ipaddr = self.conn.allocate_address()
+            self.conn.associate_address(instance.id, ipaddr.public_ip)
+        else:
+            print('Not allocating IP')
         return instance
     
     def associate_address(self, instance_id, ipaddr):
