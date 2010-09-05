@@ -41,21 +41,29 @@ def move_directories_to_mnt():
     Inspired by http://developer.amazonwebservices.com/connect/entry.jspa?externalID=1663
     '''
     assert not exists('/mnt/root'), '/mnt/root already exists!'
-    run('mkdir /mnt/root')
+    if env.user == 'root':
+        _run = run
+    else:
+        _run = sudo
+    # TODO: make sure *everything* using var is shutdown (or this will all fail)
+    _run('/etc/init.d/rsyslogd stop')
+    _run('/etc/init.d/cron stop')
+
+    _run('mkdir /mnt/root')
     dirs = [ 'var', 'home' ]
     for dir in dirs:
         # avoid possible problem with being in dir that is being moved
         with cd('/'):
-            run('mv /%s /mnt/root' % dir)
-            run('mkdir /%s' % dir)
+            _run('mv /%s /mnt/root' % dir)
+            _run('mkdir /%s' % dir)
             append('/mnt/root/%s /%s     none bind' % (dir, dir), '/etc/fstab',
                     use_sudo=False)
-            run('mount /%s' % dir)
+            _run('mount /%s' % dir)
     # now restart services which have been using /var/log
     # NB: at this point (just after machine instantiation) there should be
     # nothing much on the machine)
-    run('/etc/init.d/rsyslogd restart')
-    run('/etc/init.d/cron restart')
+    _run('/etc/init.d/rsyslogd restart')
+    _run('/etc/init.d/cron restart')
 
 
 def format_ebs(attach_point='/dev/sdp'):
