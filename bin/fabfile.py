@@ -39,6 +39,12 @@ def _run(*args, **kwargs):
     else:
         run(*args, **kwargs)
 
+def _sudo(*args, **kwargs):
+    if env.user == 'root':
+        run(*args, **kwargs)
+    else:
+        sudo(*args, **kwargs)
+
 class _SSH(object):
     @classmethod
     def ssh_dir(self, user):
@@ -82,7 +88,7 @@ def adduser(username='okfn'):
     '''
     assert not exists('/home/%s' % username), '%s user already exists' % username
     # use useradd rather than adduser so as to not be prompted for info
-    run('useradd --create-home %s' % username)
+    _sudo('useradd --create-home %s' % username)
 
 def setup_sudoers():
     '''Add standard okfn as admin config to sudoers'''
@@ -145,9 +151,9 @@ syntax: regexp
     install_set('mercurial')
     append(etc_hgignore, '/etc/.hgignore', use_sudo=True)
     with cd('/etc/'):
-        sudo('hg init')
-        sudo('hg add')
-        sudo('hg commit --user "okfn sysadmin" -m "[all][l]: import existing /etc contents into hg"')
+        _sudo('hg init')
+        _sudo('hg add')
+        _sudo('hg commit --user "okfn sysadmin" -m "[all][l]: import existing /etc contents into hg"')
 
 
 ## ============================
@@ -191,10 +197,14 @@ def _ssh_add_public_key(public_key, dest_user):
         assert exists(userdir), 'No home directory for user: %s' % dest_user
         sshdir = userdir + '/.ssh'
         if not exists(sshdir):
-            run('mkdir %s' % sshdir)
-        append(public_key, authorized_keys_path)
-        run('chown -R %s:%s %s' % (dest_user, dest_user, sshdir))
-        run('chmod go-rwx -R %s' % sshdir)
+            _sudo('mkdir %s' % sshdir)
+        # simple echo "" >> ... will not work due to insufficient privileges if
+        # doing this as non-root user and using sudo
+        _sudo('''bash -c 'echo "%s" >> %s' '''
+                % (public_key, authorized_keys_path)
+            )
+        _sudo('chown -R %s:%s %s' % (dest_user, dest_user, sshdir))
+        _sudo('chmod go-rwx -R %s' % sshdir)
 
 def ssh_add_private_key(key_path, user='root'):
     '''Add private key at `key_path` for `user`.
@@ -285,12 +295,12 @@ def install(package, update_first=False):
     if env.user != 'root':
         env.use_sudo = True
     if update_first:
-        _run('apt-get update')
+        _sudo('apt-get update')
     if '::' not in package: # default
-        _run('apt-get -y install %s' % package)
+        _sudo('apt-get -y install %s' % package)
     elif package.startswith('cmd::'):
         cmd = package.split('::')[1]
-        _run(cmd)
+        _sudo(cmd)
     else:
         print 'Unrecognized package format: %s' % package
 
@@ -312,7 +322,7 @@ def install_set(package_set='basics', update_first=False):
     '''
     # avoid using sudo when root (so we can e.g. install sudo package!)
     if update_first:
-        _run('apt-get update')
+        _sudo('apt-get update')
     for pkgname in package_sets[package_set]:
         if pkgname.startswith('set::'):
             setname = pkgname.split('::')[1]
