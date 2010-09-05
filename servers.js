@@ -108,6 +108,29 @@
         "type": "ec2", 
         "spec": "small"
     }, 
+    "eu7": {
+        "owner": "okfn",
+		"os": "ubuntu-lucid-32",
+        "created": "2010-09", 
+		"aws_id": "i-b54d35c2", 
+		"aws_ip": " ec2-79-125-69-250.eu-west-1.compute.amazonaws.com",
+        "notes": "", 
+        "location": "eu-west-1b", 
+        "provider": "aws", 
+        "type": "ec2", 
+        "spec": "small"
+    }, 
+    "eu8": {
+        "owner": "okfn",
+		"os": "ubuntu-lucid-32",
+        "created": "2010-09", 
+		"aws_id": "i-b32e55c4",
+		"aws_ip": "ec2-46-51-131-140.eu-west-1.compute.amazonaws.com",
+		"location": "eu-west-1b",
+        "provider": "aws", 
+        "type": "ec2", 
+        "spec": "small"
+    }, 
     "bkn-1": {
         "owner": "bkn",
         "aws_id": "i-29720e42",
