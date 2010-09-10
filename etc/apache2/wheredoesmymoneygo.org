@@ -1,21 +1,9 @@
 <VirtualHost *:80>
-  ServerName wheredoesmymoneygo.org
-  ServerAlias www.wheredoesmymoneygo.org
+    ServerName wheredoesmymoneygo.org
+    ServerAlias www.wheredoesmymoneygo.org wp.staging.wheredoesmymoneygo.org
+    DocumentRoot /home/okfn/var/wp/wheredoesmymoneygo.org
 
-  <Proxy *>
-	Allow from .wheredoesmymoneygo.org
-  </Proxy>
-  ProxyRequests off
-  ProxyPass / http://wdmmg.wordpress.com/
-  ProxyPassReverse / http://wdmmg.wordpress.com/
-  ProxyHTMLURLMap http://wdmmg.wordpress.com/ /
-  <Location />
-    SetOutputFilter proxy-html
-    # get rid of Content-Encoding at wordpress end
-    RequestHeader unset Accept-Encoding
-  </Location>
-
-  ErrorLog /var/log/apache2/wheredoesmymoneygo.org.error.log
-  CustomLog /var/log/apache2/wheredoesmymoneygo.org.custom.log combined
+    ErrorLog /var/log/apache2/wheredoesmymoneygo.org.error.log
+    CustomLog /var/log/apache2/wheredoesmymoneygo.org.custom.log combined
 </VirtualHost>
 
