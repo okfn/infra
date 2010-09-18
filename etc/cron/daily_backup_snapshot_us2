@@ -22,6 +22,7 @@ LOCKFILE=/usr/bin/lockfile;
 NICE=/usr/bin/nice
 RSYNC=/usr/bin/rsync;
 SSH=/usr/bin/ssh
+MKDIR=/bin/mkdir
 
 # ------------- file locations -----------------------------------------
 
@@ -49,6 +50,33 @@ if (( $? )); then
 	exit;
 }
 fi;
+
+if [ ! -e "${EXCLUDES}" ]; then
+    echo The excludes file: ${EXCLUDES} does not exist
+    exit 1
+fi
+
+if [ -z "${MOUNT_DEVICE}" ]; then
+    echo You must specify a \$MOUNT_DEVICE
+    exit 1
+fi
+
+if [ -z "${SNAPSHOT_RW}" ]; then
+    echo You must specify a \$SNAPSHOT_RW
+    exit 1
+fi
+
+function onexit () {
+    # release lock
+    $RM $LOCK
+
+    ${UMOUNT} ${MOUNT_DEVICE}
+}
+
+trap onexit EXIT
+
+${MOUNT} ${MOUNT_DEVICE} ${SNAPSHOT_RW}
+${MKDIR} -p ${SNAPSHOT_RW}/${HOST}
 
 
 # rotating snapshots of /home (fixme: this should be more general)
@@ -86,9 +114,4 @@ $NICE -n 19 $RSYNC								\
 $TOUCH $SNAPSHOT_RW/$HOST/daily.0 ;
 
 # and thats it for home.
-
-# release lock
-$RM $LOCK
-
-
 
