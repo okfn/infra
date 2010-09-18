@@ -431,6 +431,13 @@ def wordpress_install(path, version='2.9.2'):
 
 ## ============================
 ## Backup
+def setup_backup_check():
+    if not exists('/etc/cron.daily/01check_backup'):
+        sudo('ln -s /home/okfn/bin/01check_backup /etc/cron.daily/01check_backup')
+    if not exists('/etc/cron.daily/99check_backup'):
+        sudo('ln -s /home/okfn/bin/99check_backup /etc/cron.daily/99check_backup')
+    if not exists('/usr/local/bin/stamp_backup'):
+        sudo('ln -s /home/okfn/bin/stamp_backup /usr/local/bin/stamp_backup')
 
 def backup_setup():
     '''Set up backup for host specified by --host.'''
@@ -452,6 +459,7 @@ def backup_setup():
         sudo('mkdir -p %s' % config['snapshot_rw'])
     if not exists(config['snapshot_ro']):
         sudo('mkdir -p %s' % config['snapshot_ro'])
+    setup_backup_check()
     print 'You may now wish to run backup_report to check backup mount device exists and can be mounted'
 
 

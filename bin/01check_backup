@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -eu
+. /etc/backup/backuprc
+
+onexit () {
+	umount ${MOUNT_DEVICE} || true
+	exit
+}
+
+trap onexit EXIT
+
+check_backup () {
+	/usr/local/bin/stamp_backup --check && \
+	df -P ${SNAPSHOT_RO} | grep -q 100%
+}
+
+mount -o ro ${MOUNT_DEVICE} ${SNAPSHOT_RO}
+
+if ! check_backup; then
+	echo Backup FAILED
+	# report to trac
+fi
