@@ -37,11 +37,6 @@ import boto
 import boto.ec2
 
 
-if boto.Version.startswith('2'):
-    print 'Boto version 2 will not connect to the eu-west-1 region as of'
-    print 'July 7th 2010, aborting.  (JC)'
-    sys.exit(1)
-
 def get_regions():
     regions = dict([ (x.name,x) for x in
         boto.ec2.regions() ])
