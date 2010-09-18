@@ -25,10 +25,12 @@ SSH=/usr/bin/ssh
 
 # ------------- file locations -----------------------------------------
 
-MOUNT_DEVICE=/dev/sdb1;
-SNAPSHOT_RW=/mnt/backup;
-EXCLUDES=/etc/backup_exclude;
-HOST=us2;
+# need ${MOUNT_DEVICE} and ${SNAPSHOT_RW} from the following file
+# (their locations will differ from host to host)
+. /etc/backup/backuprc
+
+EXCLUDES=/etc/backup/backup_exclude;
+HOST=us2.okfn.org;
 TARGET=/home/okfn;
 LOCK=/tmp/lock.snapshot.us2;
 USER=okfn;
