@@ -45,6 +45,7 @@ RedirectMatch   permanent    ^/(pdw|datapkg|ckan|microfacts|vdm|econ|sysadmin|sh
 RedirectMatch   permanent    ^/((communia|okforums).*)  http://www.okfn.org/events/$1
 Redirect permanent /participate http://okfn.org/get-involved
 Redirect permanent /board/wiki http://board.okfn.org/wiki
+Redirect permanent /about/advisory_board http://okfn.org/about/people
 
 # have to repeat this here from apache2.conf for php to work
 # ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
