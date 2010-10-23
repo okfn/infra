@@ -3,6 +3,8 @@
     ServerAlias eu0.microfacts.org www.microfacts.org weavinghistory.org www.weavinghistory.org
 
     WSGIScriptAlias / /home/okfn/var/srvc/microfacts/pyenv/bin/pylonsapp_modwsgi.py
+    WSGIDaemonProcess microfacts.org display-name=MICROFACTS processes=3 threads=1 maximum-requests=1000
+    WSGIProcessGroup microfacts.org
     # pass authorization info on (needed for rest api)
     WSGIPassAuthorization On
 

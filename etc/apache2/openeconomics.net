@@ -3,6 +3,8 @@
     ServerAlias openeconomics.net www.openeconomics.net
 
     WSGIScriptAlias / /home/okfn/var/srvc/openeconomics.net/pyenv/bin/pylonsapp_modwsgi.py
+    WSGIDaemonProcess openeconomics.net display-name=OPENECON processes=2 threads=1 maximum-requests=1000
+    WSGIProcessGroup openeconomics.net
     # pass authorization info on (needed for e.g. rest apis)
     WSGIPassAuthorization On
 

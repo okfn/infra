@@ -3,6 +3,8 @@
   ServerAlias publicdomainworks.net db.publicdomainworks.net
 
   WSGIScriptAlias / /home/okfn/var/srvc/pdw/pyenv/bin/pylonsapp_modwsgi.py
+  WSGIDaemonProcess publicdomainworks.net display-name=PDW processes=2 threads=1 maximum-requests=1000
+  WSGIProcessGroup publicdomainworks.net
   # pass authorization info on (needed for e.g. rest apis)
   WSGIPassAuthorization On
 

@@ -4,6 +4,10 @@
 
     Alias /pdf /home/okfn/var/srvc/openshakespeare.org/cache/moby/pdf
     WSGIScriptAlias / /home/okfn/var/srvc/openshakespeare.org/pyenv/bin/pylonsapp_modwsgi.py
+    WSGIDaemonProcess openshakespeare.org display-name=SHAKESPEARE processes=3 threads=1 maximum-requests=1000
+    WSGIProcessGroup openshakespeare.org
+    # pass authorization info on (needed for e.g. rest apis)
+    WSGIPassAuthorization On
 
     <Location /admin>
         AuthType Basic
