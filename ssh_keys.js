@@ -16,7 +16,8 @@
 			"dread",
 			"johnbywater",
 			"pudo",
-			"ww"
+			"ww",
+			"thejimmyg"
 			]
     },
     "users":
