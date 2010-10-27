@@ -82,6 +82,23 @@
 		{
 			"name": "Anna Powell-Smith",
 			"key": "ssh-dss AAAAB3NzaC1kc3MAAACBAK3v98WnuJBxdhntYLKDY0VQWGlxJR0TfokKe+8JvjPQ02131A00wbIXcJ07kV14iQ5dB8pir7GUXxESyjlHEvEG6D4Igp6ATqMoSpYiOLVGGL9P+Nugypi5QOvgziCEHkgVKqtenq9knuJPHVy26cIjwYbtkvXRSl0arwui+mP7AAAAFQDYyhjEQXylmFen+X39uombu2tjsQAAAIEAkB1LMvVTmaLg8h6MUS2E6V2C6RoGI2hOn1f0xC6D0+OPgyV6zAK/+lVmUs8zQIay9NgF7QOKY6v4SyDvd6Q6oBdxECYgHGU3GUZhv2WBhmooYOYP2WBU083rDn95I0w/mC3qle8KFbDk+K5nyJoMdi/pxNhJfvvLg7ro7DjU6JUAAACAYpc1Ymq088ZfkidkUZLc0WIPJ9kxnjG6VCdgPbtsBlLJKzt3xNvTCusAFrUIe+Y96BivXS8WKaK1Fo+fiYw/KFSIzNIRHbMQS4Ti9KGraA/eXPjWR+efaMOEaXJ8ojfGYbHQIDhYZT7nSix6bvJWaXq9C/J/fIRHxP9QpgReOcg= anna@Anna-Smiths-MacBook-Pro.local"
+		},
+		"odaesa":
+		{
+			"name": "Mark Macgillivray",
+			"description": "JISC OpenBib and project coordination",
+			"key": "ssh-dss AAAAB3NzaC1kc3MAAACBAM07ApAwjO7zKaUDtkIQfYw7jXKTK2TG9HZeTfLKhzqzRj4BzxBELhXyzBNFqPZdWWqLlBA1Yxx5iI7Usk4S/exDsSVu4hGdHp+JZmZ+rbNpuACfC3InSctsJncriuVRYl3rJdpWuI7hH1Cp+PzXz3Lensk6AbTLmY8H8RdH4Om1AAAAFQCeqIZd5x9Dd0j4pw5IEFgp5eEfuQAAAIEArNZM8pMdIzfb7cM2EqkQCzxQgotwYeKS9eJNQIwSwPUZcz1NVbK0GA5fvaW5WUbnMkL9zQk9YpWHuk8D0ta+4tMOSS8NaYo9LXO8IomONccbDMNj+oNKZDRTzaJFSevZB6qYUxAnPN/GC/rY1GU8Epm3TlFo4xh1RxYr1H/cKCsAAACAKICFzeSto3ly3GbOFTI2cxPzW89LQtdE9Kr5Ic624yOkDy0FBRcQTFQYjwV4vvQSrBT97PbwihtjR7W7S9xct741nLn4NTLp6fqeTJP3QAp3V6VphEvw3G8pSp6bIqX1QxtekH9VGLmjCInz0qkzaBoDWv/y2U+pQmeXAMs8dxQ= ichi@nee"
+		},
+		"stefie":
+		{
+			"name": "Stefanie Doll",
+			"description": "okfn.org web dev",
+			"key": "ssh-dss AAAAB3NzaC1kc3MAAACBAMWXITE9ttPPmUYKRgSkk6fHU0jJHw3E+nTXGNC+Mki/x4Z0eSiAyvyO9Ul60V7/IOhNZDHICSlTVMA3u2AIvSxRXEJbQKgNysw90AeqKk5/6JTOdgSCY3FSL2F5O1GM+kjoTG8bvAGTOkiPldgoy5Suz32+VaJk20s/GO9tDIonAAAAFQDvvsGPxSZvbcTnX6ehB7swp7te3wAAAIEAp//CsFVCmSNRD+WSTbX4W/3owniWVYtLYkkMSQsjnFDGXkgNVHe7JvYghKXS5KTX6B9f8ZurLmmJOYg0JoT58gjpa2+Q9T/BEhpTmvdrVmyhHp1oulalFJ/HEfV3ULLEjAk7Xudz+QlxcqIoSrz+/y5u8QFW4TrOOZn9dPzD1GYAAACAPsu3u5TIJlqWqLQ4PtSaHxibvQG0Pd6JzrrYYaGzZw/QiwqaOJ3RIE3QXEAkXb5L8QOP0vskRlYlqVwvOg1XsZ5rX5JjwBDiRvkgeUa8rKt3yD+3LMT14KEhOf3qqk1sKkQFn4FcOIKDPePC4fOcsUZoV7ViAMGN4SqHJRRYwNg= DVA@LDS.local"
+		},
+		"thejimmyg":
+		{
+			"name": "James Gardner",
+			"key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA4lne8Y72KQH0/p0JIg+iFXPG6CsiAU/2ZfKxqbeR0SaPl7+a8pZ56NfEN+nsjYN1XSBSg1Drwsi2akmiBYPGWrg9ZQ+qPrBLVHVgMlLD/JfEejI4+zprGuR3b7HstQxDykhFxfAphQ+vAlyLyJRM/2yZ/gUXBDbiV/dZjFA/4zcGSjzClZqkSEi78jjBM45WFeaPKuLIPPKr2XnizsuR6YGapRuT14frJqkDx0d+/7kd69RMTzRyLNPrXeCxkxIpHi2vYPVxzjYuZQLg7yO+wt9ikIcMmRaXtiNGeKmJ+KxkjyNDYi49K3WUaTeKQIGOqoAP66cLcjYCXg8drXZ8pw== james@feynman"
 		}
 	}
 }
