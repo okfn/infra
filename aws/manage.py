@@ -56,6 +56,7 @@ class Manager(object):
             'ubuntu-lucid-32-ebs': 'ami-38bf954c',
             'ubuntu-lucid-32': 'ami-fabe948e',
             'ubuntu-lucid-64-ebs': 'ami-f6340182',
+            'ubuntu-maverick-64-ebs': 'ami-405c6934',
             },
         'us-east-1':  {
             'debian-lenny': 'ami-dcf615b5',
