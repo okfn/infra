@@ -95,13 +95,13 @@ def setup_sudoers():
     fn = '/etc/sudoers'
     # double escape as passed through to sed ...
     after = '# User alias specification\\nUser_Alias      ADMINS = okfn'
-    sed(fn, '# User alias specification', after)
+    sed(fn, '# User alias specification', after, use_sudo=True)
 
     in2 = r'root.*ALL=\(ALL\) ALL'
     # double escape as passed through to sed ...
     out2 = 'root   ALL=(ALL) ALL' + '\\n' + 'ADMINS  ALL = (ALL) NOPASSWD: ALL'
     print out2
-    sed(fn, in2, out2, backup='')
+    sed(fn, in2, out2, backup='', use_sudo=True)
 
 
 ## ============================
@@ -119,7 +119,7 @@ def sysadmin_repo_clone():
                 SYSADMIN_REPO_PATH)
     if not exists(OKFN_ETC):
         run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/etc', OKFN_ETC))
-    if not exists(OKFN_ETC):
+    if not exists(okfn_bin):
         run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/bin', okfn_bin))
 
 def sysadmin_repo_update():
@@ -431,7 +431,7 @@ def wordpress_install(path, version='2.9.2'):
 
 ## ============================
 ## Backup
-def setup_backup_check():
+def backup_check_setup():
     if not exists('/etc/cron.daily/01check_backup'):
         sudo('ln -s /home/okfn/bin/01check_backup /etc/cron.daily/01check_backup')
     if not exists('/etc/cron.daily/99check_backup'):
