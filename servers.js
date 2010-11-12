@@ -156,6 +156,28 @@
         ], 
         "aws_id": "i-f9eeb58e"
     } ,
+    "eu10": {
+        "placement": "eu-west-1b", 
+        "created": "2010-11-11T22:28:33", 
+        "type": "ec2", 
+        "notes": null, 
+        "aws_private_dns_name": "ip-10-48-110-205.eu-west-1.compute.internal", 
+        "instance_type": "t1.micro", 
+        "aws_public_dns_name": "ec2-79-125-44-1.eu-west-1.compute.amazonaws.com", 
+        "location": "eu-west-1", 
+        "volumes": {}, 
+        "provider": "aws", 
+        "owner": "okfn", 
+        "os": "ubuntu-maverick-64-ebs", 
+        "security_groups": [
+            "default", 
+            "www-only", 
+            "ssh-only", 
+            "munin-only", 
+            "instance-da69cda3-34e7-495c-ac12-7637228cbb19"
+        ], 
+        "aws_id": "i-03c9e674"
+    }, 
     "bkn-1": {
         "owner": "bkn",
         "aws_id": "i-29720e42",
