@@ -100,6 +100,11 @@
 		{
 			"name": "James Gardner",
 			"key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA4lne8Y72KQH0/p0JIg+iFXPG6CsiAU/2ZfKxqbeR0SaPl7+a8pZ56NfEN+nsjYN1XSBSg1Drwsi2akmiBYPGWrg9ZQ+qPrBLVHVgMlLD/JfEejI4+zprGuR3b7HstQxDykhFxfAphQ+vAlyLyJRM/2yZ/gUXBDbiV/dZjFA/4zcGSjzClZqkSEi78jjBM45WFeaPKuLIPPKr2XnizsuR6YGapRuT14frJqkDx0d+/7kd69RMTzRyLNPrXeCxkxIpHi2vYPVxzjYuZQLg7yO+wt9ikIcMmRaXtiNGeKmJ+KxkjyNDYi49K3WUaTeKQIGOqoAP66cLcjYCXg8drXZ8pw== james@feynman"
+		},
+		"ntoedtma":
+		{
+			"name": "Nils Toedtmann",
+			"key": "ssh-dss AAAAB3NzaC1kc3MAAACBAIDy8mdmywAu00uYm1fJvwW6kT5Mnjnu/nLoDjHPftqoRj+BPqlnM7Qp/OYzHQUoYsAEICSRdRgqdZxN/H1PKqL7H7IfImI2azaRjmnpolFCUpVdudPwRRt8vSqgHqLOxSlmlEt0N43Z3sCRJIwZ81vI65YTR/vYuDNHU+EBS7grAAAAFQDKra35hdKJMKI7avdQbUft7JR3vQAAAIB6/zHsyUtY2NmtlisqUbuExXxDtpeHpq4mdS/EEn4xUWP3DsT0DnJQTBKYaghfBvzeMSj3m/e/8DABQVUwhUEr6+u+BI8DQPmb46usN9vPBIa40OxmsKoTpkrSc/xKqtL+AjCDzziahlqBHpKMcCp9aPETRccVb4bHFaw/XoB19AAAAIBylraAM2b6Z9JphcSWha5yb+BWDyIh20Rkte8toumIylXs3Xj8do5C0n9hbRYICjslfjDsPdOTRiRbqbT5+ybVSYqsSmWPgiq+x1hdDlvFwZLiO21+TNjKYKVQ/0WqTFy0UY+v0d0CXUeemmi5ZBklQY4vitmjnyutyINIlPkTVA== ntoedtma@takatukaland.de"
 		}
 	}
 }
