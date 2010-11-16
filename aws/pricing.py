@@ -1,5 +1,9 @@
 # large is just 4x everything ...
-cph = { 'eu': 0.095, 'us': 0.085 }
+cph = { 
+    'micro': {'eu': 0.025, 'us': 0.02},
+    'small': {'eu': 0.095, 'us': 0.085},
+    'large': {'eu': 0.38, 'us': 0.34}
+    }
 cph_res = { 'eu': 0.04, 'us': 0.03 }
 res_cost = 227.50
 
@@ -20,18 +24,15 @@ def break_even():
         12*90*0.17))
 
 def eu_us_diff():
-    diff = 30 * 24 * (cph['eu'] - cph['us'])
+    diff = 30 * 24 * (cph['small']['eu'] - cph['small']['us'])
     print('Price diff b/w eu and us per month: %s' % diff)
     print('Price diff b/w eu and us per year: %s' % (12*diff))
 
 def cost_per_month(size='small', region='us'):
-    cost = cph[region] * 24 * 30
-    cost_res = res_cost / 12.0 + cph_res[region] * 24 * 30
-    if size == 'large':
-        cost_res = 4 * cost_res
-        cost = 4 * cost
+    cost = cph[size][region] * 24 * 30
+    # cost_res = res_cost / 12.0 + cph_res[region] * 24 * 30
     print('Size: %s, Region: %s' % (size, region))
-    print('Cost per month (1 year reserved): %s' % cost_res)
+    # print('Cost per month (1 year reserved): %s' % cost_res)
     print('Cost per month (no reservation): %s' % cost)
 
 
