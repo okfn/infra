@@ -1,0 +1,16 @@
+<VirtualHost *:80>
+    ServerName ckan.org
+    ServerAlias www.ckan.org
+
+    WSGIScriptAlias / /home/okfn/var/srvc/ckan.org/bin/ckan.org.py
+    WSGIPassAuthorization On
+    <Directory /home/okfn/var/srvc/ckan.org/pyenv/bin/ckan.org.py>
+        WSGIApplicationGroup %{GLOBAL}
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    ErrorLog /var/log/apache2/ckan.org.error.log
+    CustomLog /var/log/apache2/ckan.org.custom.log combined
+</VirtualHost>
+
