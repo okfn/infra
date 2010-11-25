@@ -4,8 +4,16 @@ cph = {
     'small': {'eu': 0.095, 'us': 0.085},
     'large': {'eu': 0.38, 'us': 0.34}
     }
-cph_res = { 'eu': 0.04, 'us': 0.03 }
-res_cost = 227.50
+cph_res = {
+    'micro': {'eu': 0.01},
+    'small': {'eu': 0.04, 'us': 0.03},
+    'large': {'eu': 0.16, 'us': 0},
+}
+res_cost = {
+    'micro': {'eu': 54, 'us': 54},
+    'small': {'eu': 227.5, 'us': 227.0},
+    'large': {'eu': 910.0, 'us': 910.0},
+}
 
 def break_even():
     # calculate point at which reserved instance is better
@@ -29,11 +37,13 @@ def eu_us_diff():
     print('Price diff b/w eu and us per year: %s' % (12*diff))
 
 def cost_per_month(size='small', region='us'):
-    cost = cph[size][region] * 24 * 30
+    cost = cph[size][region] * 24 * 30 * 12
+    cost_res = cph_res[size][region] * 24 * 30 * 12 + res_cost[size][region]
     # cost_res = res_cost / 12.0 + cph_res[region] * 24 * 30
     print('Size: %s, Region: %s' % (size, region))
     # print('Cost per month (1 year reserved): %s' % cost_res)
-    print('Cost per month (no reservation): %s' % cost)
+    print('Cost per year (no reservation): %s' % cost)
+    print('Cost per year (reservation): %s' % cost_res)
 
 
 import os

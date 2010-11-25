@@ -46,7 +46,7 @@ def move_directories_to_mnt():
     else:
         _run = sudo
     # TODO: make sure *everything* using var is shutdown (or this will all fail)
-    _run('/etc/init.d/rsyslogd stop')
+    _run('/etc/init.d/rsyslog stop')
     _run('/etc/init.d/cron stop')
 
     _run('mkdir /mnt/root')
