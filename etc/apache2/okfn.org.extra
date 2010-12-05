@@ -3,6 +3,7 @@
 # end of the kforge 'project' vhost (which serves okfn.org)
 # DEFAULT HOST STUFF
 ServerAlias okfn.org www.okfn.org eu0.okfn.org openknowledgefoundation.org www.openknowledgefoundation.org, staging2.okfn.org *.okfn.org
+ServerAlias blog.ckan.org
 
 # DEPRECATED (2009-01). Should remove at some point.
 # No longer used for site itself as use moin
