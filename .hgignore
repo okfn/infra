@@ -2,5 +2,6 @@ syntax: glob
 
 # aggregator
 *.tmplc
+*.pyc
 cache/**
 aggregator/**/output/**

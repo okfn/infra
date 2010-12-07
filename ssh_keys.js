@@ -105,6 +105,10 @@
 		{
 			"name": "Nils Toedtmann",
 			"key": "ssh-dss AAAAB3NzaC1kc3MAAACBAIDy8mdmywAu00uYm1fJvwW6kT5Mnjnu/nLoDjHPftqoRj+BPqlnM7Qp/OYzHQUoYsAEICSRdRgqdZxN/H1PKqL7H7IfImI2azaRjmnpolFCUpVdudPwRRt8vSqgHqLOxSlmlEt0N43Z3sCRJIwZ81vI65YTR/vYuDNHU+EBS7grAAAAFQDKra35hdKJMKI7avdQbUft7JR3vQAAAIB6/zHsyUtY2NmtlisqUbuExXxDtpeHpq4mdS/EEn4xUWP3DsT0DnJQTBKYaghfBvzeMSj3m/e/8DABQVUwhUEr6+u+BI8DQPmb46usN9vPBIa40OxmsKoTpkrSc/xKqtL+AjCDzziahlqBHpKMcCp9aPETRccVb4bHFaw/XoB19AAAAIBylraAM2b6Z9JphcSWha5yb+BWDyIh20Rkte8toumIylXs3Xj8do5C0n9hbRYICjslfjDsPdOTRiRbqbT5+ybVSYqsSmWPgiq+x1hdDlvFwZLiO21+TNjKYKVQ/0WqTFy0UY+v0d0CXUeemmi5ZBklQY4vitmjnyutyINIlPkTVA== ntoedtma@takatukaland.de"
-		}
+		},
+                "stiivi":
+                        "name": "Stefan Urbanek",
+                        "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwd/doWSW3wrIYXf+MBwUXSv88KQnYMN2+heDR8BJ5J/1lwpATyabCBBW8Suayo1ZvJUm+loZcCM4WfEKLqE71iTzfFfcoIxfJn3+cW8H2IQNyRMwlhIpudb5LGCOC8vzwPibTlYilT0bHtSy3+lgJ/n/ZRfEvb6dVS1JWheDAzp8lJEv+iF3eEvrah26a+xfToxy26m06ebo3M4dNFbuMQlHpLFkB0fZh0NbfuITyODgIpJwh7EiQ66oUtSEcAlJHPLL+axaAcEW6/J7/Lp/rSyb7F0/b9lqa+KIfrdNSHFBJdTR+aFLZEcZiRI8B5XVZ3GRsrY/vaGCUyWLkT6ILQ== stefan@Stefan-Urbaneks-MacBook.local"
+                }
 	}
 }
