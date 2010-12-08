@@ -17,7 +17,8 @@
 			"johnbywater",
 			"pudo",
 			"ww",
-			"thejimmyg"
+			"thejimmyg",
+                        "memespring"
 			]
     },
     "users":
@@ -109,6 +110,10 @@
                 "stiivi":
                         "name": "Stefan Urbanek",
                         "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwd/doWSW3wrIYXf+MBwUXSv88KQnYMN2+heDR8BJ5J/1lwpATyabCBBW8Suayo1ZvJUm+loZcCM4WfEKLqE71iTzfFfcoIxfJn3+cW8H2IQNyRMwlhIpudb5LGCOC8vzwPibTlYilT0bHtSy3+lgJ/n/ZRfEvb6dVS1JWheDAzp8lJEv+iF3eEvrah26a+xfToxy26m06ebo3M4dNFbuMQlHpLFkB0fZh0NbfuITyODgIpJwh7EiQ66oUtSEcAlJHPLL+axaAcEW6/J7/Lp/rSyb7F0/b9lqa+KIfrdNSHFBJdTR+aFLZEcZiRI8B5XVZ3GRsrY/vaGCUyWLkT6ILQ== stefan@Stefan-Urbaneks-MacBook.local"
+                },
+                "memespring":
+                        "name": "Richard Pope",
+                        "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAP5EU6+QpJT19jP/VV/jL4cVauZgoF45LA3aB55J8qM7UTYp+kTtp2qYNjkFs4+XedbRDfTATuK34vAAytpGq1ytPRzsNNQG9oe3jinfUUjOmzccF/DJCxF7OWasW2RApZe6XlkKMAzvKY+2fh1yE3VCrllBE9em3FXrFpKZtSzVAAAAFQDgr98C5Uye+Bv8LfcfoM+ha59TuwAAAIBArehIWrkoI2uAhv6T9RoOjwypnv7oztIZVIMqmH1smuECowFjctXmmCKXcNL1LVq/7ipQyV5vYJvrqGaDqERRq/cZdjPKO6W0UlZIILZDOyjOunz3txzhizuOKCzqNItzXojvDa2B7JcLG/b8LzLBGfjngjhM5697EeZVV6hWGwAAAIEAjZPkAk6e2pW3RdwuifMhY/8LzOW6eF7EeuIrbY3o2/BWzg5WGmGI4laQ7IJyoRqYMhDTTGi5fP7BeYzq4sdbqbC4C0AvHxYT6zQ+g/CFsJzLdI4oXwDGodbFLIk7XurmDqb1f0URh96a2ewqpkYJ6UTw9WRhgbh83PqsllVw9G4= richardpope@unknown-78-ca-39-b8-63-85.config"
                 }
 	}
 }
