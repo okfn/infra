@@ -1,9 +1,14 @@
 <VirtualHost *:80>
     ServerName ckan.net
+    ServerAlias www-api.ckan.net
     ServerAlias www.ckan.net
+    ServerAlias www2.ckan.net
 
-    Alias /dump/ /home/okfn/var/srvc/ckan.net/dumps/
-    RedirectMatch permanent /package/read/(.*)$ /package/$1
+    Alias /dump /home/okfn/var/srvc/ckan.net/dumps
+    RedirectMatch permanent /package/read/(.*)$ http://ckan.net/package/$1
+
+    # CORS - http://lists.w3.org/Archives/Public/public-lod/2010Oct/0181.html
+    Header add Access-Control-Allow-Origin "*"
 
     # hacks to control java robot that is hammering the site 2010-05-07
     <Location />
@@ -27,6 +32,9 @@ RewriteRule .* - [F]
     </Location>
 
     WSGIScriptAlias / /home/okfn/var/srvc/ckan.net/pyenv/bin/ckan.net.py
+    WSGIDaemonProcess ckan.net display-name=CKAN processes=8 threads=1 maximum-requests=1000
+    WSGIProcessGroup ckan.net
+
     # pass authorization info on (needed for rest api)
     WSGIPassAuthorization On
 

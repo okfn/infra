@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+    ServerName br.ckan.net
+
+    WSGIScriptAlias / /home/okfn/var/srvc/br.ckan.net/pyenv/bin/br.ckan.net.py
+    WSGIDaemonProcess br.ckan.net display-name=BR.CKAN processes=2 threads=1
+    WSGIProcessGroup br.ckan.net
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    ErrorLog /var/log/apache2/br.ckan.net.error.log
+    CustomLog /var/log/apache2/br.ckan.net.custom.log combined
+</VirtualHost>
