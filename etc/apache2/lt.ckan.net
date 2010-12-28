@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+    ServerName lt.ckan.net
+
+    WSGIScriptAlias / /home/okfn/var/srvc/lt.ckan.net/pyenv/bin/lt.ckan.net.py
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    ErrorLog /var/log/apache2/lt.ckan.net.error.log
+    CustomLog /var/log/apache2/lt.ckan.net.custom.log combined
+</VirtualHost>
