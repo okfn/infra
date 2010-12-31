@@ -107,7 +107,7 @@ class Manager(object):
 
     def _save_server_info(self):
         with open(self.server_info_path, 'w') as fo:
-            json.dump(self.server_info, fo, indent=4)
+            json.dump(self.server_info, fo, indent=2, sort_keys=True)
 
     def _get_server_by_instance_id(self, instance_id):
         for k,v in self.server_info.items():
