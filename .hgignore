@@ -1,4 +1,8 @@
 syntax: glob
+sandbox/*
+
+# any pem files you have lying around (e.g. for aws)
+*.pem
 
 # aggregator
 *.tmplc
