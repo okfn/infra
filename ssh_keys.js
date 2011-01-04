@@ -116,6 +116,16 @@
     {
       "name": "Richard Pope",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAP5EU6+QpJT19jP/VV/jL4cVauZgoF45LA3aB55J8qM7UTYp+kTtp2qYNjkFs4+XedbRDfTATuK34vAAytpGq1ytPRzsNNQG9oe3jinfUUjOmzccF/DJCxF7OWasW2RApZe6XlkKMAzvKY+2fh1yE3VCrllBE9em3FXrFpKZtSzVAAAAFQDgr98C5Uye+Bv8LfcfoM+ha59TuwAAAIBArehIWrkoI2uAhv6T9RoOjwypnv7oztIZVIMqmH1smuECowFjctXmmCKXcNL1LVq/7ipQyV5vYJvrqGaDqERRq/cZdjPKO6W0UlZIILZDOyjOunz3txzhizuOKCzqNItzXojvDa2B7JcLG/b8LzLBGfjngjhM5697EeZVV6hWGwAAAIEAjZPkAk6e2pW3RdwuifMhY/8LzOW6eF7EeuIrbY3o2/BWzg5WGmGI4laQ7IJyoRqYMhDTTGi5fP7BeYzq4sdbqbC4C0AvHxYT6zQ+g/CFsJzLdI4oXwDGodbFLIk7XurmDqb1f0URh96a2ewqpkYJ6UTw9WRhgbh83PqsllVw9G4= richardpope@unknown-78-ca-39-b8-63-85.config"
+    },
+    "steko":
+    {
+      "name": "Stefano Costa",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwCC/zSLAS25PipQ/X98itoBeoa8Py25Zy3p+1CRSoLHhTaqxxcj1bRT29QhDkeCydVVHyPInsDVwCKRnVEnhVl3djRy7AiXQuXqchb/UuYaLwSByr/aLLF44JlfVYobSJGrjtEjEOu4SqRD3vXx5ILgGN+JCrW2QPUP5LdcTlaUBINGnTVUARhfdFK7JaC1HlZXQmsbA87ctGz5d8jjC8f3yIRSIfb1dxiWq39mqyhL595nebM1+yqydH+PgVb1i0TLrxc4YDooQOyaMfxRBpbegpgce6Ret8aDI6vx7oGj/7j/RJV5FTNlF2FVUQ4ZW+FoG4rSvnqx3Nnayk4IvMQ== steko@ganymede"
+    },
+    "mikechelen":
+    {
+      "name": "Mike Chelen",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA0PSUWKd4z2g4hNvRKJ3xfpFTdq8/Qq0KnHYnoC3ZBvJ812WqVDd0FgOYFqAgaOUQJFiZRiMfRiIjqHm4dY+pjzsN7zsWZiYgcglHYfugnQ086rKKKwruzQrKggED5hXO4f2ekRLU37ajh3Oku9eqSiNwiBNuywlTfv6C25HzEG5BWmwstZ7D77RSdwJtOaGe+aUFg1s7qhF+tIggwtZKnFtiY35kKjECi5BCl7seSvC2qUsQ2HYvmnpkeh3P5OQT5sxLihxodvwcnsx5X60afUo8AMAa7zUahbsyMK/HhnCpQf1zsXYR/gZbvjq9ZI/wk4GaeqslE653z7dkzjACPQ== @mikechelen"
     }
   }
 }
