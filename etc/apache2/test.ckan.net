@@ -1,7 +1,7 @@
 <VirtualHost *:80>
-    ServerName test.ckan.net
+    ServerName ww.ckan.net
 
-    WSGIScriptAlias / /home/okfn/var/srvc/test.ckan.net/pyenv/bin/test.ckan.net.py
+    WSGIScriptAlias / /home/okfn/var/srvc/ww.ckan.net/pyenv/bin/ww.ckan.net.py
     WSGIPassAuthorization On
     
     
@@ -12,8 +12,8 @@
       Allow from all
     </Location>
 
-    ErrorLog /var/log/apache2/test.ckan.net.error.log
-    CustomLog /var/log/apache2/test.ckan.net.custom.log combined
+    ErrorLog /var/log/apache2/ww.ckan.net.error.log
+    CustomLog /var/log/apache2/ww.ckan.net.custom.log combined
 </VirtualHost>
 
 

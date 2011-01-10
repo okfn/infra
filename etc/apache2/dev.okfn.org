@@ -5,6 +5,19 @@
 </VirtualHost>
 
 <VirtualHost *:80>
+    ServerName community.dev.okfn.org
+
+    WSGIDaemonProcess community.dev.okfn.org-production python-path=/home/okfn/var/srvc/pinaxdemo/pyenv/lib/python2.5/site-packages user=okfn
+    WSGIProcessGroup community.dev.okfn.org-production
+
+    WSGIScriptAlias / /home/okfn/var/srvc/pinaxdemo/community/deploy/pinax.wsgi
+    <Directory /home/okfn/var/srvc/pinaxdemo/community/deploy>
+        Order deny,allow
+        Allow from all
+    </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
     ServerName econ.dev.okfn.org
     RedirectPermanent / http://www.openeconomics.net/
 </VirtualHost>

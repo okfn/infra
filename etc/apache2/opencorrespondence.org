@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+    ServerName opencorrespondence.org
+    ServerAlias www.opencorrespondence.org
+
+    WSGIScriptAlias / /home/okfn/var/srvc/opencorrespondence.org/pyenv/bin/opencorrespondence.org_modwsgi.py
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    ErrorLog /var/log/apache2/opencorrespondence.org.error.log
+    CustomLog /var/log/apache2/opencorrespondence.org.custom.log combined
+</VirtualHost>
