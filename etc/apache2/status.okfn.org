@@ -4,6 +4,8 @@
   ErrorLog /var/log/apache2/status.okfn.org.error.log
   CustomLog /var/log//apache2/status.okfn.org.log combined
 
+  RedirectMatch ^/$ http://status.okfn.org/nagios3/
+
   ScriptAlias /nagios3/cgi-bin     /usr/lib/cgi-bin/nagios3
 # ScriptAlias /nagios3/side.html   /usr/lib/cgi-bin/nagios3/grouplist.cgi
   Alias       /nagios3/stylesheets /etc/nagios3/stylesheets
