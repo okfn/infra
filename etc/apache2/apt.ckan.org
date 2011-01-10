@@ -1,0 +1,7 @@
+<VirtualHost *:80>
+	ServerName apt.ckan.org
+	DocumentRoot /home/okfn/var/www/apt.ckan.org
+	DirectoryIndex index.html 
+	CustomLog /var/log/apache2/apt.ckan.org.access.log combined
+	ErrorLog  /var/log/apache2/apt.ckan.org.error.log
+</VirtualHost>
