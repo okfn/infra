@@ -2,10 +2,12 @@
     ServerName opencorrespondence.org
     ServerAlias www.opencorrespondence.org
 
-    WSGIScriptAlias / /home/okfn/var/srvc/opencorrespondence.org/pyenv/bin/opencorrespondence.org_modwsgi.py
-    # pass authorization info on (needed for rest api)
+    WSGIScriptAlias / /home/okfn/var/srvc/opencorrespondence.org/pyenv/bin/opencorrespondence.org.py
+    WSGIDaemonProcess opencorrespondence.org display-name=OPENCORRESPONDENCE processes=4 threads=1 maximum-requests=500
+    WSGIProcessGroup opencorrespondence.org
+    # pass authorization info on (needed for e.g. rest apis)
     WSGIPassAuthorization On
 
     ErrorLog /var/log/apache2/opencorrespondence.org.error.log
-    CustomLog /var/log/apache2/opencorrespondence.org.custom.log combined
+    CustomLog /var/log/apache2/opencorrespondence.org.access.log combined
 </VirtualHost>
