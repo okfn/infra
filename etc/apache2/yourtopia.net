@@ -4,11 +4,11 @@
     ServerAlias openhdi.dev.okfn.org
     ServerAlias yourtopia.net www.yourtopia.net
 
-    WSGIDaemonProcess openhdi.org processes=4 threads=1 maximum-requests=1000
-    WSGIScriptAlias / /home/okfn/var/srvc/openhdi.org/bin/openhdi.org.wsgi
+    WSGIScriptAlias / /home/okfn/var/srvc/yourtopia.net/bin/yourtopia.net.wsgi
+    WSGIDaemonProcess yourtopia.net display-name=yourtopia.net processes=4 threads=1 maximum-requests=1000
 
-    ErrorLog /var/log/apache2/openhdi.org.error.log
-    CustomLog /var/log/apache2/openhdi.org.custom.log combined
+    ErrorLog /var/log/apache2/yourtopia.net.error.log
+    CustomLog /var/log/apache2/yourtopia.net.custom.log combined
 </VirtualHost>
 
 
