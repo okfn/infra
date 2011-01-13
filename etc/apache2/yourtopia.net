@@ -1,0 +1,14 @@
+<VirtualHost *:80>
+    ServerName openhdi.org
+    ServerAlias www.openhdi.org
+    ServerAlias openhdi.dev.okfn.org
+    ServerAlias yourtopia.net www.yourtopia.net
+
+    WSGIDaemonProcess openhdi.org processes=4 threads=1 maximum-requests=1000
+    WSGIScriptAlias / /home/okfn/var/srvc/openhdi.org/bin/openhdi.org.wsgi
+
+    ErrorLog /var/log/apache2/openhdi.org.error.log
+    CustomLog /var/log/apache2/openhdi.org.custom.log combined
+</VirtualHost>
+
+
