@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+    ServerName southampton.ckan.net
+
+    WSGIScriptAlias / /home/okfn/var/srvc/southampton.ckan.net/pyenv/bin/southampton.ckan.net.py
+    # pass authorization info on (needed for rest api)
+    WSGIDaemonProcess southampton.ckan.net display-name=southampton.ckan.net processes=2 threads=5 maximum-requests=1000
+    WSGIProcessGroup southampton.ckan.net
+
+    ErrorLog /var/log/apache2/southampton.ckan.net.error.log
+    CustomLog /var/log/apache2/southampton.ckan.net.custom.log combined
+</VirtualHost>
