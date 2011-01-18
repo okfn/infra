@@ -9,7 +9,10 @@
       "casbon",
       "benosteen",
       "okfn-sysadmin",
-      "johnbywater"
+      "johnbywater",
+      "steko",
+      "ntoedtma",
+      "jasonkitcat"
     ],
     "ckan": [
       "rgrp",
@@ -126,6 +129,11 @@
     {
       "name": "Mike Chelen",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA0PSUWKd4z2g4hNvRKJ3xfpFTdq8/Qq0KnHYnoC3ZBvJ812WqVDd0FgOYFqAgaOUQJFiZRiMfRiIjqHm4dY+pjzsN7zsWZiYgcglHYfugnQ086rKKKwruzQrKggED5hXO4f2ekRLU37ajh3Oku9eqSiNwiBNuywlTfv6C25HzEG5BWmwstZ7D77RSdwJtOaGe+aUFg1s7qhF+tIggwtZKnFtiY35kKjECi5BCl7seSvC2qUsQ2HYvmnpkeh3P5OQT5sxLihxodvwcnsx5X60afUo8AMAa7zUahbsyMK/HhnCpQf1zsXYR/gZbvjq9ZI/wk4GaeqslE653z7dkzjACPQ== @mikechelen"
+    },
+    "jasonkitcat":
+    {
+      "name": "Jason Kitcat",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA8z0pynlDeoIv2SxI8Zm235iMtRS3lABuNm6IToIPICyyqYOnZGzwtDGaWsyWYuCOUCqX54Q0Iwc8Q/hS7dCsaeHp00FPMyNPkYCvJ/lwPkPran/dWakT8nPAfN+k5mBCrN/yjou0oKMWdniKOHMGxHrOzgaih90qY/XF0BKNyus= jasonkit@Jason-Kitcats-Computer.local"
     }
   }
 }
