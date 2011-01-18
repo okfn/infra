@@ -20,7 +20,7 @@ class TestManager:
         print('WARNING: if test fails ensure created instance termination to avoid running up charges')
         # TODO: could test for eu-west-1 too
         manager = Manager('us-west-1')
-        instance, infodict = manager.create_instance()
+        instance, infodict = manager.create_instance(okfn_id='ourrandomid')
         assert infodict['aws_id'] == instance.id
         assert infodict['aws_public_dns_name']
         instance.stop()

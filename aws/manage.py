@@ -67,7 +67,8 @@ class Manager(object):
             'ubuntu-karmic': 'ami-bb709dd2',
             },
         'us-west-1': {
-            'debian-lenny': 'ami-b33a6bf6'
+            'debian-lenny': 'ami-b33a6bf6',
+            'ubuntu-lucid-32': 'ami-917e2ed4'
             }
         }
     # yes, i know they are inconsistent!
@@ -146,8 +147,12 @@ class Manager(object):
         @return: tuple of boto instance object representing created instance
             and an dict with info about that instance (as for servers.js).
         '''
+        if okfn_id:
+            hostid = okfn_id 
+        else:
+            hostid = uuid.uuid4()
         # create a dedicated secgroup for this machine
-        secname = 'instance-%s' % uuid.uuid4()
+        secname = 'instance-%s' % hostid
         oursecgroup = self.conn.create_security_group(secname, secname)
         secgroups = [ 'default', 'www-only', 'ssh-only', 'munin-only', secname ]
 
