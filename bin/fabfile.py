@@ -79,6 +79,28 @@ def _mkdir(dir):
 ## ++++++++++++++++++++++++++++
 ## Fabric commands
 
+## ============================
+## Setup instances
+
+def instance_setup(okfn_id):
+    '''Setup a new instance named by `okfn_id` in standard way.
+
+        * hostname
+        * adduser
+        * setup_sudoers
+        * ssh_add_public_key_group - sysadmin
+        * etc_in_mercurial
+        * sysadmin_repo_clone
+    '''
+    hostname(okfn_id)
+    adduser('okfn')
+    setup_sudoers()
+    ssh_add_public_key_group('../ssh_keys.js', 'sysadmin', 'okfn')
+    etc_in_mercurial()
+    sysadmin_repo_clone()
+    # BACKUP?
+    # MUNIN?
+    
 
 ## ============================
 ## User and sudo
@@ -107,6 +129,11 @@ def setup_sudoers():
 ## ============================
 ## Miscellaneous sysadmin setup
 
+def hostname(new_hostname):
+    _sudo('hostname %s' % new_hostname)
+    _sudo('echo %s > /etc/hostname' % new_hostname)
+
+
 SYSADMIN_REPO_PATH = '/home/okfn/hg-sysadmin'
 OKFN_ETC = '/home/okfn/etc'
 def sysadmin_repo_clone():
@@ -114,13 +141,19 @@ def sysadmin_repo_clone():
     # adduser(okfn)
     # install_set('mercurial')
     okfn_bin = '/home/okfn/bin'
+    if env.user != 'okfn':
+        def ourrun(cmd):
+            sudo(cmd, user='okfn')
+    else:
+        ourrun = run
+    
     if not exists(SYSADMIN_REPO_PATH):
-        run('hg clone https://knowledgeforge.net/okfn/sysadmin %s' %
+        ourrun('hg clone https://knowledgeforge.net/okfn/sysadmin %s' %
                 SYSADMIN_REPO_PATH)
     if not exists(OKFN_ETC):
-        run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/etc', OKFN_ETC))
+        ourrun('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/etc', OKFN_ETC))
     if not exists(okfn_bin):
-        run('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/bin', okfn_bin))
+        ourrun('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/bin', okfn_bin))
 
 def sysadmin_repo_update():
     '''Update okfn sysadmin repo'''
