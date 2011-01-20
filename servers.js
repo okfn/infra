@@ -277,15 +277,5 @@
     "provider": "dreamhost", 
     "spec": "small", 
     "type": "shared"
-  }, 
-  "us3": {
-    "cost per month": null, 
-    "created": "2010-02", 
-    "location": "us-east-1d", 
-    "notes": null, 
-    "owner": "kforge", 
-    "provider": "aws", 
-    "spec": "small", 
-    "type": "ec2"
   }
 }
