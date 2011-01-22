@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+    ServerName ideas.okfn.org
+
+    WSGIScriptAlias / /home/okfn/var/srvc/ideas.okfn.org/pyenv/bin/ideas.okfn.org.py
+    
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    ErrorLog /var/log/apache2/ideas.okfn.org.error.log
+    CustomLog /var/log/apache2/ideas.okfn.org.custom.log combined
+</VirtualHost>
