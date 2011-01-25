@@ -41,6 +41,7 @@ require 'rubygems'
 require 'hpricot'
 require 'optiflag'
 require 'zlib'
+require 'yaml'
 
 MAX_REDIRECT=5 #set max redirect to prevent infinite loop
 
