@@ -58,10 +58,12 @@ mkdir -p ${DIR}
 # Function to resolv domain names to IP addresses across CNAMEs
 # WARNING: Correct pattern depends on version of Bind's "host" tool! 
 
-#HOST_PATTERN="[[:space:]]A[[:space:]]*" ; 
-HOST_PATTERN="[[:space:]]has address[[:space:]]*" ; 
+HOST_PATTERN1="[[:space:]]*A[[:space:]]*" ;
+HOST_PATTERN2="[[:space:]]*has address[[:space:]]*" ;    
+HOST_PATTERN="[[:space:]]+(has address|A)[[:space:]]+" ; 
+
 resolv() {
-  host -t a ${1}. 2>&1 | egrep "${HOST_PATTERN}" | sed -e "s/^.*${HOST_PATTERN}//g" | tail -1
+  host -t a ${1}. 2>&1 | egrep "${HOST_PATTERN}" | sed -e "s/^.*${HOST_PATTERN1}//g" -e "s/^.*${HOST_PATTERN2}//g" | tail -1
 }
 
 
@@ -149,11 +151,10 @@ else
     while read webdomain; do 
         webhost="${UNKNOWN_SERVER}"
         webip=`resolv ${webdomain}`
-
         if [ "X${webip}" = "X" ] ; then
             echo -n "x" 1>&2
             echo    "${webdomain} ${UNRESOLVED}"
-        elif [ "X${webip}" = "X10\." ] ; then
+        elif echo "X${webip}" | grep "^X10\." ; then
             echo -n "p" 1>&2
             echo    "${webdomain} RFC1918"
         else
