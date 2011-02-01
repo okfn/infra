@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+    ServerName wiki.ckan.net
+    DocumentRoot /home/okfn/var/srvc/wiki.ckan.net
+
+    Alias /wiki /home/okfn/var/srvc/wiki.ckan.net/w/index.php
+
+    ErrorLog /var/log/apache2/wiki.ckan.net.error.log
+    CustomLog /var/log/apache2/wiki.ckan.net.custom.log combined
+</VirtualHost>
+
