@@ -4,7 +4,6 @@
     "sysadmin": [
       "rgrp",
       "pudo",
-      "ww",
       "mk270",
       "casbon",
       "benosteen",
