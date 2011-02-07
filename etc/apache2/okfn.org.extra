@@ -9,13 +9,6 @@ ServerAlias okcon.org www.okcon.org
 ServerAlias opendatamanual.org www.opendatamanual.org
 ServerAlias openarthistory.org www.openarthistory.org
 
-# DEPRECATED (2009-01). Should remove at some point.
-# No longer used for site itself as use moin
-Alias /images /home/okfn/svn-okfn/trunk/m.okfn.org/images
-# DEPRECATED (2009-01). Remove once sure it is safe.
-# all links for files should be direct to m.okfn.org
-Alias /files /home/okfn/svn-okfn/trunk/m.okfn.org/files
-
 Alias /moinhtdocs /usr/share/moin/htdocs
 
 # Redirect for old files
