@@ -3,9 +3,9 @@
     ServerAlias questions.wheredoesmymoneygo.org
     ServerAlias ask2.wheredoesmymoneygo.org
 
-    # WSGIScriptAlias / /home/okfn/var/srvc/ask.wheredoesmymoneygo.org/pyenv/bin/ask.wheredoesmymoneygo.org 
-    WSGIScriptAlias / /home/okfn/var/srvc/ask2.wheredoesmymoneygo.org/pyenv/bin/ask2.wsgi
-    
+    WSGIScriptAlias / /home/okfn/var/srvc/ask.wheredoesmymoneygo.org/pyenv/bin/ask.wheredoesmymoneygo.org.py
+    WSGIDaemonProcess ask.wheredoesmymoneygo.org display-name=ASK.WDMMG processes=3 threads=1 maximum-requests=1000
+    WSGIProcessGroup ask.wheredoesmymoneygo.org
     # pass authorization info on (needed for rest api)
     WSGIPassAuthorization On
 
