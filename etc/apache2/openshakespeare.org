@@ -3,7 +3,7 @@
     ServerAlias www.openshakespeare.org demo.openshakespeare.org eu0.openshakespeare.org us0.openshakespeare.org
 
     Alias /pdf /home/okfn/var/srvc/openshakespeare.org/cache/moby/pdf
-    WSGIScriptAlias / /home/okfn/var/srvc/openshakespeare.org/pyenv/bin/pylonsapp_modwsgi.py
+    WSGIScriptAlias / /home/okfn/var/srvc/openshakespeare.org/bin/openshakespeare.org.wsgi
     WSGIDaemonProcess openshakespeare.org display-name=SHAKESPEARE processes=3 threads=1 maximum-requests=1000
     WSGIProcessGroup openshakespeare.org
     # pass authorization info on (needed for e.g. rest apis)
@@ -22,19 +22,3 @@
     CustomLog /var/log/apache2/openshakespeare.org.access.log combined
 </VirtualHost>
 
-<VirtualHost *:80>
-    ServerName blog.openshakespeare.org
-    ServerAlias blogred.openshakespeare.org eu0.blog.openshakespeare.org openshakespeare.org www.openshakespeare.org
-
-    DirectoryIndex index.html index.php
-    Options -Indexes
-
-    # To deal with proxying from main site
-    RewriteCond %{HTTP_HOST}   !^blog\.openshakespeare\.org [NC]
-    RewriteCond %{HTTP_HOST}   !^$
-    RewriteRule ^/(.*)         http://blog.openshakespeare.org/$1 [L,R]
-
-    ErrorLog /var/log/apache2/blog.openshakespeare.org.error.log
-    CustomLog /var/log/apache2/blog.openshakespeare.org.log combined
-</VirtualHost>
- 
