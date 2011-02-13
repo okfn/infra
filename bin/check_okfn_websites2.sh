@@ -20,6 +20,7 @@ IGNORE_ORIGIN="^(river)$"
 WARNING="10"
 CRITICAL="60"
 SERVICE_TEMPLATE="okfn-webservice"
+SLOW_HOSTS="eu3"
 
 
 ALL=`seq 0 1 ${MAX_HOST}`
@@ -290,7 +291,7 @@ else
                 done
             done
         fi
-    done > ${CACHE_MAPPING}
+    done | sort -u > ${CACHE_MAPPING}
     stderrn " " 
 fi
 
@@ -317,44 +318,88 @@ EOF
 ###
 
     while read domain res_server type origin; do
+        ADD_DIRECTIVE=""
+        # SLOW_HOSTS check_interval=60
+        if echo "${SLOW_HOSTS}" | egrep -q "${origin}([^0-9]|$)" ; then 
+            ADD_DIRECTIVE="check_interval                3600 # Don't annoy server too much with checks"
+        fi
         if [ "${res_server}" = "${UNKNOWN_SERVER}" ] ; then
             # check="check_webpage!http://${webdomain}/"
             check="check_http_hostname2!${domain}"
+
+######            
+cat << EOF
+# Webservice "${domain} on host ${origin}"
+define service {
+    service_description           http-${domain}
+    check_command                 ${check}
+    host                          ${origin}
+    use                           ${SERVICE_TEMPLATE}
+}
+
+
+EOF
+######
+
         else
             check="check_http2!${domain}!${WARNING}!${CRITICAL}"
-        fi
-        if [ ${type} = "Alias" ] ; then
-            stderrn "      INFO: ${domain} is only a ServerAlias, not adding to Nagios config." 
-        else
-            # Check origin
-####
+        
+            if [ ${type} = "Alias" ] ; then
+                stderrn "      INFO: ${domain} is only a ServerAlias, not adding to Nagios config." 
+            else
+            
+######  Check origin
 cat << EOF
+# Webservice "${domain} on host ${origin}"
 define service {
-    service_description    http-${domain}
-    check_command          ${check}
-    host                   ${origin}
-    use                    ${SERVICE_TEMPLATE}
+    service_description           http-${domain}
+    check_command                 ${check}
+    host                          ${origin}
+    use                           ${SERVICE_TEMPLATE}
+    ${ADD_DIRECTIVE}
 }
-    
+define servicedependency {
+    host_name                     ${origin}
+    service_description           HTTP
+    dependent_host_name           ${origin}
+    dependent_service_description http-${domain}
+}
+
+
+EOF
+######
+
+                if ! [ ${res_server} = ${origin} ]; then
+                  
+######  Check proxy too
+cat << EOF
+# Webservice "${domain} on host ${origin}, proxied on ${res_server}"
+define service {
+    service_description           cache-${origin}-${domain}
+    check_command                 ${check}
+    host                          ${res_server}
+    use                           ${SERVICE_TEMPLATE}
+    ${ADD_DIRECTIVE}
+}
+define servicedependency {
+    host_name                     ${res_server}
+    service_description           HTTP
+    dependent_host_name           ${res_server}
+    dependent_service_description cache-${origin}-${domain}
+}
+define servicedependency {
+    host_name                     ${origin}
+    service_description           http-${domain}
+    dependent_host_name           ${res_server}
+    dependent_service_description cache-${origin}-${domain}
+}
+
+
 EOF
 ####
-
-            # Check proxy too, if there is
-            if ! [ ${res_server} = ${origin} ]; then
-####
-cat << EOF
-define service {
-    service_description    cache-${origin}-${domain}
-    check_command          ${check}
-    host                   ${res_server}
-    use                    ${SERVICE_TEMPLATE}
-}
-    
-EOF
-####
-            fi # If Cache
-        fi # if Alias
-
+                fi # If proxy
+            fi # if Alias
+        fi # if OTHERHOST
     done < ${CACHE_MAPPING} > ${CACHE_NAGIOS}
 
 fi
