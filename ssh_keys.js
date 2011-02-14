@@ -11,7 +11,8 @@
       "johnbywater",
       "steko",
       "ntoedtma",
-      "jasonkitcat"
+      "jasonkitcat",
+      "sebbacon"
     ],
     "ckan": [
       "rgrp",
