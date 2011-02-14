@@ -4,7 +4,7 @@
     WSGIScriptAlias / /home/okfn/var/srvc/no.ckan.net/pyenv/bin/no.ckan.net.py
     # pass authorization info on (needed for rest api)
     WSGIPassAuthorization On
-    WSGIDaemonProcess no.ckan.net processes=2 threads=5
+    WSGIDaemonProcess no.ckan.net display-name=no.ckan.net processes=5 threads=2 maximum-requests=1000
 
     ErrorLog /var/log/apache2/no.ckan.net.error.log
     CustomLog /var/log/apache2/no.ckan.net.custom.log combined
