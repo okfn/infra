@@ -224,6 +224,8 @@
   }, 
   "eu6": {
     "aws_id": "i-972153e0", 
+    "aws_private_dns_name": "ip-10-227-3-101.eu-west-1.compute.internal",
+    "aws_public_dns_name": "ec2-46-51-189-76.eu-west-1.compute.amazonaws.com",
     "created": "2010-08", 
     "location": "eu-west-1b", 
     "notes": "", 
