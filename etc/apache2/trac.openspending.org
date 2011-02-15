@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+    ServerName trac.openspending.org
+
+    Alias /chrome/common /home/okfn/var/trac/htdocs/common
+    Alias /chrome/site /home/okfn/var/trac/htdocs/site
+
+    ScriptAlias / /home/okfn/var/trac/cgi-bin/trac.cgi/
+    <Location />
+      SetEnv TRAC_ENV /home/okfn/var/trac/trac.openspending.org/
+    </Location>
+
+    ErrorLog /var/log/apache2/trac.openspending.org.error.log
+    CustomLog /var/log/apache2/trac.openspending.org.custom.log combined
+</VirtualHost>
+
