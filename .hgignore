@@ -1,5 +1,6 @@
 syntax: glob
 sandbox/*
+password/*
 
 # any pem files you have lying around (e.g. for aws)
 *.pem
