@@ -11,9 +11,6 @@ This is a sample config for a wiki that isn't part of a farm but does use
 farmconfig for common stuff. Here we define what has to be different from
 the farm's common settings.
 """
-# Need to set the path since file will be installed in wiki instance dir
-import sys
-sys.path.insert(0, '/etc/moin')
 # we import the FarmConfig class for common defaults of our wikis:
 from farmconfig import FarmConfig
 
@@ -27,3 +24,7 @@ class Config(FarmConfig):
 
     # follow HelpOnAccessControlLists example for a CMS
     acl_rights_before = u'All:read,write,delete,revert,admin'
+
+    data_dir = '/home/okfn/var/moinmoin/wiki/board.okfn.org/data'
+
+

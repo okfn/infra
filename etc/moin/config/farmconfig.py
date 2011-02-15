@@ -38,17 +38,7 @@
 #    for filenames on the shell / commandline, you must use ".*" as it is a RE.
 #  * in the right part, "^" means "beginning" and "$" means "end"
 
-wikis = [
-
-    # wikiname, url regular expression
-    # ---------------------------------------------------------------
-    ("mywiki", r".*"),   # this is ok for a single wiki
-
-    # for multiple wikis, do something like this:
-    #("wiki1", r"^http://wiki1\.example\.org/.*$"),
-    #("wiki2", r"^https?://wiki2\.example\.org/.*$"),
-]
-
+from wikilist import wikis
 
 # Common configuration for all wikis ----------------------------------
 
@@ -162,4 +152,7 @@ class FarmConfig(multiconfig.DefaultConfig):
 
     # Enable graphical charts, requires gdchart.
     #chart_options = {'width': 600, 'height': 300}
+
+    data_underlay_dir = '/home/okfn/var/moinmoin/underlay/'
+    url_prefix_static = '/moinhtdocs'
 
