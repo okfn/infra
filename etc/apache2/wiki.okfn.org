@@ -1,7 +1,10 @@
 <VirtualHost *:80>
   ServerName wiki.okfn.org
   Alias /moinhtdocs /usr/share/moin/htdocs
-  ScriptAlias / /home/okfn/var/moin/okfn_public_wiki/moin.cgi/
+  ScriptAlias / /home/okfn/var/moinmoin/bin/moin.cgi/
+
+    #FastCgiServer /home/okfn/var/moinmoin/bin/moin.fcgi -idle-timeout 60 -processes 1
+    # ScriptAlias / "/home/okfn/var/moinmoin/bin/moin.fcgi"
 
   Redirect permanent /projects http://wiki.okfn.org/p
 

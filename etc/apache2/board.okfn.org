@@ -1,13 +1,13 @@
 <VirtualHost *:80>
     ServerName board.okfn.org
 
-Alias /moinhtdocs /usr/share/moin/htdocs
-ScriptAlias / "/home/okfn/var/moin/okfn_private_wiki/moin.cgi/"
+    Alias /moinhtdocs /usr/share/moin/htdocs
+    ScriptAlias / /home/okfn/var/moinmoin/bin/moin.cgi/
 
 <Location />
     AuthType Basic
     AuthName "Open Knowledge Foundation Restricted Area"
-    AuthUserFile /home/okfn/etc/apache2/okfn_auth_passwords
+    AuthUserFile /home/okfn/etc/password/okfn_auth_passwords
     AuthGroupFile /home/okfn/etc/apache2/okfn_auth_groups
 
     Require group board
