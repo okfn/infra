@@ -1,5 +1,6 @@
 # generic
 okfn: okfn rgrp jwyg 
+board: board rgrp
 # system administration
 sysadmin: okfn rgrp jwyg
 # geo project
