@@ -1,6 +1,6 @@
 <VirtualHost *:80>
-    ServerName ckan.org
-    ServerAlias www.ckan.org
+    ServerName trac.ckan.org
+    ServerAlias www.ckan.org ckan.org
     SetEnv PYTHONPATH /home/kforge/knowledgeforge.net-0.17/bin
 
     <Location /_agilo>
