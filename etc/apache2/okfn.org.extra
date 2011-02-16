@@ -8,6 +8,7 @@ ServerAlias blog.ckan.org
 ServerAlias okcon.org www.okcon.org
 ServerAlias opendatamanual.org www.opendatamanual.org
 ServerAlias openarthistory.org www.openarthistory.org
+ServerAlias ckan.org www.ckan.org
 
 Alias /moinhtdocs /usr/share/moin/htdocs
 
@@ -36,6 +37,7 @@ RewriteRule    ^/okd/(.*)  http://okd.okfn.org/  [R]
 
 RewriteCond %{REQUEST_URI} !^/(files|geo|wsfii|sysadmin)/.*$
 RewriteEngine  on
+
 RewriteRule    ^(.*)\.html$  $1/  [R]
 
 # 2010-08
@@ -44,6 +46,17 @@ RedirectMatch   permanent    ^/((communia|okforums).*)  http://www.okfn.org/even
 Redirect permanent /participate http://okfn.org/get-involved
 Redirect permanent /board/wiki http://board.okfn.org/wiki
 Redirect permanent /about/advisory_board http://okfn.org/about/people
+
+# 2011-02-16 ckan.org
+RewriteCond %{HTTP_HOST} ^ckan.org$
+# RewriteCond %{REQUEST_URI} ^/(ticket|timeline|wiki)(.*)
+RewriteRule ^/(ticket|timeline|wiki|query|milestone|roadmap)(.*)$ http://trac.ckan.org/$1$2
+
+RewriteCond %{HTTP_HOST} ^blog.ckan.org$
+RewriteRule ^(.*)$ http://ckan.org$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www.ckan.org$
+RewriteRule ^(.*)$ http://ckan.org$1 [R=301,L]
 
 # have to repeat this here from apache2.conf for php to work
 # ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
