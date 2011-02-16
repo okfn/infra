@@ -1,0 +1,21 @@
+<VirtualHost *:80>
+    ServerName energy.publicdata.eu
+
+    DocumentRoot /home/okfn/var/srvc/energy.publicdata.eu/webroot
+
+    RewriteEngine On
+    RewriteRule ^$ /ee/ [L,R]
+    RewriteRule ^/$ /ee/ [L,R]
+
+    Alias /ee /home/okfn/var/srvc/energy.publicdata.eu/bin
+    <Directory /home/okfn/var/srvc/energy.publicdata.eu/bin>
+       Options Indexes FollowSymLinks MultiViews ExecCGI
+       AllowOverride All
+       Order allow,deny
+       Allow from all
+    </Directory>
+
+    ErrorLog /var/log/apache2/energy.publicdata.eu.error.log
+    CustomLog /var/log/apache2/energy.publicdata.eu.custom.log combined
+</VirtualHost>
+
