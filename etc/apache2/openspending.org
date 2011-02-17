@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+    ServerName openspending.org
+    ServerAlias data.wheredoesmymoneygo.org
+    ServerAlias store.wheredoesmymoneygo.org
+    ServerAlias london.wheredoesmymoneygo.org
+
+    WSGIScriptAlias / /home/okfn/var/srvc/openspending.org/pyenv/bin/openspending.org.py
+    WSGIDaemonProcess openspending.org display-name=OPENSPENDING processes=2 threads=10 maximum-requests=500
+    WSGIProcessGroup openspending.org
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    ErrorLog /var/log/apache2/openspending.org.error.log
+    CustomLog /var/log/apache2/openspending.org.custom.log combined
+</VirtualHost>
