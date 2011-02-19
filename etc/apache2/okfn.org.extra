@@ -9,6 +9,7 @@ ServerAlias okcon.org www.okcon.org
 ServerAlias opendatamanual.org www.opendatamanual.org
 ServerAlias openarthistory.org www.openarthistory.org
 ServerAlias ckan.org www.ckan.org
+ServerAlias okfn.de www.okfn.de
 
 Alias /moinhtdocs /usr/share/moin/htdocs
 
