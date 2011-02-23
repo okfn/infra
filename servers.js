@@ -333,5 +333,15 @@
     "provider": "rackspace", 
     "spec": "2GB", 
     "type": "cloud"
+  },
+  "us5": {
+    "cost per month": null, 
+    "created": "2011-02", 
+    "location": "ord1", 
+    "notes": null, 
+    "owner": "okfn", 
+    "provider": "rackspace", 
+    "spec": "1GB", 
+    "type": "cloud"
   }
 }
