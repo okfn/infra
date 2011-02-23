@@ -21,6 +21,17 @@
     "spec": "m1.small", 
     "type": "ec2"
   }, 
+  "epsi": {
+    "cost per month": null,
+    "created": "2011-02", 
+    "ip": "178.79.153.167", 
+    "ip2": "epsiplatform.okfn.org", 
+    "location": "linode-UK", 
+    "owner": "epsi", 
+    "provider": "linode", 
+    "spec": "linode512", 
+    "type": "dedicated-virtual"
+  }, 
   "eu0": {
     "cost per month": "49", 
     "created": "2007", 
