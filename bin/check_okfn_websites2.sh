@@ -5,10 +5,13 @@
 
 
 DOMAIN="okfn.org"
-MAX_HOST=16
-HOST_NAME[16]="us1" # EXPLICITLY configure names of non "euXY" server hostnames
-APACHE="0 1 2 3 4 5 7 8 9 13 14 15 16"
-NGINX="10 12"
+MAX_HOST=19
+# EXPLICITLY configure names of non "euXY" server hostnames
+HOST_NAME[17]="us1" 
+HOST_NAME[18]="us4" 
+HOST_NAME[19]="us5" 
+APACHE="0 1 2 3 4 5 7 8 9 13 14 15 16 17"
+NGINX="10 12 16"
 SQUID="6"
 NO_OKFN="6"  # Servers where role account "okfn" does not work
 
