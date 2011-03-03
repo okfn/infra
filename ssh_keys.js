@@ -12,7 +12,8 @@
       "steko",
       "ntoedtma",
       "jasonkitcat",
-      "sebbacon"
+      "sebbacon",
+      "ddie"
     ],
     "ckan": [
       "rgrp",
@@ -144,6 +145,17 @@
     {
       "name": "Seb Bacon",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA0ngiahXTIVmP1hPowZ5qtfF21k/V7zJZikMB1J6YJWYjT+A2GiXH5V2wpdOTvc6hmeZHYNnd6Ah+uN4vLNjzE5FcUTCgrA10jXogNwLIdaVvS0dkvLpQS2rZZ5Av9vw3Lrb7CHiyiRcE8PWlGMxwm8MQ/TFIkun6ZQu/EStKXYmfbwtupFGoo70MoiT+wAJehEt1f8QwUJ9KrdCj3vOqwhXuHwT1OGGBxuSKDwx0p2oEgDst+At1zJ6TuFEhwPnI9C7kPMiS3FJWP07fnocYu5/Jb4fC3gClkBX2oLmDasGY/aiwglHmbXQQYpsm1ifq6OEIHArvgFDvAHKacuK3ow== user@ubuntu810desktop"
+    },
+    "acracia":
+    {
+      "name": "Tatiana de la O",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEArDTdpyR7ey79ONUaM7aHwuhibPo1TTX1Uyb3/q71rRN61gIzQG3eCxBVM3Y0yzGzdzDv+h4nXO7tRu1g5FStGH5iDIgFbQVnYEc7V1Yrtmw7JPF0o+UnbbbPGqZlMvxrB3Bdf5qYDEeR3EMHr3j7lwC3eFXFaA7Q/CJllCIdLh5mxrjFS7yh2TjY5uNIhJ1yMCoYHn6b+WdxRd4r5JXXJDI6o/mAEmSrcbNbXssKFM9+Tugj0Z85Vd2wJJa3ysbhadqtyYgHpKF01vTuzhHOOj8hjm7FoBGMhdhtj0W6UuzWIvH9VWy+ghtZkIDfMkVIbnz92uoYivVK4H9IMcCw5Q== acracia@razorgirl"
+    },
+    "ddie":
+    {
+      "name": "Daniel Dietrich",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwf5FP4Mp/+/0j9Wi3dAMp5AXPYVn0Wg7OCeXa7gzWJJDCw14vWNWgXrhGX6MdEKj4puzur00kk0xOQ6KCswVmw/dc10FwJDwgxADGp+jztjo+4Ru/GSg/jvKnk2WWJtbIEdeJTjWs2fSRF9lDeJ2UMxEBcyTrGqJXmsSjQnmgn9a1RkAFSxAbb+DNAtlgqvfzSDpZLjTRR/p7Gq+jyPhftmsO7UNhBP+JfTKs3E6PfjEEzHnzg/zP9J29mhnCGSwqkY2doUB+ynonwVWFh4FzvWlYL8O+lVPVMp8Bvz7kKZXgtVpIVXP1AsIosLjPJW6Yd+zUEme0tax/jPWKY64uQ== ddie@jai.local"
     }
+
   }
 }
