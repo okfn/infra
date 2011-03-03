@@ -148,7 +148,7 @@ def sysadmin_repo_clone():
         ourrun = run
     
     if not exists(SYSADMIN_REPO_PATH):
-        ourrun('hg clone https://knowledgeforge.net/okfn/sysadmin %s' %
+        ourrun('hg clone https://bitbucket.org/okfn/sysadmin %s' %
                 SYSADMIN_REPO_PATH)
     if not exists(OKFN_ETC):
         ourrun('ln -s %s %s' % (SYSADMIN_REPO_PATH + '/etc', OKFN_ETC))
