@@ -231,13 +231,9 @@ def _ssh_add_public_key(public_key, dest_user):
         sshdir = userdir + '/.ssh'
         if not exists(sshdir):
             _sudo('mkdir %s' % sshdir)
-        # simple echo "" >> ... will not work due to insufficient privileges if
-        # doing this as non-root user and using sudo
-        _sudo('''bash -c 'echo "%s" >> %s' '''
-                % (public_key, authorized_keys_path)
-            )
-        _sudo('chown -R %s:%s %s' % (dest_user, dest_user, sshdir))
-        _sudo('chmod go-rwx -R %s' % sshdir)
+            _sudo('chown -R %s:%s %s' % (dest_user, dest_user, sshdir))
+            _sudo('chmod go-rwx -R %s' % sshdir)
+        append(public_key, authorized_keys_path, use_sudo=True)
 
 def ssh_add_private_key(key_path, user='root'):
     '''Add private key at `key_path` for `user`.
