@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+    ServerName wiki.publicdata.eu
+    DocumentRoot /home/okfn/var/srvc/wiki.publicdata.eu
+
+    #Alias /wiki /home/okfn/var/srvc/wiki.publicdata.eu/wiki/index.php
+
+    ErrorLog /var/log/apache2/wiki.publicdata.eu.error.log
+    CustomLog /var/log/apache2/wiki.publicdata.eu.custom.log combined
+</VirtualHost>
+
