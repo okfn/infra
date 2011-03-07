@@ -13,13 +13,13 @@ if ! id ckan >/dev/null 2>&1 ; then
   sudo usermod -a -G ckan okfn
 fi 
 
-exit
-
 # remove old CKAN data directories
 sudo rm -fR  /var/{lib,backup,log}/ckan/
 
 
 sudo mkdir -p 0755  /etc/ckan
+
+sudo mkdir -p /var/backup
 sudo mkdir -m 2750  /var/{lib,backup,log}/ckan/
 sudo chgrp -R ckan /var/{lib,backup,log}/ckan/
 
