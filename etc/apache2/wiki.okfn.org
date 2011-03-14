@@ -1,12 +1,13 @@
 <VirtualHost *:80>
   ServerName wiki.okfn.org
   Alias /moinhtdocs /usr/share/moin/htdocs
-  ScriptAlias / /home/okfn/var/moinmoin/bin/moin.cgi/
-
-    #FastCgiServer /home/okfn/var/moinmoin/bin/moin.fcgi -idle-timeout 60 -processes 1
-    # ScriptAlias / "/home/okfn/var/moinmoin/bin/moin.fcgi"
-
   Redirect permanent /projects http://wiki.okfn.org/p
+
+  # ScriptAlias / /home/okfn/var/moinmoin/bin/moin.cgi/
+
+  WSGIScriptAlias / /home/okfn/var/moinmoin/bin/moin.wsgi/
+  WSGIDaemonProcess wiki.okfn.org display-name=wiki.okfn.org user=www-data group=www-data processes=5 threads=10 maximum-requests=1000 umask=0007
+  WSGIProcessGroup wiki.okfn.org
 
   ErrorLog /var/log/apache2/wiki.okfn.org.error.log
   CustomLog /var/log//apache2/wiki.okfn.org.log combined
@@ -15,9 +16,13 @@
 <VirtualHost *:443>
   ServerName wiki.okfn.org
   Alias /moinhtdocs /usr/share/moin/htdocs
-  ScriptAlias / /home/okfn/var/moin/okfn_public_wiki/moin.cgi/
-
   Redirect permanent /projects https://wiki.okfn.org/p
+
+  # ScriptAlias / /home/okfn/var/moin/okfn_public_wiki/moin.cgi/
+
+  WSGIScriptAlias / /home/okfn/var/moinmoin/bin/moin.wsgi/
+  WSGIDaemonProcess wiki.okfn.org display-name=wiki.okfn.org user=www-data group=www-data processes=5 threads=10 maximum-requests=1000 umask=0007
+  WSGIProcessGroup wiki.okfn.org
 
   ErrorLog /var/log/apache2/wiki.okfn.org.error.log
   CustomLog /var/log//apache2/wiki.okfn.org.log combined
