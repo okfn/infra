@@ -156,3 +156,5 @@ class FarmConfig(multiconfig.DefaultConfig):
     data_underlay_dir = '/home/okfn/var/moinmoin/underlay/'
     url_prefix_static = '/moinhtdocs'
 
+    surge_action_limits = None
+
