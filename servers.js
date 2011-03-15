@@ -340,7 +340,7 @@
     "created": "2011-03", 
     "location": "ord1", 
     "notes": null, 
-    "owner": "okfn", 
+    "owner": "LOD2", 
     "provider": "rackspace", 
     "spec": "1GB", 
     "type": "cloud"
@@ -350,7 +350,7 @@
     "created": "2011-02", 
     "location": "ord1", 
     "notes": null, 
-    "owner": "LOD2", 
+    "owner": "okfn", 
     "provider": "rackspace", 
     "spec": "2GB", 
     "type": "cloud-managed"
