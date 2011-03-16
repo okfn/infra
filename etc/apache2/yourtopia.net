@@ -4,6 +4,10 @@
     ServerAlias openhdi.dev.okfn.org
     ServerAlias yourtopia.net www.yourtopia.net
 
+    RewriteEngine on
+    RewriteCond %{HTTP_HOST} ^.*.openhdi\.org$ [NC]
+    RewriteRule ^(.*)$ http://yourtopia.net$1 [R=301,L]
+
     WSGIScriptAlias / /home/okfn/var/srvc/yourtopia.net/bin/yourtopia.net.wsgi
     WSGIDaemonProcess yourtopia.net display-name=yourtopia.net processes=4 threads=1 maximum-requests=1000
 
