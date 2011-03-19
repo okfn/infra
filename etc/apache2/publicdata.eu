@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+    ServerName publicdata.eu
+    ServerAlias www.publicdata.eu
+
+    WSGIScriptAlias / /home/okfn/var/srvc/dcat/publicdata.eu.py
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    ErrorLog /var/log/apache2/publicdata.eu.error.log
+    CustomLog /var/log/apache2/publicdata.eu.custom.log combined
+</VirtualHost>
+

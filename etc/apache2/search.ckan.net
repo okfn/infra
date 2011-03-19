@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+    ServerName search.ckan.net
+    ServerAlias www.search.ckan.net
+
+    WSGIScriptAlias / /home/okfn/var/srvc/dcat/search.ckan.net.py
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    ErrorLog /var/log/apache2/search.ckan.net.error.log
+    CustomLog /var/log/apache2/search.ckan.net.custom.log combined
+</VirtualHost>
+

@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+    ServerName opendatasearch.org
+    ServerAlias www.opendatasearch.org
+
+    WSGIScriptAlias / /home/okfn/var/srvc/dcat/opendatasearch.org.py
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    ErrorLog /var/log/apache2/opendatasearch.org.error.log
+    CustomLog /var/log/apache2/opendatasearch.org.custom.log combined
+</VirtualHost>
+
