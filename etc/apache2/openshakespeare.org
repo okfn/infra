@@ -9,6 +9,10 @@
     # pass authorization info on (needed for e.g. rest apis)
     WSGIPassAuthorization On
 
+    RewriteEngine on
+    RewriteCond %{HTTP_HOST} ^www\.openshakespeare\.org$ [NC]
+    RewriteRule ^(.*)$ http://openshakespeare.org$1 [R=301,L]
+
     <Location /admin>
         AuthType Basic
         AuthName "Administration"
