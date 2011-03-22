@@ -1,0 +1,51 @@
+#!/bin/bash
+
+CONF="/etc/open-ports-checker.conf"
+
+[ -f ${CONF} ] || exit 0
+
+[ `id -u` = 0 ] || SUDO="sudo"
+
+build_regexp() {
+  cat ${CONF} | sed -e 's,\*,__WC__,g' | while read proto addr port proc ; do
+ 
+    proc=`echo ${proc}|sed -e 's,^\__WC__$,.*,'`
+    addr=`echo ${addr}|sed -e 's,^\__WC__$,[0-9a-f\:\.]*,'` 
+
+    case ${proto} in
+      tcp)        echo -n "${proto} *[0-9]* *[0-9]* *${addr}:${port} *0\.0\.0\.0:\\\* *LISTEN *[0-9]*/${proc} *|"   ;;
+      tcp6)       echo -n "${proto} *[0-9]* *[0-9]* *${addr}:${port} *:::\\\* *LISTEN *[0-9]*/${proc} *|"           ;;
+      tcp__WC__)  echo -n "tcp6? *[0-9]* *[0-9]* *${addr}:${port} *(0\.0\.0\.0|::):\\\* *LISTEN *[0-9]*/${proc} *|" ;;
+      udp)        echo -n "${proto} *[0-9]* *[0-9]* *${addr}:${port} *0\.0\.0\.0:\\\* *[0-9]*/${proc} *|"   ;;
+      udp6)       echo -n "${proto} *[0-9]* *[0-9]* *${addr}:${port} *:::\\\* *[0-9]*/${proc} *|"           ;;
+      udp__WC__)  echo -n "udp6? *[0-9]* *[0-9]* *${addr}:${port} *(0\.0\.0\.0|::):\\\* *[0-9]*/${proc} *|" ;;
+    esac
+
+  done
+  echo ""
+
+} 
+
+
+parse_netstat() {
+  # This does not work because bash eats backslashes :-(
+  # line=`build_regexp`
+
+  build_regexp | while read line ; do
+    REGEXP="^(${line}WILL_NEVER_MATCH)\$"
+    ${SUDO} netstat -nlp46 | tail -n +3 | egrep -v "${REGEXP}"
+  done
+}
+
+
+result=`parse_netstat|sed ':a;N;$!ba;s/\n/__NEWLINE__/g'`
+
+if [ "${result}" = "" ] ; then
+  echo "OK: All open listening ports are whitelisted in ${CONF}"
+  exit 0
+fi
+
+echo "WARNING: I found open listening ports which are not whitelisted in ${CONF}:" 1>&2
+echo "${result}" | sed -e 's,__NEWLINE__,\n,g' 1>&2
+exit 1
+
