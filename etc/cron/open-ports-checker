@@ -1,8 +1,13 @@
 #!/bin/bash
 
 CONF="/etc/open-ports-checker.conf"
+TMPDIR="/tmp/open-ports-checker-${RANDOM}"
 
 [ -f ${CONF} ] || exit 0
+
+# Go into some empty directory just in case bash tries to expand wildcards
+mkdir ${TMPDIR}
+cd ${TMPDIR}
 
 [ `id -u` = 0 ] || SUDO="sudo"
 
@@ -39,6 +44,8 @@ parse_netstat() {
 
 
 result=`parse_netstat|sed ':a;N;$!ba;s/\n/__NEWLINE__/g'`
+rmdir ${TMPDIR}
+
 
 if [ "${result}" = "" ] ; then
   echo "OK: All open listening ports are whitelisted in ${CONF}"
