@@ -48,7 +48,7 @@ rmdir ${TMPDIR}
 
 
 if [ "${result}" = "" ] ; then
-  echo "OK: All open listening ports are whitelisted in ${CONF}"
+  [ "X${1}" = "X-v" ] && echo "OK: All open listening ports are whitelisted in ${CONF}"
   exit 0
 fi
 
