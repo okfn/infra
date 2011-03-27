@@ -31,8 +31,9 @@ MKDIR=/bin/mkdir
 . /etc/backup/backuprc
 
 EXCLUDES=/etc/backup/backup_exclude;
+INCLUDES=/etc/backup/backup_include_eu1;
 HOST=eu1.okfn.org;
-TARGET=/var/lib/mailman;
+TARGET=/;
 LOCK=/tmp/lock.snapshot.eu1;
 USER=root;
 #KEY=/root/.ssh/eu1-backup
@@ -54,6 +55,11 @@ fi;
 
 if [ ! -e "${EXCLUDES}" ]; then
     echo The excludes file: ${EXCLUDES} does not exist
+    exit 1
+fi
+
+if [ ! -e "${INCLUDES}" ]; then
+    echo The includes file: ${INCLUDES} does not exist
     exit 1
 fi
 
@@ -105,9 +111,10 @@ fi;
 # is unlinked first.  If it were not so, this would copy over the other
 # snapshot(s) too!
 $NICE -n 19 $RSYNC								\
-	-azR --delete --delete-excluded				\
-	--exclude-from="$EXCLUDES"				\
-        -e "$SSH -i $KEY"                                               \
+  -azR --delete --delete-excluded				\
+  --include-from="$INCLUDES"                              \
+  --exclude-from="$EXCLUDES"				                      \
+  -e "$SSH -i $KEY"                                               \
 	$USER@$HOST:$TARGET $SNAPSHOT_RW/$HOST/daily.0 ;
 
 # step 5: update the mtime of daily.0 to reflect the snapshot time
