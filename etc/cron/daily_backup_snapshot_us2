@@ -35,7 +35,8 @@ HOST=us2.okfn.org;
 TARGET=/home/okfn;
 LOCK=/tmp/lock.snapshot.us2;
 USER=okfn;
-KEY=/root/.ssh/eu1-backup
+#KEY=/root/.ssh/eu1-backup
+KEY=/etc/ssh/ssh_host_rsa_key
 
 # ------------- the script itself --------------------------------------
 

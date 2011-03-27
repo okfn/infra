@@ -35,7 +35,8 @@ HOST=eu1.okfn.org;
 TARGET=/var/lib/mailman;
 LOCK=/tmp/lock.snapshot.eu1;
 USER=root;
-KEY=/root/.ssh/eu1-backup
+#KEY=/root/.ssh/eu1-backup
+KEY=/etc/ssh/ssh_host_rsa_key
 
 # ------------- the script itself --------------------------------------
 
