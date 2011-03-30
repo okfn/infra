@@ -12,6 +12,8 @@ ServerAlias ckan.org www.ckan.org
 ServerAlias okfn.de www.okfn.de
 ServerAlias bigclean.org www.bigclean.org
 ServerAlias blog.openspending.org
+ServerAlias opengovernmentdata.org www.opengovernmentdata.org
+ServerAlias rawdatanow.com www.rawdatanow.com
 
 Alias /moinhtdocs /usr/share/moin/htdocs
 
