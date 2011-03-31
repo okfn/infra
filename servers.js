@@ -364,5 +364,15 @@
     "provider": "rackspace", 
     "spec": "1GB", 
     "type": "cloud-managed"
+  },
+  "us6": {
+    "cost per month": null, 
+    "created": "2011-03", 
+    "location": "ord1", 
+    "notes": null, 
+    "owner": "OpenSpending", 
+    "provider": "rackspace", 
+    "spec": "4GB", 
+    "type": "cloud"
   }
 }
