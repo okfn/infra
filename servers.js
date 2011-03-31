@@ -374,5 +374,15 @@
     "provider": "rackspace", 
     "spec": "4GB", 
     "type": "cloud"
+  },
+  "us7": {
+    "cost per month": null, 
+    "created": "2011-03", 
+    "location": "ord1", 
+    "notes": null, 
+    "owner": "okf-dev", 
+    "provider": "rackspace", 
+    "spec": "2GB", 
+    "type": "cloud"
   }
 }
