@@ -360,9 +360,9 @@
     "created": "2011-03", 
     "location": "ord1", 
     "notes": null, 
-    "owner": "BuildBot", 
+    "owner": "okf-dev", 
     "provider": "rackspace", 
-    "spec": "1GB", 
+    "spec": "2GB", 
     "type": "cloud"
   }
 }
