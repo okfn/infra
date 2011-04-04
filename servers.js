@@ -345,6 +345,26 @@
     "spec": "1GB", 
     "type": "cloud"
   },
+  "us4": {
+    "cost per month": null, 
+    "created": "2011-04", 
+    "location": "ord1", 
+    "notes": null, 
+    "owner": "DataGM/NL", 
+    "provider": "rackspace", 
+    "spec": "1GB", 
+    "type": "cloud"
+  },
+  "us5": {
+    "cost per month": null, 
+    "created": "2011-04", 
+    "location": "ord1", 
+    "notes": null, 
+    "owner": "OKFN", 
+    "provider": "rackspace", 
+    "spec": "2GB", 
+    "type": "cloud"
+  },
   "us6": {
     "cost per month": null, 
     "created": "2011-03", 
