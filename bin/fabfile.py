@@ -4,7 +4,24 @@
 
 You can specify host and username using --hosts and --user options
 
-TODO: 2010-05-06 start writing tests.
+TODO: 
+ * [2010-05-06] start writing tests.
+ * make all commands idempotent so they can be run twice without doing any damage
+ * get rid of errors 'stdin: is not a tty' and '/root/.bash_profile: Permission denied'
+ * Change layout of mount points for instance-store based EC2 instances
+ * instance_setup():
+  * Also lock account 'ubuntu'
+  * add munin_node_install()
+  * add backup_setup()
+ * Create new funtions and add them to instance_setup():
+  * install and setup postfix
+  * set root mail alias & send testmail
+  * add customizations specific to managed rackspace servers (fail2ban, ssh password exceptions)
+  * install OpenPortChecker
+  * configure firewall?
+  * cutomize .bashrc? 
+  * add new server to nagios?
+
 '''
 from __future__ import with_statement
 import os
@@ -82,8 +99,8 @@ def _mkdir(dir):
 ## ============================
 ## Setup instances
 
-def instance_setup(okfn_id):
-    '''Setup a new instance named by `okfn_id` in standard way.
+def instance_setup_old(okfn_id):
+    '''Obsoleted. Setup a new instance named by `okfn_id` the (old) standard way.
 
         * hostname
         * adduser
@@ -92,18 +109,54 @@ def instance_setup(okfn_id):
         * etc_in_mercurial
         * sysadmin_repo_clone
     '''
-    hostname(okfn_id)
+    set_hostname(okfn_id)
     adduser('okfn')
     setup_sudoers()
     ssh_add_public_key_group('../ssh_keys.js', 'sysadmin', 'okfn')
     etc_in_mercurial()
     sysadmin_repo_clone()
-    # BACKUP?
-    # MUNIN?
+    
+
+def instance_setup(hostname='', harden=False):
+    '''Setup a new instance a in standard way:
+
+        * set_hostname (if hostname is set)
+        * install_set - vim, sudo, upgrade 
+        * etc_in_mercurial
+        * default_shell_bash
+        * adduser - okfn
+        * setup_sudoers
+        * ssh_add_public_key_group - sysadmin,okfn
+        * lock_user - root (if harden==True)
+        * harden_sshd (if harden==True)
+        * sysadmin_repo_clone
+     '''
+
+    
+    if hostname :
+        set_hostname(hostname)
+    install_set('basics', True)
+    etc_in_mercurial()
+    default_shell_bash()
+    adduser('okfn')
+    #user_shell_bash('okfn')
+    setup_sudoers()
+    ssh_add_public_key_group('../ssh_keys.js', 'sysadmin', 'okfn')
+    if harden :
+        lock_user(username='root')
+        harden_sshd()
+    sysadmin_repo_clone()
     
 
 ## ============================
 ## User and sudo
+
+def default_shell_bash():
+    '''Set the default shell for new users to bash.
+    '''
+    assert exists('/bin/bash'), '/bin/bash not found'
+    _sudo('useradd -D --shell /bin/bash')
+
 
 def adduser(username='okfn'):
     '''Create a user with username `username` (defaults to okfn).
@@ -111,6 +164,15 @@ def adduser(username='okfn'):
     assert not exists('/home/%s' % username), '%s user already exists' % username
     # use useradd rather than adduser so as to not be prompted for info
     _sudo('useradd --create-home %s' % username)
+
+
+def user_shell_bash(username='okfn'):
+    '''Set the shell of user `username` to /bin/bash (defaults to okfn).
+    '''
+    assert exists('/home/%s' % username), '%s user does not exist' % username
+    assert exists('/bin/bash'), '/bin/bash not found'
+    _sudo('usermod --shell /bin/bash %s' % username)
+
 
 def setup_sudoers():
     '''Add standard okfn as admin config to sudoers'''
@@ -126,10 +188,16 @@ def setup_sudoers():
     sed(fn, in2, out2, backup='', use_sudo=True)
 
 
+def lock_user(username='root'):
+    '''Lock password of user `username` (defaults to root).
+    '''
+    _sudo('passwd --lock %s' % username)
+
+
 ## ============================
 ## Miscellaneous sysadmin setup
 
-def hostname(new_hostname):
+def set_hostname(new_hostname):
     _sudo('hostname %s' % new_hostname)
     _sudo('echo %s > /etc/hostname' % new_hostname)
 
@@ -244,6 +312,15 @@ def ssh_add_private_key(key_path, user='root'):
     key_name = os.path.basename(key_path)
     dest = _join(_SSH.ssh_dir(user), key_name)
     put(key_path, dest)
+
+
+def harden_sshd():
+    '''Disables root login and password based login via ssh.
+    '''
+    config = '/etc/ssh/sshd_config'
+    sed(config, '^[ \\t#]*(PermitRootLogin)[ \\t]+[yn][eo].*',        '\\1 no', backup='.ORIG', use_sudo=True)
+    sed(config, '^[ \\t#]*(PasswordAuthentication)[ \\t]+[yn][eo].*', '\\1 no', backup='',      use_sudo=True)
+    _sudo('restart ssh')
 
 
 ## =========================================
