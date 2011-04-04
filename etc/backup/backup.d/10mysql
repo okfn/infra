@@ -1,9 +1,15 @@
-#!/bin/bash
+if ! [ -z ${DB_DUMP_DIR} ] ; then
+    OUTPUT=${DB_DUMP_DIR}/mysqldump.sql
+    MYSQL_OPTIONS="--opt --all-databases"
 
-. /etc/backup/backup.d/common
+    if ! [ -z ${MYSQL_PASSWORD} ] ; then
+      MYSQL_OPTIONS="${MYSQL_OPTIONS} --password=${MYSQL_PASSWORD}"
+    fi
 
-OUTPUT=${DB_DUMP_DIR}/mysqldump.sql
-
-mkdir -p ${DB_DUMP_DIR}
-rm -f -- ${OUTPUT}
-mysqldump --opt --all > ${OUTPUT}
+    ${MKDIR} -p ${DB_DUMP_DIR}
+    ${RM} -f -- ${OUTPUT}{,.gz} 
+    /usr/bin/mysqldump ${MYSQL_OPTIONS} > ${OUTPUT}
+    /bin/gzip ${OUTPUT}
+else
+    echo "ERROR: DB_DUMP_DIR not set, cannot dump mysql" 1>&2
+fi

@@ -1,9 +1,10 @@
-#!/bin/bash
+if ! [ -z ${DB_DUMP_DIR} ] ; then
+    OUTPUT=${DB_DUMP_DIR}/pgdump.sql
 
-. /etc/backup/backup.d/common
-
-OUTPUT=${DB_DUMP_DIR}/pgdump.sql
-
-mkdir -p ${DB_DUMP_DIR}
-rm -f -- ${OUTPUT}
-su postgres -c pg_dumpall > ${OUTPUT}
+    ${MKDIR} -p ${DB_DUMP_DIR}
+    ${RM} -f -- ${OUTPUT}{,.gz}
+    /usr/bin/sudo -u postgres /usr/bin/pg_dumpall > ${OUTPUT}
+    /bin/gzip ${OUTPUT}
+else
+    echo "ERROR: DB_DUMP_DIR not set, cannot dump postgres" 1>&2
+fi

@@ -29,6 +29,7 @@ MKDIR=/bin/mkdir
 # need ${MOUNT_DEVICE} and ${SNAPSHOT_RW} from the following file
 # (their locations will differ from host to host)
 . /etc/backup/backuprc
+[ -f /etc/backup/backuprc.passwd ] && . /etc/backup/backuprc.passwd
 
 EXCLUDES=/etc/backup/backup_exclude;
 INCLUDES=/etc/backup/backup_include
@@ -93,11 +94,13 @@ fi;
 
 # step 3.5: run /etc/backupscripts/00mysql, 01syncfoo, etc
 #
+set +e
 for scr in ${BACKUP_SCRIPTDIR}/[0-9][0-9]*; do
 	if [ -x ${scr} ]; then
 		${scr}
 	fi
 done
+set -e
 
 # step 4: rsync from the system into the latest snapshot (notice that
 # rsync behaves like cp --remove-destination by default, so the destination
