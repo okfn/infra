@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. /etc/backupscripts/common
+. /etc/backup/backup.d/common
 
 OUTPUT=${DB_DUMP_DIR}/pgdump.sql
 
