@@ -8,7 +8,6 @@
       "casbon",
       "benosteen",
       "okfn-sysadmin",
-      "johnbywater",
       "steko",
       "ntoedtma",
       "jasonkitcat",
@@ -18,11 +17,9 @@
     "ckan": [
       "rgrp",
       "dread",
-      "johnbywater",
       "pudo",
       "ww",
-      "thejimmyg",
-      "memespring"
+      "thejimmyg"
     ]
   },
   "users":
