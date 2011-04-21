@@ -385,4 +385,24 @@
     "spec": "2GB", 
     "type": "cloud"
   }
+  "us8": {
+    "cost per month": null, 
+    "created": "???", 
+    "location": "ord1", 
+    "notes": null, 
+    "owner": "???", 
+    "provider": "rackspace", 
+    "spec": "???", 
+    "type": "cloud"
+  }
+  "us9": {
+    "cost per month": null, 
+    "created": "2011-04", 
+    "location": "ord1", 
+    "notes": null, 
+    "owner": "OKFN", 
+    "provider": "rackspace", 
+    "spec": "2GB", 
+    "type": "cloud"
+  }
 }
