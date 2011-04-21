@@ -387,12 +387,12 @@
   },
   "us8": {
     "cost per month": null, 
-    "created": "???", 
+    "created": "2011-04", 
     "location": "ord1", 
     "notes": null, 
-    "owner": "???", 
+    "owner": "OKFN", 
     "provider": "rackspace", 
-    "spec": "???", 
+    "spec": "2GB", 
     "type": "cloud"
   },
   "us9": {
