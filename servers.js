@@ -384,7 +384,7 @@
     "provider": "rackspace", 
     "spec": "2GB", 
     "type": "cloud"
-  }
+  },
   "us8": {
     "cost per month": null, 
     "created": "???", 
