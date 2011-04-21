@@ -15,19 +15,17 @@
 ###############################################################################
 ##
 ## Start monit in the background (run as a daemon):
-#
-# set daemon  120           # check services at 2-minute intervals
-#     with start delay 240  # optional: delay the first check by 4-minutes
-#                           # (by default check immediately after monit start)
-#
-#
+
+set daemon  120
+
+
 ## Set syslog logging with the 'daemon' facility. If the FACILITY option is
 ## omitted, monit will use 'user' facility by default. If you want to log to 
 ## a stand alone log file instead, specify the path to a log file
-#
-# set logfile syslog facility log_daemon                       
-#
-#
+
+set logfile syslog facility log_daemon                       
+
+
 ### Set the location of monit id file which saves the unique id specific for
 ### given monit. The id is generated and stored on first monit start.
 ### By default the file is placed in $HOME/.monit.id.
@@ -45,12 +43,10 @@
 ## Set the list of mail servers for alert delivery. Multiple servers may be 
 ## specified using comma separator. By default monit uses port 25 - this
 ## is possible to override with the PORT option.
-#
-# set mailserver mail.bar.baz,               # primary mailserver
-#                backup.bar.baz port 10025,  # backup mailserver on port 10025
-#                localhost                   # fallback relay
-#
-#
+
+set mailserver localhost
+
+
 ## By default monit will drop alert events if no mail servers are available. 
 ## If you want to keep the alerts for a later delivery retry, you can use the 
 ## EVENTQUEUE statement. The base directory where undelivered alerts will be 
@@ -89,19 +85,18 @@
 ## You can override this message format or parts of it, such as subject
 ## or sender using the MAIL-FORMAT statement. Macros such as $DATE, etc.
 ## are expanded at runtime. For example, to override the sender:
-#
-# set mail-format { from: monit@foo.bar }
-#
-#
+
+set mail-format { from: monit@eu3.okfn.org }
+
 ## You can set alert recipients here whom will receive alerts if/when a 
 ## service defined in this file has errors. Alerts may be restricted on 
 ## events by using a filter as in the second example below. 
-#
-# set alert sysadm@foo.bar                       # receive all alerts
+
+set alert sysadmin@okfn.org                      # receive all alerts
 # set alert manager@foo.bar only on { timeout }  # receive just service-
 #                                                # timeout alert
-#
-#
+
+
 ## Monit has an embedded web server which can be used to view status of 
 ## services monitored, the current configuration, actual services parameters
 ## and manage services from a web interface.
@@ -234,7 +229,7 @@
 ##
 ## It is possible to include additional configuration parts from other files or
 ## directories.
-#
-#  include /etc/monit.d/*
-#
-#
+
+include /etc/monit/monit.d/*
+
+
