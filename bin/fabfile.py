@@ -257,6 +257,13 @@ syntax: regexp
         _sudo('hg commit --user "okfn sysadmin" -m "[all][l]: import existing /etc contents into hg"')
 
 
+def unattended_upgrades():
+    '''Install and configure "unattended-upgrades" such that security 
+    patches get installed automagically
+    '''
+    install('unattended-upgrades', update_first=True)
+
+
 ## ============================
 ## SSH Keys
 
