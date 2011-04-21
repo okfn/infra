@@ -394,7 +394,7 @@
     "provider": "rackspace", 
     "spec": "???", 
     "type": "cloud"
-  }
+  },
   "us9": {
     "cost per month": null, 
     "created": "2011-04", 
