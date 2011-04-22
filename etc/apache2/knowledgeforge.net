@@ -1,6 +1,8 @@
 <VirtualHost *:80>
     ServerName knowledgeforge.net
     ServerAlias admin.knowledgeforge.net projects.knowledgeforge.net project.knowledgeforge.net www.knowledgeforge.net kforge.net www.kforge.net new.knowledgeforge.net
+    Redirect permanent /okfn/tasks http://trac.okfn.org
+
 	  Alias /robots.txt /home/kforge/etc/robots.txt
 	  #PythonInterpreter main_interpreter
 	  #PythonPath "['/mnt/backup/home/kforge/virtualtrac/bin'] + sys.path
@@ -38,6 +40,8 @@
 <VirtualHost *:443>
     ServerName knowledgeforge.net
     ServerAlias *.knowledgeforge.net
+    Redirect permanent /okfn/tasks http://trac.okfn.org
+
 	  Alias /robots.txt /home/kforge/etc/robots.txt
 	  #PythonInterpreter main_interpreter
 
