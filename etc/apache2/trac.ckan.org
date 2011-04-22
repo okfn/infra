@@ -1,49 +1,15 @@
 <VirtualHost *:80>
     ServerName trac.ckan.org
-    ServerAlias www.ckan.org ckan.org
-    SetEnv PYTHONPATH /home/kforge/knowledgeforge.net-0.17/bin
 
-    <Location /_agilo>
-        SetHandler mod_python
-        PythonInterpreter main_interpreter
-        # PythonHandler trac.web.modpython_frontend 
-        # PythonPath "'/home/kforge/knowledgeforge.net-0.17/bin'.split(':') + sys.path"
-        PythonPath "'/home/okfn/var/srvc/ckan.org/bin:/home/kforge/knowledgeforge.net-0.17/bin'.split(':') + sys.path"
-        PythonHandler ckanorgagilo
-        PythonDebug Off
-        PythonOption TracEnv /home/okfn/var/srvc/ckan.org/ckan-trac-agilo
-        PythonOption TracUriRoot /_agilo
+    Alias /chrome/common /home/okfn/var/trac/htdocs/common
+    Alias /chrome/site /home/okfn/var/trac/htdocs/site
+
+    ScriptAlias / /home/okfn/var/trac/cgi-bin/trac.cgi/
+    <Location />
+      SetEnv TRAC_ENV /home/okfn/var/trac/trac.ckan.org/
     </Location>
 
-    <LocationMatch "^/(?!_agilo)">
-        SetHandler mod_python
-        PythonInterpreter main_interpreter
-        # PythonHandler trac.web.modpython_frontend 
-        PythonPath "'/home/okfn/var/srvc/ckan.org/bin:/home/kforge/knowledgeforge.net-0.17/bin'.split(':') + sys.path"
-        PythonHandler ckanorg
-        PythonDebug Off
-        PythonOption TracEnv /home/kforge/knowledgeforge.net/var/project_data/ckan/trac/28
-        PythonOption TracUriRoot /
-    </LocationMatch>
-
-#    WSGIScriptAlias /_agilo /home/okfn/var/srvc/ckan.org/bin/ckan.org.agilo.py
-#
-#    WSGIScriptAlias / /home/okfn/var/srvc/ckan.org/bin/ckan.org.py
-#    WSGIPassAuthorization On
-#
-#    # because we also have this accessed by kforge
-#    # http://trac.edgewall.org/ticket/3371
-#    <Location />
-#      WSGIApplicationGroup %{GLOBAL}
-#      PythonInterpreter main_interpreter
-#    </Location>
-#    <Directory /home/okfn/var/srvc/ckan.org/pyenv/bin>
-#        WSGIProcessGroup trac
-#        Order deny,allow
-#        Allow from all
-#    </Directory>
-
-    ErrorLog /var/log/apache2/ckan.org.error.log
-    CustomLog /var/log/apache2/ckan.org.custom.log combined
+    ErrorLog /var/log/apache2/trac.ckan.org.error.log
+    CustomLog /var/log/apache2/trac.ckan.org.custom.log combined
 </VirtualHost>
 
