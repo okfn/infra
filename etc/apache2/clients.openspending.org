@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+    ServerName clients.openspending.org
+    ServerAlias clients.wheredoesmymoneygo.org
+
+    DocumentRoot /home/okfn/var/srvc/clients.openspending.org/www
+
+    ErrorLog /var/log/apache2/clients.openspending.org.error.log
+    CustomLog /var/log/apache2/clients.openspending.org.custom.log combined
+</VirtualHost>
+
