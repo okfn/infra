@@ -14,6 +14,8 @@ ServerAlias bigclean.org www.bigclean.org
 ServerAlias blog.openspending.org
 ServerAlias opengovernmentdata.org www.opengovernmentdata.org
 ServerAlias rawdatanow.com www.rawdatanow.com
+ServerAlias openbiblio.net www.openbiblio.net
+ServerAlias openeconomics.net www.openeconomics.net
 
 Alias /moinhtdocs /usr/share/moin/htdocs
 
