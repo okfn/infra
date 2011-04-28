@@ -404,5 +404,15 @@
     "provider": "rackspace", 
     "spec": "2GB", 
     "type": "cloud"
+  },
+  "us10": {
+    "cost per month": null, 
+    "created": "2011-04", 
+    "location": "ord1",
+    "notes": null, 
+    "owner": "DataGM", 
+    "provider": "rackspace",
+    "spec": "1GB", 
+    "type": "cloud"
   }
 }
