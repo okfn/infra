@@ -97,7 +97,7 @@ fi;
 set +e
 for scr in ${BACKUP_SCRIPTDIR}/[0-9][0-9]*; do
 	if [ -x ${scr} ]; then
-		${scr}
+		. ${scr}
 	fi
 done
 set -e
