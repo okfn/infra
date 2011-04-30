@@ -5,15 +5,24 @@
 
 
 DOMAIN="okfn.org"
-MAX_HOST=19
+MAX_HOST=26
 # EXPLICITLY configure names of non "euXY" server hostnames
 HOST_NAME[17]="us1" 
-HOST_NAME[18]="us4" 
-HOST_NAME[19]="us5" 
-APACHE="0 1 2 3 4 5 7 8 9 13 14 15 17"
-NGINX="10 12 16"
+HOST_NAME[18]="us2" 
+HOST_NAME[19]="us3" 
+HOST_NAME[20]="us4" 
+HOST_NAME[21]="us5" 
+HOST_NAME[22]="us6" 
+HOST_NAME[23]="us7" 
+HOST_NAME[24]="us8" 
+HOST_NAME[25]="us9" 
+HOST_NAME[26]="us10" 
+#PACHE="0 1 2 3 4 5 7 9 13 14 15 17 19 20 24 25"
+APACHE="0 1 2   4 5 7 9 13 14 15 17 19 20 24 25"
+NGINX="10 12 16 22"
 SQUID="6"
-NO_OKFN="6"  # Servers where role account "okfn" does not work
+# NO_OKFN="6"  # Servers where role account "okfn" does not work
+NO_OKFN="" 
 
 
 IGNORE_HOSTNAME="^(localhost|_|WILDCARD) "
@@ -24,6 +33,8 @@ WARNING="10"
 CRITICAL="60"
 SERVICE_TEMPLATE="okfn-webservice"
 SLOW_HOSTS="eu3"
+#SLOW_HOSTS_DIRECTIVE="check_interval                3600 # Don't annoy server too much with checks"
+SLOW_HOSTS_DIRECTIVE="active_checks_enabled         0"
 
 
 ALL=`seq 0 1 ${MAX_HOST}`
@@ -324,7 +335,7 @@ EOF
         ADD_DIRECTIVE=""
         # SLOW_HOSTS check_interval=60
         if echo "${SLOW_HOSTS}" | egrep -q "${origin}([^0-9]|$)" ; then 
-            ADD_DIRECTIVE="check_interval                3600 # Don't annoy server too much with checks"
+            ADD_DIRECTIVE="${SLOW_HOSTS_DIRECTIVE}"
         fi
         if [ "${res_server}" = "${UNKNOWN_SERVER}" ] ; then
             # check="check_webpage!http://${webdomain}/"
