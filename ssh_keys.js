@@ -20,6 +20,10 @@
       "pudo",
       "ww",
       "thejimmyg"
+    ],
+    "fry": [
+      "jan.kokoska",
+      "darryl.weaver"
     ]
   },
   "users":
@@ -152,6 +156,16 @@
     {
       "name": "Daniel Dietrich",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwf5FP4Mp/+/0j9Wi3dAMp5AXPYVn0Wg7OCeXa7gzWJJDCw14vWNWgXrhGX6MdEKj4puzur00kk0xOQ6KCswVmw/dc10FwJDwgxADGp+jztjo+4Ru/GSg/jvKnk2WWJtbIEdeJTjWs2fSRF9lDeJ2UMxEBcyTrGqJXmsSjQnmgn9a1RkAFSxAbb+DNAtlgqvfzSDpZLjTRR/p7Gq+jyPhftmsO7UNhBP+JfTKs3E6PfjEEzHnzg/zP9J29mhnCGSwqkY2doUB+ynonwVWFh4FzvWlYL8O+lVPVMp8Bvz7kKZXgtVpIVXP1AsIosLjPJW6Yd+zUEme0tax/jPWKY64uQ== ddie@jai.local"
+    },
+    "jan.kokoska":
+    {
+      "name": "Jan Kokoska",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA4jLVHygu3Zg+ziNArhkvlWY3jfe9tDunWbJzqE4tllwfjqhnJL0GQeLhEDYYKiaszRXPVVyL2iyEMyjyAyzvLLQBe1y18Rd1lagetiSf1TqHF9/FFZs3qT5mF3HzoSHNhjwJGlnt6BstnpOvOQDTe9zeyZ+NOUlmZ9i/hyUSfpwY4JGeZDWqQwksZcKUQU0B1Z+BsEf6lxtJMpLyn7q3OzFc5fgpnl4v/Ndk2IzWb5u2ELktDj2jlR6Mm9e8ULdatDXmeoms4k7Ubk+DM6GXvGFkHoevdHbIqtv/wNHgEy/E7RTqUcEKPWs6wOyCE8ysZYr7iP8D3GtxpAeUGgEQloV9nwSe90XkROqBWs81pLplxytbh/7G0ZzBzKm8mtE3hLP6qFnIJ1XnU1Oynkvra5QovJvixDKz7Elr+TiL1i4HuZEPyEefMo41ULbx3XPpvKK/ofcQ1xIbHf9F0k5MEy3L50TBrh1nCl/2e6H/Z9DgHEwsa054VNn9XUO5siDZrnDQYekq8RYfiewAc4Wb0OtA/WIEY3pN1dcj3V8tR6w0U2RItf7UEocUhKHKjjA4l37ZVAqO/LQZk5GvCRldEXxh0EUqlqGEPESO9vEEyW5CgSmrHCbbmkxqKoDN3avs/wGNdol0e9Jk8fAxroGZVSzlmpHilmR900vuKwaSh6E= Jan"
+    },
+    "darryl.weaver":
+    {
+      "name": "Darryl Weaver",
+      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBALx/0aj8iAPnqKvZTrx1L47v9khIjnDj5kmmRvvXe8mODGT2jQ3sc9Pj9WnYpwnb2nsxEK+kwDyLO+kEBYr4d99oNKluw70/2TCPS7oQp4LC5VSdJR1AUmN9EPGbzaz2KbxqXqTfg6jmkEPYwk3LFfV4h0Ie6/UPIJjh+8fmaZHDAAAAFQC8jI/bHlzaS+qQe4pMKG9UHE5U5wAAAIA6BdpkLLg1LInahvscqdCXO9TsasJ3Q1vnCmvUyp4m/AZA8JqHxTXzRmfO9xWtnBH4kUANZijTCyCqN59O+NM4MMpMrxSIN1ZWSrdOKeI+n9CER+vZJUMj4od+9fqjOxXEaSoS/AGns13HZp1BzdH69BtwvJm7Lq2z60tVBM+eRwAAAIEAs344Law4AFjvi7nbD3IsTi/4WagFGVp1xaEvncMvXWh6KtXkob6gq/8fyXuWP+IiXeuUHqdijkdP365bisEb359UyO3R3sn7avxxJmMC2qhhEH4QJhL2+hj1O5fF4ceAthTu5azBNM90ORMiQSs1I2xVvHbV/JZQ8axqWlmKaZs= Darryl"
     }
 
   }
