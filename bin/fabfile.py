@@ -117,7 +117,7 @@ def instance_setup_old(okfn_id):
     sysadmin_repo_clone()
     
 
-def instance_setup(hostname='', harden=False):
+def instance_setup(hostname='', harden=False, team='okfn'):
     '''Setup a new instance a in standard way:
 
         * Generate (UK) locales
@@ -125,9 +125,8 @@ def instance_setup(hostname='', harden=False):
         * install_set - vim, sudo, upgrade 
         * etc_in_mercurial
         * default_shell_bash
-        * adduser - okfn
-        * setup_sudoers
-        * ssh_add_public_key_group - sysadmin,okfn
+        * prepare_sudoers
+        * add_team - okfn
         * lock_user - root (if harden==True)
         * harden_sshd (if harden==True)
         * sysadmin_repo_clone
@@ -139,10 +138,8 @@ def instance_setup(hostname='', harden=False):
     install_set('basics', True)
     etc_in_mercurial()
     default_shell_bash()
-    adduser('okfn')
-    #user_shell_bash('okfn')
-    setup_sudoers()
-    ssh_add_public_key_group('../ssh_keys.js', 'sysadmin', 'okfn')
+    prepare_sudoers()
+    add_team(team)
     if harden :
         lock_user(username='root')
         harden_sshd()
@@ -160,7 +157,7 @@ def default_shell_bash():
 
 
 def adduser(username='okfn'):
-    '''Create a user with username `username` (defaults to okfn).
+    '''Create a user with username `username` (defaults to okfn)i.
     '''
     assert not exists('/home/%s' % username), '%s user already exists' % username
     # use useradd rather than adduser so as to not be prompted for info
@@ -175,11 +172,11 @@ def user_shell_bash(username='okfn'):
     _sudo('usermod --shell /bin/bash %s' % username)
 
 
-def setup_sudoers():
-    '''Add standard okfn as admin config to sudoers'''
+def prepare_sudoers():
+    '''Add group 'ADMINS' to /etc/sudoers'''
     fn = '/etc/sudoers'
     # double escape as passed through to sed ...
-    after = '# User alias specification\\nUser_Alias      ADMINS = okfn'
+    after = '# User alias specification\\nUser_Alias      ADMINS = root'
     sed(fn, '# User alias specification', after, use_sudo=True)
 
     in2 = r'root.*ALL=\(ALL\) ALL'
@@ -187,6 +184,28 @@ def setup_sudoers():
     out2 = 'root   ALL=(ALL) ALL' + '\\n' + 'ADMINS  ALL = (ALL) NOPASSWD: ALL'
     print out2
     sed(fn, in2, out2, backup='', use_sudo=True)
+
+
+def adduser_to_sudo_admins(username):
+    '''Add a user as admin to /etc/sudoers'''
+    # TODO: check whether user is already listed
+    fn = '/etc/sudoers'
+    sed(fn, '^(User_Alias *ADMINS *=.*)', '\\1, %s' % username, use_sudo=True)
+
+
+def setup_sudoers():
+    '''Only for backwards compatibility - Prepare /etc/sudoers and add standard user 'okfn' as admin config to sudoers'''
+    prepare_sudoers()
+    adduser_to_sudo_admins('okfn')
+
+
+def add_team(team):
+    key_group = team
+    if team == 'okfn': key_group = 'sysadmin'
+    adduser(team)
+    #user_shell_bash(team)
+    adduser_to_sudo_admins(team)
+    ssh_add_public_key_group('../ssh_keys.js', key_group, team)
 
 
 def lock_user(username='root'):
