@@ -120,6 +120,7 @@ def instance_setup_old(okfn_id):
 def instance_setup(hostname='', harden=False):
     '''Setup a new instance a in standard way:
 
+        * Generate (UK) locales
         * set_hostname (if hostname is set)
         * install_set - vim, sudo, upgrade 
         * etc_in_mercurial
@@ -132,7 +133,7 @@ def instance_setup(hostname='', harden=False):
         * sysadmin_repo_clone
      '''
 
-    
+    generate_locale() 
     if hostname :
         set_hostname(hostname)
     install_set('basics', True)
@@ -328,6 +329,13 @@ def harden_sshd():
     sed(config, '^[ \\t#]*(PermitRootLogin)[ \\t]+[yn][eo].*',        '\\1 no', backup='.ORIG', use_sudo=True)
     sed(config, '^[ \\t#]*(PasswordAuthentication)[ \\t]+[yn][eo].*', '\\1 no', backup='',      use_sudo=True)
     _sudo('restart ssh')
+
+
+def generate_locale(locale='en_GB.utf8'):
+    '''Generates missing locales
+    '''
+    # Todo: find out necessary locale automagically!
+    _sudo('locale-gen %s' % locale )
 
 
 ## =========================================
