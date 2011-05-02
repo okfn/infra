@@ -40,13 +40,16 @@ fi
 #REGEXP=$(cat ${REVERSE_DNS} | awk '{print " -e s,^" $1 "\t," $2 "\t,"}' | sed ':a;N;$!ba;s/\n//g')
 
 
-for region in us-east-1 eu-west-1 ; do
+regions="us-east-1 eu-west-1"
+
+for region in $regions ; do
     ec2-describe-instances --region ${region} | \
         grep -v ^RESERVATION | \
         sed -e '/BLOCKDEVICE/s/\t\([^\t]*\)\t\([^\t]*\).*$/:\2:\1,/g' -e 's/instance-store/inst/g' -e "s,^INSTANCE,${region}," | \
         sed ':a;N;$!ba;s/\nBLOCKDEVICE://g' | \
-        cut  -f 1,2,6,10,17,21,27 |\
-        awk '{print $5 "\t" $5 "\t" $2 "\t" $1 "\t" $4 "\t" $3 "\t" $6 "\t" $7 }' | \
+        sed ':a;N;$!ba;s/\nTAG//g' | \
+        cut  -f 1,2,6,10,17,21,27,31 |\
+        awk '{print $5 "\t" $5 "\t" $2 "\t" $1 "\t" $4 "\t" $3 "\t" $6 "\t" $7 "\t" $8 }' | \
         sed -f ${REVERSE_DNS}
 done
 
