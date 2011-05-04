@@ -694,3 +694,54 @@ def create_swap_file(size=1) :
 
     print 'Activating swap' 
     sudo('swapon -a')
+
+
+def postfix_install(copy_config=False):
+    '''Install postfix and coufigure from sysadmin repo for sending only
+    '''
+
+    service = 'postfix'
+    config_rel = '/postfix/main.cf'
+
+    config_abs = '/etc' + config_rel
+    REMOTE_REPO = 'https://bitbucket.org/okfn/sysadmin/raw/default/etc'
+    LOCAL_REPO  = OKFN_ETC
+
+    mta_binary = '/usr/sbin/sendmail'
+    assert not exists(mta_binary), 'Error: A MTA %s is already installed!' % mta_binary 
+
+    assert not exists(config_abs), 'Error: Configuration file %s already exists!' % config_abs
+    if not copy_config: 
+        sysadmin_repo_update()
+
+    install('debconf-utils')
+    run('echo "postfix postfix/mailname        string  localhost" | sudo debconf-set-selections')
+    run('echo "postfix postfix/main_mailer_type        select  No configuration" | sudo debconf-set-selections')
+    install(service)
+    sudo('mv %s %s.ORIG' % (config_abs, config_abs))
+
+    if copy_config :
+        sudo('wget -O %s %s' % (config_abs, REMOTE_REPO + config_rel ))
+    else :
+        sudo('ln -s %s %s' % (OKFN_ETC + config_rel, config_abs))
+    sudo('/etc/init.d/%s restart' % service )
+
+    set_root_alias()
+
+    install('bsd-mailx')
+
+
+def set_root_alias(mail_address='sysadmin@okfn.org') :
+    '''Sets mail alias for root@localhost (defaults to sysadmin@okfn.org)
+    '''
+    aliasfile = '/etc/aliases'
+    assert exists(aliasfile), 'Error: Alias file %s missing!' % aliasfile
+
+    if run('! grep -q ^root: %s' % aliasfile) == '' :
+        append('root: %s' % mail_address, aliasfile, use_sudo=True)
+        sudo('newaliases')
+        sudo('/etc/init.d/postfix reload')
+    else :
+        # Unfortunately we never get here - run() has already raised an unreadable exception
+        print 'Error: There already is a root alias in %s!' % aliasfile
+
