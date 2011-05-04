@@ -674,3 +674,23 @@ def supervisor_install():
     get(initd, '/etc/init.d/supervisord')
 
 
+def create_swap_file(size=1) :
+    '''Create and activate swap file of size 'size' (in GB)
+    '''
+    fstab = '/etc/fstab'
+    swapfile = '/swap'
+    MB = 1024*1024
+    swapsize_in_MB = int(size) * 1024
+
+    assert not exists(swapfile), 'Error: swap file %s already exists!' % swapfile
+
+    print 'Creating swap file %s of size %s MB' % (swapfile, swapsize_in_MB)
+    sudo('dd if=/dev/zero of=%s bs=%s count=%s' % (swapfile, MB, swapsize_in_MB) )
+    sudo('mkswap %s' % swapfile)
+
+    fstab_line = swapfile + ' swap swap defaults 0 0'
+    print 'appending "%s" to %s' % (fstab_line, fstab)
+    append(fstab_line, fstab, use_sudo=True)
+
+    print 'Activating swap' 
+    sudo('swapon -a')
