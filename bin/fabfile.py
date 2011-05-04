@@ -638,15 +638,25 @@ def backup_report():
 ## ============================
 ## Munin
 
-def munin_node_install():
+def munin_node_install(copy_config=False):
     '''Install munin node on a host.'''
     install('munin-node')
-    nodeconf = '/etc/munin/munin-node.conf'
-    sysadmin_repo_update()
+
+    REMOTE_REPO = 'https://bitbucket.org/okfn/sysadmin/raw/default/etc'
+    LOCAL_REPO  = OKFN_ETC
+
+    nodeconf_suffix = '/munin/munin-node.conf'
+    nodeconf = '/etc' + nodeconf_suffix
+
     if exists(nodeconf):
         sudo('mv %s %s.orig' % (nodeconf, nodeconf))
-    repo_nodeconf = OKFN_ETC + '/munin/munin-node.conf'
-    sudo('ln -s %s %s' % (repo_nodeconf, nodeconf))
+
+    if copy_config :
+        sudo('wget -O %s %s' % (nodeconf, REMOTE_REPO + nodeconf_suffix))
+    else :
+        sysadmin_repo_update()
+        sudo('ln -s %s %s' % (OKFN_ETC + nodeconf_suffix, nodeconf))
+
     sudo('/etc/init.d/munin-node restart')
 
 
