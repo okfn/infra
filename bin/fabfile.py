@@ -639,7 +639,11 @@ def backup_report():
 ## Munin
 
 def munin_node_install(copy_config=False):
-    '''Install munin node on a host.'''
+    '''Install munin node on a host.
+    Use "copy_config=True" to copy the config from Bitbucket rather than
+    softlinking it from the local hg repository
+    '''
+
     install('munin-node')
 
     REMOTE_REPO = 'https://bitbucket.org/okfn/sysadmin/raw/default/etc'
@@ -698,6 +702,8 @@ def create_swap_file(size=1) :
 
 def postfix_install(copy_config=False):
     '''Install postfix and coufigure from sysadmin repo for sending only
+    Use "copy_config=True" to copy the config from Bitbucket rather than
+    softlinking it from the local hg repository
     '''
 
     service = 'postfix'
