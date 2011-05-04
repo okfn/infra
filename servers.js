@@ -22,7 +22,7 @@
     "type": "ec2"
   }, 
   "epsi": {
-    "cost per month": null,
+    "cost per month": null, 
     "created": "2011-02", 
     "ip": "178.79.153.167", 
     "ip2": "epsiplatform.okfn.org", 
@@ -281,15 +281,26 @@
     "type": "ec2"
   }, 
   "eu8": {
-    "aws_id": "i-b32e55c4", 
-    "aws_ip": "ec2-46-51-131-140.eu-west-1.compute.amazonaws.com", 
-    "created": "2010-09", 
-    "location": "eu-west-1b", 
-    "os": "ubuntu-lucid-32", 
+    "aws_id": "i-7d5cdb0b", 
+    "aws_private_dns_name": "ip-10-48-242-116.eu-west-1.compute.internal", 
+    "aws_public_dns_name": "ec2-79-125-38-173.eu-west-1.compute.amazonaws.com", 
+    "created": "2011-05-04T20:33:17", 
+    "instance_type": "t1.micro", 
+    "location": "eu-west-1", 
+    "notes": null, 
+    "os": "ubuntu-lucid-64-ebs", 
     "owner": "okfn", 
+    "placement": "eu-west-1b", 
     "provider": "aws", 
-    "spec": "small", 
-    "type": "ec2"
+    "security_groups": [
+      "default", 
+      "www-only", 
+      "ssh-only", 
+      "munin-only", 
+      "instance-eu8"
+    ], 
+    "type": "ec2", 
+    "volumes": {}
   }, 
   "eu9": {
     "aws_id": "i-f9eeb58e", 
@@ -325,6 +336,16 @@
     "spec": "small", 
     "type": "ec2"
   }, 
+  "us10": {
+    "cost per month": null, 
+    "created": "2011-04", 
+    "location": "ord1", 
+    "notes": null, 
+    "owner": "DataGM", 
+    "provider": "rackspace", 
+    "spec": "1GB", 
+    "type": "cloud"
+  }, 
   "us2": {
     "cost per month": null, 
     "created": "2009-10", 
@@ -334,7 +355,7 @@
     "provider": "dreamhost", 
     "spec": "small", 
     "type": "shared"
-  },
+  }, 
   "us3": {
     "cost per month": null, 
     "created": "2011-03", 
@@ -344,7 +365,7 @@
     "provider": "rackspace", 
     "spec": "1GB", 
     "type": "cloud"
-  },
+  }, 
   "us4": {
     "cost per month": null, 
     "created": "2011-04", 
@@ -354,7 +375,7 @@
     "provider": "rackspace", 
     "spec": "1GB", 
     "type": "cloud"
-  },
+  }, 
   "us5": {
     "cost per month": null, 
     "created": "2011-04", 
@@ -364,7 +385,7 @@
     "provider": "rackspace", 
     "spec": "2GB", 
     "type": "cloud"
-  },
+  }, 
   "us6": {
     "cost per month": null, 
     "created": "2011-03", 
@@ -374,7 +395,7 @@
     "provider": "rackspace", 
     "spec": "4GB", 
     "type": "cloud"
-  },
+  }, 
   "us7": {
     "cost per month": null, 
     "created": "2011-03", 
@@ -384,7 +405,7 @@
     "provider": "rackspace", 
     "spec": "2GB", 
     "type": "cloud"
-  },
+  }, 
   "us8": {
     "cost per month": null, 
     "created": "2011-04", 
@@ -394,7 +415,7 @@
     "provider": "rackspace", 
     "spec": "2GB", 
     "type": "cloud"
-  },
+  }, 
   "us9": {
     "cost per month": null, 
     "created": "2011-04", 
@@ -403,16 +424,6 @@
     "owner": "OKFN", 
     "provider": "rackspace", 
     "spec": "2GB", 
-    "type": "cloud"
-  },
-  "us10": {
-    "cost per month": null, 
-    "created": "2011-04", 
-    "location": "ord1",
-    "notes": null, 
-    "owner": "DataGM", 
-    "provider": "rackspace",
-    "spec": "1GB", 
     "type": "cloud"
   }
 }
