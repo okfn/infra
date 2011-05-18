@@ -241,6 +241,46 @@
     "spec": "small", 
     "type": "ec2"
   }, 
+  "eu20": {
+    "cost per month": null, 
+    "created": "2011-05", 
+    "location": "london", 
+    "notes": "DB server for SLAd servers okfn-db.fry-it.com", 
+    "owner": "okfn", 
+    "provider": "fry-it", 
+    "spec": "1GB", 
+    "type": "cloud"
+  }, 
+  "eu21": {
+    "cost per month": null, 
+    "created": "2011-05", 
+    "location": "london", 
+    "notes": "SLAd CKAN instance for DataNL okfn-datanl.fry-it.com",
+    "owner": "DataNL/ICTU", 
+    "provider": "fry-it", 
+    "spec": "2GB", 
+    "type": "cloud"
+  }, 
+  "eu22": {
+    "cost per month": null, 
+    "created": "2011-05", 
+    "location": "london", 
+    "notes": "SLAd CKAN instance for DataGM okfn-datagm.fry-it.com", 
+    "owner": "DataGM/TraffordCouncil", 
+    "provider": "fry-it", 
+    "spec": "2GB", 
+    "type": "cloud"
+  }, 
+  "eu23": {
+    "cost per month": null, 
+    "created": "2011-05", 
+    "location": "london", 
+    "notes": "SLAd CKAN instance for IATI okfn-iati.fry-it.com", 
+    "owner": "IATI", 
+    "provider": "fry-it", 
+    "spec": "2GB", 
+    "type": "cloud"
+  }, 
   "eu3": {
     "aws_id": "i-2275d655", 
     "cost per month": null, 
