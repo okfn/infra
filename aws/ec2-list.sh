@@ -14,7 +14,7 @@
 REVERSE_DNS="/tmp/okfn.org-reverse"
 DOMAIN="okfn.org"
 
-hosts="us1 us2 us3 us4 us5 us6 eu0 eu1 eu2 eu3 eu4 eu5 eu6 eu7 eu8 eu9 eu10 eu11 eu12 eu13 eu14 eu15 eu16 bkn-1 bkn-2 epsi"
+hosts="us1 us2 us3 us4 us5 us6 eu0 eu1 eu2 eu3 eu4 eu5 eu6 eu7 eu8 eu9 eu10 eu11 eu12 eu13 eu14 eu15 eu16 eu18 bkn-1 bkn-2 epsi"
 
 
 resolv() {
