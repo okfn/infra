@@ -5,24 +5,26 @@
 
 
 DOMAIN="okfn.org"
-MAX_HOST=26
+MAX_HOST=29
 # EXPLICITLY configure names of non "euXY" server hostnames
-HOST_NAME[17]="us1" 
-HOST_NAME[18]="us2" 
-HOST_NAME[19]="us3" 
-HOST_NAME[20]="us4" 
-HOST_NAME[21]="us5" 
-HOST_NAME[22]="us6" 
-HOST_NAME[23]="us7" 
-HOST_NAME[24]="us8" 
-HOST_NAME[25]="us9" 
-HOST_NAME[26]="us10" 
-#PACHE="0 1 2 3 4 5 7 9 13 14 15 17 19 20 24 25"
-APACHE="0 1 2   4 5 7 9 13 14 15 17 19 20 24 25"
-NGINX="10 12 16 22"
+HOST_NAME[17]="eu18" 
+HOST_NAME[18]="eu20" 
+HOST_NAME[19]="eu21" 
+HOST_NAME[20]="eu22" 
+HOST_NAME[21]="eu23" 
+HOST_NAME[22]="us1" 
+HOST_NAME[23]="us2" 
+HOST_NAME[24]="us3" 
+HOST_NAME[25]="us6" 
+HOST_NAME[26]="us7" 
+HOST_NAME[27]="us8" 
+HOST_NAME[28]="us9" 
+HOST_NAME[29]="us11" 
+APACHE="0 1 2   4 5 7 9 13 14 15 19 20 22 24 27 28"
+NGINX="10 12 16 25"
 SQUID="6"
-# NO_OKFN="6"  # Servers where role account "okfn" does not work
-NO_OKFN="" 
+NO_OKFN="18 19 20 21" # Servers where role account "okfn" does not work
+NO_OKFN_USER="root"
 
 
 IGNORE_HOSTNAME="^(localhost|_|WILDCARD) "
@@ -55,7 +57,6 @@ stderrn() {
 
 
 if [ -z "${1}" ] ; then
-    NO_OKFN_USER="${USER}"
     NO_OKFN_SERVERS=`for s in ${NO_OKFN}; do echo -n ${HOST_NAME[$s]}; done`
     stderrn "NOTE: I assume you want to use your current username \"${NO_OKFN_USER}\" to log into the servers which do not" 
     stderrn "      accept the generic username \"okfn\" (${NO_OKFN_SERVERS}). Otherwise tell me as first argument." 
