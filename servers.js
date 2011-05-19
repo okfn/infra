@@ -432,20 +432,10 @@
     "cost per month": null, 
     "created": "2011-04", 
     "location": "ord1", 
-    "notes": null, 
-    "owner": "DataGM/NL", 
+    "notes": "solr", 
+    "owner": "okfn", 
     "provider": "rackspace", 
     "spec": "1GB", 
-    "type": "cloud"
-  }, 
-  "us5": {
-    "cost per month": null, 
-    "created": "2011-04", 
-    "location": "ord1", 
-    "notes": null, 
-    "owner": "OKFN", 
-    "provider": "rackspace", 
-    "spec": "2GB", 
     "type": "cloud"
   }, 
   "us6": {
@@ -483,6 +473,16 @@
     "created": "2011-04", 
     "location": "ord1", 
     "notes": null, 
+    "owner": "OKFN", 
+    "provider": "rackspace", 
+    "spec": "2GB", 
+    "type": "cloud"
+  },
+  "us11": {
+    "cost per month": null, 
+    "created": "2011-04", 
+    "location": "ord1", 
+    "notes": "semantic.ckan.net", 
     "owner": "OKFN", 
     "provider": "rackspace", 
     "spec": "2GB", 
