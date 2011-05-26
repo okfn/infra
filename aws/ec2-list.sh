@@ -48,8 +48,8 @@ for region in $regions ; do
         sed -e '/BLOCKDEVICE/s/\t\([^\t]*\)\t\([^\t]*\).*$/:\2:\1,/g' -e 's/instance-store/inst/g' -e "s,^INSTANCE,${region}," | \
         sed ':a;N;$!ba;s/\nBLOCKDEVICE://g' | \
         sed ':a;N;$!ba;s/\nTAG//g' | \
-        cut  -f 1,2,6,10,17,21,27,31 |\
-        awk '{print $5 "\t" $5 "\t" $2 "\t" $1 "\t" $4 "\t" $3 "\t" $6 "\t" $7 "\t" $8 }' | \
+        cut  -f 1,2,6,10,12,13,17,21,27,31 |\
+        awk '{print $7 "\t" $7 "\t" $2 "\t" $5 "\t" $4 "\t" $6 "\t" $3 "\t" $8 "\t" $9 "\t" $10 }' | \
         sed -f ${REVERSE_DNS}
 done
 
