@@ -34,7 +34,7 @@ IGNORE_ORIGIN="^(river)$"
 WARNING="10"
 CRITICAL="60"
 SERVICE_TEMPLATE="okfn-webservice"
-SLOW_HOSTS="eu3"
+SLOW_HOSTS="eu3 eu8"
 #SLOW_HOSTS_DIRECTIVE="check_interval                3600 # Don't annoy server too much with checks"
 SLOW_HOSTS_DIRECTIVE="active_checks_enabled         0"
 
