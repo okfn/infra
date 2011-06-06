@@ -206,6 +206,28 @@
     "type": "ec2", 
     "volumes": {}
   }, 
+  "eu17": {
+    "aws_id": "i-dc7e11aa", 
+    "aws_private_dns_name": "ip-10-48-139-127.eu-west-1.compute.internal", 
+    "aws_public_dns_name": "ec2-79-125-69-191.eu-west-1.compute.amazonaws.com", 
+    "created": "2011-06-06T20:32:22", 
+    "instance_type": "m1.small", 
+    "location": "eu-west-1", 
+    "notes": null, 
+    "os": "ubuntu-lucid-32-ebs", 
+    "owner": "okfn", 
+    "placement": "eu-west-1b", 
+    "provider": "aws", 
+    "security_groups": [
+      "default", 
+      "www-only", 
+      "ssh-only", 
+      "munin-only", 
+      "instance-eu17"
+    ], 
+    "type": "ec2", 
+    "volumes": {}
+  }, 
   "eu18": {
     "aws_id": "i-09fe767f", 
     "aws_private_dns_name": "ip-10-48-146-139.eu-west-1.compute.internal", 
@@ -255,7 +277,7 @@
     "cost per month": null, 
     "created": "2011-05", 
     "location": "london", 
-    "notes": "SLAd CKAN instance for DataNL okfn-datanl.fry-it.com",
+    "notes": "SLAd CKAN instance for DataNL okfn-datanl.fry-it.com", 
     "owner": "DataNL/ICTU", 
     "provider": "fry-it", 
     "spec": "2GB", 
@@ -408,6 +430,16 @@
     "spec": "1GB", 
     "type": "cloud"
   }, 
+  "us11": {
+    "cost per month": null, 
+    "created": "2011-04", 
+    "location": "ord1", 
+    "notes": "semantic.ckan.net", 
+    "owner": "OKFN", 
+    "provider": "rackspace", 
+    "spec": "2GB", 
+    "type": "cloud"
+  }, 
   "us2": {
     "cost per month": null, 
     "created": "2009-10", 
@@ -473,16 +505,6 @@
     "created": "2011-04", 
     "location": "ord1", 
     "notes": null, 
-    "owner": "OKFN", 
-    "provider": "rackspace", 
-    "spec": "2GB", 
-    "type": "cloud"
-  },
-  "us11": {
-    "cost per month": null, 
-    "created": "2011-04", 
-    "location": "ord1", 
-    "notes": "semantic.ckan.net", 
     "owner": "OKFN", 
     "provider": "rackspace", 
     "spec": "2GB", 
