@@ -220,6 +220,7 @@ def lock_user(username='root'):
 def set_hostname(new_hostname):
     _sudo('hostname %s' % new_hostname)
     _sudo('echo %s > /etc/hostname' % new_hostname)
+    _sudo('sudo restart rsyslog')
 
 
 SYSADMIN_REPO_PATH = '/home/okfn/hg-sysadmin'
