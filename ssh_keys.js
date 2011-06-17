@@ -166,7 +166,21 @@
     {
       "name": "Darryl Weaver",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBALx/0aj8iAPnqKvZTrx1L47v9khIjnDj5kmmRvvXe8mODGT2jQ3sc9Pj9WnYpwnb2nsxEK+kwDyLO+kEBYr4d99oNKluw70/2TCPS7oQp4LC5VSdJR1AUmN9EPGbzaz2KbxqXqTfg6jmkEPYwk3LFfV4h0Ie6/UPIJjh+8fmaZHDAAAAFQC8jI/bHlzaS+qQe4pMKG9UHE5U5wAAAIA6BdpkLLg1LInahvscqdCXO9TsasJ3Q1vnCmvUyp4m/AZA8JqHxTXzRmfO9xWtnBH4kUANZijTCyCqN59O+NM4MMpMrxSIN1ZWSrdOKeI+n9CER+vZJUMj4od+9fqjOxXEaSoS/AGns13HZp1BzdH69BtwvJm7Lq2z60tVBM+eRwAAAIEAs344Law4AFjvi7nbD3IsTi/4WagFGVp1xaEvncMvXWh6KtXkob6gq/8fyXuWP+IiXeuUHqdijkdP365bisEb359UyO3R3sn7avxxJmMC2qhhEH4QJhL2+hj1O5fF4ceAthTu5azBNM90ORMiQSs1I2xVvHbV/JZQ8axqWlmKaZs= Darryl"
+    },
+    "csenger":
+    {
+      "name": "Carsten Senger",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD6OblMDUyeIqiw08HJXl3UMBWY2spd2Ra5/bF17xbj91sky4SE5dzaUFb3mNzjTL2ReU1TpfgZc7L+2jnOu/pbgeYElcWzqF+rDr2Z6zlkvs0PcXEc3R1QH5w+ny5dPMcHs/gpIF5XGtbrRAqUKfILfJyYoazPmmzofpe2YprmU0rhsmozJCwhalKNF7UR4Yq49HPMJ70GKXcWsOPNpDc5F1Dd3g/n9Y7EzKpSmZcyyacZ7rKMMv3KGqw7SxmbFew4eIANKlqC/VvsNtYOt0AouI4k8Q3ULHlOFzeZd+/gTcWT11DvKym99KLboLc1RLmi931fUNHXGsA8qZQF0GKX csenger@kolja"
+    },
+    "lucychambers":
+    {
+      "name": "Lucy Chambers",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx5I/1wbFO2yvUD+bCZwuD1iNUMCdKR6b5MJc6yjzdWudPVK3EhhyWFPVrUrZatOySLwuxF2wlfxmAH/UxsbJ8FTG2La/jGdZErNyZ8C8XzCbQ69MT0Txfh9r8+Buf044NaHPimOgKe3L6QL1fzSlrEqZEDq8hs4Dqf2iieKvLpgr/GD5OVt4PM43LtOIdKqWgFBXvQaxLWX0keEHilV9o3er+nkPVfJSsIow5569reO5HvDB7R9Rb1PTf4+5MSL7uuyLMkzH2bvKgYaXDtPZV0tzrDaPO2kl7MlHeDb9cwiSMO3LHGWs1vV+Onk2YBi+DzYjtneBmxlgNWbg6VekKQ== lucychambers@Macintosh.local"
+    },
+    "jasonkitcat": 
+    {
+      "name": "Jason Kitcat",
+      "key": "AAAAB3NzaC1kc3MAAACBAIBUC/qxmgOW7eNwvVXNJhqBuOl8tVMMWMKbxk8DJgNBD3mTsGFY3hbrTVE1uGUTYzaWUQqGaG89zfosnlM8Cm4bRzrN9xqth00C5ZlUKVmMKZeEm1miWzIeTV0w3ly2qqDTj5F2avZgs7QvkX4Jp0jH2VWfHcgYw/k8u9hxdIIXAAAAFQC9+RuheFV4fgY14k4tM9SI3M3dBwAAAIATrB8/JgWheAezt4jr6a0N857NQ9FoOBeTzFWwbxoJk5H4xGsIDtexyAGfv43TRcNgRE+95VwiJ7bYUGg+6t4vhwVeyCbJch58VUt+ZG27AzqmxlErhhNi0I4rmdk8eoVvQ9vhk8E3wl460M+TVj/SXwKUKzWOuC3rpF8ZOlbdNwAAAIAXPfE9qv10bgvAa+crJe3ZQLo1tEyRaI20hvc28xl4lP0VPdv0XpVR09wsljl2h00+ce2iaiTbo1D1MbWrnnixSCN5V8CVMPNlmJaRHbli5Zw0eTweRPs0hNJLAwqAZmXdXCCdv138uKRyD1z7BFQYv4f5VbFyttAtnrernouf2A== jasonkit@Jason-Kitcats-Computer.local"
     }
-
   }
 }
