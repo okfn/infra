@@ -16,6 +16,7 @@ ServerAlias opengovernmentdata.org www.opengovernmentdata.org
 ServerAlias rawdatanow.com www.rawdatanow.com
 ServerAlias openbiblio.net www.openbiblio.net
 ServerAlias openeconomics.net www.openeconomics.net
+ServerAlias publicdomainreview.org www.publicdomainreview.org
 
 Alias /moinhtdocs /usr/share/moin/htdocs
 
