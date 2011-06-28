@@ -3,6 +3,7 @@
     ServerAlias www-api.ckan.net
     ServerAlias www.ckan.net
     ServerAlias www2.ckan.net
+    ServerAlias thedatahub.org www.thedatahub.org
 
     Alias /dump /home/okfn/var/srvc/ckan.net/dumps
     RedirectMatch permanent /package/read/(.*)$ http://ckan.net/package/$1
@@ -10,9 +11,19 @@
     RewriteEngine on
     RewriteCond %{HTTP_HOST} ^www\.ckan\.net$ [NC]
     RewriteRule ^(.*)$ http://ckan.net$1 [R=301,L]
+    RewriteCond %{HTTP_HOST} ^www\.thedatahub\.org$ [NC]
+    RewriteRule ^(.*)$ http://datahub.org$1 [R=301,L]
 
-    # CORS - http://lists.w3.org/Archives/Public/public-lod/2010Oct/0181.html
-    Header add Access-Control-Allow-Origin "*"
+    # CORS stuff for DataDeck etc
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "POST, PUT, GET, OPTIONS"
+    Header always set Access-Control-Allow-Headers "X-CKAN-API-KEY"
+    # Respond to all OPTIONS requests with 200 OK
+    # This could be done in the webapp
+    # This is need for pre-flighted requests (POSTs/PUTs)
+    RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ $1 [R=200,L]
 
     # hacks to control java robot that is hammering the site 2010-05-07
     <Location />
@@ -36,8 +47,8 @@ RewriteRule .* - [F]
     </Location>
 
     WSGIScriptAlias / /home/okfn/var/srvc/ckan.net/pyenv/bin/ckan.net.py
-    # WSGIDaemonProcess ckan.net display-name=ckan.net processes=8 threads=1 maximum-requests=1000
-    # WSGIProcessGroup ckan.net
+    WSGIDaemonProcess ckan.net display-name=ckan.net processes=10 threads=1 maximum-requests=500
+    WSGIProcessGroup ckan.net
 
     # pass authorization info on (needed for rest api)
     WSGIPassAuthorization On
