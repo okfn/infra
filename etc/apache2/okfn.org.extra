@@ -18,6 +18,8 @@ ServerAlias openbiblio.net www.openbiblio.net
 ServerAlias openeconomics.net www.openeconomics.net
 ServerAlias publicdomainreview.org www.publicdomainreview.org
 ServerAlias opendatacommons.org www.opendatacommons.org
+ServerAlias ogdcamp.org www.ogdcamp.org
+ServerAlias openliterature.net www.openliterature.net
 
 Alias /moinhtdocs /usr/share/moin/htdocs
 
