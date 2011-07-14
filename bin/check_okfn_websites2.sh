@@ -5,25 +5,21 @@
 
 
 DOMAIN="okfn.org"
-MAX_HOST=29
+MAX_HOST=35
 # EXPLICITLY configure names of non "euXY" server hostnames
-HOST_NAME[17]="eu18" 
-HOST_NAME[18]="eu20" 
-HOST_NAME[19]="eu21" 
-HOST_NAME[20]="eu22" 
-HOST_NAME[21]="eu23" 
-HOST_NAME[22]="us1" 
-HOST_NAME[23]="us2" 
-HOST_NAME[24]="us3" 
-HOST_NAME[25]="us6" 
-HOST_NAME[26]="us7" 
-HOST_NAME[27]="us8" 
-HOST_NAME[28]="us9" 
-HOST_NAME[29]="us11" 
-APACHE="0 1 2 3 4 5 7 8 9 13 14 15 19 20 22 24 27 28"
-NGINX="10 12 16 25"
+HOST_NAME[27]="us1"  # A
+HOST_NAME[28]="us2" 
+HOST_NAME[29]="us4"  # A
+HOST_NAME[30]="us6"  # N 
+HOST_NAME[31]="us7" 
+HOST_NAME[32]="us8"  # A
+HOST_NAME[33]="us9"  # A
+HOST_NAME[34]="us11" # N 
+HOST_NAME[35]="us12" # N but William hasn't set up it properly ...
+APACHE="0 1 2 3 4 5 7 8 9 13 14 15 19 21 22 23 24 25 27 29 32 33 34"
+NGINX="10 12 16 17 30"
 SQUID="6"
-NO_OKFN="18 19 20 21" # Servers where role account "okfn" does not work
+NO_OKFN="20 21 22 23" # Servers where role account "okfn" does not work
 NO_OKFN_USER="root"
 
 
