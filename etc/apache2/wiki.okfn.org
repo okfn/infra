@@ -1,37 +1,8 @@
 <VirtualHost *:80>
   ServerName wiki.okfn.org
-  Alias /moinhtdocs /usr/share/moin/htdocs
-  Redirect permanent /projects http://wiki.okfn.org/p
-
-  # ScriptAlias / /home/okfn/var/moinmoin/bin/moin.cgi/
-
-  WSGIScriptAlias / /home/okfn/var/moinmoin/bin/moin.wsgi/
-  WSGIDaemonProcess wiki.okfn.org display-name=wiki.okfn.org user=www-data group=www-data processes=5 threads=10 maximum-requests=1000 umask=0007
-  WSGIProcessGroup wiki.okfn.org
+  DocumentRoot /home/okfn/var/mediawiki/wiki.okfn.org
+  RedirectMatch permanent /Ckan.* http://wiki.ckan.net/
 
   ErrorLog /var/log/apache2/wiki.okfn.org.error.log
   CustomLog /var/log//apache2/wiki.okfn.org.log combined
 </VirtualHost>
-
-<VirtualHost *:443>
-  ServerName wiki.okfn.org
-  Alias /moinhtdocs /usr/share/moin/htdocs
-  Redirect permanent /projects https://wiki.okfn.org/p
-
-  # ScriptAlias / /home/okfn/var/moin/okfn_public_wiki/moin.cgi/
-
-  WSGIScriptAlias / /home/okfn/var/moinmoin/bin/moin.wsgi/
-  WSGIDaemonProcess wiki.okfn.org display-name=wiki.okfn.org user=www-data group=www-data processes=5 threads=10 maximum-requests=1000 umask=0007
-  WSGIProcessGroup wiki.okfn.org
-
-  ErrorLog /var/log/apache2/wiki.okfn.org.error.log
-  CustomLog /var/log//apache2/wiki.okfn.org.log combined
-
-  # SSL
-  <IfModule mod_ssl.c>
-    SSLEngine on
-    SSLCertificateFile /etc/apache2/ssl/okfn.crt
-    SSLCertificateKeyFile /etc/apache2/ssl/okfn.2010.key
-  </IfModule>
-</VirtualHost>
-
