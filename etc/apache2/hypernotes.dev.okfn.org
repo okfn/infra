@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+    ServerName hypernotes.dev.okfn.org
+    ServerAlias hypernotes.labs.okfn.org
+
+    WSGIScriptAlias / /home/okfn/var/srvc/hypernotes.dev.okfn.org/bin/hypernotes.dev.okfn.org.wsgi
+    WSGIDaemonProcess hypernotes.dev.okfn.org display-name=hypernotes.dev.okfn.org processes=4 threads=1 maximum-requests=1000
+
+    ErrorLog /var/log/apache2/hypernotes.dev.okfn.org.error.log
+    CustomLog /var/log/apache2/hypernotes.dev.okfn.org.custom.log combined
+</VirtualHost>
+
