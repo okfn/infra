@@ -326,14 +326,14 @@
     "type": "cloud"
   }, 
   "eu26": {
-    "aws_id": "i-2824645e", 
-    "aws_private_dns_name": "ip-10-48-201-145.eu-west-1.compute.internal", 
-    "aws_public_dns_name": "ec2-46-137-135-15.eu-west-1.compute.amazonaws.com", 
-    "created": "2011-06-28T13:30:38", 
-    "instance_type": "t1.micro", 
+    "aws_id": "i-56f5d720", 
+    "aws_private_dns_name": "ip-10-51-89-221.eu-west-1.compute.internal", 
+    "aws_public_dns_name": "ec2-46-137-71-40.eu-west-1.compute.amazonaws.com", 
+    "created": "2011-07-28T12:50:19", 
+    "instance_type": "m1.small", 
     "location": "eu-west-1", 
-    "notes": null, 
-    "os": "ubuntu-lucid-64-ebs", 
+    "notes": "Purpose: demos.ckan.org", 
+    "os": "ubuntu-lucid-32-ebs", 
     "owner": "okfn", 
     "placement": "eu-west-1b", 
     "provider": "aws", 
@@ -343,6 +343,28 @@
       "ssh-only", 
       "munin-only", 
       "instance-eu26"
+    ], 
+    "type": "ec2", 
+    "volumes": {}
+  }, 
+  "eu27": {
+    "aws_id": "i-2689a450", 
+    "aws_private_dns_name": "ip-10-50-51-140.eu-west-1.compute.internal", 
+    "aws_public_dns_name": "ec2-46-51-161-62.eu-west-1.compute.amazonaws.com", 
+    "created": "2011-07-29T14:26:50", 
+    "instance_type": "m1.large", 
+    "location": "eu-west-1", 
+    "notes": "Purpose: dev.okfn.org", 
+    "os": "ubuntu-lucid-64-ebs", 
+    "owner": "okfn", 
+    "placement": "eu-west-1b", 
+    "provider": "aws", 
+    "security_groups": [
+      "default", 
+      "www-only", 
+      "ssh-only", 
+      "munin-only", 
+      "instance-eu27"
     ], 
     "type": "ec2", 
     "volumes": {}
