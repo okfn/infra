@@ -181,6 +181,11 @@
     {
       "name": "Jason Kitcat",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAIBUC/qxmgOW7eNwvVXNJhqBuOl8tVMMWMKbxk8DJgNBD3mTsGFY3hbrTVE1uGUTYzaWUQqGaG89zfosnlM8Cm4bRzrN9xqth00C5ZlUKVmMKZeEm1miWzIeTV0w3ly2qqDTj5F2avZgs7QvkX4Jp0jH2VWfHcgYw/k8u9hxdIIXAAAAFQC9+RuheFV4fgY14k4tM9SI3M3dBwAAAIATrB8/JgWheAezt4jr6a0N857NQ9FoOBeTzFWwbxoJk5H4xGsIDtexyAGfv43TRcNgRE+95VwiJ7bYUGg+6t4vhwVeyCbJch58VUt+ZG27AzqmxlErhhNi0I4rmdk8eoVvQ9vhk8E3wl460M+TVj/SXwKUKzWOuC3rpF8ZOlbdNwAAAIAXPfE9qv10bgvAa+crJe3ZQLo1tEyRaI20hvc28xl4lP0VPdv0XpVR09wsljl2h00+ce2iaiTbo1D1MbWrnnixSCN5V8CVMPNlmJaRHbli5Zw0eTweRPs0hNJLAwqAZmXdXCCdv138uKRyD1z7BFQYv4f5VbFyttAtnrernouf2A== jasonkit@Jason-Kitcats-Computer.local"
+    },
+    "borior":
+    {
+      "name": "Nick Stenning",
+      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAPVtAzEgb+3DOqybJloAemXFeq4U5d9YmqSWzdgfeD1xiXqaiThSfQzyXDLEm8Qe8CikgG6eiv1MHcvmtzGRhsBYoDDQFLdUUb02ziflcmu6KrYpt3T+vT/NO941xWm8BPHo3UddDUFf3xAyyiRo5hl8sUmM9P5eYt8UziZX5h5TAAAAFQCVCrQlQPXZgYUbcSjYmSPnJsJgqQAAAIBrPZ2G4kwEe2O3g2MMc8y851OF/pjHvPgYymbbKURRPhXnuOT62X4RB/UFJZDzn9EFYeFAy7oP97hTVbPgTu7mX9uOB6mHyvI0hWa6zAy+aGrPZJajzy0uDQkRFo5qP37CyeZRp3xi7Fev0OYJrRj6uCipJxmCjroa5NOLqAlC4AAAAIEA7jvIsba9B0h/QOKC6D1h5XEeCN2fViDuzgga7jqttssR/n06C1GC6mdbdM5p5QCH7xpC1fHQ+6eMsQHdpZEFNwShXtgCJWQIyesk9bJZwvoDKlu6lzNUO37nwoO94kAwcXnz4/gERn0tTzJcCiwSSt5zpI/NTynuyLpFZ6BvNx8= borior@sirius.flamingpenguin.net"
     }
   }
 }
