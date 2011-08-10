@@ -1,7 +1,6 @@
 <VirtualHost *:80>
     ServerName ask.wheredoesmymoneygo.org
     ServerAlias questions.wheredoesmymoneygo.org
-    ServerAlias ask2.wheredoesmymoneygo.org
 
     RedirectMatch permanent ^.*$ http://getthedata.org/tags/openspending/
 
