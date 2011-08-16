@@ -6,6 +6,7 @@
     ServerAlias barnet.openspending.org
     ServerAlias bund.openspending.org
     ServerAlias dfid.openspending.org
+    ServerAlias israel.openspending.org
 
     WSGIScriptAlias / /home/okfn/var/srvc/openspending.org/pyenv/bin/openspending.org.py
     WSGIDaemonProcess openspending.org display-name=OPENSPENDING processes=2 threads=15
