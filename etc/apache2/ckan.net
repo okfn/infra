@@ -1,8 +1,6 @@
 <VirtualHost *:80>
     ServerName ckan.net
-    ServerAlias www-api.ckan.net
     ServerAlias www.ckan.net
-    ServerAlias www2.ckan.net
     ServerAlias thedatahub.org www.thedatahub.org
 
     Alias /dump /home/okfn/var/srvc/ckan.net/dumps
