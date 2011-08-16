@@ -12,4 +12,12 @@ server {
 	if ( $host = opendatachallenge.org ) {
 		rewrite ^(.*)$ http://www.opendatachallenge.org$1 permanent; 
 	}
+
+	if ( $host = coins.wheredoesmymoneygo.org ) {
+		rewrite ^(.*)$ http://openspending.org$1 permanent;
+	}
+
+	if ( $host = ask.wheredoesmymoneygo.org ) {
+		rewrite ^(.*)$ http://openspending.org$1 permanent;
+	}
 }
