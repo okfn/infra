@@ -3,6 +3,5 @@
 + /root
 + /mnt
 + /mnt/db_dumps
-+ /mnt/db_dumps/**
 - /mnt/**
 - /*

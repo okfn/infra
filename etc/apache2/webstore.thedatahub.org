@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+    ServerName webstore.thedatahub.org
+    
+    WSGIScriptAlias / /home/okfn/var/srvc/webstore.thedatahub.org/wsgi.py
+    # pass authorization info on (needed for rest api)
+    WSGIDaemonProcess webstore display-name=webstore processes=2 threads=5 maximum-requests=1000
+    WSGIProcessGroup webstore
+    WSGIPassAuthorization On
+
+    ErrorLog /var/log/apache2/webstore.thedatahub.org.error.log
+    CustomLog /var/log/apache2/webstore.thedatahub.org.custom.log combined
+</VirtualHost>
