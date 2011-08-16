@@ -1,5 +1,5 @@
 server {
-	listen   8080 default;
+	listen   localhost:8080 default;
 	server_name  localhost;
 
 	access_log  /var/log/nginx/localhost.access.log;
@@ -10,6 +10,6 @@ server {
 	}
 
 	if ( $host = opendatachallenge.org ) {
-		rewrite ^(.*)$ http://www.opendatachallenge.org/$1 last; 
+		rewrite ^(.*)$ http://www.opendatachallenge.org$1 permanent; 
 	}
 }
