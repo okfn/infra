@@ -222,8 +222,10 @@ def lock_user(username='root'):
 def set_hostname(new_hostname):
     _sudo('hostname %s' % new_hostname)
     _sudo('echo %s > /etc/hostname' % new_hostname)
+    _sudo('echo %s > /etc/mailname' % new_hostname)
     sed('/etc/hosts', '^(127\.0\.0\.1 .*)', '\\1 %s' % new_hostname, use_sudo=True)
     _sudo('sudo restart rsyslog')
+
 
 
 SYSADMIN_REPO_PATH = '/home/okfn/hg-sysadmin'
