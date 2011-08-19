@@ -28,7 +28,7 @@ class Config(FarmConfig):
 
     logo_string = u'''
     <div style="text-align: center;">
-    <img style="width: 100px;" src="http://m.okfn.org/gfx/logo/okf_logo_white_and_green.png" alt="OKF Logo"/></span>
+    <img style="width: 100px;" src="http://assets.okfn.org/images/logo/okf_logo_white_and_green.png" alt="OKF Logo"/></span>
     <br />
     <h1 style="border-bottom: none; font-size: 1.3em; color: #666;">
     Open Knowledge Foundation
@@ -129,8 +129,10 @@ pageTracker._trackPageview();
     textchas = {
         'en': {
             # u"What is 5+3?": ur"8",
-            u"What are last 4 letters of 'openness'?": ur"ness",
-            u"What are the first four letters of 'freedom'?": ur"free",
+            # u"What are last 4 letters of 'openness'?": ur"ness",
+            # u"What are the first four letters of 'freedom'?": ur"free",
+            u"What are the first five letters of 'freedom'?": ur"freed",
+            u"What is the square root of 25'?": ur"5",
         },
     } 
 
