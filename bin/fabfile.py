@@ -368,6 +368,8 @@ package_sets = {
     'basics': [
         'vim-nox',
         'sudo',
+        'man-db',
+        'bsd-mailx',
     ],
     'web': [
         'apache2',
