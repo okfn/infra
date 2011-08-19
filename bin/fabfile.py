@@ -117,7 +117,7 @@ def instance_setup_old(okfn_id):
     sysadmin_repo_clone()
     
 
-def instance_setup(hostname='', harden=False, team='okfn'):
+def instance_setup(hostname='', harden=False, team='okfn', flavour=''):
     '''Setup a new instance a in standard way:
 
         * Generate (UK) locales
@@ -132,6 +132,11 @@ def instance_setup(hostname='', harden=False, team='okfn'):
         * sysadmin_repo_clone
      '''
 
+    root_alias = _get_default_root_alias()
+    if flavour == 'Fry':
+        harden = False
+        root_alias += ',system-reports@fry-it.com'
+
     generate_locale() 
     if hostname :
         set_hostname(hostname)
@@ -141,6 +146,7 @@ def instance_setup(hostname='', harden=False, team='okfn'):
     default_shell_bash()
     prepare_sudoers()
     add_team(team)
+    set_root_alias(root_alias)
     if harden :
         lock_user(username='root')
         harden_sshd()
@@ -756,17 +762,29 @@ def postfix_install(copy_config=False):
     install('bsd-mailx')
 
 
-def set_root_alias(mail_address='sysadmin@okfn.org') :
-    '''Sets mail alias for root@localhost (defaults to sysadmin@okfn.org)
+def _get_default_root_alias():
+    '''OKFN default root alias is this.'''
+    return 'sysadmin@okfn.org'
+
+
+def set_root_alias(mail_address='') :
+    '''Sets mail alias for root@localhost. 
+    If emtpy use default, see _get_default_root_alias() for default.
     '''
+
+    if not mail_address:
+        mail_address = _get_default_root_alias()
+
     aliasfile = '/etc/aliases'
-    assert exists(aliasfile), 'Error: Alias file %s missing!' % aliasfile
+    # assert exists(aliasfile), 'Error: Alias file %s missing!' % aliasfile
+    # Soft error instead
+    if not exists(aliasfile):
+        print 'ERROR: Alias file %s is missing, no root alisas configured!' % aliasfile
+        return True
 
-    if run('! grep -q ^root: %s' % aliasfile) == '' :
-        append('root: %s' % mail_address, aliasfile, use_sudo=True)
-        sudo('newaliases')
-        sudo('/etc/init.d/postfix reload')
-    else :
-        # Unfortunately we never get here - run() has already raised an unreadable exception
-        print 'Error: There already is a root alias in %s!' % aliasfile
-
+    # Removing the root alias first and then append the new one is not very elegant, i know, 
+    # but i don't know how to have a condition here "is there alread a root alias?"
+    sudo('sed -e  "/^root:/D" -i /etc/aliases')
+    append('root: %s' % mail_address, aliasfile, use_sudo=True)
+    sudo('newaliases')
+    sudo('/etc/init.d/postfix reload')
