@@ -151,6 +151,9 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour=''):
         lock_user(username='root')
         harden_sshd()
     sysadmin_repo_clone()
+
+    if flavour == 'Fry':
+        fix_fry_postfix()
     
 
 ## ============================
@@ -788,3 +791,20 @@ def set_root_alias(mail_address='') :
     append('root: %s' % mail_address, aliasfile, use_sudo=True)
     sudo('newaliases')
     sudo('/etc/init.d/postfix reload')
+
+
+def fix_fry_postfix() :
+    '''On Fry machines, the postfix's main.cf has an explicit hostname set for 
+    "myhostname" and "mydestination", this function fixes that.
+    Fry will fix their template. Once that is done, this function can go
+    '''
+
+    config = '/etc/postfix/main.cf'
+
+    sudo('cp -a %s %s.ORIG' % (config, config) )
+    sed(config, '^(myhostname =).*',     '# \\1',                      backup='', use_sudo=True)
+    sed(config, '^(myorigin =).*',       '\\1 $myhostname',            backup='', use_sudo=True)
+    sed(config, '^(mydestination =).*' , '\\1 $myhostname, localhost', backup='', use_sudo=True)
+   
+    sudo('/etc/init.d/postfix reload')
+
