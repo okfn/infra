@@ -135,7 +135,8 @@ def instance_setup(hostname='', harden=False, team='okfn'):
     generate_locale() 
     if hostname :
         set_hostname(hostname)
-    install_set('basics', True)
+    upgrade()
+    install_set('basics')
     etc_in_mercurial()
     default_shell_bash()
     prepare_sudoers()
@@ -448,6 +449,17 @@ def install(package, update_first=False):
         _sudo(cmd)
     else:
         print 'Unrecognized package format: %s' % package
+
+
+def upgrade(update_first=True):
+    '''Upgrade all packages'''
+    if env.user != 'root':
+        env.use_sudo = True
+    if update_first:
+        _sudo('apt-get update')
+    _sudo('apt-get -y autoremove')
+    _sudo('apt-get -y upgrade')
+
 
 def install_set(package_set='basics', update_first=False):
     '''Install package set onto host.
