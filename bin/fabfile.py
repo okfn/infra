@@ -117,7 +117,7 @@ def instance_setup_old(okfn_id):
     sysadmin_repo_clone()
     
 
-def instance_setup(hostname='', harden=False, team='okfn', flavour=''):
+def instance_setup(hostname='', harden=False, team='okfn', flavour='', keyfile='../ssh_keys.js'):
     '''Setup a new instance a in standard way:
 
         * Generate (UK) locales
@@ -145,7 +145,7 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour=''):
     etc_in_mercurial()
     default_shell_bash()
     prepare_sudoers()
-    add_team(team)
+    add_team(team, key_config = keyfile)
     set_root_alias(root_alias)
     if harden :
         lock_user(username='root')
@@ -210,13 +210,13 @@ def setup_sudoers():
     adduser_to_sudo_admins('okfn')
 
 
-def add_team(team):
+def add_team(team, key_config = '../ssh_keys.js'):
     key_group = team
     if team == 'okfn': key_group = 'sysadmin'
     adduser(team)
     #user_shell_bash(team)
     adduser_to_sudo_admins(team)
-    ssh_add_public_key_group('../ssh_keys.js', key_group, team)
+    ssh_add_public_key_group(key_config, key_group, team)
 
 
 def lock_user(username='root'):
