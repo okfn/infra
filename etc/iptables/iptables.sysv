@@ -1,0 +1,90 @@
+#!/bin/sh -e
+### BEGIN INIT INFO
+# Provides:          iptables
+# Required-Start:    mountvirtfs ifupdown $local_fs
+# Default-Start:     S
+# Default-Stop:      0 6
+### END INIT INFO
+
+# July 9, 2007
+# James B. Crocker <ubuntu@james.crocker.name>
+# Creative Commons Attribution - Share Alike 3.0 License (BY,SA)
+# Script to load/unload/save iptables firewall settings.
+
+PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
+
+IPTABLES=/sbin/iptables
+IPTABLES_SAVE=/sbin/iptables-save
+IPTABLES_RESTORE=/sbin/iptables-restore
+
+IPTABLES_CONFIG=/etc/iptables.conf
+
+[ -x $IPTABLES ] || exit 0
+
+. /lib/lsb/init-functions
+
+
+case "$1" in
+start)
+	log_action_begin_msg "Starting firewall"
+        type usplash_write >/dev/null 2>/dev/null && usplash_write "TIMEOUT 120" || true
+	if $IPTABLES_RESTORE < $IPTABLES_CONFIG ; then
+		log_action_end_msg $?
+	else
+		log_action_end_msg $?
+	fi
+        type usplash_write >/dev/null 2>/dev/null && usplash_write "TIMEOUT 15" || true
+	;;
+
+stop)
+	log_action_begin_msg "Saving current firewall configuration"
+	if $IPTABLES_SAVE > $IPTABLES_CONFIG ; then
+		log_action_end_msg $?
+	else
+		log_action_end_msg $?
+	fi
+	log_action_begin_msg "Flushing ALL firewall rules from chains!"
+	if $IPTABLES -F ; then
+		log_action_end_msg $?
+	else
+		log_action_end_msg $?
+	fi
+	log_action_begin_msg "Deleting ALL firewall chains [Warning: ACCEPTING ALL PORT SERVICES!]"
+	if $IPTABLES -X ; then
+		$IPTABLES -P INPUT ACCEPT
+		$IPTABLES -P FORWARD ACCEPT
+		$IPTABLES -P OUTPUT ACCEPT
+		log_action_end_msg $?
+	else
+		log_action_end_msg $?
+	fi
+	;;
+
+save)
+	log_action_begin_msg "Saving current firewall configuration"
+	if $IPTABLES_SAVE > $IPTABLES_CONFIG ; then
+		log_action_end_msg $?
+	else
+		log_action_end_msg $?
+	fi
+	;;
+
+force-reload|restart)
+	log_action_begin_msg "Reloading firewall configuration [Warning: POTENTIAL NETWORK INSECURITY DURING RELOAD]"
+	$IPTABLES -F
+	$IPTABLES -X
+	if $IPTABLES_RESTORE < $IPTABLES_CONFIG ; then
+		log_action_end_msg $?
+	else
+		log_action_end_msg $?
+	fi
+	;;
+
+*)
+	echo "Usage: /etc/init.d/iptables {start|stop|save|restart|force-reload}"
+	exit 1
+	;;
+esac
+
+exit 0
+
