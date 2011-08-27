@@ -18,6 +18,10 @@ server {
 	}
 
 	if ( $host = ask.wheredoesmymoneygo.org ) {
-		rewrite ^(.*)$ http://openspending.org$1 permanent;
+		rewrite ^(.*)$ http://getthedata.org/tags/openspending/ permanent;
+	}
+	
+	if ( $host = www.opendatamanual.org ) {
+		rewrite ^(.*)$ http://opendatamanual.org$1 permanent;
 	}
 }
