@@ -24,4 +24,9 @@ server {
 	if ( $host = www.opendatamanual.org ) {
 		rewrite ^(.*)$ http://opendatamanual.org$1 permanent;
 	}
+	
+	if ( $host ~* (www\.|)opendatasearch\.org ) {
+		rewrite ^(.*)$ http://thedatahub.org/ permanent;
+	}
+	
 }
