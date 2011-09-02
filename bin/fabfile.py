@@ -372,6 +372,37 @@ def generate_locale(locale='en_GB.utf8'):
     _sudo('locale-gen %s' % locale )
 
 
+def install_firewall(copy_config=False):
+    '''Install iptables load script and default firewall ruleset.
+    Use "copy_config=True" to copy the config from Bitbucket rather than
+    softlinking it from the local hg repository
+    '''
+
+    install('iptables')
+
+    REMOTE_REPO = 'https://bitbucket.org/okfn/sysadmin/raw/default/etc'
+
+    if copy_config :
+        sudo('wget -P /etc                  %s/iptables/iptables.conf' % REMOTE_REPO )
+        sudo('wget -O /etc/init.d/iptables  %s/iptables/iptables.sysv' % REMOTE_REPO )
+    else :
+        sysadmin_repo_update()
+        sudo('cp --preserve=timestamps %s/iptables/iptables.conf /etc/iptables.conf'   % OKFN_ETC)
+        sudo('ln -s                    %s/iptables/iptables.sysv /etc/init.d/iptables' % OKFN_ETC)
+
+    sudo('chmod +x /etc/init.d/iptables')
+    
+    # Check that the iptables modules we need are there:
+    for match in ['state'] :
+        if not contains(match, '/proc/net/ip_tables_matches', exact=True, use_sudo=True) :
+            print 'WARNING: iptables match "%s" not found - not activating firewall!' % match
+            return
+    
+    print 'INFO: Activating firewall.'
+    sudo('update-rc.d iptables start 09 2 3 4 5 .')
+    sudo('/etc/init.d/iptables start')
+
+
 ## =========================================
 ## Installation of packages and applications
 
