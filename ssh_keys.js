@@ -186,6 +186,10 @@
     {
       "name": "Nick Stenning",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAPVtAzEgb+3DOqybJloAemXFeq4U5d9YmqSWzdgfeD1xiXqaiThSfQzyXDLEm8Qe8CikgG6eiv1MHcvmtzGRhsBYoDDQFLdUUb02ziflcmu6KrYpt3T+vT/NO941xWm8BPHo3UddDUFf3xAyyiRo5hl8sUmM9P5eYt8UziZX5h5TAAAAFQCVCrQlQPXZgYUbcSjYmSPnJsJgqQAAAIBrPZ2G4kwEe2O3g2MMc8y851OF/pjHvPgYymbbKURRPhXnuOT62X4RB/UFJZDzn9EFYeFAy7oP97hTVbPgTu7mX9uOB6mHyvI0hWa6zAy+aGrPZJajzy0uDQkRFo5qP37CyeZRp3xi7Fev0OYJrRj6uCipJxmCjroa5NOLqAlC4AAAAIEA7jvIsba9B0h/QOKC6D1h5XEeCN2fViDuzgga7jqttssR/n06C1GC6mdbdM5p5QCH7xpC1fHQ+6eMsQHdpZEFNwShXtgCJWQIyesk9bJZwvoDKlu6lzNUO37nwoO94kAwcXnz4/gERn0tTzJcCiwSSt5zpI/NTynuyLpFZ6BvNx8= borior@sirius.flamingpenguin.net"
-    }
-  }
+    },
+    "peiopopov":
+    {
+      "name": "Peio Popov",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA40nO1gOi1kaPf3dnRsWxGiq2o3p4XpKjo4dTQZL4/RcjZhUY4o5HE/Qqk+LftsgCwIeIp2DDyvc6X1wn2DTNqnXx7m4ptYCsP0mfSru3Bfh6YKvK1hhz/AJ/zcIML0Lqh7joaI7yKR7+do4FyV8KIeSebDdlBxKv70ojq6dDxAK6o7ZwRRMgsPdU2UVAnMVNjoa9D5TVLEKg+gHNCgbQs3NJv5Ovx5mN5IdDq1cGEZEw0YzciK0T5ztBgTa8zADoFlK4ztS3736O97omEAAeLIqt2m1NUy9YEF1IlJsCt2kMRwuIXwZUwofwKSQVH7ZUWaKKBWWGEsv2DqzVcRfgWcBn/QOYHCqxlbDIn7QxoQ080LNMM4mHgrFTqc6m6fIowiD4HC3YxmAe+XiO1oj9/ezDiswDvEkMdk0CuKR34Fio5cK+bBS1VBjoTyhLiZ9O0bYa5hbGSb31pWtTpBnFmoNgvUtLJ1wfnUgbibzVPqLFgUjaLIAb2WH1mqibTano4iXKPN99DuLpzPwvMxilRltYeDbpmBxZatFRUdT9Ldl2FBef4UYJht6Qm1CueWYsIP2mK/kgLL/0T9LBTEAvhz593sd0btUY5P2hXJxBO28Hqb27PWtSKsmAxcGh4dcvwWVDNduH4KFfF7m98vGViXailuQSFwy1JTCOWWh1De8= SSH key for my workstation"
+   }
 }
