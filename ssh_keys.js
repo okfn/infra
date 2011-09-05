@@ -6,20 +6,22 @@
       "pudo",
       "mk270",
       "casbon",
-      "benosteen",
       "okfn-sysadmin",
       "steko",
       "ntoedtma",
       "jasonkitcat",
       "sebbacon",
-      "ddie"
+      "ddie",
+      "odaesa"
     ],
     "ckan": [
       "rgrp",
       "dread",
       "pudo",
-      "ww",
-      "thejimmyg"
+      "davidraznick",
+      "thejimmyg",
+      "adriamercader",
+      "johnglover"
     ],
     "fry": [
       "jan.kokoska",
@@ -191,5 +193,21 @@
     {
       "name": "Peio Popov",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA40nO1gOi1kaPf3dnRsWxGiq2o3p4XpKjo4dTQZL4/RcjZhUY4o5HE/Qqk+LftsgCwIeIp2DDyvc6X1wn2DTNqnXx7m4ptYCsP0mfSru3Bfh6YKvK1hhz/AJ/zcIML0Lqh7joaI7yKR7+do4FyV8KIeSebDdlBxKv70ojq6dDxAK6o7ZwRRMgsPdU2UVAnMVNjoa9D5TVLEKg+gHNCgbQs3NJv5Ovx5mN5IdDq1cGEZEw0YzciK0T5ztBgTa8zADoFlK4ztS3736O97omEAAeLIqt2m1NUy9YEF1IlJsCt2kMRwuIXwZUwofwKSQVH7ZUWaKKBWWGEsv2DqzVcRfgWcBn/QOYHCqxlbDIn7QxoQ080LNMM4mHgrFTqc6m6fIowiD4HC3YxmAe+XiO1oj9/ezDiswDvEkMdk0CuKR34Fio5cK+bBS1VBjoTyhLiZ9O0bYa5hbGSb31pWtTpBnFmoNgvUtLJ1wfnUgbibzVPqLFgUjaLIAb2WH1mqibTano4iXKPN99DuLpzPwvMxilRltYeDbpmBxZatFRUdT9Ldl2FBef4UYJht6Qm1CueWYsIP2mK/kgLL/0T9LBTEAvhz593sd0btUY5P2hXJxBO28Hqb27PWtSKsmAxcGh4dcvwWVDNduH4KFfF7m98vGViXailuQSFwy1JTCOWWh1De8= SSH key for my workstation"
-   }
+    },
+    "adriamercader":
+    {
+      "name": "Adria Mercader",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbltE2VNWmeaPpMhDOYuNo++ZSnrCCxUi2HAmOIcATTSjc2mMi3xfVcAXeuHrJRSpNdB1cH6O0rSBJfikYV3zlz1nFVQD4uR4yRUI5Bw92PcgoTkVNNjLX/FjNVlSwnGTSoXMoCJl8Hx3gvjoplMGZgPtOlujPr4XJpJbld82+Oyc23wkBXZuf6m4RpcT/yPcJq++kY++2VzFmjeEQeGMz6pWkHAvx2iXKUWDzxHYgQi9lrqtlLG56IOW10wlLjDZNP1ij97MJyHOlPaQ1oHgTcus88YXkFbr3K8Zm5l/7FnXgGDey0NPMdrHQJu9gYQTTIZJ+hI2K/K3pI9inAgaZ amercadero@gmail.com"
+    },
+    "johnglover":
+    {
+      "name": "John Glover",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA09+n7kVcUWDJaxouHfCCEjzbKlBgXcvTMFogZ7KwYm29XYqGZWsxXuNETItR52tqcOyx8r7YmQegJcYT/3bi4/bd4qm9lRoU0nPp3zfZIMMStHEIx0m9o9Vb3CfsPo2NxrpiupHfF8dfhj/KD+/DBvSLxDWx86xDwMjjAwKdtk01zjo4R6nXcJjYZNAe4kIhLYR9SgoUWFAFzzRewMFzQixZoqU79dEVdl4I/24FBRYbC5a1nG6PbPS4Dl/zI8iPBI3HSf++a1nhFiIu/7FymFTFaQJwpp7+JZI4RX1ETHDL6smEL8VhvLhUy6nMrI4hHpDh4DPy8BuH9tBqPJptgw== j@johnglover.net"
+    },
+    "elfpavlik":
+    {
+      "name": "Elf Pavlik",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA+e1P9yQxABFffjzuwfeZ/IXLuY7+J0Gi2qC6AzYl05M924eRDjj1cEyYDj7lnYVkg45k0XYtrH3yVQmf6eFdPNeFoBD2jx+7vOoGCTUVwQaMPibecFaPatBECoVUBLqBUY9oAutQvgsO+Xfoy2b8lOuZiDResRJNyx7X1B8x4FU9kotR7NEtCgIW+Srujqf2xYVw304xW407OzLy41xTHuhsJXcNnXRW68Y1jt/M1qeGfYwdLYD3XyP98IHRAsuvzxg80iq1pKieL2Jz0KtuVjw7uh/kndl3+39nf+Xnn59eSBkFvpszh/IvMJD3AKQ1jSJOVlZfcJrBLgTK9/KYyw== perpetual-tripper@wwelves.org"
+    }
+  }
 }
