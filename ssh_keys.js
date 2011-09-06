@@ -23,6 +23,13 @@
       "adriamercader",
       "johnglover"
     ],
+    "openspending": [
+      "mk270",
+      "borior",
+      "stiivi",
+      "pudo",
+      "rgrp"
+    ],
     "fry": [
       "jan.kokoska",
       "darryl.weaver"
