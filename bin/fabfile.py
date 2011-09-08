@@ -166,13 +166,15 @@ def default_shell_bash():
     _sudo('useradd -D --shell /bin/bash')
 
 
-def adduser(username='okfn'):
+def adduser(username='okfn', bash=True):
     '''Create a user with username `username` (defaults to okfn).
     '''
     assert not exists('/home/%s' % username), '%s user already exists' % username
     # use useradd rather than adduser so as to not be prompted for info
     _sudo('useradd --create-home %s' % username)
     _sudo('echo "%s:`tr -dc _A-Z-a-z-0-9 < /dev/urandom | head -c20`" | chpasswd' % username)
+    if bash:
+        user_shell_bash(username=username)
 
 
 def user_shell_bash(username='okfn'):
