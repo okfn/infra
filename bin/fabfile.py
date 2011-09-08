@@ -188,27 +188,35 @@ def user_shell_bash(username='okfn'):
 def prepare_sudoers():
     '''Add group 'ADMINS' to /etc/sudoers'''
     fn = '/etc/sudoers'
-    # double escape as passed through to sed ...
-    after = '# User alias specification\\nUser_Alias      ADMINS = root'
-    sed(fn, '# User alias specification', after, use_sudo=True)
 
-    in2 = r'root.*ALL=\(ALL\) ALL'
-    # double escape as passed through to sed ...
-    out2 = 'root   ALL=(ALL) ALL' + '\\n' + 'ADMINS  ALL = (ALL) NOPASSWD: ALL'
-    print out2
-    sed(fn, in2, out2, backup='', use_sudo=True)
+    if contains('User_Alias *ADMINS *=', fn, use_sudo=True):
+        print 'User_Alias ADMINS already in %s' % fn
+    else:
+        print 'Adding "User_Alias ADMINS" to %s' % fn 
+        # double escape as passed through to sed ...
+        after = '# User alias specification\\nUser_Alias      ADMINS = root'
+        sed(fn, '# User alias specification', after, use_sudo=True)
+
+    if contains('^ADMINS *ALL *=', fn, use_sudo=True):
+        print 'AMINDS rule already in %s' % fn
+    else:
+        print 'Adding AMINDS rule to %s' % fn
+        in2 = r'root.*ALL=\(ALL\) ALL'
+        # double escape as passed through to sed ...
+        out2 = 'root   ALL=(ALL) ALL' + '\\n' + 'ADMINS  ALL = (ALL) NOPASSWD: ALL'
+        sed(fn, in2, out2, backup='', use_sudo=True)
 
 
 def adduser_to_sudo_admins(username):
     '''Add a user as admin to /etc/sudoers'''
     # TODO: check whether user is already listed
     fn = '/etc/sudoers'
+    prepare_sudoers()
     sed(fn, '^(User_Alias *ADMINS *=.*)', '\\1, %s' % username, use_sudo=True)
 
 
 def setup_sudoers():
     '''Only for backwards compatibility - Prepare /etc/sudoers and add standard user 'okfn' as admin config to sudoers'''
-    prepare_sudoers()
     adduser_to_sudo_admins('okfn')
 
 
