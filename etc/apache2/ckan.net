@@ -10,7 +10,7 @@
     RewriteCond %{HTTP_HOST} ^www\.ckan\.net$ [NC]
     RewriteRule ^(.*)$ http://ckan.net$1 [R=301,L]
     RewriteCond %{HTTP_HOST} ^www\.thedatahub\.org$ [NC]
-    RewriteRule ^(.*)$ http://datahub.org$1 [R=301,L]
+    RewriteRule ^(.*)$ http://thedatahub.org$1 [R=301,L]
 
     # CORS stuff for DataDeck etc
     Header always set Access-Control-Allow-Origin "*"
