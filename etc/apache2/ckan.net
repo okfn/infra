@@ -45,7 +45,7 @@ RewriteRule .* - [F]
     </Location>
 
     WSGIScriptAlias / /home/okfn/var/srvc/ckan.net/pyenv/bin/ckan.net.py
-    WSGIDaemonProcess ckan.net display-name=ckan.net processes=10 threads=1 maximum-requests=500
+    WSGIDaemonProcess ckan.net display-name=ckan.net processes=10 threads=1 maximum-requests=25
     WSGIProcessGroup ckan.net
 
     # pass authorization info on (needed for rest api)
