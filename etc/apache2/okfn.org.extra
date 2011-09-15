@@ -22,6 +22,10 @@ ServerAlias opendatacommons.org www.opendatacommons.org
 ServerAlias ogdcamp.org www.ogdcamp.org
 ServerAlias openliterature.net www.openliterature.net
 ServerAlias openaiddata.de www.openaiddata.de
+ServerAlias openglam.org www.openglam.org
+ServerAlias wheredoesmymoneygo.org www.wheredoesmymoneygo.org
+ServerAlias opendefinition.org www.opendefinition.org
+ServerAlias blog.openshakespeare.org
 
 Alias /moinhtdocs /usr/share/moin/htdocs
 
