@@ -133,6 +133,7 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='', keyfile='
      '''
 
     root_alias = _get_default_root_alias()
+    additional_firewall_rules = []
     if flavour == 'Fry':
         harden = False
         root_alias += ',system-reports@fry-it.com'
@@ -153,7 +154,12 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='', keyfile='
     sysadmin_repo_clone()
 
     if flavour == 'Fry':
-        fix_fry_postfix()
+        # fix_fry_postfix()
+        additional_firewall_rules = [
+            '-A INPUT -j ACCEPT -p tcp  -s monitor1.fry-it.com  # Allow Fry monitors',
+            '-A INPUT -j ACCEPT -p tcp  -s monitor2.fry-it.com'
+        ]
+        install_firewall(rules=additional_firewall_rules)
 
 
 ## Test basic remote functions and display basic connection information
@@ -392,7 +398,22 @@ def generate_locale(locale='en_GB.utf8'):
     _sudo('locale-gen %s' % locale )
 
 
-def install_firewall(copy_config=False):
+def firewall_insert_rule(rule):
+    '''Add a rule to "filter" table of /etc/iptables.conf
+    '''
+
+    cf = '/etc/iptables.conf'
+    assert exists(cf), 'Fatal: iptables ruleset %s does not exist!' % cf
+    
+    marker = 'FAB-INSERT-IPTABLES-INPUT-RULES'
+    if not contains(marker, cf, exact=False, use_sudo=False) :
+        print 'Fatal: iptables ruleset %s does not contain marker "%s"!' % (cf, marker)
+        return False
+
+    sed(cf, '^(.*%s.*)' % marker, '\\1\\n%s' % rule, backup='', use_sudo=True)
+
+
+def install_firewall(rules=[], copy_config=False):
     '''Install iptables load script and default firewall ruleset.
     Use "copy_config=True" to copy the config from Bitbucket rather than
     softlinking it from the local hg repository
@@ -411,7 +432,10 @@ def install_firewall(copy_config=False):
         sudo('ln -s                    %s/iptables/iptables.sysv /etc/init.d/iptables' % OKFN_ETC)
 
     sudo('chmod +x /etc/init.d/iptables')
-    
+
+    for rule in rules:
+        firewall_insert_rule(rule)
+
     # Check that the iptables modules we need are there:
     for match in ['state'] :
         if not contains(match, '/proc/net/ip_tables_matches', exact=True, use_sudo=True) :
