@@ -162,8 +162,8 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
     if flavour == 'Fry':
         # fix_fry_postfix()
         additional_firewall_rules = [
-            '-A INPUT -j ACCEPT -p tcp  -s monitor2.fry-it.com',
-            '-A INPUT -j ACCEPT -p tcp  -s monitor1.fry-it.com'
+            '-A INPUT  -j ACCEPT -p tcp  -m tcp   --dport  5666  -s monitor2.fry-it.com',
+            '-A INPUT  -j ACCEPT -p tcp                          -s monitor1.fry-it.com'
         ]
         install_firewall(rules=additional_firewall_rules)
 
@@ -474,8 +474,8 @@ def install_firewall(rules=[], copy_config=False):
 def install_firewall_fry():
     if detect_flavour() == 'Fry':
         additional_firewall_rules = [
-            '-A INPUT -j ACCEPT -p tcp  -s monitor2.fry-it.com',
-            '-A INPUT -j ACCEPT -p tcp  -s monitor1.fry-it.com'
+            '-A INPUT  -j ACCEPT -p tcp  -m tcp   --dport  5666  -s monitor2.fry-it.com',
+            '-A INPUT  -j ACCEPT -p tcp                          -s monitor1.fry-it.com'
         ]
         install_firewall(rules=additional_firewall_rules)
 
