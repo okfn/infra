@@ -99,6 +99,8 @@ def _mkdir(dir):
 ## ============================
 ## Setup instances
 
+
+# DEPRICATED - remove soon /nils.
 def instance_setup_old(okfn_id):
     '''Obsoleted. Setup a new instance named by `okfn_id` the (old) standard way.
 
@@ -468,12 +470,14 @@ def install_firewall(rules=[], copy_config=False):
     sudo('/etc/init.d/iptables start')
 
 
+# DEPRICATED - remove soon /nils.
 def install_firewall_fry():
-    additional_firewall_rules = [
+    if detect_flavour() == 'Fry':
+        additional_firewall_rules = [
             '-A INPUT -j ACCEPT -p tcp  -s monitor2.fry-it.com',
             '-A INPUT -j ACCEPT -p tcp  -s monitor1.fry-it.com'
-    ]
-    install_firewall(rules=additional_firewall_rules, copy_config=True)
+        ]
+        install_firewall(rules=additional_firewall_rules)
 
 
 ## =========================================
@@ -897,6 +901,7 @@ def set_root_alias(mail_address='') :
     sudo('/etc/init.d/postfix reload')
 
 
+# DEPRICATED - remove soon /nils.
 def fix_fry_postfix() :
     '''On Fry machines, the postfix's main.cf has an explicit hostname set for 
     "myhostname" and "mydestination", this function fixes that.
