@@ -294,7 +294,9 @@ def sysadmin_repo_clone():
     else:
         ourrun = run
     
-    if not exists(SYSADMIN_REPO_PATH):
+    if exists(SYSADMIN_REPO_PATH):
+        ourrun('hg pull -u -R %s' % SYSADMIN_REPO_PATH)
+    else:
         ourrun('hg clone https://bitbucket.org/okfn/sysadmin %s' %
                 SYSADMIN_REPO_PATH)
     if not exists(OKFN_ETC):
@@ -304,7 +306,8 @@ def sysadmin_repo_clone():
 
 def sysadmin_repo_update():
     '''Update okfn sysadmin repo'''
-    run('hg pull -u -R %s' % SYSADMIN_REPO_PATH)
+    sysadmin_repo_clone()
+    # run('hg pull -u -R %s' % SYSADMIN_REPO_PATH)
 
 
 def etc_in_mercurial():
