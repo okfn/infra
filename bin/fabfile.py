@@ -154,7 +154,17 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='', keyfile='
 
     if flavour == 'Fry':
         fix_fry_postfix()
-    
+
+
+## Test basic remote functions and display basic connection information
+def info():
+    '''Tries to log into other host and display hostname, username, and whether sudo works.
+    '''
+    run('hostname')
+    run('id')
+    sudo('id')
+
+
 
 ## ============================
 ## User and sudo
