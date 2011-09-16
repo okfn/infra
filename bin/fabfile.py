@@ -117,7 +117,7 @@ def instance_setup_old(okfn_id):
     sysadmin_repo_clone()
     
 
-def instance_setup(hostname='', harden=False, team='okfn', flavour='', keyfile='../ssh_keys.js'):
+def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT', keyfile='../ssh_keys.js'):
     '''Setup a new instance a in standard way:
 
         * Generate (UK) locales
@@ -134,6 +134,10 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='', keyfile='
 
     root_alias = _get_default_root_alias()
     additional_firewall_rules = []
+
+    if flavour == 'AUTODETECT':
+        flavour = detect_flavour()
+        
     if flavour == 'Fry':
         harden = False
         root_alias += ',system-reports@fry-it.com'
@@ -162,7 +166,6 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='', keyfile='
         install_firewall(rules=additional_firewall_rules)
 
 
-## Test basic remote functions and display basic connection information
 def info():
     '''Tries to log into other host and display hostname, username, and whether sudo works.
     '''
@@ -170,6 +173,21 @@ def info():
     run('id')
     sudo('id')
 
+
+def detect_flavour():
+    '''Logs into host and tries to determine it's flavour (e.g. "Fry")
+    '''
+
+    flavour = None
+    if contains('^ *nameserver  *193.34.146.1 *$', '/etc/resolv.conf', exact=False, use_sudo=False) :
+        flavour = 'Fry'
+
+    if flavour:
+        print 'Auto-detected flavour "%s".' % flavour
+    else:
+        print 'No flavour auto-detected.'
+
+    return flavour
 
 
 ## ============================
