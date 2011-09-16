@@ -161,11 +161,7 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
 
     if flavour == 'Fry':
         # fix_fry_postfix()
-        additional_firewall_rules = [
-            '-A INPUT  -j ACCEPT -p tcp  -m tcp   --dport  5666  -s monitor2.fry-it.com',
-            '-A INPUT  -j ACCEPT -p tcp                          -s monitor1.fry-it.com'
-        ]
-        install_firewall(rules=additional_firewall_rules)
+        install_firewall(rules=additional_firewall_rules, flavour=flavour)
 
 
 def info():
@@ -436,11 +432,19 @@ def firewall_insert_rule(rule):
     sed(cf, '^(.*%s.*)' % marker, '\\1\\n%s' % rule, backup='', use_sudo=True)
 
 
-def install_firewall(rules=[], copy_config=False):
+def install_firewall(rules=[], copy_config=False, flavour=''):
     '''Install iptables load script and default firewall ruleset.
     Use "copy_config=True" to copy the config from Bitbucket rather than
     softlinking it from the local hg repository
     '''
+
+    additional_firewall_rules_fry = [
+            '-A INPUT  -j ACCEPT -p tcp  -m tcp   --dport  5666  -s monitor2.fry-it.com',
+            '-A INPUT  -j ACCEPT -p tcp                          -s monitor1.fry-it.com'
+    ]
+
+    if flavour == 'Fry':
+        rules += additional_firewall_rules_fry
 
     install('iptables')
 
@@ -468,16 +472,6 @@ def install_firewall(rules=[], copy_config=False):
     print 'INFO: Activating firewall.'
     sudo('update-rc.d iptables start 09 2 3 4 5 .')
     sudo('/etc/init.d/iptables start')
-
-
-# DEPRICATED - remove soon /nils.
-def install_firewall_fry():
-    if detect_flavour() == 'Fry':
-        additional_firewall_rules = [
-            '-A INPUT  -j ACCEPT -p tcp  -m tcp   --dport  5666  -s monitor2.fry-it.com',
-            '-A INPUT  -j ACCEPT -p tcp                          -s monitor1.fry-it.com'
-        ]
-        install_firewall(rules=additional_firewall_rules)
 
 
 ## =========================================
