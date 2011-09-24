@@ -8,6 +8,10 @@ server {
 		index  index.html index.htm;
 	}
 
+	if ( $host = wiki.ckan.net ) {
+		rewrite ^(.*)$ http://wiki.ckan.org$1 permanent; 
+	}
+
 	if ( $host = opendatachallenge.org ) {
 		rewrite ^(.*)$ http://www.opendatachallenge.org$1 permanent; 
 	}
