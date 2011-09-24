@@ -1,5 +1,6 @@
 <VirtualHost *:80>
-    ServerName wiki.ckan.net
+    ServerName wiki.ckan.org
+    ServerAlias wiki.ckan.net
     DocumentRoot /home/okfn/var/srvc/wiki.ckan.net
 
     Alias /wiki /home/okfn/var/srvc/wiki.ckan.net/w/index.php
