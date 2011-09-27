@@ -33,6 +33,10 @@
     "fry": [
       "jan.kokoska",
       "darryl.weaver"
+    ],
+    "volunteers": [
+      "elfpavlik",
+      "mark.herringer"
     ]
   },
   "users":
