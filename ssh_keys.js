@@ -215,6 +215,11 @@
     {
       "name": "Elf Pavlik",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA+e1P9yQxABFffjzuwfeZ/IXLuY7+J0Gi2qC6AzYl05M924eRDjj1cEyYDj7lnYVkg45k0XYtrH3yVQmf6eFdPNeFoBD2jx+7vOoGCTUVwQaMPibecFaPatBECoVUBLqBUY9oAutQvgsO+Xfoy2b8lOuZiDResRJNyx7X1B8x4FU9kotR7NEtCgIW+Srujqf2xYVw304xW407OzLy41xTHuhsJXcNnXRW68Y1jt/M1qeGfYwdLYD3XyP98IHRAsuvzxg80iq1pKieL2Jz0KtuVjw7uh/kndl3+39nf+Xnn59eSBkFvpszh/IvMJD3AKQ1jSJOVlZfcJrBLgTK9/KYyw== perpetual-tripper@wwelves.org"
+    },
+    "mark.herringer":
+    {
+      "name": "Mark Herringer",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvlcmH5dwkosGs4GDIWWsxxWZWjagKL97pqOw0SuXQHZfDlj00DpgCNOYb2bfjojJH+8BxpCDyi8fsSaYLUOfeCp+oAEMAlcARsaMPeI3PhTNj4rv4CpJD9ASGVAi5hcGRblA80p6Z3aAVu4zYYGfkoOWabbVbqIMzLmUeLnpGMPxDuCl0GDRkSbbgOl6VYnCXLMlzUSL1N9eFxz1ago2rIBNTr+Gj1UpDDxYn7qWcPzC3DAbxwx7gqbrb9INRDWaLYLgUKDbGBSRA/IC3ae5dQz+L38KR2LunHUZzFd/fwriAoYLSmkcnUilOP7/xJqp752D8F/7Y81LjIQdb0N0Cw== mark.herringer@gmail.com"
     }
   }
 }
