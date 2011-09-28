@@ -12,6 +12,13 @@ server {
 		rewrite ^(.*)$ http://wiki.ckan.org$1 permanent; 
 	}
 
+	if ( $host = ckan.net ) {
+		rewrite ^(.*)$ http://thedatahub.org$1 permanent; 
+	}
+	if ( $host = www.ckan.net ) {
+		rewrite ^(.*)$ http://thedatahub.org$1 permanent; 
+	}
+
 	if ( $host = opendatachallenge.org ) {
 		rewrite ^(.*)$ http://www.opendatachallenge.org$1 permanent; 
 	}
