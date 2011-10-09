@@ -21,7 +21,8 @@
       "davidraznick",
       "thejimmyg",
       "adriamercader",
-      "johnglover"
+      "johnglover",
+      "tomrees"
     ],
     "openspending": [
       "mk270",
@@ -96,7 +97,7 @@
     "ipe":
     {
       "name": "Iain Emsley",
-      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBALlEEhdT+rzp7X2hQxG5mz3xuw9NkZ2PZvnSTV9Hg2pfp0UdZSFAWIXkbraLhKv5FC6u6WgmSlzd96e6Gu2ieXzIDnyk1Qzu9QnB4Z2ZSHsFirSQtYeY94adZSVR6awAGXYBm5WjtXk+Ifbs3Hr4kH2Db/v0zCnzAiZn6h5/Z9PRAAAAFQC9spawNoj+Rehq/Ry8EmO1GqVUawAAAIEAljTXQHOfy9dGaMEXER4MO6YcvvtDo5CWxIwxBT4Zs0WEfOyG2bfP345/xoYEAwGw9tM85doAN5SlZ7EMt8YqsCa6kd+PDXComzFluOa2dEKmJ4sprtNEAk9NYZsewvkMW5Sf2JnmhkelQhL6EqFmuXPICcMMdk6nP7O01L6GAKgAAACBAKXA8Xs0OqTGmWI1iwEW+hhpSievnELDCcIceV/rAPuDOmo0l5/VoskpFV0M8db6pci3rTJBlpr5PMQI0zKWAUVq/zW2nGk5lyVzMuW4VMC58peYOeCHhWCxIWxftJqRXMq48nTjnuEKX1BizjP9nYkrOM7N3YvEWLwn0VMs647V dsa-key-20100523"
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAosFMiSGsV8gMvNtC4rhe+JsEEDI1ueLR7UPbK4KhHzY7jkWSlpDVcZ+mEPlX0e+UbcYRT/6Jf6Sj9VxydlmWnntLDnm+MeUsg29SUiqMt1YebHXcChS3O7LmVwjTJBwrp94WjByaCdk4gZ1sA4QKI6i1YENCqlHcizb5gPj2INeH0HPL1jxKEtBUAeWdPqcB54u33cNwat97+S/ojnIeA1jqYrr5uNLV+VQUgsar41O6yXHkgiLzfh/oiyWNXLeSH98Ce4AUBEmdn8cU8DkkoyqEyNL9xlHMLj/UPK21RpzchGENCJ8mcPdQJZRlfLDl33F0bITVW9VoORq+QyFilQ== ie-opencorrespondence"
     },
     "annaps":
     {
@@ -224,6 +225,11 @@
     {
       "name": "Mark Herringer",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvlcmH5dwkosGs4GDIWWsxxWZWjagKL97pqOw0SuXQHZfDlj00DpgCNOYb2bfjojJH+8BxpCDyi8fsSaYLUOfeCp+oAEMAlcARsaMPeI3PhTNj4rv4CpJD9ASGVAi5hcGRblA80p6Z3aAVu4zYYGfkoOWabbVbqIMzLmUeLnpGMPxDuCl0GDRkSbbgOl6VYnCXLMlzUSL1N9eFxz1ago2rIBNTr+Gj1UpDDxYn7qWcPzC3DAbxwx7gqbrb9INRDWaLYLgUKDbGBSRA/IC3ae5dQz+L38KR2LunHUZzFd/fwriAoYLSmkcnUilOP7/xJqp752D8F/7Y81LjIQdb0N0Cw== mark.herringer@gmail.com"
+    },
+    "tomrees":
+    {
+      "name": "Tom Rees",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAojip3xRT6Bbjr0HmPtbuugK4BhC/sGvzf0kIqBeNQyfXEGLM27R0U4pje2DE24x1DymbKRiTfxvMbkvYLozBACA0KK0HmyQbvqwDOkFra87KrlS0hgvoa/Eoip6XQtLjyoD59OWJAXc/VJn+LRVG+jIH5nAO23eUHTB+g7ItNtnA1QMsT8A2OVB4R9sbzkGwMg6qAaZRzJDHZQnkJb7x8S4koaRL0JLqF+Uqcbrhw3hBjuoS3e0VtgXRIEtO2dz7qRYJdKaVNr5heyUOOxmd+7DhVIAyrAlf2WePhR+PeB+qJ0fUMgcRZOtN1pHDh4/wSEo2IvPr3qCnfR9go5vrGw== zephod@gmail.com"
     }
   }
 }
