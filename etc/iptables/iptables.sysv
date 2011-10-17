@@ -37,13 +37,7 @@ start)
 	;;
 
 stop)
-	log_action_begin_msg "Saving current firewall configuration"
-	if $IPTABLES_SAVE > $IPTABLES_CONFIG ; then
-		log_action_end_msg $?
-	else
-		log_action_end_msg $?
-	fi
-	log_action_begin_msg "Flushing ALL firewall rules from chains!"
+	log_action_begin_msg "Flushing ALL firewall rules from chains! [Warning: WITHOUT SAVING THEM!]"
 	if $IPTABLES -F ; then
 		log_action_end_msg $?
 	else
