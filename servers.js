@@ -474,6 +474,28 @@
     "type": "ec2", 
     "volumes": {}
   }, 
+  "s022": {
+    "aws_id": "i-14ed2c5d", 
+    "aws_private_dns_name": "ip-10-49-95-165.eu-west-1.compute.internal", 
+    "aws_public_dns_name": "ec2-46-51-152-3.eu-west-1.compute.amazonaws.com", 
+    "created": "2011-10-18T19:43:02", 
+    "instance_type": "m1.small", 
+    "location": "eu-west-1", 
+    "notes": null, 
+    "os": "ubuntu-lucid-32-ebs", 
+    "owner": "okfn", 
+    "placement": "eu-west-1b", 
+    "provider": "aws", 
+    "security_groups": [
+      "default", 
+      "www-only", 
+      "ssh-only", 
+      "munin-only", 
+      "instance-s022"
+    ], 
+    "type": "ec2", 
+    "volumes": {}
+  }, 
   "us1": {
     "aws_id": "i-a83bb6c0", 
     "cost per month": null, 
