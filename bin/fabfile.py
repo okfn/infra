@@ -139,7 +139,10 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
 
     if flavour == 'AUTODETECT':
         flavour = detect_flavour()
-        
+
+    if flavour == 'EC2-EBS':
+        move_directories_to_mnt()
+
     if flavour == 'Fry':
         harden = False
         root_alias += ',system-reports@fry-it.com'
@@ -893,6 +896,44 @@ def set_root_alias(mail_address='') :
     append('root: %s' % mail_address, aliasfile, use_sudo=True)
     sudo('newaliases')
     sudo('/etc/init.d/postfix reload')
+
+
+# Copied from ../aws/fabfile.py
+def move_directories_to_mnt():
+    '''Move /var, /home to /mnt/root/XXX and fstab them in.
+
+    NB: assume we run as root.
+    
+    NB: if you already have a service such as mysql of postgresql running
+    you'll need to stop it.
+
+    Inspired by http://developer.amazonwebservices.com/connect/entry.jspa?externalID=1663
+    '''
+    assert not exists('/mnt/root'), '/mnt/root already exists!'
+    if env.user == 'root':
+        _run = run
+    else:
+        _run = sudo
+    # TODO: make sure *everything* using var is shutdown (or this will all fail)
+    _run('/etc/init.d/rsyslog stop')
+    _run('/etc/init.d/cron stop')
+
+    _run('mkdir /mnt/root')
+    dirs = [ 'var', 'home' ]
+    for dir in dirs:
+        # avoid possible problem with being in dir that is being moved
+        with cd('/'):
+            _run('mv /%s /mnt/root' % dir)
+            _run('mkdir /%s' % dir)
+            append('/mnt/root/%s /%s     none bind' % (dir, dir), '/etc/fstab',
+                    use_sudo=False)
+            _run('mount /%s' % dir)
+    # now restart services which have been using /var/log
+    # NB: at this point (just after machine instantiation) there should be
+    # nothing much on the machine)
+    _run('/etc/init.d/rsyslogd restart')
+    _run('/etc/init.d/cron restart')
+
 
 
 # DEPRICATED - remove soon /nils.
