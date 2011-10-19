@@ -150,6 +150,7 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
     generate_locale() 
     if hostname :
         set_hostname(hostname)
+    _postfix_headless_dpkg_reconfigure()
     upgrade()
     install_set('basics')
     etc_in_mercurial()
@@ -833,6 +834,14 @@ def create_swap_file(size=1) :
     sudo('swapon -a')
 
 
+def _postfix_headless_dpkg_reconfigure():
+    '''Make sure dpkg-reconfigure never prompts for postfix configuration
+    '''
+    install('debconf-utils')
+    run('echo "postfix postfix/mailname        string  localhost" | sudo debconf-set-selections')
+    run('echo "postfix postfix/main_mailer_type        select  No configuration" | sudo debconf-set-selections')
+
+
 def postfix_install(copy_config=False):
     '''Install postfix and coufigure from sysadmin repo for sending only
     Use "copy_config=True" to copy the config from Bitbucket rather than
@@ -853,9 +862,7 @@ def postfix_install(copy_config=False):
     if not copy_config: 
         sysadmin_repo_update()
 
-    install('debconf-utils')
-    run('echo "postfix postfix/mailname        string  localhost" | sudo debconf-set-selections')
-    run('echo "postfix postfix/main_mailer_type        select  No configuration" | sudo debconf-set-selections')
+    _postfix_headless_dpkg_reconfigure()
     install(service)
     sudo('mv %s %s.ORIG' % (config_abs, config_abs))
 
