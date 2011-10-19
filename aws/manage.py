@@ -80,7 +80,7 @@ class Manager(object):
     default_ami_type = 'ubuntu-lucid-32'
     region_names = [ 'us-east-1', 'us-west-1', 'eu-west-1' ]
 
-    def __init__(self, region=None, server_info_path='../servers.js'):
+    def __init__(self, region=None, server_info_path='../servers.js', create_server_secgroup=True):
         '''
         @param region: AWS region identifier (us-east-1, us-west-1, eu-west-1)
         '''
@@ -91,6 +91,7 @@ class Manager(object):
         self.region = region
         self.server_info_path = server_info_path
         self.server_info = json.load(open(os.path.abspath(server_info_path)))
+        self.create_server_secgroup = create_server_secgroup
 
     def _connect(self):
         region = self.regions[self._region]
@@ -153,7 +154,8 @@ class Manager(object):
             hostid = uuid.uuid4()
         # create a dedicated secgroup for this machine
         secname = 'instance-%s' % hostid
-        oursecgroup = self.conn.create_security_group(secname, secname)
+        if self.create_server_secgroup :
+            oursecgroup = self.conn.create_security_group(secname, secname)
         secgroups = [ 'default', 'www-only', 'ssh-only', 'munin-only', secname ]
 
         ourami = ami if ami else self.amis[self.region][self.default_ami_type]
@@ -333,12 +335,15 @@ if __name__ == '__main__':
     parser.add_option('--servers', dest='servers',
             help='Path to server info json file (default: %s)' % ('../servers.js'),
             default='../servers.js')
+    parser.add_option("--dont-create-server-secgroup",
+            action="store_false", dest="create_server_secgroup", default=True,
+            help="The server-dedicated EC2 security group already exists, do not attempt to create it")
     options, args = parser.parse_args()
 
     if not args or not args[0] in _methods:
         parser.print_help()
         sys.exit(1)
-    manager = Manager(options.region, options.servers)
+    manager = Manager(options.region, options.servers, options.create_server_secgroup)
     method = args[0]
     out = getattr(manager, method)(*args[1:])
     if out:
