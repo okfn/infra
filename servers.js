@@ -475,10 +475,10 @@
     "volumes": {}
   }, 
   "s022": {
-    "aws_id": "i-14ed2c5d", 
-    "aws_private_dns_name": "ip-10-49-95-165.eu-west-1.compute.internal", 
-    "aws_public_dns_name": "ec2-46-51-152-3.eu-west-1.compute.amazonaws.com", 
-    "created": "2011-10-18T19:43:02", 
+    "aws_id": "i-c01fdf89", 
+    "aws_private_dns_name": "ip-10-226-58-51.eu-west-1.compute.internal", 
+    "aws_public_dns_name": "ec2-46-137-64-61.eu-west-1.compute.amazonaws.com", 
+    "created": "2011-10-19T16:02:12", 
     "instance_type": "m1.small", 
     "location": "eu-west-1", 
     "notes": null, 
