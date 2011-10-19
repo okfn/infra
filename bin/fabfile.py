@@ -919,27 +919,31 @@ def move_directories_to_mnt():
     assert not exists('/mnt/root'), '/mnt/root already exists!'
     if env.user == 'root':
         _run = run
+        append_use_sudo = False
     else:
         _run = sudo
+        append_use_sudo = True
     # TODO: make sure *everything* using var is shutdown (or this will all fail)
     _run('/etc/init.d/rsyslog stop')
-    _run('/etc/init.d/cron stop')
+    _run('/etc/init.d/cron    stop')
 
     _run('mkdir /mnt/root')
     dirs = [ 'var', 'home' ]
     for dir in dirs:
         # avoid possible problem with being in dir that is being moved
         with cd('/'):
-            _run('mv /%s /mnt/root' % dir)
-            _run('mkdir /%s' % dir)
+            _run('cp -a /%s /mnt/root' % dir)
+            _run('mv /%s /%s.OLD' % (dir,dir))
+            _run('mkdir -p /%s' % dir)
             append('/mnt/root/%s /%s     none bind' % (dir, dir), '/etc/fstab',
-                    use_sudo=False)
+                    use_sudo=append_use_sudo)
             _run('mount /%s' % dir)
     # now restart services which have been using /var/log
     # NB: at this point (just after machine instantiation) there should be
     # nothing much on the machine)
-    _run('/etc/init.d/rsyslogd restart')
-    _run('/etc/init.d/cron restart')
+    _run('/etc/init.d/rsyslog start')
+    _run('/etc/init.d/cron    start')
+    print 'Please reboot the machine and verify this worked!'
 
 
 
