@@ -1,0 +1,16 @@
+server {
+	listen   localhost:8081 default;
+	server_name  localhost;
+	access_log  /var/log/nginx/down_for_maintenance.access.log;
+
+	location / {
+		root   /var/www/down_for_maintenance;
+		index  index.html index.htm;
+
+		rewrite ^/..*$ / break; 
+
+		if ( $uri != /index.html) ) {
+			rewrite ^.*$ /index.html break;
+		}
+	}
+}
