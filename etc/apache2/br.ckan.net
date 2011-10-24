@@ -1,12 +1,6 @@
 <VirtualHost *:80>
-    ServerName br.ckan.net
-
-    WSGIScriptAlias / /home/okfn/var/srvc/br.ckan.net/pyenv/bin/br.ckan.net.py
-    WSGIProcessGroup br.ckan.net
-    # pass authorization info on (needed for rest api)
-    WSGIPassAuthorization On
-    WSGIDaemonProcess br.ckan.net display-name=br.ckan.net processes=5 threads=2 maximum-requests=1000
-
-    ErrorLog /var/log/apache2/br.ckan.net.error.log
-    CustomLog /var/log/apache2/br.ckan.net.custom.log combined
+    # WARNING: Do not manually edit this file, it is desgined to be 
+    #          overwritten at any time by the postinst script of 
+    #          dependent packages
+    Include /etc/apache2/sites-available/br.ckan.net.common
 </VirtualHost>

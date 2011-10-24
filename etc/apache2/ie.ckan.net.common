@@ -1,0 +1,38 @@
+
+    # WARNING: Do not manually edit this file, it is desgined to be 
+    #          overwritten at any time by the postinst script of 
+    #          dependent packages
+
+    # These are common settings used for both the normal and maintence modes
+
+    DocumentRoot /var/lib/ckan/ie.ckan.net/static
+    ServerName ie.ckan.net
+
+    <Directory />
+        deny from all
+    </Directory>
+
+    <Directory /etc/ckan/ie.ckan.net/>
+        allow from all
+    </Directory>
+
+    <Directory /var/lib/ckan/ie.ckan.net/static>
+        allow from all
+    </Directory>
+
+    Alias /dump /var/lib/ckan/ie.ckan.net/static/dump
+
+    # Disable the mod_python handler for static files
+    <Location /dump>
+        SetHandler None
+        Options +Indexes
+    </Location>
+
+    # this is our app
+    WSGIScriptAlias / /etc/ckan/ie.ckan.net/ie.ckan.net.py
+
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    ErrorLog /var/log/apache2/ie.ckan.net.error.log
+    CustomLog /var/log/apache2/ie.ckan.net.custom.log combined

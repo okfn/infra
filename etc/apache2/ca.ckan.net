@@ -1,12 +1,6 @@
 <VirtualHost *:80>
-    ServerName ca.ckan.net
-    ServerAlias ca-nocache.ckan.net
-
-    WSGIScriptAlias / /home/okfn/var/srvc/ca.ckan.net/pyenv/bin/ca.ckan.net.py
-    # pass authorization info on (needed for rest api)
-    WSGIPassAuthorization On
-    WSGIDaemonProcess ca.ckan.net display-name=ca.ckan.net processes=5 threads=2 maximum-requests=1000
-
-    ErrorLog /var/log/apache2/ca.ckan.net.error.log
-    CustomLog /var/log/apache2/ca.ckan.net.custom.log combined
+    # WARNING: Do not manually edit this file, it is desgined to be 
+    #          overwritten at any time by the postinst script of 
+    #          dependent packages
+    Include /etc/apache2/sites-available/ca.ckan.net.common
 </VirtualHost>

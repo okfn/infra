@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+    # WARNING: Do not manually edit this file, it is desgined to be 
+    #          overwritten at any time by the postinst script of 
+    #          dependent packages
+    Include /etc/apache2/sites-available/no.ckan.net.common
+
+    # Maintenance mode
+    RewriteEngine On
+    RewriteRule ^(.*)/new /return_503 [PT,L]
+    RewriteRule ^(.*)/create /return_503 [PT,L]      
+    RewriteRule ^(.*)/authz /return_503 [PT,L]
+    RewriteRule ^(.*)/edit /return_503 [PT,L]
+    RewriteCond %{REQUEST_METHOD} !^GET$ [NC]
+    RewriteRule (.*) /return_503 [PT,L]
+</VirtualHost>
