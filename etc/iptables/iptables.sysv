@@ -16,8 +16,11 @@ PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
 IPTABLES=/sbin/iptables
 IPTABLES_SAVE=/sbin/iptables-save
 IPTABLES_RESTORE=/sbin/iptables-restore
-
 IPTABLES_CONFIG=/etc/iptables.conf
+
+# This should be calculated from $IPTABLES_CONFIG, 
+# but for now we do it manually:
+IPTABLES_MATCHES="state"
 
 [ -x $IPTABLES ] || exit 0
 
@@ -26,6 +29,15 @@ IPTABLES_CONFIG=/etc/iptables.conf
 
 case "$1" in
 start)
+    log_action_begin_msg "Checking availability of mandatory iptables matches \"${IPTABLES_MATCHES}\""
+    for match in ${IPTABLES_MATCHES} ; do
+        if ! grep -q ${match} /proc/net/ip_tables_matches ; then
+            log_action_end_msg 1
+            exit 1
+        fi
+    done
+    log_action_end_msg 0
+
 	log_action_begin_msg "Starting firewall"
         type usplash_write >/dev/null 2>/dev/null && usplash_write "TIMEOUT 120" || true
 	if $IPTABLES_RESTORE < $IPTABLES_CONFIG ; then
