@@ -22,7 +22,8 @@
       "thejimmyg",
       "adriamercader",
       "johnglover",
-      "tomrees"
+      "tomrees",
+      "ianmurray"
     ],
     "openspending": [
       "mk270",
@@ -230,6 +231,11 @@
     {
       "name": "Tom Rees",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAojip3xRT6Bbjr0HmPtbuugK4BhC/sGvzf0kIqBeNQyfXEGLM27R0U4pje2DE24x1DymbKRiTfxvMbkvYLozBACA0KK0HmyQbvqwDOkFra87KrlS0hgvoa/Eoip6XQtLjyoD59OWJAXc/VJn+LRVG+jIH5nAO23eUHTB+g7ItNtnA1QMsT8A2OVB4R9sbzkGwMg6qAaZRzJDHZQnkJb7x8S4koaRL0JLqF+Uqcbrhw3hBjuoS3e0VtgXRIEtO2dz7qRYJdKaVNr5heyUOOxmd+7DhVIAyrAlf2WePhR+PeB+qJ0fUMgcRZOtN1pHDh4/wSEo2IvPr3qCnfR9go5vrGw== zephod@gmail.com"
+    },
+    "ianmurray":
+    {
+      "name": "Ian Murray",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA09DXl+73H/f08hcGFllZKSGQJ6rFCpwVgBrLafnQe3qnz9z51dkPhEPUUpSh5Lq0sK8ieT4wGY5TwdNZhxMwC8A9XcpHPd2pjwhuZm1tpy0tH6hta6hNTwCX/SbkjGInayjfxQONJnqlmyiGiquxSMq0DRK+g1NPGUJTKxLw/aQJJ0rzdZRsVsZfwhwGVBCQC7XwsHKqpW13iVZI3jeZYSdgYm1Um93ABxQFLriJRDnr8pfql/ResstOUKDo8Vkj4K8fs0GWPOZOKxgcTvCtXEZkA5C/vYgkIX8EDJRNzszWwd0604kOIT2VahukN5wA3/wpO4I7gkU2TbLRGZDK3w== ian@desktop"
     }
   }
 }
