@@ -443,8 +443,8 @@ def install_firewall(rules=[], copy_config=False, flavour=''):
     '''
 
     additional_firewall_rules_fry = [
-            '-A INPUT  -j ACCEPT -p tcp  -m tcp   --dport  5666  -s monitor2.fry-it.com',
-            '-A INPUT  -j ACCEPT -p tcp                          -s monitor1.fry-it.com'
+            '-A INPUT  -j ACCEPT -p tcp  -m tcp   --dport  5666  -s 82.208.27.164',
+            '-A INPUT  -j ACCEPT -p tcp                          -s 80.68.212.4'
     ]
 
     if flavour == 'Fry':
