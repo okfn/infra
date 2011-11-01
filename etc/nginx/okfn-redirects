@@ -8,6 +8,10 @@ server {
 		index  index.html index.htm;
 	}
 
+	if ( $host = iati.ckan.net ) {
+		rewrite ^(.*)$ http://iatiregistry.org$1 permanent; 
+	}
+
 	if ( $host = wiki.ckan.net ) {
 		rewrite ^(.*)$ http://wiki.ckan.org$1 permanent; 
 	}
