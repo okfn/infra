@@ -8,7 +8,7 @@ server {
 		index  index.html index.htm;
 	}
 
-	if ( $host = openknowledgefoundation.org ) {
+	if ( $host ~* (www\.|)openknowledgefoundation.org$ ) {
 		rewrite ^(.*)$ http://okfn.org/ permanent; 
 	}
 
