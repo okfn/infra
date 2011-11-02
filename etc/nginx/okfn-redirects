@@ -8,6 +8,10 @@ server {
 		index  index.html index.htm;
 	}
 
+	if ( $host ~* (www\.|)ckanhosted.com$ ) {
+		rewrite ^(.*)$ http://ckan.org/ permanent; 
+	}
+
 	if ( $host ~* (www\.|)openknowledgefoundation.org$ ) {
 		rewrite ^(.*)$ http://okfn.org/ permanent; 
 	}
