@@ -16,6 +16,7 @@ PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
 IPTABLES=/sbin/iptables
 IPTABLES_SAVE=/sbin/iptables-save
 IPTABLES_RESTORE=/sbin/iptables-restore
+IPTABLES_APPLY="/usr/sbin/iptables-apply --timeout 30"
 IPTABLES_CONFIG=/etc/iptables.conf
 
 # This should be calculated from $IPTABLES_CONFIG, 
@@ -75,7 +76,7 @@ save)
 	fi
 	;;
 
-force-reload|restart)
+force-reload|force-restart)
 	log_action_begin_msg "Reloading firewall configuration [Warning: POTENTIAL NETWORK INSECURITY DURING RELOAD]"
 	$IPTABLES -F
 	$IPTABLES -X
@@ -86,8 +87,19 @@ force-reload|restart)
 	fi
 	;;
 
+restart)
+	log_action_begin_msg "Safely reloading firewall configuration [Warning: this is interactive only, use 'force-restart' for scripts] [Warning: POTENTIAL NETWORK INSECURITY DURING RELOAD]"
+	$IPTABLES -F
+	$IPTABLES -X
+	if $IPTABLES_APPLY $IPTABLES_CONFIG ; then
+		log_action_end_msg $?
+	else
+		log_action_end_msg $?
+	fi
+	;;
+
 *)
-	echo "Usage: /etc/init.d/iptables {start|stop|save|restart|force-reload}"
+	echo "Usage: /etc/init.d/iptables {start|stop|save|restart|force-restart|force-reload}"
 	exit 1
 	;;
 esac
