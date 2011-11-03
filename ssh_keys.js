@@ -23,7 +23,8 @@
       "adriamercader",
       "johnglover",
       "tomrees",
-      "ianmurray"
+      "ianmurray",
+      "seanhammond"
     ],
     "openspending": [
       "mk270",
@@ -236,6 +237,11 @@
     {
       "name": "Ian Murray",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA09DXl+73H/f08hcGFllZKSGQJ6rFCpwVgBrLafnQe3qnz9z51dkPhEPUUpSh5Lq0sK8ieT4wGY5TwdNZhxMwC8A9XcpHPd2pjwhuZm1tpy0tH6hta6hNTwCX/SbkjGInayjfxQONJnqlmyiGiquxSMq0DRK+g1NPGUJTKxLw/aQJJ0rzdZRsVsZfwhwGVBCQC7XwsHKqpW13iVZI3jeZYSdgYm1Um93ABxQFLriJRDnr8pfql/ResstOUKDo8Vkj4K8fs0GWPOZOKxgcTvCtXEZkA5C/vYgkIX8EDJRNzszWwd0604kOIT2VahukN5wA3/wpO4I7gkU2TbLRGZDK3w== ian@desktop"
+    },
+    "seanhammond":
+    {
+      "name": "Sean Hammond",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAu/MZqxJCkPOkzTfS+bcsuL7O0IfSQLyfH345fakk2d6LXPoLfCnnPdDlqiPmM8E+QR6/jtw+VE6qZcZFEgUV0zjJf6lvAj0GzJA8JN5h0hvECcsvF/35Beh5TlPkcCgux7x4MkLyhFAJDwWs8wu3ti/nzOV3ZMNp9/D2sPktlBnFz/k1hWzswm+0wQM5h0VSVqMM2m4IKhqHs88oqxnvBSMI4eAbH7+ri7RsppIpThpasPGpZWzPJEcmoAxNEF23ZuvHQ+lW3zvOJGiziqr5hSLxrOeb1l0kEymTMbOQBnpdN2T8Ha9XIVDEN+RyoKfQd6goeJb3kQ8A584mIpD8Jw== seanh@sooty.local"
     }
   }
 }
