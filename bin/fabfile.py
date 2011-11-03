@@ -114,7 +114,7 @@ def instance_setup_old(okfn_id):
     set_hostname(okfn_id)
     adduser('okfn')
     setup_sudoers()
-    ssh_add_public_key_group('sysadmin', 'okfn', keyfile=None)
+    ssh_add_public_key_group('sysadmin', dest_user='okfn', keyfile=None)
     etc_in_mercurial()
     sysadmin_repo_clone()
     
@@ -262,7 +262,7 @@ def add_team(team, key_config = None):
     adduser(team)
     #user_shell_bash(team)
     adduser_to_sudo_admins(team)
-    ssh_add_public_key_group(key_group, team, key_config)
+    ssh_add_public_key_group(key_group, dest_user=team, key_config=key_config)
 
 
 def lock_user(username='root'):
@@ -367,7 +367,7 @@ def load_keys(key_config=None):
         return json.load(urllib2.urlopen(REMOTE_KEYFILE))
 
 
-def ssh_add_public_key(user, dest_user, key_config=None):
+def ssh_add_public_key(user, dest_user='okfn', key_config=None):
     '''Add public key of user in config file to `dest_user` on remote host.
 
     :param key_config: json file giving key config
@@ -378,7 +378,7 @@ def ssh_add_public_key(user, dest_user, key_config=None):
     key = info['users'][user]['key']
     _ssh_add_public_key(key, dest_user)
 
-def ssh_add_public_key_group(group, dest_user, key_config=None):
+def ssh_add_public_key_group(group, dest_user='okfn', key_config=None):
     '''Add public keys of users listed in `group` in config file to
     `dest_user` on remote host.
 
