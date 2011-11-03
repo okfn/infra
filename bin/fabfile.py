@@ -963,3 +963,27 @@ def fix_fry_postfix() :
    
     sudo('/etc/init.d/postfix reload')
 
+
+def set_hostname_postfix(name) :
+    '''set "myhostname" to the given hostname in /etc/postfix/main.cf
+    '''
+
+    config = '/etc/postfix/main.cf'
+
+    sed(config, '^#*(myhostname =).*',     '\\1 %s' % name,                      backup='', use_sudo=True)
+   
+    sudo('/etc/init.d/postfix reload')
+
+
+def send_testmail(mail_address) :
+    '''Send a test mail to given mail address
+    '''
+
+    test_subject='testmail, ignore'
+    test_body='testmail, ignore'
+
+    install('bsd-mailx')
+
+    run ('echo "%s" | mail -s "%s" %s' % (test_body, test_subject, mail_address) )
+
+
