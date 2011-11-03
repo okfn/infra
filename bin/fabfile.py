@@ -136,6 +136,7 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
 
     root_alias = _get_default_root_alias()
     additional_firewall_rules = []
+    postfix_hostname = ''
 
     if flavour == 'AUTODETECT':
         flavour = detect_flavour()
@@ -146,6 +147,9 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
     if flavour == 'Fry':
         harden = False
         root_alias += ',system-reports@fry-it.com'
+        if hostname:
+            postfix_hostname = hostname
+            hostname = hostname.split('.')[0]
 
     generate_locale() 
     if hostname :
@@ -162,9 +166,9 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
         lock_user(username='root')
         harden_sshd()
     sysadmin_repo_clone()
+    set_hostname_postfix(postfix_hostname)
 
     if flavour == 'Fry':
-        # fix_fry_postfix()
         install_firewall(rules=additional_firewall_rules, flavour=flavour)
 
 
@@ -962,32 +966,27 @@ def move_directories_to_mnt():
     print 'Please reboot the machine and verify this worked!'
 
 
-
-# DEPRICATED - remove soon /nils.
-def fix_fry_postfix() :
-    '''On Fry machines, the postfix's main.cf has an explicit hostname set for 
-    "myhostname" and "mydestination", this function fixes that.
-    Fry will fix their template. Once that is done, this function can go
-    '''
-
-    config = '/etc/postfix/main.cf'
-
-    sudo('cp -a %s %s.ORIG' % (config, config) )
-    sed(config, '^(myhostname =).*',     '# \\1',                      backup='', use_sudo=True)
-    sed(config, '^(myorigin =).*',       '\\1 $myhostname',            backup='', use_sudo=True)
-    sed(config, '^(mydestination =).*' , '\\1 $myhostname, localhost', backup='', use_sudo=True)
-   
-    sudo('/etc/init.d/postfix reload')
-
-
 def set_hostname_postfix(name) :
     '''set "myhostname" to the given hostname in /etc/postfix/main.cf
     '''
 
     config = '/etc/postfix/main.cf'
 
-    sed(config, '^#*(myhostname =).*',     '\\1 %s' % name,                      backup='', use_sudo=True)
-   
+    if not name:
+        return True
+
+    if not exists(config):
+        print 'No postfix config found, not setting "myhostname"'
+        return True
+
+    sudo('cp -a %s %s.ORIG' % (config, config) )
+
+    # Instead of intelligently re-writing the appropriatle line, 
+    # we just remove any existing and append a new one:
+    #sed(config, '^#*(myhostname =).*',     '\\1 %s' % name, backup='.1', use_sudo=True)
+    sudo('sed -e  "/^myhostname/D" -i %s' % config )
+    append('myhostname = %s' % name, config, use_sudo=True)
+
     sudo('/etc/init.d/postfix reload')
 
 
