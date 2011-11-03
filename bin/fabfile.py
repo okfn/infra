@@ -114,12 +114,12 @@ def instance_setup_old(okfn_id):
     set_hostname(okfn_id)
     adduser('okfn')
     setup_sudoers()
-    ssh_add_public_key_group('../ssh_keys.js', 'sysadmin', 'okfn')
+    ssh_add_public_key_group('sysadmin', 'okfn', keyfile=None)
     etc_in_mercurial()
     sysadmin_repo_clone()
     
 
-def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT', keyfile='../ssh_keys.js'):
+def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT', keyfile=None):
     '''Setup a new instance a in standard way:
 
         * Generate (UK) locales
@@ -256,13 +256,13 @@ def setup_sudoers():
     adduser_to_sudo_admins('okfn')
 
 
-def add_team(team, key_config = '../ssh_keys.js'):
+def add_team(team, key_config = None):
     key_group = team
     if team == 'okfn': key_group = 'sysadmin'
     adduser(team)
     #user_shell_bash(team)
     adduser_to_sudo_admins(team)
-    ssh_add_public_key_group(key_config, key_group, team)
+    ssh_add_public_key_group(key_group, team, key_config)
 
 
 def lock_user(username='root'):
@@ -351,18 +351,34 @@ def unattended_upgrades():
 ## ============================
 ## SSH Keys
 
-def ssh_add_public_key(key_config, user, dest_user):
+def load_keys(key_config=None):
+    '''Load keys from local or remote ssh_keys.js
+    '''
+    DEFAULT_KEYFILE='../ssh_keys.js'
+    # why does "default" not always have the latest changes?
+    REMOTE_KEYFILE='https://bitbucket.org/okfn/sysadmin/raw/tip/ssh_keys.js' 
+
+    if key_config:
+        return json.load(open(key_config))
+    elif os.path.exists( DEFAULT_KEYFILE ):
+        return json.load(open(DEFAULT_KEYFILE))
+    else:
+        print 'INFO: Could not find local SSH key list %s, using remote key list %s' % (DEFAULT_KEYFILE, REMOTE_KEYFILE)
+        return json.load(urllib2.urlopen(REMOTE_KEYFILE))
+
+
+def ssh_add_public_key(user, dest_user, key_config=None):
     '''Add public key of user in config file to `dest_user` on remote host.
 
     :param key_config: json file giving key config
     :param user: user to add from config file.
     :param dest_user: user on dest host to add public key to.
     '''
-    info = json.load(open(key_config))
+    info = load_keys(key_config)
     key = info['users'][user]['key']
     _ssh_add_public_key(key, dest_user)
 
-def ssh_add_public_key_group(key_config, group, dest_user):
+def ssh_add_public_key_group(group, dest_user, key_config=None):
     '''Add public keys of users listed in `group` in config file to
     `dest_user` on remote host.
 
@@ -370,7 +386,7 @@ def ssh_add_public_key_group(key_config, group, dest_user):
     :param group: group to add from config file.
     :param dest_user: user on dest host to add public key to.
     '''
-    info = json.load(open(key_config))
+    info = load_keys(key_config)
     for user in info['groups'][group]:
         key = info['users'][user]['key']
         _ssh_add_public_key(key, dest_user)
