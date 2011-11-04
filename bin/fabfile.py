@@ -990,15 +990,20 @@ def set_hostname_postfix(name) :
     sudo('/etc/init.d/postfix reload')
 
 
-def send_testmail(mail_address) :
+def send_testmail(address, subject=None, body=None) :
     '''Send a test mail to given mail address
     '''
 
-    test_subject='testmail, ignore'
-    test_body='testmail, ignore'
+    mailbin = '/usr/bin/mail'
 
-    install('bsd-mailx')
+    assert exists(mailbin), 'Mail program %s not found. Please install "bsd-mailx" or similar' % mailbin
 
-    run ('echo "%s" | mail -s "%s" %s' % (test_body, test_subject, mail_address) )
+    if not subject:
+        subject='testmail, ignore'
+
+    if not body:
+        body='testmail, ignore'
+
+    run ('echo "%s" | %s -s "%s" %s' % (body, mailbin, subject, address) )
 
 
