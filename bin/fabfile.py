@@ -137,6 +137,7 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
     root_alias = _get_default_root_alias()
     additional_firewall_rules = []
     postfix_hostname = ''
+    relay_host = 'mail.okfn.org'
 
     if flavour == 'AUTODETECT':
         flavour = detect_flavour()
@@ -150,6 +151,7 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
         if hostname:
             postfix_hostname = hostname
             hostname = hostname.split('.')[0]
+            relay_host = 'mail.fry-it.com'
 
     generate_locale() 
     if hostname :
@@ -166,6 +168,8 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
         lock_user(username='root')
         harden_sshd()
     sysadmin_repo_clone()
+    if not exists('/usr/sbin/sendmail'):
+        postfix_install(relay_host)
     set_hostname_postfix(postfix_hostname)
 
     if flavour == 'Fry':
@@ -862,11 +866,15 @@ def _postfix_headless_dpkg_reconfigure():
     run('echo "postfix postfix/main_mailer_type        select  No configuration" | sudo debconf-set-selections')
 
 
-def postfix_install(copy_config=False):
+def postfix_install(copy_config=False, relay=None):
     '''Install postfix and coufigure from sysadmin repo for sending only
     Use "copy_config=True" to copy the config from Bitbucket rather than
     softlinking it from the local hg repository
     '''
+
+    # if we configure a relay we must have a local copy
+    if relay:
+        copy_config=True
 
     service = 'postfix'
     config_rel = '/postfix/main.cf'
@@ -890,11 +898,25 @@ def postfix_install(copy_config=False):
         sudo('wget -O %s %s' % (config_abs, REMOTE_REPO + config_rel ))
     else :
         sudo('ln -s %s %s' % (OKFN_ETC + config_rel, config_abs))
+
+    if relay:
+        sudo('sed -e  "/^relayhost/D" -i %s' % config_abs )
+        append('relayhost = %s' % relay, config_abs, use_sudo=True)
+
     sudo('/etc/init.d/%s restart' % service )
 
     set_root_alias()
 
     install('bsd-mailx')
+
+
+def postfix_set(relayhost=None, inet_interfaces=None):
+    config = '/etc/postfix/main.cf'
+    if relayhost:
+        sed(config, '^#* *(relayhost).*','\\1 = %s' % relayhost, backup='.1', use_sudo=True)
+    if inet_interfaces:
+        sed(config, '^#* *(inet_interfaces).*','\\1 = %s' % inet_interfaces, backup='.1', use_sudo=True)
+    sudo('/etc/init.d/postfix restart')
 
 
 def _get_default_root_alias():
