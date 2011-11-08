@@ -1,0 +1,24 @@
+<VirtualHost *:80>
+    ServerName publicdata.eu
+    ServerAlias www.publicdata.eu
+    ServerAlias pdeu.test.ckan.net
+
+    WSGIScriptAlias / /home/okfn/var/srvc/publicdata.eu/pyenv/bin/publicdata.eu.py
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    ErrorLog /var/log/apache2/publicdata.eu.error.log
+    CustomLog /var/log/apache2/publicdata.eu.custom.log combined
+   	
+    ProxyPass         /rdf/sparql http://eu4-int.okfn.org:4444/sparql/
+    ProxyPassReverse  /rdf/sparql http://eu4-int.okfn.org:4444/sparql/
+    ProxyPass         /sparql http://eu4-int.okfn.org:4444/sparql
+    ProxyPassReverse  /sparql http://eu4-int.okfn.org:4444/sparql
+    ProxyPass         /status http://eu4-int.okfn.org:4444/status
+    ProxyPassReverse  /status http://eu4-int.okfn.org:4444/status
+    ProxyPass         /rdf/test http://eu4-int.okfn.org:4444/test/
+    ProxyPassReverse  /rdf/test http://eu4-int.okfn.org:4444/test/
+    ProxyPreserveHost On
+
+</VirtualHost>
+
