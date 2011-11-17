@@ -242,6 +242,16 @@
     {
       "name": "Sean Hammond",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAu/MZqxJCkPOkzTfS+bcsuL7O0IfSQLyfH345fakk2d6LXPoLfCnnPdDlqiPmM8E+QR6/jtw+VE6qZcZFEgUV0zjJf6lvAj0GzJA8JN5h0hvECcsvF/35Beh5TlPkcCgux7x4MkLyhFAJDwWs8wu3ti/nzOV3ZMNp9/D2sPktlBnFz/k1hWzswm+0wQM5h0VSVqMM2m4IKhqHs88oqxnvBSMI4eAbH7+ri7RsppIpThpasPGpZWzPJEcmoAxNEF23ZuvHQ+lW3zvOJGiziqr5hSLxrOeb1l0kEymTMbOQBnpdN2T8Ha9XIVDEN+RyoKfQd6goeJb3kQ8A584mIpD8Jw== seanh@sooty.local"
+    },
+    "jindric.mynarz":
+    {
+      "name": "Jindrich Mynarz",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAr2k0IoKS8x5aGCreQtgPdl4MIHK0807QDUczqtQIZi7M8FyXOvu10l43AS4DnIXQrVpRwccisPPVy374BcAAX0MLNIUX04O9QmLuPWIbMkX3tlm+kymN2SohnPoAUDAWUloIsF8lctkNcBfgeQEcYakKsqu58sSl5vgRpGLRj3XjzN9c0rLdb7ZP7iC6sitQvxCeNEOdbPbCiO6oshWtNepFQWT3uCXDAVLLcqXc1wOZIQ7+A2Rys0hlWoxGozSfkhGOvCcJzjdW4G3rJ9TkATEkVfJstRg6t8Ae4C1L1r2KJaidRsx8fjjvI6IeD9Sc0Sy47PL4U5sbUxDrOqnRTw== mynarzjindrich@gmail.com"
+    },
+    "ondrej.vadinsky":
+    {
+      "name": "Ondrej Vadinsky",
+      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAND7uQDmz9VSfE5mjnYGIEGyKttMyIzyaksDz3F67V4UavHgaK/WgYVatxM2XPX1aD0BuCYLZcsyHgZZj16DZZK6jrG0IeXBvVI2Jtuyit/2zOZEpl7z3l4s+80ZTWtjSciISc3rieqzYAVvL5SmnbbGVfOdUvIBqP2nvJb8/90vAAAAFQCF8QZJAbmAlVYDUep8chnBM3nUeQAAAIASEWALonx8mGpfogcHXUtDf0GrJkem54tCzQxV0NR/gdbik03UV4kqmFs0V1s2Ov/sfiuYqayvkxRsh+sBCxA+34KI5u82+fnYMkuoQkC63IZymLqgMomfhc8HKqlzLk3VLl2iQoiDyPkzYSns5vbpJHXQ7VhMnvmn/80XU6zxCgAAAIEAl5o3spYLCXDSSMht8CN8S8g/f/bJVaQEXRHgS7bW4nNyKZ+PdiEOHNRBZaHCez4/mX+hG9R6Kw+aJ1jMuF3lS/7OLyyXscI7dZRbi7p56Sc/ACiflntecZkjKnujMxVzmwFezKS9dNRsnIfM19dtLp+4c/X+H8a3EbqNguuzz+U= ondrej.vadinsky@vse.cz"
     }
   }
 }
