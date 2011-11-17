@@ -51,6 +51,10 @@ server {
 		rewrite ^(.*)$ http://thedatahub.org/ permanent;
 	}
 
+	if ( $host ~* dataprotocols\.org ) {
+		rewrite ^(.*)$ http://www.dataprotocols.org/ permanent;
+	}
+
 	if ( $host = trac.openspending.org ) {
 		rewrite ^/ticket/1$ https://github.com/okfn/openspending/issues/1 permanent;
 		rewrite ^/ticket/2$ https://github.com/okfn/openspending/issues/2 permanent;
