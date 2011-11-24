@@ -252,6 +252,11 @@
     {
       "name": "Ondrej Vadinsky",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAND7uQDmz9VSfE5mjnYGIEGyKttMyIzyaksDz3F67V4UavHgaK/WgYVatxM2XPX1aD0BuCYLZcsyHgZZj16DZZK6jrG0IeXBvVI2Jtuyit/2zOZEpl7z3l4s+80ZTWtjSciISc3rieqzYAVvL5SmnbbGVfOdUvIBqP2nvJb8/90vAAAAFQCF8QZJAbmAlVYDUep8chnBM3nUeQAAAIASEWALonx8mGpfogcHXUtDf0GrJkem54tCzQxV0NR/gdbik03UV4kqmFs0V1s2Ov/sfiuYqayvkxRsh+sBCxA+34KI5u82+fnYMkuoQkC63IZymLqgMomfhc8HKqlzLk3VLl2iQoiDyPkzYSns5vbpJHXQ7VhMnvmn/80XU6zxCgAAAIEAl5o3spYLCXDSSMht8CN8S8g/f/bJVaQEXRHgS7bW4nNyKZ+PdiEOHNRBZaHCez4/mX+hG9R6Kw+aJ1jMuF3lS/7OLyyXscI7dZRbi7p56Sc/ACiflntecZkjKnujMxVzmwFezKS9dNRsnIfM19dtLp+4c/X+H8a3EbqNguuzz+U= ondrej.vadinsky@vse.cz"
+    },
+    "fry.deploy":
+    {
+      "name": "Fry Deployment",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAuiVXnWf3NBHVZG2ySHR3IOoq79P0iP0UYpFejxVH5dP0yAJAYt9d+Ip0p32kq03uoMEJiCsdGmBRu/YZJkRQp+d/NlXHLk2wlsutB6T7fDNA/2T7Fs5RLRcQYlxPeZoyXOFS3ja+XfwIwhfhBeQfcARHTj9oB6TyOhWQpJdcBbFVIWpq2OXuHrP9alviuTc0D/Mtz6Lj58Fapd/vzZ2x2kq/i27/mexf1xX5jpq3TIckukDBajAYMI4nmOkiogoLCzw6x1ImbXFL1gV/KOXP1bjz70vcrCBG3uwfqj+6xZQ6j1YaghDvEGoRzFvGimL+AhSbXV1uz/Ws992X51/E7w== Fry Deployment Key"
     }
   }
 }
