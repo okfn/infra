@@ -18,6 +18,10 @@
     allow from all
   </Location>
 
+  Redirect /mailman/listinfo/wdmmg-discuss http://lists.okfn.org/mailman/listinfo/openspending
+  Redirect /mailman/listinfo/wdmmg-dev http://lists.okfn.org/mailman/listinfo/openspending-dev
+  RedirectMatch /pipermail/wdmmg-dev/(.*)$ http://lists.okfn.org/pipermail/openspending-dev/$1
+  RedirectMatch /pipermail/wdmmg-discuss/(.*)$ http://lists.okfn.org/pipermail/openspending/$1
   RedirectMatch permanent ^/$ http://lists.okfn.org/mailman/listinfo
     ErrorLog /var/log/apache2/lists.okfn.org.error.log
     CustomLog /var/log/apache2/lists.okfn.org.log combined
