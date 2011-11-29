@@ -296,7 +296,7 @@ OKFN_ETC = '/home/okfn/etc'
 def sysadmin_repo_clone():
     '''Clone okfn sysadmin repo onto machine and symlink to /home/okfn/etc'''
     # adduser(okfn)
-    # install_set('mercurial')
+    install_set('mercurial')
     okfn_bin = '/home/okfn/bin'
     if env.user != 'okfn':
         def ourrun(cmd):
