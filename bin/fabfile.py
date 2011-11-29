@@ -460,7 +460,7 @@ def firewall_insert_rule(rule):
     sed(cf, '^(.*%s.*)' % marker, '\\1\\n%s' % rule, backup='', use_sudo=True)
 
 
-def install_firewall(rules=[], copy_config=False, flavour=''):
+def install_firewall(rules=[], copy_config=False, flavour='', start=False):
     '''Install iptables load script and default firewall ruleset.
     Use "copy_config=True" to copy the config from Bitbucket rather than
     softlinking it from the local hg repository
@@ -495,8 +495,15 @@ def install_firewall(rules=[], copy_config=False, flavour=''):
     for match in ['state'] :
         if not contains(match, '/proc/net/ip_tables_matches', exact=True, use_sudo=True) :
             print 'WARNING: iptables match "%s" not found - not activating firewall!' % match
-            return
+            start = False
     
+    if not start:
+        print 'INFO: Not activating firewall. To activate it, do this on the host:'
+        print ' '
+        print '      update-rc.d iptables start 09 2 3 4 5 .'
+        print '      /etc/init.d/iptables start'
+        return
+
     print 'INFO: Activating firewall.'
     sudo('update-rc.d iptables start 09 2 3 4 5 .')
     sudo('/etc/init.d/iptables start')
