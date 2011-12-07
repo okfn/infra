@@ -257,6 +257,11 @@
     {
       "name": "Fry Deployment",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAuiVXnWf3NBHVZG2ySHR3IOoq79P0iP0UYpFejxVH5dP0yAJAYt9d+Ip0p32kq03uoMEJiCsdGmBRu/YZJkRQp+d/NlXHLk2wlsutB6T7fDNA/2T7Fs5RLRcQYlxPeZoyXOFS3ja+XfwIwhfhBeQfcARHTj9oB6TyOhWQpJdcBbFVIWpq2OXuHrP9alviuTc0D/Mtz6Lj58Fapd/vzZ2x2kq/i27/mexf1xX5jpq3TIckukDBajAYMI4nmOkiogoLCzw6x1ImbXFL1gV/KOXP1bjz70vcrCBG3uwfqj+6xZQ6j1YaghDvEGoRzFvGimL+AhSbXV1uz/Ws992X51/E7w== Fry Deployment Key"
+    },
+    "sam.leon":
+    {
+      "name": "sam.leon",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAnACUoDyLkn8eRUeI2+BeTgdlMg9heYHd0GRJwMi1SxhYazD7Devo1f8U6N2mNNzXBgHweoeAOz2DeelSHgFXn6yhGxqtiEcrHglttqNGV8gFUFlyGcgZTqwVpsqmEEMiDuyN9hhXiVXLViiDBOOhyx9ib0M/SfBY6TgyOq+Z2LsFzc/K/aM2TerVIpUHU8xjxqMpZIgRCMoiS+XzJbYLhUP2tR24KpLcQ2Mx6rrpgC5bG77CObHJHjjeulY9C0MPh2Dfq3D/SvHx5ToqYxTCWNT41AVO48vojaxpdXuJ2vjWREKpZKFr7d44OZ4NLmP5DEWLMw3MFeWfrAtaz3MUhw== samleon@sam-leons-macbook.local"
     }
   }
 }
