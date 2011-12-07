@@ -8,6 +8,10 @@ server {
 		index  index.html index.htm;
 	}
 
+	if ( $host = weavinghistory.org ) {
+		rewrite ^(.*)$ http://www.weavinghistory.org$1 permanent; 
+	}
+
 	if ( $host ~* (www\.|)ckanhosted.com$ ) {
 		rewrite ^(.*)$ http://ckan.org/ permanent; 
 	}
