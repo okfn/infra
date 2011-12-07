@@ -260,8 +260,13 @@
     },
     "sam.leon":
     {
-      "name": "sam.leon",
+      "name": "Sam Leon",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAnACUoDyLkn8eRUeI2+BeTgdlMg9heYHd0GRJwMi1SxhYazD7Devo1f8U6N2mNNzXBgHweoeAOz2DeelSHgFXn6yhGxqtiEcrHglttqNGV8gFUFlyGcgZTqwVpsqmEEMiDuyN9hhXiVXLViiDBOOhyx9ib0M/SfBY6TgyOq+Z2LsFzc/K/aM2TerVIpUHU8xjxqMpZIgRCMoiS+XzJbYLhUP2tR24KpLcQ2Mx6rrpgC5bG77CObHJHjjeulY9C0MPh2Dfq3D/SvHx5ToqYxTCWNT41AVO48vojaxpdXuJ2vjWREKpZKFr7d44OZ4NLmP5DEWLMw3MFeWfrAtaz3MUhw== samleon@sam-leons-macbook.local"
+    },
+    "ross.jones":
+    {
+      "name": "Ross Jones",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA13kMOdU3HH7OeKazvBdGns0Tz2JWk/gKVUzOFPjLloX46VvHjNCzp5+qINHK9oOJaWOaZxKLiTsulDyzKPeIrwnbB9ljBScMRl3++StAEepHgpJwY9bYjs25YFfiXpuYLLAX8Wy8qiekzdomEtZjgHk/9hjUiX77VjgQ0LIGKk7zwTfN72xDfXqm1sP/jytzTtITvdBNmuxngyfA8D7gTR8m53oe9TcHu1xsD/aGgXE8LdvmuyHDxD4yg2XX5ZTUno9FEdJUovc3WuTJ1sGCsQQjDlfNNLFvruVAw6hC5zNVpcio/2h4TDBiuehVkTshOMNwI2oVPtk5xe1FAvmV9w== rossdjones@gmail.com"
     }
   }
 }
