@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+    ServerName demo.bibserver.org
+    ServerAlias deom.bibserver.org
+
+    WSGIScriptAlias / /home/okfn/var/srvc/demo.bibserver.org/bin/demo.bibserver.org.wsgi
+    WSGIDaemonProcess demo.bibserver.org display-name=demo.bibserver.org processes=4 threads=1 maximum-requests=1000
+
+    ErrorLog /var/log/apache2/demo.bibserver.org.error.log
+    CustomLog /var/log/apache2/demo.bibserver.org.custom.log combined
+</VirtualHost>
