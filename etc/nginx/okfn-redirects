@@ -8,6 +8,11 @@ server {
 		index  index.html index.htm;
 	}
 
+	# See http://trac.okfn.org/ticket/1057
+	if ( $host ~* ((www|bnb)\.|)bibliographica.org$ ) {
+		rewrite ^(.*)$ http://openbiblio.net/p/bibliographica/ permanent; 
+	}
+
 	if ( $host = weavinghistory.org ) {
 		rewrite ^(.*)$ http://www.weavinghistory.org$1 permanent; 
 	}
