@@ -45,7 +45,7 @@ server {
 	}
 
 	if ( $host = coins.wheredoesmymoneygo.org ) {
-		rewrite ^(.*)$ http://openspending.org$1 permanent;
+		rewrite ^(.*)$ http://openspending.org/ permanent;
 	}
 
 	if ( $host = ask.wheredoesmymoneygo.org ) {
