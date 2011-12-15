@@ -26,6 +26,9 @@ ServerAlias openglam.org www.openglam.org
 ServerAlias wheredoesmymoneygo.org www.wheredoesmymoneygo.org
 ServerAlias opendefinition.org www.opendefinition.org
 ServerAlias blog.openshakespeare.org
+ServerAlias okfn.at www.okfn.at
+ServerAlias okfn.be www.okfn.be
+ServerAlias okfn.it www.okfn.it
 
 Alias /moinhtdocs /usr/share/moin/htdocs
 
