@@ -15,7 +15,7 @@ REVERSE_DNS="/tmp/okfn.org-reverse"
 DOMAIN="okserver.org"
 
 # hosts="us1 us2 us3 us4 us5 us6 eu0 eu1 eu2 eu3 eu4 eu5 eu6 eu7 eu8 eu9 eu10 eu11 eu12 eu13 eu14 eu15 eu16 eu17 eu18 eu19 eu25 eu26 eu27 bkn-1 bkn-2 epsi"
-hosts="s002 s003 s004 s005 s006 s007 s008 s009 s010 s011 s012 s013 s014 s015 s016 s017 s018 s019 s020 s021 s022 s023 s024 s025 s026 s027 s028 s029"
+hosts="s002 s004 s005 s006 s008 s009 s010 s013 s017 s019 s020 s021 s022 s023 s024 s025 s026 s027 s028 s029 u003"
 
 resolv() {
     HOST_PATTERN1="[[:space:]]*A[[:space:]]*" ;
