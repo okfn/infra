@@ -63,7 +63,9 @@ class Manager(object):
             'debian-lenny': 'ami-dcf615b5',
             'debian-lenny-64': 'ami-f0f61599',
             'debian-squeeze': 'ami-dcf615b5',
+            'debian-squeeze-ebs': 'ami-1212ef7b',
             'debian-squeeze-64': 'ami-fcf61595',
+            'debian-squeeze-64-ebs': 'ami-e00df089',
             'ubuntu-karmic': 'ami-bb709dd2',
             },
         'us-west-1': {
