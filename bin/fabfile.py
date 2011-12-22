@@ -142,7 +142,7 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
     if flavour == 'AUTODETECT':
         flavour = detect_flavour()
 
-    if flavour == 'EC2-EBS':
+    if flavour == 'EC2-VOLATILE':
         move_directories_to_mnt()
 
     if flavour == 'Fry':
@@ -342,7 +342,8 @@ syntax: regexp
 .*~$
 '''
     install_set('mercurial')
-    append(etc_hgignore, '/etc/.hgignore', use_sudo=True)
+    # append(etc_hgignore, '/etc/.hgignore', use_sudo=True)
+    append('/etc/.hgignore', etc_hgignore, use_sudo=True)
     with cd('/etc/'):
         _sudo('hg init')
         _sudo('hg add')
@@ -407,7 +408,8 @@ def _ssh_add_public_key(public_key, dest_user):
     public_key = str(public_key)
     authorized_keys_path = _SSH.authorized_keys_path(dest_user)
     if dest_user == 'root':
-        append(public_key, authorized_keys_path)
+        # append(public_key, authorized_keys_path)
+        append(authorized_keys_path, public_key)
     else:
         userdir = '/home/%s' % dest_user
         assert exists(userdir), 'No home directory for user: %s' % dest_user
@@ -416,7 +418,8 @@ def _ssh_add_public_key(public_key, dest_user):
             _sudo('mkdir %s' % sshdir)
             _sudo('chown -R %s:%s %s' % (dest_user, dest_user, sshdir))
             _sudo('chmod go-rwx -R %s' % sshdir)
-        append(public_key, authorized_keys_path, use_sudo=True)
+        # append(public_key, authorized_keys_path, use_sudo=True)
+        append(authorized_keys_path, public_key, use_sudo=True)
 
 def ssh_add_private_key(key_path, user='root'):
     '''Add private key at `key_path` for `user`.
@@ -859,7 +862,8 @@ def create_swap_file(size=1) :
 
     fstab_line = swapfile + ' swap swap defaults 0 0'
     print 'appending "%s" to %s' % (fstab_line, fstab)
-    append(fstab_line, fstab, use_sudo=True)
+    # append(fstab_line, fstab, use_sudo=True)
+    append(fstab, fstab_line, use_sudo=True)
 
     print 'Activating swap' 
     sudo('swapon -a')
@@ -908,7 +912,8 @@ def postfix_install(copy_config=False, relay=None):
 
     if relay:
         sudo('sed -e  "/^relayhost/D" -i %s' % config_abs )
-        append('relayhost = %s' % relay, config_abs, use_sudo=True)
+        # append('relayhost = %s' % relay, config_abs, use_sudo=True)
+        append(config_abs, 'relayhost = %s' % relay, use_sudo=True)
 
     sudo('/etc/init.d/%s restart' % service )
 
@@ -949,7 +954,8 @@ def set_root_alias(mail_address='') :
     # Removing the root alias first and then append the new one is not very elegant, i know, 
     # but i don't know how to have a condition here "is there alread a root alias?"
     sudo('sed -e  "/^root:/D" -i /etc/aliases')
-    append('root: %s' % mail_address, aliasfile, use_sudo=True)
+    # append('root: %s' % mail_address, aliasfile, use_sudo=True)
+    append(aliasfile, 'root: %s' % mail_address, use_sudo=True)
     sudo('newaliases')
     sudo('/etc/init.d/postfix reload')
 
@@ -982,9 +988,10 @@ def move_directories_to_mnt():
         # avoid possible problem with being in dir that is being moved
         with cd('/'):
             _run('cp -a /%s /mnt/root' % dir)
-            _run('mv /%s /%s.OLD' % (dir,dir))
+        #   _run('mv /%s /%s.OLD' % (dir,dir))  # Dangerous, kills startip sequence. Better: bindmount?
             _run('mkdir -p /%s' % dir)
-            append('/mnt/root/%s /%s     none bind' % (dir, dir), '/etc/fstab',
+            # append('/mnt/root/%s /%s     none bind' % (dir, dir), '/etc/fstab', use_sudo=append_use_sudo)
+            append('/etc/fstab', '/mnt/root/%s /%s     none bind' % (dir, dir),
                     use_sudo=append_use_sudo)
             _run('mount /%s' % dir)
     # now restart services which have been using /var/log
@@ -1014,7 +1021,8 @@ def set_hostname_postfix(name) :
     # we just remove any existing and append a new one:
     #sed(config, '^#*(myhostname =).*',     '\\1 %s' % name, backup='.1', use_sudo=True)
     sudo('sed -e  "/^myhostname/D" -i %s' % config )
-    append('myhostname = %s' % name, config, use_sudo=True)
+    # append('myhostname = %s' % name, config, use_sudo=True)
+    append(config, 'myhostname = %s' % name, use_sudo=True)
 
     sudo('/etc/init.d/postfix reload')
 
