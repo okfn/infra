@@ -982,9 +982,9 @@ def move_directories_to_mnt():
         # avoid possible problem with being in dir that is being moved
         with cd('/'):
             _run('cp -a /%s /mnt/root' % dir)
-            _run('mv /%s /%s.OLD' % (dir,dir))
+        #   _run('mv /%s /%s.OLD' % (dir,dir))  # Dangerous, kills startip sequence. Better: bindmount?
             _run('mkdir -p /%s' % dir)
-            append('/mnt/root/%s /%s     none bind' % (dir, dir), '/etc/fstab',
+            append('/etc/fstab', '/mnt/root/%s /%s     none bind' % (dir, dir),
                     use_sudo=append_use_sudo)
             _run('mount /%s' % dir)
     # now restart services which have been using /var/log
