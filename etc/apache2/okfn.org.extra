@@ -56,7 +56,8 @@ RewriteCond %{REQUEST_URI} !^/(files|geo|wsfii|sysadmin)/.*$
 RewriteRule    ^(.*)\.html$  $1/  [R]
 
 # 2010-08
-RedirectMatch   permanent    ^/(pdw|datapkg|ckan|microfacts|vdm|econ|sysadmin|shakespeare|wdmmg|fcd|iai|kforge|kforge/overview|okftext)  http://okfn.org/projects/$1
+RewriteRule                  ^/(wdmmg)  http://okfn.org/projects/$1 [R=301,L]
+RedirectMatch   permanent    ^/(pdw|datapkg|ckan|microfacts|vdm|econ|sysadmin|shakespeare|fcd|iai|kforge|kforge/overview|okftext)  http://okfn.org/projects/$1
 RedirectMatch   permanent    ^/((communia|okforums).*)  http://www.okfn.org/events/$1
 # Redirect permanent /participate http://okfn.org/get-involved
 Redirect permanent /board/wiki http://board.okfn.org/wiki
