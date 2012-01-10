@@ -12,20 +12,32 @@ Jumping off point for sysadmin documentation is:
 Setting up for usage
 ====================
 
-If you want to run some commands (such as those requiring fabric or boto).
-
-  # create a virtualenv so you do not pollute system with installed items
-  $ virtualenv ../pyenv-sysadmin
-  $ pip -E ../pyenv-sysadmin install -r pip-requirements.txt
-
-To use this virtualenv:
-
-  $ . pyenv-sysadmin/bin/activate
-
-Then, for example to work with AWS:
+Some commands require the Python modules "fabric" (>=1.0.0) and "boto", e.g.
 
   $ cd aws
   $ ./manage.py -h
+
+
+There are two ways the required modules:
+
+
+(A) If you have a recent distribution, just installing them from your distro's
+main repositories should suffice. E.g. in case you use Ubuntu:
+
+  $ sudo apt-get install fabric python-boto
+
+
+(B) If your distro doesn't have the required modules/versions, or you don't
+won't them system-wide installed, you can install them into a contained
+environment. You would need "virtualenv" and "pip":
+
+  $ sudo apt-get install python-virtualenv python-pip
+  $ virtualenv ../pyenv-sysadmin
+  $ pip -E ../pyenv-sysadmin install -r pip-requirements.txt
+
+You have to activate this virtualenv each time before you use it:
+
+  $ .  ../pyenv-sysadmin/bin/activate
 
 
 Backup
