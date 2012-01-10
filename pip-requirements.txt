@@ -1,2 +1,2 @@
-fabric<=0.9.99
-boto<=1.9.99
+fabric>=1.0.0
+boto
