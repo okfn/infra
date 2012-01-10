@@ -12,13 +12,17 @@ Jumping off point for sysadmin documentation is:
 Setting up for usage
 ====================
 
-Some commands require the Python modules "fabric" (>=1.0.0) and "boto", e.g.
+Some commands require the Python modules "fabric" and "boto", e.g.
 
     $ cd aws
     $ ./manage.py -h
 
 
-There are two ways the required modules:
+IMPORTANT: fabric has changed the order of parameters for "append()" with
+version 1.0.0. It is vital that you use fabric 1.0.0 or later.
+
+
+There are two ways to install the required modules:
 
 
 (A) If you have a recent distribution, just installing them from your distro's
@@ -55,6 +59,7 @@ In this case you have to force it's installation into your virtualenv:
     $ pip -E ../pyenv-sysadmin install --upgrade PyCrypto
 
 [See http://trac.okfn.org/ticket/1095]
+
 
 
 Backup
