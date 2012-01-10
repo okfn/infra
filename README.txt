@@ -2,11 +2,11 @@ This is the Open Knowledge Foundation (http://www.okfn.org/) sysadmin repository
 
 There is an associated trac instance for ticketing and wiki at:
 
-  http://knowledgeforge.net/okfn/tasks
+  http://trac.okfn.org/
 
 Jumping off point for sysadmin documentation is:
 
-  http://knowledgeforge.net/okfn/tasks/wiki/Sysadmin
+  http://trac.okfn.org/wiki/Sysadmin
 
 
 Setting up for usage
