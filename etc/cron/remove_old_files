@@ -39,9 +39,8 @@ DIRS_TO_CLEANUP=""
 
 
 # Remove everything which is older than how namy days?
-# find's option "-atime" has an odd 1-day offset, therefore we
-# use "-amin" instead. 
 REMOVE_OLDER_THAN_DAYS=7
+# find's option "-atime" has an odd 1-day offset, therefore we use "-amin":
 REMOVE_OLDER_THAN_MINS=$((OLDER_THAN_DAYS*24*60))
 
 
