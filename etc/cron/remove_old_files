@@ -14,14 +14,17 @@
 #
 #   So maybe you want to run this script from some unprivileged user's 
 #   (e.g. "www-data") crontab instead. E.g. drop this very script as
-#   /home/okfn/bin/remove_old_files or /usr/local/bin/remove_old_files, 
-#   edit the user's crontab ...
+#   /home/okfn/sbin/remove_old_files [*], edit the user's crontab ...
 #   
 #       $ sudo crontab -e -u www-data
 #   
-#   and append the following line in order to run it each Sunday at 5am:
+#   and append the following line in order to run it daily at 4:37am:
 #   
-#       0 5 * * 0  /home/okfn/bin/remove_old_files
+#       37 4 * * *  /home/okfn/sbin/remove_old_files
+#  
+#  
+#   [*] Do not use /home/okfn/bin/ because that often is only a softlink 
+#       into our sysadmin HG repo. Use /home/okfn/sbin/ instead.
 #  
 ###########################################################################
 
