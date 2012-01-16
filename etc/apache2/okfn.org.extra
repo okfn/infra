@@ -56,12 +56,20 @@ RewriteCond %{REQUEST_URI} !^/(files|geo|wsfii|sysadmin)/.*$
 RewriteRule    ^(.*)\.html$  $1/  [R]
 
 # 2010-08
+RewriteCond %{HTTP_HOST} ^okfn.org$
 RewriteRule                  ^/(wdmmg)  http://okfn.org/projects/$1 [R=301,L]
 RedirectMatch   permanent    ^/(pdw|datapkg|ckan|microfacts|vdm|econ|sysadmin|shakespeare|fcd|iai|kforge|kforge/overview|okftext)  http://okfn.org/projects/$1
 RedirectMatch   permanent    ^/((communia|okforums).*)  http://www.okfn.org/events/$1
 # Redirect permanent /participate http://okfn.org/get-involved
 Redirect permanent /board/wiki http://board.okfn.org/wiki
 Redirect permanent /about/advisory_board http://okfn.org/about/people
+
+# See http://trac.okfn.org/ticket/1100
+RewriteCond %{HTTP_HOST} ^okfn.org$
+RewriteRule ^/geo$      http://wiki.okfn.org/Open_Geo_Data [R=301,L] 
+RewriteCond %{HTTP_HOST} ^okd.okfn.org$
+RewriteRule ^/(.*)      http://opendefinition.org/$1 [R=301,L]
+
 
 # 2011-02-16 ckan.org
 RewriteCond %{HTTP_HOST} ^ckan.org$
