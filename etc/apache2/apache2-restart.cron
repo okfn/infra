@@ -31,7 +31,7 @@ fi
 
 if ${CTL_BIN} configtest > /dev/null  2>&1 ; then
     # Restart Apache
-    ${INIT_BIN} restart
+    ${INIT_BIN} restart > /dev/null
 else
     # Config error - show it.
     ${CTL_BIN} -S
