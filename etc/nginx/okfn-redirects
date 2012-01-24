@@ -8,6 +8,11 @@ server {
 		index  index.html index.htm;
 	}
 
+	# See http://trac.okfn.org/ticket/933
+	if ( $host = nederland.ckan.net ) {
+		rewrite ^(.*)$ http://thedatahub.org/group/nederland permanent;
+	}
+	
 	# See http://trac.okfn.org/ticket/996
 	if ( $host = m.okfn.org ) {
 		rewrite ^(.*)$ http://assets.okfn.org$1 permanent;
