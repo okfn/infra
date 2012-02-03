@@ -189,7 +189,7 @@ def detect_flavour():
     '''
 
     flavour = None
-    if contains('^ *nameserver  *193.34.146.1 *$', '/etc/resolv.conf', exact=False, use_sudo=False) :
+    if contains('/etc/resolv.conf', '^ *nameserver  *193.34.146.1 *$', exact=False, use_sudo=False) :
         flavour = 'Fry'
 
     if flavour:
@@ -233,7 +233,7 @@ def prepare_sudoers():
     '''Add group 'ADMINS' to /etc/sudoers'''
     fn = '/etc/sudoers'
 
-    if contains('User_Alias *ADMINS *=', fn, use_sudo=True):
+    if contains(fn, 'User_Alias *ADMINS *=', use_sudo=True):
         print 'User_Alias ADMINS already in %s' % fn
     else:
         print 'Adding "User_Alias ADMINS" to %s' % fn 
@@ -241,7 +241,7 @@ def prepare_sudoers():
         after = '# User alias specification\\nUser_Alias      ADMINS = root'
         sed(fn, '# User alias specification', after, use_sudo=True)
 
-    if contains('^ADMINS *ALL *=', fn, use_sudo=True):
+    if contains(fn, '^ADMINS *ALL *=', use_sudo=True):
         print 'AMINDS rule already in %s' % fn
     else:
         print 'Adding AMINDS rule to %s' % fn
@@ -456,7 +456,7 @@ def firewall_insert_rule(rule):
     assert exists(cf), 'Fatal: iptables ruleset %s does not exist!' % cf
     
     marker = 'FAB-INSERT-IPTABLES-INPUT-RULES'
-    if not contains(marker, cf, exact=False, use_sudo=False) :
+    if not contains(cf, marker, exact=False, use_sudo=False) :
         print 'Fatal: iptables ruleset %s does not contain marker "%s"!' % (cf, marker)
         return False
 
@@ -496,7 +496,7 @@ def install_firewall(rules=[], copy_config=False, flavour='', start=False):
 
     # Check that the iptables modules we need are there:
     for match in ['state'] :
-        if not contains(match, '/proc/net/ip_tables_matches', exact=True, use_sudo=True) :
+        if not contains('/proc/net/ip_tables_matches', match, exact=True, use_sudo=True) :
             print 'WARNING: iptables match "%s" not found - not activating firewall!' % match
             start = False
     
