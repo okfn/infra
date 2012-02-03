@@ -1,2 +1,2 @@
-fabric>=1.0.0
-boto
+fabric==1.0.1
+boto==2.0.0
