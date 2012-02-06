@@ -148,6 +148,10 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
     if flavour == 'Fry':
         harden = False
         root_alias += ',system-reports@fry-it.com'
+        additional_firewall_rules += [
+            '-A INPUT  -j ACCEPT -p tcp  -m tcp   --dport  5666  -s 82.208.27.164',
+            '-A INPUT  -j ACCEPT -p tcp                          -s 80.68.212.4'
+        ]
         if hostname:
             postfix_hostname = hostname
             hostname = hostname.split('.')[0]
@@ -173,7 +177,8 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
     set_hostname_postfix(postfix_hostname)
 
     if flavour == 'Fry':
-        install_firewall(rules=additional_firewall_rules, flavour=flavour)
+        install_firewall(rules=additional_firewall_rules, start=True)
+
 
 
 def info():
@@ -463,19 +468,11 @@ def firewall_insert_rule(rule):
     sed(cf, '^(.*%s.*)' % marker, '\\1\\n%s' % rule, backup='', use_sudo=True)
 
 
-def install_firewall(rules=[], copy_config=False, flavour='', start=False):
+def install_firewall(rules=[], copy_config=False, start=False):
     '''Install iptables load script and default firewall ruleset.
     Use "copy_config=True" to copy the config from Bitbucket rather than
     softlinking it from the local hg repository
     '''
-
-    additional_firewall_rules_fry = [
-            '-A INPUT  -j ACCEPT -p tcp  -m tcp   --dport  5666  -s 82.208.27.164',
-            '-A INPUT  -j ACCEPT -p tcp                          -s 80.68.212.4'
-    ]
-
-    if flavour == 'Fry':
-        rules += additional_firewall_rules_fry
 
     install('iptables')
 
