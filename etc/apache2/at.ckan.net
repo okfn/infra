@@ -3,7 +3,7 @@
     ServerAlias offener.datenkatalog.at
     ServerAlias datenkatalog.at
 
-    WSGIScriptAlias / /home/okfn/var/srvc/at.ckan.net/pyenv/bin/at.ckan.net.py
+    WSGIScriptAlias / /home/okfn/var/srvc/at.ckan.net/at.ckan.net.py
     # pass authorization info on (needed for rest api)
     WSGIPassAuthorization On
     WSGIDaemonProcess at.ckan.net display-name=at.ckan.net processes=5 threads=2 maximum-requests=1000
