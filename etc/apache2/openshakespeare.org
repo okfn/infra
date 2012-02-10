@@ -13,6 +13,10 @@
     RewriteCond %{HTTP_HOST} ^www\.openshakespeare\.org$ [NC]
     RewriteRule ^(.*)$ http://openshakespeare.org$1 [R=301,L]
 
+    # See http://trac.okfn.org/ticket/1100
+    RewriteRule ^/code$   https://github.com/okfn/shakespeare
+    RewriteRule ^/faq$    http://openshakespeare.org/about
+
     <Location /admin>
         AuthType Basic
         AuthName "Administration"

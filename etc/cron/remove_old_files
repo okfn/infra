@@ -1,0 +1,55 @@
+#!/bin/bash
+
+
+# Written 2012 by Nils Toedtmann for OKFN <nils.toedtmann@okfn.org>
+
+
+###########################################################################
+# WARNING: 
+#
+#   This script removes anything older than $OLDER_THAN_DAYS from the
+#   directories listed in $DIRS_TO_CLEANUP. If this script is run as root
+#   it could potentially destroy this machine when $DIRS_TO_CLEANUP is 
+#   misconfigured. 
+#
+#   So maybe you want to run this script from some unprivileged user's 
+#   (e.g. "www-data") crontab instead. E.g. drop this very script as
+#   /home/okfn/sbin/remove_old_files [*], edit the user's crontab ...
+#   
+#       $ sudo crontab -e -u www-data
+#   
+#   and append the following line in order to run it daily at 4:37am:
+#   
+#       37 4 * * *  /home/okfn/sbin/remove_old_files
+#  
+#  
+#   [*] Do not use /home/okfn/bin/ because that often is only a softlink 
+#       into our sysadmin HG repo. Use /home/okfn/sbin/ instead.
+#  
+###########################################################################
+
+
+# Configure the options in this sections properly
+
+# Directories to be cleaned, separated by white space.
+# Typical examples: CKAN sessions directories
+#DIRS_TO_CLEANUP="/home/okfn/var/srvc/*/data/sessions/"
+#DIRS_TO_CLEANUP="/var/lib/ckan/*/data/sessions/"
+DIRS_TO_CLEANUP=""
+
+
+# Remove everything which is older than how namy days?
+REMOVE_OLDER_THAN_DAYS=7
+# find's option "-atime" has an odd 1-day offset, therefore we use "-amin":
+REMOVE_OLDER_THAN_MINS=$((OLDER_THAN_DAYS*24*60))
+
+
+# Change this if you want not only old *files* to get removed
+FIND_OPTIONS="-type f"
+
+
+###########################################################################
+
+for dir in ${DIRS_TO_CLEANUP}; do
+    find $dir ${FIND_OPTIONS} -amin +${REMOVE_OLDER_THAN_MINS} -delete
+done

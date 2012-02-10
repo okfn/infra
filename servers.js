@@ -496,6 +496,72 @@
     "type": "ec2", 
     "volumes": {}
   }, 
+  "s023": {
+    "aws_id": "i-ea870da3", 
+    "aws_private_dns_name": "ip-10-50-71-94.eu-west-1.compute.internal", 
+    "aws_public_dns_name": "ec2-79-125-37-91.eu-west-1.compute.amazonaws.com", 
+    "created": "2011-12-22T13:55:30", 
+    "instance_type": "m1.large", 
+    "location": "eu-west-1", 
+    "notes": null, 
+    "os": "ubuntu-lucid-64-ebs", 
+    "owner": "okfn", 
+    "placement": "eu-west-1b", 
+    "provider": "aws", 
+    "security_groups": [
+      "default", 
+      "www-only", 
+      "ssh-only", 
+      "munin-only", 
+      "instance-s023"
+    ], 
+    "type": "ec2", 
+    "volumes": {}
+  }, 
+  "s024": {
+    "aws_id": "i-92d790db", 
+    "aws_private_dns_name": "ip-10-226-227-37.eu-west-1.compute.internal", 
+    "aws_public_dns_name": "ec2-79-125-44-103.eu-west-1.compute.amazonaws.com", 
+    "created": "2012-02-03T15:37:18", 
+    "instance_type": "m1.small", 
+    "location": "eu-west-1", 
+    "notes": null, 
+    "os": "ubuntu-lucid-32-ebs", 
+    "owner": "okfn", 
+    "placement": "eu-west-1b", 
+    "provider": "aws", 
+    "security_groups": [
+      "default", 
+      "www-only", 
+      "ssh-only", 
+      "munin-only", 
+      "instance-s024"
+    ], 
+    "type": "ec2", 
+    "volumes": {}
+  }, 
+  "u003": {
+    "aws_id": "i-9271bcf0", 
+    "aws_private_dns_name": "ip-10-83-34-154.ec2.internal", 
+    "aws_public_dns_name": "ec2-50-17-43-43.compute-1.amazonaws.com", 
+    "created": "2011-12-18T19:54:10", 
+    "instance_type": "m1.small", 
+    "location": "us-east-1", 
+    "notes": null, 
+    "os": "debian-squeeze-ebs", 
+    "owner": "okfn", 
+    "placement": "us-east-1d", 
+    "provider": "aws", 
+    "security_groups": [
+      "default", 
+      "www-only", 
+      "ssh-only", 
+      "munin-only", 
+      "instance-u003"
+    ], 
+    "type": "ec2", 
+    "volumes": {}
+  }, 
   "us1": {
     "aws_id": "i-a83bb6c0", 
     "cost per month": null, 

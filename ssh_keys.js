@@ -267,6 +267,11 @@
     {
       "name": "Ross Jones",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA13kMOdU3HH7OeKazvBdGns0Tz2JWk/gKVUzOFPjLloX46VvHjNCzp5+qINHK9oOJaWOaZxKLiTsulDyzKPeIrwnbB9ljBScMRl3++StAEepHgpJwY9bYjs25YFfiXpuYLLAX8Wy8qiekzdomEtZjgHk/9hjUiX77VjgQ0LIGKk7zwTfN72xDfXqm1sP/jytzTtITvdBNmuxngyfA8D7gTR8m53oe9TcHu1xsD/aGgXE8LdvmuyHDxD4yg2XX5ZTUno9FEdJUovc3WuTJ1sGCsQQjDlfNNLFvruVAw6hC5zNVpcio/2h4TDBiuehVkTshOMNwI2oVPtk5xe1FAvmV9w== rossdjones@gmail.com"
+    },
+    "etienne.posthumus":
+    {
+      "name": "Etienne Posthumus",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA8JxFzy6s1obqZ8zvxdgBA1w0IHua4wnp3r0/pT+Zx6EBzDqqm6IlbbxSGyk3dKi3RoBxJQ1Ka6VjDJVxBguVT+Y+4STckXU7FL0jHZ8gtemF7H3Bht/WvGcoL6XOb64jdPJNzR42Dgp0omtNEfwKfFXU+QVk1tJ/0WnXZfaO0P0= etienne@ep.lan"
     }
   }
 }

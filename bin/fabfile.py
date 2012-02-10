@@ -142,12 +142,16 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
     if flavour == 'AUTODETECT':
         flavour = detect_flavour()
 
-    if flavour == 'EC2-EBS':
+    if flavour == 'EC2-VOLATILE':
         move_directories_to_mnt()
 
     if flavour == 'Fry':
         harden = False
         root_alias += ',system-reports@fry-it.com'
+        additional_firewall_rules += [
+            '-A INPUT  -j ACCEPT -p tcp  -m tcp   --dport  5666  -s 82.208.27.164',
+            '-A INPUT  -j ACCEPT -p tcp                          -s 80.68.212.4'
+        ]
         if hostname:
             postfix_hostname = hostname
             hostname = hostname.split('.')[0]
@@ -173,7 +177,8 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
     set_hostname_postfix(postfix_hostname)
 
     if flavour == 'Fry':
-        install_firewall(rules=additional_firewall_rules, flavour=flavour)
+        install_firewall(rules=additional_firewall_rules, start=True)
+
 
 
 def info():
@@ -189,7 +194,7 @@ def detect_flavour():
     '''
 
     flavour = None
-    if contains('^ *nameserver  *193.34.146.1 *$', '/etc/resolv.conf', exact=False, use_sudo=False) :
+    if contains('/etc/resolv.conf', '^ *nameserver  *193.34.146.1 *$', exact=False, use_sudo=False) :
         flavour = 'Fry'
 
     if flavour:
@@ -233,7 +238,7 @@ def prepare_sudoers():
     '''Add group 'ADMINS' to /etc/sudoers'''
     fn = '/etc/sudoers'
 
-    if contains('User_Alias *ADMINS *=', fn, use_sudo=True):
+    if contains(fn, 'User_Alias *ADMINS *=', use_sudo=True):
         print 'User_Alias ADMINS already in %s' % fn
     else:
         print 'Adding "User_Alias ADMINS" to %s' % fn 
@@ -241,7 +246,7 @@ def prepare_sudoers():
         after = '# User alias specification\\nUser_Alias      ADMINS = root'
         sed(fn, '# User alias specification', after, use_sudo=True)
 
-    if contains('^ADMINS *ALL *=', fn, use_sudo=True):
+    if contains(fn, '^ADMINS *ALL *=', use_sudo=True):
         print 'AMINDS rule already in %s' % fn
     else:
         print 'Adding AMINDS rule to %s' % fn
@@ -342,7 +347,8 @@ syntax: regexp
 .*~$
 '''
     install_set('mercurial')
-    append(etc_hgignore, '/etc/.hgignore', use_sudo=True)
+    # append(etc_hgignore, '/etc/.hgignore', use_sudo=True)
+    append('/etc/.hgignore', etc_hgignore, use_sudo=True)
     with cd('/etc/'):
         _sudo('hg init')
         _sudo('hg add')
@@ -407,7 +413,8 @@ def _ssh_add_public_key(public_key, dest_user):
     public_key = str(public_key)
     authorized_keys_path = _SSH.authorized_keys_path(dest_user)
     if dest_user == 'root':
-        append(public_key, authorized_keys_path)
+        # append(public_key, authorized_keys_path)
+        append(authorized_keys_path, public_key)
     else:
         userdir = '/home/%s' % dest_user
         assert exists(userdir), 'No home directory for user: %s' % dest_user
@@ -416,7 +423,8 @@ def _ssh_add_public_key(public_key, dest_user):
             _sudo('mkdir %s' % sshdir)
             _sudo('chown -R %s:%s %s' % (dest_user, dest_user, sshdir))
             _sudo('chmod go-rwx -R %s' % sshdir)
-        append(public_key, authorized_keys_path, use_sudo=True)
+        # append(public_key, authorized_keys_path, use_sudo=True)
+        append(authorized_keys_path, public_key, use_sudo=True)
 
 def ssh_add_private_key(key_path, user='root'):
     '''Add private key at `key_path` for `user`.
@@ -453,26 +461,18 @@ def firewall_insert_rule(rule):
     assert exists(cf), 'Fatal: iptables ruleset %s does not exist!' % cf
     
     marker = 'FAB-INSERT-IPTABLES-INPUT-RULES'
-    if not contains(marker, cf, exact=False, use_sudo=False) :
+    if not contains(cf, marker, exact=False, use_sudo=False) :
         print 'Fatal: iptables ruleset %s does not contain marker "%s"!' % (cf, marker)
         return False
 
     sed(cf, '^(.*%s.*)' % marker, '\\1\\n%s' % rule, backup='', use_sudo=True)
 
 
-def install_firewall(rules=[], copy_config=False, flavour='', start=False):
+def install_firewall(rules=[], copy_config=False, start=False):
     '''Install iptables load script and default firewall ruleset.
     Use "copy_config=True" to copy the config from Bitbucket rather than
     softlinking it from the local hg repository
     '''
-
-    additional_firewall_rules_fry = [
-            '-A INPUT  -j ACCEPT -p tcp  -m tcp   --dport  5666  -s 82.208.27.164',
-            '-A INPUT  -j ACCEPT -p tcp                          -s 80.68.212.4'
-    ]
-
-    if flavour == 'Fry':
-        rules += additional_firewall_rules_fry
 
     install('iptables')
 
@@ -493,7 +493,7 @@ def install_firewall(rules=[], copy_config=False, flavour='', start=False):
 
     # Check that the iptables modules we need are there:
     for match in ['state'] :
-        if not contains(match, '/proc/net/ip_tables_matches', exact=True, use_sudo=True) :
+        if not contains('/proc/net/ip_tables_matches', match, exact=True, use_sudo=True) :
             print 'WARNING: iptables match "%s" not found - not activating firewall!' % match
             start = False
     
@@ -859,7 +859,8 @@ def create_swap_file(size=1) :
 
     fstab_line = swapfile + ' swap swap defaults 0 0'
     print 'appending "%s" to %s' % (fstab_line, fstab)
-    append(fstab_line, fstab, use_sudo=True)
+    # append(fstab_line, fstab, use_sudo=True)
+    append(fstab, fstab_line, use_sudo=True)
 
     print 'Activating swap' 
     sudo('swapon -a')
@@ -908,7 +909,8 @@ def postfix_install(copy_config=False, relay=None):
 
     if relay:
         sudo('sed -e  "/^relayhost/D" -i %s' % config_abs )
-        append('relayhost = %s' % relay, config_abs, use_sudo=True)
+        # append('relayhost = %s' % relay, config_abs, use_sudo=True)
+        append(config_abs, 'relayhost = %s' % relay, use_sudo=True)
 
     sudo('/etc/init.d/%s restart' % service )
 
@@ -949,7 +951,8 @@ def set_root_alias(mail_address='') :
     # Removing the root alias first and then append the new one is not very elegant, i know, 
     # but i don't know how to have a condition here "is there alread a root alias?"
     sudo('sed -e  "/^root:/D" -i /etc/aliases')
-    append('root: %s' % mail_address, aliasfile, use_sudo=True)
+    # append('root: %s' % mail_address, aliasfile, use_sudo=True)
+    append(aliasfile, 'root: %s' % mail_address, use_sudo=True)
     sudo('newaliases')
     sudo('/etc/init.d/postfix reload')
 
@@ -982,9 +985,10 @@ def move_directories_to_mnt():
         # avoid possible problem with being in dir that is being moved
         with cd('/'):
             _run('cp -a /%s /mnt/root' % dir)
-            _run('mv /%s /%s.OLD' % (dir,dir))
+        #   _run('mv /%s /%s.OLD' % (dir,dir))  # Dangerous, kills startip sequence. Better: bindmount?
             _run('mkdir -p /%s' % dir)
-            append('/mnt/root/%s /%s     none bind' % (dir, dir), '/etc/fstab',
+            # append('/mnt/root/%s /%s     none bind' % (dir, dir), '/etc/fstab', use_sudo=append_use_sudo)
+            append('/etc/fstab', '/mnt/root/%s /%s     none bind' % (dir, dir),
                     use_sudo=append_use_sudo)
             _run('mount /%s' % dir)
     # now restart services which have been using /var/log
@@ -1014,7 +1018,8 @@ def set_hostname_postfix(name) :
     # we just remove any existing and append a new one:
     #sed(config, '^#*(myhostname =).*',     '\\1 %s' % name, backup='.1', use_sudo=True)
     sudo('sed -e  "/^myhostname/D" -i %s' % config )
-    append('myhostname = %s' % name, config, use_sudo=True)
+    # append('myhostname = %s' % name, config, use_sudo=True)
+    append(config, 'myhostname = %s' % name, use_sudo=True)
 
     sudo('/etc/init.d/postfix reload')
 

@@ -8,6 +8,21 @@ server {
 		index  index.html index.htm;
 	}
 
+	# See http://trac.okfn.org/ticket/933
+	if ( $host = nederland.ckan.net ) {
+		rewrite ^(.*)$ http://thedatahub.org/group/nederland permanent;
+	}
+	
+	# See http://trac.okfn.org/ticket/996
+	if ( $host = m.okfn.org ) {
+		rewrite ^(.*)$ http://assets.okfn.org$1 permanent;
+	}
+	
+	# See http://trac.okfn.org/ticket/1057
+	if ( $host ~* ((www|bnb)\.|)bibliographica.org$ ) {
+		rewrite ^(.*)$ http://openbiblio.net/p/bibliographica/ permanent; 
+	}
+
 	if ( $host = weavinghistory.org ) {
 		rewrite ^(.*)$ http://www.weavinghistory.org$1 permanent; 
 	}
@@ -40,7 +55,7 @@ server {
 	}
 
 	if ( $host = coins.wheredoesmymoneygo.org ) {
-		rewrite ^(.*)$ http://openspending.org$1 permanent;
+		rewrite ^(.*)$ http://openspending.org/ permanent;
 	}
 
 	if ( $host = ask.wheredoesmymoneygo.org ) {
