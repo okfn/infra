@@ -75,7 +75,8 @@ server {
 	}
 
 	if ( $host = irc.okfn.org ) {
-		rewrite ^(.*)$ http://webchat.freenode.net/?channels=okfn$1 permanent;
+		rewrite ^/$ http://webchat.freenode.net/?channels=okfn permanent;
+		rewrite ^/(.+)$ http://webchat.freenode.net/?channels=okfn,$1 permanent;
 	}
 
 	if ( $host = trac.openspending.org ) {
