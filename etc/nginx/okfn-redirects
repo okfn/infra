@@ -67,8 +67,8 @@ server {
 		rewrite ^(.*)$ http://getthedata.org/tags/openspending/ permanent;
 	}
 	
-	if ( $host = www.opendatamanual.org ) {
-		rewrite ^(.*)$ http://opendatamanual.org$1 permanent;
+	if ( $host ~* (www\.|)opendatamanual\.org ) {
+		rewrite ^(.*)$ http://opendatahandbook.org/ permanent;
 	}
 	
 	if ( $host ~* (www\.|)opendatasearch\.org ) {
