@@ -1,0 +1,37 @@
+    upstream app_server {
+        server 127.0.0.1:18000;
+    }
+
+    server {
+        listen 80;
+        client_max_body_size 4G;
+        server_name www.openspending.org openspending.org www.openspending.eu openspending.eu cra.openspending.org;
+
+        keepalive_timeout 5;
+
+	gzip             on;
+        gzip_min_length  1000;
+  	gzip_proxied     expired no-cache no-store private auth;
+  	gzip_types       text/plain application/xml application/json image/svg+xml text/javascript text/css;
+  	gzip_disable     "MSIE [1-6]\.";
+
+	add_header Access-Control-Allow-Origin *;
+
+	access_log /var/log/nginx/openspending.org-access.log;
+        error_log /var/log/nginx/openspending.org-error.log debug;
+
+        # path for static files
+        root /home/okfn/var/srvc/openspending.org/src/openspending/openspending/ui/public;
+        
+	location /static {
+        	alias /home/okfn/var/srvc/openspending.org/src/openspending/openspending/ui/public/static;
+        }
+
+        location / {
+                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                 proxy_set_header Host $http_host;
+                 proxy_redirect off;
+                 proxy_pass   http://app_server;
+                 break;
+        }
+    }

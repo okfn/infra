@@ -1,0 +1,11 @@
+    server {
+        listen 80;
+        server_name etl.sandbox.openspending.org sandbox.openspending.org;
+
+        keepalive_timeout 5;
+
+	access_log /var/log/nginx/sandbox.openspending.org-access.log;
+        error_log /var/log/nginx/sandbox.openspending.org-error.log debug;
+	
+	rewrite .* http://wiki.openspending.org/Loading_into_OpenSpending last;
+    }
