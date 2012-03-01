@@ -1,4 +1,4 @@
-<VirtualHost *:80>
+<VirtualHost *:*>
     ServerName ckan.net
     ServerAlias www.ckan.net
     ServerAlias thedatahub.org www.thedatahub.org
