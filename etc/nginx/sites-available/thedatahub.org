@@ -1,6 +1,6 @@
 server {
 	listen   80;
-	server_name thedatahub.org www.thedatahub.org;
+	server_name thedatahub.org www.thedatahub.org datahub.io;
 
 	access_log /var/log/nginx/thedatahub.org.access.log;
 
@@ -15,4 +15,13 @@ server {
         	proxy_set_header Host $host;
         	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     	}
+	location /scripts {
+		alias /home/okfn/var/srvc/ckan.net/pyenv/src/ckan/ckan/public/scripts;
+	}
+	location /css {
+		alias /home/okfn/var/srvc/ckan.net/pyenv/src/ckan/ckan/public/css;
+	}
+	location /images {
+		alias /home/okfn/var/srvc/ckan.net/pyenv/src/ckan/ckan/public/images;
+	}
 }
