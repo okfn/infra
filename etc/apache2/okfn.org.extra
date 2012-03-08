@@ -32,6 +32,11 @@ ServerAlias okfn.it www.okfn.it
 
 Alias /moinhtdocs /usr/share/moin/htdocs
 
+RewriteEngine  on
+
+RewriteCond %{HTTP_HOST} ^www.okfn.org$
+RewriteRule                  ^/(.*)$  http://okfn.org/$1 [R=301,L]
+
 # Redirect for old files
 Redirect permanent /drn http://drn.okfn.org
 Redirect permanent /resources/etech06 http://okfn.org/files/etech06
@@ -50,7 +55,6 @@ Redirect permanent /sysadmin/trac http://knowledgeforge.net/okfn/tasks
 # 2010-01
 RedirectPermanent /sysadmin/svn http://knowledgeforge.net/okfn/sysadmin
 
-RewriteEngine  on
 RewriteCond %{HTTP_HOST} ^okfn.org$
 RewriteCond %{REQUEST_URI} !^/(files|geo|wsfii|sysadmin)/.*$
 RewriteRule    ^(.*)\.html$  $1/  [R]
