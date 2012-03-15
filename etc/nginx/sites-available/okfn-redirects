@@ -9,6 +9,11 @@ server {
 	}
 
 	# See http://trac.okfn.org/ticket/933
+	if ( $host = si.ckan.net ) {
+		rewrite ^(.*)$ http://thedatahub.org/group/country-si permanent;
+	}
+	
+	# See http://trac.okfn.org/ticket/933
 	if ( $host = ca.ckan.net ) {
 		rewrite ^(.*)$ http://thedatahub.org/group/country-ca permanent;
 	}
