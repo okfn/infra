@@ -1,0 +1,79 @@
+#!/bin/bash
+
+if [[ -z "${1}" ]]; then
+  echo "Usage $(basename "${0}") <ROOT_PID>"
+  exit 1
+fi
+
+ROOT_PID="${1}"
+COL=8
+
+child_pids () {
+  local root_pid="${1}"
+  ps -e -opid=,ppid= | grep "${root_pid}$" | awk '{print $1}'
+}
+
+print_indent () {
+  local indent="${1}"
+  while ((indent > 0)); do
+    echo -n " "
+    ((indent -= 1))
+  done
+}
+
+stats_for_pid () {
+  local pid="${1}"
+  ps -p"${root_pid}" -opid=,comm=,rss=
+}
+
+descend_tree () {
+  local indent="${1}"
+  local root_pid="${2}"
+
+  echo "${indent}" "${root_pid}"
+
+  result=$(child_pids "${root_pid}")
+
+  if [[ -n "${result}" ]]; then
+    ((indent += 1))
+    echo "${result}" | while read pid; do 
+      descend_tree "${indent}" "${pid}"
+    done
+  fi
+}
+
+pad_right () {
+  local width="${2}"
+  local format="%-${width}.${width}s"
+  printf "%-12.s" "${1}"
+}
+
+if [[ "${ROOT_PID}" = "1" ]]; then
+  echo "WARNING: Running this on process 1 may very well cause an infinite loop."
+  echo "WARNING: Proceeding in 5 seconds... ctrl-c to cancel."
+  sleep 5
+fi
+
+TOTAL=0
+
+printf "%-${COL}s %-${COL}s %s\n" "PID" "RSS" "COMM"
+
+while read line; do
+  ind=$(echo "${line}" | awk '{print $1}')
+  pid=$(echo "${line}" | awk '{print $2}')
+
+  ps_output=$(ps -p"${pid}" -orss=,comm=)
+  rss=$(echo "${ps_output}" | awk '{print $1}')
+  comm=$(echo "${ps_output}" | awk '{$1=""; print $0}')
+
+  ((TOTAL += rss))
+
+  print_indent "${ind}"
+
+  printf "%-$(( (($COL - $ind) > 0) * ($COL - $ind) ))s %-${COL}s %s\n" "${pid}" "${rss}" "${comm}"
+done < <(descend_tree 0 "${ROOT_PID}")
+
+echo ""
+echo "Total memory usage: $((TOTAL / 1024)) MiB"
+
+
