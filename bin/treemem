@@ -1,16 +1,23 @@
 #!/bin/bash
 
 if [[ -z "${1}" ]]; then
-  echo "Usage $(basename "${0}") <ROOT_PID>"
+  echo "Usage $(basename "${0}") [PID [PID [PID]...]]"
   exit 1
 fi
 
-ROOT_PID="${1}"
 COL=8
 
 child_pids () {
-  local root_pid="${1}"
-  ps -e -opid=,ppid= | grep "${root_pid}$" | awk '{print $1}'
+  local ppid="${1}"
+  ps -e -opid=,ppid= | grep " ${ppid}$" | awk '{print $1}' | xargs
+}
+
+parent_pids () {
+  local pid="${1}"
+  while [[ "${pid}" -ne 0 ]]; do 
+    echo "${pid}"
+    pid=$(ps -p"${pid}" -oppid= | sed 's/[[:space:]]//g')
+  done | xargs
 }
 
 print_indent () {
@@ -23,52 +30,44 @@ print_indent () {
 
 descend_tree () {
   local indent="${1}"
-  local root_pid="${2}"
+  local pid="${2}"
 
-  echo "${indent}" "${root_pid}"
+  for p in $(parent_pids "${pid}"); do
+    if [[ "${p}" -eq "${PPID}" ]]; then
+      echo "WARNING: Skipping current process (${pid}) to avoid an infinite loop" >&2
+      return
+    fi
+  done
 
-  result=$(child_pids "${root_pid}")
+  echo "${indent}" "${pid}"
 
-  if [[ -n "${result}" ]]; then
-    ((indent += 1))
-    echo "${result}" | while read pid; do 
-      descend_tree "${indent}" "${pid}"
-    done
-  fi
+  for p in $(child_pids "${pid}"); do
+    descend_tree $((${indent} + 1)) "${p}"
+  done
 }
-
-pad_right () {
-  local width="${2}"
-  local format="%-${width}.${width}s"
-  printf "%-12.s" "${1}"
-}
-
-if [[ "${ROOT_PID}" = "1" ]]; then
-  echo "WARNING: Running this on process 1 may very well cause an infinite loop."
-  echo "WARNING: Proceeding in 5 seconds... ctrl-c to cancel."
-  sleep 5
-fi
 
 TOTAL=0
 
-printf "%-${COL}s %-${COL}s %s\n" "PID" "RSS" "COMM"
+printf "%-${COL}s %-${COL}s %s\n" "PID" "RSS" "COMMAND"
 
-while read line; do
-  ind=$(echo "${line}" | awk '{print $1}')
-  pid=$(echo "${line}" | awk '{print $2}')
+for ROOT_PID in ${*}; do
+  while read line; do
+    ind=$(echo "${line}" | awk '{print $1}')
+    pid=$(echo "${line}" | awk '{print $2}')
 
-  ps_output=$(ps -p"${pid}" -orss=,comm=)
-  rss=$(echo "${ps_output}" | awk '{print $1}')
-  comm=$(echo "${ps_output}" | awk '{$1=""; print $0}')
+    ps_output=$(ps -p"${pid}" -orss=,args=)
 
-  ((TOTAL += rss))
+    if [[ -n "${ps_output}" ]]; then
+      rss=$(echo "${ps_output}" | awk '{print $1}')
+      comm=$(echo "${ps_output}" | awk '{$1=""; print $0}' | sed 's/^[[:space:]]//')
 
-  print_indent "${ind}"
+      ((TOTAL += rss))
 
-  printf "%-$(( (($COL - $ind) > 0) * ($COL - $ind) ))s %-${COL}s %s\n" "${pid}" "${rss}" "${comm}"
-done < <(descend_tree 0 "${ROOT_PID}")
+      print_indent "${ind}"
+      printf "%-$(( (($COL - $ind) > 0) * ($COL - $ind) ))s %-${COL}s %s\n" "${pid}" "${rss}" "${comm}"
+    fi
+  done < <(descend_tree 0 "${ROOT_PID}")
+done
 
 echo ""
-echo "Total memory usage: $((TOTAL / 1024)) MiB"
-
-
+echo "Total memory usage: $((TOTAL / 1024)) MiB (${TOTAL} bytes)"
