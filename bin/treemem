@@ -21,11 +21,6 @@ print_indent () {
   done
 }
 
-stats_for_pid () {
-  local pid="${1}"
-  ps -p"${root_pid}" -opid=,comm=,rss=
-}
-
 descend_tree () {
   local indent="${1}"
   local root_pid="${2}"
