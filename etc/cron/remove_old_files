@@ -79,5 +79,5 @@ else
 fi
 
 for dir in ${DIRS_TO_CLEANUP}; do
-    ${SUDO} ${FIND_BIN} $dir ${FIND_OPTIONS} -amin +${REMOVE_OLDER_THAN_MINS} -exec rm "{}" ";"
+    ${SUDO} ${FIND_BIN} $dir ${FIND_OPTIONS} -amin +${REMOVE_OLDER_THAN_MINS} -delete
 done
