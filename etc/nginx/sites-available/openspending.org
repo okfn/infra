@@ -18,7 +18,7 @@
 	add_header Access-Control-Allow-Origin *;
 
 	access_log /var/log/nginx/openspending.org-access.log;
-        error_log /var/log/nginx/openspending.org-error.log debug;
+        error_log /var/log/nginx/openspending.org-error.log warn;
 
         # path for static files
         root /home/okfn/var/srvc/openspending.org/src/openspending/openspending/ui/public;
