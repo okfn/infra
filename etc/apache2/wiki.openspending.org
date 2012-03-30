@@ -7,14 +7,3 @@
     ErrorLog /var/log/apache2/wiki.openspending.org.error.log
     CustomLog /var/log/apache2/wiki.openspending.org.custom.log combined
 </VirtualHost>
-
-<VirtualHost *:80>
-    ServerName openspending.org
-    ServerAlias www.openspending.org
-    RewriteEngine On
-    RewriteRule .* http://wiki.openspending.org/ [L,R]
-
-    ErrorLog /var/log/apache2/wiki.openspending.org.error.log
-    CustomLog /var/log/apache2/wiki.openspending.org.custom.log combined
-</VirtualHost>
-
