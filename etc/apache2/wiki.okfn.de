@@ -1,0 +1,7 @@
+<VirtualHost *:80>
+  ServerName wiki.okfn.de
+  DocumentRoot /home/okfn/var/srvc/wiki.okfn.de
+
+  ErrorLog /var/log/apache2/wiki.okfn.de.error.log
+  CustomLog /var/log//apache2/wiki.okfn.de.log combined
+</VirtualHost>
