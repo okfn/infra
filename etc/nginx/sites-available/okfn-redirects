@@ -8,6 +8,11 @@ server {
 		index  index.html index.htm;
 	}
 
+	# See http://trac.okfn.org/ticket/1225
+	if ( $host = semantic.ckan.net ) {
+		rewrite ^(.*)$ http://notice.ckan.org/semantic.ckan.net-down.html permanent;
+	}
+
 	# See http://trac.okfn.org/ticket/933
 	if ( $host = si.ckan.net ) {
 		rewrite ^(.*)$ http://thedatahub.org/group/country-si permanent;
