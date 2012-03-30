@@ -1,6 +1,6 @@
 server {
 	listen   80;
-	server_name thedatahub.org www.thedatahub.org datahub.io;
+	server_name thedatahub.org www.thedatahub.org datahub.io www.datahub.io;
 
 	access_log /var/log/nginx/thedatahub.org.access.log;
 
