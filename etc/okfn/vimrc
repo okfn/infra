@@ -1,0 +1,14 @@
+" Please do not drop your favorite .vimrc hacks here. Others are working
+" on this machine as well, and everyone has other preferences.
+"
+" If you need your personal settings, please save them as ~/.vimrc-$NAME
+" (probably beginning with the line 'source /etc/vim/vimrc') and then 
+" either load them into vim via
+"
+"    :source ~/.vimrc-$NAME
+"
+" or you start vim via
+"
+"    vim -u ~/.vimrc-$NAME [...]
+"
+" Thank you.                      Nils (OKF sysadmin)
