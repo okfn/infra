@@ -6,7 +6,7 @@ server {
 	server_name_in_redirect  off;
 
 	location / {
-		proxy_pass http://localhost:2071;
+		proxy_pass http://localhost:6081;
 		proxy_redirect off;
 		proxy_set_header Host $host;
 		proxy_set_header X-Real-IP $remote_addr;
