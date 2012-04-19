@@ -62,7 +62,7 @@ echo "Setting up service wrapper"
 curl -L https://github.com/elasticsearch/elasticsearch-servicewrapper/tarball/master > service.tar.gz
 tarball_prefix=$(tar -tf service.tar.gz | head -1)
 tar --strip-components=1 -xf service.tar.gz "${tarball_prefix}service"
-sed -i'.bak' -e "s/^#RUN_AS_USER=$/RUN_AS_USER=\"${ES_USER}\"/" service/elasticsearch
+sed -i'.bak' -e "s/^#RUN_AS_USER=$/RUN_AS_USER=\"${ES_USER}\"/" -e "s/^#ULIMIT_N=$/ULIMIT_N=32000/" service/elasticsearch
 $SUDO mv service "${ES_HOME}/elasticsearch/bin/service"
 $SUDO rm service.tar.gz
 $SUDO ln -snf "${ES_HOME}/elasticsearch/bin/service/elasticsearch" /etc/init.d/elasticsearch
