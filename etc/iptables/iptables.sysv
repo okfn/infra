@@ -40,62 +40,39 @@ start)
     log_action_end_msg 0
 
 	log_action_begin_msg "Starting firewall"
-        type usplash_write >/dev/null 2>/dev/null && usplash_write "TIMEOUT 120" || true
-	if $IPTABLES_RESTORE < $IPTABLES_CONFIG ; then
-		log_action_end_msg $?
-	else
-		log_action_end_msg $?
-	fi
-        type usplash_write >/dev/null 2>/dev/null && usplash_write "TIMEOUT 15" || true
+	$IPTABLES_RESTORE <"$IPTABLES_CONFIG"
+	log_action_end_msg $?
 	;;
 
 stop)
 	log_action_begin_msg "Flushing ALL firewall rules from chains! [Warning: WITHOUT SAVING THEM!]"
-	if $IPTABLES -F ; then
-		log_action_end_msg $?
-	else
-		log_action_end_msg $?
-	fi
+	$IPTABLES -F
+	log_action_end_msg $?
+
 	log_action_begin_msg "Deleting ALL firewall chains [Warning: ACCEPTING ALL PORT SERVICES!]"
-	if $IPTABLES -X ; then
-		$IPTABLES -P INPUT ACCEPT
-		$IPTABLES -P FORWARD ACCEPT
-		$IPTABLES -P OUTPUT ACCEPT
-		log_action_end_msg $?
-	else
-		log_action_end_msg $?
-	fi
+	$IPTABLES -X
+	$IPTABLES -P INPUT ACCEPT
+	$IPTABLES -P FORWARD ACCEPT
+	$IPTABLES -P OUTPUT ACCEPT
+	log_action_end_msg $?
 	;;
 
 save)
 	log_action_begin_msg "Saving current firewall configuration"
-	if $IPTABLES_SAVE > $IPTABLES_CONFIG ; then
-		log_action_end_msg $?
-	else
-		log_action_end_msg $?
-	fi
+	$IPTABLES_SAVE >"$IPTABLES_CONFIG"
+	log_action_end_msg $?
 	;;
 
 force-reload|force-restart)
 	log_action_begin_msg "Reloading firewall configuration [Warning: POTENTIAL NETWORK INSECURITY DURING RELOAD]"
-	$IPTABLES -F
-	$IPTABLES -X
-	if $IPTABLES_RESTORE < $IPTABLES_CONFIG ; then
-		log_action_end_msg $?
-	else
-		log_action_end_msg $?
-	fi
+	$IPTABLES_RESTORE <"$IPTABLES_CONFIG"
+	log_action_end_msg $?
 	;;
 
 restart)
 	log_action_begin_msg "Safely reloading firewall configuration [Warning: this is interactive only, use 'force-restart' for scripts] [Warning: POTENTIAL NETWORK INSECURITY DURING RELOAD]"
-	$IPTABLES -F
-	$IPTABLES -X
-	if $IPTABLES_APPLY $IPTABLES_CONFIG ; then
-		log_action_end_msg $?
-	else
-		log_action_end_msg $?
-	fi
+	$IPTABLES_APPLY "$IPTABLES_CONFIG"
+	log_action_end_msg $?
 	;;
 
 *)
@@ -105,4 +82,3 @@ restart)
 esac
 
 exit 0
-
