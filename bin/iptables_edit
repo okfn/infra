@@ -1,0 +1,74 @@
+#!/bin/sh
+
+DIR="$(cd "$(dirname "$0")" && pwd)"
+DAEMON="/bin/sh"
+DAEMON_OPTS="${DIR}/$(basename ${0}) __rollback__"
+IPTABLES_CONF="/etc/iptables.conf"
+PIDFILE="/var/run/iptables_edit.pid"
+ROLLBACK_FILE="${HOME}/IPTABLES_ROLLBACK"
+
+if [ "X${1}" = "X__rollback__" ]; then
+  ## NB: this section will run as root
+  sleep 120
+  while [ -r "${ROLLBACK_FILE}" ]; do
+    service iptables stop
+    sleep 5
+  done
+  rm "${PIDFILE}"
+  exit
+elif ([ "X${1}" = "X-h" ] || [ "X{$1}" = "X--help" ] || [ "${#}" -gt 1 ]); then
+  echo "Usage: $(basename $0) [EDITOR]"
+  echo
+  echo "This script will open ${IPTABLES_CONF} for you to edit. When you close"
+  echo "the editor, you will be asked if you want to restart iptables. If you "
+  echo "confirm, the script will set up a dead man's handle that will stop"
+  echo "iptables if you fail to remove ${ROLLBACK_FILE} within two minutes."
+  exit 1
+elif [ -n "${1}" ]; then
+  EDITOR="${1}"
+fi
+
+# First, make sure we're root
+if [ "$(id -u)" -ne 0 ]; then
+  echo "This script must be run as root"
+  exit 1
+fi
+
+# Second, make sure no-one else is already running this script
+if [ -r "${PIDFILE}" ]; then
+  echo "Sorry, ${PIDFILE} exists. Perhaps someone else is already editing the"
+  echo "iptables config?"
+  echo
+  echo "I'm no expert, but I'm guessing you don't want two people editing firewall"
+  echo "rules at the same time, so I'm quitting!"
+  exit 1
+fi
+
+# Lastly, ensure we have an editor
+if [ -z "${EDITOR}" ]; then
+  echo "\$EDITOR is empty and no editor specified."
+  exit 1
+fi
+
+${EDITOR} "${IPTABLES_CONF}"
+printf "Editor exited. Do you want to restart iptables? [yN] "
+read REPLY
+case "${REPLY}" in
+  y*|Y*) ;;
+  *) exit 1;;
+esac
+
+touch "${ROLLBACK_FILE}"
+
+if ! service iptables restart; then
+  echo "WARNING: iptables restart returned non-zero exit code!"
+fi
+
+start-stop-daemon --start \
+                  --background \
+                  --pidfile "${PIDFILE}" \
+                  --make-pidfile \
+                  --startas "${DAEMON}" -- ${DAEMON_OPTS}
+
+echo "Done. Please now ensure you haven't locked yourself out."
+echo "If all is well, you MUST remove ${ROLLBACK_FILE}!"
