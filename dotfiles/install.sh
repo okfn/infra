@@ -1,13 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
 cd "${DIR}"
 for file in *.symlink; do
   dest="${HOME}/.${file%.symlink}"
 
-  if [[ -e "${dest}" ]] && [[ ! -L "${dest}" ]]; then
-    read -p "${dest} exists. Overwrite? [yN] " -r
-    [[ ! "${REPLY}" =~ ^[Yy]$ ]] && exit 1
+  if [ -r "${dest}" ] && [ ! -h "${dest}" ]; then
+    printf "${dest} exists. Overwrite? [yN] "
+    read -r reply
+    case "${reply}" in
+      y*|Y*) ;;
+      *) continue;;
+    esac
   fi
 
   echo "${dest}"
