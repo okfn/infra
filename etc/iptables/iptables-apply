@@ -180,17 +180,25 @@ fi
 
 echo -n "Can you establish NEW connections to the machine? [yN] "
 
-read -n1 -t "${TIMEOUT}" ret 2>&1 || :
-case "${ret:-}" in
+set +e
+read -t "${TIMEOUT}" REPLY 2>&1
+TIMED_OUT="${?}"
+set -e
+
+if [ "${TIMED_OUT}" -ne 0 ]; then
+	echo
+	echo "Well, it seems you can't. The old ruleset will be restored momentarily."
+	exit 255
+fi
+
+case "${REPLY:-}" in
 	(y*|Y*)
 		start-stop-daemon --stop --pidfile "${PIDFILE}"
 		rm "${PIDFILE}"
-		echo
 		echo "In which case, my job is done. See you next time."
 		;;
 	(*)
-		echo
-		echo -n "Ok, you can't. Going to restore the old ruleset..."
+		echo -n "Okay: restoring the old ruleset..."
 		if "$RESTORE" <"$TMPFILE"; then
 			# If we got this far, we can assume the ruleset was successfully restored,
 			# and we can kill the daemon
@@ -198,7 +206,10 @@ case "${ret:-}" in
 			rm "${PIDFILE}"
 			echo "Done."
 		else
-			echo "Oh dear. That looks like it didn't work!"
+			echo "Fail!"
+			echo "Oh dear. That looks like it didn't work. I haven't stopped"
+			echo "the background process though, so you might still get back"
+			echo "in once the timeout has expired..."
 		fi
 		exit 255
 		;;
