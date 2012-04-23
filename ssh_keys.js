@@ -24,7 +24,8 @@
       "johnglover",
       "tomrees",
       "ianmurray",
-      "seanhammond"
+      "seanhammond",
+      "aron.carroll"
     ],
     "openspending": [
       "mk270",
@@ -272,6 +273,16 @@
     {
       "name": "Etienne Posthumus",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA8JxFzy6s1obqZ8zvxdgBA1w0IHua4wnp3r0/pT+Zx6EBzDqqm6IlbbxSGyk3dKi3RoBxJQ1Ka6VjDJVxBguVT+Y+4STckXU7FL0jHZ8gtemF7H3Bht/WvGcoL6XOb64jdPJNzR42Dgp0omtNEfwKfFXU+QVk1tJ/0WnXZfaO0P0= etienne@ep.lan"
+    },
+    "everton.alvarenga":
+    {
+      "name": "Everton Zanella Alvarenga",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCk+aTb/GCGI/e66oTgLxIRlrdCppyTrMVo4z7GWTDNAPS2L8zC87wRMbDrsTz5p3oPkt1ngv1J1yuCLMyTaZ8FGrJ/LOjyyc63haeGi7opNx6/SetEc5nqQxRUO+vCpDCYKzCrRv0u5e0efb4MAf+nLrElZOqlJJ3z9O6vdoYQW1xg/a5qerWUqIMiPw1yzv/ZxE+ukESRPuv0rxyxrv2xQsFRonLGfXoGVWhxEc4sk+UI4zTXuqFXJzsPXc44l44pC18xMSg7/6BDv21SVq9Dusb8W7DY7k/rrfGF4toGCS/uhi2vYaMG2oD6qRRgJI4uxEW9MzBbGFrCdkk2fnj5 everton.alvarenga@okfn.org"
+    },
+    "aron.carroll":
+    {
+      "name": "Aron Carroll",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx6AkGancTse6aIouqYKnBZaTyxyAtwDu1CKHlueUDKTuO5HEtlMwS3FL0N1hymCnfovdtvABnkCRPdDk2sDBptoRS9xIqN9hhP1CNDqxpzf8Pll+V2HmbVmSYPbZccu6fHfFNiV2PVT4+AAHS86wwrsxClt81v4HfHMTRj6O/G7LjDa4qsQGF/4ShwOOzCOzp0RNOAQbeMKQPXkNaIfYWftkDnuLKuLtCY1jyc5vllFLjYrnm9QacmECae6YlQYL+XXtPgY0xixVUYaljkSnXB3ss3w1gkFnxgudY0SMYdlsg1gkzNB+/GLtx/ffXMC4kP6TSDVkUZ1skLcqog08tw== aron.carroll@gmail.com"
     }
   }
 }
