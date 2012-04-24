@@ -12,7 +12,8 @@
       "jasonkitcat",
       "sebbacon",
       "ddie",
-      "odaesa"
+      "odaesa",
+      "borior"
     ],
     "ckan": [
       "rgrp",
