@@ -284,6 +284,11 @@
     {
       "name": "Aron Carroll",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx6AkGancTse6aIouqYKnBZaTyxyAtwDu1CKHlueUDKTuO5HEtlMwS3FL0N1hymCnfovdtvABnkCRPdDk2sDBptoRS9xIqN9hhP1CNDqxpzf8Pll+V2HmbVmSYPbZccu6fHfFNiV2PVT4+AAHS86wwrsxClt81v4HfHMTRj6O/G7LjDa4qsQGF/4ShwOOzCOzp0RNOAQbeMKQPXkNaIfYWftkDnuLKuLtCY1jyc5vllFLjYrnm9QacmECae6YlQYL+XXtPgY0xixVUYaljkSnXB3ss3w1gkFnxgudY0SMYdlsg1gkzNB+/GLtx/ffXMC4kP6TSDVkUZ1skLcqog08tw== aron.carroll@gmail.com"
+    },
+    "tom.oinn":
+    {
+      "name": "Tom Oinn",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAg/tEo+jmZS/WJv8qXm4/+xJafR3jcHfVZI587Q1xAseDY171VwZKLAxMn3S41TdF44hh6uEcNxvfWFVllwgyHLOlACXJDZhbkUoecq9lWDvBdSgVqvsmIwaSun4VoBN1YVQQ2tfD4mT53k78Qgef8Eabausp9ni9M5vE48Owm6E= tomoinn@crypticsquid.com"
     }
   }
 }
