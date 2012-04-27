@@ -289,6 +289,11 @@
     {
       "name": "Tom Oinn",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAg/tEo+jmZS/WJv8qXm4/+xJafR3jcHfVZI587Q1xAseDY171VwZKLAxMn3S41TdF44hh6uEcNxvfWFVllwgyHLOlACXJDZhbkUoecq9lWDvBdSgVqvsmIwaSun4VoBN1YVQQ2tfD4mT53k78Qgef8Eabausp9ni9M5vE48Owm6E= tomoinn@crypticsquid.com"
+    },
+    "teleyinex":
+    {
+      "name": "Daniel Gonzalez",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA7x9R4ZhdFirot3bP0slJ5FbcqZK8NUO3gSbXjETCqMADB+mt4k1sjucbwMvL3SaZ4+IWZao4+RWlaDwqojo/OES75OlxEgJLHzUpQQliVyvYkZkIvgeUJZag9X6tdVA/TgWHdyEk+xXWPK/eNFkeN7Dq+XIgUHeTlc+dknylT+R/izL3Qqs99uZyx5dYjabEdVc0m8n847dvniIecr7W63o2VXKUPrx9Qd08gc53zthFnLcbU2A3AklPq/cEV65oToT4CeLc2g+b7EBmLVIX0LZ1891PhmNvq0cIgah9CDMO9NY9I0owU1AxfYFE5oWhmorBxpJ6sgvE7+bWnSDZ2Q== teleyinex@gmail.com"
     }
   }
 }
