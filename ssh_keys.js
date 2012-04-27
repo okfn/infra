@@ -295,7 +295,7 @@
       "name": "Daniel Gonzalez",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA7x9R4ZhdFirot3bP0slJ5FbcqZK8NUO3gSbXjETCqMADB+mt4k1sjucbwMvL3SaZ4+IWZao4+RWlaDwqojo/OES75OlxEgJLHzUpQQliVyvYkZkIvgeUJZag9X6tdVA/TgWHdyEk+xXWPK/eNFkeN7Dq+XIgUHeTlc+dknylT+R/izL3Qqs99uZyx5dYjabEdVc0m8n847dvniIecr7W63o2VXKUPrx9Qd08gc53zthFnLcbU2A3AklPq/cEV65oToT4CeLc2g+b7EBmLVIX0LZ1891PhmNvq0cIgah9CDMO9NY9I0owU1AxfYFE5oWhmorBxpJ6sgvE7+bWnSDZ2Q== teleyinex@gmail.com"
     },
-    "marian.steinbach" {
+    "marian.steinbach": {
       "name": "Marian Steinbach",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAJIcZsZZsVl1TXXgk9DbjgojzLr87yvQCYMOdXizVh5K+lMrTfBjRsL/mwhmCYBBPYcsUHI6Qak/zSADewiZGdvESpvtG0qre1IEc2/mTaJW/fNXqQn6fTkrawsoAFUBa4ryZBdjH2oi4RyQA8SyjPKp+lCKYg429o2dmMB9326FAAAAFQCgQrDe2dKKxVDCA8PxAMl2jYObowAAAIEAhQf/WT78Mxm7ZbnRNJM1v3Zja/3v3CO+a0iaPctrKfcPfQtvPjd+eu8aavJR7SV1KJzAwIM4xYqKIpCnSgi1mYyjJhQl0audcQoz/8DszLfV0vV2dyFPilkv26AI4gDPFQoCYoV/gmGPxU6sbxyUa80HopZ3osXakVI8FOTW7VkAAACASM4kKw2FQxh2RTNmidzt2k5KxzUaE8u8rW6dEs4Jw9s20ucZTN8YVoXxc2FfJSDEui4dWSuXWBxrt46HMIBMRll4QcsetvCHnIpd/sXnGNGNyPFHbtq+WsxaSYznH+IlC0vMN3CK/jZohfM3ymzvpkCsrCWEvvXwhRsMpq3iF6Q= marian@dynamic-06.intern"
     }
