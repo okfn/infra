@@ -919,6 +919,27 @@ def postfix_install(copy_config=False, relay=None):
     install('bsd-mailx')
 
 
+def puppet_bootstrap():
+    '''
+
+    Bootstrap this host for use with the OKF Puppetmaster.
+
+    '''
+    install('puppet')
+
+    search_domains = 'okserver.org okfn.org'
+
+    if not contains('/etc/resolv.conf', '^search %s$' % search_domains):
+        append('/etc/resolv.conf', 'search %s' % search_domains)
+
+    if contains('/etc/default/puppet', 'START=yes'):
+        print "Puppet already enabled: not touching /etc/default/puppet"
+    else:
+        sed('/etc/default/puppet', '^START=no$', 'START=yes', use_sudo=True)
+        sed('/etc/default/puppet', '^DAEMON_OPTS=.*$', 'DAEMON_OPTS="--server puppet.okserver.org"', use_sudo=True)
+
+    sudo('service puppet start')
+
 def postfix_set(relayhost=None, inet_interfaces=None):
     config = '/etc/postfix/main.cf'
     if relayhost:
