@@ -927,11 +927,6 @@ def puppet_bootstrap():
     '''
     install('puppet')
 
-    search_domains = 'okserver.org okfn.org'
-
-    if not contains('/etc/resolv.conf', '^search %s$' % search_domains):
-        append('/etc/resolv.conf', 'search %s' % search_domains)
-
     if contains('/etc/default/puppet', 'START=yes'):
         print "Puppet already enabled: not touching /etc/default/puppet"
     else:
