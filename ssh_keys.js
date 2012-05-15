@@ -10,7 +10,6 @@
       "steko",
       "ntoedtma",
       "jasonkitcat",
-      "sebbacon",
       "ddie",
       "odaesa",
       "borior"
@@ -31,17 +30,16 @@
     "openspending": [
       "mk270",
       "borior",
-      "stiivi",
       "pudo",
       "rgrp"
     ],
     "fry": [
-      "jan.kokoska",
-      "darryl.weaver"
+      "jan.kokoska"
     ],
     "volunteers": [
       "elfpavlik",
-      "mark.herringer"
+      "mark.herringer",
+      "everton.alvarenga"
     ]
   },
   "users":
@@ -50,11 +48,6 @@
     {
       "name": "Martin Keegan",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA0QvlAkGAQvqf2SM1a6qbPdzare4sTiN8DiKgog2xy87VeJxoDW6GUxy5J/794vDyJOW7CbewSC7IiFTBLSolOQRh1AJs7kbLfFfOwE/LSwpCP396jRy0p+wDUrGi2nEiFccynY8nWblsJk1bS59L1fjfxMln6WvakiCU6JbVUvk= mkeegan@goatnut"
-    },
-    "johnbywater":
-    {
-      "name": "John Bywater",
-      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAIJ+izF4nurowTHcnPiS4YqmQ4VQhXgk5x5OE2MMTnvxynwTm7CSH3Nm6kN3QJbQsGm4duqZEm91qzTTF+mipsdUH3/QEhSU6VHMRVPSlqRbaPiHciFhoHGpWBOTSM0G45JTFZOY8Zk5SKD9/IlRQ9yqyXTc6IkqLA2b3ICd85ppAAAAFQDbBpitIk/jDsuVm9O+1j3Wc4pBMQAAAIAM0UNPsYw89tcgCgpuhpp6W4/lhaO/Gyr7E2PkJ/1vs/REH3gnVmO28LaNa6x3ot6z/nmu3XgyPOeiLxLWS02qoSlM2Ak77oWzJnG2AxLaKU69/0bvrWUQkoATYAO5uF9T/Q5kOn9QcLRpDx6QdY1Mme037cnum9LnPcp4sDvgmQAAAIA4Rlqe6bINx+D536XOcCKRosg6I7D11p2cgqQoh7+W4ztINnr6L8edRBWQ/DYiBqEAIhIXcbKZKOjDieHFvad/F5JJ2G9P1Gn4ITMgkMFmg00671WHunpPX15cywcxmX7a5XDMMc8nx1r8Ku2ueBuAp9ni4N/jqkbAmNANMnbAyA== john@hawthorn"
     },
     "casbon" :
     {
@@ -130,11 +123,6 @@
       "name": "Nils Toedtmann",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAIDy8mdmywAu00uYm1fJvwW6kT5Mnjnu/nLoDjHPftqoRj+BPqlnM7Qp/OYzHQUoYsAEICSRdRgqdZxN/H1PKqL7H7IfImI2azaRjmnpolFCUpVdudPwRRt8vSqgHqLOxSlmlEt0N43Z3sCRJIwZ81vI65YTR/vYuDNHU+EBS7grAAAAFQDKra35hdKJMKI7avdQbUft7JR3vQAAAIB6/zHsyUtY2NmtlisqUbuExXxDtpeHpq4mdS/EEn4xUWP3DsT0DnJQTBKYaghfBvzeMSj3m/e/8DABQVUwhUEr6+u+BI8DQPmb46usN9vPBIa40OxmsKoTpkrSc/xKqtL+AjCDzziahlqBHpKMcCp9aPETRccVb4bHFaw/XoB19AAAAIBylraAM2b6Z9JphcSWha5yb+BWDyIh20Rkte8toumIylXs3Xj8do5C0n9hbRYICjslfjDsPdOTRiRbqbT5+ybVSYqsSmWPgiq+x1hdDlvFwZLiO21+TNjKYKVQ/0WqTFy0UY+v0d0CXUeemmi5ZBklQY4vitmjnyutyINIlPkTVA== ntoedtma@takatukaland.de"
     },
-    "stiivi":
-    {
-      "name": "Stefan Urbanek",
-      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwd/doWSW3wrIYXf+MBwUXSv88KQnYMN2+heDR8BJ5J/1lwpATyabCBBW8Suayo1ZvJUm+loZcCM4WfEKLqE71iTzfFfcoIxfJn3+cW8H2IQNyRMwlhIpudb5LGCOC8vzwPibTlYilT0bHtSy3+lgJ/n/ZRfEvb6dVS1JWheDAzp8lJEv+iF3eEvrah26a+xfToxy26m06ebo3M4dNFbuMQlHpLFkB0fZh0NbfuITyODgIpJwh7EiQ66oUtSEcAlJHPLL+axaAcEW6/J7/Lp/rSyb7F0/b9lqa+KIfrdNSHFBJdTR+aFLZEcZiRI8B5XVZ3GRsrY/vaGCUyWLkT6ILQ== stefan@Stefan-Urbaneks-MacBook.local"
-    },
     "memespring":
     {
       "name": "Richard Pope",
@@ -160,11 +148,6 @@
       "name": "David Raznick",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1dSe9TaMh9ahRdrWgn1J1vNQfhfyuvQ4t5fFjlJkUc00RHrBShacT0urVduJWSCEGSJCLjxZnbK6kJgACnqeCQeMwBvJ8RebPkFAxTh4SBxgjpuCfx42DiBTzirPy2Xi4JSKqRpsQVnnCnlNOVSZYHwZzUo+WvjR/6B6Azfg31ojiWuNiIMLwJvCK2ZJOCx1cGkTdkys+SPYyBkooFO4+AeAXNuBPYSNn/JBLmtACaoR+cwPGMFYXT3w8t/uqweEpp2cG6L7D7gPeY9RhHjv+/ArQy9rZl7Uavu/CwdXfGDJiVrtcLb+gTKQOnT6OfE1VEicUTf1IkkvWBM8fKZuFw== david@david-laptop"
     },
-    "sebbacon":
-    {
-      "name": "Seb Bacon",
-      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA0ngiahXTIVmP1hPowZ5qtfF21k/V7zJZikMB1J6YJWYjT+A2GiXH5V2wpdOTvc6hmeZHYNnd6Ah+uN4vLNjzE5FcUTCgrA10jXogNwLIdaVvS0dkvLpQS2rZZ5Av9vw3Lrb7CHiyiRcE8PWlGMxwm8MQ/TFIkun6ZQu/EStKXYmfbwtupFGoo70MoiT+wAJehEt1f8QwUJ9KrdCj3vOqwhXuHwT1OGGBxuSKDwx0p2oEgDst+At1zJ6TuFEhwPnI9C7kPMiS3FJWP07fnocYu5/Jb4fC3gClkBX2oLmDasGY/aiwglHmbXQQYpsm1ifq6OEIHArvgFDvAHKacuK3ow== user@ubuntu810desktop"
-    },
     "acracia":
     {
       "name": "Tatiana de la O",
@@ -179,11 +162,6 @@
     {
       "name": "Jan Kokoska",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA4jLVHygu3Zg+ziNArhkvlWY3jfe9tDunWbJzqE4tllwfjqhnJL0GQeLhEDYYKiaszRXPVVyL2iyEMyjyAyzvLLQBe1y18Rd1lagetiSf1TqHF9/FFZs3qT5mF3HzoSHNhjwJGlnt6BstnpOvOQDTe9zeyZ+NOUlmZ9i/hyUSfpwY4JGeZDWqQwksZcKUQU0B1Z+BsEf6lxtJMpLyn7q3OzFc5fgpnl4v/Ndk2IzWb5u2ELktDj2jlR6Mm9e8ULdatDXmeoms4k7Ubk+DM6GXvGFkHoevdHbIqtv/wNHgEy/E7RTqUcEKPWs6wOyCE8ysZYr7iP8D3GtxpAeUGgEQloV9nwSe90XkROqBWs81pLplxytbh/7G0ZzBzKm8mtE3hLP6qFnIJ1XnU1Oynkvra5QovJvixDKz7Elr+TiL1i4HuZEPyEefMo41ULbx3XPpvKK/ofcQ1xIbHf9F0k5MEy3L50TBrh1nCl/2e6H/Z9DgHEwsa054VNn9XUO5siDZrnDQYekq8RYfiewAc4Wb0OtA/WIEY3pN1dcj3V8tR6w0U2RItf7UEocUhKHKjjA4l37ZVAqO/LQZk5GvCRldEXxh0EUqlqGEPESO9vEEyW5CgSmrHCbbmkxqKoDN3avs/wGNdol0e9Jk8fAxroGZVSzlmpHilmR900vuKwaSh6E= Jan"
-    },
-    "darryl.weaver":
-    {
-      "name": "Darryl Weaver",
-      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBALx/0aj8iAPnqKvZTrx1L47v9khIjnDj5kmmRvvXe8mODGT2jQ3sc9Pj9WnYpwnb2nsxEK+kwDyLO+kEBYr4d99oNKluw70/2TCPS7oQp4LC5VSdJR1AUmN9EPGbzaz2KbxqXqTfg6jmkEPYwk3LFfV4h0Ie6/UPIJjh+8fmaZHDAAAAFQC8jI/bHlzaS+qQe4pMKG9UHE5U5wAAAIA6BdpkLLg1LInahvscqdCXO9TsasJ3Q1vnCmvUyp4m/AZA8JqHxTXzRmfO9xWtnBH4kUANZijTCyCqN59O+NM4MMpMrxSIN1ZWSrdOKeI+n9CER+vZJUMj4od+9fqjOxXEaSoS/AGns13HZp1BzdH69BtwvJm7Lq2z60tVBM+eRwAAAIEAs344Law4AFjvi7nbD3IsTi/4WagFGVp1xaEvncMvXWh6KtXkob6gq/8fyXuWP+IiXeuUHqdijkdP365bisEb359UyO3R3sn7avxxJmMC2qhhEH4QJhL2+hj1O5fF4ceAthTu5azBNM90ORMiQSs1I2xVvHbV/JZQ8axqWlmKaZs= Darryl"
     },
     "csenger":
     {
