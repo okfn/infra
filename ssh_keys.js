@@ -302,6 +302,10 @@
     "kristian": {
       "name": "Kristian Glass",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDEUz63s3TpYvMzJEWjRZST9AF0eEY3jBzHEobMXe1wuKgxlnJhB5SwzivbVQX6/Xuadc1capEpbsAH6vFPRtLPt/sbtKoCYEjybAEWjFURKnQT1NEEro9e3gDxCtGbK/qfJmPHHGxlbBcsoD9KaI9j3RJHLvUY4mdU8VHC+LKTCWGTnyUff/gImsVauTS9yDrni8uLiD/BdUY1uz1lF56cPEbxC/XZp3fbU9BiJbgSbGOo4orDbVv/T0aW1U0rFQvADgR4S1bomP8TPlXmR1DOIzOeJftU5onY++S4t8x4qGGLRMOCQXDdImmGhjZVQPRadQ+OuOJYxDWKUaaU7jNF kristian@lilith.doismellburning.co.uk"
+    },
+    "puppetmaster": {
+      "name": "Puppetmaster Deploy Key",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA3Wk5EOzSAvxFViSTv9c81k6baB7tbNXuoesOavjzHbIqrIDMGRsTx//k5A1lBFlhYhH+5RhK9CmYhb/wZplodDFcM4sqXRO4swPj4gTd8DYFtBxnjyEZkZf/9Z/KdT7LVunamvmySIvtvOeuQZGLFbgaUyT4699WQE1gPpzEMtjf2qkkpH5eOdS18sctj7CqBsmQz2Uvjsw1KONjBdRccor8VOUFJK1LOzp3g1lYi2MbGFB/eFgdy9iWKSQc6+qETtqnjxJmsUdhAgVoYuWX1TuClQQ2PS/sA4VXFaAR42lFIthaTOt5uWtfY+fiC38eCgJ+pOzrx1+tAq+/Pk6wEmsqTxMvfKG5XEDAJ7QbEhcOYOG1qG26u6p76MPumLuEpvhTXqatJmA9V9MOApXOjSjs3ipPUBvifnBVyU5unOX5pBMG0SYJZ7LZlSoLIN/ebz45mHDCoYlCAIu2zHFPKLssPDyngbbLytKqIFu1mGSuceJ1CnFdOqTRV3PV7Bo3a4/SarrbxIsf3WdtYzVtIxNAoHpYo6DtYjLm5X8yWYD2EIF4shJCp8sYMvQgqI+ZAXhJFyuJfTpsoqMuO4vipgjrayHYfxdOydp0BOqWoHGkdhxZU6d3zbF1Hq/BO22EKQ4qdERAsrYYofI9au5yv4hTsY+XG+jrelJWwpszpmc= puppet@puppet.okserver.org"
     }
   }
 }
