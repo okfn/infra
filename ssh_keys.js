@@ -195,7 +195,7 @@
       "name": "Lucy Chambers",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx5I/1wbFO2yvUD+bCZwuD1iNUMCdKR6b5MJc6yjzdWudPVK3EhhyWFPVrUrZatOySLwuxF2wlfxmAH/UxsbJ8FTG2La/jGdZErNyZ8C8XzCbQ69MT0Txfh9r8+Buf044NaHPimOgKe3L6QL1fzSlrEqZEDq8hs4Dqf2iieKvLpgr/GD5OVt4PM43LtOIdKqWgFBXvQaxLWX0keEHilV9o3er+nkPVfJSsIow5569reO5HvDB7R9Rb1PTf4+5MSL7uuyLMkzH2bvKgYaXDtPZV0tzrDaPO2kl7MlHeDb9cwiSMO3LHGWs1vV+Onk2YBi+DzYjtneBmxlgNWbg6VekKQ== lucychambers@Macintosh.local"
     },
-    "jasonkitcat": 
+    "jasonkitcat":
     {
       "name": "Jason Kitcat",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAIBUC/qxmgOW7eNwvVXNJhqBuOl8tVMMWMKbxk8DJgNBD3mTsGFY3hbrTVE1uGUTYzaWUQqGaG89zfosnlM8Cm4bRzrN9xqth00C5ZlUKVmMKZeEm1miWzIeTV0w3ly2qqDTj5F2avZgs7QvkX4Jp0jH2VWfHcgYw/k8u9hxdIIXAAAAFQC9+RuheFV4fgY14k4tM9SI3M3dBwAAAIATrB8/JgWheAezt4jr6a0N857NQ9FoOBeTzFWwbxoJk5H4xGsIDtexyAGfv43TRcNgRE+95VwiJ7bYUGg+6t4vhwVeyCbJch58VUt+ZG27AzqmxlErhhNi0I4rmdk8eoVvQ9vhk8E3wl460M+TVj/SXwKUKzWOuC3rpF8ZOlbdNwAAAIAXPfE9qv10bgvAa+crJe3ZQLo1tEyRaI20hvc28xl4lP0VPdv0XpVR09wsljl2h00+ce2iaiTbo1D1MbWrnnixSCN5V8CVMPNlmJaRHbli5Zw0eTweRPs0hNJLAwqAZmXdXCCdv138uKRyD1z7BFQYv4f5VbFyttAtnrernouf2A== jasonkit@Jason-Kitcats-Computer.local"
@@ -298,6 +298,10 @@
     "marian.steinbach": {
       "name": "Marian Steinbach",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAJIcZsZZsVl1TXXgk9DbjgojzLr87yvQCYMOdXizVh5K+lMrTfBjRsL/mwhmCYBBPYcsUHI6Qak/zSADewiZGdvESpvtG0qre1IEc2/mTaJW/fNXqQn6fTkrawsoAFUBa4ryZBdjH2oi4RyQA8SyjPKp+lCKYg429o2dmMB9326FAAAAFQCgQrDe2dKKxVDCA8PxAMl2jYObowAAAIEAhQf/WT78Mxm7ZbnRNJM1v3Zja/3v3CO+a0iaPctrKfcPfQtvPjd+eu8aavJR7SV1KJzAwIM4xYqKIpCnSgi1mYyjJhQl0audcQoz/8DszLfV0vV2dyFPilkv26AI4gDPFQoCYoV/gmGPxU6sbxyUa80HopZ3osXakVI8FOTW7VkAAACASM4kKw2FQxh2RTNmidzt2k5KxzUaE8u8rW6dEs4Jw9s20ucZTN8YVoXxc2FfJSDEui4dWSuXWBxrt46HMIBMRll4QcsetvCHnIpd/sXnGNGNyPFHbtq+WsxaSYznH+IlC0vMN3CK/jZohfM3ymzvpkCsrCWEvvXwhRsMpq3iF6Q= marian@dynamic-06.intern"
+    },
+    "kristian": {
+      "name": "Kristian Glass",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDEUz63s3TpYvMzJEWjRZST9AF0eEY3jBzHEobMXe1wuKgxlnJhB5SwzivbVQX6/Xuadc1capEpbsAH6vFPRtLPt/sbtKoCYEjybAEWjFURKnQT1NEEro9e3gDxCtGbK/qfJmPHHGxlbBcsoD9KaI9j3RJHLvUY4mdU8VHC+LKTCWGTnyUff/gImsVauTS9yDrni8uLiD/BdUY1uz1lF56cPEbxC/XZp3fbU9BiJbgSbGOo4orDbVv/T0aW1U0rFQvADgR4S1bomP8TPlXmR1DOIzOeJftU5onY++S4t8x4qGGLRMOCQXDdImmGhjZVQPRadQ+OuOJYxDWKUaaU7jNF kristian@lilith.doismellburning.co.uk"
     }
   }
 }
