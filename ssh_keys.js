@@ -284,6 +284,10 @@
     "puppetmaster": {
       "name": "Puppetmaster Deploy Key",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA3Wk5EOzSAvxFViSTv9c81k6baB7tbNXuoesOavjzHbIqrIDMGRsTx//k5A1lBFlhYhH+5RhK9CmYhb/wZplodDFcM4sqXRO4swPj4gTd8DYFtBxnjyEZkZf/9Z/KdT7LVunamvmySIvtvOeuQZGLFbgaUyT4699WQE1gPpzEMtjf2qkkpH5eOdS18sctj7CqBsmQz2Uvjsw1KONjBdRccor8VOUFJK1LOzp3g1lYi2MbGFB/eFgdy9iWKSQc6+qETtqnjxJmsUdhAgVoYuWX1TuClQQ2PS/sA4VXFaAR42lFIthaTOt5uWtfY+fiC38eCgJ+pOzrx1+tAq+/Pk6wEmsqTxMvfKG5XEDAJ7QbEhcOYOG1qG26u6p76MPumLuEpvhTXqatJmA9V9MOApXOjSjs3ipPUBvifnBVyU5unOX5pBMG0SYJZ7LZlSoLIN/ebz45mHDCoYlCAIu2zHFPKLssPDyngbbLytKqIFu1mGSuceJ1CnFdOqTRV3PV7Bo3a4/SarrbxIsf3WdtYzVtIxNAoHpYo6DtYjLm5X8yWYD2EIF4shJCp8sYMvQgqI+ZAXhJFyuJfTpsoqMuO4vipgjrayHYfxdOydp0BOqWoHGkdhxZU6d3zbF1Hq/BO22EKQ4qdERAsrYYofI9au5yv4hTsY+XG+jrelJWwpszpmc= puppet@puppet.okserver.org"
+    },
+    "s053_deploy": {
+      "name": "S053 Deploy Key",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7KxuWyP+MXqZFcieXCW4UVI4uhCyzUfONq1c1h3e8DE9UqNLIFI1ivNd5eZ7vJEkbJN68W8yt6pb7ld0lOsBL9W4skN40SsY6YL4ZRrHFpseGshhjSNgzH5HPRiQTN29AaYVYRa2a2n+FhIAaK5XYgNcJtC/uDpprmInecHWTHPhZgGNIsOjbRZit58OnzMsiLlO6GZr0sY50+Kxl/IB5dTzqjdKpoCR5Somc3RRrEK/Nfmm34ricxdSmgDpL1eUkc3+1RIb/PmqyDCcq2VJ3H0/mZfDz6nYG3eK5skVbayvHua7vSmTLl8B4jKEAQbhTc+IQ7uCv/jGKhJwFwYoaLjqBizYF65z9DgnTKl2yCX0e75skXDfD/Rm05kiuBuoFFBnuLyq8bqO3Z40/QM22k7wiv/9uA61DX0bMpjuoRp7ePFl6hrmuviMFPzcquHqfARhKBilWXc3TvbLwAFPjzxepWvax+GkZ46wUQ2mfk1ZTrVkVss4Ce5+g5jPqHsBzpI2vMKhfFdK2Ljx5diPHX0aKbeAaHR7gtCt3g0GIaDLE0CnJj+xLBbr8sKUKKN+xobj/fqmJK2rxkpBzZeXaDftB8h3KfiuJT1a6QuHckXFKCDIIQWYR5vuAIHYvtKOaSQ9xgFYJzaaOdLQ8kAPWKecQnn4RDxfkLof2tFkHQQ== okfn@s053.okserver.org"
     }
   }
 }
