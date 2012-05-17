@@ -288,6 +288,10 @@
     "s053_deploy": {
       "name": "S053 Deploy Key",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7KxuWyP+MXqZFcieXCW4UVI4uhCyzUfONq1c1h3e8DE9UqNLIFI1ivNd5eZ7vJEkbJN68W8yt6pb7ld0lOsBL9W4skN40SsY6YL4ZRrHFpseGshhjSNgzH5HPRiQTN29AaYVYRa2a2n+FhIAaK5XYgNcJtC/uDpprmInecHWTHPhZgGNIsOjbRZit58OnzMsiLlO6GZr0sY50+Kxl/IB5dTzqjdKpoCR5Somc3RRrEK/Nfmm34ricxdSmgDpL1eUkc3+1RIb/PmqyDCcq2VJ3H0/mZfDz6nYG3eK5skVbayvHua7vSmTLl8B4jKEAQbhTc+IQ7uCv/jGKhJwFwYoaLjqBizYF65z9DgnTKl2yCX0e75skXDfD/Rm05kiuBuoFFBnuLyq8bqO3Z40/QM22k7wiv/9uA61DX0bMpjuoRp7ePFl6hrmuviMFPzcquHqfARhKBilWXc3TvbLwAFPjzxepWvax+GkZ46wUQ2mfk1ZTrVkVss4Ce5+g5jPqHsBzpI2vMKhfFdK2Ljx5diPHX0aKbeAaHR7gtCt3g0GIaDLE0CnJj+xLBbr8sKUKKN+xobj/fqmJK2rxkpBzZeXaDftB8h3KfiuJT1a6QuHckXFKCDIIQWYR5vuAIHYvtKOaSQ9xgFYJzaaOdLQ8kAPWKecQnn4RDxfkLof2tFkHQQ== okfn@s053.okserver.org"
+    },
+    "samsmith": {
+      "name": "Sam Smith",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/Te85R061+bf2nEQ/g2GvUZx3yuNQv3nCqP1EqSEJdfaiGUqK86O54RYWKitYxUSF/XzdPu8kRMiV+IYMW/+jlBWQNiNgYsJRwrXz3Qi37VaB44Eeh2/No6DRI4JrI1fbFIWxoth+UCb91tAUJI4QybTuoiQh0icewwnAhEa9NmWsGoKyvkpemRiEiJlNTL6Zca+Qr3hde3unRPnLs5puffy2vsVW6g76/v61JQN6elADGtQL9xkueyJpy0eqXOx5QuquYaQdRhkwsK3jqRhBt1DK/vHckxwHgeG0+/TssAk8SPwS7vhl1JCysKkhUTLz/ccMI4QThxmoAkA6xHXn"
     }
   }
 }
