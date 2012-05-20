@@ -231,6 +231,10 @@
       "name": "S053 Deploy Key",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7KxuWyP+MXqZFcieXCW4UVI4uhCyzUfONq1c1h3e8DE9UqNLIFI1ivNd5eZ7vJEkbJN68W8yt6pb7ld0lOsBL9W4skN40SsY6YL4ZRrHFpseGshhjSNgzH5HPRiQTN29AaYVYRa2a2n+FhIAaK5XYgNcJtC/uDpprmInecHWTHPhZgGNIsOjbRZit58OnzMsiLlO6GZr0sY50+Kxl/IB5dTzqjdKpoCR5Somc3RRrEK/Nfmm34ricxdSmgDpL1eUkc3+1RIb/PmqyDCcq2VJ3H0/mZfDz6nYG3eK5skVbayvHua7vSmTLl8B4jKEAQbhTc+IQ7uCv/jGKhJwFwYoaLjqBizYF65z9DgnTKl2yCX0e75skXDfD/Rm05kiuBuoFFBnuLyq8bqO3Z40/QM22k7wiv/9uA61DX0bMpjuoRp7ePFl6hrmuviMFPzcquHqfARhKBilWXc3TvbLwAFPjzxepWvax+GkZ46wUQ2mfk1ZTrVkVss4Ce5+g5jPqHsBzpI2vMKhfFdK2Ljx5diPHX0aKbeAaHR7gtCt3g0GIaDLE0CnJj+xLBbr8sKUKKN+xobj/fqmJK2rxkpBzZeXaDftB8h3KfiuJT1a6QuHckXFKCDIIQWYR5vuAIHYvtKOaSQ9xgFYJzaaOdLQ8kAPWKecQnn4RDxfkLof2tFkHQQ== okfn@s053.okserver.org"
     },
+    "s060_deploy": {
+      "name": "S060 Deploy Key",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDSV1pS0imTmMYz80PQzHHk6w1o/UiqSxzkxAwAv6ixHR/CFvaHgSDxFOp2sz3UerhKv7qorvveVVJqt6YAb3lSXZW+lleRrLtIpg1DBGrkWn/SRd7i3kaZQXHzYovT0KsehhxLCMBa3SM0bX+C4UeDVBGV1Bul6D9Nm1Ikam3IBbR7kZrGbLltfvjfp5WAe2lCMU+FWYdTJJ/P3/q8x+9node5vanm3lkIoeaFSzJvbEMW0rOyNQ7oIek0BsyJ01LIIIX0JMcX24/F43ek8yY2htWByOa6cMtMUdsngTRKZNz5diNkjlolIOikCWKg4P16Akfz8oVA68fOd9cFVtLbkaPO4bdoplA5/wcrwF1R4GVBVOpghjhRrK0dLk9ct3+n8hhth63cr/hrbd8EfwBiNrhsY9wKrLXDLG1JjX0xRn915gpJvUvXz8Tuvdt5DO4UgB+sqcJG6nqsTGROmUlQfAujm+J1kX6yeh0HYSbECWNqcbVveYTRG6MA7ugGD1V0k6z92IEkbgbqcdmKvi6C6tkx/UkPqYThlVTDf349WwRyqifyEKK/6Z8ib/Bt3GeUFAHHl3iWr0fBI3wrKMEBgpmxGMCI/pMC6842VfZVDJN/cMIVnb55OVw0BLXMI6MokBoYROQZi8PC0a0b3GltuTNcc8yOvC5KM9dSK2JJkw== okfn@s060.okserver.org"
+    },
     "samsmith": {
       "name": "Sam Smith",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/Te85R061+bf2nEQ/g2GvUZx3yuNQv3nCqP1EqSEJdfaiGUqK86O54RYWKitYxUSF/XzdPu8kRMiV+IYMW/+jlBWQNiNgYsJRwrXz3Qi37VaB44Eeh2/No6DRI4JrI1fbFIWxoth+UCb91tAUJI4QybTuoiQh0icewwnAhEa9NmWsGoKyvkpemRiEiJlNTL6Zca+Qr3hde3unRPnLs5puffy2vsVW6g76/v61JQN6elADGtQL9xkueyJpy0eqXOx5QuquYaQdRhkwsK3jqRhBt1DK/vHckxwHgeG0+/TssAk8SPwS7vhl1JCysKkhUTLz/ccMI4QThxmoAkA6xHXn"
