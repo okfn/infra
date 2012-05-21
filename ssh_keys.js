@@ -238,6 +238,10 @@
     "samsmith": {
       "name": "Sam Smith",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/Te85R061+bf2nEQ/g2GvUZx3yuNQv3nCqP1EqSEJdfaiGUqK86O54RYWKitYxUSF/XzdPu8kRMiV+IYMW/+jlBWQNiNgYsJRwrXz3Qi37VaB44Eeh2/No6DRI4JrI1fbFIWxoth+UCb91tAUJI4QybTuoiQh0icewwnAhEa9NmWsGoKyvkpemRiEiJlNTL6Zca+Qr3hde3unRPnLs5puffy2vsVW6g76/v61JQN6elADGtQL9xkueyJpy0eqXOx5QuquYaQdRhkwsK3jqRhBt1DK/vHckxwHgeG0+/TssAk8SPwS7vhl1JCysKkhUTLz/ccMI4QThxmoAkA6xHXn"
+    },
+    "keyboardkat": {
+      "name": "Kat Braybrooke",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAooNQYenFfB+P1175YwXk3/lHoTHIGc+LsQ9v6EA1LxxLCN+rcwKkAuaAfD4VoReQmQRr/YvYy41oancYDxunieiENeI1zZeCP3n9cFFGLb7ie658Zkz+UI56h/KmgzMmzGREd8nq7W5yDlq/FK+VewuwszUiN1u0O9kLufoOmsKuLjzmxtGZYcvoY5eX3XQ7/BOMYxhEtdUisTsgSLKBzuQ6zEffyou9bKDc0ylc7A/wOZOw22MLbY0u7bN+UnL5ud4/uxknLbk4deAEEVHZOTlgifkaxN7Sv1rPoNGXedPe051GSRevoxFU2RBKmkOUWcvNvjDN2qzRjgc8qvGexw=="
     }
   }
 }
