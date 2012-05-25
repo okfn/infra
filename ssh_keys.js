@@ -242,6 +242,10 @@
     "keyboardkat": {
       "name": "Kat Braybrooke",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAooNQYenFfB+P1175YwXk3/lHoTHIGc+LsQ9v6EA1LxxLCN+rcwKkAuaAfD4VoReQmQRr/YvYy41oancYDxunieiENeI1zZeCP3n9cFFGLb7ie658Zkz+UI56h/KmgzMmzGREd8nq7W5yDlq/FK+VewuwszUiN1u0O9kLufoOmsKuLjzmxtGZYcvoY5eX3XQ7/BOMYxhEtdUisTsgSLKBzuQ6zEffyou9bKDc0ylc7A/wOZOw22MLbY0u7bN+UnL5ud4/uxknLbk4deAEEVHZOTlgifkaxN7Sv1rPoNGXedPe051GSRevoxFU2RBKmkOUWcvNvjDN2qzRjgc8qvGexw=="
+    },
+    "pierre.yves.vandenbussche": {
+      "name": "Pierre-Yves Vandenbussche",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAxjYVjAU9tgNVAY3sGzHIjEFI7TR65YAhIFz2lbH39ChTVXbZ0cyMsZcquzW4BT69SUOOc2vy8icwVn6nge6wNjT5X/PJGdaumuJBPhdMHzZYVRbbyWyGwYfrAMk2Hyp8Gb/2SOf3OgFVwZ5HPIgzEd9zJvxOulxONAkwuYoBnOk= pierre-yves.vandenbussche@mondeca.com"
     }
   }
 }
