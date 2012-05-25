@@ -1,0 +1,16 @@
+server {
+	listen 80;
+
+	server_name  bibjson.org *.bibjson.org;
+
+	access_log  /var/log/nginx/bibjson.org.access.log;
+
+	server_name_in_redirect  off;
+
+	location / {
+		root	/home/okfn/var/www/bibjson.org;
+		index	index.html;
+	}
+}
+
+
