@@ -4,7 +4,7 @@
 
 You can specify host and username using --hosts and --user options
 
-TODO: 
+TODO:
  * [2010-05-06] start writing tests.
  * make all commands idempotent so they can be run twice without doing any damage
  * get rid of errors 'stdin: is not a tty' and '/root/.bash_profile: Permission denied'
@@ -19,7 +19,7 @@ TODO:
   * add customizations specific to managed rackspace servers (fail2ban, ssh password exceptions)
   * install OpenPortChecker
   * configure firewall?
-  * cutomize .bashrc? 
+  * cutomize .bashrc?
   * add new server to nagios?
 
 '''
@@ -78,7 +78,7 @@ class _SSH(object):
 
 def _get_unique_filepath(dir_, filename):
     '''Create (what should be) a unique filepath in `dir_` by appending to `filename` a timestamp (including microseconds).
-    
+
     :param dir_: dir_ in which to create the filename.
     :param filename: base filename to use in dir_.
     '''
@@ -117,14 +117,14 @@ def instance_setup_old(okfn_id):
     ssh_add_public_key_group('sysadmin', dest_user='okfn', keyfile=None)
     etc_in_mercurial()
     sysadmin_repo_clone()
-    
+
 
 def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT', keyfile=None):
     '''Setup a new instance a in standard way:
 
         * Generate (UK) locales
         * set_hostname (if hostname is set)
-        * install_set - vim, sudo, upgrade 
+        * install_set - vim, sudo, upgrade
         * etc_in_mercurial
         * default_shell_bash
         * prepare_sudoers
@@ -157,7 +157,7 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
             hostname = hostname.split('.')[0]
             relay_host = 'mail.fry-it.com'
 
-    generate_locale() 
+    generate_locale()
     if hostname :
         set_hostname(hostname)
     _postfix_headless_dpkg_reconfigure()
@@ -241,7 +241,7 @@ def prepare_sudoers():
     if contains(fn, 'User_Alias *ADMINS *=', use_sudo=True):
         print 'User_Alias ADMINS already in %s' % fn
     else:
-        print 'Adding "User_Alias ADMINS" to %s' % fn 
+        print 'Adding "User_Alias ADMINS" to %s' % fn
         # double escape as passed through to sed ...
         after = '# User alias specification\\nUser_Alias      ADMINS = root'
         sed(fn, '# User alias specification', after, use_sudo=True)
@@ -308,7 +308,7 @@ def sysadmin_repo_clone():
             sudo(cmd, user='okfn')
     else:
         ourrun = run
-    
+
     if exists(SYSADMIN_REPO_PATH):
         ourrun('hg pull -u -R %s' % SYSADMIN_REPO_PATH)
     else:
@@ -356,7 +356,7 @@ syntax: regexp
 
 
 def unattended_upgrades():
-    '''Install and configure "unattended-upgrades" such that security 
+    '''Install and configure "unattended-upgrades" such that security
     patches get installed automagically
     '''
     install('unattended-upgrades', update_first=True)
@@ -370,7 +370,7 @@ def load_keys(key_config=None):
     '''
     DEFAULT_KEYFILE='../ssh_keys.js'
     # why does "default" not always have the latest changes?
-    REMOTE_KEYFILE='https://bitbucket.org/okfn/sysadmin/raw/tip/ssh_keys.js' 
+    REMOTE_KEYFILE='https://bitbucket.org/okfn/sysadmin/raw/tip/ssh_keys.js'
 
     if key_config:
         return json.load(open(key_config))
@@ -459,7 +459,7 @@ def firewall_insert_rule(rule):
 
     cf = '/etc/iptables.conf'
     assert exists(cf), 'Fatal: iptables ruleset %s does not exist!' % cf
-    
+
     marker = 'FAB-INSERT-IPTABLES-INPUT-RULES'
     if not contains(cf, marker, exact=False, use_sudo=False) :
         print 'Fatal: iptables ruleset %s does not contain marker "%s"!' % (cf, marker)
@@ -496,7 +496,7 @@ def install_firewall(rules=[], copy_config=False, start=False):
         if not contains('/proc/net/ip_tables_matches', match, exact=True, use_sudo=True) :
             print 'WARNING: iptables match "%s" not found - not activating firewall!' % match
             start = False
-    
+
     if not start:
         print 'INFO: Not activating firewall. To activate it, do this on the host:'
         print ' '
@@ -578,10 +578,10 @@ package_sets = {
 
 def install(package, update_first=False):
     '''Install package onto host.
-    
+
     Should try to login as root for this as may not have sudo installed yet.
 
-    :param package: apt package name or a command if starts with cmd:: (e.g. 
+    :param package: apt package name or a command if starts with cmd:: (e.g.
         cmd::easy_install --always-unzip supervisor)
     :param update_first: run apt-get update first.
     '''
@@ -611,7 +611,7 @@ def upgrade(update_first=True):
 
 def install_set(package_set='basics', update_first=False):
     '''Install package set onto host.
-    
+
     Should try to login as root for this as may not have sudo installed yet.
 
     Primarily system packages provided by apt.
@@ -622,7 +622,7 @@ def install_set(package_set='basics', update_first=False):
 
     Package Sets
     ============
-    
+
     %s
     '''
     # avoid using sudo when root (so we can e.g. install sudo package!)
@@ -649,8 +649,8 @@ def _setup_rsync(key_name, remote_dir, local_dir):
     tmpdir = tempfile.gettempdir()
     privatekey = os.path.join(tmpdir, key_name)
     # TODO: customize pub key to restrict usage
-    # see http://www.eng.cam.ac.uk/help/jpmg/ssh/authorized_keys_howto.html 
-    # see http://www.nardol.org/2009/4/15/rsync-logs-with-restricted-ssh 
+    # see http://www.eng.cam.ac.uk/help/jpmg/ssh/authorized_keys_howto.html
+    # see http://www.nardol.org/2009/4/15/rsync-logs-with-restricted-ssh
     commandtorun = 'rsync -avz ...'
     pubkey = privatekey + '.pub'
     # -N '' = no passphrase
@@ -658,7 +658,7 @@ def _setup_rsync(key_name, remote_dir, local_dir):
     local(cmd)
     ssh_add_authorized
     # set host and user ...
-    # env.host = 
+    # env.host =
     ssh_add_key(privatekey)
     ssh_add_to_authorized_keys(pubkey, user)
 
@@ -679,7 +679,7 @@ def mysql_create(dbname, username, password):
     cmd = "mysql -p --execute '%s'" % sql
     sudo(cmd)
 
-    
+
 
 def db_pg_dump(db_name, db_user, db_pass, db_host='localhost'):
     '''Dump postgres database `db_name` accessed with `db_user` and `db_pass`
@@ -719,7 +719,7 @@ def db_pg_dump(db_name, db_user, db_pass, db_host='localhost'):
 
 def wordpress_install(path, version='2.9.2'):
     '''Install wordpress at `path` using svn method.
-    
+
     http://codex.wordpress.org/Installing/Updating_WordPress_with_Subversion
 
     @param path: path to install to (created if not already existent)
@@ -776,12 +776,12 @@ def backup_report():
     hostname = run('hostname -s')
     assert backup_device != ''
     assert snapshot_ro != ''
-        
+
     print 'backup device on %s is %s' % (env['host'], backup_device)
     print 'checking for device node and mount point...'
     run('ls %(backup_device)s' % locals())
     run('ls %(snapshot_ro)s' % locals())
-    
+
     print 'getting times of latest backups'
     try:
         sudo('mount -r %(backup_device)s %(snapshot_ro)s' % locals())
@@ -791,12 +791,12 @@ def backup_report():
         dates = map(lambda x: datetime.datetime.strptime(x, "%Y-%m-%d"), dates)
         deltas = map(lambda x: datetime.datetime.now() - x, dates)
         min_delta = min(deltas)
-        print 'last backup occured %(min_delta)s ago' % locals() 
+        print 'last backup occured %(min_delta)s ago' % locals()
         if min_delta > datetime.timedelta(days=1):
             print 'WARNING no backup in 24 hours on', env['host']
-        else: 
+        else:
             print 'backups look good'
-    finally: 
+    finally:
         sudo('umount %(snapshot_ro)s' % locals())
 
 
@@ -862,7 +862,7 @@ def create_swap_file(size=1) :
     # append(fstab_line, fstab, use_sudo=True)
     append(fstab, fstab_line, use_sudo=True)
 
-    print 'Activating swap' 
+    print 'Activating swap'
     sudo('swapon -a')
 
 
@@ -892,10 +892,10 @@ def postfix_install(copy_config=False, relay=None):
     LOCAL_REPO  = OKFN_ETC
 
     mta_binary = '/usr/sbin/sendmail'
-    assert not exists(mta_binary), 'Error: A MTA %s is already installed!' % mta_binary 
+    assert not exists(mta_binary), 'Error: A MTA %s is already installed!' % mta_binary
 
     assert not exists(config_abs), 'Error: Configuration file %s already exists!' % config_abs
-    if not copy_config: 
+    if not copy_config:
         sysadmin_repo_update()
 
     _postfix_headless_dpkg_reconfigure()
@@ -919,6 +919,22 @@ def postfix_install(copy_config=False, relay=None):
     install('bsd-mailx')
 
 
+def puppet_bootstrap():
+    '''
+
+    Bootstrap this host for use with the OKF Puppetmaster.
+
+    '''
+    install('puppet')
+
+    if contains('/etc/default/puppet', 'START=yes'):
+        print "Puppet already enabled: not touching /etc/default/puppet"
+    else:
+        sed('/etc/default/puppet', '^START=no$', 'START=yes', use_sudo=True)
+        sed('/etc/default/puppet', '^DAEMON_OPTS=.*$', 'DAEMON_OPTS="--server puppet.okserver.org"', use_sudo=True)
+
+    sudo('service puppet start')
+
 def postfix_set(relayhost=None, inet_interfaces=None):
     config = '/etc/postfix/main.cf'
     if relayhost:
@@ -934,7 +950,7 @@ def _get_default_root_alias():
 
 
 def set_root_alias(mail_address='') :
-    '''Sets mail alias for root@localhost. 
+    '''Sets mail alias for root@localhost.
     If emtpy use default, see _get_default_root_alias() for default.
     '''
 
@@ -948,7 +964,7 @@ def set_root_alias(mail_address='') :
         print 'ERROR: Alias file %s is missing, no root alisas configured!' % aliasfile
         return True
 
-    # Removing the root alias first and then append the new one is not very elegant, i know, 
+    # Removing the root alias first and then append the new one is not very elegant, i know,
     # but i don't know how to have a condition here "is there alread a root alias?"
     sudo('sed -e  "/^root:/D" -i /etc/aliases')
     # append('root: %s' % mail_address, aliasfile, use_sudo=True)
@@ -962,7 +978,7 @@ def move_directories_to_mnt():
     '''Move /var, /home to /mnt/root/XXX and fstab them in.
 
     NB: assume we run as root.
-    
+
     NB: if you already have a service such as mysql of postgresql running
     you'll need to stop it.
 
@@ -1014,7 +1030,7 @@ def set_hostname_postfix(name) :
 
     sudo('cp -a %s %s.ORIG' % (config, config) )
 
-    # Instead of intelligently re-writing the appropriatle line, 
+    # Instead of intelligently re-writing the appropriatle line,
     # we just remove any existing and append a new one:
     #sed(config, '^#*(myhostname =).*',     '\\1 %s' % name, backup='.1', use_sudo=True)
     sudo('sed -e  "/^myhostname/D" -i %s' % config )

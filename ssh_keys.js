@@ -7,10 +7,7 @@
       "mk270",
       "casbon",
       "okfn-sysadmin",
-      "steko",
       "ntoedtma",
-      "jasonkitcat",
-      "sebbacon",
       "ddie",
       "odaesa",
       "borior"
@@ -31,17 +28,16 @@
     "openspending": [
       "mk270",
       "borior",
-      "stiivi",
       "pudo",
       "rgrp"
     ],
     "fry": [
-      "jan.kokoska",
-      "darryl.weaver"
+      "jan.kokoska"
     ],
     "volunteers": [
       "elfpavlik",
-      "mark.herringer"
+      "mark.herringer",
+      "everton.alvarenga"
     ]
   },
   "users":
@@ -50,11 +46,6 @@
     {
       "name": "Martin Keegan",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA0QvlAkGAQvqf2SM1a6qbPdzare4sTiN8DiKgog2xy87VeJxoDW6GUxy5J/794vDyJOW7CbewSC7IiFTBLSolOQRh1AJs7kbLfFfOwE/LSwpCP396jRy0p+wDUrGi2nEiFccynY8nWblsJk1bS59L1fjfxMln6WvakiCU6JbVUvk= mkeegan@goatnut"
-    },
-    "johnbywater":
-    {
-      "name": "John Bywater",
-      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAIJ+izF4nurowTHcnPiS4YqmQ4VQhXgk5x5OE2MMTnvxynwTm7CSH3Nm6kN3QJbQsGm4duqZEm91qzTTF+mipsdUH3/QEhSU6VHMRVPSlqRbaPiHciFhoHGpWBOTSM0G45JTFZOY8Zk5SKD9/IlRQ9yqyXTc6IkqLA2b3ICd85ppAAAAFQDbBpitIk/jDsuVm9O+1j3Wc4pBMQAAAIAM0UNPsYw89tcgCgpuhpp6W4/lhaO/Gyr7E2PkJ/1vs/REH3gnVmO28LaNa6x3ot6z/nmu3XgyPOeiLxLWS02qoSlM2Ak77oWzJnG2AxLaKU69/0bvrWUQkoATYAO5uF9T/Q5kOn9QcLRpDx6QdY1Mme037cnum9LnPcp4sDvgmQAAAIA4Rlqe6bINx+D536XOcCKRosg6I7D11p2cgqQoh7+W4ztINnr6L8edRBWQ/DYiBqEAIhIXcbKZKOjDieHFvad/F5JJ2G9P1Gn4ITMgkMFmg00671WHunpPX15cywcxmX7a5XDMMc8nx1r8Ku2ueBuAp9ni4N/jqkbAmNANMnbAyA== john@hawthorn"
     },
     "casbon" :
     {
@@ -77,21 +68,11 @@
       "who": "OKF Germany Tech Lead. Manager of de.ckan.net",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAs7bj/WcbkcMNpdYbgrCIlTo5EXRkj+ghKBKgqHAQDX0+eHf+wwvxB8FgIXhcWmR0rsAbSR5thQ4Iv4io0NqkoIAko5GivCDdWHuKVQ7e3+nTsuiQUucfPL92jC0GVd17zJ06W4Kf+g0f5fIrdzaavNIvCdB/Ngmz8BrhfYJAsyJHXaUI7endQxag+aKYIOumi7lsVEBa8ggJPiDtzF2hJSNMSQtuO0/rxQu1ItKrxDruZYIwKjDLBY2MxFnOyEC5TsHAUJd+bAV1gy+BfdJg72MifTuM8lWlseEEmO/WmH94dKH0PeHfc4VP9MjCF9ykZqo5FOkhDJP3Quv9/n4Lcw== fl@dfn105.rz.tu-ilmenau.de"
     },
-    "benosteen":
-    {
-      "name": "Ben O'Steen",
-      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwoofIGaz7mqzZT+lkfD076iN21odpswp7wVFDYkSjce97p/+Raj3Ns62P+6+/DezP4Sjp3Fyi+AC6KM/jSzoyPcgnRauhvYrH7kOMyWKarJhIZFA9lyQ0OOt+yeZdZfxsCYALC674TQ6chzDaAZ/SORe84biUzrkbxb3kFie1XMNyIbFsl91BRZ6h4C5aov5Eqh2kB8vI1rI/iqk7AtH7H1/oBpmMOOiq4alW0/YR8AMumqULQabhOo4kjRxa96BpNnzzZRllapoZARKVwtdk4kFFd6rS45hMbU0l//EkW/OTF0+t/uRDxeyVflkb6YS72JesKMEfFiz+cWc0SNj/Q== bosteen@gmail.com"
-    },
     "dread":
     {
       "name": "David Read",
     "who": "CKAN dev",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAOWojLyr0xJTKd/WWIGCP2Lkjkdt8nRUQXBVEBzeT8OJRXEF9grmqscdzHLedJoR/PyZNuLRT+1aD/fN7dF3nhdHYw/kseSFI1ZGss2btfxIEFGaWTmblu5yHOd+j8ws67aSQcixpyjOEwym07/l29n0Z2gqtiS01n0mj4R4VIBZAAAAFQCEcAW+SdTml9z97xtwOHd2pMiP8wAAAIEAzkoKP91JIYiwnCTRzO2M+9IT6FBvhUqoaZqTs6aeTJWvzFBoPPlt9T63V5Guke0DZcTW53QT7FE+NhoEt+FFAul09FhbjEhXVKbBYLMmx5/sQ54heRJEJqHYqEullJlG1mubxx29x/baiILLPp0JZf9eSpOjyVQf97YEKHmOphwAAACALTlUKABwoZbFEUNedLxib8F4NA+M2g6ynDADpJP3l2E9xqoBEZqeP2LoMci5c1ebTDeY9I7P6AQSYkoi9x/crcvb8aaTSUjCkEwli+QDNSDQo8b+x6HIvO+AvO0l5rR12QNiLckEJ7lP0+BLDidDdtqs1Izy8qEWU1KJi0AGxjY= dread@dread-laptop"
-    },
-    "gjhiggins":
-    {
-      "name": "Graham Higgins",
-      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAIa9cT2n/CjA91FstDZbWNtu2Zd+WyIO1PbUa8djtituMvOfcweqIU5YhO9CK6qmFbzF9PvAAsQ3pDI920rcEdHsdCszyy49Pu5OoYUHo0BbBpx41Kl7doXZ81gGWOx3C86klsdUCnqbdRM0yj1UHQ9ET9vS6evxJmrmGgiSRP8tAAAAFQCqRjqSZ74UTw53Wd3FRpAW4bXTVwAAAIAwJxzme1JZ5rmJLZAr3k/LyMK8eOpyMR9HtYj7a+HD7U7ZXUyz+K11u1iZkQTDD+IvwTzzWluxbNwUebv+KaZ+0GG2y4AL9Z9sq/HYfxF9j1LC7otC4+CnfSo4CQmF8fvKqjdJQ+D6luOyuLM5kYc/6fwkuS7TLS2A0N6Zny0jTAAAAIBpUFST8FSVCzoAXD+CC4WL+N/pr0LGa1R3wu5EO5gprX8dRUjBaG2UD9gVmpTcyaWJX63YMg0cTWj5Ipb5EiGUydoaLSjS5lz7Y+CcjGRhWD/ZHSB+OMUC6gSrVXLlJPtELOmMUy/tF5tRzl71jIWdX/oiFMWp8MCBp+d029ezVQ=="
     },
     "okfn-sysadmin":
     {
@@ -103,72 +84,26 @@
       "name": "Iain Emsley",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAosFMiSGsV8gMvNtC4rhe+JsEEDI1ueLR7UPbK4KhHzY7jkWSlpDVcZ+mEPlX0e+UbcYRT/6Jf6Sj9VxydlmWnntLDnm+MeUsg29SUiqMt1YebHXcChS3O7LmVwjTJBwrp94WjByaCdk4gZ1sA4QKI6i1YENCqlHcizb5gPj2INeH0HPL1jxKEtBUAeWdPqcB54u33cNwat97+S/ojnIeA1jqYrr5uNLV+VQUgsar41O6yXHkgiLzfh/oiyWNXLeSH98Ce4AUBEmdn8cU8DkkoyqEyNL9xlHMLj/UPK21RpzchGENCJ8mcPdQJZRlfLDl33F0bITVW9VoORq+QyFilQ== ie-opencorrespondence"
     },
-    "annaps":
-    {
-      "name": "Anna Powell-Smith",
-      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAK3v98WnuJBxdhntYLKDY0VQWGlxJR0TfokKe+8JvjPQ02131A00wbIXcJ07kV14iQ5dB8pir7GUXxESyjlHEvEG6D4Igp6ATqMoSpYiOLVGGL9P+Nugypi5QOvgziCEHkgVKqtenq9knuJPHVy26cIjwYbtkvXRSl0arwui+mP7AAAAFQDYyhjEQXylmFen+X39uombu2tjsQAAAIEAkB1LMvVTmaLg8h6MUS2E6V2C6RoGI2hOn1f0xC6D0+OPgyV6zAK/+lVmUs8zQIay9NgF7QOKY6v4SyDvd6Q6oBdxECYgHGU3GUZhv2WBhmooYOYP2WBU083rDn95I0w/mC3qle8KFbDk+K5nyJoMdi/pxNhJfvvLg7ro7DjU6JUAAACAYpc1Ymq088ZfkidkUZLc0WIPJ9kxnjG6VCdgPbtsBlLJKzt3xNvTCusAFrUIe+Y96BivXS8WKaK1Fo+fiYw/KFSIzNIRHbMQS4Ti9KGraA/eXPjWR+efaMOEaXJ8ojfGYbHQIDhYZT7nSix6bvJWaXq9C/J/fIRHxP9QpgReOcg= anna@Anna-Smiths-MacBook-Pro.local"
-    },
     "odaesa":
     {
       "name": "Mark Macgillivray",
       "description": "JISC OpenBib and project coordination",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAM07ApAwjO7zKaUDtkIQfYw7jXKTK2TG9HZeTfLKhzqzRj4BzxBELhXyzBNFqPZdWWqLlBA1Yxx5iI7Usk4S/exDsSVu4hGdHp+JZmZ+rbNpuACfC3InSctsJncriuVRYl3rJdpWuI7hH1Cp+PzXz3Lensk6AbTLmY8H8RdH4Om1AAAAFQCeqIZd5x9Dd0j4pw5IEFgp5eEfuQAAAIEArNZM8pMdIzfb7cM2EqkQCzxQgotwYeKS9eJNQIwSwPUZcz1NVbK0GA5fvaW5WUbnMkL9zQk9YpWHuk8D0ta+4tMOSS8NaYo9LXO8IomONccbDMNj+oNKZDRTzaJFSevZB6qYUxAnPN/GC/rY1GU8Epm3TlFo4xh1RxYr1H/cKCsAAACAKICFzeSto3ly3GbOFTI2cxPzW89LQtdE9Kr5Ic624yOkDy0FBRcQTFQYjwV4vvQSrBT97PbwihtjR7W7S9xct741nLn4NTLp6fqeTJP3QAp3V6VphEvw3G8pSp6bIqX1QxtekH9VGLmjCInz0qkzaBoDWv/y2U+pQmeXAMs8dxQ= ichi@nee"
     },
-    "stefie":
-    {
-      "name": "Stefanie Doll",
-      "description": "okfn.org web dev",
-      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAMWXITE9ttPPmUYKRgSkk6fHU0jJHw3E+nTXGNC+Mki/x4Z0eSiAyvyO9Ul60V7/IOhNZDHICSlTVMA3u2AIvSxRXEJbQKgNysw90AeqKk5/6JTOdgSCY3FSL2F5O1GM+kjoTG8bvAGTOkiPldgoy5Suz32+VaJk20s/GO9tDIonAAAAFQDvvsGPxSZvbcTnX6ehB7swp7te3wAAAIEAp//CsFVCmSNRD+WSTbX4W/3owniWVYtLYkkMSQsjnFDGXkgNVHe7JvYghKXS5KTX6B9f8ZurLmmJOYg0JoT58gjpa2+Q9T/BEhpTmvdrVmyhHp1oulalFJ/HEfV3ULLEjAk7Xudz+QlxcqIoSrz+/y5u8QFW4TrOOZn9dPzD1GYAAACAPsu3u5TIJlqWqLQ4PtSaHxibvQG0Pd6JzrrYYaGzZw/QiwqaOJ3RIE3QXEAkXb5L8QOP0vskRlYlqVwvOg1XsZ5rX5JjwBDiRvkgeUa8rKt3yD+3LMT14KEhOf3qqk1sKkQFn4FcOIKDPePC4fOcsUZoV7ViAMGN4SqHJRRYwNg= DVA@LDS.local"
-    },
-    "thejimmyg":
-    {
-      "name": "James Gardner",
-      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA4lne8Y72KQH0/p0JIg+iFXPG6CsiAU/2ZfKxqbeR0SaPl7+a8pZ56NfEN+nsjYN1XSBSg1Drwsi2akmiBYPGWrg9ZQ+qPrBLVHVgMlLD/JfEejI4+zprGuR3b7HstQxDykhFxfAphQ+vAlyLyJRM/2yZ/gUXBDbiV/dZjFA/4zcGSjzClZqkSEi78jjBM45WFeaPKuLIPPKr2XnizsuR6YGapRuT14frJqkDx0d+/7kd69RMTzRyLNPrXeCxkxIpHi2vYPVxzjYuZQLg7yO+wt9ikIcMmRaXtiNGeKmJ+KxkjyNDYi49K3WUaTeKQIGOqoAP66cLcjYCXg8drXZ8pw== james@feynman"
-    },
     "ntoedtma":
     {
       "name": "Nils Toedtmann",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAIDy8mdmywAu00uYm1fJvwW6kT5Mnjnu/nLoDjHPftqoRj+BPqlnM7Qp/OYzHQUoYsAEICSRdRgqdZxN/H1PKqL7H7IfImI2azaRjmnpolFCUpVdudPwRRt8vSqgHqLOxSlmlEt0N43Z3sCRJIwZ81vI65YTR/vYuDNHU+EBS7grAAAAFQDKra35hdKJMKI7avdQbUft7JR3vQAAAIB6/zHsyUtY2NmtlisqUbuExXxDtpeHpq4mdS/EEn4xUWP3DsT0DnJQTBKYaghfBvzeMSj3m/e/8DABQVUwhUEr6+u+BI8DQPmb46usN9vPBIa40OxmsKoTpkrSc/xKqtL+AjCDzziahlqBHpKMcCp9aPETRccVb4bHFaw/XoB19AAAAIBylraAM2b6Z9JphcSWha5yb+BWDyIh20Rkte8toumIylXs3Xj8do5C0n9hbRYICjslfjDsPdOTRiRbqbT5+ybVSYqsSmWPgiq+x1hdDlvFwZLiO21+TNjKYKVQ/0WqTFy0UY+v0d0CXUeemmi5ZBklQY4vitmjnyutyINIlPkTVA== ntoedtma@takatukaland.de"
-    },
-    "stiivi":
-    {
-      "name": "Stefan Urbanek",
-      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwd/doWSW3wrIYXf+MBwUXSv88KQnYMN2+heDR8BJ5J/1lwpATyabCBBW8Suayo1ZvJUm+loZcCM4WfEKLqE71iTzfFfcoIxfJn3+cW8H2IQNyRMwlhIpudb5LGCOC8vzwPibTlYilT0bHtSy3+lgJ/n/ZRfEvb6dVS1JWheDAzp8lJEv+iF3eEvrah26a+xfToxy26m06ebo3M4dNFbuMQlHpLFkB0fZh0NbfuITyODgIpJwh7EiQ66oUtSEcAlJHPLL+axaAcEW6/J7/Lp/rSyb7F0/b9lqa+KIfrdNSHFBJdTR+aFLZEcZiRI8B5XVZ3GRsrY/vaGCUyWLkT6ILQ== stefan@Stefan-Urbaneks-MacBook.local"
-    },
-    "memespring":
-    {
-      "name": "Richard Pope",
-      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAP5EU6+QpJT19jP/VV/jL4cVauZgoF45LA3aB55J8qM7UTYp+kTtp2qYNjkFs4+XedbRDfTATuK34vAAytpGq1ytPRzsNNQG9oe3jinfUUjOmzccF/DJCxF7OWasW2RApZe6XlkKMAzvKY+2fh1yE3VCrllBE9em3FXrFpKZtSzVAAAAFQDgr98C5Uye+Bv8LfcfoM+ha59TuwAAAIBArehIWrkoI2uAhv6T9RoOjwypnv7oztIZVIMqmH1smuECowFjctXmmCKXcNL1LVq/7ipQyV5vYJvrqGaDqERRq/cZdjPKO6W0UlZIILZDOyjOunz3txzhizuOKCzqNItzXojvDa2B7JcLG/b8LzLBGfjngjhM5697EeZVV6hWGwAAAIEAjZPkAk6e2pW3RdwuifMhY/8LzOW6eF7EeuIrbY3o2/BWzg5WGmGI4laQ7IJyoRqYMhDTTGi5fP7BeYzq4sdbqbC4C0AvHxYT6zQ+g/CFsJzLdI4oXwDGodbFLIk7XurmDqb1f0URh96a2ewqpkYJ6UTw9WRhgbh83PqsllVw9G4= richardpope@unknown-78-ca-39-b8-63-85.config"
     },
     "steko":
     {
       "name": "Stefano Costa",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwCC/zSLAS25PipQ/X98itoBeoa8Py25Zy3p+1CRSoLHhTaqxxcj1bRT29QhDkeCydVVHyPInsDVwCKRnVEnhVl3djRy7AiXQuXqchb/UuYaLwSByr/aLLF44JlfVYobSJGrjtEjEOu4SqRD3vXx5ILgGN+JCrW2QPUP5LdcTlaUBINGnTVUARhfdFK7JaC1HlZXQmsbA87ctGz5d8jjC8f3yIRSIfb1dxiWq39mqyhL595nebM1+yqydH+PgVb1i0TLrxc4YDooQOyaMfxRBpbegpgce6Ret8aDI6vx7oGj/7j/RJV5FTNlF2FVUQ4ZW+FoG4rSvnqx3Nnayk4IvMQ== steko@ganymede"
     },
-    "mikechelen":
-    {
-      "name": "Mike Chelen",
-      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA0PSUWKd4z2g4hNvRKJ3xfpFTdq8/Qq0KnHYnoC3ZBvJ812WqVDd0FgOYFqAgaOUQJFiZRiMfRiIjqHm4dY+pjzsN7zsWZiYgcglHYfugnQ086rKKKwruzQrKggED5hXO4f2ekRLU37ajh3Oku9eqSiNwiBNuywlTfv6C25HzEG5BWmwstZ7D77RSdwJtOaGe+aUFg1s7qhF+tIggwtZKnFtiY35kKjECi5BCl7seSvC2qUsQ2HYvmnpkeh3P5OQT5sxLihxodvwcnsx5X60afUo8AMAa7zUahbsyMK/HhnCpQf1zsXYR/gZbvjq9ZI/wk4GaeqslE653z7dkzjACPQ== @mikechelen"
-    },
-    "jasonkitcat":
-    {
-      "name": "Jason Kitcat",
-      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA8z0pynlDeoIv2SxI8Zm235iMtRS3lABuNm6IToIPICyyqYOnZGzwtDGaWsyWYuCOUCqX54Q0Iwc8Q/hS7dCsaeHp00FPMyNPkYCvJ/lwPkPran/dWakT8nPAfN+k5mBCrN/yjou0oKMWdniKOHMGxHrOzgaih90qY/XF0BKNyus= jasonkit@Jason-Kitcats-Computer.local"
-    },
     "davidraznick":
     {
       "name": "David Raznick",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1dSe9TaMh9ahRdrWgn1J1vNQfhfyuvQ4t5fFjlJkUc00RHrBShacT0urVduJWSCEGSJCLjxZnbK6kJgACnqeCQeMwBvJ8RebPkFAxTh4SBxgjpuCfx42DiBTzirPy2Xi4JSKqRpsQVnnCnlNOVSZYHwZzUo+WvjR/6B6Azfg31ojiWuNiIMLwJvCK2ZJOCx1cGkTdkys+SPYyBkooFO4+AeAXNuBPYSNn/JBLmtACaoR+cwPGMFYXT3w8t/uqweEpp2cG6L7D7gPeY9RhHjv+/ArQy9rZl7Uavu/CwdXfGDJiVrtcLb+gTKQOnT6OfE1VEicUTf1IkkvWBM8fKZuFw== david@david-laptop"
-    },
-    "sebbacon":
-    {
-      "name": "Seb Bacon",
-      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA0ngiahXTIVmP1hPowZ5qtfF21k/V7zJZikMB1J6YJWYjT+A2GiXH5V2wpdOTvc6hmeZHYNnd6Ah+uN4vLNjzE5FcUTCgrA10jXogNwLIdaVvS0dkvLpQS2rZZ5Av9vw3Lrb7CHiyiRcE8PWlGMxwm8MQ/TFIkun6ZQu/EStKXYmfbwtupFGoo70MoiT+wAJehEt1f8QwUJ9KrdCj3vOqwhXuHwT1OGGBxuSKDwx0p2oEgDst+At1zJ6TuFEhwPnI9C7kPMiS3FJWP07fnocYu5/Jb4fC3gClkBX2oLmDasGY/aiwglHmbXQQYpsm1ifq6OEIHArvgFDvAHKacuK3ow== user@ubuntu810desktop"
-    },
-    "acracia":
-    {
-      "name": "Tatiana de la O",
-      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEArDTdpyR7ey79ONUaM7aHwuhibPo1TTX1Uyb3/q71rRN61gIzQG3eCxBVM3Y0yzGzdzDv+h4nXO7tRu1g5FStGH5iDIgFbQVnYEc7V1Yrtmw7JPF0o+UnbbbPGqZlMvxrB3Bdf5qYDEeR3EMHr3j7lwC3eFXFaA7Q/CJllCIdLh5mxrjFS7yh2TjY5uNIhJ1yMCoYHn6b+WdxRd4r5JXXJDI6o/mAEmSrcbNbXssKFM9+Tugj0Z85Vd2wJJa3ysbhadqtyYgHpKF01vTuzhHOOj8hjm7FoBGMhdhtj0W6UuzWIvH9VWy+ghtZkIDfMkVIbnz92uoYivVK4H9IMcCw5Q== acracia@razorgirl"
     },
     "ddie":
     {
@@ -180,22 +115,12 @@
       "name": "Jan Kokoska",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA4jLVHygu3Zg+ziNArhkvlWY3jfe9tDunWbJzqE4tllwfjqhnJL0GQeLhEDYYKiaszRXPVVyL2iyEMyjyAyzvLLQBe1y18Rd1lagetiSf1TqHF9/FFZs3qT5mF3HzoSHNhjwJGlnt6BstnpOvOQDTe9zeyZ+NOUlmZ9i/hyUSfpwY4JGeZDWqQwksZcKUQU0B1Z+BsEf6lxtJMpLyn7q3OzFc5fgpnl4v/Ndk2IzWb5u2ELktDj2jlR6Mm9e8ULdatDXmeoms4k7Ubk+DM6GXvGFkHoevdHbIqtv/wNHgEy/E7RTqUcEKPWs6wOyCE8ysZYr7iP8D3GtxpAeUGgEQloV9nwSe90XkROqBWs81pLplxytbh/7G0ZzBzKm8mtE3hLP6qFnIJ1XnU1Oynkvra5QovJvixDKz7Elr+TiL1i4HuZEPyEefMo41ULbx3XPpvKK/ofcQ1xIbHf9F0k5MEy3L50TBrh1nCl/2e6H/Z9DgHEwsa054VNn9XUO5siDZrnDQYekq8RYfiewAc4Wb0OtA/WIEY3pN1dcj3V8tR6w0U2RItf7UEocUhKHKjjA4l37ZVAqO/LQZk5GvCRldEXxh0EUqlqGEPESO9vEEyW5CgSmrHCbbmkxqKoDN3avs/wGNdol0e9Jk8fAxroGZVSzlmpHilmR900vuKwaSh6E= Jan"
     },
-    "darryl.weaver":
-    {
-      "name": "Darryl Weaver",
-      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBALx/0aj8iAPnqKvZTrx1L47v9khIjnDj5kmmRvvXe8mODGT2jQ3sc9Pj9WnYpwnb2nsxEK+kwDyLO+kEBYr4d99oNKluw70/2TCPS7oQp4LC5VSdJR1AUmN9EPGbzaz2KbxqXqTfg6jmkEPYwk3LFfV4h0Ie6/UPIJjh+8fmaZHDAAAAFQC8jI/bHlzaS+qQe4pMKG9UHE5U5wAAAIA6BdpkLLg1LInahvscqdCXO9TsasJ3Q1vnCmvUyp4m/AZA8JqHxTXzRmfO9xWtnBH4kUANZijTCyCqN59O+NM4MMpMrxSIN1ZWSrdOKeI+n9CER+vZJUMj4od+9fqjOxXEaSoS/AGns13HZp1BzdH69BtwvJm7Lq2z60tVBM+eRwAAAIEAs344Law4AFjvi7nbD3IsTi/4WagFGVp1xaEvncMvXWh6KtXkob6gq/8fyXuWP+IiXeuUHqdijkdP365bisEb359UyO3R3sn7avxxJmMC2qhhEH4QJhL2+hj1O5fF4ceAthTu5azBNM90ORMiQSs1I2xVvHbV/JZQ8axqWlmKaZs= Darryl"
-    },
-    "csenger":
-    {
-      "name": "Carsten Senger",
-      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD6OblMDUyeIqiw08HJXl3UMBWY2spd2Ra5/bF17xbj91sky4SE5dzaUFb3mNzjTL2ReU1TpfgZc7L+2jnOu/pbgeYElcWzqF+rDr2Z6zlkvs0PcXEc3R1QH5w+ny5dPMcHs/gpIF5XGtbrRAqUKfILfJyYoazPmmzofpe2YprmU0rhsmozJCwhalKNF7UR4Yq49HPMJ70GKXcWsOPNpDc5F1Dd3g/n9Y7EzKpSmZcyyacZ7rKMMv3KGqw7SxmbFew4eIANKlqC/VvsNtYOt0AouI4k8Q3ULHlOFzeZd+/gTcWT11DvKym99KLboLc1RLmi931fUNHXGsA8qZQF0GKX csenger@kolja"
-    },
     "lucychambers":
     {
       "name": "Lucy Chambers",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx5I/1wbFO2yvUD+bCZwuD1iNUMCdKR6b5MJc6yjzdWudPVK3EhhyWFPVrUrZatOySLwuxF2wlfxmAH/UxsbJ8FTG2La/jGdZErNyZ8C8XzCbQ69MT0Txfh9r8+Buf044NaHPimOgKe3L6QL1fzSlrEqZEDq8hs4Dqf2iieKvLpgr/GD5OVt4PM43LtOIdKqWgFBXvQaxLWX0keEHilV9o3er+nkPVfJSsIow5569reO5HvDB7R9Rb1PTf4+5MSL7uuyLMkzH2bvKgYaXDtPZV0tzrDaPO2kl7MlHeDb9cwiSMO3LHGWs1vV+Onk2YBi+DzYjtneBmxlgNWbg6VekKQ== lucychambers@Macintosh.local"
     },
-    "jasonkitcat": 
+    "jasonkitcat":
     {
       "name": "Jason Kitcat",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAIBUC/qxmgOW7eNwvVXNJhqBuOl8tVMMWMKbxk8DJgNBD3mTsGFY3hbrTVE1uGUTYzaWUQqGaG89zfosnlM8Cm4bRzrN9xqth00C5ZlUKVmMKZeEm1miWzIeTV0w3ly2qqDTj5F2avZgs7QvkX4Jp0jH2VWfHcgYw/k8u9hxdIIXAAAAFQC9+RuheFV4fgY14k4tM9SI3M3dBwAAAIATrB8/JgWheAezt4jr6a0N857NQ9FoOBeTzFWwbxoJk5H4xGsIDtexyAGfv43TRcNgRE+95VwiJ7bYUGg+6t4vhwVeyCbJch58VUt+ZG27AzqmxlErhhNi0I4rmdk8eoVvQ9vhk8E3wl460M+TVj/SXwKUKzWOuC3rpF8ZOlbdNwAAAIAXPfE9qv10bgvAa+crJe3ZQLo1tEyRaI20hvc28xl4lP0VPdv0XpVR09wsljl2h00+ce2iaiTbo1D1MbWrnnixSCN5V8CVMPNlmJaRHbli5Zw0eTweRPs0hNJLAwqAZmXdXCCdv138uKRyD1z7BFQYv4f5VbFyttAtnrernouf2A== jasonkit@Jason-Kitcats-Computer.local"
@@ -204,11 +129,6 @@
     {
       "name": "Nick Stenning",
       "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAPVtAzEgb+3DOqybJloAemXFeq4U5d9YmqSWzdgfeD1xiXqaiThSfQzyXDLEm8Qe8CikgG6eiv1MHcvmtzGRhsBYoDDQFLdUUb02ziflcmu6KrYpt3T+vT/NO941xWm8BPHo3UddDUFf3xAyyiRo5hl8sUmM9P5eYt8UziZX5h5TAAAAFQCVCrQlQPXZgYUbcSjYmSPnJsJgqQAAAIBrPZ2G4kwEe2O3g2MMc8y851OF/pjHvPgYymbbKURRPhXnuOT62X4RB/UFJZDzn9EFYeFAy7oP97hTVbPgTu7mX9uOB6mHyvI0hWa6zAy+aGrPZJajzy0uDQkRFo5qP37CyeZRp3xi7Fev0OYJrRj6uCipJxmCjroa5NOLqAlC4AAAAIEA7jvIsba9B0h/QOKC6D1h5XEeCN2fViDuzgga7jqttssR/n06C1GC6mdbdM5p5QCH7xpC1fHQ+6eMsQHdpZEFNwShXtgCJWQIyesk9bJZwvoDKlu6lzNUO37nwoO94kAwcXnz4/gERn0tTzJcCiwSSt5zpI/NTynuyLpFZ6BvNx8= borior@sirius.flamingpenguin.net"
-    },
-    "peiopopov":
-    {
-      "name": "Peio Popov",
-      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA40nO1gOi1kaPf3dnRsWxGiq2o3p4XpKjo4dTQZL4/RcjZhUY4o5HE/Qqk+LftsgCwIeIp2DDyvc6X1wn2DTNqnXx7m4ptYCsP0mfSru3Bfh6YKvK1hhz/AJ/zcIML0Lqh7joaI7yKR7+do4FyV8KIeSebDdlBxKv70ojq6dDxAK6o7ZwRRMgsPdU2UVAnMVNjoa9D5TVLEKg+gHNCgbQs3NJv5Ovx5mN5IdDq1cGEZEw0YzciK0T5ztBgTa8zADoFlK4ztS3736O97omEAAeLIqt2m1NUy9YEF1IlJsCt2kMRwuIXwZUwofwKSQVH7ZUWaKKBWWGEsv2DqzVcRfgWcBn/QOYHCqxlbDIn7QxoQ080LNMM4mHgrFTqc6m6fIowiD4HC3YxmAe+XiO1oj9/ezDiswDvEkMdk0CuKR34Fio5cK+bBS1VBjoTyhLiZ9O0bYa5hbGSb31pWtTpBnFmoNgvUtLJ1wfnUgbibzVPqLFgUjaLIAb2WH1mqibTano4iXKPN99DuLpzPwvMxilRltYeDbpmBxZatFRUdT9Ldl2FBef4UYJht6Qm1CueWYsIP2mK/kgLL/0T9LBTEAvhz593sd0btUY5P2hXJxBO28Hqb27PWtSKsmAxcGh4dcvwWVDNduH4KFfF7m98vGViXailuQSFwy1JTCOWWh1De8= SSH key for my workstation"
     },
     "adriamercader":
     {
@@ -289,6 +209,43 @@
     {
       "name": "Tom Oinn",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAg/tEo+jmZS/WJv8qXm4/+xJafR3jcHfVZI587Q1xAseDY171VwZKLAxMn3S41TdF44hh6uEcNxvfWFVllwgyHLOlACXJDZhbkUoecq9lWDvBdSgVqvsmIwaSun4VoBN1YVQQ2tfD4mT53k78Qgef8Eabausp9ni9M5vE48Owm6E= tomoinn@crypticsquid.com"
+    },
+    "teleyinex":
+    {
+      "name": "Daniel Gonzalez",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA7x9R4ZhdFirot3bP0slJ5FbcqZK8NUO3gSbXjETCqMADB+mt4k1sjucbwMvL3SaZ4+IWZao4+RWlaDwqojo/OES75OlxEgJLHzUpQQliVyvYkZkIvgeUJZag9X6tdVA/TgWHdyEk+xXWPK/eNFkeN7Dq+XIgUHeTlc+dknylT+R/izL3Qqs99uZyx5dYjabEdVc0m8n847dvniIecr7W63o2VXKUPrx9Qd08gc53zthFnLcbU2A3AklPq/cEV65oToT4CeLc2g+b7EBmLVIX0LZ1891PhmNvq0cIgah9CDMO9NY9I0owU1AxfYFE5oWhmorBxpJ6sgvE7+bWnSDZ2Q== teleyinex@gmail.com"
+    },
+    "marian.steinbach": {
+      "name": "Marian Steinbach",
+      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAJIcZsZZsVl1TXXgk9DbjgojzLr87yvQCYMOdXizVh5K+lMrTfBjRsL/mwhmCYBBPYcsUHI6Qak/zSADewiZGdvESpvtG0qre1IEc2/mTaJW/fNXqQn6fTkrawsoAFUBa4ryZBdjH2oi4RyQA8SyjPKp+lCKYg429o2dmMB9326FAAAAFQCgQrDe2dKKxVDCA8PxAMl2jYObowAAAIEAhQf/WT78Mxm7ZbnRNJM1v3Zja/3v3CO+a0iaPctrKfcPfQtvPjd+eu8aavJR7SV1KJzAwIM4xYqKIpCnSgi1mYyjJhQl0audcQoz/8DszLfV0vV2dyFPilkv26AI4gDPFQoCYoV/gmGPxU6sbxyUa80HopZ3osXakVI8FOTW7VkAAACASM4kKw2FQxh2RTNmidzt2k5KxzUaE8u8rW6dEs4Jw9s20ucZTN8YVoXxc2FfJSDEui4dWSuXWBxrt46HMIBMRll4QcsetvCHnIpd/sXnGNGNyPFHbtq+WsxaSYznH+IlC0vMN3CK/jZohfM3ymzvpkCsrCWEvvXwhRsMpq3iF6Q= marian@dynamic-06.intern"
+    },
+    "kristian": {
+      "name": "Kristian Glass",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDEUz63s3TpYvMzJEWjRZST9AF0eEY3jBzHEobMXe1wuKgxlnJhB5SwzivbVQX6/Xuadc1capEpbsAH6vFPRtLPt/sbtKoCYEjybAEWjFURKnQT1NEEro9e3gDxCtGbK/qfJmPHHGxlbBcsoD9KaI9j3RJHLvUY4mdU8VHC+LKTCWGTnyUff/gImsVauTS9yDrni8uLiD/BdUY1uz1lF56cPEbxC/XZp3fbU9BiJbgSbGOo4orDbVv/T0aW1U0rFQvADgR4S1bomP8TPlXmR1DOIzOeJftU5onY++S4t8x4qGGLRMOCQXDdImmGhjZVQPRadQ+OuOJYxDWKUaaU7jNF kristian@lilith.doismellburning.co.uk"
+    },
+    "puppetmaster": {
+      "name": "Puppetmaster Deploy Key",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA3Wk5EOzSAvxFViSTv9c81k6baB7tbNXuoesOavjzHbIqrIDMGRsTx//k5A1lBFlhYhH+5RhK9CmYhb/wZplodDFcM4sqXRO4swPj4gTd8DYFtBxnjyEZkZf/9Z/KdT7LVunamvmySIvtvOeuQZGLFbgaUyT4699WQE1gPpzEMtjf2qkkpH5eOdS18sctj7CqBsmQz2Uvjsw1KONjBdRccor8VOUFJK1LOzp3g1lYi2MbGFB/eFgdy9iWKSQc6+qETtqnjxJmsUdhAgVoYuWX1TuClQQ2PS/sA4VXFaAR42lFIthaTOt5uWtfY+fiC38eCgJ+pOzrx1+tAq+/Pk6wEmsqTxMvfKG5XEDAJ7QbEhcOYOG1qG26u6p76MPumLuEpvhTXqatJmA9V9MOApXOjSjs3ipPUBvifnBVyU5unOX5pBMG0SYJZ7LZlSoLIN/ebz45mHDCoYlCAIu2zHFPKLssPDyngbbLytKqIFu1mGSuceJ1CnFdOqTRV3PV7Bo3a4/SarrbxIsf3WdtYzVtIxNAoHpYo6DtYjLm5X8yWYD2EIF4shJCp8sYMvQgqI+ZAXhJFyuJfTpsoqMuO4vipgjrayHYfxdOydp0BOqWoHGkdhxZU6d3zbF1Hq/BO22EKQ4qdERAsrYYofI9au5yv4hTsY+XG+jrelJWwpszpmc= puppet@puppet.okserver.org"
+    },
+    "s053_deploy": {
+      "name": "S053 Deploy Key",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7KxuWyP+MXqZFcieXCW4UVI4uhCyzUfONq1c1h3e8DE9UqNLIFI1ivNd5eZ7vJEkbJN68W8yt6pb7ld0lOsBL9W4skN40SsY6YL4ZRrHFpseGshhjSNgzH5HPRiQTN29AaYVYRa2a2n+FhIAaK5XYgNcJtC/uDpprmInecHWTHPhZgGNIsOjbRZit58OnzMsiLlO6GZr0sY50+Kxl/IB5dTzqjdKpoCR5Somc3RRrEK/Nfmm34ricxdSmgDpL1eUkc3+1RIb/PmqyDCcq2VJ3H0/mZfDz6nYG3eK5skVbayvHua7vSmTLl8B4jKEAQbhTc+IQ7uCv/jGKhJwFwYoaLjqBizYF65z9DgnTKl2yCX0e75skXDfD/Rm05kiuBuoFFBnuLyq8bqO3Z40/QM22k7wiv/9uA61DX0bMpjuoRp7ePFl6hrmuviMFPzcquHqfARhKBilWXc3TvbLwAFPjzxepWvax+GkZ46wUQ2mfk1ZTrVkVss4Ce5+g5jPqHsBzpI2vMKhfFdK2Ljx5diPHX0aKbeAaHR7gtCt3g0GIaDLE0CnJj+xLBbr8sKUKKN+xobj/fqmJK2rxkpBzZeXaDftB8h3KfiuJT1a6QuHckXFKCDIIQWYR5vuAIHYvtKOaSQ9xgFYJzaaOdLQ8kAPWKecQnn4RDxfkLof2tFkHQQ== okfn@s053.okserver.org"
+    },
+    "s060_deploy": {
+      "name": "S060 Deploy Key",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDSV1pS0imTmMYz80PQzHHk6w1o/UiqSxzkxAwAv6ixHR/CFvaHgSDxFOp2sz3UerhKv7qorvveVVJqt6YAb3lSXZW+lleRrLtIpg1DBGrkWn/SRd7i3kaZQXHzYovT0KsehhxLCMBa3SM0bX+C4UeDVBGV1Bul6D9Nm1Ikam3IBbR7kZrGbLltfvjfp5WAe2lCMU+FWYdTJJ/P3/q8x+9node5vanm3lkIoeaFSzJvbEMW0rOyNQ7oIek0BsyJ01LIIIX0JMcX24/F43ek8yY2htWByOa6cMtMUdsngTRKZNz5diNkjlolIOikCWKg4P16Akfz8oVA68fOd9cFVtLbkaPO4bdoplA5/wcrwF1R4GVBVOpghjhRrK0dLk9ct3+n8hhth63cr/hrbd8EfwBiNrhsY9wKrLXDLG1JjX0xRn915gpJvUvXz8Tuvdt5DO4UgB+sqcJG6nqsTGROmUlQfAujm+J1kX6yeh0HYSbECWNqcbVveYTRG6MA7ugGD1V0k6z92IEkbgbqcdmKvi6C6tkx/UkPqYThlVTDf349WwRyqifyEKK/6Z8ib/Bt3GeUFAHHl3iWr0fBI3wrKMEBgpmxGMCI/pMC6842VfZVDJN/cMIVnb55OVw0BLXMI6MokBoYROQZi8PC0a0b3GltuTNcc8yOvC5KM9dSK2JJkw== okfn@s060.okserver.org"
+    },
+    "samsmith": {
+      "name": "Sam Smith",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/Te85R061+bf2nEQ/g2GvUZx3yuNQv3nCqP1EqSEJdfaiGUqK86O54RYWKitYxUSF/XzdPu8kRMiV+IYMW/+jlBWQNiNgYsJRwrXz3Qi37VaB44Eeh2/No6DRI4JrI1fbFIWxoth+UCb91tAUJI4QybTuoiQh0icewwnAhEa9NmWsGoKyvkpemRiEiJlNTL6Zca+Qr3hde3unRPnLs5puffy2vsVW6g76/v61JQN6elADGtQL9xkueyJpy0eqXOx5QuquYaQdRhkwsK3jqRhBt1DK/vHckxwHgeG0+/TssAk8SPwS7vhl1JCysKkhUTLz/ccMI4QThxmoAkA6xHXn"
+    },
+    "keyboardkat": {
+      "name": "Kat Braybrooke",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAooNQYenFfB+P1175YwXk3/lHoTHIGc+LsQ9v6EA1LxxLCN+rcwKkAuaAfD4VoReQmQRr/YvYy41oancYDxunieiENeI1zZeCP3n9cFFGLb7ie658Zkz+UI56h/KmgzMmzGREd8nq7W5yDlq/FK+VewuwszUiN1u0O9kLufoOmsKuLjzmxtGZYcvoY5eX3XQ7/BOMYxhEtdUisTsgSLKBzuQ6zEffyou9bKDc0ylc7A/wOZOw22MLbY0u7bN+UnL5ud4/uxknLbk4deAEEVHZOTlgifkaxN7Sv1rPoNGXedPe051GSRevoxFU2RBKmkOUWcvNvjDN2qzRjgc8qvGexw=="
+    },
+    "pierre.yves.vandenbussche": {
+      "name": "Pierre-Yves Vandenbussche",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAxjYVjAU9tgNVAY3sGzHIjEFI7TR65YAhIFz2lbH39ChTVXbZ0cyMsZcquzW4BT69SUOOc2vy8icwVn6nge6wNjT5X/PJGdaumuJBPhdMHzZYVRbbyWyGwYfrAMk2Hyp8Gb/2SOf3OgFVwZ5HPIgzEd9zJvxOulxONAkwuYoBnOk= pierre-yves.vandenbussche@mondeca.com"
     }
   }
 }

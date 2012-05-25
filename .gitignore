@@ -1,0 +1,11 @@
+/sandbox/*
+/password/*
+
+# any pem files you have lying around (e.g. for aws)
+*.pem
+
+# aggregator
+*.tmplc
+*.pyc
+/cache/**
+/aggregator/**/output/**

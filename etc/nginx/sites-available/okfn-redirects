@@ -8,6 +8,10 @@ server {
 		index  index.html index.htm;
 	}
 
+	if ( $host = thedatawrangler.org ) {
+		rewrite ^(.*)$ http://www.thedatawrangler.org$1 permanent; 
+	}
+
 	# See http://trac.okfn.org/ticket/1225
 	if ( $host = semantic.ckan.net ) {
 		rewrite ^(.*)$ http://notice.ckan.org/semantic.ckan.net-down.html permanent;
