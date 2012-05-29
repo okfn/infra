@@ -118,7 +118,7 @@
     "lucychambers":
     {
       "name": "Lucy Chambers",
-      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx5I/1wbFO2yvUD+bCZwuD1iNUMCdKR6b5MJc6yjzdWudPVK3EhhyWFPVrUrZatOySLwuxF2wlfxmAH/UxsbJ8FTG2La/jGdZErNyZ8C8XzCbQ69MT0Txfh9r8+Buf044NaHPimOgKe3L6QL1fzSlrEqZEDq8hs4Dqf2iieKvLpgr/GD5OVt4PM43LtOIdKqWgFBXvQaxLWX0keEHilV9o3er+nkPVfJSsIow5569reO5HvDB7R9Rb1PTf4+5MSL7uuyLMkzH2bvKgYaXDtPZV0tzrDaPO2kl7MlHeDb9cwiSMO3LHGWs1vV+Onk2YBi+DzYjtneBmxlgNWbg6VekKQ== lucychambers@Macintosh.local"
+      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAOm1l7iubPbbmc5kcWAXojtIKxOg50YXHDg1pb6mi835mmLeSwPjbO6NHrSO0NKIIMOXBDbfC83DHtrFykdvwn4ZIC2pecfUQuAAwERjZwZjHuvqYbV+pDNstSvHrLw9Vg7IFHD6EVm2VWQSIzTCH4JlXVVmyKRvcfdUQuNQYVQ7AAAAFQDu7HkLy/1AIB/RISGH1PRZcqr8bQAAAIEA1ljlVIighCn8NwWunFLLs443Esg76obg5t6WvsOfzSXKPB5eFhT8U1JsAj5v+trY8yJUt9FBfUjIHY4cBs9Ej6TH7WKVtQsb6Q2Pa6KPVeryHybkOIN0fWEJyfCmo70EG0fccXpRevHphUxdSbusd7EH3Rd7UKr7SrDd6+i5XQUAAACAPoHBWY5r9KVkh32xgi89MajBmFlnv2lb+SqJoJ8G4g5v9qnj+KjEjqZAMnOlemF5NqofWa1KRJC2CDQb1rhkLxIKgzczD5fRjWJWCaCnpY9wykVd+QP90dZUCejy9Pnxp8mYRsLfBAKY1atAbWeIZQU2PaKdTvMSNhV9BdVWtas= lucychambers@sjc135n156.joh.cam.ac.uk"
     },
     "jasonkitcat":
     {
