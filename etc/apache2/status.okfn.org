@@ -2,7 +2,9 @@
   ServerName status.okfn.org
 
   ErrorLog /var/log/apache2/status.okfn.org.error.log
-  CustomLog /var/log//apache2/status.okfn.org.log combined
+  CustomLog /var/log/apache2/status.okfn.org.log combined
+
+  DocumentRoot /var/vhosts/status.okfn.org/
 
   RedirectMatch ^/$ http://status.okfn.org/nagios3/
 
