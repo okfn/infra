@@ -92,6 +92,14 @@ server {
 	if ( $host ~* dataprotocols\.org ) {
 		rewrite ^(.*)$ http://www.dataprotocols.org/ permanent;
 	}
+	
+	if ( $host ~* datapatterns\.org ) {
+		rewrite ^(.*)$ http://handbook.schoolofdata.org/$1 permanent;
+	}
+	
+	if ( $host ~* www.datapatterns\.org ) {
+		rewrite ^(.*)$ http://handbook.schoolofdata.org/$1 permanent;
+	}
 
 	if ( $host = irc.okfn.org ) {
 		rewrite ^/$ http://webchat.freenode.net/?channels=okfn permanent;
