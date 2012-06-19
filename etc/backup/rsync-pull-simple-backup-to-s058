@@ -32,7 +32,7 @@ if [ -f ${PID_FILE} ] ; then
     rm ${PID_FILE}
 fi 
 echo $$  >  ${PID_FILE}
-sleep 10
+
 
 for source in ${SOURCES} ; do
     target="${LANDING_ZONE}/`echo ${source} | sed -e s,:,,`"
