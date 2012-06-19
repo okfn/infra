@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+
+# The proper backup is done in with rsnapshot, see /etc/rsnapshot.conf
+# This simple rsync copy w/o rotation is only for data that is unsuitable 
+# for rsnapshot, e.g. large files that change frequently like VM image files
+#
+# This script assumes that local root can ssh as root into all sources.
+
+
+# Space-separated list of sources. Do not forget the tailing slashes!
+SOURCES="s031.okserver.org:/home/okfn/.vagrant.d/"
+LANDING_ZONE="/home/backup/rsync-landingzones"
+
+
+RSYNC="/usr/bin/rsync"
+RSYNC_OPTIONS="--rsh=ssh --archive --sparse --compress"
+
+
+for source in ${SOURCES} ; do
+    target="${LANDING_ZONE}/`echo ${source} | sed -e s,:,,`"
+
+    ${RSYNC} ${RSYNC_OPTIONS} ${source} ${target}
+done
+
