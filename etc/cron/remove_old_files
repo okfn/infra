@@ -55,7 +55,7 @@ fi
 
 # Remove everything which is older than how namy days?
 if [ -z "${REMOVE_OLDER_THAN_DAYS}" ]; then
-  REMOVE_OLDER_THAN_DAYS=7
+  REMOVE_OLDER_THAN_DAYS=2
 fi
 # find's option "-atime" has an odd 1-day offset, therefore we use "-amin":
 REMOVE_OLDER_THAN_MINS=$((REMOVE_OLDER_THAN_DAYS*24*60))
