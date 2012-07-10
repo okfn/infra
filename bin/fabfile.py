@@ -250,9 +250,9 @@ def prepare_sudoers():
         print 'AMINDS rule already in %s' % fn
     else:
         print 'Adding AMINDS rule to %s' % fn
-        in2 = r'root.*ALL=\(ALL\) ALL'
+        in2 = r'(root.*ALL=\(ALL.*\) ALL)'
         # double escape as passed through to sed ...
-        out2 = 'root   ALL=(ALL) ALL' + '\\n' + 'ADMINS  ALL = (ALL) NOPASSWD: ALL'
+        out2 = '\\1\\n' + 'ADMINS  ALL = (ALL) NOPASSWD: ALL'
         sed(fn, in2, out2, backup='', use_sudo=True)
 
 
