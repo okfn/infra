@@ -250,6 +250,10 @@
     "bobbydonovan": {
       "name": "Bobby Donovan",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAsmpccz/5XI6KXppglp3deNlKEpi8RFPBBH450vJHdn+SNw3n2tudWKjUQYs3X5gGX2pJPSCLCHu+9g7nyPmf+2TniYVXylt41V8pd9MNoL+0nP7HDy33Z3R+QP5vTUs+JCdFQnbU6Ww8A3ZIu7CVOJrQxkNIvttGouX3i6IrsWx5Y1OtU81JSysh1qMCUDLaVinsWMVdYcV5ECg2os64TH9M0Bj059VzxMGdAxU4yRReAL/FjuUKD25xNDEmTHD1QraulHrNFE4v7VFLHaSEQWhO2vq9GNknbS473rnskq/cwkoXKaDhzZT9CPcKrBDJLgg8T78ZMFpUesoMHkEj9Q== bobby.donovan@gmail.com"
+    },
+    "nareshv": {
+      "name": "Naresh Venkateshappa",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAw2tE5qBJX8zbO6diQFIbvcgeNXPX3LC8YrPIuWwqNnxkgPnWs6IDDkP1JBakUtl7ufrJC86U8v4/wJKI/3h2AQtPf5U4bUNAgkdeUTSW5IAD5l+KusI/Kb4qXXIurr8Go3z0txMBuvRK8T6Xs0FGNvfWxtOD17O/iz6eUiyNKus= naresh@m1-sv-xbox"
     }
   }
 }
