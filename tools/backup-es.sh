@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 SCROLL_SIZE=100
 TODAY=$(date +'%Y%m%d')
 

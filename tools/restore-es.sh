@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 BATCH_SIZE=100
 
 if [[ "${#}" -ne 4 ]]; then
@@ -14,21 +16,26 @@ INDEX="${2}"
 MAPPING_FILE="${3}"
 DOCUMENTS_FILE="${4}"
 
-function json_get_key () {
+json_get_key () {
   local key="${1}"
   python -c "import sys; import json; r = json.load(sys.stdin)['${key}']; print(r if isinstance(r, basestring) else json.dumps(r))"
 }
 
-function json_drop_key () {
+json_drop_key () {
   local key="${1}"
   python -c "import sys; import json; r = json.load(sys.stdin); r.pop('${key}', None); print(json.dumps(r))"
 }
 
-function json_add_key () {
+json_add_key () {
   local key="${1}"
   local value="${2}"
   python -c "import sys; import json; r = json.load(sys.stdin); r['${key}'] = '${value}'; print(json.dumps(r))"
 }
+
+json_keys () {
+  python -c "import sys; import json; r = json.load(sys.stdin); print('\n'.join(r.keys()))"
+}
+
 
 function terminate () {
   [[ -n "${bulkfile}" ]] && rm -f "${bulkfile}"
@@ -36,10 +43,16 @@ function terminate () {
 }
 trap terminate SIGINT
 
-echo "Creating index ${INDEX} with mappings from ${MAPPING_FILE}"
-echo '{"mappings": '"$(cat "${MAPPING_FILE}")"'}' | curl -sS -XPUT "${ELASTICSEARCH}/${INDEX}" -d "@-"
+
+echo "Creating index ${INDEX}. If the index already exists, this will emit an ignorable error."
+curl -sS -XPUT "${ELASTICSEARCH}/${INDEX}" || :
 echo
-echo
+
+echo "Uploading mappings from ${MAPPING_FILE}"
+<"${MAPPING_FILE}" json_keys | while read -r typename; do
+  echo "{\"${typename}\": $(<"${MAPPING_FILE}" json_get_key "$typename")}" | curl -sS -XPUT "${ELASTICSEARCH}/${INDEX}/${typename}/_mapping" -d "@-"
+  echo
+done
 
 echo "Loading documents"
 
