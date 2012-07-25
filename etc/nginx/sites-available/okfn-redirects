@@ -94,11 +94,11 @@ server {
 	}
 	
 	if ( $host ~* datapatterns\.org ) {
-		rewrite ^(.*)$ http://handbook.schoolofdata.org/$1 permanent;
+		rewrite ^(.*)$ http://handbook.schoolofdata.org/ permanent;
 	}
 	
 	if ( $host ~* www.datapatterns\.org ) {
-		rewrite ^(.*)$ http://handbook.schoolofdata.org/$1 permanent;
+		rewrite ^(.*)$ http://handbook.schoolofdata.org/ permanent;
 	}
 
 	if ( $host = irc.okfn.org ) {
