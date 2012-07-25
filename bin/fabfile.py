@@ -1015,14 +1015,11 @@ def move_directories_to_mnt():
     print 'Please reboot the machine and verify this worked!'
 
 
-def set_hostname_postfix(name) :
+def set_hostname_postfix(name = None) :
     '''set "myhostname" to the given hostname in /etc/postfix/main.cf
     '''
 
     config = '/etc/postfix/main.cf'
-
-    if not name:
-        return True
 
     if not exists(config):
         print 'No postfix config found, not setting "myhostname"'
@@ -1035,7 +1032,13 @@ def set_hostname_postfix(name) :
     #sed(config, '^#*(myhostname =).*',     '\\1 %s' % name, backup='.1', use_sudo=True)
     sudo('sed -e  "/^myhostname/D" -i %s' % config )
     # append('myhostname = %s' % name, config, use_sudo=True)
-    append(config, 'myhostname = %s' % name, use_sudo=True)
+    if name:
+        append(config, 'myhostname = %s' % name, use_sudo=True)
+    else:
+        append(config, '# myhostname = # not set, defaults to `hostname`', use_sudo=True)
+
+    sudo('sed -e  "/^mydestination/D" -i %s' % config )
+    append(config, 'mydestination = $myhostname, localhost', use_sudo=True)
 
     sudo('/etc/init.d/postfix reload')
 
