@@ -1,6 +1,6 @@
     server {
         listen localhost:80;
-        server_name www.wheredoesmymoneygo.org wheredoesmymoneygo.org
+        server_name www.wheredoesmymoneygo.org wheredoesmymoneygo.org wdmmg.org www.wdmmg.org;
 
         keepalive_timeout 5;
 

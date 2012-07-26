@@ -5,7 +5,7 @@
     server {
         listen localhost:80;
         client_max_body_size 4G;
-        server_name www.openspending.org openspending.org www.openspending.eu openspending.eu cra.openspending.org;
+        server_name openspending.org;
 
         keepalive_timeout 5;
 
