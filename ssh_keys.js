@@ -14,13 +14,12 @@
     ],
     "ckan": [
       "rgrp",
-      "dread",
-      "pudo",
+      "ross.jones",
       "davidraznick",
+      "toby.junk",
       "thejimmyg",
       "adriamercader",
       "johnglover",
-      "tomrees",
       "ianmurray",
       "seanhammond",
       "aron.carroll"
@@ -246,6 +245,10 @@
     "pierre.yves.vandenbussche": {
       "name": "Pierre-Yves Vandenbussche",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAxjYVjAU9tgNVAY3sGzHIjEFI7TR65YAhIFz2lbH39ChTVXbZ0cyMsZcquzW4BT69SUOOc2vy8icwVn6nge6wNjT5X/PJGdaumuJBPhdMHzZYVRbbyWyGwYfrAMk2Hyp8Gb/2SOf3OgFVwZ5HPIgzEd9zJvxOulxONAkwuYoBnOk= pierre-yves.vandenbussche@mondeca.com"
+    },
+    "toby.junk": {
+      "name": "Toby Dacre",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsU5DiRqhKr6f3YE6pbnt8u24lZxby7e1SrkTmbsLT/mvfcsjLEVZGGNszlUmO02s2WHgr8uzmg+bcqRnT8fH7bgOlYKaE5lSdA5oVm8N7KthLk3SwL4jZDCub54sWmy0x0fZH/g1m1IbPF9hX1wQ1LW8b7th/X/GzNqb1QX0JTt0BP6+tdUtz/CufDhbPTJ6FbwVKAomKHc53RghPXtMLaNr2iITF9JliW5v3ex2WiX2iuYvcQh3KOr0sHtOhSZ0AYcdY7QtOr7HjP3NXOhPJhuzrpqozXfITXzQUbh8wQd6WgZSNcHXa8OyADd3WK79x1htSC+5/yFsZkoWgG1id toby.junk@gmail.com"
     },
     "bobbydonovan": {
       "name": "Bobby Donovan",
