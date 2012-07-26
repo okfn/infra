@@ -1,5 +1,5 @@
     server {
-        listen 80;
+        listen localhost:80;
         server_name www.wheredoesmymoneygo.org wheredoesmymoneygo.org
 
         keepalive_timeout 5;
@@ -20,6 +20,10 @@
 	rewrite ^/about/?$ /about.html permanent;
 	rewrite ^/about/what-people-say/? /about.html permanent;
 	rewrite ^/(comments.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+	rewrite ^/(2008/.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+	rewrite ^/(2009/.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+	rewrite ^/(2010/.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+	rewrite ^/(2011/.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
 	rewrite ^/getting-started/? /about.html permanent;
 	rewrite ^/blog/? http://blog.openspending.org permanent;
 	rewrite ^/(people.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;

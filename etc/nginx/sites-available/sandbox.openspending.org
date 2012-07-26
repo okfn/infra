@@ -1,5 +1,5 @@
     server {
-        listen 80;
+        listen localhost:80;
         server_name etl.sandbox.openspending.org sandbox.openspending.org;
 
         keepalive_timeout 5;
