@@ -17,7 +17,6 @@
       "ross.jones",
       "davidraznick",
       "toby.junk",
-      "thejimmyg",
       "adriamercader",
       "johnglover",
       "ianmurray",
