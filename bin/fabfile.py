@@ -139,6 +139,7 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
     postfix_hostname = ''
     relay_host = 'mail.okfn.org'
 
+
     if flavour == 'AUTODETECT':
         flavour = detect_flavour()
 
@@ -178,6 +179,16 @@ def instance_setup(hostname='', harden=False, team='okfn', flavour='AUTODETECT',
 
     if flavour == 'Fry':
         install_firewall(rules=additional_firewall_rules, start=True)
+
+    if flavour == 'RSM':
+        postfix_set(relayhost='NONE')
+        rackspace_managed_allow_ssh_pw()
+
+
+def rackspace_managed_allow_ssh_pw():
+    RS_SSH_CLIENTS = '89.16.174.136,10.0.0.0/12,212.100.224.13,212.100.224.20,212.100.225.0/24,72.3.128.0/23,72.3.130.0/26,72.3.218.80/28,72.3.223.8/29,72.32.192.0/24,72.32.94.80/29,72.4.112.112/28,72.4.123.0/24,74.205.2.0/24,74.205.28.0/26,78.136.44.0/26,83.138.138.174,83.138.139.8,83.138.146.192/27,83.138.149.133,83.138.151.69,89.234.21.64/28,89.234.31.0/25,92.52.121.80/28,92.52.126.0/23,92.52.76.140,92.52.78.14,94.236.100.0/25,94.236.7.185,98.129.223.0/24,50.56.228.0/27,50.56.230.0/27,50.57.32.48/28,50.57.61.0/26,64.39.0.0/23,64.39.2.144/28,64.49.200.192/27,66.216.111.0/25,66.216.111.128/25,66.216.125.0/27,66.216.65.192/27,66.216.70.224/28,66.216.93.64/28,67.192.155.96/27,67.192.2.192/26,69.20.0.0/23,69.20.0.0/29,69.20.0.1,69.20.0.12,69.20.0.4,69.20.0.64/27,69.20.123.0/28,69.20.80.0/28,120.136.32.192/27,120.136.32.96/28,120.136.33.0/25,120.136.34.16/28,120.136.34.22,120.136.34.36,120.136.34.44,120.136.35.16/28,173.203.32.136/29,173.203.4.129,173.203.4.130,173.203.4.161,173.203.4.162,173.203.4.180,173.203.5.0/24,173.203.5.160/27,174.143.23.0/25,174.143.23.128/25,180.150.149.64/26,184.106.8.160/28,209.61.136.64/26,78.46.245.250/32,50.57.22.125'
+    append('/etc/ssh/sshd_config', '\n\n# Allow RackSpace to login with password\nMatch Address %s \n    PasswordAuthentication yes' % RS_SSH_CLIENTS, use_sudo=True)
+    sudo('reload ssh')
 
 
 
@@ -869,7 +880,7 @@ def create_swap_file(size=1) :
 def _postfix_headless_dpkg_reconfigure():
     '''Make sure dpkg-reconfigure never prompts for postfix configuration
     '''
-    install('debconf-utils')
+    install('debconf')
     run('echo "postfix postfix/mailname        string  localhost" | sudo debconf-set-selections')
     run('echo "postfix postfix/main_mailer_type        select  No configuration" | sudo debconf-set-selections')
 
@@ -937,8 +948,13 @@ def puppet_bootstrap():
 
 def postfix_set(relayhost=None, inet_interfaces=None):
     config = '/etc/postfix/main.cf'
+
     if relayhost:
-        sed(config, '^#* *(relayhost).*','\\1 = %s' % relayhost, backup='.1', use_sudo=True)
+        if relayhost == 'NONE':
+            sed(config, '^ *(relayhost.*)','#\\1', backup='.1', use_sudo=True)
+        else:
+            sed(config, '^#* *(relayhost).*','\\1 = %s' % relayhost, backup='.1', use_sudo=True)
+
     if inet_interfaces:
         sed(config, '^#* *(inet_interfaces).*','\\1 = %s' % inet_interfaces, backup='.1', use_sudo=True)
     sudo('/etc/init.d/postfix restart')
