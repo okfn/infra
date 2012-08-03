@@ -78,7 +78,7 @@ RewriteRule ^/(.*)      http://opendefinition.org/$1 [R=301,L]
 # 2011-02-16 ckan.org
 RewriteCond %{HTTP_HOST} ^ckan.org$
 # RewriteCond %{REQUEST_URI} ^/(ticket|timeline|wiki)(.*)
-RewriteRule ^/(ticket|timeline|wiki|query|milestone|roadmap)(.*)$ http://trac.ckan.org/$1$2
+RewriteRule ^/(ticket|timeline|wiki|query|milestone)(.*)$ http://trac.ckan.org/$1$2
 
 RewriteCond %{HTTP_HOST} ^blog.ckan.org$
 RewriteRule ^(.*)$ http://ckan.org$1 [R=301,L]
@@ -116,7 +116,6 @@ ScriptAlias /board/wiki  "/home/okfn/var/moin/okfn_private_wiki/moin.cgi"
     Require group board
 </Location>
 
-
 # Alias must be in this order!
 Alias /geo /home/okfn/var/www/okfn.org/geo
 Alias /wsfii /home/okfn/var/www/okfn.org/wsfii
@@ -147,7 +146,9 @@ DocumentRoot /home/okfn/var/wp/okfn.org
     
 # Logging
 ErrorLog /var/log/apache2/okfn.org.error.log
-CustomLog /var/log//apache2/okfn.org.log combined
+CustomLog /var/log/apache2/okfn.org.log combined
 
+LogFormat "%{Host}i %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined2
+CustomLog /var/log/apache2/okfn.org-vhosts.log vhost_combined2
 
-
+Header always unset Cache-Control
