@@ -34,57 +34,11 @@ Alias /moinhtdocs /usr/share/moin/htdocs
 
 RewriteEngine  on
 
-RewriteCond %{HTTP_HOST} ^www.okfn.org$
-RewriteRule                  ^/(.*)$  http://okfn.org/$1 [R=301,L]
-
-# Redirect for old files
-Redirect permanent /drn http://drn.okfn.org
-Redirect permanent /resources/etech06 http://okfn.org/files/etech06
-Redirect permanent /ok_trail http://okfn.org/open_knowledge_trail
-# Redirect permanent /three_meanings_of_open.html http://okd.okfn.org/three_meanings_of_open/
-Redirect permanent /kforge/wiki http://knowledgeforge.net/kforge/trac/wiki
-Redirect permanent /okforums/okcon http://okfn.org/okcon
-# typo means programme was at okfcon/programme
-Redirect permanent /okforums/okfcon http://okfn.org/okcon
-Redirect permanent /okfcon http://okfn.org/okcon
-Redirect permanent /witbd/svn https://p.knowledgeforge.net/witbd/svn
-# 2009-04-09. Move of wiki to dedicated vhost
-Redirect permanent /wiki http://wiki.okfn.org
-# 2009-05-28
-Redirect permanent /sysadmin/trac http://knowledgeforge.net/okfn/tasks
-# 2010-01
-RedirectPermanent /sysadmin/svn http://knowledgeforge.net/okfn/sysadmin
-
-RewriteCond %{HTTP_HOST} ^okfn.org$
-RewriteCond %{REQUEST_URI} !^/(files|geo|wsfii|sysadmin)/.*$
-RewriteRule    ^(.*)\.html$  $1/  [R]
-
-# 2010-08
-RewriteCond %{HTTP_HOST} ^okfn.org$
-RewriteRule                  ^/(wdmmg)  http://okfn.org/projects/$1 [R=301,L]
-RedirectMatch   permanent    ^/(pdw|datapkg|ckan|microfacts|vdm|econ|sysadmin|shakespeare|fcd|iai|kforge|kforge/overview|okftext)  http://okfn.org/projects/$1
-RedirectMatch   permanent    ^/((communia|okforums).*)  http://okfn.org/events/$1
-# Redirect permanent /participate http://okfn.org/get-involved
-Redirect permanent /board/wiki http://board.okfn.org/wiki
-Redirect permanent /about/advisory_board http://okfn.org/about/people
-
 # See http://trac.okfn.org/ticket/1100
 RewriteCond %{HTTP_HOST} ^okfn.org$
 RewriteRule ^/geo$      http://wiki.okfn.org/Open_Geo_Data [R=301,L] 
 RewriteCond %{HTTP_HOST} ^okd.okfn.org$
 RewriteRule ^/(.*)      http://opendefinition.org/$1 [R=301,L]
-
-
-# 2011-02-16 ckan.org
-RewriteCond %{HTTP_HOST} ^ckan.org$
-# RewriteCond %{REQUEST_URI} ^/(ticket|timeline|wiki)(.*)
-RewriteRule ^/(ticket|timeline|wiki|query|milestone)(.*)$ http://trac.ckan.org/$1$2
-
-RewriteCond %{HTTP_HOST} ^blog.ckan.org$
-RewriteRule ^(.*)$ http://ckan.org$1 [R=301,L]
-
-RewriteCond %{HTTP_HOST} ^www.ckan.org$
-RewriteRule ^(.*)$ http://ckan.org$1 [R=301,L]
 
 # 2011-08-10 Redirect for deprecated site
 RewriteCond %{HTTP_HOST} ^publicdomaincalculators.okfn.org$
@@ -93,10 +47,15 @@ RewriteRule ^(.*)$ http://publicdomain.okfn.org$1 [R=301,L]
 # 2011-09-15 This had been in the WP redirector plugin http://trac.okfn.org/ticket/638
 RewriteCond %{HTTP_HOST} ^opendefinition.org$
 RewriteRule ^/1.0$            http://opendefinition.org/okd/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^opendefinition.org$
 RewriteRule ^/1.0/(.*)$       http://opendefinition.org/okd/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^opendefinition.org$
 RewriteRule ^/FrontPage/(.*)$ http://opendefinition.org/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^opendefinition.org$
 RewriteRule ^/open_format_definition/(.*)$ http://opendefinition.org/ofd/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^opendefinition.org$
 RewriteRule ^/osd/(.*)$       http://opendefinition.org/software-service/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^opendefinition.org$
 RewriteRule ^/ossd/(.*)$      http://opendefinition.org/software-service/$1 [R=301,L]
 
 
