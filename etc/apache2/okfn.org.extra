@@ -37,9 +37,6 @@ RewriteEngine  on
 RewriteCond %{HTTP_HOST} ^okfn.org$
 RewriteRule ^/geo$      http://wiki.okfn.org/Open_Geo_Data [R=301,L] 
 
-RewriteCond %{HTTP_HOST} ^okd.okfn.org$
-RewriteRule ^/(.*)      http://opendefinition.org/$1 [R=301,L]
-
 RewriteCond %{HTTP_HOST} ^publicdomaincalculators.okfn.org$
 RewriteRule ^(.*)$ http://publicdomain.okfn.org$1 [R=301,L]
 
