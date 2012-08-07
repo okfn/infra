@@ -12,6 +12,11 @@ server {
 		rewrite ^(.*)$ http://www.thedatawrangler.org$1 permanent; 
 	}
 
+	if ( $host = isitopendata.org ) {
+		rewrite ^(.*)$ http://www.isitopendata.org$1 permanent; 
+	}
+
+
 	# See http://trac.okfn.org/ticket/1225
 	if ( $host = semantic.ckan.net ) {
 		rewrite ^(.*)$ http://notice.ckan.org/semantic.ckan.net-down.html permanent;
