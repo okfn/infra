@@ -34,25 +34,8 @@ DocumentRoot /home/okfn/var/wp/okfn.org
 
 # Redirects
 RewriteEngine  on
-
-RewriteCond %{HTTP_HOST} ^okfn.org$
-RewriteRule ^/geo$      http://wiki.okfn.org/Open_Geo_Data [R=301,L] 
-
 RewriteCond %{HTTP_HOST} ^publicdomaincalculators.okfn.org$
 RewriteRule ^(.*)$ http://publicdomain.okfn.org$1 [R=301,L]
-
-RewriteCond %{HTTP_HOST} ^opendefinition.org$
-RewriteRule ^/1.0$            http://opendefinition.org/okd/ [R=301,L]
-RewriteCond %{HTTP_HOST} ^opendefinition.org$
-RewriteRule ^/1.0/(.*)$       http://opendefinition.org/okd/$1 [R=301,L]
-RewriteCond %{HTTP_HOST} ^opendefinition.org$
-RewriteRule ^/FrontPage/(.*)$ http://opendefinition.org/$1 [R=301,L]
-RewriteCond %{HTTP_HOST} ^opendefinition.org$
-RewriteRule ^/open_format_definition/(.*)$ http://opendefinition.org/ofd/$1 [R=301,L]
-RewriteCond %{HTTP_HOST} ^opendefinition.org$
-RewriteRule ^/osd/(.*)$       http://opendefinition.org/software-service/$1 [R=301,L]
-RewriteCond %{HTTP_HOST} ^opendefinition.org$
-RewriteRule ^/ossd/(.*)$      http://opendefinition.org/software-service/$1 [R=301,L]
 
 # Logging
 ErrorLog /var/log/apache2/okfn.org.error.log
