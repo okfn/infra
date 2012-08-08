@@ -34,12 +34,6 @@ ServerAlias schoolofdata.org www.schoolofdata.org
 ServerAlias textusproject.org www.textusproject.org
 
 
-# Redirects
-RewriteEngine  on
-RewriteCond %{HTTP_HOST} ^publicdomaincalculators.okfn.org$
-RewriteRule ^(.*)$ http://publicdomain.okfn.org$1 [R=301,L]
-
-
 DocumentRoot /home/okfn/var/wp/okfn.org
 
 
