@@ -8,6 +8,11 @@ server {
 		index  index.html index.htm;
 	}
 
+	# See http://trac.okfn.org/ticket/1281#comment:18
+	if ( $host = publicdomaincalculators.okfn.org ) {
+		rewrite ^(.*)$ http://publicdomain.okfn.org$1 permanent; 
+	}
+
 	if ( $host = thedatawrangler.org ) {
 		rewrite ^(.*)$ http://www.thedatawrangler.org$1 permanent; 
 	}
