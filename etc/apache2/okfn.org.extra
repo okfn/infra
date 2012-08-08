@@ -34,20 +34,20 @@ ServerAlias schoolofdata.org www.schoolofdata.org
 ServerAlias textusproject.org www.textusproject.org
 
 
-DocumentRoot /home/okfn/var/wp/okfn.org
+#DocumentRoot /home/okfn/var/wp/okfn.org
 
 
 # Proxy to new blogfarm.okserver.org
 #
-#DocumentRoot /var/www/
-#<Proxy *>
-#    Order deny,allow
-#    Allow from all
-#</Proxy>
-#ProxyRequests Off
-#ProxyPreserveHost On
-#ProxyPass         / http://199.204.138.90/
-#ProxyPassReverse  / http://199.204.138.90/
+DocumentRoot /var/www/
+<Proxy *>
+    Order deny,allow
+    Allow from all
+</Proxy>
+ProxyRequests Off
+ProxyPreserveHost On
+ProxyPass         / http://199.204.138.90/
+ProxyPassReverse  / http://199.204.138.90/
 
 
 # Logging
