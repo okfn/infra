@@ -13,16 +13,25 @@
     RewriteCond %{HTTP_HOST} ^www\.thedatahub\.org$ [NC]
     RewriteRule ^(.*)$ http://thedatahub.org$1 [R=301,L]
 
+    #maintenance mode
+    RewriteRule ^(.*)/new /return_503 [PT,L]
+    RewriteRule ^(.*)/create /return_503 [PT,L]
+    RewriteRule ^(.*)/authz /return_503 [PT,L]
+    RewriteRule ^(.*)/edit /return_503 [PT,L]
+    RewriteCond %{REQUEST_METHOD} !^GET$ [NC]
+    RewriteRule (.*) /return_503 [PT,L]
+
+
     # CORS stuff for DataDeck etc
-    Header always set Access-Control-Allow-Origin "*"
-    Header always set Access-Control-Allow-Methods "POST, PUT, GET, OPTIONS"
-    Header always set Access-Control-Allow-Headers "X-CKAN-API-KEY"
+    # Header always set Access-Control-Allow-Origin "*"
+    # Header always set Access-Control-Allow-Methods "POST, PUT, GET, OPTIONS"
+    Header always set Access-Control-Allow-Headers "X-CKAN-API-KEY, Content-Type, Authorization"
     # Respond to all OPTIONS requests with 200 OK
     # This could be done in the webapp
     # This is need for pre-flighted requests (POSTs/PUTs)
-    RewriteEngine On
-    RewriteCond %{REQUEST_METHOD} OPTIONS
-    RewriteRule ^(.*)$ $1 [R=200,L]
+    # RewriteEngine On
+    # RewriteCond %{REQUEST_METHOD} OPTIONS
+    # RewriteRule ^(.*)$ $1 [R=200,L]
 
     # hacks to control java robot that is hammering the site 2010-05-07
     <Location />
@@ -46,7 +55,7 @@ RewriteRule .* - [F]
     </Location>
 
     WSGIScriptAlias / /home/okfn/var/srvc/ckan.net/pyenv/bin/ckan.net.py
-    WSGIDaemonProcess ckan.net display-name=ckan.net processes=10 threads=1 maximum-requests=25
+    WSGIDaemonProcess ckan.net display-name=ckan.net processes=5 threads=1 maximum-requests=25
     WSGIProcessGroup ckan.net
 
     # pass authorization info on (needed for rest api)
