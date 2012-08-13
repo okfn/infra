@@ -256,6 +256,10 @@
     "nareshv": {
       "name": "Naresh Venkateshappa",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAw2tE5qBJX8zbO6diQFIbvcgeNXPX3LC8YrPIuWwqNnxkgPnWs6IDDkP1JBakUtl7ufrJC86U8v4/wJKI/3h2AQtPf5U4bUNAgkdeUTSW5IAD5l+KusI/Kb4qXXIurr8Go3z0txMBuvRK8T6Xs0FGNvfWxtOD17O/iz6eUiyNKus= naresh@m1-sv-xbox"
+    },
+    "juhahuuskonen": {
+      "name": "Juha Huuskonen",
+      "key": "ssh-dss AAAAB3NzaC1kc3MAAACBAKGIRqCBnX2Y3HMSka4Quwo92GTYtPFBR8sj+SSsFHsPeoiuBNdyRHoPWFjTTZEUl+IEo13S5R4IH9Bka39zT5eusAFdVGSEX5LCXProBvCwTVx3apjkwIklHi0j78+albzLMLLhEFcvjcYjm0V05025OFvUTHh+uabznp71J8F/AAAAFQDeI+v3hPb1fTJKaVZTSaAaCjATpQAAAIAjQepG4tpqjEOVPlTVU43uA2WnvXJ0OBr5zirG3CyfKYjf8eZ/UT+U4PcUd5KBG9NFNQabfstwHE0/xKPM4D6MeWESegbxOFhZa1GVSfdfIHBtmDpJYRcbjB9by3CPLUkKZth0YrU45RUdT6AR6Aur0saae5b8GgREoEsiiTiUxwAAAIArd1j4ph0DyMlBG/w4jXxg/LUp7ofM65G/6riTJNphqhSnrEjd0+XhHlI6rcMtpvRBhLjOieSuiu3hX17BnV7GF4dmkW8rpkPrz18vmAmnBANEV4br8MozB64APOwwfpLApuhQCyhcVbY8P7Wn9qIjRLiQSGSeqUaZJSZ5VsClTA== juhahuuskonen@Juhas-MacBook-Air.local"
     }
   }
 }
