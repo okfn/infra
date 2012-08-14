@@ -8,6 +8,10 @@ server {
 		index  index.html index.htm;
 	}
 
+	if ( $host = weavinghistory.org ) {
+		rewrite ^(.*)$ http://www.weavinghistory.org$1 permanent; 
+	}
+
 	# See http://trac.okfn.org/ticket/1281#comment:18
 	if ( $host = publicdomaincalculators.okfn.org ) {
 		rewrite ^(.*)$ http://publicdomain.okfn.org$1 permanent; 
