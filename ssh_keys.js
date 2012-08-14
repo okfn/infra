@@ -264,6 +264,10 @@
     "bernardvatant": {
       "name": "Bernard Vatant",
       "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEA5ivVSZYurttuB0lcySHh7QpVGy+PPcQcKZofCOhbaTIH17QFz1bBrJ1cjiz47XGLMAgAS61G0RH3231Wy+jKEMcfAq1yRw7dOeunayJKi3PqQ90+jAe2OFpTXqhs2LFgcyOTXoOwVQ9uYsuB7d8kLnvF6y9GMtifeDR22sNuGdk= bernard.vatant@mondeca.com"
+    },
+    "joelrebello": {
+      "name": "Joel Rebello",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCuulvyQl+IMyRB+JZnrBGBKd2e4uxKZNy5oD3vTQPeT+5D8pe/0qsOm1T/x81daWMgwCLMY1hzQdZ2NhXKbc6jKp7q5n/l4N+avWj2+FwM/AI1aq3R4Du6WD+E+a70cscab5OGu7AmI7rdEuR41+QAFPnL99lt6XbdjL5SRMNC8SRlvUhbw4fF+N0a5B+ZbYgvQ9hkPWjtzCKawJupFZwIbr+l/Df5Noc56hnQDJPhxumF/BD4VUKngq3t2Q3bCGplZqbF6rZLwdJo2FfZo76Ysej3mBXQr+NysEn93YPAPpCy80eLaS1Wn0OD6S/GEoYZ4SVfRWNwyyiq6FpQXiIt joel.re@nixbox"
     }
   }
 }
