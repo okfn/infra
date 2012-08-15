@@ -8,6 +8,11 @@ server {
 		index  index.html index.htm;
 	}
 
+	# See http://trac.okfn.org/ticket/1294
+	if ( $host = bibjson.org ) {
+		rewrite ^(.*)$ http://www.bibjson.org$1 permanent; 
+	}
+
 	if ( $host = weavinghistory.org ) {
 		rewrite ^(.*)$ http://www.weavinghistory.org$1 permanent; 
 	}
