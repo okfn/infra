@@ -82,10 +82,10 @@ server {
 	}
 
 	if ( $host = ckan.net ) {
-		rewrite ^(.*)$ http://thedatahub.org$1 permanent; 
+		rewrite ^(.*)$ http://datahub.io$1 permanent; 
 	}
 	if ( $host = www.ckan.net ) {
-		rewrite ^(.*)$ http://thedatahub.org$1 permanent; 
+		rewrite ^(.*)$ http://datahub.io$1 permanent; 
 	}
 
 	if ( $host = opendatachallenge.org ) {
