@@ -1,6 +1,3 @@
-# Nils and Joel fooling around
-
-
 ServerName  blogfarm.okserver.org
 
 ServerAlias okfn.org *.okfn.org
