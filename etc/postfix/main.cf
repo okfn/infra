@@ -1,3 +1,23 @@
+###############################################################################
+#
+# IMPORTANT NOTE, READ!
+#
+# This is a generic, unspecific /etc/postfix/main.cf for new VMs, meant for 
+# sending out mail only. 
+#
+# If you are making any changes specific to this very host, make sure this
+# very /etc/postfix/main.cf is NOT a softlink to the sysadmin repository!
+# Otherwise your change will propagate into the sysadmin repo and from there 
+# to other VMs where it might break Postfix!
+#
+# Once this file is not a softlink to the sysadmin repository, you might 
+# remove this notice.
+#
+# See also http://trac.okfn.org/ticket/1309         <nils.toedtmann@okfn.org>
+#
+###############################################################################
+
+
 # See /usr/share/postfix/main.cf.dist for a commented, more complete version
 
 smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)
