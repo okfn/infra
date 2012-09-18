@@ -885,10 +885,10 @@ def _postfix_headless_dpkg_reconfigure():
     run('echo "postfix postfix/main_mailer_type        select  No configuration" | sudo debconf-set-selections')
 
 
-def postfix_install(copy_config=False, relay=None):
+def postfix_install(copy_config=True, relay=None):
     '''Install postfix and coufigure from sysadmin repo for sending only
-    Use "copy_config=True" to copy the config from Bitbucket rather than
-    softlinking it from the local hg repository
+    Use "copy_config=False" to softlink the config from the local hg 
+    repository rather than copying it from bitbucket.
     '''
 
     # if we configure a relay we must have a local copy
