@@ -617,7 +617,10 @@ def upgrade(update_first=True):
     if update_first:
         _sudo('apt-get update')
     _sudo('apt-get -y autoremove')
-    _sudo('apt-get -y upgrade')
+    run('echo "grub    grub/update_grub_changeprompt_threeway  select  install_new" > /tmp/grub.preseed')
+    _sudo('/usr/bin/debconf-set-selections /tmp/grub.preseed')
+    with prefix('export DEBIAN_FRONTEND=noninteractive'):	
+        _sudo('apt-get -y upgrade')
 
 
 def install_set(package_set='basics', update_first=False):
