@@ -8,6 +8,10 @@ server {
 		index  index.html index.htm;
 	}
 
+	if ( $host = colorado.ckan.net ) {
+		rewrite ^(.*)$ http://data.opencolorado.org/ permanent; 
+	}
+
 	# See http://trac.okfn.org/ticket/1294
 	if ( $host = bibjson.org ) {
 		rewrite ^(.*)$ http://www.bibjson.org$1 permanent; 
