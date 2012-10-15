@@ -42,6 +42,9 @@
 
 	CustomLog /var/log/apache2/lov.okfn.org-access.log combined
 
+	RewriteEngine  on
+	RewriteRule    ^/dataset/$  /dataset/lov/  [R]
+
 	<Proxy *>
 		Order allow,deny
 		Allow from all
