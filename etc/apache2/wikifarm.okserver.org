@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+    ServerName     wikifarm.okserver.org
+    
+    ServerAlias    testwiki.okserver.org
+    ServerAlias    testwiki2.okserver.org
+  # ServerAlias    wiki.ckan.org
+  # ServerAlias    wiki.offenerhaushalt.de
+  # ServerAlias    wiki.okfn.de
+  # ServerAlias    wiki.okfn.org
+  # ServerAlias    wiki.openliterature.net
+  # ServerAlias    methods.okfn.org
+
+    DocumentRoot /home/okfn/var/wikifarm/
+
+    ErrorLog     /var/log/apache2/wikifarm.okserver.org.error.log
+    CustomLog    /var/log//apache2/wikifarm.okserver.org.log combined
+
+</VirtualHost>
