@@ -1,5 +1,5 @@
 <VirtualHost *:80>
-    ServerName wiki.openspending.org
+    ServerName oldwiki.openspending.org
     DocumentRoot /home/okfn/var/srvc/wiki.openspending.org
 
     #Alias /wiki /home/okfn/var/srvc/wiki.openspending.org/wiki/index.php
