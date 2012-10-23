@@ -1,0 +1,78 @@
+<VirtualHost *:80>
+	ServerName  lov.okfn.org
+	ServerAdmin sysadmin@okfn.org
+
+	DocumentRoot /var/www
+
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+
+	#<Directory /var/www>
+        #        Options Indexes FollowSymLinks MultiViews
+        #        AllowOverride None
+        #        Order allow,deny
+        #        allow from all
+        #</Directory>
+
+
+
+	##### TO BE CHECKED
+	<Directory /var/www>
+		RewriteEngine on
+		RewriteRule ^([^/]*)$ /dataset/lov [QSA,L,R=301]
+	</Directory>	
+	##### NOT ABLE TO DO THE REDIRECTION FROM /var/www/dataset to /var/www/dataset/lov
+
+
+
+	<Directory /var/www/vocab>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+        </Directory>
+	
+	ErrorLog /var/log/apache2/lov.okfn.org-error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog /var/log/apache2/lov.okfn.org-access.log combined
+
+	RewriteEngine  on
+	RewriteRule    ^/dataset/$  /dataset/lov/  [R]
+
+	<Proxy *>
+		Order allow,deny
+		Allow from all
+	</Proxy>
+
+	ProxyRequests	Off
+	ProxyVia	On
+
+
+	ProxyPass        /openrdf-workbench http://localhost:8180/openrdf-workbench
+        ProxyPassReverse /openrdf-workbench http://localhost:8180/openrdf-workbench
+
+	ProxyPass 	 /node01 http://localhost:8180
+	ProxyPassReverse /node01 http://localhost:8180
+
+ 	ProxyPass        /dataset/lov/search http://localhost:8280/lovSearch
+        ProxyPassReverse /dataset/lov/search http://localhost:8280/lovSearch
+
+	ProxyPass	 /edition/lov http://localhost:8280/lovedition
+	ProxyPassReverse /edition/lov http://localhost:8280/lovedition
+	
+        ProxyPass 	 /endpoint/lov_aggregator http://localhost:8280/sparql_form_lov_aggregator
+        ProxyPassReverse /endpoint/lov_aggregator http://localhost:8280/sparql_form_lov_aggregator
+
+	ProxyPass 	 /endpoint/lov http://localhost:8280/sparql_form_lov
+        ProxyPassReverse /endpoint/lov http://localhost:8280/sparql_form_lov
+
+	ProxyPass        /dataset/lov/suggest http://localhost:8280/lovSuggest
+        ProxyPassReverse /dataset/lov/suggest http://localhost:8280/lovSuggest
+
+</VirtualHost>
