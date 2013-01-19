@@ -1,5 +1,5 @@
     upstream app_server {
-        server 127.0.0.1:18000;
+        server 127.0.0.1:18000 fail_timeout=0;
     }
 
     server {
@@ -17,7 +17,6 @@
   	gzip_disable     "MSIE [1-6]\.";
 
 	add_header Access-Control-Allow-Origin *;
-	
 
 	# cf https://github.com/okfn/openspending/issues/432 
 	rewrite ^/dataset/italyregionalaccounts /it-regional-accounts/embed?widget=treemap&state=%7B"drilldown"%3A"function"%2C"cuts"%3A%7B"year"%3A"2008"%7D%7D permanent;
@@ -33,19 +32,11 @@
         }
 
         location / {
-		# if ($request_method = OPTIONS ) {
-		#  add_header Access-Control-Allow-Origin "*";
-		#  add_header Access-Control-Allow-Methods "GET, OPTIONS";
-		#  add_header Access-Control-Allow-Headers "Authorization";
-		#  add_header Access-Control-Allow-Credentials "true";
-		#  add_header Content-Length 0;
-		#  add_header Content-Type text/plain;
-		#  return 200;
-		#}
                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                  proxy_set_header Host $http_host;
                  proxy_redirect off;
-		 proxy_read_timeout 60s;
+		 proxy_connect_timeout 600s;
+		 proxy_read_timeout 3600s;
                  proxy_pass   http://app_server;
                  break;
         }
