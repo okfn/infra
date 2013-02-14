@@ -81,8 +81,8 @@ server {
 		rewrite ^(.*)$ http://iatiregistry.org$1 permanent; 
 	}
 
-	if ( $host = wiki.ckan.net ) {
-		rewrite ^(.*)$ http://wiki.ckan.org$1 permanent; 
+	if ( $host = oldwiki.ckan.net ) {
+		rewrite ^(.*)$ http://oldwiki.ckan.org$1 permanent; 
 	}
 
 	if ( $host = ckan.net ) {
