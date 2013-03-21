@@ -1,0 +1,6 @@
+---
+# This playbook deploys nagios plugins for monitoring purposes.
+
+- name: -> Install nagios-plugins
+  action: apt pkg=nagios-plugins state=installed
+  tags: install_nagios_plugins

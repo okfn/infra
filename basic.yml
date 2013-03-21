@@ -1,0 +1,11 @@
+---
+#This playbook runs on $hosts, $hosts can be passed via --extra-vars="hosts=all"
+- hosts: $hosts
+  sudo: True
+  user: okfn
+  gather_facts: False
+  tasks: 
+     - include: tasks/common.yml
+       vars:
+         user_list:
+           - nagios

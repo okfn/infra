@@ -1,0 +1,4 @@
+---
+#This playbook includes stuff thats common across multiple hosts - iptables, users, tcpwrappers etc
+ - include: playbooks/users.yml
+ - include: playbooks/nagios-plugins.yml

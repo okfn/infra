@@ -1,0 +1,12 @@
+---
+#This playbook deploys users and thier ssh keys
+
+- name: -> Add users
+  action: user name=$item comment="Monitoring" state=present
+  with_items: $user_list
+  tags: add_user
+
+- name: -> Install SSH keys
+  action: authorized_key user=$item state=present key='$FILE(files/ssh_${item}.pub)'
+  with_items: $user_list
+  tags: install_ssh_keys
