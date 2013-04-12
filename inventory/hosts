@@ -66,3 +66,9 @@ s088.okserver.org
 
 [wiki]
 s098.okserver.org dbserver=localhost managed=false hoster=RS
+
+[ckan:children]
+ckan-web-dev
+ckan-db-dev
+ckan-web-prod
+ckan-db-prod
