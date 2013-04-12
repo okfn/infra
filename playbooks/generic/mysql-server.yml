@@ -1,0 +1,5 @@
+---
+# This playbook installs php5-fpm
+- name: install_mysql_server
+  action: pkg=mysql-server state=installed
+  tags: install_mysql_server

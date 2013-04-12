@@ -1,3 +1,6 @@
+[ansible-dev]
+ansible-dev.okserver.org
+
 [openspending]
 s095.okserver.org
 s096.okserver.org
@@ -41,10 +44,6 @@ s078.okserver.org
 s092.okserver.org
 s094.okserver.org
 
-[epsi]
-s034.okserver.org
-s035.okserver.org
-
 [trac]
 s039.okserver.org
 
@@ -66,4 +65,4 @@ s073.okserver.org
 s088.okserver.org
 
 [wiki]
-s098.okserver.org dbserver=localhost
+s098.okserver.org dbserver=localhost managed=false hoster=RS

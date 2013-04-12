@@ -1,0 +1,16 @@
+---
+# This playbook gets nagios running, along with its config files.
+- name: -> install_nagios_server
+  action: apt pkg=nagios3 state=installed
+  tags: install_nagios_server
+
+- name: -> setup_nagios_config
+  action: copy src=$item dest=/etc/nagios3/
+  with_fileglob:
+     - files/nagios-server/nagios3/* 
+  action: copy src=$item dest=/etc/nagios3/conf.d/      
+  with_fileglob:
+     - files/nagios-server/nagios3/conf.d/*
+  notify: 
+     - reload nagios3
+  tags: setup_nagios_config

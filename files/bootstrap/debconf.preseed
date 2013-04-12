@@ -1,0 +1,3 @@
+postfix postfix/main_mailer_type        select  No configuration
+grub    grub/update_grub_changeprompt_threeway  select  install_new
+postfix postfix/mailname        string  localhost

@@ -1,0 +1,5 @@
+---
+# This playbook installs php5-fpm
+- name: install_php5_fpm
+  action: pkg=php5-fpm state=installed
+  tags: install_php5_fpm

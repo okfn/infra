@@ -1,0 +1,4 @@
+---
+dbserver: 10.182.4.73
+solrserver: 10.182.4.73
+elasticserver: 10.182.4.73

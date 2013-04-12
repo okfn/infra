@@ -1,0 +1,12 @@
+---
+# This file contains variables that are common across all hosts
+basedir: /home/okfn/ansible
+private: /root/private/ansible
+files: /home/okfn/ansible/files
+handlers: /home/okfn/ansible/handlers
+tasks: /home/okfn/ansible/tasks
+vars: /home/okfn/ansible/vars
+
+sysadmin_email: sysadmin@okfn.org
+locale_list:
+   - en_GB.utf8
