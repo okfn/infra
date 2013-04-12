@@ -1,0 +1,3 @@
+---
+#variables that you'd like to apply to all ckan servers
+devs-system-group: ckan-devs 
