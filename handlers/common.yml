@@ -9,3 +9,18 @@
 
 - name: restart sshd
   service: name=sshd state=restarted
+
+- name: restart ufw
+  service: name=ufw state=restarted
+
+- name: reload apache
+  service: name=apache2 state=reloaded
+
+- name: stop apache
+  service: name=apache2 state=stopped
+
+- name: reload nginx
+  service: name=nginx state=reloaded
+
+- name: restart jetty
+  service: name=jetty state=restarted

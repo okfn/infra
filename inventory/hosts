@@ -38,11 +38,13 @@ s087.okserver.org
 s091.okserver.org
 s093.okserver.org
 s099.okserver.org
+s102.okserver.org
 
 [ckan-db-prod]
 s078.okserver.org
 s092.okserver.org
 s094.okserver.org
+s103.okserver.org
 
 [trac]
 s039.okserver.org
@@ -72,3 +74,4 @@ ckan-web-dev
 ckan-db-dev
 ckan-web-prod
 ckan-db-prod
+ansible-dev 

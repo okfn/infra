@@ -1,0 +1,25 @@
+{% set DOMAIN = {{ item[0] }}  %}
+{% set ALIAS =  {{ item[1] }}  %}
+{% set IP =  {{ item[2] }}  %}
+{% set PORT = {{ item[3]  }}	 %}
+{% set CKAN_NAME =  {{ DOMAIN }}.split('.')[0]  %}
+
+<VirtualHost {{ IP }}:{{ PORT }} >
+
+    ServerName {{ DOMAIN }}
+    ServerAlias {{ ALIAS }}
+
+    # this is our app
+    WSGIScriptAlias / /etc/ckan/{{ CKAN_NAME }}/apache.wsgi
+
+    # pass authorization info on (needed for rest api)
+    WSGIPassAuthorization On
+
+    # Deploy as a daemon (avoids conflicts between CKAN instances)
+    WSGIDaemonProcess data display-name=data processes=4 threads=15 maximum-requests=10000
+    WSGIProcessGroup data
+
+    ErrorLog /var/log/apache2/{{ CKAN_NAME }}.error.log
+    CustomLog /var/log/apache2/{{ CKAN_NAME }}.custom.log combined
+
+</VirtualHost>

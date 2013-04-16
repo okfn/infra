@@ -48,7 +48,6 @@
 
      - name: -> run debconf
        action: shell /usr/bin/debconf-set-selections /tmp/debconf.preseed       
-       action: shell echo $DEBIAN_FRONTEND >>/tmp/test_env
        tags: run_debconf
 
      - name: apt upgrade

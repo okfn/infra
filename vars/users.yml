@@ -1,4 +1,5 @@
 ---
+# 
 users:
    sysadmin:
       - name: 'joel.re'
@@ -8,18 +9,22 @@ users:
       - name: 'ntoedtma'
         key: 'ssh-dss AAAAB3NzaC1kc3MAAACBAIDy8mdmywAu00uYm1fJvwW6kT5Mnjnu/nLoDjHPftqoRj+BPqlnM7Qp/OYzHQUoYsAEICSRdRgqdZxN/H1PKqL7H7IfImI2azaRjmnpolFCUpVdudPwRRt8vSqgHqLOxSlmlEt0N43Z3sCRJIwZ81vI65YTR/vYuDNHU+EBS7grAAAAFQDKra35hdKJMKI7avdQbUft7JR3vQAAAIB6/zHsyUtY2NmtlisqUbuExXxDtpeHpq4mdS/EEn4xUWP3DsT0DnJQTBKYaghfBvzeMSj3m/e/8DABQVUwhUEr6+u+BI8DQPmb46usN9vPBIa40OxmsKoTpkrSc/xKqtL+AjCDzziahlqBHpKMcCp9aPETRccVb4bHFaw/XoB19AAAAIBylraAM2b6Z9JphcSWha5yb+BWDyIh20Rkte8toumIylXs3Xj8do5C0n9hbRYICjslfjDsPdOTRiRbqbT5+ybVSYqsSmWPgiq+x1hdDlvFwZLiO21+TNjKYKVQ/0WqTFy0UY+v0d0CXUeemmi5ZBklQY4vitmjnyutyINIlPkTVA== ntoedtma@takatukaland.de'
         group: 'sysadmin'
-        
-   ckan-devs: 
+       
+      - name: 'okfn'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCuulvyQl+IMyRB+JZnrBGBKd2e4uxKZNy5oD3vTQPeT+5D8pe/0qsOm1T/x81daWMgwCLMY1hzQdZ2NhXKbc6jKp7q5n/l4N+avWj2+FwM/AI1aq3R4Du6WD+E+a70cscab5OGu7AmI7rdEuR41+QAFPnL99lt6XbdjL5SRMNC8SRlvUhbw4fF+N0a5B+ZbYgvQ9hkPWjtzCKawJupFZwIbr+l/Df5Noc56hnQDJPhxumF/BD4VUKngq3t2Q3bCGplZqbF6rZLwdJo2FfZo76Ysej3mBXQr+NysEn93YPAPpCy80eLaS1Wn0OD6S/GEoYZ4SVfRWNwyyiq6FpQXiIt joel.re@nixbox'
+        group: 'sysadmin' 
+
+   ckan_dev: 
       - name: 'seanh'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAu/MZqxJCkPOkzTfS+bcsuL7O0IfSQLyfH345fakk2d6LXPoLfCnnPdDlqiPmM8E+QR6/jtw+VE6qZcZFEgUV0zjJf6lvAj0GzJA8JN5h0hvECcsvF/35Beh5TlPkcCgux7x4MkLyhFAJDwWs8wu3ti/nzOV3ZMNp9/D2sPktlBnFz/k1hWzswm+0wQM5h0VSVqMM2m4IKhqHs88oqxnvBSMI4eAbH7+ri7RsppIpThpasPGpZWzPJEcmoAxNEF23ZuvHQ+lW3zvOJGiziqr5hSLxrOeb1l0kEymTMbOQBnpdN2T8Ha9XIVDEN+RyoKfQd6goeJb3kQ8A584mIpD8Jw== seanh@sooty.local' 
-        group: 'ckan-dev' 
+        group: 'ckan_dev' 
    
       - name: 'nigelbabu'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAub2He4lZRpsqxetF8+C1OCaVKfqo2FYxYKRhmBSzyqKFPC0Fg9WylQvqt+DXULCHyZn88kwuf39ifAaiWZ+Js7aXo3+aT6M/ggGI15z3DFhYkiVkU1mUTr8jHF8YaF8x7TRwxrMCQrrRoNgifN97lWhlvtQWFaIaUkXQTDXuZdMzLzJqoZ+Gvw/bjRkp9KyyVzWt99b/PWBWRJKL8DzKIH9/oIvLIow1ucP4DshZs/FZN1upT5RhRb+ydmcDgTj8054Va6XxQBJ1vWqShofvrUwkWQA3bGhZhtAfQHfpCvdCUjxr0C5GRZa8V8k6VKQJdOb2Sqjrq7PucR1G2CkSAQ== nigelbabu@nigelbabu-laptop'
-        group: 'ckan-dev'
+        group: 'ckan_dev'
       
       - name: 'adria'
-        group: 'ckan-dev'  
+        group: 'ckan_dev'  
         key: '' 
    
    monitoring:
