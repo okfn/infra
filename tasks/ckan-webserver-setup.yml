@@ -102,7 +102,7 @@
        tags: enable_apache_sites  
     
      - name: -> add_nginx_config
-       action: copy src=~/ansible/files/nginx/$project/default.conf dest=/etc/nginx/conf.d/default.conf
+       action: copy src=~/ansible/files/nginx/$project/proxy-ckan.conf dest=/etc/nginx/sites-available/proxy-ckan.conf
        notify: reload nginx
        tags: add_nginx_config
 
@@ -112,8 +112,7 @@
     #      - ${sites_enabled}
     #   tags: populate_nginx_sites
     #   
-     #- name: -> enable_nginx_sites   
-     #  action: file src=/etc/nginx/sites-available/${item[0]} dest=/etc/nginx/sites-enabled/${item[0]}
-     #  with_nested: 
-     #     - ${sites_enabled}
-     #  notify: reload nginx
+     - name: -> enable_nginx_proxy
+       action: file src=/etc/nginx/sites-available/proxy-ckan.conf dest=/etc/nginx/sites-enabled/proxy-ckan.conf
+       notify: reload nginx
+       tags: enable_nginx_proxy
