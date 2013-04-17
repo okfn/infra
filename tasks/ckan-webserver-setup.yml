@@ -101,6 +101,11 @@
        notify: reload apache 
        tags: enable_apache_sites  
     
+     - name: -> add_nginx_config
+       action: copy src=~/ansible/files/nginx/$project/default.conf dest=/etc/nginx/conf.d/default.conf
+       notify: reload nginx
+       tags: add_nginx_config
+
     #  - name: -> populate_nginx_sites
     #   action: template src=~/ansible/templates/nginx/${project}/vhost.j2 dest=/etc/nginx/sites-available/${item[0]}
     #   with_nested: 
