@@ -1,8 +1,10 @@
-{% set DOMAIN = {{ item[0] }}  %}
-{% set ALIAS =  {{ item[1] }}  %}
-{% set IP =  {{ item[2] }}  %}
-{% set PORT = {{ item[3]  }}	 %}
-{% set CKAN_NAME =  {{ DOMAIN }}.split('.')[0]  %}
+{% set DOMAIN = item[0] %}
+{% set ALIAS  = item[1] %} 
+{% set IP     = item[2] %}
+{% set PORT   = item[3] %}
+{% set CKAN_NAME  = item[0].split('.')[0] %} 
+
+#{{ DOMAIN }} - {{ ALIAS }} - {{ IP }} - {{ PORT }}  - {{ CKAN_NAME }}
 
 <VirtualHost {{ IP }}:{{ PORT }} >
 
@@ -19,7 +21,7 @@
     WSGIDaemonProcess data display-name=data processes=4 threads=15 maximum-requests=10000
     WSGIProcessGroup data
 
-    ErrorLog /var/log/apache2/{{ CKAN_NAME }}.error.log
-    CustomLog /var/log/apache2/{{ CKAN_NAME }}.custom.log combined
+    ErrorLog /var/log/apache2/{{ DOMAIN }}.error.log
+    CustomLog /var/log/apache2/{{ DOMAIN }}.custom.log combined
 
 </VirtualHost>

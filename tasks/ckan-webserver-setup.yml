@@ -18,12 +18,12 @@
 
   tasks:
 
-#     - name: -> test_variable
-#       action: debug msg="${item[0]} ${item[1]}"
-#       with_nested: 
-#          - ${sites}
-#       with_items: users.{{ devs_group }}
-#       tags: test_variable
+     - name: -> test_variable
+       action: debug msg="${item[0]} ${item[1]}"
+       with_nested: 
+          - ${sites}
+       with_items: users.{{ devs_group }}
+       tags: test_variable
      
      - name: -> add_group
        action: group name=${item} state=present
@@ -87,22 +87,26 @@
        notify: 
           - restart ufw
       
-    # - name: -> populate_apache_vhost_files
-    #   action: template src=~/ansible/templates/apache2/${project}/vhost.j2 dest=/etc/apache2/sites-available/${item}
-    #   with_items: ${sites_enabled}
-    #   tags: populate_apache_vhost_files
-     
-    # - name: -> enable_apache_sites
-    #   action: command /user/sbin/a2ensite ${item[0]} creates=/etc/apache2/sites-enabled/${item[0]}
-    #   with_nested: 
-    #      - ${sites_enabled}
-    #  notify: reload apache 
-  
-    # - name: -> populate_nginx_sites
+     - name: -> populate_apache_vhost_files
+       action: template src=~/ansible/templates/apache2/${project}/vhost.j2 dest=/etc/apache2/sites-available/${item[0]}
+       #action: debug msg={{ item[0] }}
+       with_nested: 
+          - ${sites_enabled}
+       tags: populate_apache_vhost_files
+
+     - name: -> enable_apache_sites
+       action: command /usr/sbin/a2ensite ${item[0]} creates=/etc/apache2/sites-enabled/${item[0]}
+       with_nested: 
+          - ${sites_enabled}
+       notify: reload apache 
+       tags: enable_apache_sites  
+    
+    #  - name: -> populate_nginx_sites
     #   action: template src=~/ansible/templates/nginx/${project}/vhost.j2 dest=/etc/nginx/sites-available/${item[0]}
     #   with_nested: 
-     #     - ${sites_enabled}
-       
+    #      - ${sites_enabled}
+    #   tags: populate_nginx_sites
+    #   
      #- name: -> enable_nginx_sites   
      #  action: file src=/etc/nginx/sites-available/${item[0]} dest=/etc/nginx/sites-enabled/${item[0]}
      #  with_nested: 

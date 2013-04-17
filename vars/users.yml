@@ -26,7 +26,11 @@ users:
       - name: 'adria'
         group: 'ckan_dev'  
         key: '' 
-   
+    
+      - name: 'johnglover'
+        group: 'ckan_dev'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA09+n7kVcUWDJaxouHfCCEjzbKlBgXcvTMFogZ7KwYm29XYqGZWsxXuNETItR52tqcOyx8r7YmQegJcYT/3bi4/bd4qm9lRoU0nPp3zfZIMMStHEIx0m9o9Vb3CfsPo2NxrpiupHfF8dfhj/KD+/DBvSLxDWx86xDwMjjAwKdtk01zjo4R6nXcJjYZNAe4kIhLYR9SgoUWFAFzzRewMFzQixZoqU79dEVdl4I/24FBRYbC5a1nG6PbPS4Dl/zI8iPBI3HSf++a1nhFiIu/7FymFTFaQJwpp7+JZI4RX1ETHDL6smEL8VhvLhUy6nMrI4hHpDh4DPy8BuH9tBqPJptgw== j@johnglover.net'
+       
    monitoring:
      - name: 'nagios'
        key: 'ssh-dss AAAAB3NzaC1kc3MAAACBAMRvaT872kSicvrV+fiFv8wTlQlCiTt8fQZxa4JZxnh7VhEU8B2qEOxUlhfdcyENVWlq8rWOLeAckS/RzU+nqPBoBV66M5JskKKYq38i3GLq8ym23ShtXqR36Y8RUDB3Sb4q0c2rovivZL/gSXt0Bmp3L28FnXWSERKo1aK8ZwoTAAAAFQCRFgH+iqohnXYlLqUs7FLSH25EfwAAAIAN0ekVKeGXhEiJ7n43dZWceo6Dx60aBdnLpV3DYTpWIlqqapNdEJLCwtnc7oEPblz7+AEiRmw3PrxqL6Ze3J5mrTasj582XaGx2D3ThTcL4ODlCWen97PaLeO+jCIIy8Y2F8+a6qesVxQBViJ2ImGgye4MJD36BD5OP1xkfVwQEwAAAIEAuMAHzb1eP/xq+62YtA0ISlp9T07Mf4cS53D1SSU9Bj4l69rgKDDiM5e7tM4GPKsAsD4HV059RcukyVa/1WPLUlPXQ/2Wg1a1zhfdpM2emQ6L1g9nrSPf1H2f5Xrx9KJyXpVwLqaAhh2VQ581YdkPftEofMG0V6tHeK5S3o63HnY= nagios@eu1.okfn.org'

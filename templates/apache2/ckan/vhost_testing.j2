@@ -1,0 +1,6 @@
+{% set DOMAIN = item[0] %}
+{% set ALIAS  = item[1] %} 
+{% set IP     = item[2] %}
+{% set PORT   = item[3] %}
+{% set NAME   = item[0].split('.')[0] %} 
+{{ DOMAIN }} - {{ ALIAS }} - {{ IP }} - {{ PORT }}  - {{ NAME }}
