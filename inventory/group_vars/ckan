@@ -1,5 +1,5 @@
 ---
 #variables that you'd like to apply to all ckan servers
 devs_group: 'ckan_dev'
-pg_port: 5432
+postgres_port: 5432
 solr_port: 8983

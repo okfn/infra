@@ -99,9 +99,11 @@
        tags: set_postgres_samenet_config
 
      - name: -> ufw config
-       action: copy src=~/ansible/files/ufw/$project/${host}.ufw dest=/lib/ufw/user.rules force=yes owner=root group=root mode=640
+       action: template src=~/ansible/templates/ufw/${project}/${role}.ufw.j2 dest=/lib/ufw/user.rules force=yes owner=root group=root mode=640
        tags: ufw_config
-       notify: restart ufw
-
-
+    
+     - name: ufw_enable
+       action: command /usr/sbin/ufw --force enable
+       tags: ufw_enable
+       notify: restart ufw       
 
