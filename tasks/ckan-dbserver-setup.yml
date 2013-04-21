@@ -1,5 +1,5 @@
 ---
-# run with 
+# run with
 #  ansible-playbook --connection=ssh  --extra-vars="host=s103.okserver.org" tasks/ckan-dbserver-setup.yml  -i inventory/hosts  -vv --tags="jetty_config,fetch_solr_config"
 # to run specific tasks use
 #  ansible-playbook --connection=ssh  --extra-vars="host=s103.okserver.org" tasks/ckan-dbserver-setup.yml  -i inventory/hosts  -vv --tags="jetty_config,fetch_solr_config"
@@ -11,30 +11,30 @@
    - project: ckan
    - host: $inventory_hostname
    - role: dbserver
-   - devs_group: ${project}_dev #jinja2 doesnt tolerate -'s  
+   - devs_group: ${project}_dev #jinja2 doesnt tolerate -'s
 
   vars_files:
-   - ~/ansible/vars/global.yml 
+   - ~/ansible/vars/global.yml
    - ~/ansible/vars/users.yml
-  
+
   handlers:
   - include: ~/ansible/handlers/common.yml
-   
+
   tasks:
 
 #     - name: -> test_variable
 #       action: debug msg="${item[0]} ${item[1]}"
-#       with_nested: 
+#       with_nested:
 #          - ${sites}
 #       with_items: users.{{ devs_group }}
 #       tags: test_variable
-     
+
      - name: -> add_group
        action: group name=${item} state=present
        with_items:
          - ${devs_group}
        tags: add_group
-  
+
      - name: -> add_user
        action: user name=${item.name} group=${item.group} state=present shell=/bin/bash
        with_items: users.{{ devs_group }}
@@ -45,19 +45,19 @@
        with_items: users.{{ devs_group }}
 
        tags: install_ssh_keys
-     
+
      - name: sudoers
        lineinfile: "dest=/etc/sudoers state=present regexp='^%${item}' line='%${item} ALL=(ALL) NOPASSWD: ALL'"
        with_items:
           - ${devs_group}
        tags: sudoers
-     
+
      - name: -> install packages
        action: apt pkg=${item} state=installed
        tags: install_packages
        with_items:
           - htop
-          - git 
+          - git
           - python-dev
           - postgresql-9.1
           - postgresql-9.1-postgis
@@ -71,7 +71,7 @@
        action: sysctl name=kernel.shmmax value=1143210240 state=present reload=yes sysctl_file=/etc/sysctl.conf
        tags: set_sysctl_shmmax
        ignore_errors: true
-    
+
      - name: backup_postgres_config
        action: command cp /etc/postgresql/9.1/main/postgresql.conf /etc/postgresql/9.1/main/postgresql.conf.orig
        tags: backup_postgres_config
@@ -81,29 +81,29 @@
        tags: run_pgtune
 
      - name: set_postgres_listen_address
-       lineinfile:  "dest=/etc/postgresql/9.1/main/postgresql.conf state=present regexp='^#listen_addresses' line='listen_addresses = '*''" 
+       lineinfile:  "dest=/etc/postgresql/9.1/main/postgresql.conf state=present regexp='^#listen_addresses' line='listen_addresses = '*''"
        tags: set_postgres_listen_address
-     
+
      - name: jetty_config
        action: copy  src=~/ansible/files/jetty/${project}/jetty.conf dest=/etc/default/jetty force=yes
        tags: jetty_config
 
      - name: fetch_solr_config
-       action: command wget https://raw.github.com/okfn/ckan/master/ckan/config/solr/schema-1.4.xml -O /etc/solr/conf/schema.xml creates=/etc/solr/conf/schema.xml
+       action: command wget https://raw.github.com/okfn/ckan/master/ckan/config/solr/schema-2.0.xml -O /etc/solr/conf/schema.xml creates=/etc/solr/conf/schema.xml
        tags: fetch_solr_config
        notify: restart jetty
        ignore_errors: true
 
      - name: set_postgres_samenet_config
-       lineinfile: "dest=/etc/postgresql/9.1/main/postgresql.conf state=present regexp='samenet md5$' line='host all all samenet md5'" 
+       lineinfile: "dest=/etc/postgresql/9.1/main/postgresql.conf state=present regexp='samenet md5$' line='host all all samenet md5'"
        tags: set_postgres_samenet_config
 
      - name: -> ufw config
        action: template src=~/ansible/templates/ufw/${project}/${role}.ufw.j2 dest=/lib/ufw/user.rules force=yes owner=root group=root mode=640
        tags: ufw_config
-    
+
      - name: ufw_enable
        action: command /usr/sbin/ufw --force enable
        tags: ufw_enable
-       notify: restart ufw       
+       notify: restart ufw
 
