@@ -1,0 +1,7 @@
+---
+site_id: sa
+dbserver_private_ip: 10.179.189.205
+solrserver_private_ip: 10.179.189.205
+elasticserver_private_ip: 10.179.189.205
+sites_enabled: 
+    - [ 'sa.ckan.net', 'www.sa.ckan.net', '0.0.0.0', '8080' ]
