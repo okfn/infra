@@ -36,7 +36,7 @@
        with_items: users.{{ devs_group }}
        tags: add_users
 
-     - name: -> install_ssh_keys"
+     - name: -> install_ssh_keys
        action: authorized_key user=${item.name} state=present key="${item.key}"
        with_items: users.{{ devs_group }}
 
@@ -49,15 +49,15 @@
        tags: sudoers
 
      - name: host_entries
-       lineinfile: "dest=/etc/hosts state=present regexp='dbserver$' line='${dbserver_ip} dbserver'"
+       lineinfile: "dest=/etc/hosts state=present regexp='dbserver$' line='${dbserver_private_ip} dbserver'"
        tags: hosts_entries
 
      - name: host_entries
-       lineinfile: "dest=/etc/hosts state=present regexp='solrserver$' line='${solrserver_ip} solrserver'"
+       lineinfile: "dest=/etc/hosts state=present regexp='solrserver$' line='${solrserver_private_ip} solrserver'"
        tags: hosts_entries
 
      - name: host_entries
-       lineinfile: "dest=/etc/hosts state=present regexp='elasticserver$' line='${elasticserver_ip} elasticserver'"
+       lineinfile: "dest=/etc/hosts state=present regexp='elasticserver$' line='${elasticserver_private_ip} elasticserver'"
        tags: hosts_entries
 
      - name: -> install packages

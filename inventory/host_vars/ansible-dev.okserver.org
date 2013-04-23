@@ -1,6 +1,6 @@
 ---
-dbserver_ip: 10.182.4.73
-solrserver_ip: 10.182.4.73
-elasticserver_ip: 10.182.4.73
+dbserver: 10.182.4.73
+solrserver: 10.182.4.73
+elasticserver: 10.182.4.73
 sites: 
     - [ 'edostate.ckan.net', '8080' ]
