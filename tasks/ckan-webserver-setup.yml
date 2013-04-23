@@ -113,6 +113,6 @@
     #   tags: populate_nginx_sites
     #
      - name: -> enable_nginx_proxy
-       action: file src=/etc/nginx/sites-available/proxy-ckan.conf dest=/etc/nginx/sites-enabled/proxy-ckan.conf
+       action: file src=/etc/nginx/sites-available/proxy-ckan.conf dest=/etc/nginx/sites-enabled/proxy-ckan.conf state=link
        notify: reload nginx
        tags: enable_nginx_proxy
