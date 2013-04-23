@@ -7,12 +7,12 @@
    - project: ckan
    - host: $inventory_hostname
    - role: webserver
-   - devs_group: ${project}_dev #jinja2 doesnt tolerate -'s 
+   - devs_group: ${project}_dev #jinja2 doesnt tolerate -'s
 
   vars_files:
-   - ~/ansible/vars/global.yml 
+   - ~/ansible/vars/global.yml
    - ~/ansible/vars/users.yml
- 
+
   handlers:
    - include: ~/ansible/handlers/common.yml
 
@@ -20,17 +20,17 @@
 
      - name: -> test_variable
        action: debug msg="${item[0]} ${item[1]}"
-       with_nested: 
+       with_nested:
           - ${sites}
        with_items: users.{{ devs_group }}
        tags: test_variable
-     
+
      - name: -> add_group
        action: group name=${item} state=present
        with_items:
          - ${devs_group}
        tags: add_group
-  
+
      - name: -> add_user
        action: user name=${item.name} group=${item.group} state=present shell=/bin/bash
        with_items: users.{{ devs_group }}
@@ -41,25 +41,25 @@
        with_items: users.{{ devs_group }}
 
        tags: install_ssh_keys
-     
+
      - name: sudoers
        lineinfile: "dest=/etc/sudoers state=present regexp='^%${item}' line='%${item} ALL=(ALL) NOPASSWD: ALL'"
        with_items:
           - ${devs_group}
        tags: sudoers
-     
+
      - name: host_entries
-       lineinfile: "dest=/etc/hosts state=present regexp='dbserver$' line='${dbserver_ip} dbserver'" 
+       lineinfile: "dest=/etc/hosts state=present regexp='dbserver$' line='${dbserver_ip} dbserver'"
        tags: hosts_entries
-       
+
      - name: host_entries
        lineinfile: "dest=/etc/hosts state=present regexp='solrserver$' line='${solrserver_ip} solrserver'"
        tags: hosts_entries
- 
+
      - name: host_entries
        lineinfile: "dest=/etc/hosts state=present regexp='elasticserver$' line='${elasticserver_ip} elasticserver'"
        tags: hosts_entries
-     
+
      - name: -> install packages
        action: apt pkg=${item} state=installed
        tags: install_packages
@@ -68,39 +68,39 @@
           - nginx
           - fail2ban
           - htop
-          - git 
+          - git
           - python-dev
           - postgresql-client-9.1
-          - python-psycopg2 
+          - python-psycopg2
           - libxml2-dev
           - libxslt1-dev
           - apache2
           - python-virtualenv
           - python-setuptools
-          - libpq5
+          - libpq-dev
           - libapache2-mod-wsgi
           - ufw
- 
+
      - name: -> ufw config
        action: copy src=~/ansible/files/ufw/$project/${role}.ufw dest=/lib/ufw/user.rules force=yes owner=root group=root mode=640
        tags: ufw_config
-       notify: 
+       notify:
           - restart ufw
-      
+
      - name: -> populate_apache_vhost_files
        action: template src=~/ansible/templates/apache2/${project}/vhost.j2 dest=/etc/apache2/sites-available/${item[0]}
        #action: debug msg={{ item[0] }}
-       with_nested: 
+       with_nested:
           - ${sites_enabled}
        tags: populate_apache_vhost_files
 
      - name: -> enable_apache_sites
        action: command /usr/sbin/a2ensite ${item[0]} creates=/etc/apache2/sites-enabled/${item[0]}
-       with_nested: 
+       with_nested:
           - ${sites_enabled}
-       notify: reload apache 
-       tags: enable_apache_sites  
-    
+       notify: reload apache
+       tags: enable_apache_sites
+
      - name: -> add_nginx_config
        action: copy src=~/ansible/files/nginx/$project/proxy-ckan.conf dest=/etc/nginx/sites-available/proxy-ckan.conf
        notify: reload nginx
@@ -108,10 +108,10 @@
 
     #  - name: -> populate_nginx_sites
     #   action: template src=~/ansible/templates/nginx/${project}/vhost.j2 dest=/etc/nginx/sites-available/${item[0]}
-    #   with_nested: 
+    #   with_nested:
     #      - ${sites_enabled}
     #   tags: populate_nginx_sites
-    #   
+    #
      - name: -> enable_nginx_proxy
        action: file src=/etc/nginx/sites-available/proxy-ckan.conf dest=/etc/nginx/sites-enabled/proxy-ckan.conf
        notify: reload nginx
