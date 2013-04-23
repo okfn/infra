@@ -18,8 +18,8 @@
     WSGIPassAuthorization On
 
     # Deploy as a daemon (avoids conflicts between CKAN instances)
-    WSGIDaemonProcess data display-name=data processes=4 threads=15 maximum-requests=10000
-    WSGIProcessGroup data
+    WSGIDaemonProcess {{ site_id }} display-name={{ site_id }} processes=4 threads=15 maximum-requests=10000
+    WSGIProcessGroup {{ site_id }}
 
     ErrorLog /var/log/apache2/{{ DOMAIN }}.error.log
     CustomLog /var/log/apache2/{{ DOMAIN }}.custom.log combined
