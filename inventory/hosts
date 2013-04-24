@@ -1,6 +1,9 @@
 [ansible-dev]
 ansible-dev.okserver.org
 
+[ansible-host]
+localhost
+
 [openspending]
 s095.okserver.org
 s096.okserver.org

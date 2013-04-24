@@ -73,30 +73,74 @@
        ignore_errors: true
 
      - name: backup_postgres_config
-       action: command cp /etc/postgresql/9.1/main/postgresql.conf /etc/postgresql/9.1/main/postgresql.conf.orig
+       action: command cp /etc/postgresql/9.1/main/postgresql.conf /etc/postgresql/9.1/main/${item}.orig creates=/etc/postgresql/9.1/main/${item}.orig
+       with_items:
+          - postgresql.conf
+          - pg_hba.conf
        tags: backup_postgres_config
+      
+     - name: setup_postgres_config
+       action: copy src=~/ansible/files/postgresql/9.1/${project}/postgresql.conf dest=/etc/postgresql/9.1/main/postgresql.conf.new 
+       tags: setup_postgres_config
+
+     - name: setup_postgres_config2
+       action: copy src=~/ansible/files/postgresql/9.1/${project}/pg_hba.conf dest=/etc/postgresql/9.1/main/pg_hba.conf mode=640 force=yes 
+       #lineinfile:  "dest=/etc/postgresql/9.1/main/postgresql.conf state=present regexp='^#listen_addresses' line='listen_addresses = '*''"
+       tags: setup_postgres_config2
 
      - name: run_pgtune
-       action: command pgtune -i /etc/postgresql/9.1/main/postgresql.conf -o /etc/postgresql/9.1/main/postgresql.conf
+       action: command pgtune -i /etc/postgresql/9.1/main/postgresql.conf.new -o /etc/postgresql/9.1/main/postgresql.conf creates=/etc/postgresql/9.1/main/postgresql.conf
        tags: run_pgtune
-
-     - name: set_postgres_listen_address
-       lineinfile:  "dest=/etc/postgresql/9.1/main/postgresql.conf state=present regexp='^#listen_addresses' line='listen_addresses = '*''"
-       tags: set_postgres_listen_address
 
      - name: jetty_config
        action: copy  src=~/ansible/files/jetty/${project}/jetty.conf dest=/etc/default/jetty force=yes
        tags: jetty_config
 
+       ##start solr setup 
      - name: fetch_solr_config
        action: command wget https://raw.github.com/okfn/ckan/master/ckan/config/solr/schema-2.0.xml -O /etc/solr/conf/schema.xml creates=/etc/solr/conf/schema.xml
        tags: fetch_solr_config
-       notify: restart jetty
        ignore_errors: true
 
-     - name: set_postgres_samenet_config
-       lineinfile: "dest=/etc/postgresql/9.1/main/postgresql.conf state=present regexp='samenet md5$' line='host all all samenet md5'"
-       tags: set_postgres_samenet_config
+     - name: place_solr_xml
+       action: template src=~/ansible/templates/solr/${project}/solr.xml.j2 dest=/usr/share/solr/solr.xml
+       tags: place_solr_xml
+
+     - name: create_solr_varlib_dirs
+       action: file path=/var/lib/solr/data/${item} state=directory owner=jetty group=jetty
+       with_items: solr_cores
+       tags: create_solr_varlib_dirs
+    
+     - name: create_solr_usrshare_dirs
+       action: file path=/usr/share/solr/${item} state=directory owner=root group=root
+       with_items: solr_cores
+       tags: create_solr_usrshare_dirs
+
+     - name: create_solr_etc_dirs
+       action: command mkdir /etc/solr/${item} creates=/etc/solr/${item}
+       with_items: solr_cores
+ 
+     - name: create_solr_etc_dirs
+       action: command cp -aR /etc/solr/conf /etc/solr/${item}/  creates=/etc/solr/${item}/conf
+       with_items: solr_cores
+     
+     - name: move_solr_orig_config
+       action: command mv /etc/solr/conf /etc/solr/conf.orig creates=/etc/solr/conf.orig
+       
+     - name: create_solr_usr_links
+       action: file src=/etc/solr/${item}/conf dest=/usr/share/solr/${item}/conf state=link
+       with_items: solr_cores
+ 
+     - name: solrconfig_xml
+       action: file src=~/ansible/files/solr/${project}/solrconfig-multicore.xml dest=/etc/solr/${item}/conf/solrconfig.xml state=file
+       with_items: solr_cores
+       notify: restart jetty
+       ##end solr setup
+
+#     - name: remove_old
+#     - name: set_postgres_samenet_config
+#       lineinfile: "dest=/etc/postgresql/9.1/main/postgresql.conf state=present regexp='samenet md5$' line='host all all samenet md5'"
+#       tags: set_postgres_samenet_config
 
      - name: -> ufw config
        action: template src=~/ansible/templates/ufw/${project}/${role}.ufw.j2 dest=/lib/ufw/user.rules force=yes owner=root group=root mode=640
