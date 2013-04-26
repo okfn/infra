@@ -1,4 +1,5 @@
 ---
+#ansible-playbook --connection=ssh  --extra-vars="host=s106.okserver.org" tasks/bootstrap.yml -v -k  -i inventory/hosts
 - hosts: $host
   gather_facts: false
   connection: ssh

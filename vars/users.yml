@@ -23,10 +23,14 @@ users:
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAub2He4lZRpsqxetF8+C1OCaVKfqo2FYxYKRhmBSzyqKFPC0Fg9WylQvqt+DXULCHyZn88kwuf39ifAaiWZ+Js7aXo3+aT6M/ggGI15z3DFhYkiVkU1mUTr8jHF8YaF8x7TRwxrMCQrrRoNgifN97lWhlvtQWFaIaUkXQTDXuZdMzLzJqoZ+Gvw/bjRkp9KyyVzWt99b/PWBWRJKL8DzKIH9/oIvLIow1ucP4DshZs/FZN1upT5RhRb+ydmcDgTj8054Va6XxQBJ1vWqShofvrUwkWQA3bGhZhtAfQHfpCvdCUjxr0C5GRZa8V8k6VKQJdOb2Sqjrq7PucR1G2CkSAQ== nigelbabu@nigelbabu-laptop'
         group: 'ckan_dev'
       
-      - name: 'adria'
+      - name: 'amercader'
         group: 'ckan_dev'  
-        key: '' 
-    
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbltE2VNWmeaPpMhDOYuNo++ZSnrCCxUi2HAmOIcATTSjc2mMi3xfVcAXeuHrJRSpNdB1cH6O0rSBJfikYV3zlz1nFVQD4uR4yRUI5Bw92PcgoTkVNNjLX/FjNVlSwnGTSoXMoCJl8Hx3gvjoplMGZgPtOlujPr4XJpJbld82+Oyc23wkBXZuf6m4RpcT/yPcJq++kY++2VzFmjeEQeGMz6pWkHAvx2iXKUWDzxHYgQi9lrqtlLG56IOW10wlLjDZNP1ij97MJyHOlPaQ1oHgTcus88YXkFbr3K8Zm5l/7FnXgGDey0NPMdrHQJu9gYQTTIZJ+hI2K/K3pI9inAgaZ amercadero@gmail.com' 
+   
+      - name: 'david'
+        group: 'ckan_dev' 
+        key:  'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1dSe9TaMh9ahRdrWgn1J1vNQfhfyuvQ4t5fFjlJkUc00RHrBShacT0urVduJWSCEGSJCLjxZnbK6kJgACnqeCQeMwBvJ8RebPkFAxTh4SBxgjpuCfx42DiBTzirPy2Xi4JSKqRpsQVnnCnlNOVSZYHwZzUo+WvjR/6B6Azfg31ojiWuNiIMLwJvCK2ZJOCx1cGkTdkys+SPYyBkooFO4+AeAXNuBPYSNn/JBLmtACaoR+cwPGMFYXT3w8t/uqweEpp2cG6L7D7gPeY9RhHjv+/ArQy9rZl7Uavu/CwdXfGDJiVrtcLb+gTKQOnT6OfE1VEicUTf1IkkvWBM8fKZuFw== david@david-laptop' 
+
       - name: 'johnglover'
         group: 'ckan_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA09+n7kVcUWDJaxouHfCCEjzbKlBgXcvTMFogZ7KwYm29XYqGZWsxXuNETItR52tqcOyx8r7YmQegJcYT/3bi4/bd4qm9lRoU0nPp3zfZIMMStHEIx0m9o9Vb3CfsPo2NxrpiupHfF8dfhj/KD+/DBvSLxDWx86xDwMjjAwKdtk01zjo4R6nXcJjYZNAe4kIhLYR9SgoUWFAFzzRewMFzQixZoqU79dEVdl4I/24FBRYbC5a1nG6PbPS4Dl/zI8iPBI3HSf++a1nhFiIu/7FymFTFaQJwpp7+JZI4RX1ETHDL6smEL8VhvLhUy6nMrI4hHpDh4DPy8BuH9tBqPJptgw== j@johnglover.net'

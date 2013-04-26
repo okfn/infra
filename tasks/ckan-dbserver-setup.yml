@@ -59,6 +59,8 @@
           - htop
           - git
           - python-dev
+          - python-psycopg2
+          - libpq-dev
           - postgresql-9.1
           - postgresql-9.1-postgis
           - solr-jetty
@@ -136,6 +138,45 @@
        with_items: solr_cores
        notify: restart jetty
        ##end solr setup
+    
+    #begin postgrss db setup
+    
+     - name: create_ckan_db
+       action: postgresql_db db=${site_id}
+       tags: create_ckan_db
+
+     - name: create_datastore_db
+       action: postgresql_db db=${site_id}-datastore
+       tags: create_ckan_db
+   
+     - name: datastore_users
+       action: postgresql_user db=${site_id}-datastore user=${item} password=$PASSWORD(~/ansible/.private/${project}/${host}/postgresql/${site_id}-datastore)
+       tags: create_datastore_users
+
+     - name: ckan_ckan_user
+       action: postgresql_user db=${site_id} user=${site_id} password=$PASSWORD(~/ansible/.private/${project}/${host}/postgresql/${site_id}) 
+       tags: create_ckan_user
+    
+     - name: set_ckan_db_perms
+       postgresql_privs: >
+          db=${site_id}
+          privs=ALL
+          type=database
+          role=${site_id}
+  
+     - name: set_datastore_db_perms
+       postgresql_privs: >
+          db=${site_id}-datastore
+          privs=SELECT
+          type=database 
+          role=${site_id}-datastore-ruser
+
+     - name: set_datastore_db_perms
+       postgresql_privs: >
+          db=${site_id}-datastore
+          privs=ALL
+          type=database 
+          role=${site_id}-datastore-wuser
 
 #     - name: remove_old
 #     - name: set_postgres_samenet_config
