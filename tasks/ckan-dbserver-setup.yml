@@ -138,50 +138,56 @@
        with_items: solr_cores
        notify: restart jetty
        ##end solr setup
-    
-    #begin postgrss db setup
+   
+
+     - name: datastore_users
+       action: postgresql_user user=${site_id}-${item} password=$PASSWORD(~/ansible/.private/postgresql/${project}/${site_id}-${item})
+       with_items:
+          - datastore-readwrite
+          - datastore-readonly
+       sudo_user: postgres
+       tags: create_datastore_users
+
+     - name: ckan_ckan_user
+       action: postgresql_user user=${site_id} password=$PASSWORD(~/ansible/.private/postgresql/${project}/${site_id}) 
+       sudo_user: postgres
+       tags: create_ckan_user
     
      - name: create_ckan_db
-       action: postgresql_db db=${site_id}
+       postgresql_db: db=${site_id} 
+       sudo_user: postgres
        tags: create_ckan_db
 
      - name: create_datastore_db
        action: postgresql_db db=${site_id}-datastore
+       sudo_user: postgres
        tags: create_ckan_db
-   
-     - name: datastore_users
-       action: postgresql_user db=${site_id}-datastore user=${item} password=$PASSWORD(~/ansible/.private/${project}/${host}/postgresql/${site_id}-datastore)
-       tags: create_datastore_users
 
-     - name: ckan_ckan_user
-       action: postgresql_user db=${site_id} user=${site_id} password=$PASSWORD(~/ansible/.private/${project}/${host}/postgresql/${site_id}) 
-       tags: create_ckan_user
-    
      - name: set_ckan_db_perms
        postgresql_privs: >
           db=${site_id}
           privs=ALL
           type=database
           role=${site_id}
-  
+       ignore_errors: True
+ 
      - name: set_datastore_db_perms
        postgresql_privs: >
           db=${site_id}-datastore
           privs=SELECT
           type=database 
           role=${site_id}-datastore-ruser
+       ignore_errors: True
+      
 
-     - name: set_datastore_db_perms
-       postgresql_privs: >
-          db=${site_id}-datastore
-          privs=ALL
-          type=database 
-          role=${site_id}-datastore-wuser
-
-#     - name: remove_old
-#     - name: set_postgres_samenet_config
-#       lineinfile: "dest=/etc/postgresql/9.1/main/postgresql.conf state=present regexp='samenet md5$' line='host all all samenet md5'"
-#       tags: set_postgres_samenet_config
+# ansible module being bugging, this doesnt seem to work 
+#
+#     - name: set_datastore_db_perms
+#       postgresql_privs: >
+#          db=${site_id}-datastore
+#          privs=ALL
+#          type=database 
+#          role=${site_id}-datastore-wuser
 
      - name: -> ufw config
        action: template src=~/ansible/templates/ufw/${project}/${role}.ufw.j2 dest=/lib/ufw/user.rules force=yes owner=root group=root mode=640

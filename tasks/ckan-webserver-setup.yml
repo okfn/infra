@@ -8,6 +8,11 @@
    - host: $inventory_hostname
    - role: webserver
    - devs_group: ${project}_dev #jinja2 doesnt tolerate -'s
+   - datastore_readonly_pass: $PASSWORD(~/ansible/.private/postgresql/${project}/${site_id}-datastore)
+   - datastore_readwrite_pass: $PASSWORD(~/ansible/.private/postgresql/${project}/${site_id}-datastore)
+   - ckan_db_pass: $PASSWORD(~/ansible/.private/postgresql/${project}/${site_id})
+   - googleanalytics_username: okfn.admin@gmail.com
+   - googleanalytics_password: $PASSWORD(~/ansible/.private/GA/${project}/ga_pass)
 
   vars_files:
    - ~/ansible/vars/global.yml
@@ -116,3 +121,11 @@
        action: file src=/etc/nginx/sites-available/proxy-ckan.conf dest=/etc/nginx/sites-enabled/proxy-ckan.conf state=link
        notify: reload nginx
        tags: enable_nginx_proxy
+
+     - name: -> setup_ckan_etc_dir
+       action: file path=/etc/ckan/${site_id} state=directory
+       tags: setup_ckan_etc_dir
+  
+     - name: -> setup_ckan_production_ini
+       action: template src=~/ansible/templates/ckan/production.ini.j2 dest=/etc/ckan/${site_id}/production.ini
+       tags: setup_ckan_production_ini
