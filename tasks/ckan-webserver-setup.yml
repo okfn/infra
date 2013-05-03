@@ -8,8 +8,11 @@
    - host: $inventory_hostname
    - role: webserver
    - devs_group: ${project}_dev #jinja2 doesnt tolerate -'s
-   - datastore_readonly_pass: $PASSWORD(~/ansible/.private/postgresql/${project}/${site_id}-datastore)
-   - datastore_readwrite_pass: $PASSWORD(~/ansible/.private/postgresql/${project}/${site_id}-datastore)
+   - datastore_db: ${site_id}_datastore
+   - datastore_readonly_user: ${site_id}_datastore_readonly
+   - datastore_readwrite_user: ${site_id}_datastore_readwrite
+   - datastore_readonly_pass: $PASSWORD(~/ansible/.private/postgresql/${project}/${site_id}_datastore_readonly)
+   - datastore_readwrite_pass: $PASSWORD(~/ansible/.private/postgresql/${project}/${site_id}_datastore_readwrite)
    - ckan_db_pass: $PASSWORD(~/ansible/.private/postgresql/${project}/${site_id})
    - googleanalytics_username: okfn.admin@gmail.com
    - googleanalytics_password: $PASSWORD(~/ansible/.private/GA/${project}/ga_pass)
@@ -68,7 +71,7 @@
      - name: -> install packages
        action: apt pkg=${item} state=installed
        tags: install_packages
-       notify: stop apache # apache seems to start up after being installed
+       notify: stop apache2 # apache seems to start up after being installed
        with_items:
           - nginx
           - fail2ban
@@ -89,9 +92,13 @@
      - name: -> ufw config
        action: copy src=~/ansible/files/ufw/$project/${role}.ufw dest=/lib/ufw/user.rules force=yes owner=root group=root mode=640
        tags: ufw_config
-       notify:
-          - restart ufw
+       notify: restart ufw
 
+     - name: -> setup_apache_ports_config
+       action: copy src=~/ansible/files/apache2/${project}/ports.conf dest=/etc/apache2/ports.conf
+       notify: restart apache2
+       tags: setup_apache_ports_config
+   
      - name: -> populate_apache_vhost_files
        action: template src=~/ansible/templates/apache2/${project}/vhost.j2 dest=/etc/apache2/sites-available/${item[0]}
        #action: debug msg={{ item[0] }}
@@ -103,8 +110,13 @@
        action: command /usr/sbin/a2ensite ${item[0]} creates=/etc/apache2/sites-enabled/${item[0]}
        with_nested:
           - ${sites_enabled}
-       notify: reload apache
+       notify: reload apache2
        tags: enable_apache_sites
+    
+     - name: -> nginx_remove_default_site
+       action: file path=/etc/apache2/sites-enabled/default state=absent
+       tags: nginx_remove_default_site
+       notify: reload nginx
 
      - name: -> add_nginx_config
        action: copy src=~/ansible/files/nginx/$project/proxy-ckan.conf dest=/etc/nginx/sites-available/proxy-ckan.conf
@@ -129,3 +141,10 @@
      - name: -> setup_ckan_production_ini
        action: template src=~/ansible/templates/ckan/production.ini.j2 dest=/etc/ckan/${site_id}/production.ini
        tags: setup_ckan_production_ini
+
+     - name: -> setup_ckan_config_files
+       action: copy src=~/ansible/files/$project/${item} dest=/etc/ckan/${site_id}/${item}
+       with_items:
+          - who.ini
+       tags: setup_ckan_config_files
+

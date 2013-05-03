@@ -4,7 +4,7 @@
 # to run specific tasks use
 #  ansible-playbook --connection=ssh  --extra-vars="host=s103.okserver.org" tasks/ckan-dbserver-setup.yml  -i inventory/hosts  -vv --tags="jetty_config,fetch_solr_config"
 - hosts: $host
-  user: okfn
+  user: $user
   sudo: yes
   gather_facts: False
   vars:
@@ -12,6 +12,9 @@
    - host: $inventory_hostname
    - role: dbserver
    - devs_group: ${project}_dev #jinja2 doesnt tolerate -'s
+   - datastore_db: ${site_id}_datastore
+   - datastore_readonly_user: ${site_id}_datastore_readonly
+   - datastore_readwrite_user: ${site_id}_datastore_readwrite
 
   vars_files:
    - ~/ansible/vars/global.yml
@@ -61,6 +64,7 @@
           - python-dev
           - python-psycopg2
           - libpq-dev
+          - language-pack-en
           - postgresql-9.1
           - postgresql-9.1-postgis
           - solr-jetty
@@ -83,68 +87,23 @@
       
      - name: setup_postgres_config
        action: copy src=~/ansible/files/postgresql/9.1/${project}/postgresql.conf dest=/etc/postgresql/9.1/main/postgresql.conf.new 
+       notify: restart postgresql
        tags: setup_postgres_config
 
      - name: setup_postgres_config2
        action: copy src=~/ansible/files/postgresql/9.1/${project}/pg_hba.conf dest=/etc/postgresql/9.1/main/pg_hba.conf mode=640 force=yes 
-       #lineinfile:  "dest=/etc/postgresql/9.1/main/postgresql.conf state=present regexp='^#listen_addresses' line='listen_addresses = '*''"
+       notify: restart postgresql
        tags: setup_postgres_config2
 
      - name: run_pgtune
        action: command pgtune -i /etc/postgresql/9.1/main/postgresql.conf.new -o /etc/postgresql/9.1/main/postgresql.conf creates=/etc/postgresql/9.1/main/postgresql.conf
        tags: run_pgtune
 
-     - name: jetty_config
-       action: copy  src=~/ansible/files/jetty/${project}/jetty.conf dest=/etc/default/jetty force=yes
-       tags: jetty_config
-
-       ##start solr setup 
-     - name: fetch_solr_config
-       action: command wget https://raw.github.com/okfn/ckan/master/ckan/config/solr/schema-2.0.xml -O /etc/solr/conf/schema.xml creates=/etc/solr/conf/schema.xml
-       tags: fetch_solr_config
-       ignore_errors: true
-
-     - name: place_solr_xml
-       action: template src=~/ansible/templates/solr/${project}/solr.xml.j2 dest=/usr/share/solr/solr.xml
-       tags: place_solr_xml
-
-     - name: create_solr_varlib_dirs
-       action: file path=/var/lib/solr/data/${item} state=directory owner=jetty group=jetty
-       with_items: solr_cores
-       tags: create_solr_varlib_dirs
-    
-     - name: create_solr_usrshare_dirs
-       action: file path=/usr/share/solr/${item} state=directory owner=root group=root
-       with_items: solr_cores
-       tags: create_solr_usrshare_dirs
-
-     - name: create_solr_etc_dirs
-       action: command mkdir /etc/solr/${item} creates=/etc/solr/${item}
-       with_items: solr_cores
- 
-     - name: create_solr_etc_dirs
-       action: command cp -aR /etc/solr/conf /etc/solr/${item}/  creates=/etc/solr/${item}/conf
-       with_items: solr_cores
-     
-     - name: move_solr_orig_config
-       action: command mv /etc/solr/conf /etc/solr/conf.orig creates=/etc/solr/conf.orig
-       
-     - name: create_solr_usr_links
-       action: file src=/etc/solr/${item}/conf dest=/usr/share/solr/${item}/conf state=link
-       with_items: solr_cores
- 
-     - name: solrconfig_xml
-       action: file src=~/ansible/files/solr/${project}/solrconfig-multicore.xml dest=/etc/solr/${item}/conf/solrconfig.xml state=file
-       with_items: solr_cores
-       notify: restart jetty
-       ##end solr setup
-   
-
      - name: datastore_users
-       action: postgresql_user user=${site_id}-${item} password=$PASSWORD(~/ansible/.private/postgresql/${project}/${site_id}-${item})
+       action: postgresql_user user=${item} password=$PASSWORD(~/ansible/.private/postgresql/${project}/${item})
        with_items:
-          - datastore-readwrite
-          - datastore-readonly
+          - ${datastore_readonly_user}
+          - ${datastore_readwrite_user}
        sudo_user: postgres
        tags: create_datastore_users
 
@@ -154,14 +113,14 @@
        tags: create_ckan_user
     
      - name: create_ckan_db
-       postgresql_db: db=${site_id} 
+       postgresql_db: db=${site_id} encoding='UTF-8' 
        sudo_user: postgres
        tags: create_ckan_db
 
      - name: create_datastore_db
-       action: postgresql_db db=${site_id}-datastore
+       action: postgresql_db db=${datastore_db} encoding='UTF-8'
        sudo_user: postgres
-       tags: create_ckan_db
+       tags: create_datastore_db
 
      - name: set_ckan_db_perms
        postgresql_privs: >
@@ -174,26 +133,76 @@
        tags: set_ckan_db_perms
 
 # ansible module being bugging, this doesnt seem to work 
-#     - name: set_datastore_readonly
-#       postgresql_privs: >
-#          db=${site_id}-datastore
-#          privs=SELECT
-#          type=database 
-#          role=${site_id}-datastore-readonly
-#       ignore_errors: True
-#       sudo_user: postgres
-#       tags: set_datastore_readonly
-#      
-#     - name: set_datastore_readwrite
-#       postgresql_privs: >
-#          db=${site_id}-datastore
-#          privs=SELECT,INSERT,UPDATE
-#          type=database 
-#          role=${site_id}-datastore-readwrite
-#       ignore_errors: True
-#       sudo_user: postgres
-#       tags: set_datastore_readwrite
+     - name: set_datastore_readonly
+       postgresql_privs: >
+          database=${datastore_db}
+          state=present
+          privs=SELECT
+          objs=ALL_IN_SCHEMA
+          type=database 
+          role=${datastore_readonly_user}
+       ignore_errors: True
+       sudo_user: postgres
+       tags: set_datastore_readonly
+      
+     - name: set_datastore_readwrite
+       postgresql_privs: >
+          database=${datastore_db}
+          state=present
+          privs=SELECT,INSERT,UPDATE
+          objs=ALL_IN_SCHEMA
+          type=database 
+          role=${datastore_readwrite_user}
+       ignore_errors: True
+       sudo_user: postgres
+       tags: set_datastore_readwrite
 
+
+     - name: jetty_config
+       action: copy  src=~/ansible/files/jetty/${project}/jetty.conf dest=/etc/default/jetty force=yes
+       tags: jetty_config
+
+     - name: setup_solr_xml
+       action: template src=~/ansible/templates/solr/${project}/solr.xml.j2 dest=/usr/share/solr/solr.xml
+       tags: setup_solr_xml
+
+     - name: create_solr_varlib_dirs
+       action: file path=/var/lib/solr/data/ckan-${item} state=directory owner=jetty group=jetty
+       with_items: solr_cores
+       tags: create_solr_varlib_dirs
+    
+     - name: create_solr_usrshare_dirs
+       action: file path=/usr/share/solr/ckan-${item} state=directory owner=root group=root
+       with_items: solr_cores
+       tags: create_solr_usrshare_dirs
+
+     - name: create_solr_etc_dirs
+       action: command mkdir /etc/solr/ckan-${item} creates=/etc/solr/ckan-${item}
+       with_items: solr_cores
+ 
+     - name: create_solr_etc_dirs
+       action: command cp -aR /etc/solr/conf /etc/solr/ckan-${item}/  creates=/etc/solr/ckan-${item}/conf
+       with_items: solr_cores
+     
+     - name: move_solr_orig_config
+       action: command mv /etc/solr/conf /etc/solr/conf.orig creates=/etc/solr/conf.orig
+       
+     - name: create_solr_usr_links
+       action: file src=/etc/solr/ckan-${item}/conf dest=/usr/share/solr/ckan-${item}/conf state=link
+       with_items: solr_cores
+
+       ##start solr setup 
+     - name: fetch_solr_config
+       action: command wget https://raw.github.com/okfn/ckan/master/ckan/config/solr/${item}.xml -O /etc/solr/ckan-${item}/conf/schema.xml creates=/etc/solr/ckan-${item}/conf/schema.xml
+       with_items: solr_cores
+       tags: fetch_solr_config
+ 
+     - name: solrconfig_xml
+       action: file src=~/ansible/files/solr/${project}/solrconfig-multicore.xml dest=/etc/solr/ckan-${item}/conf/solrconfig.xml state=file
+       with_items: solr_cores
+       notify: restart jetty
+       ##end solr setup
+   
      - name: -> ufw config
        action: template src=~/ansible/templates/ufw/${project}/${role}.ufw.j2 dest=/lib/ufw/user.rules force=yes owner=root group=root mode=640
        tags: ufw_config
@@ -202,4 +211,9 @@
        action: command /usr/sbin/ufw --force enable
        tags: ufw_enable
        notify: restart ufw
-
+    
+     - name: ensure_cronjob
+       action: copy src=~/ansible/files/$project/${item} dest=/etc/cron.daily/${item}
+       with_items:
+          - pg_backup.sh
+       tags: ensure_cronjob

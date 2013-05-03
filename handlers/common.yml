@@ -13,10 +13,13 @@
 - name: restart ufw
   service: name=ufw state=restarted
 
-- name: reload apache
+- name: reload apache2
   service: name=apache2 state=reloaded
 
-- name: stop apache
+- name: restart apache2
+  service: name=apache2 state=restarted
+
+- name: stop apache2
   service: name=apache2 state=stopped
 
 - name: reload nginx
@@ -24,3 +27,6 @@
 
 - name: restart jetty
   service: name=jetty state=restarted
+
+- name: restart postgresql
+  service: name=postgresql state=restarted

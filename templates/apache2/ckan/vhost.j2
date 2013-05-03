@@ -9,7 +9,7 @@
 <VirtualHost {{ IP }}:{{ PORT }} >
 
     ServerName {{ DOMAIN }}
-    ServerAlias {{ ALIAS }}
+    ServerAlias {% for alias in ALIAS %}{{ alias }} {% endfor %}
 
     # this is our app
     WSGIScriptAlias / /etc/ckan/{{ CKAN_NAME }}/apache.wsgi
@@ -18,7 +18,7 @@
     WSGIPassAuthorization On
 
     # Deploy as a daemon (avoids conflicts between CKAN instances)
-    WSGIDaemonProcess {{ site_id }} display-name={{ site_id }} processes=4 threads=15 maximum-requests=10000
+    WSGIDaemonProcess {{ site_id }} display-name={{ site_id }} processes=2 threads=15 maximum-requests=10000
     WSGIProcessGroup {{ site_id }}
 
     ErrorLog /var/log/apache2/{{ DOMAIN }}.error.log
