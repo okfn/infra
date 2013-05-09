@@ -7,7 +7,7 @@ localhost
 [openspending]
 s095.okserver.org
 s096.okserver.org
-s030.okserver.org
+
 s033.okserver.org
 
 [mail]
@@ -70,6 +70,7 @@ s074.okserver.org
 [other]
 s021.okserver.org
 s073.okserver.org
+s030.okserver.org
 
 [backup]
 s088.okserver.org
@@ -83,3 +84,10 @@ ckan-db-dev
 ckan-web-prod
 ckan-db-prod
 ansible-dev 
+
+[to-update]
+s074.okserver.org
+s098.okserver.org
+s093.okserver.org
+s094.okserver.org
+s100.okserver.org
