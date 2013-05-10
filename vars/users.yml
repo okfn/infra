@@ -59,8 +59,12 @@ users:
         group: 'openspending_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAub2He4lZRpsqxetF8+C1OCaVKfqo2FYxYKRhmBSzyqKFPC0Fg9WylQvqt+DXULCHyZn88kwuf39ifAaiWZ+Js7aXo3+aT6M/ggGI15z3DFhYkiVkU1mUTr8jHF8YaF8x7TRwxrMCQrrRoNgifN97lWhlvtQWFaIaUkXQTDXuZdMzLzJqoZ+Gvw/bjRkp9KyyVzWt99b/PWBWRJKL8DzKIH9/oIvLIow1ucP4DshZs/FZN1upT5RhRb+ydmcDgTj8054Va6XxQBJ1vWqShofvrUwkWQA3bGhZhtAfQHfpCvdCUjxr0C5GRZa8V8k6VKQJdOb2Sqjrq7PucR1G2CkSAQ== nigelbabu@nigelbabu-laptop'
 
+   labs_dev:
+     - name: 'rowan.crawford'
+       group: 'labs_dev'
+       key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDjDQSGuHRt2r65BzS6HSxTZ9TzDsQaZWxeaScdYEDsn9QAQIi9vfYnHjt4qolrvTRZBOKZzNr7nygz/oeJ0PKDt/X+YcCXfMeIZLPdzNqDbMnIcW2JT88VVqZl/xiCVDQWAAAM56cCtaDOjVFHp/i8pBs7z4BojX4PAkKAiNOH35+F2wSVgis6sSVRV+WAtWrCTlzvGBy2WNpgx8h3QYvrnmOsEEfS/m/RMf5aBIK/q7gwJRqd2rcOJ2Db4gQHHFuajAof5URSIO74LbGOE9NO43UVQ5BEsyfJXwq0f/gMPWgmLHdwN0pSnXAj/dgAyZX+XkAfvrTPfo4j3p2h10rl wombleton@gmail.com
+'
    monitoring:
      - name: 'nagios'
        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1lsla5+i8HG2jLVaJnjEdj6LRrQLuC2p1X9ou8eNyJIMoN4sQW8tmsLSK0r072oyZoOoHtjLU1a6cHfiy3uLOCopPNhI8JNED09HFzXuHjHrX2ewDcxr0MnBYsEez5VQGpIZJSBdRrF+yQAqtcKAfzXoERwm6YawDYj1Q12CQY8b/VRmW1soZjiHy8OfmILOQVkRITFGHVXfDC5AymQ1H7pSkXLNREDam4cxo2JUx5p8nBK96sSzZllRkZZUvUmDI4oDo1HEeRi4cqoSVvfsHdImiwt645rGgM2c16IXLGhoQetK0UAKUb3w5+gHD8wiSEoG5CH0Bh+0DuxLsU4w2w== nagios@eu1.okfn.org'
        group: 'monitoring'
-
