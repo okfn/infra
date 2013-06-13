@@ -43,7 +43,12 @@ users:
         group: 'ckan_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnd08Zm+H02Ag87fTS2OpWo2GplfhxmvdeB6YPWx6a0WYs05iTJOQcTbSLpZFIynn1o+y49DCX/SglxYfCAVO6vLiQsnxXOaMESdhE1sctknnTAS6EEguZoxL9H2wjkfnADNwvvbAb4uuNi4nbEd0+uQ20EwjfZfkSUHmPqawYAFO5dHhscP3s/M/KJUKTucY7DQXPaICp+Hl0zqnO8bFI+oN9V/dG8p5JtPL4vDW8vhWOo2KNqGH5VO7AtIk+IFWOb5+rBZl7jFdmOtTP/aqDlt75Pie9afH/9OLZyKIGpfoQ1ndy2lG5xc/z72IXWH+XCO9LWiqDpBJzMc9FKVMr'
 
-   openspending:
+      - name: 'vitor'
+        group: 'openspending_dev'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUnItn4uDxgcmbloeS5qMiHw829kbr5XkfjOrOmKhAMWd9ALlm7S3PbbpbTesRtSwaATZETAdJHiLNv+UbCdl+SmewpIIulbTXlaSICMopoYFTGpbxUHhqP0qNMzWHpsail9cGPB/KVl0RAFoOtxB2LHfjA6i+ccCujTS6Z29GaO/riHv72UOfsKu5GjUCF3xyP5dhQSPW5Vr15Qe6e35YhGLcWz2nslnM2iOaqZ7Ylu45AMlwbu0MiKN8rHvlgcTFUjDo+WRcvtljuD0dhcks7HqLlg/85tSTEPKDW0zYMbEfp/IlL3bO2CGbOzu4RCh+CUQ80rj+EPohFXk7tnij vitor@luna'
+ 
+
+   openspending_dev:
       - name: 'vitor'
         group: 'openspending_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUnItn4uDxgcmbloeS5qMiHw829kbr5XkfjOrOmKhAMWd9ALlm7S3PbbpbTesRtSwaATZETAdJHiLNv+UbCdl+SmewpIIulbTXlaSICMopoYFTGpbxUHhqP0qNMzWHpsail9cGPB/KVl0RAFoOtxB2LHfjA6i+ccCujTS6Z29GaO/riHv72UOfsKu5GjUCF3xyP5dhQSPW5Vr15Qe6e35YhGLcWz2nslnM2iOaqZ7Ylu45AMlwbu0MiKN8rHvlgcTFUjDo+WRcvtljuD0dhcks7HqLlg/85tSTEPKDW0zYMbEfp/IlL3bO2CGbOzu4RCh+CUQ80rj+EPohFXk7tnij vitor@luna'
