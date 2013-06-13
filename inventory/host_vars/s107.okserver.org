@@ -13,3 +13,4 @@ ckan_site_description: The easy way to get, use and share data
 googleanalytics_id: UA-8271754-2
 googleanalytics_username: ckan.analytics@gmail.com
 googleanalytics_password: alephoji14
+ckan_locale_default: en_GB

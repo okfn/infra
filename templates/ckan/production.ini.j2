@@ -72,6 +72,7 @@ who.log_level = warning
 
 # Location of licenses group (defaults to cached local version of ckan group)
 #licenses_group_url = http://licenses.opendefinition.org/licenses/groups/ckan.json
+licenses_group_url = %(ckan.site_url)s/licenses.json
 
 # Dataset form to use
 package_form = standard
@@ -175,7 +176,7 @@ ckan.backup_dir = %(here)s/backup
 #ckan.recaptcha.privatekey = 
 
 # Locale/languages
-ckan.locale_default = en
+ckan.locale_default = {{ ckan_locale_default }}
 #ckan.locales_offered = 
 # Default order is roughly by number of people speaking it in Europe:
 # http://en.wikipedia.org/wiki/Languages_of_the_European_Union#Knowledge
