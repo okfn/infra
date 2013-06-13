@@ -1,28 +1,30 @@
 ---
 #ansible-playbook --connection=ssh  --extra-vars="host=s106.okserver.org" tasks/bootstrap.yml -v -k  -i inventory/hosts
 - hosts: $host
-  project: $project
   gather_facts: false
   connection: ssh
   user: root
-  devs_group: ${project}_dev
+  sudo: true
+  vars:
+   - devs_group: ${project}_dev
   vars_files: 
    - ~/ansible/vars/global.yml
    - ~/ansible/vars/users.yml
   tasks:
-
      ## Add sysadmin and monitoring users 
      - name: -> add_group
        action: group name=${item} state=present
        with_items:
          - sysadmin
          - monitoring
+       tags: add_group
          
      - name: -> add_user
        action: user name=${item.name} group=${item.group} state=present shell=/bin/bash
        with_items: 
          - ${users.sysadmin}
          - ${users.monitoring}
+       tags: add_users
 
      - name: -> install_ssh_keys
        action: authorized_key user=${item.name} state=present key="${item.key}" # key='$FILE(~/ansible/files/users/ssh/${item.name}.pub)'
@@ -39,30 +41,37 @@
 
     ## Add project devs if $project is defined
      - name: -> add_group
+       only_if: "is_set('${project}')"
        action: group name=${item} state=present
        with_items:
          - ${devs_group}
-       only_if: is_set('$project')
-       tags: add_group
+       tags: add_project_group
+ 
+     - name: -> debug_set
+       only_if: "is_set('${project}')"
+       action: debug msg="project is ${project}"
+       tags: debug_set
 
      - name: -> add_user
-       action: user name=${item.name} group=${item.group} state=present shell=/bin/bash
+       only_if: "is_set('${project}')"
+       action: user name={{ item.name }} group={{ item.group }} state=present shell=/bin/bash
        with_items: users.{{ devs_group }}
-       only_if: is_set('$project')
-       tags: add_users
+       only_if: "is_set('users.{{ devs_group }}')"
+       tags: add_project_users
 
      - name: -> install_ssh_keys
+       only_if:  "is_set('${project}')"
        action: authorized_key user=${item.name} state=present key="${item.key}"
        with_items: users.{{ devs_group }}
-       only_if: is_set('$project')
-       tags: install_ssh_keys
+       only_if: "is_set('users.{{ devs_group }}')"
+       tags: install_project_ssh_keys
 
      - name: sudoers
+       only_if:  "is_set('${project}')"
        lineinfile: "dest=/etc/sudoers state=present regexp='^%${item}' line='%${item} ALL=(ALL) NOPASSWD: ALL'"
        with_items:
           - ${devs_group}
-       only_if: is_set('$project')
-       tags: sudoers
+       tags: setup_project_sudoers
 
      - name: -> generate_locale
        action: shell locale-gen $item
