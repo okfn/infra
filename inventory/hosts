@@ -8,7 +8,6 @@ localhost
 s095.okserver.org
 s096.okserver.org
 
-s033.okserver.org
 
 [mail]
 s001.okserver.org
@@ -38,18 +37,27 @@ s090.okserver.org
 [ckan-web-prod]
 s077.okserver.org
 s086.okserver.org
-s087.okserver.org
 s091.okserver.org
 s093.okserver.org
 s099.okserver.org
+s107.okserver.org ckan_project=datahub
+s108.okserver.org ckan_project=datahub
+
+
+[another]
+s087
+s104
 s102.okserver.org
-s104.okserver.org
+
 
 [ckan-db-prod]
 s078.okserver.org
 s092.okserver.org
-s094.okserver.org
 s103.okserver.org
+
+
+[another2]
+s094.okserver.org
 s105.okserver.org
 
 [trac]
@@ -85,6 +93,9 @@ ckan-db-dev
 ckan-web-prod
 ckan-db-prod
 ansible-dev 
+
+[labs]
+s033.okserver.org
 
 [to-update]
 s074.okserver.org
