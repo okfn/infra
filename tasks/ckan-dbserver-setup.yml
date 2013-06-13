@@ -15,6 +15,7 @@
    - datastore_db: ${site_id}_datastore
    - datastore_readonly_user: ${site_id}_datastore_readonly
    - datastore_readwrite_user: ${site_id}_datastore_readwrite
+   - locale: en_US.UTF-8
 
   vars_files:
    - ~/ansible/vars/global.yml
@@ -72,7 +73,16 @@
           - openjdk-6-jdk
           - ufw
           - pgtune
-
+       environment:
+          LANG: ${locale}
+          LC_COLLATE: ${locale}
+          LC_CTYPE: ${locale} 
+          LC_MESSAGES: ${locale} 
+          LC_MONETARY: ${locale} 
+          LC_NUMERIC: ${locale} 
+          LC_TIME: ${locale} 
+          LC_ALL: ${locale} 
+     
      - name: set_sysctl_shmmax
        action: sysctl name=kernel.shmmax value=1143210240 state=present reload=yes sysctl_file=/etc/sysctl.conf
        tags: set_sysctl_shmmax
@@ -86,7 +96,7 @@
        tags: backup_postgres_config
       
      - name: setup_postgres_config
-       action: copy src=~/ansible/files/postgresql/9.1/${project}/postgresql.conf dest=/etc/postgresql/9.1/main/postgresql.conf.new 
+       action: copy src=~/ansible/files/postgresql/9.1/${project}/postgresql.conf dest=/etc/postgresql/9.1/main/postgresql.conf
        notify: restart postgresql
        tags: setup_postgres_config
 
@@ -96,8 +106,13 @@
        tags: setup_postgres_config2
 
      - name: run_pgtune
-       action: command pgtune -i /etc/postgresql/9.1/main/postgresql.conf.new -o /etc/postgresql/9.1/main/postgresql.conf creates=/etc/postgresql/9.1/main/postgresql.conf
+       action: command pgtune -i /etc/postgresql/9.1/main/postgresql.conf -o /etc/postgresql/9.1/main/postgresql.conf.pgtuned creates=/etc/postgresql/9.1/main/postgresql.conf.pgtuned
        tags: run_pgtune
+
+     - name: copy_pgtuned_postgres_config
+       action: command cp /etc/postgresql/9.1/main/postgresql.conf.pgtuned /etc/postgresql/9.1/main/postgresql.conf creates=/etc/postgresql/9.1/main/postgresql.conf.pgtuned
+       tags: copy_pgtuned_postgres_config
+
 
      - name: datastore_users
        action: postgresql_user user=${item} password=$PASSWORD(~/ansible/.private/postgresql/${project}/${item})
