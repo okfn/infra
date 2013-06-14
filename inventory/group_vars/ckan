@@ -4,5 +4,5 @@ project: 'ckan'
 devs_group: 'ckan_dev'
 postgres_port: 5432
 solr_port: 8983
-sysadmin-email: ckan-sysadmin@okfn.org
+sysadmin_email: ckan-sysadmin@okfn.org
 ckan_locale_default: en
