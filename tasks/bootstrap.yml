@@ -3,7 +3,7 @@
 - hosts: $host
   gather_facts: false
   connection: ssh
-  user: root
+  user: $user
   sudo: true
   vars:
    - devs_group: ${project}_dev
@@ -104,13 +104,17 @@
           - man-db
           - bsd-mailx
 
-     - name: add sysadmin alias
-       lineinfile: "dest=/etc/aliases state=present regexp='^root:' line='root: ${sysadmin_alias}'"
-       tags: newaliases
+     - name: add project sysadmin alias
+       lineinfile: "dest=/etc/aliases state=present regexp='^root:' line='root: ${sysadmin_email}'"
+       tags: set_project_sysadmin_email
 
      - name: newaliases
        action: command /usr/bin/newaliases
-       tags: newaliases
+       tags: run_newaliases
+     
+     - name: debug_projectvars
+       action: debug msg="${project} ${sysadmin_email}"
+       tags: debug_projectvars 
      
 #     - name: disable_root_login
 #       lineinfile: "dest=/etc/ssh/sshd_config state=present regexp='^PermitRootLogin' line='PermitRootLogin no'" 
