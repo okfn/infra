@@ -16,49 +16,44 @@ s001.okserver.org
 s006.okserver.org
 
 [ckan-web-dev]
-s075.okserver.org
-s079.okserver.org
-s080.okserver.org
-s081.okserver.org
-s082.okserver.org
-s083.okserver.org
-s084.okserver.org
-s089.okserver.org
+s080.okserver.org ckan_project=ckan_testing
+s082.okserver.org ckan_project=demosites
+s083.okserver.org ckan_project=demosites
+s084.okserver.org ckan_project=demosites
+s089.okserver.org ckan_project=queensland.ckan.net
 s100.okserver.org
 s107.okserver.org
 
 [ckan-db-dev]
-s031.okserver.org
-s032.okserver.org
-s076.okserver.org
-s085.okserver.org
-s090.okserver.org
+s081.okserver.org ckan_project=ckan_testing
+s031.okserver.org ckan_project=ckan_testing
+s032.okserver.org ckan_project=data.gov
+s090.okserver.org ckan_project=queensland.ckan.net
 
 [ckan-web-prod]
-s077.okserver.org
-s086.okserver.org
-s091.okserver.org
-s093.okserver.org
-s099.okserver.org
-s107.okserver.org ckan_project=datahub
-s108.okserver.org ckan_project=datahub
+s085.okserver.org ckan_project=datagm.org
+s080.okserver.org ckan_project=ckan_community
+s079.okserver.org ckan_project=publicdata.eu
+s075.okserver.org ckan_project=iati
+s077.okserver.org ckan_project=datahub_old
+s086.okserver.org ckan_project=iati
+s091.okserver.org ckan_project=queensland.ckan.net
+s099.okserver.org ckan_project=datagm.org.uk
+s107.okserver.org ckan_project=datahub.io
+s104.okserver.org ckan_project=sa.ckan.net
+s102.okserver.org ckan_project=edostate.ckan.net
 
-
-[another]
-s087
-s104
-s102.okserver.org
-
+[other]
+s087.okserver.org comment=i_dont_know_my_owner
 
 [ckan-db-prod]
-s078.okserver.org
-s092.okserver.org
-s103.okserver.org
-
-
-[another2]
-s094.okserver.org
-s105.okserver.org
+s081.okserver.org ckan_project=ckan_community
+s078.okserver.org ckan_project=datahub_old
+s076.okserver.org ckan_project=iati
+s092.okserver.org ckan_project=queensland.ckan.net
+s103.okserver.org ckan_project=edostate.ckan.net
+s108.okserver.org ckan_project=datahub.io
+s105.okserver.org ckan_project=sa.ckan.net
 
 [trac]
 s039.okserver.org
@@ -77,9 +72,9 @@ s106.okserver.org
 s074.okserver.org
 
 [other]
-s021.okserver.org
-s073.okserver.org
-s030.okserver.org
+s021.okserver.org hosted=aw 
+s073.okserver.org comment=future_mail_okfn
+s030.okserver.org hosted=aws
 
 [backup]
 s088.okserver.org
@@ -96,10 +91,3 @@ ansible-dev
 
 [labs]
 s033.okserver.org
-
-[to-update]
-s074.okserver.org
-s098.okserver.org
-s093.okserver.org
-s094.okserver.org
-s100.okserver.org
