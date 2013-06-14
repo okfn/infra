@@ -7,7 +7,6 @@ handlers: ~/ansible/handlers
 tasks: ~/ansible/tasks
 vars: ~/ansible/vars
 
-sysadmin_email: sysadmin@okfn.org
 locale_list:
    - en_GB.utf8
 
