@@ -9,12 +9,6 @@ s095.okserver.org
 s096.okserver.org
 
 
-[mail]
-s001.okserver.org
-
-[cache]
-s006.okserver.org
-
 [ckan-web-dev]
 s080.okserver.org ckan_project=ckan_testing
 s082.okserver.org ckan_project=demosites
@@ -43,9 +37,6 @@ s107.okserver.org ckan_project=datahub.io
 s104.okserver.org ckan_project=sa.ckan.net
 s102.okserver.org ckan_project=edostate.ckan.net
 
-[other]
-s087.okserver.org comment=i_dont_know_my_owner
-
 [ckan-db-prod]
 s081.okserver.org ckan_project=ckan_community
 s078.okserver.org ckan_project=datahub_old
@@ -55,18 +46,24 @@ s103.okserver.org ckan_project=edostate.ckan.net
 s108.okserver.org ckan_project=datahub.io
 s105.okserver.org ckan_project=sa.ckan.net
 
-[trac]
-s039.okserver.org
-
-[pagely-git]
-s070.okserver.org
-
 [ckan-es]
 s071.okserver.org
 s072.okserver.org
 
 [ckan-packaging]
 s106.okserver.org
+
+[mail]
+s001.okserver.org
+
+[cache]
+s006.okserver.org
+
+[trac]
+s039.okserver.org
+
+[pagely-git]
+s070.okserver.org
 
 [etherpad]
 s074.okserver.org
@@ -75,6 +72,7 @@ s074.okserver.org
 s021.okserver.org hosted=aw 
 s073.okserver.org comment=future_mail_okfn
 s030.okserver.org hosted=aws
+s087.okserver.org comment=i_dont_know_my_owner
 
 [backup]
 s088.okserver.org
@@ -82,12 +80,25 @@ s088.okserver.org
 [wiki]
 s098.okserver.org dbserver=localhost managed=false hoster=RS
 
+[labs]
+s033.okserver.org
+
 [ckan:children]
 ckan-web-dev
 ckan-db-dev
 ckan-web-prod
 ckan-db-prod
-ansible-dev 
+ansible-dev
+ckan-packaging
+ckan-es 
 
-[labs]
-s033.okserver.org
+[sysadmin-servers:children]
+wiki
+backup
+labs
+etherpad
+cache
+mail
+trac
+other
+pagely-git
