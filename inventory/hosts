@@ -4,9 +4,12 @@ ansible-dev.okserver.org
 [ansible-host]
 localhost
 
-[openspending]
+[openspending-web]
 s095.okserver.org
+
+[openspending-db]
 s096.okserver.org
+s109.okserver.org os_project=farmsubsidy
 
 
 [ckan-web-dev]
@@ -82,6 +85,10 @@ s098.okserver.org dbserver=localhost managed=false hoster=RS
 
 [labs]
 s033.okserver.org
+
+[openspending:children]
+openspending-db
+openspending-web
 
 [ckan:children]
 ckan-web-dev
