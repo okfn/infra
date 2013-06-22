@@ -1,0 +1,21 @@
+---
+# This playbook installs the munin-node client package
+- name: -> install_munin-node
+  action: apt pkg=munin-node ensure=installed
+  tags: install_munin-node
+
+- name: -> add_munin_user
+  action: user name=munin group=munin state=present shell=/bin/false home=/var/lib/munin
+  tags: add_munin_user
+
+- name: -> add_munin_group
+  action: group name=munin state=present 
+  tags: add_munin_group
+
+- name: -> install_munin-plugin-extras
+  action: apt pkg=munin-plugin-extras ensure=installed
+  tags: install_munin-plugin-extras
+
+- name: -> setup_munin_node_config
+  action: copy src=munin-node.conf dest=/etc/munin/munin-node.conf state=present
+  tags: setup_munin_config
