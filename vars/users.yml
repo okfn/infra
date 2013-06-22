@@ -44,10 +44,9 @@ users:
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnd08Zm+H02Ag87fTS2OpWo2GplfhxmvdeB6YPWx6a0WYs05iTJOQcTbSLpZFIynn1o+y49DCX/SglxYfCAVO6vLiQsnxXOaMESdhE1sctknnTAS6EEguZoxL9H2wjkfnADNwvvbAb4uuNi4nbEd0+uQ20EwjfZfkSUHmPqawYAFO5dHhscP3s/M/KJUKTucY7DQXPaICp+Hl0zqnO8bFI+oN9V/dG8p5JtPL4vDW8vhWOo2KNqGH5VO7AtIk+IFWOb5+rBZl7jFdmOtTP/aqDlt75Pie9afH/9OLZyKIGpfoQ1ndy2lG5xc/z72IXWH+XCO9LWiqDpBJzMc9FKVMr'
 
       - name: 'vitor'
-        group: 'openspending_dev'
+        group: 'ckan_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUnItn4uDxgcmbloeS5qMiHw829kbr5XkfjOrOmKhAMWd9ALlm7S3PbbpbTesRtSwaATZETAdJHiLNv+UbCdl+SmewpIIulbTXlaSICMopoYFTGpbxUHhqP0qNMzWHpsail9cGPB/KVl0RAFoOtxB2LHfjA6i+ccCujTS6Z29GaO/riHv72UOfsKu5GjUCF3xyP5dhQSPW5Vr15Qe6e35YhGLcWz2nslnM2iOaqZ7Ylu45AMlwbu0MiKN8rHvlgcTFUjDo+WRcvtljuD0dhcks7HqLlg/85tSTEPKDW0zYMbEfp/IlL3bO2CGbOzu4RCh+CUQ80rj+EPohFXk7tnij vitor@luna'
  
-
    openspending_dev:
       - name: 'vitor'
         group: 'openspending_dev'
@@ -63,12 +62,16 @@ users:
       - name: 'nigelb'
         group: 'openspending_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAub2He4lZRpsqxetF8+C1OCaVKfqo2FYxYKRhmBSzyqKFPC0Fg9WylQvqt+DXULCHyZn88kwuf39ifAaiWZ+Js7aXo3+aT6M/ggGI15z3DFhYkiVkU1mUTr8jHF8YaF8x7TRwxrMCQrrRoNgifN97lWhlvtQWFaIaUkXQTDXuZdMzLzJqoZ+Gvw/bjRkp9KyyVzWt99b/PWBWRJKL8DzKIH9/oIvLIow1ucP4DshZs/FZN1upT5RhRb+ydmcDgTj8054Va6XxQBJ1vWqShofvrUwkWQA3bGhZhtAfQHfpCvdCUjxr0C5GRZa8V8k6VKQJdOb2Sqjrq7PucR1G2CkSAQ== nigelbabu@nigelbabu-laptop'
+      
+      - name: 'stefan'
+        group: 'openspending_dev'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAuoYRUBsBk7s2VQ3m/LQBYdRRhQJCjuv3QiC0Bw1nDwQr0bwfC718O5P4+K7q7LPRGfWsfkHCqQpq6JEdbwFe4om6dluLoAMZtR5kMx8Alqd0qlIYTKpOR24gd0qsr4jH9OXKXcKss8Or4fClqHQ8NOInMasA9tsAFCLJb/46PeFPOP0UxzDHo9aL5esgc0Y/QoKGviBeLD47Q1UYOwk0ks9jNpy8K4BjVHPclgCYPYZ9qMXf6+ZWsQgQDfCLNyziCjV2U8q3vYYh6M5Ao4T2p9n3EFgUCxhyy1G7SyYL236PnyfRg9lQ0bKWlLj6tYUNYEiAzQSMGdDGvto2BSfCAw== sw@sw.local'
 
    labs_dev:
      - name: 'rowan.crawford'
        group: 'labs_dev'
-       key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDjDQSGuHRt2r65BzS6HSxTZ9TzDsQaZWxeaScdYEDsn9QAQIi9vfYnHjt4qolrvTRZBOKZzNr7nygz/oeJ0PKDt/X+YcCXfMeIZLPdzNqDbMnIcW2JT88VVqZl/xiCVDQWAAAM56cCtaDOjVFHp/i8pBs7z4BojX4PAkKAiNOH35+F2wSVgis6sSVRV+WAtWrCTlzvGBy2WNpgx8h3QYvrnmOsEEfS/m/RMf5aBIK/q7gwJRqd2rcOJ2Db4gQHHFuajAof5URSIO74LbGOE9NO43UVQ5BEsyfJXwq0f/gMPWgmLHdwN0pSnXAj/dgAyZX+XkAfvrTPfo4j3p2h10rl wombleton@gmail.com
-'
+       key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDjDQSGuHRt2r65BzS6HSxTZ9TzDsQaZWxeaScdYEDsn9QAQIi9vfYnHjt4qolrvTRZBOKZzNr7nygz/oeJ0PKDt/X+YcCXfMeIZLPdzNqDbMnIcW2JT88VVqZl/xiCVDQWAAAM56cCtaDOjVFHp/i8pBs7z4BojX4PAkKAiNOH35+F2wSVgis6sSVRV+WAtWrCTlzvGBy2WNpgx8h3QYvrnmOsEEfS/m/RMf5aBIK/q7gwJRqd2rcOJ2Db4gQHHFuajAof5URSIO74LbGOE9NO43UVQ5BEsyfJXwq0f/gMPWgmLHdwN0pSnXAj/dgAyZX+XkAfvrTPfo4j3p2h10rl wombleton@gmail.com'
+
    monitoring:
      - name: 'nagios'
        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1lsla5+i8HG2jLVaJnjEdj6LRrQLuC2p1X9ou8eNyJIMoN4sQW8tmsLSK0r072oyZoOoHtjLU1a6cHfiy3uLOCopPNhI8JNED09HFzXuHjHrX2ewDcxr0MnBYsEez5VQGpIZJSBdRrF+yQAqtcKAfzXoERwm6YawDYj1Q12CQY8b/VRmW1soZjiHy8OfmILOQVkRITFGHVXfDC5AymQ1H7pSkXLNREDam4cxo2JUx5p8nBK96sSzZllRkZZUvUmDI4oDo1HEeRi4cqoSVvfsHdImiwt645rGgM2c16IXLGhoQetK0UAKUb3w5+gHD8wiSEoG5CH0Bh+0DuxLsU4w2w== nagios@eu1.okfn.org'
