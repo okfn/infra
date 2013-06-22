@@ -4,9 +4,11 @@
   gather_facts: false
   connection: ssh
   user: $user
+
   sudo: true
   vars:
    - devs_group: ${project}_dev
+
   vars_files: 
    - ~/ansible/vars/global.yml
    - ~/ansible/vars/users.yml
