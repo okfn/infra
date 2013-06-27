@@ -1,0 +1,40 @@
+---
+- hosts: all
+  gather_facts: False
+  connection: ssh
+  user: okfn
+  sudo: true
+  vars_files: 
+   - ~/ansible/vars/global.yml
+   - ~/ansible/vars/users.yml
+  tasks:
+     - name: -> run_whoami
+       command: whoami
+       tags: whoami
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

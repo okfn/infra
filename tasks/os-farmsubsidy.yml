@@ -1,0 +1,77 @@
+---
+# run with
+#  ansible-playbook --connection=ssh  --extra-vars="host=s103.okserver.org" tasks/ckan-dbserver-setup.yml  -i inventory/hosts  -vv --tags="jetty_config,fetch_solr_config"
+# to run specific tasks use
+#  ansible-playbook --connection=ssh  --extra-vars="host=s103.okserver.org" tasks/ckan-dbserver-setup.yml  -i inventory/hosts  -vv --tags="jetty_config,fetch_solr_config"
+- hosts: $host
+  user: $user
+  sudo: yes
+  gather_facts: False
+  vars:
+   - project: openspending
+   - host: $inventory_hostname
+   - role: dbserver
+   - devs_group: ${project}_dev #jinja2 doesnt tolerate -'s
+   - farmsubsidy_db: farmsubsidy
+   - farmsubsidy_db_user: farmsubsidy
+   - locale: en_US.UTF-8
+
+  vars_files:
+   - ~/ansible/vars/global.yml
+   - ~/ansible/vars/users.yml
+
+  handlers:
+  - include: ~/ansible/handlers/common.yml
+
+  tasks:
+
+     - name: -> install packages
+       action: apt pkg=${item} state=installed
+       tags: install_packages
+       with_items:
+          - htop
+          - git
+          - python-dev
+          - python-psycopg2
+          - libpq-dev
+          - language-pack-en
+          - postgresql-9.1
+          - ufw
+       environment:
+          LANG: ${locale}
+          LC_COLLATE: ${locale}
+          LC_CTYPE: ${locale} 
+          LC_MESSAGES: ${locale} 
+          LC_MONETARY: ${locale} 
+          LC_NUMERIC: ${locale} 
+          LC_TIME: ${locale} 
+          LC_ALL: ${locale} 
+     
+     - name: set_sysctl_shmmax
+       action: sysctl name=kernel.shmmax value=1143210240 state=present reload=yes sysctl_file=/etc/sysctl.conf
+       tags: set_sysctl_shmmax
+       ignore_errors: true
+
+     - name: -> postgresql_conf
+       action: copy src=~/ansible/files/postgresql/9.1/${project}/${host}-postgresql.conf dest=/etc/postgresql/9.1/main/postgresql.conf mode=640
+       tags: postgresql_conf
+
+     - name: pg_hba_conf
+       action: template src=~/ansible/templates/postgresql/9.1/${project}/${host}-pg_hba.conf.j2 dest=/etc/postgresql/9.1/main/pg_hba.conf mode=640  
+       notify: restart postgresql
+       tags: pg_hba_conf
+
+     - name: -> ufw config
+       action: template src=~/ansible/templates/ufw/${project}/${host}-ufw.j2 dest=/lib/ufw/user.rules force=yes owner=root group=root mode=640
+       tags: ufw_config
+
+     - name: ufw_enable
+       action: command /usr/sbin/ufw --force enable
+       tags: ufw_enable
+       notify: restart ufw
+    
+#     - name: ensure_cronjob
+#       action: copy src=~/ansible/files/$project/${item} dest=/etc/cron.daily/${item}
+#       with_items:
+#          - pg_backup.sh
+#       tags: ensure_cronjob
