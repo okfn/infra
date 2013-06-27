@@ -1,3 +1,42 @@
-# Each host needs to be added in here, a cron will run against this file to ensure config consistency.
 ---
-- include: playbooks/hosts/status.okfn.org.yml
+- hosts: $host
+  gather_facts: False
+  connection: ssh
+  user: okfn
+  sudo: true
+  vars_files: 
+   - ~/ansible/vars/global.yml
+   - ~/ansible/vars/users.yml
+  roles:
+     - munin-node
+     - nagios-client
+     - sysstat
+     - update-notifier
+     - sysadmin-users
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
