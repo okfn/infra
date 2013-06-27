@@ -1,0 +1,17 @@
+---
+- hosts: s001.okserver.org
+  gather_facts: False
+  connection: ssh
+  user: okfn
+  sudo: true
+  vars_files: 
+   - ~/ansible/vars/global.yml
+   - ~/ansible/vars/users.yml
+  roles:
+     - ansible-prereq
+     - munin-node
+     - munin-server
+     - nagios-client
+     - sysstat
+     - update-notifier
+     - sysadmin-users
