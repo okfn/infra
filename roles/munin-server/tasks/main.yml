@@ -1,0 +1,26 @@
+---
+# This playbook installs the munin-node client package
+- name: -> install_munin-server
+  action: apt pkg=munin state=present
+  tags: install_munin-server
+
+- name: -> add_munin-server_files
+  action: file path=/etc/munin/plugin-conf.d state=directory
+  tags: add_munin-server_files
+
+- name: -> add_munin-server_files
+  action: copy src=etc/munin/plugin-conf.d/munin-node dest=/etc/munin/plugin-conf.d/munin-node force=yes
+  tags: add_munin-server_files 
+
+- name: -> add_munin-server_files
+  action: file path=/etc/apache/sites-available state=directory
+  tags: add_munin-server_files
+    
+- name: add_munin-server_files
+  action: copy src=etc/apache2/sites-available/munin.okfn.org dest=/etc/apache2/sites-available/munin.okfn.org force=yes
+  tags: add_munin-server_files 
+
+- name: -> add_munin-server_config
+  action: template src=munin.conf.j2 dest=/etc/munin/munin.conf force=yes
+  tags: add_munin-server_config
+
