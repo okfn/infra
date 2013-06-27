@@ -7,7 +7,7 @@
 
   sudo: true
   vars:
-   - devs_group: ${project}_dev
+   - devs_group: "{{ project }}_dev"
 
   vars_files: 
    - ~/ansible/vars/global.yml
@@ -41,42 +41,41 @@
           - sysadmin
        tags: sudoers
 
-    ## Add project devs if $project is defined
-     - name: -> add_group
-       only_if: "is_set('${project}')"
+# Add project devs if $project is defined
+     - name: -> add_project_group
+       when: project is defined
        action: group name=${item} state=present
        with_items:
-         - ${devs_group}
+         - "{{ devs_group }}"
        tags: add_project_group
- 
+     
      - name: -> debug_set
-       only_if: "is_set('${project}')"
-       action: debug msg="project is ${project}"
+       when: project is defined
+       action: debug msg=project is $project
        tags: debug_set
-
-     - name: -> add_user
-       only_if: "is_set('${project}')"
+     
+     - name: -> add_project_users
+       when: devs_group is defined
        action: user name={{ item.name }} group={{ item.group }} state=present shell=/bin/bash
-       with_items: users.{{ devs_group }}
-       only_if: "is_set('users.{{ devs_group }}')"
+       with_items: "users.{{ devs_group }}"
        tags: add_project_users
-
-     - name: -> install_ssh_keys
-       only_if:  "is_set('${project}')"
+     
+     - name: -> install_project_ssh_keys
+       when: project is defined
        action: authorized_key user=${item.name} state=present key="${item.key}"
-       with_items: users.{{ devs_group }}
-       only_if: "is_set('users.{{ devs_group }}')"
+       with_items: "users.{{ devs_group }}"
        tags: install_project_ssh_keys
-
-     - name: sudoers
-       only_if:  "is_set('${project}')"
+     
+     - name: setup_project_sudoers
+       when: project is defined
        lineinfile: "dest=/etc/sudoers state=present regexp='^%${item}' line='%${item} ALL=(ALL) NOPASSWD: ALL'"
        with_items:
-          - ${devs_group}
+          - "{{ devs_group }}"
        tags: setup_project_sudoers
 
      - name: -> generate_locale
        action: shell locale-gen $item
+
        with_items: $locale_list
        tags: generate_locale
 
@@ -89,6 +88,7 @@
 
 
      - name: -> run debconf
+
        action: shell /usr/bin/debconf-set-selections /tmp/debconf.preseed       
        tags: run_debconf
 
@@ -117,6 +117,7 @@
      - name: debug_projectvars
        action: debug msg="${project} ${sysadmin_email}"
        tags: debug_projectvars 
+
      
 #     - name: disable_root_login
 #       lineinfile: "dest=/etc/ssh/sshd_config state=present regexp='^PermitRootLogin' line='PermitRootLogin no'" 
