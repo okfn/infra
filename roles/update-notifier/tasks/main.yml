@@ -1,0 +1,5 @@
+---
+# This playbook installs the update-notifier-common client package
+- name: -> install_update-notifier-common
+  action: apt pkg=update-notifier-common state=latest
+  tags: install_update-notifier-common
