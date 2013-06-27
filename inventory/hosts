@@ -10,6 +10,7 @@ s095.okserver.org
 [openspending-db]
 s096.okserver.org
 s109.okserver.org os_project=farmsubsidy
+s030.okserver.org os_project=etl_testing
 
 
 [ckan-web-dev]
@@ -74,7 +75,7 @@ s074.okserver.org
 [other]
 s021.okserver.org hosted=aw 
 s073.okserver.org comment=future_mail_okfn
-s030.okserver.org hosted=aws
+
 s087.okserver.org comment=i_dont_know_my_owner
 
 [backup]
@@ -95,7 +96,6 @@ ckan-web-dev
 ckan-db-dev
 ckan-web-prod
 ckan-db-prod
-ansible-dev
 ckan-packaging
 ckan-es 
 
