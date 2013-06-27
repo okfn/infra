@@ -1,5 +1,5 @@
 ---
-- hosts: $host
+- hosts: all
   gather_facts: False
   connection: ssh
   user: okfn
@@ -8,6 +8,7 @@
    - ~/ansible/vars/global.yml
    - ~/ansible/vars/users.yml
   roles:
+     - ansible-prereq
      - munin-node
      - nagios-client
      - sysstat
