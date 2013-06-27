@@ -17,6 +17,10 @@
   tags: install_munin-plugins-extra
 
 - name: -> setup_munin_node_config
-  action: copy src=munin-node.conf dest=/etc/munin/munin-node.conf force=yes
-  notify: restart munin
+  action: copy src=etc/munin-node.conf dest=/etc/munin/munin-node.conf force=yes
+  notify: restart munin-node
+  tags: setup_munin_config
+
+- name: -> setup_munin_node_cron
+  action: copy src=etc/cron.d/munin-node dest=/etc/cron.d/munin-node force=yes
   tags: setup_munin_config
