@@ -1,2 +1,3 @@
 ---
 webserver_private_ip: 10.176.42.100
+postgres_port: 5432
