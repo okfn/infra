@@ -1,0 +1,12 @@
+---
+# This play sets up the check_mk agent
+ 
+- name: check_mk_config_main
+  action: template src=etc/check_mk/main.mk.j2 dest=/etc/check_mk/main.mk
+  tags: check_mk_config_main
+
+- name: check_mk_config_multisite
+  action: copy src=etc/check_mk/multisite.mk dest=/etc/check_mk/multisite.mk force=yes
+  tags:  check_mk_config_multisite
+
+

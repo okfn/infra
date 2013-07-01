@@ -1,0 +1,16 @@
+# Put your host names here
+# all_hosts = [ 'localhost' ]
+#all_hosts = [ "s074.okserver.org", "ansible-dev.okserver.org" ]
+
+all_hosts = [ 
+{% for host in groups['sysadmin-servers'] %}
+"{{ host }}",
+{% endfor %}
+{% for host in groups['ckan']  %}
+"{{ host }}",
+{% endfor %}
+{% for host in groups['openspending'] %}
+"{{ host }}",
+{%endfor%}
+"localhost"
+]
