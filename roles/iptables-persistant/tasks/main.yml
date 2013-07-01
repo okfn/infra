@@ -1,0 +1,8 @@
+---
+# This playbook installs the iptables-persistant package
+- name: test_iptables_persistent
+  environment:
+     DEBIAN_FRONTEND: noninteractive
+  action: apt pkg=iptables-persistent state=present
+  notify: start iptables-persistent 
+  tags: test_iptables_persistent
