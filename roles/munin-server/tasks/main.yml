@@ -18,6 +18,7 @@
     
 - name: add_munin-server_files
   action: copy src=etc/apache2/sites-available/munin.okfn.org dest=/etc/apache2/sites-available/munin.okfn.org force=yes
+  notify: restart apache2
   tags: add_munin-server_files 
 
 - name: -> add_munin-server_config
