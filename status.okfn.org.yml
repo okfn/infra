@@ -12,6 +12,8 @@
      - munin-node
      - munin-server
      - nagios-client
+     - check_mk-agent
+     - check_mk-server
      - sysstat
      - update-notifier
      - sysadmin-users
