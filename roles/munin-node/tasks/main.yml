@@ -24,3 +24,14 @@
 - name: -> setup_munin_node_cron
   action: copy src=etc/cron.d/munin-node dest=/etc/cron.d/munin-node force=yes
   tags: setup_munin_config
+
+- name: firewall_check_rule 
+  action: shell sudo iptables-save | grep -q 'dport 4949'
+  ignore_errors: true
+  register: rule_present
+  tags: firewall_check_rule
+
+- name: firewall_allow_munin
+  action: shell sudo iptables -A INPUT -s {{ munin_server }}  -p tcp -m tcp --dport 4949 -j ACCEPT 
+  when: rule_present.rc == 1
+  tags: firewall_allow_munin 
