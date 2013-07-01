@@ -1,0 +1,25 @@
+---
+# This play sets up the check_mk agent
+
+- name: fetch_check-mk_deb
+  action: command wget http://mathias-kettner.com/download/check-mk-agent_1.2.2p2-2_all.deb -O /opt/check-mk-agent_1.2.2p2-2_all.deb creates=/opt/check-mk-agent_1.2.2p2-2_all.deb
+  tags: fetch_check-mk_deb
+
+- name: install_xinetd
+  action: apt pkg=xinetd state=installed
+  tags: install_xinetd
+
+- name: install_check-mk_deb
+  action: command dpkg -i /opt/check-mk-agent_1.2.2p2-2_all.deb creates=/usr/bin/check_mk_agent
+  tags: install_check-mk_deb
+
+- name: firewall_check_rule 
+  action: shell sudo iptables-save | grep -q 'dport 6556'
+  ignore_errors: true
+  register: rule_present
+  tags: firewall_check_rule
+
+- name: firewall_allow_check-mk
+  action: shell sudo iptables -A INPUT -s {{ nagios_server }}  -p tcp -m tcp --dport 6556 -j ACCEPT 
+  when: rule_present.rc == 1 
+  
