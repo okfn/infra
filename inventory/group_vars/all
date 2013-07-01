@@ -1,2 +1,4 @@
 ---
 sysadmin_email: system-mails@okfn.org
+munin_server: graphs.okserver.org
+nagios_server: status.okserver.org
