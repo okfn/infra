@@ -10,34 +10,8 @@
   roles:
      - ansible-prereq
      - munin-node
-     - nagios-client
+     - check_mk-agent
+#     - nagios-client
      - sysstat
      - update-notifier
      - sysadmin-users
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
