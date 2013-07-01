@@ -97,5 +97,5 @@ host    all             all             ::1/128                 md5
 #local   replication     postgres                                peer
 #host    replication     postgres        127.0.0.1/32            md5
 #host    replication     postgres        ::1/128                 md5
-host	{{ farmsubsidy_db }}	{{ farmsubsidy_db_user }}	{{ webserver_private_ip }}	trust
+host	{{ farmsubsidy_db }}	{{ farmsubsidy_db_user }}	{{ webserver_private_ip }}/24	trust
 
