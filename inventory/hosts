@@ -51,7 +51,6 @@ s108.okserver.org ckan_project=datahub.io
 s105.okserver.org ckan_project=sa.ckan.net
 
 [ckan-es]
-s071.okserver.org
 s072.okserver.org
 
 [ckan-packaging]
