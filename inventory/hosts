@@ -5,7 +5,7 @@ ansible-dev.okserver.org
 localhost
 
 [openspending-web]
-s095.okserver.org
+s095.okserver.org comment="define dbserver, solrservers"
 
 [openspending-db]
 s096.okserver.org
@@ -21,6 +21,9 @@ s084.okserver.org ckan_project=demosites
 s089.okserver.org ckan_project=queensland.ckan.net
 s100.okserver.org
 s107.okserver.org
+s077.okserver.org ckan_project=datahub_old comment="to_terminate?"
+s099.okserver.org ckan_project=datagm.org.uk comment="when is it going to go live"
+
 
 [ckan-db-dev]
 s081.okserver.org ckan_project=ckan_testing
@@ -31,15 +34,13 @@ s090.okserver.org ckan_project=queensland.ckan.net
 [ckan-web-prod]
 s085.okserver.org ckan_project=datagm.org
 s080.okserver.org ckan_project=ckan_community
-s079.okserver.org ckan_project=publicdata.eu
-s075.okserver.org ckan_project=iati
-s077.okserver.org ckan_project=datahub_old
-s086.okserver.org ckan_project=iati
+s079.okserver.org ckan_project=publicdata.eu 
+s075.okserver.org ckan_project=www.datagm.org.uk
+s086.okserver.org ckan_project=iatiregistry.org
 s091.okserver.org ckan_project=queensland.ckan.net
-s099.okserver.org ckan_project=datagm.org.uk
 s107.okserver.org ckan_project=datahub.io
 s104.okserver.org ckan_project=sa.ckan.net
-s102.okserver.org ckan_project=edostate.ckan.net
+s102.okserver.org ckan_project=edostate.ckan.org
 
 [ckan-db-prod]
 s081.okserver.org ckan_project=ckan_community
@@ -108,3 +109,14 @@ mail
 trac
 other
 pagely-git
+
+[webservers:children]
+ckan-web-dev
+ckan-web-prod
+openspending-web
+
+[dbservers:children]
+ckan-db-prod
+ckan-db-dev
+ckan-es
+openspending-db
