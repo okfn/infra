@@ -8,5 +8,3 @@
 - name: check_mk_config_multisite
   action: copy src=etc/check_mk/multisite.mk dest=/etc/check_mk/multisite.mk force=yes
   tags:  check_mk_config_multisite
-
-
