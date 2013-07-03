@@ -1,6 +1,5 @@
-# Put your host names here
+# ansible managed, do not edit manually.
 # all_hosts = [ 'localhost' ]
-#all_hosts = [ "s074.okserver.org", "ansible-dev.okserver.org" ]
 
 all_hosts = [ 
 {% for host in groups['sysadmin-servers'] %}
