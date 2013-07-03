@@ -1,0 +1,2 @@
+---
+sites_to_monitor: ['br.ckan.net', 'cz.ckan.net', 'ie.ckan.net', 'it.ckan.net', 'no.ckan.net', 'data.gov.sk']

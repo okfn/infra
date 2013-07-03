@@ -3,6 +3,7 @@ site_id: datahub
 dbserver_private_ip: 10.181.26.142
 solrserver_private_ip: 10.181.26.142
 elasticserver_private_ip: 10.181.26.142
+sites_to_monitor: ['thedatahub.io']
 sites_enabled: 
     - [ 'thedatahub.org', [[ 'www.thedatahub.org', 'datahub.io' ]], '0.0.0.0', '8080' ] 
 ckan_plugins: [ 'datahub', 'disqus', 'social', 'synchronous_search', 'googleanalytics', 'stats', 'qa', 'datastore', 'datastorer' ]

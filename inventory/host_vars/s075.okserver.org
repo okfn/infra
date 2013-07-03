@@ -2,3 +2,4 @@
 dbserver_private_ip: 10.176.41.136 
 solrserver_private_ip: 10.176.41.136
 elasticserver_private_ip: 10.176.32.42
+sites_to_monitor: ['www.datagm.org.uk']

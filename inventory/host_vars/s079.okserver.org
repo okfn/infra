@@ -1,0 +1,2 @@
+---
+sites_to_monitor: ['publicdata.eu']

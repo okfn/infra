@@ -3,6 +3,7 @@ site_id: sa
 dbserver_private_ip: 10.179.189.205
 solrserver_private_ip: 10.179.189.205
 elasticserver_private_ip: 10.179.189.205
+sites_to_monitor: ['sa.ckanhosted.com', 'data.sa.au']
 sites_enabled: 
     - [ 'sa.ckanhosted.com', [[ 'www.sa.ckanhosted.com', 'data.sa.au', 'www.data.sa.au' ]], '0.0.0.0', '8080' ] 
 ckan_plugins: [ 'stats', 'datastore', 'sa', 'recline_preview', 'googleanalytics', 'hidegroups' ]

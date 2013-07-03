@@ -1,0 +1,2 @@
+---
+sites_to_monitor: ['data.qld.gov.au', 'publications.qld.gov.au']
