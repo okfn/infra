@@ -1,4 +1,5 @@
 ---
+#example run: ansible-playbook  --connection=ssh --extra-vars="host=status.okfn.org user=okfn" status.okfn.org.yml -i inventory/hosts  -vvvvv --tags="check_mk_config_main_test"
 - hosts: s001.okserver.org
   gather_facts: False
   connection: ssh
