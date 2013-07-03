@@ -11,7 +11,7 @@
      - ansible-prereq
      - munin-node
      - check_mk-agent
-#     - nagios-client
+     - nagios-client
      - sysstat
      - update-notifier
      - sysadmin-users
