@@ -13,7 +13,7 @@ all_hosts = [
 {%endfor%}
 ]
 
-
+#check_mk calls this method of check definition legacy_checks (a bit misleading)
 legacy_checks = [
 #CKAN webservices
 {% for host in groups['ckan-web-prod'] %}
@@ -35,8 +35,22 @@ legacy_checks = [
 {% endfor %}
 
 
-#( ( "check-tcp", "POSTGRES", False), [ {% for host in groups['dbservers'] %} "{{ host }}", {%endfor%} ]  ),
+#CKAN dbservice
+{% for host in groups['ckan-db-prod'] %}
+( ( "check_ssh_psql_running!localhost!5432", 'Postgres Server', False), [ "{{ host }}" ] ),
+{% endfor %}
 
+#Openspending dbservice
+{% for host in groups['openspending-db'] %}
+( ( "check_ssh_psql_running!localhost!5432", 'Postgres Server', False), [ "{{ host }}" ] ),
+{% endfor %}
+
+#All servers ssh service
+{% for host in groups['all'] %}
+( ( "check_tcp_2!{{ host }}!22", 'SSH', False), [ "{{ host }}" ] ),
+{% endfor %}
+
+#( ( "check-tcp", "POSTGRES", False), [ {% for host in groups['dbservers'] %} "{{ host }}", {%endfor%} ]  ),
 ]
 
 define_hostgroups = True
@@ -71,10 +85,6 @@ host_contactgroups = [
 
 
 extra_nagios_conf += r"""
-define command{
-        command_name    check_http_basic
-        command_line    /usr/lib/nagios/plugins/check_http -H '$ARG1$'
-}
 
 define contact{
         name                            generic-contact
@@ -103,5 +113,47 @@ define contact {
         use generic-contact
 	email {{ openspending_sysadmin_email }}, {{ sysadmin_email }}
 }
+
+
+define command{
+        command_name    check_http_basic
+        command_line    /usr/lib/nagios/plugins/check_http -H '$ARG1$'
+}
+
+define command{
+	 command_name    check_ssh_psql_running
+        command_line    /usr/lib/nagios/plugins/check_by_ssh -H '$HOSTADDRESS$' -C "/usr/lib/nagios/plugins/check_tcp -H $ARG1$  -p $ARG2$"
+}
+
+define command {
+	command_name	check_tcp_2
+	command_line	usr/lib/nagios/plugins/check_tcp -H '$ARG1$' -p '$ARG2$'	
+
+}
+
+
+
+
+################################################################################
+# NOTIFICATION COMMANDS
+################################################################################
+
+
+# 'notify-host-by-email' command definition
+define command{
+        command_name    notify-host-by-email
+        command_line    /usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\nHost: $HOSTNAME$\nState: $HOSTSTATE$\nAddress: $HOSTADDRESS$\nInfo: $HOSTOUTPUT$\n\nDate/Time: $LONGDATETIME$\n" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Host Alert: $HOSTNAME$ is $HOSTSTATE$ **" $CONTACTEMAIL$
+        }
+
+# 'notify-service-by-email' command definition
+define command{
+        command_name    notify-service-by-email
+        command_line    /usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\n\nService: $SERVICEDESC$\nHost: $HOSTALIAS$\nAddress: $HOSTADDRESS$\nState: $SERVICESTATE$\n\nDate/Time: $LONGDATETIME$\n\nAdditional Info:\n\n$SERVICEOUTPUT$" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Service Alert: $HOSTALIAS$/$SERVICEDESC$ is $SERVICESTATE$ **" $CONTACTEMAIL$
+        }
+
+
+
+
+
 
 """
