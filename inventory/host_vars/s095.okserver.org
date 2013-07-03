@@ -1,2 +1,2 @@
 ---
-sites_to_monitor: ['archive.openspending.org', 'clients.openspending.org', 'farmsubsidy.org', 'openspending-redirects', 'budzeti.ba','content.openspending.org', 'openspending.org', 'wheredoesmymoneygo.org']
+sites_to_monitor: ['archive.openspending.org', 'farmsubsidy.org', 'budzeti.ba','content.openspending.org', 'openspending.org', 'wheredoesmymoneygo.org']
