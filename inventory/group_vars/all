@@ -1,4 +1,6 @@
 ---
-sysadmin_email: system-mails@okfn.org
+sysadmin_email: 'system-mails@okfn.org'
+ckan_sysadmin_email: 'ckan-sysadmin@okfn.org'
+openspending_sysadmin_email: 'openspending-sysadmin@okfn.org'
 munin_server: graphs.okserver.org
 nagios_server: status.okserver.org
