@@ -1,3 +1,5 @@
+#To disable a host in nagios use disable_nagios_checks=true
+
 [ansible-dev]
 ansible-dev.okserver.org
 
@@ -10,7 +12,7 @@ s095.okserver.org comment="define dbserver, solrservers"
 [openspending-db]
 s096.okserver.org
 s109.okserver.org os_project=farmsubsidy
-s030.okserver.org os_project=etl_testing
+s030.okserver.org os_project=etl_testing 
 
 
 [ckan-web-dev]

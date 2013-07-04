@@ -3,13 +3,19 @@
 
 all_hosts = [ 
 {% for host in groups['sysadmin-servers'] %}
+  {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
 "{{ host }}",
+  {% endif %}
 {% endfor %}
 {% for host in groups['ckan']  %}
+  {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
 "{{ host }}",
+  {% endif %}
 {% endfor %}
 {% for host in groups['openspending'] %}
+  {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
 "{{ host }}",
+  {% endif %}
 {%endfor%}
 ]
 
