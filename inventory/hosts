@@ -1,7 +1,7 @@
 #To disable a host in nagios use disable_nagios_checks=true
 
 [ansible-dev]
-ansible-dev.okserver.org
+ansible-dev.okserver.org disable_nagios_checks=True
 
 [ansible-host]
 localhost
@@ -76,7 +76,7 @@ s074.okserver.org
 
 [other]
 s021.okserver.org hosted=aw 
-s073.okserver.org comment=future_mail_okfn
+s073.okserver.org comment=future_mail_okfn disable_nagios_checks=True
 
 s087.okserver.org comment=i_dont_know_my_owner
 
