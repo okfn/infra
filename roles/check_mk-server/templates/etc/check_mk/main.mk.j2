@@ -97,6 +97,12 @@ define contact{
 }
 
 define contact {
+	contact_name alert_escalation_contact
+	use generic-contact
+	email {{ alert_escalation_contact }}
+}
+
+define contact {
 	contact_name sysadmin
 	use generic-contact
 	email {{ sysadmin_email }}
@@ -114,6 +120,15 @@ define contact {
 	email {{ openspending_sysadmin_email }}, {{ sysadmin_email }}
 }
 
+define serviceescalation {
+	hostgroup_name	Sysadmin-Servers,CKAN-Servers,Openspending-Servers	
+	service_description	*
+	first_notification 	4
+	last_notification	0
+	notification_interval	30
+        contacts alert_escalation_contact
+	escalation_options	w,c
+}
 
 define command{
         command_name    check_http_basic
