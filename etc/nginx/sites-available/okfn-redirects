@@ -128,5 +128,25 @@ server {
 		rewrite ^/$ http://webchat.freenode.net/?channels=okfn permanent;
 		rewrite ^/(.+)$ http://webchat.freenode.net/?channels=okfn,$1 permanent;
 	}
-
+	
+	
 }
+
+server {
+        listen   localhost:8080;
+	server_name  openshakespeare.org www.openshakespeare.org;
+	
+	location ~*  (/work.*$|/work$) {
+		rewrite ^/work/(.*)$ http://openliterature.net/shakespeare/$1 permanent;
+
+	}
+	location ~* /.*$ {
+		rewrite ^/(.*)$ http://openliterature.net/$1 permanent;
+	}
+       location ~* ^/$ {
+		rewrite ^ http://openliterature.net/ permanent;
+	}
+}
+	
+
+
