@@ -1,7 +1,8 @@
 ---
-- hosts: all
+- hosts: $host
   gather_facts: False
   connection: ssh
+  tags: 
   user: okfn
   sudo: true
   vars_files: 
@@ -9,9 +10,44 @@
    - ~/ansible/vars/users.yml
   roles:
      - ansible-prereq
+     - iptables-persistent
      - munin-node
      - check_mk-agent
      - nagios-client
+     - cron
      - sysstat
      - update-notifier
      - sysadmin-users
+
+- hosts: cache
+  gather_facts: False
+  connection: ssh
+  tags: cache
+  user: okfn
+  sudo: true
+  pre_tasks:
+     - action: debug msg="cache!"
+  roles:
+     - squid3
+
+- hosts: wiki
+  gather_facts: False
+  connection: ssh
+  tags: wiki
+  user: okfn
+  sudo: true
+  tasks:
+     - action: debug msg="wiki!"
+
+
+
+- hosts: mail
+  gather_facts: False
+  connection: ssh
+  tags: mailserver
+  user: okfn
+  sudo: true
+  tasks:
+     - action: debug msg="mailserver!"
+
+
