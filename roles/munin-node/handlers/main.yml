@@ -3,4 +3,6 @@
 
 - name: restart munin-node
   service: name=munin-node state=restarted
-  
+
+- name: reload iptables-persistent
+  service: name=iptables-persistent state=reloaded 
