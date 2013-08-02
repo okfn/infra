@@ -1,0 +1,9 @@
+---
+- name: ensure_squid_installed
+  action: apt pkg=squid3 state=present
+  tags: ensure_squid_installed
+
+- name: copy_squid_config
+  action: copy src=etc/squid3/{{ inventory_hostname }}_squid.conf dest=/etc/squid3/squid.conf validate="/usr/sbin/squid3 -k parse -f %s" owner=root mode=444
+  notify: reload squid3
+  tags: copy_squid_config
