@@ -36,7 +36,7 @@
 ### tuple ### allow tcp {{ postgres_port }}  0.0.0.0/0 any {{ webserver_private_ip }} in_eth1
 -A ufw-user-input -i eth1 -p tcp --dport {{ postgres_port }}  -s {{ webserver_private_ip }} -j ACCEPT
 -A ufw-user-input -i eth1 -p tcp --dport {{ solr_port }}  -s {{ webserver_private_ip }} -j ACCEPT
--A INPUT -s {{ munin_server }} -p tcp --dport 4949 -j ACCEPT
+-A INPUT -s {{ monitoring_server }} -p tcp --dport 4949 -j ACCEPT
 
 
 ### tuple ### allow any any 0.0.0.0/0 any 72.3.128.84 in
