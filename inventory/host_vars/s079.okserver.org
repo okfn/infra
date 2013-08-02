@@ -1,2 +1,3 @@
 ---
 sites_to_monitor: ['publicdata.eu']
+db_type: postgres

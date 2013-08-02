@@ -1,2 +1,4 @@
 ---
 sites_to_monitor: ['data.qld.gov.au', 'publications.qld.gov.au']
+dbserver_private_ip: 10.181.10.23
+solrserver_private_ip: 10.181.10.23
