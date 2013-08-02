@@ -1,0 +1,20 @@
+---
+# This playbook installs the iptables-persistant package
+- name: install_iptables_persistent
+  environment:
+     DEBIAN_FRONTEND: noninteractive
+  action: apt pkg=iptables-persistent state=present
+  notify: restart iptables-persistent 
+  tags: install_iptables_persistent
+
+- name: iptables_config
+  action: template src=etc/iptables/iptables.j2 dest=/etc/iptables/rules.v4
+##  with_first_found:
+#     - etc/iptables/${project}_iptables.j2
+#     - etc/iptables/${inventory_hostname}_iptables.j2
+#     - etc/iptables/iptables.j2
+# ignore_errors: True
+  notify: restart iptables-persistent
+  tags: iptables_config
+
+
