@@ -1,4 +1,10 @@
 ---
 site_id: sa
+db_type: mysql
+mysql_port: 3306
+solr_port: 2344
+postgres_port: 2343
+rackspace_support_ips: ['192.168.1.123', '192.168.123.12']
 webserver_private_ip: 10.179.187.168
 solr_cores: [ 'ckan-schema-1.4', 'ckan-schema-2.0' ]
+#disabled_checks: ['apt-security-check']

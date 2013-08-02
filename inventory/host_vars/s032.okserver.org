@@ -1,0 +1,3 @@
+---
+solr_port: 53869
+db_type: postgres

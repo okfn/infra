@@ -1,0 +1,3 @@
+---
+dbserver_private_ip: 10.181.3.99
+solrserver_private_ip: 10.181.3.99
