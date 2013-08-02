@@ -1,7 +1,7 @@
 #To disable a host in nagios use disable_nagios_checks=true
 
 [ansible-dev]
-ansible-dev.okserver.org disable_nagios_checks=True
+ansible-dev.okserver.org disable_nagios_checks=True backup_postgres=True
 
 [ansible-host]
 localhost
@@ -14,6 +14,8 @@ s096.okserver.org
 s109.okserver.org os_project=farmsubsidy
 s030.okserver.org os_project=etl_testing 
 
+[queremossaber]
+s030.okserver.org  
 
 [ckan-web-dev]
 s080.okserver.org ckan_project=ckan_testing
@@ -25,18 +27,17 @@ s100.okserver.org
 s107.okserver.org
 s077.okserver.org ckan_project=datahub_old comment="to_terminate?"
 s099.okserver.org ckan_project=datagm.org.uk comment="when is it going to go live"
-
+s101.okserver.org ckan_project=datapusher
+s031.okserver.org ckan_project=ckan_testing #runs its own dbserver
 
 [ckan-db-dev]
-s081.okserver.org ckan_project=ckan_testing
 s031.okserver.org ckan_project=ckan_testing
 s032.okserver.org ckan_project=data.gov
 s090.okserver.org ckan_project=queensland.ckan.net
 
 [ckan-web-prod]
-s085.okserver.org ckan_project=datagm.org
 s080.okserver.org ckan_project=ckan_community
-s079.okserver.org ckan_project=publicdata.eu 
+s079.okserver.org ckan_project=publicdata.eu #runs its own webserver
 s075.okserver.org ckan_project=www.datagm.org.uk
 s086.okserver.org ckan_project=iatiregistry.org
 s091.okserver.org ckan_project=queensland.ckan.net
@@ -45,13 +46,15 @@ s104.okserver.org ckan_project=sa.ckan.net
 s102.okserver.org ckan_project=edostate.ckan.org
 
 [ckan-db-prod]
-s081.okserver.org ckan_project=ckan_community
-s078.okserver.org ckan_project=datahub_old
-s076.okserver.org ckan_project=iati
-s092.okserver.org ckan_project=queensland.ckan.net
-s103.okserver.org ckan_project=edostate.ckan.net
+s081.okserver.org ckan_project=ckan_community backup_postgres=True
+s085.okserver.org ckan_project=ckan_community
+s078.okserver.org ckan_project=datahub_old backup_postgres=True
+s076.okserver.org ckan_project=iati backup_postgres=True
+s092.okserver.org ckan_project=queensland.ckan.net 
+s103.okserver.org ckan_project=edostate.ckan.net backup_postgres=True
 s108.okserver.org ckan_project=datahub.io
-s105.okserver.org ckan_project=sa.ckan.net
+s105.okserver.org ckan_project=sa.ckan.net 
+s079.okserver.org ckan_project=publicdata.eu #runs its own database
 
 [ckan-es]
 s072.okserver.org
@@ -74,11 +77,12 @@ s070.okserver.org
 [etherpad]
 s074.okserver.org
 
-[other]
-s021.okserver.org hosted=aw 
-s073.okserver.org comment=future_mail_okfn disable_nagios_checks=True
-
+[LOV]
 s087.okserver.org comment=i_dont_know_my_owner
+
+[other]
+s021.okserver.org hosted=aw comment="to be shutdown once knowledgeforge is moved out" 
+s073.okserver.org comment=future_mail_okfn disable_nagios_checks=True
 
 [backup]
 s088.okserver.org
@@ -101,6 +105,12 @@ ckan-db-prod
 ckan-packaging
 ckan-es 
 
+[test-group:children]
+backup
+etherpad
+ansible-dev
+labs
+
 [sysadmin-servers:children]
 wiki
 backup
@@ -116,9 +126,21 @@ pagely-git
 ckan-web-dev
 ckan-web-prod
 openspending-web
+ansible-dev
+wiki
+LOV
+etherpad
+trac
+queremossaber
+labs
+mail
+cache
 
 [dbservers:children]
-ckan-db-prod
+ansible-dev
+ckan-db-prod 
 ckan-db-dev
 ckan-es
 openspending-db
+ansible-dev
+etherpad
