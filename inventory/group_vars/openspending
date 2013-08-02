@@ -1,4 +1,5 @@
 ---
+db_type: postgres
 devs_group: 'openspending_dev'
 project: 'openspending'
 sysadmin_email: "{{ openspending_sysadmin_email }}"
