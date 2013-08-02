@@ -1,5 +1,5 @@
 ---
-# This play sets up the check_mk agent
+# This play sets up the check_mk server
  
 - name: check_mk_config_main
   action: template src=etc/check_mk/main.mk.j2 dest=/etc/check_mk/main.mk
