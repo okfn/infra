@@ -25,13 +25,20 @@
   action: copy src=etc/cron.d/munin-node dest=/etc/cron.d/munin-node force=yes
   tags: setup_munin_config
 
-- name: firewall_check_rule 
-  action: shell sudo iptables-save | grep -q 'dport 4949'
-  ignore_errors: true
-  register: rule_present
-  tags: firewall_check_rule
+#check if munin is allowed in the firewall
+##- name: firewall_check_rule 
+#  action: shell sudo iptables-save | grep -q "dport {{ munin_port }}"
+#  ignore_errors: true
+#  register: rule_present
+#  tags: firewall_check_rule
 
-- name: firewall_allow_munin
-  action: shell sudo iptables -A INPUT -s {{ munin_server }}  -p tcp -m tcp --dport 4949 -j ACCEPT 
-  when: rule_present.rc == 1
-  tags: firewall_allow_munin 
+- name: -> allow_munin_in_fw
+  action: lineinfile dest=${iptables_config_file} regexp='dport ${munin_port} -j monitoring$'  line='-A INPUT -s ${monitoring_server} -p tcp -m tcp --dport ${munin_port} -j monitoring' insertbefore='^COMMIT' state=present
+  notify: restart iptables-persistent
+  tags: allow_munin_in_fw
+
+
+#- name: firewall_allow_munin
+#  action: shell sudo iptables -A monitoring -s {{ monitoring_server }}  -p tcp -m tcp --dport 4949 -j ACCEPT 
+#  when: rule_present.rc == 1
+#  tags: firewall_allow_munin 
