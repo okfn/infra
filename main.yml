@@ -1,8 +1,8 @@
 ---
 - hosts: $host
-  gather_facts: False
+  gather_facts: True
   connection: ssh
-  tags: 
+  tags: base-roles
   user: okfn
   sudo: true
   vars_files: 
@@ -39,7 +39,18 @@
   tasks:
      - action: debug msg="wiki!"
 
-
+- hosts: s001.okserver.org
+  gather_facts: True
+  connection: ssh
+  tags: monitoring
+  user: okfn
+  sudo: true
+  vars_files: 
+   - ~/ansible/vars/global.yml
+   - ~/ansible/vars/users.yml
+  roles:
+     - munin-server
+     - check_mk-server
 
 - hosts: mail
   gather_facts: False
