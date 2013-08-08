@@ -71,9 +71,6 @@ s006.okserver.org
 [trac]
 s039.okserver.org
 
-[pagely-git]
-s070.okserver.org
-
 [etherpad]
 s074.okserver.org
 
@@ -92,6 +89,7 @@ s098.okserver.org dbserver=localhost managed=false hoster=RS
 
 [labs]
 s033.okserver.org
+s110.okserver.org
 
 [openspending:children]
 openspending-db
@@ -120,7 +118,6 @@ cache
 mail
 trac
 other
-pagely-git
 
 [webservers:children]
 ckan-web-dev
