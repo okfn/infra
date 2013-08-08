@@ -9,3 +9,7 @@
 - name: check_mk_config_multisite
   action: copy src=etc/check_mk/multisite.mk dest=/etc/check_mk/multisite.mk force=yes
   tags:  check_mk_config_multisite
+
+- name: manual_reload_check_mk_server
+  action: shell /usr/bin/check_mk -II && /usr/bin/check_mk -O
+  tags: manual_reload_check_mk_server
