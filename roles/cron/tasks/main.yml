@@ -6,7 +6,7 @@
   tags: add_pgbackup_cron
 
 - name: add_ansible_facts_cron
-  action: copy src=files/cron.hourly/populate_ansible_facts.py dest=/etc/cron.hourly/populate_ansible_facts.py mode=644
+  action: copy src=files/cron.hourly/populate_ansible_facts.py dest=/etc/cron.hourly/populate_ansible_facts.py mode=744
   when: ansible_distribution == 'Ubuntu'
   tags: add_ansible_facts_cron
 
