@@ -6,13 +6,11 @@
   user: $user
 
   sudo: true
-  vars:
-   - devs_group: "{{ project }}_dev"
-
   vars_files: 
    - ~/ansible/vars/global.yml
    - ~/ansible/vars/users.yml
   tasks:
+
      ## Add sysadmin and monitoring users 
      - name: -> add_group
        action: group name=${item} state=present
@@ -41,33 +39,32 @@
           - sysadmin
        tags: sudoers
 
+     - name: set_hostname
+       action: shell echo "{{ host }}" > /etc/hostname && echo hostname "{{ host }}"
+       tags: set_hostname
+
 # Add project devs if $project is defined
      - name: -> add_project_group
-       when: project is defined
        action: group name=${item} state=present
        with_items:
          - "{{ devs_group }}"
        tags: add_project_group
      
      - name: -> debug_set
-       when: project is defined
        action: debug msg=project is $project
        tags: debug_set
      
      - name: -> add_project_users
-       when: devs_group is defined
        action: user name={{ item.name }} group={{ item.group }} state=present shell=/bin/bash
        with_items: "users.{{ devs_group }}"
        tags: add_project_users
      
      - name: -> install_project_ssh_keys
-       when: project is defined
        action: authorized_key user=${item.name} state=present key="${item.key}"
        with_items: "users.{{ devs_group }}"
        tags: install_project_ssh_keys
      
      - name: setup_project_sudoers
-       when: project is defined
        lineinfile: "dest=/etc/sudoers state=present regexp='^%${item}' line='%${item} ALL=(ALL) NOPASSWD: ALL'"
        with_items:
           - "{{ devs_group }}"
