@@ -46,7 +46,16 @@ users:
       - name: 'vitor'
         group: 'ckan_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUnItn4uDxgcmbloeS5qMiHw829kbr5XkfjOrOmKhAMWd9ALlm7S3PbbpbTesRtSwaATZETAdJHiLNv+UbCdl+SmewpIIulbTXlaSICMopoYFTGpbxUHhqP0qNMzWHpsail9cGPB/KVl0RAFoOtxB2LHfjA6i+ccCujTS6Z29GaO/riHv72UOfsKu5GjUCF3xyP5dhQSPW5Vr15Qe6e35YhGLcWz2nslnM2iOaqZ7Ylu45AMlwbu0MiKN8rHvlgcTFUjDo+WRcvtljuD0dhcks7HqLlg/85tSTEPKDW0zYMbEfp/IlL3bO2CGbOzu4RCh+CUQ80rj+EPohFXk7tnij vitor@luna'
- 
+
+   sparql_dev:
+      - name: 'pierre.yves'
+        group: 'sparql_dev'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAxjYVjAU9tgNVAY3sGzHIjEFI7TR65YAhIFz2lbH39ChTVXbZ0cyMsZcquzW4BT69SUOOc2vy8icwVn6nge6wNjT5X/PJGdaumuJBPhdMHzZYVRbbyWyGwYfrAMk2Hyp8Gb/2SOf3OgFVwZ5HPIgzEd9zJvxOulxONAkwuYoBnOk='
+      
+      - name: 'umbrich'
+        group: 'sparql_dev'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIBowADtr6ImrDYP9MS7H2qT2wM2jMplPQ0uamMqUK92U+WIHWZzAbaEmMbHdpaBklvs5X8P5B+KA10A4hdQFvRmw/5N0YQlvhEoIsQ0lMO1MFHp0ARr6ynmhN3bdYEAcdEYe3zYPWX+UbJwQCNeeC/TyoFlt29nXaRg9Z0gQSl59w=='
+
    openspending_dev:
       - name: 'vitor'
         group: 'openspending_dev'
