@@ -4,12 +4,20 @@
   gather_facts: false
   connection: ssh
   user: $user
-
   sudo: true
   vars_files: 
    - ~/ansible/vars/global.yml
    - ~/ansible/vars/users.yml
+   - ~/ansible/.private/p.yml
   tasks:
+     - name: -> set correct date
+       action: shell /usr/sbin/ntpdate pool.ntp.org
+       tags: set_date
+     ## Add DME record, the DME module is timestamp sensitive, ensure the system clock is in syncd using ntpdate
+     ## msg: http://api.dnsmadeeasy.com/V2.0/dns/managed returned 403, with body: {error: ["Request sent with date header too far out of sync.  Difference in times is -98077, header value is 1376666747000"]}
+     - name: -> Add DME record
+       dnsmadeeasy: account_key="{{ dme_key }}" account_secret="{{ dme_secret }}" domain="{{ hostname_tld }}" state=present record_name="{{ hostname.split('.')[0] }}" record_type='A' record_value="{{ hostip }}"
+       tags: setup_dns
 
      ## Add sysadmin and monitoring users 
      - name: -> add_group
