@@ -91,6 +91,9 @@ s098.okserver.org dbserver=localhost managed=false hoster=RS
 s033.okserver.org
 s110.okserver.org
 
+[sparql]
+s111.okserver.org
+
 [openspending:children]
 openspending-db
 openspending-web
