@@ -1,0 +1,27 @@
+server {
+        listen       80;
+        server_name  test09.okfnpad.org;
+
+         #the message to be injected
+         location = /message{
+#             proxy_pass  http://message.okfnpad.org/index.html;
+             proxy_pass  http://message.okfnpad.org/index-bobby.html;
+         }
+
+	location / {
+            proxy_pass             http://localhost:9000/;
+            proxy_set_header       Host $host;
+            proxy_buffering off;
+	  
+   #HttpAdditionModule directive 
+#          add_before_body   /message; 
+	   add_after_body /message;
+
+	    if ($host = 'www.okfnpad.org' ) {
+		rewrite  ^/(.*)$  http://okfnpad.org/$1  permanent;
+	    }
+
+
+        }
+
+}
