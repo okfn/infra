@@ -17,8 +17,19 @@
      - cron
      - sysstat
      - update-notifier
-     - sysadmin-users
+     - users
 
+- hosts: etherpad
+  gather_facts: False
+  connection: ssh
+  user: okfn
+  sudo: true
+  vars_files:
+   - ~/ansible/.private/p.yml
+  tags: etherpad
+  roles:
+     - { role: etherpad-lite, install_path: '/var/www/etherpad-lite', user: 'etherpad-lite', group: 'etherpad-lite', version: '1.2.11' }
+      
 - hosts: cache
   gather_facts: False
   connection: ssh
