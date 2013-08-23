@@ -1,0 +1,20 @@
+---
+- name: add_etherpad_group
+  action: user name={{ group }} state=present
+  tags: add_etherpad_group
+
+- name: add_etherpad_user
+  action: user name={{ user }} group={{ group }} home={{ install_path }}
+  tags: add_etherpad_user
+
+- name: git_checkout_etherpad
+  action: git repo=https://github.com/ether/etherpad-lite.git dest={{ install_path }} update=no version={{ version }} #tag to clone
+  tags: git_checkout_etherpad
+
+- name: set_permissions_etherpad
+  action: file path={{ install_path }} owner={{ user }} group={{ group }} recurse=yes state=directory
+  tags: set_permissions_etherpad 
+
+- name: settings_config_etherpad
+  action: template src=settings_json.j2 dest={{ install_path }}/settings.json owner={{ user }} group={{ group }} mode=600
+  tags: settings_config_etherpad

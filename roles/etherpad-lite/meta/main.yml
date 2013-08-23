@@ -1,0 +1,6 @@
+---
+dependencies:
+- { role: nginx }
+- { role: apt, pkg_list: ['git'] }
+- { role: supervisor } 
+#- { role: nodejs } - Todo, build a node deb or write up task to install nodejs
