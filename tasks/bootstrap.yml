@@ -56,6 +56,7 @@
        action: group name=${item} state=present
        with_items:
          - "{{ devs_group }}"
+       when: devs_group is defined
        tags: add_project_group
      
      - name: -> debug_set
