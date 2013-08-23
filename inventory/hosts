@@ -1,7 +1,7 @@
 #To disable a host in nagios use disable_nagios_checks=true
 
 [ansible-dev]
-ansible-dev.okserver.org disable_nagios_checks=True backup_postgres=True ansible_ssh_host=108.166.97.240
+ansible-dev.okserver.org disable_nagios_checks=True backup_postgres=True ansible_ssh_host=108.166.97.240 project=ckan
 
 [ansible-host]
 localhost
@@ -126,7 +126,6 @@ other
 ckan-web-dev
 ckan-web-prod
 openspending-web
-ansible-dev
 wiki
 LOV
 etherpad
@@ -137,10 +136,8 @@ mail
 cache
 
 [dbservers:children]
-ansible-dev
 ckan-db-prod 
 ckan-db-dev
 ckan-es
 openspending-db
-ansible-dev
 etherpad
