@@ -1,0 +1,4 @@
+---
+- name: apt_install
+  action: apt pkg={{ item }} state=installed
+  with_items: "{{  pkg_list }}"
