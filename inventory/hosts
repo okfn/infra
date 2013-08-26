@@ -122,6 +122,12 @@ mail
 trac
 other
 
+[sysadmin-web]
+wiki
+etherpad
+mail
+cache
+
 [webservers:children]
 ckan-web-dev
 ckan-web-prod
