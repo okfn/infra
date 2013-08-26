@@ -1,4 +1,4 @@
 ---
 db_type: mysql
-sites_to_monitor: ['okfnpad.org']
+sites_to_monitor: ['okfnpad.org:80:200', 'new.okfnpad.org:80:200']
 sites_enabled: ['message.okfnpad.org', 'new.okfnpad.org', 'okfnpad.org', 'test09.okfnpad.org']

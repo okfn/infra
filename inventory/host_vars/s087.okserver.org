@@ -1,2 +1,2 @@
 ---
-sites_to_monitor: ['lov.okfn.org']
+sites_to_monitor: ['lov.okfn.org:80:301']

@@ -1,0 +1,2 @@
+---
+sites_to_monitor: ['lists.okfn.org:80:301']

@@ -1,3 +1,4 @@
 ---
 #bots that hit the wiki, dropped in firewall
 ban_abusive_ips: ['157.55.32.83', '178.167.254.118', '157.55.33.113', '65.55.52.117', '157.55.35.82', '157.55.32.82', '157.55.32.53', '157.55.32.97', '157.55.32.184', '157.55.35.34', '157.55.32.89', '157.55.32.114', '157.55.32.81', '157.55.32.76', '157.55.35.48']
+sites_to_monitor: ['wiki.okfn.org:80:200'] #used to generate the check_mk template for monitoring in nagios - ['site1:port:ok_status', 'site2:port:ok_status']
