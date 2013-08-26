@@ -21,11 +21,14 @@ all_hosts = [
 
 #check_mk calls this method of check definition legacy_checks (a bit misleading)
 legacy_checks = [
+
+#Monitoring checks for webservices added based on project for clarity.
+
 #CKAN webservices
 {% for host in groups['ckan-web-prod'] %}
   {% if hostvars[host]['sites_to_monitor'] is defined %}
-    {% for site in hostvars[host]['sites_to_monitor'] %} 
-( ( "check_http_basic!{{ site }}", "{{ site }}", False), [ "{{ host }}" ] ),
+    {% for site in hostvars[host]['sites_to_monitor'] %} # sites_to_monitor is an array of sites defined in inventory/host_vars/$host e.g, ['openspending.org:port:http_status']
+( ( "check_http_basic!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "{{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
     {% endfor %}
   {% endif %}
 {% endfor %}
@@ -35,10 +38,20 @@ legacy_checks = [
 {% for host in groups['openspending-web'] %}
   {% if hostvars[host]['sites_to_monitor'] is defined %}
     {% for site in hostvars[host]['sites_to_monitor'] %} 
-( ( "check_http_basic!{{ site }}", " {{ site }}", False), [ "{{ host }}" ] ),
+( ( "check_http_basic!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "{{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
     {% endfor %}
   {% endif %}
 {% endfor %}
+
+#okf/sysadmin  webervices
+{% for host in groups['sysadmin-web'] %}
+  {% if hostvars[host]['sites_to_monitor'] is defined %}
+    {% for site in hostvars[host]['sites_to_monitor'] %} 
+( ( "check_http_basic!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "{{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
 
 
 #CKAN dbservice
