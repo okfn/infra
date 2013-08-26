@@ -1,6 +1,7 @@
 # ansible managed, do not edit manually.
 # all_hosts = [ 'localhost' ]
 
+
 all_hosts = [ 
 {% for host in groups['sysadmin-servers'] %}
   {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
@@ -19,15 +20,20 @@ all_hosts = [
 {%endfor%}
 ]
 
+
 #check_mk calls this method of check definition legacy_checks (a bit misleading)
 legacy_checks = [
 
 #Monitoring checks for webservices added based on project for clarity.
 
+# sites_to_monitor is an array of sites defined in inventory/host_vars/$host e.g, ['openspending.org:port:http_status']
+# if this fails to generate with the error ''
+
+
 #CKAN webservices
 {% for host in groups['ckan-web-prod'] %}
   {% if hostvars[host]['sites_to_monitor'] is defined %}
-    {% for site in hostvars[host]['sites_to_monitor'] %} # sites_to_monitor is an array of sites defined in inventory/host_vars/$host e.g, ['openspending.org:port:http_status']
+    {% for site in hostvars[host]['sites_to_monitor'] %}
 ( ( "check_http_basic!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "{{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
     {% endfor %}
   {% endif %}
@@ -191,3 +197,5 @@ define command{
 
 
 """
+
+

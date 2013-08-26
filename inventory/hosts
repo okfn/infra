@@ -122,7 +122,7 @@ mail
 trac
 other
 
-[sysadmin-web]
+[sysadmin-web:children]
 wiki
 etherpad
 mail
