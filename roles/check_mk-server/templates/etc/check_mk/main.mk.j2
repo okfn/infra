@@ -151,7 +151,7 @@ define serviceescalation {
 
 define command{
         command_name    check_http_basic
-        command_line    /usr/lib/nagios/plugins/check_http -H '$ARG1$'
+        command_line    /usr/lib/nagios/plugins/check_http -H '$ARG1$' -p '$ARG2$' -e '$ARG3$' -N
 }
 
 define command{
