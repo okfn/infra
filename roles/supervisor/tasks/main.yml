@@ -9,11 +9,11 @@
      - etc/supervisor/${project}/supervisord.conf
      - etc/supervisor/${inventory_hostname}_supervisord.conf
      - etc/supervisor/default_supervisord.conf
- # notify: restart supervisor
+  notify: restart supervisor
   tags: supervisor_config
 
-- name:  supervisor_config 
+- name:  supervisor_confd 
   action: copy src={{ item }} dest=/etc/supervisor/conf.d/
-#  notify: restart supervisor
-  with_fileglob: etc/supervisor/conf.d/${inventory_hostname}/
-  tags: supervisor_config
+  notify: restart supervisor
+  with_fileglob: etc/supervisor/conf.d/${inventory_hostname}/*
+  tags: supervisor_confd
