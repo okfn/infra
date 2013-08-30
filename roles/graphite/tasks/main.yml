@@ -1,0 +1,30 @@
+- name: easy_install_pip
+  action: easy_install name=pip
+  tags: easy_install_pip
+
+- name: pip_install_carbon # pip can move into its own role 
+  action: pip name={{ item }}
+  with_items:
+     - carbon
+     - whisper
+     - graphite-web
+#     - pycairo   - can't seem to install this on py 2.x, going with the apt pkg
+     - Django
+     - django-tagging
+     - python-memcached
+  tags: pip_install_carbon
+
+- name: add_graphite_user
+  action: user name=graphite home=/opt/graphite/
+  tags: add_graphite_user
+
+- name: add_graphite_config
+  action: copy src={{ item }} dest=/opt/graphite/conf/
+  with_fileglob:
+     - opt/graphite/conf/*
+     - opt/graphite/webapp/graphite/local_settings.py
+
+- name: ensure_graphite_perms
+  action: file path=/opt/graphite/conf state=directory owner=graphite group=graphite
+  tags: ensure_graphite_perms 
+
