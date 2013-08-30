@@ -85,6 +85,10 @@ users:
        group: 'labs_dev'
        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgh2EzDu73D8+2vTFZCLLHwWwRfseDv+fLLHeLcRuCOVajbGe74m25bl+3MWhtA4oeq/jf0++CjMWKDs4mY12sJ8dcTIoHoCHvcnKkt2TQJ46/J9WmaxQAnVaAM0s6NYAW+28QfWKrSf73lKAcCtIbHDH1PKviFhY0p0j5ozmIVY8WeaJQUVwtEYHN8il+NAQ3E543AKFESdPxbN2SOo+TOrRKvR8it9wPNGqE9Djth0s4sG7MGpkDaFBe8d0ociFMiZOS07Qoy6vIOPNL/0mZo8SraKjFYHNVqGIbHl7aEKseRK/GYuFpKY8ZRG9G6SZzULNlZj3U5b3MnIdaq521 joost@horatio'
 
+     - name: 'yohan.boniface'
+       group: 'labs_dev'
+       key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA4JFe0PKz4kjdvAO8A4WU9Rc244/XiaH12xi/YWNXQHLrVPG7L+sja+BPb4hQKwYneFOYEt9kF5O9Q8itVzTgWFwrQAj4LCfGvAJV7rXx+FmhBi9mqT3g1/ECl3BEzM3R6kGh04fwv59VDOuyCzhSJPKwCcfe+UVBX4bD/Ajmq8orUzsrUkTKu0XMeRFvSNf1PE3+8lHPjcScKsf64lrFJ+13EKFBgVQmnzAA2DQ91qbwCZ/moFGc5KUMmrKGtDx6xrCuyD7mPotRLF+3pXe+wcxEzj4CDt7IfsrcZa9yomsUvAbj4oNcK7ryEjRo3El+dWdR8c6c6p6r7ynrUaksUQ== ybon@bernardo'
+
    monitoring:
      - name: 'nagios'
        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1lsla5+i8HG2jLVaJnjEdj6LRrQLuC2p1X9ou8eNyJIMoN4sQW8tmsLSK0r072oyZoOoHtjLU1a6cHfiy3uLOCopPNhI8JNED09HFzXuHjHrX2ewDcxr0MnBYsEez5VQGpIZJSBdRrF+yQAqtcKAfzXoERwm6YawDYj1Q12CQY8b/VRmW1soZjiHy8OfmILOQVkRITFGHVXfDC5AymQ1H7pSkXLNREDam4cxo2JUx5p8nBK96sSzZllRkZZUvUmDI4oDo1HEeRi4cqoSVvfsHdImiwt645rGgM2c16IXLGhoQetK0UAKUb3w5+gHD8wiSEoG5CH0Bh+0DuxLsU4w2w== nagios@eu1.okfn.org'
