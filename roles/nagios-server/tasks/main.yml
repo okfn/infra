@@ -1,0 +1,15 @@
+---
+- name: nagios_config
+  action: copy src={{ item }} dest=/etc/nagios3/
+  notify: reload nagios
+  with_fileglob: 
+     - etc/nagios3/*
+  tags: nagios_config
+
+- name: nagios_config_confd
+  action: copy src={{ item }} dest=/etc/nagios3/conf.d/
+  notify: reload nagios
+  with_fileglob:
+     - etc/nagios3/conf.d/*
+  tags: nagios_config_confd
+
