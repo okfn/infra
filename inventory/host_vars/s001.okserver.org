@@ -1,2 +1,8 @@
 ---
 sites_to_monitor: ['lists.okfn.org:80:301']
+rsnapshot_backup:
+   - { src: 'root@s001.okserver.org:/home/okfn/', dest: 's001.okserver.org/' }
+   - { src: 'root@s001.okserver.org:/var/lib/mailman/', dest: 's001.okserver.org/' }
+   - { src: 'root@s001.okserver.org:/var/lib/munin/', dest: 's001.okserver.org/' }
+   - { src: 'root@s001.okserver.org:/var/lib/nagios3/', dest: 's001.okserver.org/' }
+   - { src: 'root@s001.okserver.org:/var/log/nagios3/', dest: 's001.okserver.org/' }
