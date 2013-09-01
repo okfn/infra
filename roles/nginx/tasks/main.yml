@@ -28,4 +28,5 @@
   action: file src=/etc/nginx/sites-available/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} force=yes
   with_items:
      - "{{ sites_enabled }}"
+  notify: reload nginx
   tags: setup_nginx_sites_enabled

@@ -1,3 +1,3 @@
 ---
 - name: reload nginx
-  service: name=nginx state=reloaded
+  action: /etc/init.d/nginx configtest && /etc/init.d/nginx reload
