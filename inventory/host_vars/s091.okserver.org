@@ -1,4 +1,0 @@
----
-sites_to_monitor: ['data.qld.gov.au:80:301', 'publications.qld.gov.au:80:301']
-dbserver_private_ip: 10.181.10.23
-solrserver_private_ip: 10.181.10.23

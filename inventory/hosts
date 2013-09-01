@@ -22,7 +22,6 @@ s080.okserver.org ckan_project=ckan_testing
 s082.okserver.org ckan_project=demosites
 s083.okserver.org ckan_project=demosites
 s084.okserver.org ckan_project=demosites
-s089.okserver.org ckan_project=queensland.ckan.net
 s100.okserver.org
 s107.okserver.org
 s077.okserver.org ckan_project=datahub_old comment="to_terminate?"
@@ -33,14 +32,12 @@ s031.okserver.org ckan_project=ckan_testing #runs its own dbserver
 [ckan-db-dev]
 s031.okserver.org ckan_project=ckan_testing
 s032.okserver.org ckan_project=data.gov
-s090.okserver.org ckan_project=queensland.ckan.net
 
 [ckan-web-prod]
 s080.okserver.org ckan_project=ckan_community
 s079.okserver.org ckan_project=publicdata.eu #runs its own webserver
 s075.okserver.org ckan_project=www.datagm.org.uk
 s086.okserver.org ckan_project=iatiregistry.org
-s091.okserver.org ckan_project=queensland.ckan.net
 s107.okserver.org ckan_project=datahub.io
 s104.okserver.org ckan_project=sa.ckan.net
 s102.okserver.org ckan_project=edostate.ckan.org
@@ -50,7 +47,6 @@ s081.okserver.org ckan_project=ckan_community backup_postgres=True
 s085.okserver.org ckan_project=ckan_community
 s078.okserver.org ckan_project=datahub_old backup_postgres=True
 s076.okserver.org ckan_project=iati backup_postgres=True
-s092.okserver.org ckan_project=queensland.ckan.net 
 s103.okserver.org ckan_project=edostate.ckan.net backup_postgres=True
 s108.okserver.org ckan_project=datahub.io
 s105.okserver.org ckan_project=sa.ckan.net 

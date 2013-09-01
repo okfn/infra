@@ -1,3 +1,0 @@
----
-db_type: postgres
-webserver_private_ip: 10.181.13.86
