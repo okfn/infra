@@ -1,4 +1,5 @@
-- name: easy_install_pip
+#Todo add handlers to reload carbon_cache.py
+- name: easy_install_pip 
   action: easy_install name=pip
   tags: easy_install_pip
 
@@ -22,9 +23,14 @@
   action: copy src={{ item }} dest=/opt/graphite/conf/
   with_fileglob:
      - opt/graphite/conf/*
+
+- name: add_graphite_webapp_config
+  action: copy src={{ item }} dest=/opt/graphite/webapp/
+  with_items:
      - opt/graphite/webapp/graphite/local_settings.py
+     - opt/graphite/webapp/graphite/graphite_uwsgi.py
 
 - name: ensure_graphite_perms
-  action: file path=/opt/graphite/conf state=directory owner=graphite group=graphite
+  action: file path=/opt/graphite/ state=directory owner=graphite group=graphite
   tags: ensure_graphite_perms 
 
