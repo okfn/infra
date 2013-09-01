@@ -1,4 +1,5 @@
 ---
+sites_enabled: ['graphs.okfn.org']
 site_id: sa
 db_type: mysql
 mysql_port: 3306
