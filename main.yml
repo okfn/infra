@@ -30,6 +30,15 @@
   tags: etherpad
   roles:
      - { role: etherpad-lite, install_path: '/var/www/etherpad-lite', user: 'etherpad-lite', group: 'etherpad-lite', version: '1.2.11' }
+
+- hosts: backup
+  gather_facts: False
+  connection: ssh
+  tags: backup-server
+  user: okfn
+  sudo: true
+  roles:
+     - { role: rsnapshot, snapshot_root: '/home/backup/snapshots/', cmd_rsync: '/usr/bin/rsync' }
       
 - hosts: cache
   gather_facts: False
@@ -74,4 +83,4 @@
   tasks:
      - action: debug msg="mailserver!"
 
-
+ 
