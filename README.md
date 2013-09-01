@@ -53,8 +53,11 @@ contains restart/reload, mainly service related plays
 contains jinja2 templates for config files that need to be generated on a per host basis, e.g a vhost for somedomain.ckan.org
 
 
-OKF Ansible host specific magic vars ( define under inventory/host_vars/$host or inventory/hosts )
+OKF Ansible host specific magic vars
 ---
+
+###These vars should be defined under inventory/host_vars/$host or the inventory/hosts file.
+
 
 ####disable_nagios_checks
 Define this var, and run the check_mk role to disable ALL nagios checks for the host, the host will essentially be removed from nagios.
