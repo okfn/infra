@@ -1,0 +1,95 @@
+[
+  {
+    "lineMode": "connected",
+    "drawNullAsZero": "false",
+    "title": "http_requests_served",
+    "connectedLimit": "",
+    "bgcolor": "black",
+    "height": "250",
+    "hideLegend": "false",
+    "width": "700",
+    "_uniq": "0.32754496087636",
+    "_salt": "1378125120.576",
+    "lineWidth": "",
+    "fgcolor": "white",
+    "target": [
+      "mostDeviant(10,*.requests)"
+    ]
+  },
+  {
+    "tz": "UTC",
+    "drawNullAsZero": "false",
+    "bgcolor": "black",
+    "title": "unique_ips",
+    "height": "308",
+    "width": "586",
+    "hideLegend": "false",
+    "_salt": "1378125240.576",
+    "fgcolor": "white",
+    "target": [
+      "mostDeviant(10,*.unique_ip_count)"
+    ]
+  },
+  {
+    "tz": "UTC",
+    "drawNullAsZero": "false",
+    "bgcolor": "black",
+    "title": "http_bytes_sent",
+    "height": "308",
+    "width": "586",
+    "hideLegend": "false",
+    "_salt": "1378125240.576",
+    "fgcolor": "white",
+    "target": [
+      "mostDeviant(10,*.bytes_sent)"
+    ]
+  },
+  {
+    "lineMode": "connected",
+    "tz": "UTC",
+    "drawNullAsZero": "false",
+    "fgcolor": "white",
+    "title": "403_errors",
+    "height": "308",
+    "bgcolor": "black",
+    "hideLegend": "false",
+    "_salt": "1378125240.576",
+    "width": "586",
+    "target": [
+      "mostDeviant(10,*.403)"
+    ]
+  },
+  {
+    "lineMode": "connected",
+    "tz": "UTC",
+    "drawNullAsZero": "false",
+    "fgcolor": "white",
+    "title": "500_errors",
+    "height": "308",
+    "bgcolor": "black",
+    "hideLegend": "false",
+    "_salt": "1378125240.576",
+    "width": "586",
+    "target": [
+      "mostDeviant(10,*.500)"
+    ]
+  },
+  {
+    "lineMode": "connected",
+    "drawNullAsZero": "false",
+    "title": "http_requests_served",
+    "connectedLimit": "",
+    "graphType": "pie",
+    "height": "250",
+    "hideLegend": "false",
+    "width": "700",
+    "_uniq": "0.3275449376087636",
+    "_salt": "1378125240.576",
+    "bgcolor": "black",
+    "lineWidth": "",
+    "fgcolor": "white",
+    "target": [
+      "mostDeviant(10,*.requests)"
+    ]
+  }
+]
