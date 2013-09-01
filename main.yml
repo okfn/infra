@@ -10,6 +10,7 @@
    - ~/ansible/vars/users.yml
   roles:
      - ansible-prereq
+     - motd #adds ansible managed motd
      - iptables-persistent
      - munin-node
      - check_mk-agent
@@ -61,6 +62,7 @@
    - ~/ansible/vars/users.yml
   roles:
      - munin-server
+     - nagios-server
      - check_mk-server
 
 - hosts: mail
