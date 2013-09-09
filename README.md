@@ -20,6 +20,8 @@ Get Ansible running
 ####Run commands on the ckan group of servers:
 ``` ansible ckan -m command -a uptime -u okfn --connection=ssh ```
 
+####Install updates
+``` ansible-playbook --extra-vars="host=s999.okserver.org fact_path='/etc/ansible/facts.d'" updates.yml -vvv ```
 
 Ansible playbook directory structure
 ---
@@ -64,6 +66,12 @@ Define this var, and run the check_mk role to disable ALL nagios checks for the 
 Accepted args are True/False
 e.g
 ``` disable_nagios_checks=True ```
+
+####local_checks
+local_checks expects an array of check scripts which are check_mk specific and need to be enabled on the host.
+setting this var, adds the script into the check_mk agent local checks folder, which check_mk will periodically run scripts from.
+e.g
+``` local_checks: ['exim_mailqueue'] ```
 
 ####disabled_checks
 disabled_checks accepts an array of elements which the names of local passive checks that should be disabled for a host.
