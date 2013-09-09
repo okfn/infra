@@ -1,21 +1,21 @@
-# ansible managed, do not edit manually.
+# {{ ansible_managed }}
 # all_hosts = [ 'localhost' ]
 
 
 all_hosts = [ 
 {% for host in groups['sysadmin-servers'] %}
   {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
-"{{ host }}",
+"{{ host }}|sysadmin-servers",
   {% endif %}
 {% endfor %}
 {% for host in groups['ckan']  %}
   {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
-"{{ host }}",
+"{{ host }}|ckan",
   {% endif %}
 {% endfor %}
 {% for host in groups['openspending'] %}
   {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
-"{{ host }}",
+"{{ host }}|openspending",
   {% endif %}
 {%endfor%}
 ]
@@ -102,8 +102,8 @@ define_contactgroups = {
 
 host_contactgroups = [
 
-('sysadmin', [ {% for host in groups['sysadmin-servers'] %} '{{ host }}', {% endfor %} ] ),
-('ckan-sysadmin', [ {% for host in groups['ckan']  %} '{{ host }}', {% endfor %} ] ),
+('sysadmin',  [ {% for host in groups['sysadmin-servers'] %} '{{ host }}', {% endfor %} ] ),
+('ckan-sysadmin',  [ {% for host in groups['ckan']  %} '{{ host }}', {% endfor %} ] ),
 ('openspending-sysadmin', [ {% for host in groups['openspending'] %} '{{ host }}', {% endfor %} ] ),
 
 ]
@@ -129,18 +129,21 @@ define contact {
 
 define contact {
 	contact_name sysadmin
+	contactgroups sysadmin
 	use generic-contact
 	email {{ sysadmin_email }}
 }
 
 define contact {
 	contact_name ckan-sysadmin
+        contactgroups ckan-sysadmin, sysadmin
         use generic-contact
 	email  {{ ckan_sysadmin_email }}, {{ sysadmin_email }}
 }
 
 define contact {
 	contact_name openspending-sysadmin
+        contactgroups openspending-sysadmin, sysadmin
         use generic-contact
 	email {{ openspending_sysadmin_email }}, {{ sysadmin_email }}
 }
