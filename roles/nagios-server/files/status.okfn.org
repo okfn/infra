@@ -1,3 +1,5 @@
+#This file is Ansible managed.
+
 <VirtualHost *:80>
   ServerName status.okfn.org
 

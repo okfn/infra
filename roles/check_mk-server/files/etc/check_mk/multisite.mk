@@ -1,3 +1,4 @@
+#This file is ansible managed.
 # Confguration for Check_MK Multisite
 
 # Users with unrestricted permissions. These users will always
