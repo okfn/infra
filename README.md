@@ -7,6 +7,12 @@ Get Ansible running
 ####Setup env:
 ``` source ansible/hacking/env-setup```
 
+Examples
+---
+
+####Run plays that apply to the monitoring node
+``` ansible-playbook main.yml --tags=monitoring ```
+
 ####Run playbook: 
 (if the playbook uses the okfn user)  
 ``` ansible-playbook --connection=ssh  --extra-vars="host=s999.okserver.org" tasks/ckan-dbserver-setup.yml  -i inventory/hosts  -vv ```
