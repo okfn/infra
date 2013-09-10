@@ -13,10 +13,12 @@
   action: command dpkg -i /opt/check-mk-agent_1.2.2p2-2_all.deb creates=/usr/bin/check_mk_agent
   tags: install_check-mk_deb
 
-#can later convert this to fileglob/with_items, to dump a load of checks
-- name: copy_local_checks
-  action: copy src={{ local_checks_path }}/apt-security-check dest=/{{ local_checks_path }}/apt-security-check force=yes
-  tags: copy_local_checks
+#this installs checks that are read by the check_mk agent - requires no config in nagios.
+- name: setup_local_checks
+  action: copy src={{ local_checks_path }}/{{ item }} dest=/{{ local_checks_path }}/{{ item }} force=yes
+  with_items: local_checks
+  when: local_checks is defined
+  tags: setup_local_checks
 
 # this removes a check if the disabled_checks array is defined, and has names of checks to be disabled
 - name: disable_checks
