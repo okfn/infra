@@ -8,3 +8,4 @@ munin_port: 4949
 check_mk_port: 6556
 iptables_config_file: '/etc/iptables/rules.v4'
 hostname_tld: okserver.org
+local_checks: ['apt-security-check']
