@@ -8,10 +8,13 @@
   vars_files: 
    - ~/ansible/vars/global.yml
    - ~/ansible/vars/users.yml
+  vars:
+     - arch: "{{ ansible_architecture }}"
   roles:
      - ansible-prereq
      - motd #adds ansible managed motd
      - iptables-persistent
+     - collectd
      - munin-node
      - check_mk-agent
      - nagios-client
