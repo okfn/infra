@@ -4,6 +4,7 @@ alert_escalation_contact: 'nils.toedtmann@okfn.org'
 ckan_sysadmin_email: 'ckan-sysadmin@okfn.org'
 openspending_sysadmin_email: 'openspending-sysadmin@okfn.org'
 monitoring_server: s001.okserver.org
+graphite_server: ansible-dev.okserver.org
 munin_port: 4949
 check_mk_port: 6556
 iptables_config_file: '/etc/iptables/rules.v4'
