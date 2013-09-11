@@ -13,6 +13,12 @@ Examples
 ####Run plays that apply to the monitoring node
 ``` ansible-playbook main.yml --tags=monitoring ```
 
+####Run play to add a new group and its users
+``` ansible-playbook main.yml -i inventory/hosts  --tags="add_group,add_users,add_ssh_keys,sudoers" --extra-vars="host=all"  -vvv ```
+
+####Add project specific users
+``` ansible-playbook main.yml -i inventory/hosts  --tags="add_project_users,install_project_ssh_keys" --extra-vars="host=s999.okserver.org" ```
+
 ####Run playbook: 
 (if the playbook uses the okfn user)  
 ``` ansible-playbook --connection=ssh  --extra-vars="host=s999.okserver.org" tasks/ckan-dbserver-setup.yml  -i inventory/hosts  -vv ```
