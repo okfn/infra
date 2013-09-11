@@ -1,0 +1,32 @@
+# ansible-playbook main.yml -vvv --tags="fetch_collectd_deb,install_collectd_deb,collectd_init_script,setup_collectd_config" --extra-vars="host=all"
+---
+- name: fetch_collectd_deb
+#  action: shell wget http://apt.okserver.org/{{ arch }}/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb -O /opt/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb creates=/opt/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb
+  action: get_url url=http://apt.okserver.org/{{ arch }}/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb dest=/opt/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb force=yes
+  tags: fetch_collectd_deb
+
+- name: install_collectd_deb
+  action: shell dpkg -i /opt/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb creates=/opt/collectd/etc/collectd.conf
+  tags: install_collectd_deb
+
+- name: setup_collectd_config
+  action: template src={{ item }} dest=/opt/collectd/etc/collectd.conf
+  with_first_found:
+     - files:
+          - opt/collectd/etc/{{ inventory_hostname }}/collectd.conf.j2
+          - opt/collectd/etc/{{ project }}/collectd.conf.j2
+          - opt/collectd/etc/collectd.conf.j2
+       paths:
+          - ../templates
+  notify: restart collectd
+  tags: setup_collectd_config
+
+- name: collectd_init_script
+  action: copy src=opt/collectd/etc/init.d/collectd dest=/etc/init.d/collectd
+  notify: restart collectd
+  tags: collectd_init_script
+
+- name: reload_collectd
+  action: shell service collectd restart
+  when: reload_collectd == 'True' #pass true with --extra-vars="reload_collectd=True"
+  tags: reload_collectd

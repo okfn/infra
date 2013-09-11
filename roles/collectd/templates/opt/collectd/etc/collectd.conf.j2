@@ -1,0 +1,60 @@
+# {{ ansible_managed }}
+#
+# Config file for collectd(1).
+# Please read collectd.conf(5) for a list of options.
+# http://collectd.org/
+#
+
+Hostname    "{{ inventory_hostname }}"
+FQDNLookup   false
+BaseDir     "/var/lib/collectd"
+PIDFile     "/var/run/collectd.pid"
+PluginDir   "/opt/collectd/lib/collectd"
+TypesDB     "/opt/collectd/share/collectd/types.db"
+
+Interval     600
+Timeout      2
+ReadThreads  5
+WriteThreads 5
+
+
+LoadPlugin syslog
+<Plugin syslog>
+	LogLevel info
+</Plugin>
+
+LoadPlugin conntrack
+LoadPlugin contextswitch
+LoadPlugin cpu
+LoadPlugin interface
+LoadPlugin load
+LoadPlugin memory
+LoadPlugin network
+LoadPlugin uptime
+
+
+LoadPlugin disk
+<Plugin disk>
+	Disk "/^[hs]d[a-f][0-9]?$/"
+	IgnoreSelected false
+</Plugin>
+
+LoadPlugin Swap
+<Plugin "swap">
+	ReportByDevice false
+	ReportBytes true
+</Plugin>
+
+LoadPlugin write_graphite
+<Plugin write_graphite>
+  <Node "{{ graphite_server }}">
+    Host "{{ graphite_server }}"
+    Port "2003"
+    Protocol "tcp"
+    LogSendErrors true
+    Prefix "system_metrics."
+    StoreRates true
+    AlwaysAppendDS false
+    EscapeCharacter "_"
+ </Node>
+</Plugin>
