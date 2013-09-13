@@ -42,7 +42,17 @@
   sudo: true
   roles:
      - { role: rsnapshot, snapshot_root: '/home/backup/snapshots/', cmd_rsync: '/usr/bin/rsync' }
-      
+
+- hosts: ansible-dev
+  gather_facts: True
+  connection: ssh
+  tags: graphite
+  user: okfn
+  sudo: true
+  roles:
+     - { role: booktype, install_path: '/var/www/mybooktype', user: 'booktype', group: 'booktype' }
+     - graphite
+ 
 - hosts: cache
   gather_facts: False
   connection: ssh
