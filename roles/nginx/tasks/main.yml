@@ -25,8 +25,7 @@
 
 - name: setup_nginx_sites_enabled
   when: sites_enabled is defined #look at the inventory/host_vars/$inventory_hostname for sites_enabled
-  action: file src=/etc/nginx/sites-available/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} force=yes
-  with_items:
-     - "{{ sites_enabled }}"
+  action: file src=/etc/nginx/sites-available/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} force=yes state=link
+  with_items: "{{ sites_enabled }}"
   notify: reload nginx
   tags: setup_nginx_sites_enabled
