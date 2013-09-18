@@ -41,15 +41,17 @@
   tags: debug_set
 
 - name: -> add_project_users
-  when: project is defined
+  when:  project is defined
   action: user name={{ item.name }} group={{ item.group }} state=present shell=/bin/bash
-  with_items: "users.{{ devs_group }}"
+  with_items:
+     - "users.{{ devs_group }}"
   tags: add_project_users
 
 - name: -> install_project_ssh_keys
   when: project is defined
   action: authorized_key user=${item.name} state=present key="${item.key}"
-  with_items: "users.{{ devs_group }}"
+  with_items: 
+     - "users.{{ devs_group }}"
   tags: install_project_ssh_keys
 
 - name: setup_project_sudoers
