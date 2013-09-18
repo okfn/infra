@@ -28,6 +28,7 @@ s077.okserver.org ckan_project=datahub_old comment="to_terminate?"
 s099.okserver.org ckan_project=datagm.org.uk comment="when is it going to go live"
 s101.okserver.org ckan_project=datapusher
 s031.okserver.org ckan_project=ckan_testing #runs its own dbserver
+s112.okserver.org ckan_project=ckan_testing
 
 [ckan-db-dev]
 s031.okserver.org ckan_project=ckan_testing
@@ -69,6 +70,7 @@ s039.okserver.org
 
 [etherpad]
 s074.okserver.org
+s113.okserver.org ansible_ssh_host=50.57.171.80
 
 [LOV]
 s087.okserver.org comment=i_dont_know_my_owner
