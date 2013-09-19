@@ -21,6 +21,6 @@
   when: graphite_collectors is defined
 
 - name: ensure_collector_cronjobs
-  action: copy src=cron.d/{{ item.split('.')[0] }}_graphite.cron dest=/etc/crond
+  action: copy src=cron.d/{{ item.split('.')[0] }}_graphite.cron dest=/etc/cron.d/
   with_items: graphite_collectors
   when: graphite_collectors is defined
