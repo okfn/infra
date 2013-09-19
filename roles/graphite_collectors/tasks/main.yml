@@ -1,0 +1,26 @@
+#dumps graphite scripts, cronjobs defined in the graphite_collectors to the host
+#define graphite_collector scripts in the host var file (excluding the extention); e.g graphite_collectors['exim_stats.py', 'mailman_stats.py']
+#depends on the collector script, cron script to be named accordingly.
+#TODO manage collectd py scripts
+---
+- name: ensure_graphite_directory
+  action: file path={{ item }} state=directory 
+  when: graphite_collectors is defined
+  with_items:
+     - '/opt/graphite_scripts'
+     - '/opt/graphite_scripts/myutils'
+
+- name: add_myutils
+  action: copy src={{ item }} dest=/opt/graphite_scripts/myutils
+  with_fileglob: mytils/*
+  when: graphite_collectors is defined
+
+- name: ensure_collectors
+  action: copy src={{ item }} dest=/opt/graphite_scripts/ 
+  with_items: graphite_collectors
+  when: graphite_collectors is defined
+
+- name: ensure_collector_cronjobs
+  action: copy src=cron.d/{{ item.split('.')[0] }}_graphite.cron dest=/etc/crond
+  with_items: graphite_collectors
+  when: graphite_collectors is defined
