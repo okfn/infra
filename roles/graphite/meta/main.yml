@@ -2,4 +2,4 @@
 dependencies:
  - { role: apt, pkg_list: ['python-setuptools', 'gcc', 'python-dev', 'python-cairo', 'python-cairo-dev', 'uwsgi' ] }
  - { role: nginx } 
- - { role: supervisord }
+ - { role: supervisor }
