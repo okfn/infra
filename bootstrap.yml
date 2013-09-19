@@ -56,6 +56,7 @@
         - bsd-mailx
   roles:
      - users
+     - motd
 
   tasks:     
     - name: add project sysadmin alias
