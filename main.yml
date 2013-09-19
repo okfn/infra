@@ -15,6 +15,7 @@
      - motd #adds ansible managed motd
      - iptables-persistent
      - collectd
+     - graphite_collectors #adds collectd, other graphite collectors
      - munin-node
      - check_mk-agent
      - nagios-client
@@ -23,7 +24,7 @@
      - update-notifier
      - users
 
-- hosts: etherpad
+- hosts: s113.okserver.org
   gather_facts: False
   connection: ssh
   user: okfn

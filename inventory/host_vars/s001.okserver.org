@@ -1,6 +1,7 @@
 ---
 sites_to_monitor: ['lists.okfn.org:80:301']
 local_checks: ['check_eximailqueue']
+graphite_collectors: ['exim_stats.py', 'mailman_stats.py']
 rsnapshot_backup:
    - { src: 'root@s001.okserver.org:/home/okfn/', dest: 's001.okserver.org/' }
    - { src: 'root@s001.okserver.org:/var/lib/mailman/', dest: 's001.okserver.org/' }
