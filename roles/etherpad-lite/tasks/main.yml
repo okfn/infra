@@ -1,4 +1,19 @@
 ---
+- name: add nodejs ppa repo
+  action: apt_repository repo=ppa:chris-lea/node.js
+
+- name: install nodejs
+  action: apt pkg=nodejs state=installed update_cache=yes
+
+- name: create etherpad-lite database
+  action: mysql_db name=etherpad-lite encoding=utf8 state=present
+
+# this task needs fixing 
+#- name: create etherpad-lite mysql user
+#  action: mysql_user name=etherpad_lite password={{ etherpad_lite_db_pass }} priv=`etherpad-lite`.*:ALL state=present
+#  ignore_errors: True # havent been able to figure out this part as yet if the name contains a -
+#  tags: create_etherpad-lite_mysql_user
+ 
 - name: add_etherpad_group
   action: user name={{ group }} state=present
   tags: add_etherpad_group
@@ -11,10 +26,16 @@
   action: git repo=https://github.com/ether/etherpad-lite.git dest={{ install_path }} update=no version={{ version }} #tag to clone
   tags: git_checkout_etherpad
 
+- name: install_etherpad_deps
+  action: shell {{ install_path }}/bin/installDeps.sh
+
 - name: set_permissions_etherpad
   action: file path={{ install_path }} owner={{ user }} group={{ group }} recurse=yes state=directory
   tags: set_permissions_etherpad 
 
 - name: settings_config_etherpad
   action: template src=settings_json.j2 dest={{ install_path }}/settings.json owner={{ user }} group={{ group }} mode=600
+  notify: reread supervisor_confd
   tags: settings_config_etherpad
+
+- meta: flush_handlers
