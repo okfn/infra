@@ -1,0 +1,17 @@
+#depends on timezone = being defined under inventory/host_vars or inventory/group_vars 
+---
+
+- name: setup_timezone
+  file: src=/usr/share/zoneinfo/{{ timezone }} dest=/etc/timezone state=link owner=root group=root force=yes
+  when: timezone is defined
+  tags: setup_timezone
+
+- name: install_openntpd
+  action: apt pkg=openntpd state=present  
+  tags: intall_openntpd
+
+- name: reload cron #this is required or else cron doesnt pickup on the new timezone
+  action: shell service cron reload
+  ignore_errors: True
+  tags: reload_cron
+  
