@@ -1,3 +1,4 @@
+#ansible-playbook main.yml --tags="base-roles" -vvv
 ---
 - hosts: $host
   gather_facts: True
@@ -14,6 +15,7 @@
      - ansible-prereq
      - motd #adds ansible managed motd
      - iptables-persistent
+     - ntpd #sets the timezone and installs openntpd
      - collectd
      - graphite_collectors #adds collectd, other graphite collectors
      - munin-node

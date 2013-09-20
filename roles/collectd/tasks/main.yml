@@ -28,5 +28,5 @@
 
 - name: reload_collectd
   action: shell service collectd restart
-  when: reload_collectd == 'True' #pass true with --extra-vars="reload_collectd=True"
+  when: reload_collectd is defined #pass true with --extra-vars="reload_collectd=True"
   tags: reload_collectd
