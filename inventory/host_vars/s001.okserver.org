@@ -8,3 +8,4 @@ rsnapshot_backup:
    - { src: 'root@s001.okserver.org:/var/lib/munin/', dest: 's001.okserver.org/' }
    - { src: 'root@s001.okserver.org:/var/lib/nagios3/', dest: 's001.okserver.org/', exclude: '/var/lib/nagios3/spool/' }
    - { src: 'root@s001.okserver.org:/var/log/nagios3/', dest: 's001.okserver.org/' }
+timezone: GB
