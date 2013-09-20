@@ -1,1 +1,0 @@
-*/5 * * * * root /opt/graphite_scripts/mailman_stats.py
