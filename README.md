@@ -145,3 +145,17 @@ e.g
 
 ####custom_iptables_rules
 This var expects an array of rules that should be directly applied to the server, was added to allow adding custom rules without having to create rule files for each host.
+
+####graphite_collectors
+This variable expects an array of graphite collector script names, this allows us to include just the right collector scripts, and add its cronjob on each host/group.
+
+e.g
+``` graphite_collectors: ['exim_stats.py', 'mailman_stats.py'] ```
+
+####timezone
+This variable allows us to define the timezone for each host/group, which is then setup by the ntpd role.
+The defined timezone should be a tz file defined under /usr/share/zoneinfo/
+
+examples
+``` timezone: GB ``` 
+``` timezone: 'Etc/UTC' ```
