@@ -5,6 +5,31 @@
 # http://collectd.org/
 #
 
+{% macro load_conf(plugin) %}
+
+{% if plugin == "varnish" %}
+LoadPlugin plugin
+<Plugin "varnish">
+  <Instance>
+    CollectCache       true
+    CollectConnections true
+    CollectBackend     true
+    CollectSHM         true
+    CollectESI         false
+    CollectFetch       false
+    CollectHCB         false
+    CollectSMA         false
+    CollectSMS         false
+    CollectSM          false
+    CollectTotals      false
+    CollectWorkers     false
+  </Instance>
+</Plugin>
+{% endif %}
+
+
+{% endmacro %}
+
 Hostname    "{{ inventory_hostname }}"
 FQDNLookup   false
 BaseDir     "/var/lib/collectd"
@@ -58,3 +83,11 @@ LoadPlugin write_graphite
     EscapeCharacter "_"
  </Node>
 </Plugin>
+
+{% for host in groups['all'] %}
+ {% if hostvars[host]['collectd_plugins'] is defined %}
+  {% for plugin in hostvars[host]['collectd_plugins'] %} 
+    {{ load_conf(plugin) }}
+ {% endfor %}
+ {% endif %}
+{% endfor %}
