@@ -1,2 +1,3 @@
 ---
 sites_to_monitor: ['archive.openspending.org:80:200', 'farmsubsidy.org:80:301', 'budzeti.ba:80:200','content.openspending.org:80:200', 'openspending.org:80:200', 'wheredoesmymoneygo.org:80:200']
+collectd_plugins: ['varnish']
