@@ -8,7 +8,8 @@
 {% macro load_conf(plugin) %}
 
 {% if plugin == "varnish" %}
-LoadPlugin plugin
+
+LoadPlugin varnish
 <Plugin "varnish">
   <Instance>
     CollectCache       true
@@ -84,10 +85,8 @@ LoadPlugin write_graphite
  </Node>
 </Plugin>
 
-{% for host in groups['all'] %}
- {% if hostvars[host]['collectd_plugins'] is defined %}
-  {% for plugin in hostvars[host]['collectd_plugins'] %} 
-    {{ load_conf(plugin) }}
+{% if hostvars[inventory_hostname]['collectd_plugins'] is defined %}
+ {% for plugin in hostvars[inventory_hostname]['collectd_plugins'] %} 
+   {{ load_conf(plugin) }}
  {% endfor %}
- {% endif %}
-{% endfor %}
+{% endif %}
