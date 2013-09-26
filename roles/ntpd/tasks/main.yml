@@ -4,14 +4,53 @@
 - name: setup_timezone
   file: src=/usr/share/zoneinfo/{{ timezone }} dest=/etc/timezone state=link owner=root group=root force=yes
   when: timezone is defined
-  tags: setup_timezone
+  tags: 
+     - setup_timezone
+     - ntpd
 
-- name: install_openntpd
+#https://bugs.launchpad.net/ubuntu/+source/openntpd/+bug/458061 workaround
+- name: purge_ntpd
+  action: apt pkg=ntp state=absent purge=yes
+  ignore_errors: True
+  register: ntpd_purged 
+  tags: 
+     - purge_ntpd
+     - ntpd
+
+- name: restart_AA #reload apparmor to re-read profile
+  action: shell service apparmor restart
+  when: ntpd_purged|success
+  ignore_errors: True
+  tags:
+     - ntpd
+     - restart_apparmor
+
+- name: check_if_ntpd_has_apparmour_profile #in some cases ntpd has been overwritten, we move the apparmor file
+  action: shell test -f /etc/apparmor.d/usr.sbin.ntpd
+  register: AA_profile_present
+  ignore_errors: True
+  tags:
+     - check_if_ntpd_has_apparmour_profile
+     - ntpd
+
+- name: disable_ntpd_AA_profile
+  action: shell mv /etc/apparmor.d/usr.sbin.ntpd /etc/apparmor.d/disable/ && service apparmor restart
+  when: AA_profile_present|success
+  ignore_errors: True
+  tags:
+     - ntpd
+
+
+- name: install_openntpd 
   action: apt pkg=openntpd state=present  
-  tags: intall_openntpd
+  tags: 
+     - intall_openntpd
+     - ntpd
 
 - name: reload cron #this is required or else cron doesnt pickup on the new timezone
   action: shell service cron reload
   ignore_errors: True
-  tags: reload_cron
-  
+  tags: 
+     - reload_cron
+     - ntpd
+     - setup_timezone 
