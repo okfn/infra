@@ -3,11 +3,16 @@
 - name: fetch_collectd_deb
 #  action: shell wget http://apt.okserver.org/{{ arch }}/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb -O /opt/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb creates=/opt/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb
   action: get_url url=http://apt.okserver.org/{{ arch }}/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb dest=/opt/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb force=yes
-  tags: fetch_collectd_deb
+  tags: 
+     - fetch_collectd_deb
+     - collectd
 
 - name: install_collectd_deb
   action: shell dpkg -i /opt/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb creates=/opt/collectd/etc/collectd.conf
-  tags: install_collectd_deb
+  tags: 
+     - install_collectd_deb
+     - collectd
+
 
 - name: setup_collectd_config
   action: template src={{ item }} dest=/opt/collectd/etc/collectd.conf
@@ -19,14 +24,20 @@
        paths:
           - ../templates
   notify: restart collectd
-  tags: setup_collectd_config
+  tags: 
+     - setup_collectd_config
+     - collectd
 
 - name: collectd_init_script
   action: copy src=opt/collectd/etc/init.d/collectd dest=/etc/init.d/collectd
   notify: restart collectd
-  tags: collectd_init_script
+  tags: 
+     - collectd_init_script
+     - collectd
 
 - name: reload_collectd
   action: shell service collectd restart
   when: reload_collectd is defined #pass true with --extra-vars="reload_collectd=True"
-  tags: reload_collectd
+  tags: 
+     - reload_collectd
+     - collectd
