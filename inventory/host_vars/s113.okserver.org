@@ -1,3 +1,4 @@
 ---
 db_type: mysql
 sites_enabled: ['pad.okfn.org']
+sites_disabled: ['new.okfnpad.org']
