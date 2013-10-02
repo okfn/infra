@@ -32,31 +32,29 @@
 - name: -> add_project_group
   action: group name=${item} state=present
   when: project is defined
-  with_items:
-    - "{{ devs_group }}"
+  with_items: "{{ devs_group }}"
   tags: add_project_group
 
 - name: -> debug_set
-  action: debug msg=project is $project
+#  action: debug msg="{{ project }} {{ devs_group }}"
+  action: debug msg="--> {{ item.name }}"
+  with_items: users.{{ devs_group }}
   tags: debug_set
 
 - name: -> add_project_users
   when:  project is defined
   action: user name={{ item.name }} group={{ item.group }} state=present shell=/bin/bash
-  with_items:
-     - "users.{{ devs_group }}"
+  with_items: "users.{{ devs_group }}"
   tags: add_project_users
 
 - name: -> install_project_ssh_keys
   when: project is defined
   action: authorized_key user=${item.name} state=present key="${item.key}"
-  with_items: 
-     - "users.{{ devs_group }}"
+  with_items: "users.{{ devs_group }}"
   tags: install_project_ssh_keys
 
 - name: setup_project_sudoers
   when: project is defined
   lineinfile: "dest=/etc/sudoers state=present regexp='^%${item}' line='%${item} ALL=(ALL) NOPASSWD: ALL'"
-  with_items:
-     - "{{ devs_group }}"
+  with_items: "{{ devs_group }}"
   tags: setup_project_sudoers
