@@ -1,7 +1,9 @@
 ---
 - name: install_nginx
   action: apt pkg=nginx-full state=installed
-  tags: install_nginx
+  tags: 
+     - install_nginx
+     - nginx
 
 - name: add_config_nginx
   action: copy src={{ item }} dest=/etc/nginx/nginx.conf
@@ -9,23 +11,31 @@
      - etc/nginx/${project}/${inventory_hostname}_nginx.conf
      - etc/nginx/${inventory_hostname}_nginx.conf 
      - etc/nginx/default_nginx.conf
-  tags: add_config_nginx
+  tags: 
+     - add_config_nginx
+     - nginx
 
 - name: other_config_nginx
   action: copy src={{ item }} dest=/{{item}}
   with_items:
      - etc/nginx/mime.types
+  tags:
+     - nginx
 
 - name: setup_nginx_sites_available
 #  action: template src=etc/nginx/${project}/proxypass.j2 dest=/etc/nginx/sites-available/${item[0]} #maybe later
   action: copy src={{ item }} dest=/etc/nginx/sites-available/
   with_fileglob:
      - etc/nginx/${inventory_hostname}/sites-available/*
-  tags: setup_nginx_sites_available
+  tags: 
+     - setup_nginx_sites_available
+     - nginx
 
 - name: setup_nginx_sites_enabled
   when: sites_enabled is defined #look at the inventory/host_vars/$inventory_hostname for sites_enabled
   action: file src=/etc/nginx/sites-available/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} force=yes state=link
   with_items: "{{ sites_enabled }}"
   notify: reload nginx
-  tags: setup_nginx_sites_enabled
+  tags: 
+     - setup_nginx_sites_enabled
+     - nginx
