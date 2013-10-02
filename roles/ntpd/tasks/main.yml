@@ -12,6 +12,7 @@
 - name: purge_ntpd
   action: apt pkg=ntp state=absent purge=yes
   ignore_errors: True
+  notify: restart openntpd
   register: ntpd_purged 
   tags: 
      - purge_ntpd
@@ -42,7 +43,8 @@
 
 
 - name: install_openntpd 
-  action: apt pkg=openntpd state=present  
+  action: apt pkg=openntpd state=present 
+  notify: restart openntpd 
   tags: 
      - intall_openntpd
      - ntpd
