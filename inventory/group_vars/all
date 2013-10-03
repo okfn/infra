@@ -11,3 +11,9 @@ iptables_config_file: '/etc/iptables/rules.v4'
 hostname_tld: okserver.org
 local_checks: ['apt-security-check']
 timezone: UTC
+motd: >
+      #########################################################################################################\n
+      System and application config is Ansible managed for this host. To ensure any changes made are not lost,\n
+      please check them into the OKF ansible repo - https://github.com/okfn/sysconfig-ansible\n
+      Last Ansible run = $(date)\n\t\t\t\t\t\t\t\t\t\t - OKF Sysadmin\n
+      #########################################################################################################\n
