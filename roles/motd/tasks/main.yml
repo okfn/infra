@@ -1,31 +1,44 @@
 #motd fun - adds the ansible motd the first time, and updates it on each ansible run.
+#motd is defined as a var in inventory/group_vars/
 - name: check_motd_tail_supported
   action: shell test -f /etc/update-motd.d/99-footer
   ignore_errors: True
   register: motd_tail_supported
-  tags: check_motd_tail_supported
+  tags: 
+     - check_motd_tail_supported
+     - motd
 
 - name: add_motd_tail
-  action: shell echo "#########################################################################################################\nSystem and application config is Ansible managed for this host. To ensure any changes made are not lost,\nplease check them into the OKF ansible repo - https://github.com/okfn/sysconfig-ansible\nLast Ansible run = $(date)\n\t\t\t\t\t\t\t\t\t\t - OKF Sysadmin\n#########################################################################################################\n" > /etc/motd.tail
+  action: shell echo -n "{{ motd }}" >/etc/motd.tail
   when: motd_tail_supported|success
+  tags:
+     - motd
 
 - name: check_motd_exists
-  action: shell grep -q 'Last Ansible run' /etc/motd
+  action: shell grep -q 'Last Ansible run' /etc/motd.tail
   ignore_errors: True
   when: motd_tail_supported|failed
   register: ansible_motd_exists
+  tags:
+     - motd
 
 - name: else_append_to_motd_file
-  action: shell echo  "#########################################################################################################\nSystem and application config is Ansible managed for this host. To ensure any changes made are not lost,\nplease check them into the OKF ansible repo - https://github.com/okfn/sysconfig-ansible\nLast Ansible run = $(date)\n\t\t\t\t\t\t\t\t\t\t - OKF Sysadmin\n#########################################################################################################\n" >> /etc/motd
+  action: shell echo -n "{{ motd }}" >> /etc/motd
   when: ansible_motd_exists|failed and motd_tail_supported|failed
   tags: else_append_to_motd_file
   ignore_errors: True 
   register: appended_ansible_motd
+  tags:
+     - motd
 
 - name: date
   action: shell date
   register: date  
+  tags:
+     - motd
 
 - name: update_last_run
-  action: lineinfile dest=/etc/motd regexp='^(Last Ansible run =) .*$' line='\1 {{ date.stdout }}' backrefs=yes
+  action: lineinfile dest=/etc/motd.tail regexp='^(Last Ansible run =) .*$' line='\1 {{ date.stdout }}' backrefs=yes
   when: ansible_motd_exists|success
+  tags:
+     - motd
