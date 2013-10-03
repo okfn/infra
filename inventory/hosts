@@ -92,6 +92,13 @@ s110.okserver.org
 [sparql]
 s111.okserver.org
 
+[hetzner]
+s030.okserver.org
+s031.okserver.org
+s032.okserver.org
+s033.okserver.org
+s110.okserver.org
+
 [openspending:children]
 openspending-db
 openspending-web
