@@ -1,0 +1,18 @@
+    server {
+        listen localhost:80;
+        client_max_body_size 4G;
+        server_name clients.openspending.org;
+
+        keepalive_timeout 5;
+
+	access_log /var/log/nginx/clients.openspending.org-access.log;
+        error_log /var/log/nginx/clients.openspending.org-error.log debug;
+
+        # path for static files
+        root /home/okfn/var/srvc/clients.openspending.org;
+	
+	location / {
+        	alias /home/okfn/var/srvc/clients.openspending.org/;
+        }
+
+    }
