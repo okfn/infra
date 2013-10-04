@@ -12,7 +12,7 @@
   action: copy src={{ item }} dest=/etc/varnish/default.vcl
   with_first_found:
      - etc/varnish/${project}/${inventory_hostname}_default.vcl
-     - etc/varnish/${inventory_hostname}_default.vcl 
+     - etc/varnish/${inventory_hostname}/default.vcl 
   tags: 
      - add_config_varnish
      - varnish
