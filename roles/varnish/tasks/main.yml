@@ -1,0 +1,25 @@
+---
+- name: install_varnish
+  action: apt pkg={{ item }} state=installed
+  with_items:
+     - varnish
+     - libvarnishapi1 
+  tags: 
+     - install_varnish
+     - varnish
+
+- name: add_config_varnish
+  action: copy src={{ item }} dest=/etc/varnish/default.vcl
+  with_first_found:
+     - etc/varnish/${project}/${inventory_hostname}_default.vcl
+     - etc/varnish/${inventory_hostname}_default.vcl 
+  tags: 
+     - add_config_varnish
+     - varnish
+
+- name: secrets_varnish
+  action: template src=.j2 dest=/etc/varnish/secret
+  when: hostvars[inventory_hostname]_varnish_secret is defined
+  tags: 
+     - secrets_varnish
+     - varnish
