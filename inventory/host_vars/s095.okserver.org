@@ -1,5 +1,6 @@
 ---
 sites_to_monitor: ['archive.openspending.org:80:200', 'farmsubsidy.org:80:301', 'budzeti.ba:80:200','content.openspending.org:80:200', 'openspending.org:80:200', 'wheredoesmymoneygo.org:80:200']
+ssl_sites_to_monitor: ['www.openspending.org']  # adds two nagios http_checks to check cert validity and site availability
 collectd_plugins: ['varnish']
 sites_enabled: ['archive.openspending.org','budzeti.ba', 'clients.openspending.org', 'content.openspending.org', 'farmsubsidy.org','openspending.org', 'openspending-redirects', 'wheredoesmymoneygo.org']
 ssl_sites_enabled: ['openspending.org'] #upload ssl files

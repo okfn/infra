@@ -42,9 +42,15 @@ legacy_checks = [
 
 #Openspending webervices
 {% for host in groups['openspending-web'] %}
-  {% if hostvars[host]['sites_to_monitor'] is defined %}
-    {% for site in hostvars[host]['sites_to_monitor'] %} 
+ {% if hostvars[host]['sites_to_monitor'] is defined %}
+  {% for site in hostvars[host]['sites_to_monitor'] %} 
 ( ( "check_http_basic!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "{{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
+   {% endfor %}
+ {% endif %}
+{% if hostvars[host]['ssl_sites_to_monitor'] is defined %}
+ {% for site in hostvars[host]['ssl_sites_to_monitor'] %} 
+( ( "check_http_ssl_works!{{ site }}", "SSL works {{ site }}", False), [ "{{ host }}" ] ),
+( ( "check_http_ssl_cert!{{ site }}", "SSL valid {{ site }}", False), [ "{{ host }}" ] ),
     {% endfor %}
   {% endif %}
 {% endfor %}
@@ -162,6 +168,18 @@ define command{
         command_name    check_http_basic
         command_line    /usr/lib/nagios/plugins/check_http -H '$ARG1$' -p '$ARG2$' -e '$ARG3$' -N
 }
+
+define command{
+        command_name    check_http_ssl_works
+        command_line    /usr/lib/nagios/plugins/check_http -w 5 -c 10 --ssl -H '$ARG1$'
+}
+
+
+define command{
+        command_name    check_http_ssl_cert
+        command_line    /usr/lib/nagios/plugins/check_http -H '$ARG1$' -C 30
+}
+
 
 define command{
 	 command_name    check_ssh_psql_running
