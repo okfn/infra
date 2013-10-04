@@ -26,6 +26,18 @@
      - update-notifier
      - users
 
+- hosts: openspending-web
+  gather_facts: False
+  connection: ssh
+  user: okfn
+  sudo: true
+  vars_files:
+   - ~/ansible/.private/p.yml
+  tags: openspending-web
+  roles:
+     - varnish
+     - nginx
+
 - hosts: s113.okserver.org
   gather_facts: False
   connection: ssh
@@ -86,7 +98,6 @@
    - ~/ansible/vars/global.yml
    - ~/ansible/vars/users.yml
   roles:
-     - munin-server
      - nagios-server
      - check_mk-server
 
