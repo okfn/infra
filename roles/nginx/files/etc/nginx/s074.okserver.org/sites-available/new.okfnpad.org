@@ -5,17 +5,6 @@ server {
         access_log  /var/log/nginx/new.okfnpad.access.log;
         error_log   /var/log/nginx/new.okfnpad.error.log;
 
-         location = /message{
-             proxy_pass  http://message.okfnpad.org/index.html;
-         }
-
-        location / {
-            proxy_pass             http://localhost:9001/;
-            proxy_set_header       Host $host;
-            proxy_buffering off;
-
-        }
-	proxy_cache_key "$scheme$host$request_uri";
-	proxy_cache_valid 200 302  60m;
-	proxy_cache_valid 404      1m;
+         rewrite ^/(.*)$ http://pad.okfn.org/$1 permanent;
+        rewrite_log on;
 }
