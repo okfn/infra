@@ -16,7 +16,7 @@ server {
 
 
     location /static/ {
-        alias /var/www/mybooktype/mybook/static/;
+        alias /var/www/mybooktype_v1/mybook/static/;
 
         if ($query_string) {
             expires max;
@@ -24,7 +24,7 @@ server {
     }
 
     location /data/ {
-        alias /var/www/mybooktype/mybook/data/;
+        alias /var/www/mybooktype_v1/mybook/data/;
 
         if ($query_string) {
             expires max;
