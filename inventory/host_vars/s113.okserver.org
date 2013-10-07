@@ -1,4 +1,5 @@
 ---
 db_type: mysql
+sites_to_monitor: ['pad.okfn.org:80:200'] # monitor port 80, and check for status 200
 sites_enabled: ['pad.okfn.org']
 sites_disabled: ['new.okfnpad.org']
