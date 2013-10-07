@@ -9,11 +9,11 @@
   tags: add_booktype_user
 
 - name: fetch_booktype_deb
-  action: get_url url=http://apt.okserver.org/all/mybooktype-2.0-okf-custom_1.0_all.deb dest=/opt/mybooktype-2.0-okf-custom_1.0_all.deb force=yes
+  action: get_url url=http://apt.okserver.org/all/mybooktype-1.6-okf-custom_1.0_all.deb dest=/opt/mybooktype-1.6-okf-custom_1.0_all.deb force=yes
   tags: fetch_booktype_deb
 
 - name: install_booktype_deb
-  action: shell dpkg -i /opt/mybooktype-2.0-okf-custom_1.0_all.deb creates={{ install_path }}/mybook
+  action: shell dpkg -i /opt/mybooktype-1.6-okf-custom_1.0_all.deb creates={{ install_path }}/mybook
   tags: install_booktype_deb
 
 - name: set_permissions_booktype
