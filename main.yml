@@ -37,6 +37,7 @@
   roles:
      - varnish
      - nginx
+     - statsd
 
 - hosts: s113.okserver.org
   gather_facts: False
