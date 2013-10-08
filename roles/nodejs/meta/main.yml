@@ -1,0 +1,4 @@
+---
+dependencies:
+- { role: apt, pkg_list: [ 'python-pycurl' ] }
+
