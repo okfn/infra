@@ -1,0 +1,3 @@
+---
+- name: restart statsd
+  service: name=statsd state=restarted

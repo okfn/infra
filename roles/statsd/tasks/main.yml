@@ -10,7 +10,6 @@
   tags: 
      - install_statsd_deb
      - statsd
-
 - name: setup statsd_config
   action: template src={{ item }} dest=/etc/statsd.conf
   with_first_found:
@@ -20,7 +19,7 @@
           - etc/{{ inventory_hostname }}/statsd.conf.j2
        paths:
           - ../templates
-  notify: start statsd
+  notify: restart statsd
   tags:
      - setup_statsd_config
      - statsd
