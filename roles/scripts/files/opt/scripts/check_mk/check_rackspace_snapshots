@@ -60,7 +60,7 @@ for server in servers:
 	except KeyError:
 		continue
 
-print no_snapshots
+#print no_snapshots
 if len(no_snapshots) > 0:
 	msg = 'No snapshots in rackspace found for these host(s) since ' +  str(req_age/86400)  + ' days : ' 
 	msg = msg + ",".join(no_snapshots)
