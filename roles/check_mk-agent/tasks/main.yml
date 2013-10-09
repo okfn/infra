@@ -13,20 +13,6 @@
   action: command dpkg -i /opt/check-mk-agent_1.2.2p2-2_all.deb creates=/usr/bin/check_mk_agent
   tags: install_check-mk_deb
 
-#this installs checks that are read by the check_mk agent - requires no config in nagios.
-- name: setup_local_checks
-  action: copy src={{ local_checks_path }}/{{ item }} dest=/{{ local_checks_path }}/{{ item }} force=yes
-  with_items: local_checks
-  when: local_checks is defined
-  tags: setup_local_checks
-
-# this removes a check if the disabled_checks array is defined, and has names of checks to be disabled
-- name: disable_checks
-  action: file path=/{{ local_checks_path }}/{{ item }} state=absent
-  with_items: disabled_checks
-  when: disabled_checks is defined
-  tags: disable_checks
-
 - name: -> allow_check_mk_in_fw
   action: lineinfile dest=${iptables_config_file} regexp='dport ${check_mk_port} -j monitoring$'  line='-A INPUT -s ${monitoring_server} -p tcp -m tcp --dport ${check_mk_port} -j monitoring' insertbefore='^COMMIT' state=present
   notify: restart iptables-persistent
