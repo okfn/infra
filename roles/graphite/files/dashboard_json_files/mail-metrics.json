@@ -1,0 +1,56 @@
+[
+  {
+    "bgcolor": "000000",
+    "title": "mails in queue",
+    "target": [
+      "mail_metrics.exim.to_yahoo",
+      "mail_metrics.exim.to_gmail",
+      "mail_metrics.exim.total_queued_mail"
+    ],
+    "fgcolor": "FFFFFF"
+  },
+  {
+    "bgcolor": "000000",
+    "target": [
+      "mail_metrics.exim.from_okfn_lists"
+    ],
+    "fgcolor": "FFFFFF",
+    "title": "mails from okf lists in exim queue"
+  },
+  {
+    "width": "1024",
+    "title": "Total posts in all lists",
+    "target": [
+      "mail_metrics.mailman.posts.total"
+    ],
+    "fgcolor": "FFFFFF",
+    "bgcolor": "000000"
+  },
+  {
+    "width": "1024",
+    "title": "mailman subscribe requests",
+    "target": [
+      "mostDeviant(10, mail_metrics.mailman.subscribe.*.pending)"
+    ],
+    "bgcolor": "000000",
+    "fgcolor": "FFFFFF"
+  },
+  {
+    "width": "1024",
+    "bgcolor": "000000",
+    "target": [
+      "mail_metrics.mailman.subscribe.*.new"
+    ],
+    "fgcolor": "FFFFFF",
+    "title": "mailman subscribe approved"
+  },
+  {
+    "width": "1024",
+    "title": "mailman outbound mail",
+    "target": [
+      "mostDeviant(10, mail_metrics.mailman.*.*.total)"
+    ],
+    "bgcolor": "000000",
+    "fgcolor": "FFFFFF"
+  }
+]

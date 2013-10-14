@@ -1,0 +1,65 @@
+[
+  {
+    "target": [
+      "system_metrics.s095_okserver_org.varnish-default-cache.*"
+    ],
+    "bgcolor": "000000",
+    "height": "250",
+    "width": "1024",
+    "fgcolor": "white"
+  },
+  {
+    "target": [
+      "system_metrics.s095_okserver_org.load.load.*"
+    ],
+    "bgcolor": "000000",
+    "height": "250",
+    "width": "1024",
+    "fgcolor": "white"
+  },
+  {
+    "target": [
+      "system_metrics.s095_okserver_org.memory.*"
+    ],
+    "bgcolor": "000000",
+    "height": "250",
+    "width": "1024",
+    "fgcolor": "white"
+  },
+  {
+    "target": [
+      "system_metrics.s095_okserver_org.swap.*"
+    ],
+    "bgcolor": "000000",
+    "height": "250",
+    "width": "1024",
+    "fgcolor": "white"
+  },
+  {
+    "bgcolor": "000000",
+    "target": [
+      "system_metrics.s095_okserver_org.contextswitch.contextswitch"
+    ],
+    "fgcolor": "FFFFFF"
+  },
+  {
+    "bgcolor": "000000",
+    "target": [
+      "system_metrics.s095_okserver_org.cpu-1.cpu-system",
+      "system_metrics.s095_okserver_org.cpu-2.cpu-system",
+      "system_metrics.s095_okserver_org.cpu-3.cpu-system",
+      "system_metrics.s095_okserver_org.cpu-0.cpu-system"
+    ],
+    "fgcolor": "FFFFFF"
+  },
+  {
+    "bgcolor": "000000",
+    "target": [
+      "system_metrics.s095_okserver_org.cpu-1.cpu-user",
+      "system_metrics.s095_okserver_org.cpu-0.cpu-user",
+      "system_metrics.s095_okserver_org.cpu-3.cpu-user",
+      "system_metrics.s095_okserver_org.cpu-2.cpu-user"
+    ],
+    "fgcolor": "FFFFFF"
+  }
+]
