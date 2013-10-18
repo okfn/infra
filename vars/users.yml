@@ -13,7 +13,11 @@ users:
       - name: 'rgrp'
         key: 'ssh-dss AAAAB3NzaC1kc3MAAACBAN3MM1dL+9IqSU7fP14IxvZI2bS0whPz6LOTBEgLIW+KqtS8koIC3BU1cymo2nF1mbMM1d7xSh09RbHR8feT9W85pn4slMjUC8yMoeaODku038mMSqK2j6vhFm/DLUEqNIYpn34ZdykvO8hyVmoy7lJqcAjiGbP7WfQjwMYFHOZpAAAAFQCwcdhE6xj3p+W5P1l5ZrmPFq0LKwAAAIEA0khO9JR4QHchzHDUTueyoWXEfH14iHU9nHCRoJZViV1I6mTMSgPqAWx+RYIWN/peuyWxTvgJTRl6B+NetMi35nkY+uVNe4PfFVsGqWzXRySsQUKg2OpWc465nHlJTB7lz6GQoo5zBKP55gki8PJpbjLL4LhnmTCirl7BTTfCtfYAAACAWXZOAqKhudB7TcZQU9AJK3zVtjYtCm/eTVrXQwvXMtnU3SP8LioJtXKDpw9xRhcSekvvA6o03HJ2KnNf4robXbb8eb++6yuXH3FcSUlK5lZeDtFVrbN3nbppcZzWRSNGwavPsTMfQDANcbuTmEAsb+2wwHmuqyITpwciG3iIyCs= rgrp@gimmel'
         group: 'sysadmin'
-       
+
+      - name: 'ww'
+        key: 'ssh-dss AAAAB3NzaC1kc3MAAACBAPx1F7JnpMqZwocVfpWYP1Oeyxhlgjr+zMKYDt8tnZC68XpC7OEa7dbHPJaH+maPd9yztRlUNMv1THar4A+xJ3SxAzgzqwv0YoK9vFUboUWVTIQcHQySri3EL0fo2gNu6hqoN/868UYwJAir5Oj6jeNnX311r/poEEX+G5i3SmCfAAAAFQDlmoznoD34k8D2WTwP5maHYJdcKQAAAIEAhbNuHxRLKmYmygU8QHW/Hf30mTuWTOYbZs4OF2QMjyyboCd0CxQ0l73u6Vp39yT+IYi2iSewW/9RPGPrW9vtDMjIa0cB5MmMoHegd7pzy3zcQ60k4RMM5ElWEeX6vA6qj6Lil7K3qGnPZO9eztghMZ0Iwd2ZA0Y/XA21+0ZQesoAAACBALmOLmDOHiMyIFlVGAQ3brsSzdpVUf3TFcXd+1GiehOSfjQN8/WruFiArZTP3su6XYSsmhj7M7Q0suP1V+SHrTVK+QKYnU+kJW+Z7VoiBS7RA/RaSrHf1ME4NAJlc3wzi8pOKNzC0uP8CAw3uosBF4mWwBKwpU146fdr4LpJ7tSY ww@home.groovy.net'
+        group: 'sysadmin'
+
       - name: 'okfn'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCuulvyQl+IMyRB+JZnrBGBKd2e4uxKZNy5oD3vTQPeT+5D8pe/0qsOm1T/x81daWMgwCLMY1hzQdZ2NhXKbc6jKp7q5n/l4N+avWj2+FwM/AI1aq3R4Du6WD+E+a70cscab5OGu7AmI7rdEuR41+QAFPnL99lt6XbdjL5SRMNC8SRlvUhbw4fF+N0a5B+ZbYgvQ9hkPWjtzCKawJupFZwIbr+l/Df5Noc56hnQDJPhxumF/BD4VUKngq3t2Q3bCGplZqbF6rZLwdJo2FfZo76Ysej3mBXQr+NysEn93YPAPpCy80eLaS1Wn0OD6S/GEoYZ4SVfRWNwyyiq6FpQXiIt joel.re@nixbox'
         group: 'sysadmin' 
