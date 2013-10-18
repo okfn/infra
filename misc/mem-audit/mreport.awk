@@ -1,5 +1,5 @@
 BEGIN {
-    printf("HOST\t\t\tRSS%\tBUF%\tCACHE%\tSWAP%\tTotal(kB)\n");
+    printf("HOST\t\t\tRSS%\tBUF%\tCACHE%\tSWAP%\tTotal(kB)\tGroups\n");
 }
 {
     if($4 == 0) {
@@ -22,7 +22,7 @@ BEGIN {
     } else {
 	swapusage = ($7-$8)/$7;
     }
-    printf("%s\t%.02f\t%.02f\t%.02f\t%.02f\t%d", 
-	   $1, memusage, bufusage, cacheusage, swapusage, $4);
+    printf("%s\t%.02f\t%.02f\t%.02f\t%.02f\t%d\t\t%s", 
+	   $1, memusage, bufusage, cacheusage, swapusage, $4, $9);
     printf("\n");
 }

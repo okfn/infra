@@ -4,8 +4,9 @@ SSH=ssh -o PasswordAuthentication=no
 all: mreport.txt
 	@cat $<
 
-mreport.txt: memstats.dsv procstats.dsv
-	join -t: procstats.dsv memstats.dsv | awk -F: -f mreport.awk > $@
+mreport.txt: memstats.dsv procstats.dsv hostgroups
+	join -t: procstats.dsv memstats.dsv > stats.tmp
+	join -t: stats.tmp hostgroups | awk -F: -f mreport.awk > $@
 
 clean:
 	rm -f memstats.dsv procstats.dsv
@@ -25,4 +26,5 @@ procstats.dsv:
 		awk -v host=$$host -f procsum.awk >> $@ || true; \
 	done
 
-
+hostgroups:
+	< ../../inventory/hosts awk -f ../host-reconcile/hostgroup.awk | sort > $@
