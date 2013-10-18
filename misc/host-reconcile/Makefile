@@ -6,7 +6,7 @@ hosts.%.diff: hosts.% hosts.combined
 hosts.combined: hosts.ansible hosts.trello
 	cat hosts.ansible hosts.trello | sort | uniq > $@
 
-hosts.ansible: ../inventory/hosts inventory.awk
+hosts.ansible: ../../inventory/hosts inventory.awk
 	< $< awk -f inventory.awk | sort | uniq | sed -e '/localhost/d' > $@
 
 hosts.trello: hosts.trello.src
