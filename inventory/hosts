@@ -24,7 +24,6 @@ s083.okserver.org ckan_project=demosites
 s084.okserver.org ckan_project=demosites
 s100.okserver.org
 s107.okserver.org
-s077.okserver.org ckan_project=datahub_old comment="to_terminate?"
 s099.okserver.org ckan_project=datagm.org.uk comment="when is it going to go live"
 s101.okserver.org ckan_project=datapusher
 s031.okserver.org ckan_project=ckan_testing #runs its own dbserver
@@ -53,13 +52,11 @@ s108.okserver.org ckan_project=datahub.io
 s105.okserver.org ckan_project=sa.ckan.net 
 s079.okserver.org ckan_project=publicdata.eu #runs its own database
 
-[ckan-es]
-s072.okserver.org
 
 [ckan-packaging]
 s106.okserver.org
 
-[mail]
+[mailserver]
 s001.okserver.org
 
 [cache]
@@ -109,7 +106,6 @@ ckan-db-dev
 ckan-web-prod
 ckan-db-prod
 ckan-packaging
-ckan-es 
 
 [test-group:children]
 backup
@@ -123,14 +119,14 @@ backup
 labs
 etherpad
 cache
-mail
+mailserver
 trac
 other
 
 [sysadmin-web:children]
 wiki
 etherpad
-mail
+mailserver
 cache
 
 [webservers:children]
@@ -143,12 +139,11 @@ etherpad
 trac
 queremossaber
 labs
-mail
+mailserver
 cache
 
 [dbservers:children]
 ckan-db-prod 
 ckan-db-dev
-ckan-es
 openspending-db
 etherpad
