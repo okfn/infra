@@ -1,0 +1,5 @@
+.private/* filter=git-crypt diff=git-crypt
+.private/config/* filter=git-crypt diff=git-crypt
+.private/ssl_certs/* filter=git-crypt diff=git-crypt
+.private/postgresql/ckan/* filter=git-crypt diff=git-crypt
+.private/GA/ckan/* filter=git-crypt diff=git-crypt
