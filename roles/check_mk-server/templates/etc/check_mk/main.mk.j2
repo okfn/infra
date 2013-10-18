@@ -81,6 +81,11 @@ legacy_checks = [
 ( ( "check_tcp_2!{{ host }}!22", 'SSH', False), [ "{{ host }}" ] ),
 {% endfor %}
 
+#mailserver
+{% for host in groups['mailserver'] %}
+( ( "check_smtp_basic!{{ host }}", 'SMTP', False), [ "{{ host }}" ] ),
+{% endfor %}
+
 #( ( "check-tcp", "POSTGRES", False), [ {% for host in groups['dbservers'] %} "{{ host }}", {%endfor%} ]  ),
 ]
 
@@ -192,7 +197,10 @@ define command {
 
 }
 
-
+define command{
+	command_name check_smtp_basic
+	command_line /usr/lib/nagios/plugins/check_smtp -H '$ARG1$'
+}
 
 
 ################################################################################
