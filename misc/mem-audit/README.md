@@ -1,5 +1,6 @@
 Generate a report of the memory usage on ansible-managed hosts. This
-can be thought of as a network-wide ps(1).
+can be thought of as a network-wide ps(1). The report can be generated
+by running the make(1) command.
 
 That they are ansible-managed is accidental -- but the Makefile uses
 the inventory to get the list of hosts. It does not use ansible

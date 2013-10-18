@@ -1,8 +1,11 @@
 HOSTS=`< ../../inventory/hosts awk -f ../host-reconcile/inventory.awk | sort | uniq | sed /localhost/d | sed /ansible-dev/d`
 SSH=ssh -o PasswordAuthentication=no
 
-all: memstats.dsv procstats.dsv
-	@join -t: procstats.dsv memstats.dsv | awk -F: -f mreport.awk
+all: mreport.txt
+	@cat $<
+
+mreport.txt: memstats.dsv procstats.dsv
+	join -t: procstats.dsv memstats.dsv | awk -F: -f mreport.awk > $@
 
 clean:
 	rm -f memstats.dsv procstats.dsv
