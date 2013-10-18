@@ -1,11 +1,11 @@
 ---
-# 
+#
 users:
    sysadmin:
       - name: 'joel.re'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCuulvyQl+IMyRB+JZnrBGBKd2e4uxKZNy5oD3vTQPeT+5D8pe/0qsOm1T/x81daWMgwCLMY1hzQdZ2NhXKbc6jKp7q5n/l4N+avWj2+FwM/AI1aq3R4Du6WD+E+a70cscab5OGu7AmI7rdEuR41+QAFPnL99lt6XbdjL5SRMNC8SRlvUhbw4fF+N0a5B+ZbYgvQ9hkPWjtzCKawJupFZwIbr+l/Df5Noc56hnQDJPhxumF/BD4VUKngq3t2Q3bCGplZqbF6rZLwdJo2FfZo76Ysej3mBXQr+NysEn93YPAPpCy80eLaS1Wn0OD6S/GEoYZ4SVfRWNwyyiq6FpQXiIt joel.re@nixbox'
         group: 'sysadmin'
-   
+
       - name: 'ntoedtma'
         key: 'ssh-dss AAAAB3NzaC1kc3MAAACBAIDy8mdmywAu00uYm1fJvwW6kT5Mnjnu/nLoDjHPftqoRj+BPqlnM7Qp/OYzHQUoYsAEICSRdRgqdZxN/H1PKqL7H7IfImI2azaRjmnpolFCUpVdudPwRRt8vSqgHqLOxSlmlEt0N43Z3sCRJIwZ81vI65YTR/vYuDNHU+EBS7grAAAAFQDKra35hdKJMKI7avdQbUft7JR3vQAAAIB6/zHsyUtY2NmtlisqUbuExXxDtpeHpq4mdS/EEn4xUWP3DsT0DnJQTBKYaghfBvzeMSj3m/e/8DABQVUwhUEr6+u+BI8DQPmb46usN9vPBIa40OxmsKoTpkrSc/xKqtL+AjCDzziahlqBHpKMcCp9aPETRccVb4bHFaw/XoB19AAAAIBylraAM2b6Z9JphcSWha5yb+BWDyIh20Rkte8toumIylXs3Xj8do5C0n9hbRYICjslfjDsPdOTRiRbqbT5+ybVSYqsSmWPgiq+x1hdDlvFwZLiO21+TNjKYKVQ/0WqTFy0UY+v0d0CXUeemmi5ZBklQY4vitmjnyutyINIlPkTVA== ntoedtma@takatukaland.de'
         group: 'sysadmin'
@@ -20,7 +20,7 @@ users:
 
       - name: 'okfn'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCuulvyQl+IMyRB+JZnrBGBKd2e4uxKZNy5oD3vTQPeT+5D8pe/0qsOm1T/x81daWMgwCLMY1hzQdZ2NhXKbc6jKp7q5n/l4N+avWj2+FwM/AI1aq3R4Du6WD+E+a70cscab5OGu7AmI7rdEuR41+QAFPnL99lt6XbdjL5SRMNC8SRlvUhbw4fF+N0a5B+ZbYgvQ9hkPWjtzCKawJupFZwIbr+l/Df5Noc56hnQDJPhxumF/BD4VUKngq3t2Q3bCGplZqbF6rZLwdJo2FfZo76Ysej3mBXQr+NysEn93YPAPpCy80eLaS1Wn0OD6S/GEoYZ4SVfRWNwyyiq6FpQXiIt joel.re@nixbox'
-        group: 'sysadmin' 
+        group: 'sysadmin'
 
       - name: 'borior'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCn581v5WZDzZM3V+QpKzdAw8bvXBZu6qhs0PSYYiuUJg+bLpE5MQOEDLCPb5ZLdBxGFFa+w4WTi4nRLovZFulXDLnidLVIk17qsqMbvsiKU4QzFUPwro5lNVkuEW2fxBEHteyZTh535EkQpCjsrgo13i1j5gz1DHRlOocqe4lzmmtxoesASETVkzGPlI97YadJMLlFwmKtOQm3gKZPsJPMAx1y2I8AVw8WVQQJCByejk/Tlo+vNwpBr+FByBf8wghX4lxIhCjZUqg4Ua3B/KKZFlRdUL3BlmNJ7wW9CSDS6w6ZRWXsjS4mdg/S5WR3ZMFOAkOyp+Qv9JIWdXiXYpI0fNfInZQ2dg5aOXIr8/tzaQgahflqstjiGfQNfYFWuNMM5XWurRG9xlIYrTe9sh+yWpnN4HBsT1g6DbHgkStniLplYdIhsjRvac07TH4Z8ZP4mG3erSFggCRUJODZ6u5/dvcLJJozjLfIArtM9bYUxOI8gAxWBC0XYcF5IpJ9B3jecawfUEm4/ZGz53vQPUZpRXjW2Ay3DXkWIGJVOcFLBw7JkjiPf9xKiXjyPhTjKd/WPJRgXE267fH4r+30MlhQOoPmZFcmjCcgfhcgaWiRSEb+xO2WwtbbdI8GSp1FA40UQtBInfGmDbEC8ActPjKv+uVizFK2vVsk5X/7H2dCOw== borior@sirius'
@@ -28,25 +28,25 @@ users:
 
    ckan_dev:
       - name: 'seanh'
-        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAu/MZqxJCkPOkzTfS+bcsuL7O0IfSQLyfH345fakk2d6LXPoLfCnnPdDlqiPmM8E+QR6/jtw+VE6qZcZFEgUV0zjJf6lvAj0GzJA8JN5h0hvECcsvF/35Beh5TlPkcCgux7x4MkLyhFAJDwWs8wu3ti/nzOV3ZMNp9/D2sPktlBnFz/k1hWzswm+0wQM5h0VSVqMM2m4IKhqHs88oqxnvBSMI4eAbH7+ri7RsppIpThpasPGpZWzPJEcmoAxNEF23ZuvHQ+lW3zvOJGiziqr5hSLxrOeb1l0kEymTMbOQBnpdN2T8Ha9XIVDEN+RyoKfQd6goeJb3kQ8A584mIpD8Jw== seanh@sooty.local' 
-        group: 'ckan_dev' 
-   
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAu/MZqxJCkPOkzTfS+bcsuL7O0IfSQLyfH345fakk2d6LXPoLfCnnPdDlqiPmM8E+QR6/jtw+VE6qZcZFEgUV0zjJf6lvAj0GzJA8JN5h0hvECcsvF/35Beh5TlPkcCgux7x4MkLyhFAJDwWs8wu3ti/nzOV3ZMNp9/D2sPktlBnFz/k1hWzswm+0wQM5h0VSVqMM2m4IKhqHs88oqxnvBSMI4eAbH7+ri7RsppIpThpasPGpZWzPJEcmoAxNEF23ZuvHQ+lW3zvOJGiziqr5hSLxrOeb1l0kEymTMbOQBnpdN2T8Ha9XIVDEN+RyoKfQd6goeJb3kQ8A584mIpD8Jw== seanh@sooty.local'
+        group: 'ckan_dev'
+
       - name: 'nigelbabu'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAub2He4lZRpsqxetF8+C1OCaVKfqo2FYxYKRhmBSzyqKFPC0Fg9WylQvqt+DXULCHyZn88kwuf39ifAaiWZ+Js7aXo3+aT6M/ggGI15z3DFhYkiVkU1mUTr8jHF8YaF8x7TRwxrMCQrrRoNgifN97lWhlvtQWFaIaUkXQTDXuZdMzLzJqoZ+Gvw/bjRkp9KyyVzWt99b/PWBWRJKL8DzKIH9/oIvLIow1ucP4DshZs/FZN1upT5RhRb+ydmcDgTj8054Va6XxQBJ1vWqShofvrUwkWQA3bGhZhtAfQHfpCvdCUjxr0C5GRZa8V8k6VKQJdOb2Sqjrq7PucR1G2CkSAQ== nigelbabu@nigelbabu-laptop'
         group: 'ckan_dev'
-      
+
       - name: 'amercader'
-        group: 'ckan_dev'  
-        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbltE2VNWmeaPpMhDOYuNo++ZSnrCCxUi2HAmOIcATTSjc2mMi3xfVcAXeuHrJRSpNdB1cH6O0rSBJfikYV3zlz1nFVQD4uR4yRUI5Bw92PcgoTkVNNjLX/FjNVlSwnGTSoXMoCJl8Hx3gvjoplMGZgPtOlujPr4XJpJbld82+Oyc23wkBXZuf6m4RpcT/yPcJq++kY++2VzFmjeEQeGMz6pWkHAvx2iXKUWDzxHYgQi9lrqtlLG56IOW10wlLjDZNP1ij97MJyHOlPaQ1oHgTcus88YXkFbr3K8Zm5l/7FnXgGDey0NPMdrHQJu9gYQTTIZJ+hI2K/K3pI9inAgaZ amercadero@gmail.com' 
-   
+        group: 'ckan_dev'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbltE2VNWmeaPpMhDOYuNo++ZSnrCCxUi2HAmOIcATTSjc2mMi3xfVcAXeuHrJRSpNdB1cH6O0rSBJfikYV3zlz1nFVQD4uR4yRUI5Bw92PcgoTkVNNjLX/FjNVlSwnGTSoXMoCJl8Hx3gvjoplMGZgPtOlujPr4XJpJbld82+Oyc23wkBXZuf6m4RpcT/yPcJq++kY++2VzFmjeEQeGMz6pWkHAvx2iXKUWDzxHYgQi9lrqtlLG56IOW10wlLjDZNP1ij97MJyHOlPaQ1oHgTcus88YXkFbr3K8Zm5l/7FnXgGDey0NPMdrHQJu9gYQTTIZJ+hI2K/K3pI9inAgaZ amercadero@gmail.com'
+
       - name: 'david'
-        group: 'ckan_dev' 
-        key:  'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1dSe9TaMh9ahRdrWgn1J1vNQfhfyuvQ4t5fFjlJkUc00RHrBShacT0urVduJWSCEGSJCLjxZnbK6kJgACnqeCQeMwBvJ8RebPkFAxTh4SBxgjpuCfx42DiBTzirPy2Xi4JSKqRpsQVnnCnlNOVSZYHwZzUo+WvjR/6B6Azfg31ojiWuNiIMLwJvCK2ZJOCx1cGkTdkys+SPYyBkooFO4+AeAXNuBPYSNn/JBLmtACaoR+cwPGMFYXT3w8t/uqweEpp2cG6L7D7gPeY9RhHjv+/ArQy9rZl7Uavu/CwdXfGDJiVrtcLb+gTKQOnT6OfE1VEicUTf1IkkvWBM8fKZuFw== david@david-laptop' 
+        group: 'ckan_dev'
+        key:  'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1dSe9TaMh9ahRdrWgn1J1vNQfhfyuvQ4t5fFjlJkUc00RHrBShacT0urVduJWSCEGSJCLjxZnbK6kJgACnqeCQeMwBvJ8RebPkFAxTh4SBxgjpuCfx42DiBTzirPy2Xi4JSKqRpsQVnnCnlNOVSZYHwZzUo+WvjR/6B6Azfg31ojiWuNiIMLwJvCK2ZJOCx1cGkTdkys+SPYyBkooFO4+AeAXNuBPYSNn/JBLmtACaoR+cwPGMFYXT3w8t/uqweEpp2cG6L7D7gPeY9RhHjv+/ArQy9rZl7Uavu/CwdXfGDJiVrtcLb+gTKQOnT6OfE1VEicUTf1IkkvWBM8fKZuFw== david@david-laptop'
 
       - name: 'johnglover'
         group: 'ckan_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA09+n7kVcUWDJaxouHfCCEjzbKlBgXcvTMFogZ7KwYm29XYqGZWsxXuNETItR52tqcOyx8r7YmQegJcYT/3bi4/bd4qm9lRoU0nPp3zfZIMMStHEIx0m9o9Vb3CfsPo2NxrpiupHfF8dfhj/KD+/DBvSLxDWx86xDwMjjAwKdtk01zjo4R6nXcJjYZNAe4kIhLYR9SgoUWFAFzzRewMFzQixZoqU79dEVdl4I/24FBRYbC5a1nG6PbPS4Dl/zI8iPBI3HSf++a1nhFiIu/7FymFTFaQJwpp7+JZI4RX1ETHDL6smEL8VhvLhUy6nMrI4hHpDh4DPy8BuH9tBqPJptgw== j@johnglover.net'
-      
+
       - name: 'joetsoi'
         group: 'ckan_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnd08Zm+H02Ag87fTS2OpWo2GplfhxmvdeB6YPWx6a0WYs05iTJOQcTbSLpZFIynn1o+y49DCX/SglxYfCAVO6vLiQsnxXOaMESdhE1sctknnTAS6EEguZoxL9H2wjkfnADNwvvbAb4uuNi4nbEd0+uQ20EwjfZfkSUHmPqawYAFO5dHhscP3s/M/KJUKTucY7DQXPaICp+Hl0zqnO8bFI+oN9V/dG8p5JtPL4vDW8vhWOo2KNqGH5VO7AtIk+IFWOb5+rBZl7jFdmOtTP/aqDlt75Pie9afH/9OLZyKIGpfoQ1ndy2lG5xc/z72IXWH+XCO9LWiqDpBJzMc9FKVMr'
@@ -67,7 +67,7 @@ users:
       - name: 'pierre.yves'
         group: 'sparql_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAxjYVjAU9tgNVAY3sGzHIjEFI7TR65YAhIFz2lbH39ChTVXbZ0cyMsZcquzW4BT69SUOOc2vy8icwVn6nge6wNjT5X/PJGdaumuJBPhdMHzZYVRbbyWyGwYfrAMk2Hyp8Gb/2SOf3OgFVwZ5HPIgzEd9zJvxOulxONAkwuYoBnOk='
-      
+
       - name: 'umbrich'
         group: 'sparql_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIBowADtr6ImrDYP9MS7H2qT2wM2jMplPQ0uamMqUK92U+WIHWZzAbaEmMbHdpaBklvs5X8P5B+KA10A4hdQFvRmw/5N0YQlvhEoIsQ0lMO1MFHp0ARr6ynmhN3bdYEAcdEYe3zYPWX+UbJwQCNeeC/TyoFlt29nXaRg9Z0gQSl59w=='
@@ -76,18 +76,18 @@ users:
       - name: 'vitor'
         group: 'openspending_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUnItn4uDxgcmbloeS5qMiHw829kbr5XkfjOrOmKhAMWd9ALlm7S3PbbpbTesRtSwaATZETAdJHiLNv+UbCdl+SmewpIIulbTXlaSICMopoYFTGpbxUHhqP0qNMzWHpsail9cGPB/KVl0RAFoOtxB2LHfjA6i+ccCujTS6Z29GaO/riHv72UOfsKu5GjUCF3xyP5dhQSPW5Vr15Qe6e35YhGLcWz2nslnM2iOaqZ7Ylu45AMlwbu0MiKN8rHvlgcTFUjDo+WRcvtljuD0dhcks7HqLlg/85tSTEPKDW0zYMbEfp/IlL3bO2CGbOzu4RCh+CUQ80rj+EPohFXk7tnij vitor@luna'
-      
+
       - name: 'tryggvib'
         group: 'openspending_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxRPdCcwbhPG9PYYLqiiUHHJzLOElrP2vA5wpQ+YrKOIYJyyTUSc8CSrK/3jVv4nnRfHbUluEllwB07jbegHXiDpZfTI3EQsLFMtw4mcLh08bhHyg2SrNRNwXejIpgvHnJZ5qG01ha6kncxbPqgctxUvaNqwdozhQmgAUWb090SHE/VgP1eYVMhNFdv6XDKlLs4aydZK5aXYCnuMpEzA1Zj7XvsY+ktML7DPyf/y30x6iC7fAUWm8UKNV0UmAeIlsVexQNSzi19mYBbG4Q5dZrqmr9HfAUWlmDCZL0EBHiIfCGKzF5NJes3qlA476uKnlx+PBvz7uD+mpxAm4lUc7D tryggvib@fsfi.is'
-      
+
       - name: 'mkeegan'
         group: 'openspending_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA0QvlAkGAQvqf2SM1a6qbPdzare4sTiN8DiKgog2xy87VeJxoDW6GUxy5J/794vDyJOW7CbewSC7IiFTBLSolOQRh1AJs7kbLfFfOwE/LSwpCP396jRy0p+wDUrGi2nEiFccynY8nWblsJk1bS59L1fjfxMln6WvakiCU6JbVUvk= mkeegan@goatnut'
       - name: 'nigelb'
         group: 'openspending_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAub2He4lZRpsqxetF8+C1OCaVKfqo2FYxYKRhmBSzyqKFPC0Fg9WylQvqt+DXULCHyZn88kwuf39ifAaiWZ+Js7aXo3+aT6M/ggGI15z3DFhYkiVkU1mUTr8jHF8YaF8x7TRwxrMCQrrRoNgifN97lWhlvtQWFaIaUkXQTDXuZdMzLzJqoZ+Gvw/bjRkp9KyyVzWt99b/PWBWRJKL8DzKIH9/oIvLIow1ucP4DshZs/FZN1upT5RhRb+ydmcDgTj8054Va6XxQBJ1vWqShofvrUwkWQA3bGhZhtAfQHfpCvdCUjxr0C5GRZa8V8k6VKQJdOb2Sqjrq7PucR1G2CkSAQ== nigelbabu@nigelbabu-laptop'
-      
+
       - name: 'stefan'
         group: 'openspending_dev'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAuoYRUBsBk7s2VQ3m/LQBYdRRhQJCjuv3QiC0Bw1nDwQr0bwfC718O5P4+K7q7LPRGfWsfkHCqQpq6JEdbwFe4om6dluLoAMZtR5kMx8Alqd0qlIYTKpOR24gd0qsr4jH9OXKXcKss8Or4fClqHQ8NOInMasA9tsAFCLJb/46PeFPOP0UxzDHo9aL5esgc0Y/QoKGviBeLD47Q1UYOwk0ks9jNpy8K4BjVHPclgCYPYZ9qMXf6+ZWsQgQDfCLNyziCjV2U8q3vYYh6M5Ao4T2p9n3EFgUCxhyy1G7SyYL236PnyfRg9lQ0bKWlLj6tYUNYEiAzQSMGdDGvto2BSfCAw== sw@sw.local'
