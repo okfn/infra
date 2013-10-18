@@ -45,11 +45,13 @@
      - graphite_collectors
 
 - name: add_myutils
-  action: copy src={{ item }} dest=/opt/scripts/graphite_collectors/myutils
-  with_fileglob: opt/scripts/graphite_collectors/mytils/*
+  action: copy src={{ item }} dest=/opt/scripts/graphite_collectors/myutils/
+  with_fileglob: 
+     - opt/scripts/graphite_collectors/myutils/*
   when: graphite_collectors is defined
   tags:
      - scripts
+     - graphite_utils
      - graphite_collectors
 
 - name: ensure_collectors
