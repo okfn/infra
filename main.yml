@@ -17,7 +17,6 @@
      - iptables-persistent
      - ntpd #sets the timezone and installs openntpd
      - collectd
-     - graphite_collectors #adds collectd, other graphite collectors
      - munin-node
      - check_mk-agent
      - nagios-client
