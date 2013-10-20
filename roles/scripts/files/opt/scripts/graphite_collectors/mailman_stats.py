@@ -1,10 +1,13 @@
 #!/usr/bin/python2.7
 import re
 import time
+import os
 from myutils import graphite_pickle
 from myutils import reverse_tail
 
 mailman_logs='/var/log/mailman/'
+qpath='/var/lib/mailman/qfiles'
+
 namespace='mail_metrics.mailman'
 graphite_host='ansible-dev.okserver.org'
 
@@ -124,7 +127,14 @@ def get_subscribe_stats():
 			stats[list_ns] += 1
 	push_stats(stats)
 			
-
+def get_qfiles_stats():
+	stats={}
+	queues='archive bad bounces commands in news out retry shunt virgin'
+	queues=queues.split(' ')
+	for q in queues:
+		stats['queue.' + q] = len(os.listdir(qpath + '/' + q))
+	
+	push_stats(stats)		
 
 def push_stats(stats): 
 	#accepts dicts that should look like  metrics['datapoint']['value']
@@ -140,4 +150,4 @@ def push_stats(stats):
 get_post_stats()
 get_outbound_stats()
 get_subscribe_stats()
-
+get_qfiles_stats()

@@ -1,16 +1,15 @@
 [
   {
     "bgcolor": "000000",
-    "title": "mails in queue",
     "target": [
-      "mail_metrics.exim.to_yahoo",
-      "mail_metrics.exim.to_gmail",
-      "mail_metrics.exim.total_queued_mail"
+      "aliasByNode(mail_metrics.exim.to_*, 2)"
     ],
-    "fgcolor": "FFFFFF"
+    "fgcolor": "FFFFFF",
+    "title": "mails in queue"
   },
   {
     "bgcolor": "000000",
+    "hideLegend": "true",
     "target": [
       "mail_metrics.exim.from_okfn_lists"
     ],
@@ -18,28 +17,46 @@
     "title": "mails from okf lists in exim queue"
   },
   {
-    "width": "1024",
-    "title": "Total posts in all lists",
     "target": [
-      "mail_metrics.mailman.posts.total"
-    ],
-    "fgcolor": "FFFFFF",
-    "bgcolor": "000000"
-  },
-  {
-    "width": "1024",
-    "title": "mailman subscribe requests",
-    "target": [
-      "mostDeviant(10, mail_metrics.mailman.subscribe.*.pending)"
+      "mail_metrics.mailman.queue.virgin",
+      "mail_metrics.mailman.queue.shunt",
+      "mail_metrics.mailman.queue.retry",
+      "mail_metrics.mailman.queue.out",
+      "mail_metrics.mailman.queue.news",
+      "mail_metrics.mailman.queue.bounces",
+      "mail_metrics.mailman.queue.in",
+      "mail_metrics.mailman.queue.commands",
+      "mail_metrics.mailman.queue.bad",
+      "mail_metrics.mailman.queue.archive"
     ],
     "bgcolor": "000000",
+    "fgcolor": "FFFFFF",
+    "title": "mailman queue stats"
+  },
+  {
+    "target": [
+      "transformNull(mail_metrics.mailman.posts.total, 0)"
+    ],
+    "hideLegend": "true",
+    "title": "total posts in all lists",
+    "bgcolor": "000000",
+    "width": "1024",
     "fgcolor": "FFFFFF"
   },
   {
     "width": "1024",
+    "title": "mailman subscribe requests",
+    "fgcolor": "FFFFFF",
     "bgcolor": "000000",
     "target": [
-      "mail_metrics.mailman.subscribe.*.new"
+      "aliasByNode(mostDeviant(10, transformNull(mail_metrics.mailman.subscribe.*.pending, 0)), 3)"
+    ]
+  },
+  {
+    "width": "1024",
+    "bgcolor": "000000",
+    "target": [
+      "aliasByNode(transformNull(mostDeviant(10, mail_metrics.mailman.subscribe.*.new),0), 3)"
     ],
     "fgcolor": "FFFFFF",
     "title": "mailman subscribe approved"
@@ -47,10 +64,10 @@
   {
     "width": "1024",
     "title": "mailman outbound mail",
-    "target": [
-      "mostDeviant(10, mail_metrics.mailman.*.*.total)"
-    ],
+    "fgcolor": "FFFFFF",
     "bgcolor": "000000",
-    "fgcolor": "FFFFFF"
+    "target": [
+      "aliasByNode(transformNull(mostDeviant(10, mail_metrics.mailman.*.*.total), 0), 3)"
+    ]
   }
 ]
