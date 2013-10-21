@@ -1,7 +1,8 @@
 ---
 sites_to_monitor: ['lists.okfn.org:80:301']
-enabled_local_checks: ['check_eximailqueue']
-enabled_local_checks_600: ['check_rackspace_snapshots'] # these are checks that run longer, and should run at 600 sec intervals -  http://mathias-kettner.de/checkmk_localchecks.html (see cached local checks)
+enabled_local_checks: ['check_eximailqueue', 'mailman_qfiles_check']
+enabled_local_checks_86400: ['check_rackspace_snapshots'] # these are checks that run longer, and should run at 86400 sec intervals -  http://mathias-kettner.de/checkmk_localchecks.html (see cached local checks) 
+#^^ needs to be fixed, var should hold the interval the check should run at, probably like ['check_rackspace_snapshots:<interval>']
 graphite_collectors: ['exim_stats.py', 'mailman_stats.py']
 scripts: ['blogsite-owners-admins.py', 'mail_forwards_merge.py']
 rsnapshot_backup:
