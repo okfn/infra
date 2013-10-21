@@ -1,0 +1,53 @@
+#!/usr/bin/python2.7
+
+import time
+import os
+
+#we flag warning if there are > 25 pck files over an hour old
+#we flag critical if there are > 75 pck files over five hours old
+
+warn=25
+critical=75
+check_name='mailman_queue'
+qfiles='/var/lib/mailman/qfiles/'
+queues='archive bad bounces commands in news out retry shunt virgin'
+queues=queues.split(' ')
+time_now = int(time.time())
+three_hour_old = time_now - 10800
+one_hour_old = time_now - 3600
+
+##<0|1|2|3> <checkname> count=<current_value>;<warn>;<crit>;<min>;<max> <text output of command>
+
+def check_pck_count(queue):
+
+	pck_files = [f for f in os.listdir(qfiles + '/' + queue ) if f.endswith('.pck')]
+	if pck_files:
+		for pck in pck_files:
+			ts = pck.split('+')[0]
+			ts = ts.split('.')[0]
+			ts = int(ts)
+			if ts < one_hour_old:
+				old_pcks['one_hour'] += 1
+			if ts < three_hour_old:
+				old_pcks['three_hour'] += 1
+
+for queue in queues:
+	old_pcks = { 'one_hour':  0, 'three_hour': 0 }
+	status = 0
+	check_pck_count(queue)
+	if old_pcks['three_hour'] > critical:
+		status=2
+		print str(status) + ' ' + check_name + ' count=' + str(old_pcks['three_hour']) + ';25;75;' + ' backlog of pck files in queue at ' + qfiles + '/' + queue + ' greater than threshold -> ' + str(critical) + ' pending since 3 hours'
+		exit()
+	elif old_pcks['one_hour'] > warn:
+		status=1
+		print str(status) + ' ' + check_name + ' count=' + str(old_pcks['one_hour']) + ';25;75;' + ' backlog of pck files in queue at ' + qfiles + '/' + queue + ' greater than threshold -> ' + str(warn) + ' pending since 1 hour'
+		exit()
+	else:
+		status=0
+
+
+
+if status == 0:
+	print str(status) + ' ' + check_name + ' count=25;75;' + 'Number of pck files in queue at ' + qfiles + ' within normal threshold'
+		
