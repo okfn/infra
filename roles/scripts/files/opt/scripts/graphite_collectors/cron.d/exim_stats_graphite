@@ -1,1 +1,1 @@
-*/5 * * * * root /opt/graphite_scripts/exim_stats.py
+*/5 * * * * root /opt/scripts/graphite_collectors/exim_stats.py
