@@ -76,7 +76,7 @@
   when: local_checks is defined
   with_items:
      - '/opt/scripts/check_mk'
-     - '/usr/lib/check_mk_agent/600'
+     - '/usr/lib/check_mk_agent/local/86400'
   tags:
      - scripts
      - local_checks
@@ -97,19 +97,19 @@
      - scripts
      - local_checks
 
-#these are checks that should run once every 600 secs
+#these are checks that should run once every 600 secs, see http://mathias-kettner.de/checkmk_localchecks.html
 - name: setup_local_checks
   action: copy src=opt/scripts/check_mk/{{ item }} dest=/opt/scripts/check_mk/
-  with_items: enabled_local_checks_600
-  when: enabled_local_checks_600 is defined
+  with_items: enabled_local_checks_86400
+  when: enabled_local_checks_86400 is defined
   tags:
      - scripts
      - local_checks
 
-- name: setup_local_checks_600
-  action: file src=/opt/scripts/check_mk/{{ item }} dest=/usr/lib/check_mk_agent/600/{{ item }} state=link force=yes
-  with_items: enabled_local_checks_600
-  when: enabled_local_checks_600 is defined 
+- name: setup_local_checks_86400
+  action: file src=/opt/scripts/check_mk/{{ item }} dest=/usr/lib/check_mk_agent/local/86400/{{ item }} state=link force=yes
+  with_items: enabled_local_checks_86400
+  when: enabled_local_checks_86400 is defined 
   tags:
      - scripts
      - local_checks
