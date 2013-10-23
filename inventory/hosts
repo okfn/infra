@@ -13,6 +13,7 @@ s095.okserver.org comment="define dbserver, solrservers"
 s096.okserver.org
 s109.okserver.org os_project=farmsubsidy
 s030.okserver.org os_project=etl_testing 
+s114.okserver.org ansible_ssh_host=192.237.165.121
 
 [queremossaber]
 s030.okserver.org  
