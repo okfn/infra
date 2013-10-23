@@ -14,6 +14,7 @@
      
     - name: -> set correct date
       action: shell /usr/sbin/ntpdate pool.ntp.org
+      ignore_errors: True
       tags: set_date
     ## Add DME record, the DME module is timestamp sensitive, ensure the system clock is in syncd using ntpdate
     ## msg: http://api.dnsmadeeasy.com/V2.0/dns/managed returned 403, with body: {error: ["Request sent with date header too far out of sync.  Difference in times is -98077, header value is 1376666747000"]}
