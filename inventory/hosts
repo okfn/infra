@@ -97,6 +97,10 @@ s032.okserver.org
 s033.okserver.org
 s110.okserver.org
 
+[mysql-servers]
+s098.okserver.org
+s113.okserver.org
+
 [openspending:children]
 openspending-db
 openspending-web

@@ -1,3 +1,5 @@
 ---
 db_type: mysql
-
+sites_enabled: ['product-open-data.com', 'wikifarm']
+sites_to_monitor: ['product-open-data.com:80:200']
+enabled_plugin_checks: ['mk_mysql'] #mk_mysql adopted from http://mathias-kettner.de/checkmk_mysql.html 

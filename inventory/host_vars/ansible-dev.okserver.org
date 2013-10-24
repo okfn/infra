@@ -1,5 +1,6 @@
 ---
 sites_enabled: ['graphs.okserver.org','booktype.okfn.org', 'apt.okserver.org']
+percona_mysql: True
 #site_id: sa
 #db_type: mysql
 #mysql_port: 3306
