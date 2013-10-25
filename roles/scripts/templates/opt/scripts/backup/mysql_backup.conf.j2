@@ -1,0 +1,2 @@
+backup_rsync_target: {{ backup_rsync_target }}
+db_backup_list: {% for db in db_backup_list %}{{ db }} {% endfor %}

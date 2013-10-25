@@ -1,0 +1,1 @@
+30 01 * * root /opt/scripts/backup/mysql_backup.sh &> /var/log/mysql_backup.log
