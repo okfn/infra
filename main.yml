@@ -1,6 +1,6 @@
 #ansible-playbook main.yml --tags="base-roles" -vvv
 ---
-- hosts: $host
+- hosts: "{{ host }}"
   gather_facts: True
   connection: ssh
   tags: base-roles

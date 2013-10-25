@@ -1,6 +1,6 @@
 #ansible-playbook --extra-vars="host=s999.okserver.org fact_path='/etc/ansible/facts.d'" updates.yml -vvv
 ---
-- hosts: $host
+- hosts: "{{ host }}"
   gather_facts: True
   connection: ssh
   user: okfn
