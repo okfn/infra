@@ -41,7 +41,8 @@
 
 - name: setup_ssl_certs
   action: copy src=~/ansible/.private/ssl_certs/{{ item }}.crt dest=/etc/nginx/ssl_certs/
-  with_items: "{{ ssl_sites_enabled }}"
+  with_items: 
+     - "{{ ssl_sites_enabled }}"
   when: ssl_sites_enabled is defined
   tags:
      - setup_ssl_certs
@@ -49,7 +50,8 @@
 
 - name: setup_ssl_certs
   action: copy src=~/ansible/.private/ssl_certs/{{ item }}.key dest=/etc/nginx/ssl_certs/ owner=root group=root mode=600 backup=yes
-  with_items:  "{{ ssl_sites_enabled }}"
+  with_items:  
+     - "{{ ssl_sites_enabled }}"
   when: ssl_sites_enabled is defined
   tags:
      - setup_ssl_certs
@@ -58,7 +60,8 @@
 - name: setup_nginx_sites_enabled
   when: sites_enabled is defined #look at the inventory/host_vars/$inventory_hostname for sites_enabled
   action: file src=/etc/nginx/sites-available/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} force=yes state=link
-  with_items: "{{ sites_enabled }}"
+  with_items: 
+     - "{{ sites_enabled }}"
   notify: reload nginx
   tags: 
      - setup_nginx_sites_enabled
