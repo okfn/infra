@@ -1,6 +1,6 @@
 server {
         listen       80;
-        server_name  pad.okfn.org;
+        server_name  pad.okfn.org okfnpad.org www.okfnpad.org new.okfnpad.org;
 
         access_log  /var/log/nginx/pad.okfn.org.access.log;
         error_log   /var/log/nginx/pad.okfn.org..error.log;
