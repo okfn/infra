@@ -1,4 +1,13 @@
 ---
 - name: apt_install
   action: apt pkg={{ item }} state=installed
+  when: pkg_list is defined
   with_items: "{{  pkg_list }}"
+  tags:
+     - apt
+
+- name: setup_unattended_upgrades
+  action: copy src=etc/apt/apt.conf.d/50unattended-upgrades dest=/etc/apt/apt.conf.d/50unattended-upgrades
+  tags:
+     - apt
+     - setup_unattended_upgrades
