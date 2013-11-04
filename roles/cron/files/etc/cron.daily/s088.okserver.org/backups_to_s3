@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/bin/s3cmd sync /home/backup/mysql_backups s3://attic.okfn.org/ --config=/home/okfn/.s3
