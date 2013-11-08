@@ -8,6 +8,7 @@
   vars_files:
      - ./vars/users.yml
      - "{{ private_dir }}/p.yml"
+     - vars/users.yml
  
   pre_tasks:
      
