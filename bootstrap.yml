@@ -6,6 +6,7 @@
   user: "{{ user }}"
   sudo: true
   vars_files:
+     - ./vars/users.yml
      - "{{ private_dir }}/p.yml"
  
   pre_tasks:
