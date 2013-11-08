@@ -45,12 +45,16 @@
         - sudo
         - bsd-mailx
         - ntpdate
-        - ntpd
 
+      # run ntpdate only if ntpd isn't running
     - name: -> set correct date
-      action: shell /usr/sbin/ntpdate pool.ntp.org
+      action: shell netstat -an --inet | grep ':123 .*$' || /usr/sbin/ntpdate pool.ntp.org
       ignore_errors: True
       tags: set_date
+
+      # install ntp after running ntpdate 'cause otherwise the socket isn't available
+    - name: install basic packages
+      action: apt state=installed pkg=ntp
 
       ## Add DME record, the DME module is timestamp sensitive, ensure the system clock is in syncd using ntpdate
       ## msg: http://api.dnsmadeeasy.com/V2.0/dns/managed returned 403, with body: {error: ["Request sent with date header too far out of sync.  Difference in times is -98077, header value is 1376666747000"]}
