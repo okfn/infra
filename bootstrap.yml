@@ -30,7 +30,7 @@
       tags: generate_locale
 
     - name: -> preseed debconf
-      action: copy src=~/ansible/files/bootstrap/debconf.preseed dest=/tmp/debconf.preseed force=yes
+      action: copy src=files/bootstrap/debconf.preseed dest=/tmp/debconf.preseed force=yes
       tags: preseed_debconf
 
     - name: -> apt update
