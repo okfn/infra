@@ -1,9 +1,9 @@
 ---
 #ansible-playbook bootstrap.yml --extra-vars="hostip=50.57.171.80 host=s113.okserver.org user=root"  -vvvv -k -i inventory/hosts
-- hosts: $host
+- hosts: "{{ host }}"
   gather_facts: false
   connection: ssh
-  user: $user
+  user: "{{ user }}"
   sudo: true
   vars_files: 
    - ~/ansible/vars/global.yml
@@ -27,8 +27,8 @@
       tags: set_hostname
 
     - name: -> generate_locale
-      action: shell locale-gen $item
-      with_items: $locale_list
+      action: shell locale-gen "{{ item }}"
+      with_items: "{{ locale_list }}"
       tags: generate_locale
 
     - name: -> preseed debconf
@@ -49,7 +49,7 @@
       tags: apt_upgrade
     
     - name: install basic packages
-      action: apt state=installed pkg=${item}  
+      action: apt state=installed pkg="{{ item }}"
       with_items:
         - vim-nox
         - sudo
@@ -68,6 +68,9 @@
       action: command /usr/bin/newaliases
       tags: run_newaliases
     
+    - name: setup_snapshots
+      local_action: shell echo {{ inventory_hostname }}
+      tags: local_action    
 #     - name: disable_root_login
 #       lineinfile: "dest=/etc/ssh/sshd_config state=present regexp='^PermitRootLogin' line='PermitRootLogin no'" 
 #       tags: disable_root_login
