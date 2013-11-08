@@ -5,6 +5,8 @@
   connection: ssh
   user: "{{ user }}"
   sudo: true
+  vars_files:
+     - "{{ private_dir }}/p.yml"
  
   pre_tasks:
      
