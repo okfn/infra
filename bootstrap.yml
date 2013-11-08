@@ -10,16 +10,6 @@
  
   pre_tasks:
      
-    - name: -> set correct date
-      action: shell /usr/sbin/ntpdate pool.ntp.org
-      ignore_errors: True
-      tags: set_date
-    ## Add DME record, the DME module is timestamp sensitive, ensure the system clock is in syncd using ntpdate
-    ## msg: http://api.dnsmadeeasy.com/V2.0/dns/managed returned 403, with body: {error: ["Request sent with date header too far out of sync.  Difference in times is -98077, header value is 1376666747000"]}
-    - name: -> Add DME record
-      dnsmadeeasy: account_key="{{ dme_key }}" account_secret="{{ dme_secret }}" domain="{{ host.split('.', 1)[1] }}" state=present record_name="{{ host.split('.')[0] }}" record_type='A' record_value="{{ hostip }}"
-      tags: setup_dns
-
     - name: set_hostname
       action: shell echo "{{ host }}" > /etc/hostname && echo hostname "{{ host }}"
       tags: set_hostname
@@ -50,9 +40,23 @@
       action: apt state=installed pkg="{{ item }}"
       with_items:
         - vim-nox
-        - sudo
         - man-db
+        - sudo
         - bsd-mailx
+        - ntpdate
+        - ntpd
+
+    - name: -> set correct date
+      action: shell /usr/sbin/ntpdate pool.ntp.org
+      ignore_errors: True
+      tags: set_date
+
+      ## Add DME record, the DME module is timestamp sensitive, ensure the system clock is in syncd using ntpdate
+      ## msg: http://api.dnsmadeeasy.com/V2.0/dns/managed returned 403, with body: {error: ["Request sent with date header too far out of sync.  Difference in times is -98077, header value is 1376666747000"]}
+    - name: -> Add DME record
+      dnsmadeeasy: account_key="{{ dme_key }}" account_secret="{{ dme_secret }}" domain="{{ host.split('.', 1)[1] }}" state=present record_name="{{ host.split('.')[0] }}" record_type='A' record_value="{{ hostip }}"
+      tags: setup_dns
+
   roles:
      - users
      - motd
