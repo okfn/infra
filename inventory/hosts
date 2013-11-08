@@ -62,7 +62,7 @@ s106.okserver.org
 
 [mailserver]
 s001.okserver.org
-s116.okserver.org
+s116.okserver.org ansible_ssh_host=okfn2.vm.bytemark.co.uk
 
 [cache]
 s006.okserver.org
