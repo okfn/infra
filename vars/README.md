@@ -1,1 +1,1 @@
-This directory holds all variable definitions that may need to be shared across all/groups/host
+only users.yml is being used from this director, any variables should be defined under inventory/(hosts|groups)/*
