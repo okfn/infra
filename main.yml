@@ -30,7 +30,7 @@
   user: okfn
   sudo: true
   vars_files:
-   - "{{ private_dir }}"/p.yml
+   - "{{ private_dir }}/p.yml"
   tags: openspending-web
   roles:
      - varnish
@@ -43,7 +43,7 @@
   user: okfn
   sudo: true
   vars_files:
-   - "{{ private_dir }}"/p.yml
+   - "{{ private_dir }}/p.yml"
   tags: etherpad
   roles:
      - { role: etherpad-lite, install_path: '/var/www/etherpad-lite', user: 'etherpad-lite', group: 'etherpad-lite', version: '1.2.11' }
