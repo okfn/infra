@@ -1,12 +1,3 @@
 ---
-# This file contains variables that are common across all hosts
-basedir: ~/ansible
-private: /root/private/ansible
-files: ~/ansible/files
-handlers: ~/ansible/handlers
-tasks: ~/ansible/tasks
-vars: ~/ansible/vars
-
-locale_list:
-   - en_GB.utf8
-
+private_dir: ../credentials/ansible
+files: files/
