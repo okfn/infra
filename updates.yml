@@ -5,9 +5,7 @@
   connection: ssh
   user: okfn
   sudo: true
-  vars_files: 
-   - ~/ansible/vars/global.yml
-   - ~/ansible/vars/users.yml
+  
   tasks:
      - name: ensure facts directory
        action: file dest={{ fact_path }} state=directory

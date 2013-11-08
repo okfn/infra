@@ -40,7 +40,7 @@
      - nginx
 
 - name: setup_ssl_certs
-  action: copy src=~/ansible/.private/ssl_certs/{{ item }}.crt dest=/etc/nginx/ssl_certs/
+  action: copy src={{ private_dir }}/ssl_certs/{{ item }}.crt dest=/etc/nginx/ssl_certs/
   with_items: 
      - "{{ ssl_sites_enabled }}"
   when: ssl_sites_enabled is defined
@@ -49,7 +49,7 @@
      - nginx
 
 - name: setup_ssl_certs
-  action: copy src=~/ansible/.private/ssl_certs/{{ item }}.key dest=/etc/nginx/ssl_certs/ owner=root group=root mode=600 backup=yes
+  action: copy src={{ private_dir }}/ssl_certs/{{ item }}.key dest=/etc/nginx/ssl_certs/ owner=root group=root mode=600 backup=yes
   with_items:  
      - "{{ ssl_sites_enabled }}"
   when: ssl_sites_enabled is defined
