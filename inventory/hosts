@@ -18,6 +18,9 @@ s109.okserver.org os_project=farmsubsidy
 s030.okserver.org os_project=etl_testing 
 s114.okserver.org ansible_ssh_host=192.237.165.121
 
+[blogfarm] # this is not really a host in our infrastructure, but added so we can manage nagios checks for it
+blogfarm.okserver.org 
+
 [queremossaber]
 s030.okserver.org  
 
@@ -137,6 +140,8 @@ wiki
 etherpad
 mailserver
 cache
+blogfarm
+
 
 [webservers:children]
 ckan-web-dev
@@ -150,6 +155,7 @@ queremossaber
 labs
 mailserver
 cache
+
 
 [dbservers:children]
 ckan-db-prod 
