@@ -6,8 +6,7 @@
      - postfix
 
 - name: setup_leaf_main_cf
-  when: mailhost_type == "leaf"
-  template: src=leaf.cf dest=/etc/postfix/main.cf
+  template: src={{ mailhost_type }}.cf dest=/etc/postfix/main.cf
   notify: restart postfix
 
 - name: default_aliases
@@ -30,3 +29,10 @@
 - name: newaliases
   action: shell newaliases
 
+- name: create_transport_maps
+  when: listserv == True
+  template: src=list_transport dest=/etc/postfix/transport owner=postfix group=postfix mode=0644
+
+- name: build_transport_maps
+  when: listserv == True
+  command: postmap /etc/postfix/transport
