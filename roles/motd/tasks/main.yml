@@ -22,6 +22,15 @@
   tags:
      - motd
 
+- name: else_clean_motd_file
+  action: shell echo -e '/^#/\n.,$d\nwq\n' | ed -s /etc/motd
+  when: ansible_motd_exists|failed and motd_tail_supported|failed
+  tags: else_clean_motd_file
+  ignore_errors: True
+  register: cleaned_ansible_motd
+  tags:
+     - motd
+
 - name: else_append_to_motd_file
   action: shell echo -n "{{ motd }}" >> /etc/motd
   when: ansible_motd_exists|failed and motd_tail_supported|failed
