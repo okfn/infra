@@ -18,6 +18,10 @@ all_hosts = [
 "{{ host }}|openspending",
   {% endif %}
 {%endfor%}
+ {% if hostvars['blogfarm.okserver.org']['disable_nagios_checks'] is not defined %}
+"blogfarm.okserver.org",
+ {% endif %}
+
 ]
 
 
