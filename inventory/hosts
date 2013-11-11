@@ -61,8 +61,8 @@ s079.okserver.org ckan_project=publicdata.eu #runs its own database
 s106.okserver.org
 
 [mailserver]
-s001.okserver.org
-s116.okserver.org ansible_ssh_host=okfn2.vm.bytemark.co.uk
+s001.okserver.org rackspace=false
+s116.okserver.org rackspace=false
 
 [cache]
 s006.okserver.org
