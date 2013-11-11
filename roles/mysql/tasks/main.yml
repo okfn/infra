@@ -46,17 +46,12 @@
      - mysql
      - install_vanilla_mysql
 
-- name: pick_out_mysqlpass
+- name: setup_mysqlpass_fact
   set_fact:
     mysql_root_password: "{{ lookup('password', role_private_dir + '/mysql/' + inventory_hostname + ' length=6') }}" #the args to lookup MUST BE QUOTED, the '../../' before is a temp workaround since ansible role current directory seems to be within the role itself
   tags:
     - mysql
-    - pick_out_mysqlpass
-
-- name: debug_mysqlpass
-  debug: msg="{{ .private_dir + '/mysql/' + inventory_hostname }}:{{ mysql_root_password }}"
-  tags:
-     - pick_out_mysqlpass
+    - setup_mysqlpass_fact
 
 - name: setup_mysql_root_user
   mysql_user: name=root host={{ item }} password={{ mysql_root_password }}
