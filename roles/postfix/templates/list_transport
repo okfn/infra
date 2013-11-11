@@ -1,0 +1,3 @@
+{% for dest in listserv_domains %}
+{{ dest }}	mailman:
+{% endfor %}

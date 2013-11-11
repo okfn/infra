@@ -1,0 +1,18 @@
+mail_owner = postfix
+myhostname = {{ inventory_hostname }}
+mydomain = {{ inventory_hostname }}
+myorigin = {{ inventory_hostname }}
+inet_interfaces = all
+mydestination =
+{% for dest in mail_domains %}
+        {{ dest }}
+{% endfor %}
+unknown_local_recipient_reject_code = 550
+{% if relayhost %}
+relayhost = {{ relayhost }}
+{% endif %}
+alias_maps = hash:/etc/postfix/aliases
+alias_database = hash:/etc/postfix/aliases
+{% if listserv == True %}
+transport_maps = hash:/etc/postfix/transport
+{% endif %}

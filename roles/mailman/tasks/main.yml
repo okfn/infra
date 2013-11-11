@@ -1,0 +1,11 @@
+- name: install_mailman 
+  action: apt pkg=mailman state=present 
+  notify: restart mailman
+  tags: 
+     - install_mailman
+     - mailman
+
+- name: configure_mailman
+  template: src=mm_cfg.py dest=/etc/mailman/mm_cfg.py owner=root group=root mode=0644
+  notify: restart mailman
+

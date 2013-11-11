@@ -16,9 +16,11 @@ backup_rsync_target: 10.183.172.112    #s088, backup host internal ip
 private_dir: ../credentials/ansible/
 locale_list:
    - en_GB.utf8
+rackspace: true
 motd: >
       #########################################################################################################\n
       System and application config is Ansible managed for this host. To ensure any changes made are not lost,\n
       please check them into the OKF ansible repo - https://github.com/okfn/sysconfig-ansible\n
       Last Ansible run = $(date)\n\t\t\t\t\t\t\t\t\t\t - OKF Sysadmin\n
       #########################################################################################################\n
+

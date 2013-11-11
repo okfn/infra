@@ -6,6 +6,7 @@
   user: "{{ user }}"
   sudo: true
   vars_files:
+     - ./vars/users.yml
      - "{{ private_dir }}/p.yml"
      - vars/users.yml
  
@@ -40,6 +41,7 @@
     - name: install basic packages
       action: apt state=installed pkg="{{ item }}"
       with_items:
+        - ed
         - vim-nox
         - man-db
         - sudo
@@ -76,6 +78,7 @@
       tags: run_newaliases
     
     - name: setup_snapshots
+      when: rackspace == true
       local_action: shell echo {{ inventory_hostname }}
       tags: local_action    
 #     - name: disable_root_login

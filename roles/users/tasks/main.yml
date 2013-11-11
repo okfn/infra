@@ -37,12 +37,6 @@
   with_items:  devs_group
   tags: add_project_group
 
-- name: -> debug_set
-#  action: debug msg="{{ project }} {{ devs_group }}"
-  action: debug msg="--> {{ item.name }}"
-  with_items: users.devs_group
-  tags: debug_set
-
 - name: -> add_project_users
   when:  project is defined
   action: user name={{ item.name }} group={{ item.group }} state=present shell=/bin/bash

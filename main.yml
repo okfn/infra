@@ -108,4 +108,24 @@
   tasks:
      - action: debug msg="mailserver!"
 
- 
+- hosts: listserv
+  gather_facts: True
+  connection: ssh
+  tags: listserv
+  sudo: true
+  vars:
+    - mailhost_type: leaf
+    - relayhost: False
+    - listserv: True
+    - mail_domains:
+        - lists.okfn.org
+        - lists.knowledgeforge.net
+        - lists.dataexpeditions.org
+    - listserv_domains:
+        - lists.okfn.org
+        - lists.knowledgeforge.net
+        - lists.dataexpeditions.org
+    - listserv_host: lists.okfn.org
+  roles:
+     - postfix
+     - mailman
