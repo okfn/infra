@@ -46,7 +46,7 @@
   action: apt pkg=openntpd state=present 
   notify: restart openntpd 
   tags: 
-     - intall_openntpd
+     - install_openntpd
      - ntpd
 
 - name: reload cron #this is required or else cron doesnt pickup on the new timezone
