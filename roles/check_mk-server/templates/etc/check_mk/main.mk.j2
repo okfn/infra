@@ -34,7 +34,8 @@ legacy_checks = [
 {% for host in groups['ckan-web-prod'] %}
   {% if hostvars[host]['sites_to_monitor'] is defined %}
     {% for site in hostvars[host]['sites_to_monitor'] %}
-( ( "check_http_basic!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "{{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
+#check_http_basic!s098.okserver.org!product-open-data.com!80!200 - is what the check ends up looking like
+( ( "check_http_basic!{{ host }}!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "{{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
     {% endfor %}
   {% endif %}
 {% endfor %}
@@ -44,7 +45,7 @@ legacy_checks = [
 {% for host in groups['openspending-web'] %}
  {% if hostvars[host]['sites_to_monitor'] is defined %}
   {% for site in hostvars[host]['sites_to_monitor'] %} 
-( ( "check_http_basic!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "{{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
+( ( "check_http_basic!{{ host }}!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "{{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
    {% endfor %}
  {% endif %}
 {% if hostvars[host]['ssl_sites_to_monitor'] is defined %}
@@ -59,7 +60,7 @@ legacy_checks = [
 {% for host in groups['sysadmin-web'] %}
   {% if hostvars[host]['sites_to_monitor'] is defined %}
     {% for site in hostvars[host]['sites_to_monitor'] %} 
-( ( "check_http_basic!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "{{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
+( ( "check_http_basic!{{ host }}!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "{{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
     {% endfor %}
   {% endif %}
 {% endfor %}
@@ -171,7 +172,7 @@ define serviceescalation {
 
 define command{
         command_name    check_http_basic
-        command_line    /usr/lib/nagios/plugins/check_http -H '$ARG1$' -p '$ARG2$' -e '$ARG3$' -N
+        command_line    /usr/lib/nagios/plugins/check_http '$ARG1$'  -H '$ARG2$' -p '$ARG3$' -e '$ARG4$' -N
 }
 
 define command{
@@ -226,5 +227,3 @@ define command{
 
 
 """
-
-
