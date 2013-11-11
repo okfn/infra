@@ -63,10 +63,10 @@ IMAGE_LOGOS         = '/images/mailman/'
 
 #-------------------------------------------------------------
 # Default domain for email addresses of newly created MLs
-DEFAULT_EMAIL_HOST = 'lists.okfn.org'
+DEFAULT_EMAIL_HOST = '{{ listserv_host }}'
 #-------------------------------------------------------------
 # Default host for web interface of newly created MLs
-DEFAULT_URL_HOST   = 'lists.okfn.org'
+DEFAULT_URL_HOST   = '{{ listserv_host }}'
 #-------------------------------------------------------------
 # Required when setting any of its arguments.
 add_virtualhost(DEFAULT_URL_HOST, DEFAULT_EMAIL_HOST)

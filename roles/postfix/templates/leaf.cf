@@ -8,7 +8,9 @@ mydestination =
         {{ dest }}
 {% endfor %}
 unknown_local_recipient_reject_code = 550
+{% if relayhost %}
 relayhost = {{ relayhost }}
+{% endif %}
 alias_maps = hash:/etc/postfix/aliases
 alias_database = hash:/etc/postfix/aliases
 {% if listserv == True %}

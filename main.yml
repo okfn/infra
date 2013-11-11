@@ -115,6 +115,7 @@
   sudo: true
   vars:
     - mailhost_type: leaf
+    - relayhost: False
     - listserv: True
     - mail_domains:
         - lists.okfn.org
@@ -124,6 +125,7 @@
         - lists.okfn.org
         - lists.knowledgeforge.net
         - lists.dataexpeditions.org
-    - relayhost: mailrelay.okfn.org
+    - listserv_host: lists.okfn.org
   roles:
      - postfix
+     - mailman
