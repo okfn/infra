@@ -1,0 +1,5 @@
+- name: install_mailman 
+  action: apt pkg=mailman state=present 
+  tags: 
+     - install_mailman
+     - mailman
