@@ -108,4 +108,15 @@
   tasks:
      - action: debug msg="mailserver!"
 
- 
+- hosts: listserv
+  gather_facts: True
+  connection: ssh
+  tags: listserv
+  sudo: true
+  vars:
+    - mailhost_type: leaf
+    - mail_dest: lists.okfn.org
+    - relayhost: mailrelay.okfn.org
+    - listserv: True
+  roles:
+     - postfix

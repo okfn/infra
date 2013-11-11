@@ -1,0 +1,10 @@
+mail_owner = postfix
+myhostname = {{ inventory_hostname }}
+mydomain = {{ inventory_hostname }}
+myorigin = {{ inventory_hostname }}
+inet_interfaces = all
+mydestination = {{ mail_dest }}
+unknown_local_recipient_reject_code = 550
+relayhost = {{ relayhost }}
+alias_maps = hash:/etc/postfix/aliases
+alias_database = hash:/etc/postfix/aliases

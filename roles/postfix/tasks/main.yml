@@ -1,0 +1,32 @@
+- name: install_postfix 
+  action: apt pkg=postfix state=present 
+  notify: restart postfix 
+  tags: 
+     - install_postfix
+     - postfix
+
+- name: setup_leaf_main_cf
+  when: mailhost_type == "leaf"
+  template: src=leaf.cf dest=/etc/postfix/main.cf
+  notify: restart postfix
+
+- name: default_aliases
+  when: listserv == False
+  template: src=aliases dest=/etc/postfix/aliases owner=postfix group=postfix mode=0644
+
+- name: maillist_aliases
+  when: listserv == True
+  template: src=lists dest=/etc/postfix/aliases owner=postfix group=postfix mode=0644
+
+- name: fixup_postfix_perms
+  action: shell chgrp postfix /etc/postfix && chmod 1775 /etc/postfix
+
+- name: fixup_alias_link
+  action: shell rm -f /etc/aliases && ln -s /etc/postfix/aliases /etc
+
+- name: cleanup_alias_db_link
+  action: shell rm -f /etc/aliases.db
+
+- name: newaliases
+  action: shell newaliases
+

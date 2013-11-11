@@ -1,0 +1,18 @@
+mailer-daemon: postmaster
+postmaster: root
+nobody: root
+hostmaster: root
+usenet: root
+news: root
+webmaster: root
+www: root
+ftp: root
+abuse: root
+noc: root
+security: root
+root: system-mails@okfn.org
+
+{% for list in mailinglists %}
+{{ list }}: | /bin/true
+{% endfor %}
+
