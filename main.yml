@@ -115,6 +115,7 @@
   tags: listserv
   sudo: true
   vars:
+    ## This section seems to be alarmingly violating DRY
     - mailhost_type: leaf
     - relayhost: False
     - listserv: True
@@ -129,4 +130,5 @@
     - listserv_host: lists.okfn.org
   roles:
      - postfix
+     - nginx
      - mailman
