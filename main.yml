@@ -95,6 +95,7 @@
   sudo: true
   vars_files: 
    - vars/users.yml
+   - "{{ private_dir }}/p.yml"
   roles:
      - nagios-server
      - check_mk-server
