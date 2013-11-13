@@ -18,7 +18,7 @@
      - varnish
 
 - name: add_config_default_varnish
-  action: copy src={{ item }} dest=/etc/varnish/default.vcl
+  action: copy src={{ item }} dest=/etc/default/varnish
   with_first_found:
      - etc/varnish/${inventory_hostname}/varnish
   tags: 
