@@ -115,14 +115,9 @@
   tags: listserv
   sudo: true
   vars:
-    ## This section seems to be alarmingly violating DRY
     - mailhost_type: leaf
     - relayhost: False
     - listserv: True
-    - mail_domains:
-        - lists.okfn.org
-        - lists.knowledgeforge.net
-        - lists.dataexpeditions.org
     - listserv_domains:
         - lists.okfn.org
         - lists.knowledgeforge.net
