@@ -17,6 +17,15 @@
      - add_config_varnish
      - varnish
 
+- name: add_config_default_varnish
+  action: copy src={{ item }} dest=/etc/varnish/default.vcl
+  with_first_found:
+     - etc/varnish/${inventory_hostname}/varnish
+  tags: 
+     - add_config_default_varnish
+     - varnish
+
+
 - name: secrets_varnish
   action: template src=.j2 dest=/etc/varnish/secret
   when: hostvars[inventory_hostname]_varnish_secret is defined
