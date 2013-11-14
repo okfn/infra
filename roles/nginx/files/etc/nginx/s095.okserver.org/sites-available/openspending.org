@@ -9,6 +9,12 @@ server {
     rewrite     ^ https://openspending.org$request_uri? permanent;
 }
 
+server {
+    listen      *:443;
+    server_name www.openspending.org;
+    rewrite     ^ https://openspending.org$request_uri? permanent;
+}
+
 
 upstream app_server {
     server 127.0.0.1:8080 fail_timeout=0;
