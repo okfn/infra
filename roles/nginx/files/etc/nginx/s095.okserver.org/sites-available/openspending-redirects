@@ -1,34 +1,33 @@
-
 server {
-	listen   localhost:80;
+	listen   *:80;
 	server_name openspending.mobi www.openspending.mobi;
 	access_log  /var/log/nginx/openspending.mobi.access.log;
 	rewrite ^/?$ http://openspending.org/resources/mobi/index.html;
 }
 
 server {
-	listen   localhost:80;
+	listen   *:80;
 	server_name spendingstories.org www.spendingstories.org spendingstories.com www.spendingstories.com;
 	access_log  /var/log/nginx/spendingstories.access.log;
 	rewrite ^/?$ http://openspending.org/blog/index.html;
 }
 
 server {
-	listen   localhost:80;
+	listen   *:80;
 	server_name spendingdata.org www.spendingdata.org;
 	access_log  /var/log/nginx/spendingdata.org.access.log;
 	rewrite ^/?$ http://openspending.org/resources/standard/index.html;
 }
 
 server {
-	listen   localhost:80;
+	listen   *:80;
 	server_name wiki.openspending.org;
 	access_log  /var/log/nginx/wiki.openspending.org.access.log;
 	rewrite ^.*$ http://openspending.org/help/index.html;
 }
 
 server {
-	listen   localhost:80;
+	listen   *:80;
 	server_name www.openspending.org cra.openspending.org;
 	access_log  /var/log/nginx/www.openspending.org.access.log;
 	rewrite ^/(.*)$ http://openspending.org/$1 permanent;
@@ -36,7 +35,7 @@ server {
 }
 
 server {
-	listen localhost:80;
+	listen *:80;
 	server_name etl.sandbox.openspending.org sandbox.openspending.org;
 
 	keepalive_timeout 5;
