@@ -1,8 +1,14 @@
 server {
     listen      *:80;
-    server_name www.openspending.org  openspending.org;
-    rewrite        ^ https://$server_name$request_uri? permanent;
+    server_name openspending.org;
+    rewrite     ^ https://openspending.org$request_uri? permanent;
 }
+server {
+    listen      *:80;
+    server_name www.openspending.org;
+    rewrite     ^ https://openspending.org$request_uri? permanent;
+}
+
 
 upstream app_server {
     server 127.0.0.1:8080 fail_timeout=0;
@@ -12,7 +18,7 @@ server {
     listen *:443;
     ssl on;
     client_max_body_size 4G;
-    server_name www.openspending.org openspending.org;
+    server_name openspending.org;
     
     set_real_ip_from  127.0.0.1;
     real_ip_header    X-Forwarded-For;
