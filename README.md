@@ -16,7 +16,7 @@ The files in this repository are used by
 
 3. Run `ansible-playbook` using the wrapper script, `./play`:
 
-       ./play -h
+        ./play -h
 
 ## Example invocations
 
@@ -34,7 +34,7 @@ You can also use the `ansible` command directly to run tasks on remote hosts:
 
 ## Repository structure
 
-### `main.yml`, `bootstrapp.yml`, etc.
+### `main.yml`, `bootstrap.yml`, etc.
 
 Top-level ansible playbooks.
 
