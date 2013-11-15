@@ -48,7 +48,7 @@
 
 - name: setup_mysqlpass_fact
   set_fact:
-    mysql_root_password: "{{ lookup('password', role_private_dir + '/mysql/' + inventory_hostname + ' length=6') }}" #the args to lookup MUST BE QUOTED, the '../../' before is a temp workaround since ansible role current directory seems to be within the role itself
+    mysql_root_password: "{{ lookup('password', private_dir + '/mysql/' + inventory_hostname + ' length=6') }}"
   tags:
     - mysql
     - setup_mysqlpass_fact

@@ -1,13 +1,8 @@
-#To disable a host in nagios use disable_nagios_checks=true
-
 [ansible-dev]
-ansible-dev.okserver.org disable_nagios_checks=True backup_postgres=True ansible_ssh_host=108.166.97.240 project=ckan
-
-[ansible-host]
-localhost
+ansible-dev.okserver.org disable_nagios_checks=True backup_postgres=True project=ckan
 
 [docker-host]
-s115.okserver.org ansible_ssh_host=162.243.79.75
+s115.okserver.org
 
 [openspending-web]
 s095.okserver.org comment="define dbserver, solrservers"
@@ -15,14 +10,16 @@ s095.okserver.org comment="define dbserver, solrservers"
 [openspending-db]
 s096.okserver.org
 s109.okserver.org os_project=farmsubsidy
-s030.okserver.org os_project=etl_testing 
-s114.okserver.org ansible_ssh_host=192.237.165.121
+s030.okserver.org os_project=etl_testing
+s114.okserver.org
 
-[blogfarm] # this is not really a host in our infrastructure, but added so we can manage nagios checks for it
-blogfarm.okserver.org 
+[blogfarm]
+# this is not really a host in our infrastructure, but added so we can manage
+# nagios checks for it
+blogfarm.okserver.org
 
 [queremossaber]
-s030.okserver.org  
+s030.okserver.org
 
 [ckan-web-dev]
 s080.okserver.org ckan_project=ckan_testing
@@ -56,9 +53,8 @@ s078.okserver.org ckan_project=datahub_old backup_postgres=True
 s076.okserver.org ckan_project=iati backup_postgres=True
 s103.okserver.org ckan_project=edostate.ckan.net backup_postgres=True
 s108.okserver.org ckan_project=datahub.io
-s105.okserver.org ckan_project=sa.ckan.net 
+s105.okserver.org ckan_project=sa.ckan.net
 s079.okserver.org ckan_project=publicdata.eu #runs its own database
-
 
 [ckan-packaging]
 s106.okserver.org
@@ -77,7 +73,7 @@ s039.okserver.org
 
 [etherpad]
 s074.okserver.org
-s113.okserver.org ansible_ssh_host=50.57.171.80
+s113.okserver.org
 
 [LOV]
 s087.okserver.org comment=i_dont_know_my_owner
@@ -144,7 +140,6 @@ mailserver
 cache
 blogfarm
 
-
 [webservers:children]
 ckan-web-dev
 ckan-web-prod
@@ -157,7 +152,6 @@ queremossaber
 labs
 mailserver
 cache
-
 
 [dbservers:children]
 ckan-db-prod 

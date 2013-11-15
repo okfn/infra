@@ -1,9 +1,0 @@
-<solr persistent="true" sharedLib="lib">
-    <cores adminPath="/admin/cores">
-    {% for schema in solr_cores %}
-	<core name="ckan-{{ schema }}" instanceDir="ckan-{{ schema }}">
-	  <property name="dataDir" value="/var/lib/solr/data/ckan-{{ schema }}" />
-	</core> 
-    {% endfor %} 
-    </cores>
-</solr>
