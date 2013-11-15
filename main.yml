@@ -80,7 +80,7 @@
   tasks:
      - action: debug msg="wiki!"
 
-- hosts: s001.okserver.org
+- hosts: monitoring
   gather_facts: True
   connection: ssh
   tags: monitoring
