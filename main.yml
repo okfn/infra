@@ -4,7 +4,6 @@
   gather_facts: True
   connection: ssh
   tags: base-roles
-  user: okfn
   sudo: true
   vars_files: 
    - vars/users.yml
@@ -27,7 +26,6 @@
 - hosts: openspending-web
   gather_facts: False
   connection: ssh
-  user: okfn
   sudo: true
   vars_files:
    - "{{ private_dir }}/p.yml"
@@ -40,7 +38,6 @@
 - hosts: s113.okserver.org
   gather_facts: False
   connection: ssh
-  user: okfn
   sudo: true
   vars_files:
    - "{{ private_dir }}/p.yml"
@@ -52,7 +49,6 @@
   gather_facts: False
   connection: ssh
   tags: backup-server
-  user: okfn
   sudo: true
   roles:
      - { role: rsnapshot, snapshot_root: '/home/backup/snapshots/', cmd_rsync: '/usr/bin/rsync' }
@@ -61,7 +57,6 @@
   gather_facts: True
   connection: ssh
   tags: graphite
-  user: okfn
   sudo: true
   roles:
      - { role: booktype, install_path: '/var/www/mybooktype', user: 'booktype', group: 'booktype' }
@@ -71,7 +66,6 @@
   gather_facts: False
   connection: ssh
   tags: cache
-  user: okfn
   sudo: true
   pre_tasks:
      - action: debug msg="cache!"
@@ -82,7 +76,6 @@
   gather_facts: False
   connection: ssh
   tags: wiki
-  user: okfn
   sudo: true
   tasks:
      - action: debug msg="wiki!"
@@ -91,7 +84,6 @@
   gather_facts: True
   connection: ssh
   tags: monitoring
-  user: okfn
   sudo: true
   vars_files: 
    - vars/users.yml
@@ -104,7 +96,6 @@
   gather_facts: False
   connection: ssh
   tags: mailserver
-  user: okfn
   sudo: true
   tasks:
      - action: debug msg="mailserver!"

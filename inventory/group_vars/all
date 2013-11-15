@@ -13,8 +13,6 @@ hostname_tld: okserver.org
 local_checks: ['apt-security-check']
 timezone: UTC
 backup_rsync_target: 10.183.172.112    #s088, backup host internal ip
-private_dir: ../credentials/ansible/
-role_private_dir: ../../../../credentials/ansible/ # a stupid thing to do, but ansible roles run from within thier folder hence relative paths end up being different.
 locale_list:
    - en_GB.utf8
 rackspace: true
