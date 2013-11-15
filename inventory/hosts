@@ -1,6 +1,9 @@
 [ansible-dev]
 ansible-dev.okserver.org disable_nagios_checks=True backup_postgres=True project=ckan
 
+[monitoring]
+s117.okserver.org aws=true
+
 [docker-host]
 s115.okserver.org
 
