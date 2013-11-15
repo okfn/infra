@@ -1,4 +1,6 @@
 ---
 dependencies:
  - { role: apt, pkg_list: ['libwww-perl', 'libcrypt-ssleay-perl'] }
- - { role: check_mk-server }
+ - { role: nginx }
+ - { role: php-fpm }
+ - { role: fcgiwrap }
