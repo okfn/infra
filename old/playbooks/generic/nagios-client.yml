@@ -1,7 +1,0 @@
----
-#This playbook installs the nagios client plugins and user
- - include: playbooks/users.yml
-   vars:
-      user_list:
-         - nagios
- - include: playbooks/nagios-plugins.yml
