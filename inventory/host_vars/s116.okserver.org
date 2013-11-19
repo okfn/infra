@@ -265,6 +265,7 @@ mailinglists:
     - supporters
     - sysadmin-announce
     - sysadmin-coord
+    - test
     - test-list
     - test-list2
     - textus

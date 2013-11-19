@@ -117,6 +117,7 @@
   vars:
     - mailhost_type: leaf
     - relayhost: False
+    - origin: okfn.org
     - listserv: True
     - listserv_domains:
         - lists.okfn.org

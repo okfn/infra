@@ -3,7 +3,7 @@ myhostname = {{ inventory_hostname }}
 mydomain = {{ inventory_hostname }}
 myorigin = {{ inventory_hostname }}
 inet_interfaces = all
-mydestination =
+mydestination = $myhostname
 {% for dest in mail_domains %}
         {{ dest }}
 {% endfor %}
@@ -11,6 +11,10 @@ unknown_local_recipient_reject_code = 550
 {% if relayhost %}
 relayhost = {{ relayhost }}
 {% endif %}
+relay_domains =
+{% for dest in listserv_domains %}
+        {{ dest }}
+{% endfor %}
 alias_maps = hash:/etc/postfix/aliases
 alias_database = hash:/etc/postfix/aliases
 {% if listserv == True %}

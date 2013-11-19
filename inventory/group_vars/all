@@ -18,6 +18,8 @@ role_private_dir: ../../../../credentials/ansible/ # a stupid thing to do, but a
 locale_list:
    - en_GB.utf8
 rackspace: true
+mail_domains: []
+listserv_domains: []
 motd: >
       #########################################################################################################\n
       System and application config is Ansible managed for this host. To ensure any changes made are not lost,\n

@@ -10,12 +10,7 @@
   notify: restart postfix
 
 - name: default_aliases
-  when: listserv == False
   template: src=aliases dest=/etc/postfix/aliases owner=postfix group=postfix mode=0644
-
-- name: maillist_aliases
-  when: listserv == True
-  template: src=lists dest=/etc/postfix/aliases owner=postfix group=postfix mode=0644
 
 - name: fixup_postfix_perms
   action: shell chgrp postfix /etc/postfix && chmod 1775 /etc/postfix
