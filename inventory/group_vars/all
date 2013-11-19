@@ -19,9 +19,18 @@ rackspace: true
 mail_domains: []
 listserv_domains: []
 motd: >
-      #########################################################################################################\n
-      System and application config is Ansible managed for this host. To ensure any changes made are not lost,\n
-      please check them into the OKF ansible repo - https://github.com/okfn/sysconfig-ansible\n
-      Last Ansible run = $(date)\n\t\t\t\t\t\t\t\t\t\t - OKF Sysadmin\n
-      #########################################################################################################\n
+  ##############################################################################
+
+  System and application config for this host is managed by Ansible. To ensure
+  that any changes make are not lost, please follow the processes outlined in
+  the relevant git repository:
+
+      https://github.com/okfn/sysconfig-ansible
+
+  Regards,
+  The Open Knowledge Foundation system administrators
+
+  ##############################################################################
+
+  Ansible last run time: $(date)
 
