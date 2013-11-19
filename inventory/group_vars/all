@@ -18,19 +18,3 @@ locale_list:
 rackspace: true
 mail_domains: []
 listserv_domains: []
-motd: >
-  ##############################################################################
-
-  System and application config for this host is managed by Ansible. To ensure
-  that any changes make are not lost, please follow the processes outlined in
-  the relevant git repository:
-
-      https://github.com/okfn/sysconfig-ansible
-
-  Regards,
-  The Open Knowledge Foundation system administrators
-
-  ##############################################################################
-
-  Ansible last run time: $(date)
-

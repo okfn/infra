@@ -1,53 +1,25 @@
-#motd fun - adds the ansible motd the first time, and updates it on each ansible run.
-#motd is defined as a var in inventory/group_vars/
+# MOTD
+#
+# Adds the ansible motd the first time, and updates it on each ansible run.
+#
+# A site-specific MOTD can be included in the default MOTD by setting the
+# ``motd_custom`` variable.
+#
 - name: check_motd_tail_supported
   action: shell test -f /etc/update-motd.d/99-footer
   ignore_errors: True
   register: motd_tail_supported
-  tags: 
-     - check_motd_tail_supported
+  tags:
      - motd
 
 - name: add_motd_tail
-  action: shell echo -n "{{ motd }}" >/etc/motd.tail
+  action: template src=motd.j2 dest=/etc/motd.tail
   when: motd_tail_supported|success
   tags:
      - motd
 
-- name: check_motd_exists
-  action: shell grep -q 'Last Ansible run' /etc/motd.tail
-  ignore_errors: True
+- name: add_motd
+  action: template src=motd.j2 dest=/etc/motd
   when: motd_tail_supported|failed
-  register: ansible_motd_exists
-  tags:
-     - motd
-
-- name: else_clean_motd_file
-  action: shell echo -e '/^#/\n.,$d\nwq\n' | ed -s /etc/motd
-  when: ansible_motd_exists|failed and motd_tail_supported|failed
-  tags: else_clean_motd_file
-  ignore_errors: True
-  register: cleaned_ansible_motd
-  tags:
-     - motd
-
-- name: else_append_to_motd_file
-  action: shell echo -n "{{ motd }}" >> /etc/motd
-  when: ansible_motd_exists|failed and motd_tail_supported|failed
-  tags: else_append_to_motd_file
-  ignore_errors: True 
-  register: appended_ansible_motd
-  tags:
-     - motd
-
-- name: date
-  action: shell date
-  register: date  
-  tags:
-     - motd
-
-- name: update_last_run
-  action: lineinfile dest=/etc/motd.tail regexp='^(Last Ansible run =) .*$' line='\1 {{ date.stdout }}' backrefs=yes
-  when: ansible_motd_exists|success
   tags:
      - motd
