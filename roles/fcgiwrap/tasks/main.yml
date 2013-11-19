@@ -1,0 +1,8 @@
+---
+- name: install fcgiwrap
+  action: apt pkg={{ item }} state=installed
+  with_items:
+     - fcgiwrap
+     - spawn-fcg
+  tags:
+     - fcgiwrap

@@ -9,13 +9,19 @@
      - varnish
 
 - name: add_config_varnish
-  action: copy src={{ item }} dest=/etc/varnish/default.vcl
-  with_first_found:
-     - etc/varnish/${project}/${inventory_hostname}_default.vcl
-     - etc/varnish/${inventory_hostname}/default.vcl 
+  action: copy src=etc/varnish/{{ inventory_hostname }}/default.vcl dest=/etc/varnish/default.vcl
+  notify: restart varnish
   tags: 
      - add_config_varnish
      - varnish
+
+- name: add_config_default_varnish
+  action: copy src=etc/varnish/{{ inventory_hostname }}/varnish dest=/etc/default/varnish
+  notify: restart varnish
+  tags: 
+     - add_config_default_varnish
+     - varnish
+
 
 - name: secrets_varnish
   action: template src=.j2 dest=/etc/varnish/secret

@@ -1,6 +1,0 @@
----
-#This playbook installs locales
-- name: -> generate_locale
-  action: shell locale-gen $item 
-  with_items: $locale_list
-  tags: generate_locale

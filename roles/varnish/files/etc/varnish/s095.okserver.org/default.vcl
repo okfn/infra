@@ -4,11 +4,12 @@
 # Default backend definition.  Set this to point to your content
 # server.
 #
-backend default {
+backend gunicorn {
     .host = "127.0.0.1";
-    .port = "80";
-    .first_byte_timeout = 3600s;
-}
+    .port = "18000";
+}   
+
+
 # Below is a commented-out copy of the default VCL logic.  If you
 # redefine any of these subroutines, the built-in logic will be
 # appended to your code.
