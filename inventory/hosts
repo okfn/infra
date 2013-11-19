@@ -83,7 +83,6 @@ s087.okserver.org comment=i_dont_know_my_owner
 
 [other]
 s021.okserver.org hosted=aw comment="to be shutdown once knowledgeforge is moved out" 
-s073.okserver.org comment=future_mail_okfn disable_nagios_checks=True
 
 [backup]
 s088.okserver.org
