@@ -20,3 +20,4 @@ alias_database = hash:/etc/postfix/aliases
 {% if listserv == True %}
 transport_maps = hash:/etc/postfix/transport
 {% endif %}
+mailman_destination_recipient_limit=1
