@@ -1,0 +1,2 @@
+email-smtp.us-east-1.amazonaws.com:25 {{ ses_lists_aws_access_key_id }}:{{ ses_lists_aws_secret_access_key }}
+ses-smtp-prod-335357831.us-east-1.elb.amazonaws.com:25 {{ ses_lists_aws_access_key_id }}:{{ ses_lists_aws_secret_access_key }}
