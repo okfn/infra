@@ -126,16 +126,16 @@ labs
 wiki
 backup
 labs
+listserv
 etherpad
 cache
-mailserver
 trac
 other
 
 [sysadmin-web:children]
 wiki
 etherpad
-mailserver
+listserv
 cache
 blogfarm
 
@@ -149,7 +149,7 @@ etherpad
 trac
 queremossaber
 labs
-mailserver
+listserv
 cache
 
 [dbservers:children]
