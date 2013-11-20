@@ -1,14 +1,14 @@
 # ansible-playbook main.yml -vvv --tags="fetch_collectd_deb,install_collectd_deb,collectd_init_script,setup_collectd_config" --extra-vars="host=all"
 ---
 - name: fetch_collectd_deb
-#  action: shell wget http://apt.okserver.org/{{ arch }}/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb -O /opt/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb creates=/opt/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb
-  action: get_url url=http://apt.okserver.org/{{ arch }}/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb dest=/opt/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb force=yes
+#  action: shell wget http://apt.okserver.org/{{ ansible_architecture }}/collectd-okfcustom-5.4.0_1.0_{{ ansible_architecture }}.deb -O /opt/collectd-okfcustom-5.4.0_1.0_{{ ansible_architecture }}.deb creates=/opt/collectd-okfcustom-5.4.0_1.0_{{ ansible_architecture }}.deb
+  action: get_url url=http://apt.okserver.org/{{ ansible_architecture }}/collectd-okfcustom-5.4.0_1.0_{{ ansible_architecture }}.deb dest=/opt/collectd-okfcustom-5.4.0_1.0_{{ ansible_architecture }}.deb force=yes
   tags: 
      - fetch_collectd_deb
      - collectd
 
 - name: install_collectd_deb
-  action: shell dpkg -i /opt/collectd-okfcustom-5.4.0_1.0_{{ arch }}.deb creates=/opt/collectd/etc/collectd.conf
+  action: shell dpkg -i /opt/collectd-okfcustom-5.4.0_1.0_{{ ansible_architecture }}.deb creates=/opt/collectd/etc/collectd.conf
   tags: 
      - install_collectd_deb
      - collectd
