@@ -1,56 +1,37 @@
 #ansible-playbook main.yml --tags="base-roles" -vvv
 ---
-- hosts: "{{ host }}"
-  gather_facts: True
-  connection: ssh
-  tags: base-roles
-  sudo: true
-  vars_files: 
-   - vars/users.yml
-  vars:
-     - arch: "{{ ansible_architecture }}"
-  roles:
-     - ansible-prereq
-     - motd #adds ansible managed motd
-     - iptables-persistent
-     - ntpd #sets the timezone and installs openntpd
-     - collectd
-     - munin-node
-     - check_mk-agent
-     - nagios-client
-     - cron
-     - sysstat
-     - update-notifier
-     - users
 
 - hosts: openspending-web
-  gather_facts: False
+  gather_facts: True
   connection: ssh
   sudo: true
   vars_files:
    - "{{ private_dir }}/p.yml"
   tags: openspending-web
   roles:
+     - base-role
      - varnish
      - nginx
      - statsd
 
 - hosts: s113.okserver.org
-  gather_facts: False
+  gather_facts: True
   connection: ssh
   sudo: true
   vars_files:
    - "{{ private_dir }}/p.yml"
   tags: etherpad
   roles:
+     - base-role
      - { role: etherpad-lite, install_path: '/var/www/etherpad-lite', user: 'etherpad-lite', group: 'etherpad-lite', version: '1.2.11' }
 
 - hosts: backup
-  gather_facts: False
+  gather_facts: True
   connection: ssh
   tags: backup-server
   sudo: true
   roles:
+     - base-role
      - { role: rsnapshot, snapshot_root: '/home/backup/snapshots/', cmd_rsync: '/usr/bin/rsync' }
 
 - hosts: ansible-dev
@@ -59,6 +40,7 @@
   tags: graphite
   sudo: true
   roles:
+     - base-role
      - { role: booktype, install_path: '/var/www/mybooktype', user: 'booktype', group: 'booktype' }
      - graphite
  
@@ -89,11 +71,12 @@
    - vars/users.yml
    - "{{ private_dir }}/p.yml"
   roles:
+     - base-role
      - nagios-server
      - check_mk-server
 
 - hosts: mail
-  gather_facts: False
+  gather_facts: True
   connection: ssh
   tags: mailserver
   sudo: true
@@ -119,6 +102,7 @@
         - lists.dataexpeditions.org
     - listserv_host: lists.okfn.org
   roles:
+     - base-role
      - postfix
      - nginx
      - mailman
