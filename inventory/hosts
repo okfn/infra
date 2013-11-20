@@ -62,9 +62,6 @@ s079.okserver.org ckan_project=publicdata.eu #runs its own database
 [ckan-packaging]
 s106.okserver.org
 
-[mailserver]
-s001.okserver.org rackspace=false
-
 [listserv]
 s116.okserver.org rackspace=false
 

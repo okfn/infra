@@ -1,1 +1,0 @@
-*/15 * * * * root /usr/bin/python2.7 /opt/scripts/mail_forwards_merge.py
