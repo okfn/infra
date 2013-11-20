@@ -6,8 +6,14 @@
   tags:
      - apt
 
-- name: setup_unattended_upgrades
-  action: copy src=etc/apt/apt.conf.d/50unattended-upgrades dest=/etc/apt/apt.conf.d/50unattended-upgrades
+- name: security_updates_script
+  action: copy src=opt/scripts/security-updates dest=/opt/scripts/security-updates group=root owner=root mode=655
   tags:
      - apt
-     - setup_unattended_upgrades
+     - security_updates_script
+
+- name: security_updates_cron
+  action: copy src=etc/cron.d/security-updates dest=/etc/cron.d/security-updates group=root owner=root mode=655
+  tags:
+     - apt
+     - security_updates_cron

@@ -1,7 +1,7 @@
 --- 
 #apache role
 - name: -> install packages
-  action: apt pkg=${item} state=installed
+  action: apt pkg={{ item }} state=installed
   tags: install_packages
 #  notify: stop apache2 # apache seems to start up after being installed
   with_items:
@@ -11,29 +11,29 @@
   when: project is defined
   action: copy src={{ item }} dest=/etc/apache2/ports.conf
   with_first_found:
-     - etc/apache2/${project}/${inventory_hostname}_ports.conf
-     - etc/apache2/${inventory_hostname}_ports.conf 
+     - etc/apache2/{{ project }}/{{ inventory_hostname }}_ports.conf
+     - etc/apache2/{{ inventory_hostname }}_ports.conf 
      - etc/apache2/default_ports.conf
   notify: restart apache2
   tags: setup_apache_ports_config
 
 - name: -> populate_apache_vhost_files
   when: sites_enabled is defined
-  action: template src=etc/apache2/${project}/vhost.j2 dest=/etc/apache2/sites-available/${item[0]}
+  action: template src=etc/apache2/{{ project }}/vhost.j2 dest=/etc/apache2/sites-available/{{ item[0] }}
   with_nested: 
-     - ${sites_enabled}
+     - {{ sites_enabled }}
   notify: reload apache2
   tags: populate_apache_vhost_files
 
 - name: -> enable_apache_sites
   when: sites_enabled is defined
-  action: command /usr/sbin/a2ensite ${item[0]} creates=/etc/apache2/sites-enabled/${item[0]}
+  action: command /usr/sbin/a2ensite {{ item[0] }} creates=/etc/apache2/sites-enabled/{{ item[0] }}
   with_nested: 
-     - ${sites_enabled}
+     - {{ sites_enabled }}
   notify: reload apache2
   tags: enable_apache_sites
 
 - name: -> allow_http_in_fw
-  action: lineinfile dest=${iptables_config_file} regexp='dport 80 -j application$'  line='-A INPUT -p tcp -m tcp --dport 80 -j application' insertbefore='^COMMIT' state=present
+  action: lineinfile dest={{ iptables_config_file }} regexp='dport 80 -j application$'  line='-A INPUT -p tcp -m tcp --dport 80 -j application' insertbefore='^COMMIT' state=present
   notify: reload iptables-persistent
   tags: allow_http_in_fw

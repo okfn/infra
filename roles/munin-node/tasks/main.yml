@@ -33,7 +33,7 @@
 #  tags: firewall_check_rule
 
 - name: -> allow_munin_in_fw
-  action: lineinfile dest=${iptables_config_file} regexp='dport ${munin_port} -j monitoring$'  line='-A INPUT -s ${monitoring_server} -p tcp -m tcp --dport ${munin_port} -j monitoring' insertbefore='^COMMIT' state=present
+  action: lineinfile dest={{ iptables_config_file }} regexp='dport {{ munin_port }} -j monitoring$'  line='-A INPUT -s {{ monitoring_server }} -p tcp -m tcp --dport {{ munin_port }} -j monitoring' insertbefore='^COMMIT' state=present
   notify: restart iptables-persistent
   tags: allow_munin_in_fw
 

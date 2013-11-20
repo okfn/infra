@@ -75,7 +75,7 @@
 
   tasks:     
     - name: add project sysadmin alias
-      lineinfile: "dest=/etc/aliases state=present regexp='^root:' line='root: ${sysadmin_email}'"
+      lineinfile: "dest=/etc/aliases state=present regexp='^root:' line='root: {{ sysadmin_email }}'"
       tags: set_project_sysadmin_email
 
     - name: newaliases
