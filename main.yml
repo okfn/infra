@@ -105,9 +105,12 @@
   connection: ssh
   tags: listserv
   sudo: true
+  vars_files:
+   - "{{ private_dir }}/p.yml"
   vars:
     - mailhost_type: leaf
     - relayhost: False
+    - ses: True
     - origin: okfn.org
     - listserv: True
     - listserv_domains:
