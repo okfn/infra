@@ -62,9 +62,6 @@ s079.okserver.org ckan_project=publicdata.eu #runs its own database
 [ckan-packaging]
 s106.okserver.org
 
-[mailserver]
-s001.okserver.org rackspace=false
-
 [listserv]
 s116.okserver.org rackspace=false
 
@@ -83,7 +80,6 @@ s087.okserver.org comment=i_dont_know_my_owner
 
 [other]
 s021.okserver.org hosted=aw comment="to be shutdown once knowledgeforge is moved out" 
-s073.okserver.org comment=future_mail_okfn disable_nagios_checks=True
 
 [backup]
 s088.okserver.org
@@ -130,16 +126,16 @@ labs
 wiki
 backup
 labs
+listserv
 etherpad
 cache
-mailserver
 trac
 other
 
 [sysadmin-web:children]
 wiki
 etherpad
-mailserver
+listserv
 cache
 blogfarm
 
@@ -153,7 +149,7 @@ etherpad
 trac
 queremossaber
 labs
-mailserver
+listserv
 cache
 
 [dbservers:children]

@@ -1,20 +1,3 @@
 ---
 sites_enabled: ['graphs.okserver.org','booktype.okfn.org', 'apt.okserver.org']
 percona_mysql: True
-#site_id: sa
-#db_type: mysql
-#mysql_port: 3306
-#solr_port: 2344
-#postgres_port: 2343
-#rackspace_support_ips: ['192.168.1.123', '192.168.123.12']
-#webserver_private_ip: 10.179.187.168
-#solr_cores: [ 'ckan-schema-1.4', 'ckan-schema-2.0' ]
-#disabled_checks: ['apt-security-check']
-
-#tabspaces are expected between words in rsnapshot config parameters
-#rsnapshot_backup:
-#   - { src: 'root@s001.okserver.org:/etc/', dest: 's001.okserver.org/', exclude: '/home/okfn/logs/' }
-#   - { src: 'root@s001.okserver.org:/tmp/', dest: 's001.okserver.org/' }
-#rsnapshot_backup_script:
-#   - { src: '/usr/bin/ssh	s005.okserver.org', script: '"/usr/bin/sudo -u postgres /usr/bin/pg_dumpall | gzip > /var/backups/pgdump.sql.gz"', dest: 'empty/1' }
-

@@ -10,12 +10,7 @@
   notify: restart postfix
 
 - name: default_aliases
-  when: listserv == False
   template: src=aliases dest=/etc/postfix/aliases owner=postfix group=postfix mode=0644
-
-- name: maillist_aliases
-  when: listserv == True
-  template: src=lists dest=/etc/postfix/aliases owner=postfix group=postfix mode=0644
 
 - name: fixup_postfix_perms
   action: shell chgrp postfix /etc/postfix && chmod 1775 /etc/postfix
@@ -36,3 +31,12 @@
 - name: build_transport_maps
   when: listserv == True
   command: postmap /etc/postfix/transport
+
+- name: create_sasl_password
+  when: ses == True
+  template: src=sasl_passwd dest=/etc/postfix/sasl_passwd owner=postfix group=postfix mode=0600
+
+- name: build_sasl_passwd
+  when: ses == True
+  command: postmap /etc/postfix/sasl_passwd
+

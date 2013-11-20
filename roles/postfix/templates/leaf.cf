@@ -3,16 +3,30 @@ myhostname = {{ inventory_hostname }}
 mydomain = {{ inventory_hostname }}
 myorigin = {{ inventory_hostname }}
 inet_interfaces = all
-mydestination =
+mydestination = $myhostname
 {% for dest in mail_domains %}
         {{ dest }}
 {% endfor %}
 unknown_local_recipient_reject_code = 550
+{% if ses %}
+relayhost = email-smtp.us-east-1.amazonaws.com:25
+smtp_sasl_auth_enable = yes
+smtp_sasl_security_options = noanonymous
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_use_tls = yes
+smtp_tls_security_level = encrypt
+smtp_tls_note_starttls_offer = yes
+{% endif %}
 {% if relayhost %}
 relayhost = {{ relayhost }}
 {% endif %}
+relay_domains =
+{% for dest in listserv_domains %}
+        {{ dest }}
+{% endfor %}
 alias_maps = hash:/etc/postfix/aliases
 alias_database = hash:/etc/postfix/aliases
 {% if listserv == True %}
 transport_maps = hash:/etc/postfix/transport
 {% endif %}
+mailman_destination_recipient_limit=1

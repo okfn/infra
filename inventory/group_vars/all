@@ -3,7 +3,7 @@ sysadmin_email: 'system-mails@okfn.org'
 alert_escalation_contact: 'nils.toedtmann@okfn.org'
 ckan_sysadmin_email: 'ckan-sysadmin@okfn.org'
 openspending_sysadmin_email: 'openspending-sysadmin@okfn.org'
-monitoring_server: s001.okserver.org
+monitoring_server: nagios.okfn.org
 graphite_server: ansible-dev.okserver.org
 graphite_port: 2003
 munin_port: 4949
@@ -16,10 +16,5 @@ backup_rsync_target: 10.183.172.112    #s088, backup host internal ip
 locale_list:
    - en_GB.utf8
 rackspace: true
-motd: >
-      #########################################################################################################\n
-      System and application config is Ansible managed for this host. To ensure any changes made are not lost,\n
-      please check them into the OKF ansible repo - https://github.com/okfn/sysconfig-ansible\n
-      Last Ansible run = $(date)\n\t\t\t\t\t\t\t\t\t\t - OKF Sysadmin\n
-      #########################################################################################################\n
-
+mail_domains: []
+listserv_domains: []

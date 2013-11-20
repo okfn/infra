@@ -1,26 +1,16 @@
-motd: >
-      #########################################################################################################\n
-      \n
-      System and application config is Ansible managed for this host. To ensure any changes made are not lost,\n
-      please check them into the OKF ansible repo - https://github.com/okfn/sysconfig-ansible\n
-      Last Ansible run = $(date)\n\t\t\t\t\t\t\t\t\t\t - OKF Sysadmin
-      \n
-      \n
-      IMPORTANT NOTICE:\n
-      \n
-      This bare-metal server is provided AS-IS, with NO BACKUP, MINIMAL MONTORING\n
-      and NO DISASTER RECOVERY procedure! You should consider this server and all\n
-      its data EPHEMERAL, they might vanish at any time WITHOUT WARNING.\n
-      \n 
-      This server is for NON-CRITICAL purposes only, like development or testing.\n
-      This server is NOT suitable to run critical (e.g. productive) services on.\n
-      \n
-      You are responsible for the stability and security of any service and any\n
-      data you choose to host here.\n
-      \n
-      If you require any of the following, please speak to us so we can provide\n
-      a more appropriate machine for you: data backup, service monitoring, update\n
-      management, disaster recovery, general OS management.\n
-      \n
-      Your OKF core sysadmin team <sysadmin@okfn.org>\n
-      #########################################################################################################\n'
+motd_custom: |
+  IMPORTANT NOTICE:
+
+  This bare-metal server is provided AS-IS, with NO BACKUP, MINIMAL MONTORING
+  and NO DISASTER RECOVERY procedure! You should consider this server and all
+  its data EPHEMERAL, they might vanish at any time WITHOUT WARNING.
+
+  This server is for NON-CRITICAL purposes only, like development or testing.
+  This server is NOT suitable to run critical (e.g. productive) services on.
+
+  You are responsible for the stability and security of any service and any
+  data you choose to host here.
+
+  If you require any of the following, please speak to us so we can provide
+  a more appropriate machine for you: data backup, service monitoring, update
+  management, disaster recovery, general OS management.
