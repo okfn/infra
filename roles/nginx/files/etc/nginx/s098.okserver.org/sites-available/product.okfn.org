@@ -5,7 +5,7 @@ server {
         error_log /var/log/nginx/product.okfn.org-error.log;
 
         location /brand/ {
-                proxy_pass https://brand-okfn.herokuapp.com;
+                proxy_pass http://brand-okfn.herokuapp.com;
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
