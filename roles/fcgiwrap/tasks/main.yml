@@ -3,6 +3,6 @@
   action: apt pkg={{ item }} state=installed
   with_items:
      - fcgiwrap
-     - spawn-fcg
+     - spawn-fcgi
   tags:
      - fcgiwrap
