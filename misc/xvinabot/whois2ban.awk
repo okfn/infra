@@ -17,8 +17,15 @@ BEGIN {
 	netnum=$2;
 	netmask=sprintf("%.0f", 32 - log(size) * 1.4426950408889634);
 }
+/^NetRange:[ \t]+[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/ {
+	size=dq2dec($4) - dq2dec($2) + 1;
+	netnum=$2;
+	netmask=sprintf("%.0f", 32 - log(size) * 1.4426950408889634);
+}
 /^netname:/ { netname=$2; }
+/^NetName:/ { netname=$2; }
 /^country:/ { country=$2; }
+/^Country:/ { country=$2; }
 END {
 	if (country == "vn" || country == "VN") {
 		printf("route add -net %s/%s reject # %s (%s)\n", netnum, netmask, netname, country);
