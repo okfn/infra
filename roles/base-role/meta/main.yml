@@ -1,7 +1,6 @@
 ---
 dependencies:
 - { role: ansible-prereq }
-- { role: motd  }
 - { role: iptables-persistent }
 - { role: ntpd  }
 - { role: collectd }
@@ -11,3 +10,4 @@ dependencies:
 - { role: sysstat }
 - { role: update-notifier }
 - { role: users }
+- { role: motd  }
