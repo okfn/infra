@@ -86,7 +86,7 @@ legacy_checks = [
 {% endfor %}
 
 #mailserver
-{% for host in groups['mailserver'] %}
+{% for host in groups['listserv'] %}
 ( ( "check_smtp_basic!{{ host }}", 'SMTP', False), [ "{{ host }}" ] ),
 {% endfor %}
 
