@@ -12,7 +12,7 @@
 
 - name: backups_to_s3_cron
   action: copy src=etc/cron.daily/{{ inventory_hostname }}/backups_to_s3 /etc/cron.daily/
-  when: backup_host == True
+  when: backup_host is defined
   tags: 
      - cron
      - backups_to_s3_cron
