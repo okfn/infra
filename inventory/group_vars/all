@@ -13,6 +13,7 @@ hostname_tld: okserver.org
 local_checks: ['apt-security-check']
 timezone: UTC
 backup_rsync_target: 10.183.172.112    #s088, backup host internal ip
+role_private_dir: ../../../../credentials/ansible
 locale_list:
    - en_GB.utf8
 rackspace: true
