@@ -1,4 +1,6 @@
 ---
+- include_vars: "{{ role_private_dir }}/p.yml"
+
 - name: add nagios user
   action: user name=nagios state=present
   tags:
