@@ -65,9 +65,6 @@ s106.okserver.org
 [listserv]
 s116.okserver.org rackspace=false
 
-[cache]
-s006.okserver.org
-
 [trac]
 s039.okserver.org
 
@@ -128,7 +125,6 @@ backup
 labs
 listserv
 etherpad
-cache
 trac
 other
 
@@ -136,7 +132,6 @@ other
 wiki
 etherpad
 listserv
-cache
 blogfarm
 
 [webservers:children]
@@ -150,7 +145,6 @@ trac
 queremossaber
 labs
 listserv
-cache
 
 [dbservers:children]
 ckan-db-prod 

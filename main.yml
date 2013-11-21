@@ -44,16 +44,6 @@
      - { role: booktype, install_path: '/var/www/mybooktype', user: 'booktype', group: 'booktype' }
      - graphite
  
-- hosts: cache
-  gather_facts: False
-  connection: ssh
-  tags: cache
-  sudo: true
-  pre_tasks:
-     - action: debug msg="cache!"
-  roles:
-     - squid3
-
 - hosts: wiki
   gather_facts: False
   connection: ssh
