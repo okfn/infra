@@ -8,7 +8,7 @@
 # The script sets up /opt/scripts/config/config.cfg which is required by some scripts.
 ---
 - name: ensure_directory
-  action: file state=directory src=opt/scripts dest={{ item }} owner=root group=root
+  action: file state=directory dest={{ item }} owner=root group=root
   with_items:
      - /opt/scripts
      - /opt/scripts/config
