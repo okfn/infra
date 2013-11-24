@@ -79,6 +79,7 @@
   tags: listserv
   sudo: true
   vars_files:
+   - vars/users.yml
    - "{{ private_dir }}/p.yml"
   vars:
     - mailhost_type: leaf
@@ -96,3 +97,13 @@
      - postfix
      - nginx
      - mailman
+
+- hosts: docker-host
+  connection: ssh
+  sudo: true
+  vars_files:
+   - vars/users.yml
+   - "{{ private_dir }}/p.yml"
+  roles:
+   - base-role
+   - docker

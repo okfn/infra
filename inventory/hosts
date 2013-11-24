@@ -151,3 +151,6 @@ ckan-db-prod
 ckan-db-dev
 openspending-db
 etherpad
+
+[rt]
+s115.okserver.org
