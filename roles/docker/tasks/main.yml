@@ -1,0 +1,5 @@
+- name: install pip
+  action: apt pkg=python-pip state=present 
+
+- name: install docker-py
+  command: pip install docker-py
