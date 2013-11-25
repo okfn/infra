@@ -127,6 +127,7 @@ listserv
 etherpad
 trac
 other
+docker-host
 
 [sysadmin-web:children]
 wiki
