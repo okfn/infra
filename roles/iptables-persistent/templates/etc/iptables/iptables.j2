@@ -3,7 +3,11 @@
 
 *filter
 :INPUT ACCEPT [0:0]
+{% if docker_host %}
+:FORWARD ACCEPT [0:0]
+{% else %}
 :FORWARD DROP [0:0]
+{% endif %}
 :OUTPUT ACCEPT [24:13024]
 :admin - [0:0]
 :application - [0:0]

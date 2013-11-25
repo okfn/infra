@@ -19,3 +19,4 @@ locale_list:
 rackspace: true
 mail_domains: []
 listserv_domains: []
+docker_host: false
