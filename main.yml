@@ -107,3 +107,4 @@
   roles:
    - base-role
    - docker
+   - { role: nginx, tags: ['nginx'] }
