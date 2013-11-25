@@ -165,4 +165,17 @@
      - local_checks 
      - disable_checks
 
+# apt security updates script
+- name: security_updates_script
+  action: copy src=opt/scripts/security-updates/security-updates dest=/opt/scripts/security-updates group=root owner=root mode=655
+  when: ansible_distribution == 'Ubuntu'
+  tags:
+     - scripts
+     - security_updates_script
 
+- name: security_updates_cron
+  action: copy src=opt/scripts/security-updates/cron.d/security-updates dest=/etc/cron.d/security-updates group=root owner=root mode=655
+  when: ansible_distribution == 'Ubuntu'
+  tags:
+     - scripts
+     - security_updates_cron

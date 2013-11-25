@@ -5,15 +5,3 @@
   with_items: "{{  pkg_list }}"
   tags:
      - apt
-
-- name: security_updates_script
-  action: copy src=opt/scripts/security-updates dest=/opt/scripts/security-updates group=root owner=root mode=655
-  tags:
-     - apt
-     - security_updates_script
-
-- name: security_updates_cron
-  action: copy src=etc/cron.d/security-updates dest=/etc/cron.d/security-updates group=root owner=root mode=655
-  tags:
-     - apt
-     - security_updates_cron
