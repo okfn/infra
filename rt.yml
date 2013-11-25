@@ -6,10 +6,19 @@
    - "{{ private_dir }}/p.yml"
   tasks:
   - name: docker postgres volumes
-    command: mkdir -p /config/rt_pg /data/rt_pg/postgresql
+    command: mkdir -p /data/rt_pg
+
   - name: docker postgres server
     docker: image=okfn/postgres:0.4 env="POSTGRES_DBA_PW={{postgres_dba_pw}}" volumes="/data/rt_pg:/data" ports=:5432
+
   - name: address of postgresql server
     action: set_fact db_host={{docker_containers[0].NetworkSettings.IPAddress}}
+
   - name: show db_host
     debug: msg="{{db_host}}"
+
+  - name: docker rt volumes
+    command: mkdir -p /data/rt
+
+  - name: docker rt server
+    docker: image=okfn/rt:0.3 volumes="/data/rt:/data" ports=":25,:80"
