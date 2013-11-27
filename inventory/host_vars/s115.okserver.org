@@ -1,5 +1,5 @@
 ---
 docker_host: true
-sites_enabled: ['sendy.okfn.org']
+sites_enabled: ['sendy.okfn.org', 'rt.okfn.org']
 sites_to_monitor: ['sendy.okfn.org:80:200']
 ssl_sites_to_monitor: ['sendy.okfn.org']
