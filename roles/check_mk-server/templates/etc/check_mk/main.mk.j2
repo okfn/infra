@@ -28,44 +28,26 @@ all_hosts = [
 #check_mk calls this method of check definition legacy_checks (a bit misleading)
 legacy_checks = [
 
-#Monitoring checks for webservices added based on project for clarity.
-
 # sites_to_monitor is an array of sites defined in inventory/host_vars/$host e.g, ['openspending.org:port:http_status']
 # if this fails to generate with the error ''
 
 
-#CKAN webservices
-{% for host in groups['ckan-web-prod'] %}
+#webservice monitoring
+{% for host in groups['all'] %}
+
   {% if hostvars[host]['sites_to_monitor'] is defined %}
     {% for site in hostvars[host]['sites_to_monitor'] %}
 ( ( "check_http_basic!{{ host }}!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "HTTP {{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
     {% endfor %}
-  {% endif %}
-{% endfor %}
-
-
-#Openspending webervices
-{% for host in groups['openspending-web'] %}
- {% if hostvars[host]['sites_to_monitor'] is defined %}
-  {% for site in hostvars[host]['sites_to_monitor'] %} 
-( ( "check_http_basic!{{ host }}!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "HTTP {{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
-   {% endfor %}
- {% endif %}
-{% if hostvars[host]['ssl_sites_to_monitor'] is defined %}
- {% for site in hostvars[host]['ssl_sites_to_monitor'] %} 
+  {% endif %}                                                                                  
+  
+  {% if hostvars[host]['ssl_sites_to_monitor'] is defined %}
+    {% for site in hostvars[host]['ssl_sites_to_monitor'] %}
 ( ( "check_http_ssl_works!{{ site }}", "HTTPS {{ site }}", False), [ "{{ host }}" ] ),
 ( ( "check_http_ssl_cert!{{ site }}", "HTTPS SSL valid {{ site }}", False), [ "{{ host }}" ] ),
     {% endfor %}
   {% endif %}
-{% endfor %}
 
-#okf/sysadmin  webervices
-{% for host in groups['sysadmin-web'] %}
-  {% if hostvars[host]['sites_to_monitor'] is defined %}
-    {% for site in hostvars[host]['sites_to_monitor'] %} 
-( ( "check_http_basic!{{ host }}!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "HTTP {{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
-    {% endfor %}
-  {% endif %}
 {% endfor %}
 
 
