@@ -1,50 +1,44 @@
 server {
-    server_name  www.product-open-data.com product-open-data.com pod.okserver.org browser.product.okfn.org;
-    index /index.php;
-    autoindex off;
-	rewrite_log  on;
-    root /var/www/product_open_data/www/;
+  server_name  www.product-open-data.com product-open-data.com;
+  index /index.php;
+  autoindex off;
+  rewrite_log  on;
+  root /var/www/product_open_data/www/;
 
-    access_log /var/log/nginx/productopendata.org-access.log;
-    error_log /var/log/nginx/productopendata.org-error.log;
-	
+  access_log /var/log/nginx/productopendata.org-access.log;
+  error_log /var/log/nginx/productopendata.org-error.log;
 
-     location ^~ /phpmyadmin/ {
-
-           auth_basic            "key?";
-           auth_basic_user_file  /etc/nginx/.htpasswd;
-	location ~ \.php$ {	    
-           try_files $uri /index.php;
-           include fastcgi_params;
-           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-           fastcgi_pass 127.0.0.1:9001;
-	}
-
-     }
-
+  location ^~ /phpmyadmin/ {
+    auth_basic            "key?";
+    auth_basic_user_file  /etc/nginx/.htpasswd;
     location ~ \.php$ {
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_pass 127.0.0.1:9001;
-    } 
+      try_files $uri /index.php;
+      include fastcgi_params;
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      fastcgi_pass 127.0.0.1:9001;
+    }
+  }
 
-    location ~* \.(js|css|png|jpg|jpeg|gif)$ {
-             try_files $uri /index.php;
-             expires max;
-             log_not_found off;
-     }
+  location ~ \.php$ {
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_pass 127.0.0.1:9001;
+  }
 
-     location = /_.gif {
-             expires max;
-             empty_gif;
-     }
+  location ~* \.(js|css|png|jpg|jpeg|gif)$ {
+    try_files $uri /index.php;
+    expires max;
+    log_not_found off;
+  }
 
-     location ^~ /cache/ {
-             deny all;
-     }
+  location = /_.gif {
+    expires max;
+    empty_gif;
+  }
 
-
-###Rewrite Rules####
+  location ^~ /cache/ {
+    deny all;
+  }
 
   rewrite ^/$ /index.php?l=en&p=1;
   rewrite ^/search(.*)$ /index.php?l=en&p=100;
@@ -63,7 +57,7 @@ server {
   rewrite ^/open-gepir(.*)$ /index.php?l=en&p=110;
   rewrite ^/navigate(.*)$ /index.php?l=en&p=111;
   rewrite ^/brand-list-([0-9]+)(\/)$ /index.php?l=en&p=112&n=$1;
-  rewrite ^/product-brand-list-([0-9]+)(.*)$ /index.php?l=en&p=112&m=$1;
+  rewrite ^/product-brand-list-([A-Z0-9]+)(.*)$ /index.php?l=en&p=112&q=$1;
   rewrite ^/supporters(.*)$ /index.php?l=en&p=113;
   rewrite ^/owner-list(\/)$ /index.php?l=en&p=114;
   rewrite ^/product-owner-list-([0-9]+)(.*)$ /index.php?l=en&p=114&n=$1;
@@ -74,5 +68,5 @@ server {
   rewrite ^/(ar|zh|zt|en|fr|ja|es|ru)+(\/)?$ /index.php?l=$1&p=1;
   rewrite ^/(ar|zh|zt|en|fr|ja|es|ru)+\/?([0-9]+)?([a-z0-9A-Z,_-]+)?(.*)$ /index.php?l=$1&p=$2;
   rewrite ^/product/([0-9]+)$ /rest.php?p=$1 last;
- 
+
 }
