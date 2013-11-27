@@ -20,3 +20,5 @@ rackspace: true
 mail_domains: []
 listserv_domains: []
 docker_host: false
+postfix_etc: /etc/postfix
+aliases: aliases

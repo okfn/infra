@@ -1,7 +1,7 @@
 mail_owner = postfix
-myhostname = {{ inventory_hostname }}
-mydomain = {{ inventory_hostname }}
-myorigin = {{ inventory_hostname }}
+myhostname = {{ mailname }}
+mydomain = {{ mailname }}
+myorigin = {{ mailname }}
 inet_interfaces = all
 mydestination = $myhostname
 {% for dest in mail_domains %}
@@ -21,12 +21,12 @@ smtp_tls_note_starttls_offer = yes
 relayhost = {{ relayhost }}
 {% endif %}
 relay_domains =
-{% for dest in listserv_domains %}
+{% for dest in relay_domains %}
         {{ dest }}
 {% endfor %}
 alias_maps = hash:/etc/postfix/aliases
 alias_database = hash:/etc/postfix/aliases
-{% if listserv == True %}
+{% if transport is defined %}
 transport_maps = hash:/etc/postfix/transport
 {% endif %}
 mailman_destination_recipient_limit=1
