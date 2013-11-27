@@ -84,16 +84,17 @@
   vars:
     - mailhost_type: leaf
     - relayhost: False
-    - ses: True
+    - ses: False
     - origin: okfn.org
     - listserv: True
-    - listserv_domains:
+    - transport: list_transport
+    - relay_domains:
         - lists.okfn.org
         - lists.knowledgeforge.net
         - lists.dataexpeditions.org
     - listserv_host: lists.okfn.org
   roles:
-     - base-role
+   #  - base-role
      - postfix
      - nginx
      - mailman
@@ -106,5 +107,6 @@
    - "{{ private_dir }}/p.yml"
   roles:
    - base-role
+   - postfix
    - docker
    - { role: nginx, tags: ['nginx'] }
