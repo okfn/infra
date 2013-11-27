@@ -49,8 +49,9 @@
   connection: ssh
   tags: wiki
   sudo: true
-  tasks:
-     - action: debug msg="wiki!"
+  roles:
+    - base-role
+    - nginx
 
 - hosts: monitoring
   gather_facts: True
