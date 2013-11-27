@@ -57,7 +57,7 @@ server {
   rewrite ^/open-gepir(.*)$ /index.php?l=en&p=110;
   rewrite ^/navigate(.*)$ /index.php?l=en&p=111;
   rewrite ^/brand-list-([0-9]+)(\/)$ /index.php?l=en&p=112&n=$1;
-  rewrite ^/product-brand-list-([0-9]+)(.*)$ /index.php?l=en&p=112&m=$1;
+  rewrite ^/product-brand-list-([A-Z0-9]+)(.*)$ /index.php?l=en&p=112&q=$1;
   rewrite ^/supporters(.*)$ /index.php?l=en&p=113;
   rewrite ^/owner-list(\/)$ /index.php?l=en&p=114;
   rewrite ^/product-owner-list-([0-9]+)(.*)$ /index.php?l=en&p=114&n=$1;
