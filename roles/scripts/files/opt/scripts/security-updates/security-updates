@@ -1,4 +1,7 @@
 #!/bin/bash
+PATH=/usr/bin:/bin:/usr/sbin:/sbin
+DEBIAN_FRONTEND=noninteractive
+
 echo "**************" >> /var/log/apt-security-updates
 date >> /var/log/apt-security-updates
 aptitude update >> /var/log/apt-security-updates
