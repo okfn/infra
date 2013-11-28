@@ -1,0 +1,4 @@
+---
+ckan_project: data.gov
+solr_port: 53869
+db_type: postgres

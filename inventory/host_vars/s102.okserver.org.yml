@@ -1,0 +1,11 @@
+---
+ckan_project: edostate.ckan.org
+dbserver_private_ip: 10.182.4.73
+solrserver_private_ip: 10.182.4.73
+elasticserver_private_ip: 10.182.4.73
+sites_enabled:
+  - edostate.ckan.net
+  - www.edostate.ckan.net
+  - 0.0.0.0
+  - '8080'
+sites_to_monitor: ['edostate.ckan.org:80:200']

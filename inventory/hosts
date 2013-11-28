@@ -1,19 +1,19 @@
 [ansible-dev]
-ansible-dev.okserver.org disable_nagios_checks=True backup_postgres=True project=ckan
+ansible-dev.okserver.org
 
 [monitoring]
-s117.okserver.org aws=true
+s117.okserver.org
 
 [docker-host]
 s115.okserver.org
 
 [openspending-web]
-s095.okserver.org comment="define dbserver, solrservers"
+s095.okserver.org
 
 [openspending-db]
 s096.okserver.org
-s109.okserver.org os_project=farmsubsidy
-s030.okserver.org os_project=etl_testing
+s109.okserver.org
+s030.okserver.org
 s114.okserver.org
 
 [blogfarm]
@@ -25,45 +25,45 @@ blogfarm.okserver.org
 s030.okserver.org
 
 [ckan-web-dev]
-s080.okserver.org ckan_project=ckan_testing
-s082.okserver.org ckan_project=demosites
-s083.okserver.org ckan_project=demosites
-s084.okserver.org ckan_project=demosites
+s080.okserver.org
+s082.okserver.org
+s083.okserver.org
+s084.okserver.org
 s100.okserver.org
 s107.okserver.org
-s099.okserver.org ckan_project=datagm.org.uk comment="when is it going to go live"
-s101.okserver.org ckan_project=datapusher
-s031.okserver.org ckan_project=ckan_testing #runs its own dbserver
-s112.okserver.org ckan_project=ckan_testing
+s099.okserver.org
+s101.okserver.org
+s031.okserver.org
+s112.okserver.org
 
 [ckan-db-dev]
-s031.okserver.org ckan_project=ckan_testing
-s032.okserver.org ckan_project=data.gov
+s031.okserver.org
+s032.okserver.org
 
 [ckan-web-prod]
-s080.okserver.org ckan_project=ckan_community
-s079.okserver.org ckan_project=publicdata.eu #runs its own webserver
-s075.okserver.org ckan_project=www.datagm.org.uk
-s086.okserver.org ckan_project=iatiregistry.org
-s107.okserver.org ckan_project=datahub.io
-s104.okserver.org ckan_project=sa.ckan.net
-s102.okserver.org ckan_project=edostate.ckan.org
+s080.okserver.org
+s079.okserver.org
+s075.okserver.org
+s086.okserver.org
+s107.okserver.org
+s104.okserver.org
+s102.okserver.org
 
 [ckan-db-prod]
-s081.okserver.org ckan_project=ckan_community backup_postgres=True
-s085.okserver.org ckan_project=ckan_community
-s078.okserver.org ckan_project=datahub_old backup_postgres=True
-s076.okserver.org ckan_project=iati backup_postgres=True
-s103.okserver.org ckan_project=edostate.ckan.net backup_postgres=True
-s108.okserver.org ckan_project=datahub.io
-s105.okserver.org ckan_project=sa.ckan.net
-s079.okserver.org ckan_project=publicdata.eu #runs its own database
+s081.okserver.org
+s085.okserver.org
+s078.okserver.org
+s076.okserver.org
+s103.okserver.org
+s108.okserver.org
+s105.okserver.org
+s079.okserver.org
 
 [ckan-packaging]
 s106.okserver.org
 
 [listserv]
-s116.okserver.org rackspace=false
+s116.okserver.org
 
 [trac]
 s039.okserver.org
@@ -73,16 +73,17 @@ s074.okserver.org
 s113.okserver.org
 
 [LOV]
-s087.okserver.org comment=i_dont_know_my_owner
+s087.okserver.org
 
 [other]
-s021.okserver.org hosted=aw comment="to be shutdown once knowledgeforge is moved out" 
+# Should be shut down once knowledgeforge is moved or decommissioned
+s021.okserver.org
 
 [backup]
 s088.okserver.org
 
 [wiki]
-s098.okserver.org dbserver=localhost managed=false hoster=RS
+s098.okserver.org
 
 [labs]
 s033.okserver.org
@@ -148,10 +149,12 @@ labs
 listserv
 
 [dbservers:children]
-ckan-db-prod 
+ckan-db-prod
 ckan-db-dev
 openspending-db
 etherpad
 
 [rt]
 s115.okserver.org
+
+# vim:ft=ini

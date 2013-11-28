@@ -1,113 +1,104 @@
 #ansible-playbook main.yml --tags="base-roles" -vvv
 ---
+- hosts: all
+  sudo: true
+  vars_files:
+    - vars/users.yml
+    - "{{ private_dir }}/p.yml"
+  roles:
+    - ansible-prereq
+    - check_mk-agent
+    - collectd
+    - cron
+    - iptables-persistent
+    - motd
+    - nagios-client
+    - ntpd
+    - sysstat
+    - update-notifier
+    - users
 
 - hosts: openspending-web
-  gather_facts: True
-  connection: ssh
   sudo: true
   vars_files:
-   - "{{ private_dir }}/p.yml"
-  tags: openspending-web
+    - "{{ private_dir }}/p.yml"
   roles:
-     - base-role
-     - varnish
-     - nginx
-     - statsd
+    - varnish
+    - nginx
+    - statsd
 
 - hosts: s113.okserver.org
-  gather_facts: True
-  connection: ssh
   sudo: true
   vars_files:
-   - "{{ private_dir }}/p.yml"
-  tags: etherpad
+    - "{{ private_dir }}/p.yml"
   roles:
-     - base-role
-     - { role: etherpad-lite, install_path: '/var/www/etherpad-lite', user: 'etherpad-lite', group: 'etherpad-lite', version: '1.2.11' }
+    - role: etherpad-lite
+      install_path: /var/www/etherpad-lite
+      user: etherpad-lite
+      group: etherpad-lite
+      version: 1.2.11
 
 - hosts: backup
-  gather_facts: True
-  connection: ssh
-  tags: backup-server
   sudo: true
   roles:
-     - base-role
-     - { role: rsnapshot, snapshot_root: '/home/backup/snapshots/', cmd_rsync: '/usr/bin/rsync' }
+    - role: rsnapshot
+      snapshot_root: /home/backup/snapshots/
+      cmd_rsync: /usr/bin/rsync
 
 - hosts: ansible-dev
-  gather_facts: True
-  connection: ssh
-  tags: graphite
   sudo: true
   roles:
-     - base-role
-     - { role: booktype, install_path: '/var/www/mybooktype', user: 'booktype', group: 'booktype' }
-     - graphite
- 
+    - role: booktype
+      install_path: /var/www/mybooktype
+      user: booktype
+      group: booktype
+    - graphite
+
 - hosts: wiki
-  gather_facts: False
-  connection: ssh
-  tags: wiki
+  gather_facts: false
   sudo: true
   roles:
-    - base-role
     - nginx
 
 - hosts: monitoring
-  gather_facts: True
-  connection: ssh
-  tags: monitoring
   sudo: true
-  vars_files: 
-   - vars/users.yml
-   - "{{ private_dir }}/p.yml"
+  vars_files:
+    - "{{ private_dir }}/p.yml"
   roles:
-     - base-role
-     - nagios-server
-     - check_mk-server
+    - nagios-server
+    - check_mk-server
 
 - hosts: mail
-  gather_facts: True
-  connection: ssh
-  tags: mailserver
   sudo: true
   tasks:
-     - action: debug msg="mailserver!"
+    - action: debug msg="mailserver!"
 
 - hosts: listserv
-  gather_facts: True
-  connection: ssh
-  tags: listserv
   sudo: true
   vars_files:
-   - vars/users.yml
-   - "{{ private_dir }}/p.yml"
+    - "{{ private_dir }}/p.yml"
   vars:
-    - mailhost_type: leaf
-    - relayhost: False
-    - ses: False
-    - origin: okfn.org
-    - listserv: True
-    - transport: list_transport
-    - relay_domains:
-        - lists.okfn.org
-        - lists.knowledgeforge.net
-        - lists.dataexpeditions.org
-    - listserv_host: lists.okfn.org
+    mailhost_type: leaf
+    relayhost: false
+    ses: false
+    origin: okfn.org
+    listserv: true
+    transport: list_transport
+    relay_domains:
+      - lists.okfn.org
+      - lists.knowledgeforge.net
+      - lists.dataexpeditions.org
+    listserv_host: lists.okfn.org
   roles:
-   #  - base-role
-     - postfix
-     - nginx
-     - mailman
+    - postfix
+    - nginx
+    - mailman
 
 - hosts: docker-host
-  connection: ssh
   sudo: true
   vars_files:
-   - vars/users.yml
-   - "{{ private_dir }}/p.yml"
+    - "{{ private_dir }}/p.yml"
   roles:
-   - base-role
-   - postfix
-   - docker
-   - { role: nginx, tags: ['nginx'] }
+    - postfix
+    - docker
+    - { role: nginx, tags: ['nginx'] }

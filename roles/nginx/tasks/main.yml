@@ -1,71 +1,37 @@
 ---
-- name: install_nginx
+- name: install package
   action: apt pkg=nginx-full state=installed
-  tags: 
-     - install_nginx
-     - nginx
 
-- name: add_config_nginx
+- name: install nginx.conf
   action: copy src={{ item }} dest=/etc/nginx/nginx.conf
   with_first_found:
-     - etc/nginx/{{ project }}/{{ inventory_hostname }}_nginx.conf
-     - etc/nginx/{{ inventory_hostname }}/nginx.conf 
-     - etc/nginx/default_nginx.conf
+    - etc/nginx/{{ project }}/{{ inventory_hostname }}_nginx.conf
+    - etc/nginx/{{ inventory_hostname }}/nginx.conf
+    - etc/nginx/default_nginx.conf
   notify: reload nginx
-  tags: 
-     - add_config_nginx
-     - nginx
 
-- name: other_config_nginx
+- name: install additional config
   action: copy src={{ item }} dest=/{{item}}
   with_items:
-     - etc/nginx/mime.types
-  tags:
-     - nginx
+    - etc/nginx/mime.types
+    - etc/nginx/ssl_params
+  notify: reload nginx
 
-- name: setup_nginx_sites_available
-#  action: template src=etc/nginx/${project}/proxypass.j2 dest=/etc/nginx/sites-available/${item[0]} #maybe later
+- name: install sites-available
   action: copy src={{ item }} dest=/etc/nginx/sites-available/
   with_fileglob:
-     - etc/nginx/{{ inventory_hostname }}/sites-available/*
+    - etc/nginx/{{ inventory_hostname }}/sites-available/*
   notify: reload nginx
-  tags: 
-     - setup_nginx_sites_available
-     - nginx
 
-#copies over the ssl certs, expects cert files are named as domain.foo.crt, domain.foo.key.
-- name: setup_ssl_cert_dir
-  action: file path=/etc/nginx/ssl_certs state=directory
-  when: ssl_sites_enabled is defined
-  tags:
-     - setup_ssl_certs
-     - nginx
+- include: ssl.yml
+  when: nginx_ssl_certs is defined
 
-- name: setup_ssl_certs
-  action: copy src={{ private_dir }}/ssl_certs/{{ item }}.crt dest=/etc/nginx/ssl_certs/
-  with_items: 
-     - "{{ ssl_sites_enabled }}"
-  when: ssl_sites_enabled is defined
-  tags:
-     - setup_ssl_certs
-     - nginx
-
-- name: setup_ssl_certs
-  action: copy src={{ private_dir }}/ssl_certs/{{ item }}.key dest=/etc/nginx/ssl_certs/ owner=root group=root mode=600 backup=yes
-  with_items:  
-     - "{{ ssl_sites_enabled }}"
-  when: ssl_sites_enabled is defined
-  tags:
-     - setup_ssl_certs
-     - nginx
-
-- name: setup_nginx_sites_enabled
-  when: sites_enabled is defined #look at the inventory/host_vars/$inventory_hostname for sites_enabled
-  action: file src=/etc/nginx/sites-available/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} force=yes state=link
-  with_items: 
-     - "{{ sites_enabled }}"
+- name: set up sites-enabled
+  when: sites_enabled is defined
+  action: file
+          src="/etc/nginx/sites-available/{{ item }}"
+          dest="/etc/nginx/sites-enabled/{{ item }}"
+          force=yes
+          state=link
+  with_items: sites_enabled
   notify: reload nginx
-  tags: 
-     - setup_nginx_sites_enabled
-     - nginx
-

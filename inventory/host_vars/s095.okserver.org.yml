@@ -1,0 +1,25 @@
+---
+sites_to_monitor:
+  - archive.openspending.org:80:200
+  - budzeti.ba:80:200
+  - content.openspending.org:80:200
+  - farmsubsidy.org:80:301
+  - openspending.org:80:301
+  - wheredoesmymoneygo.org:80:200
+ssl_sites_to_monitor:
+  - www.openspending.org
+collectd_plugins:
+  - varnish
+sites_enabled:
+  - archive.openspending.org
+  - budzeti.ba
+  - clients.openspending.org
+  - content.openspending.org
+  - farmsubsidy.org
+  - openspending-redirects
+  - openspending.org
+  - wheredoesmymoneygo.org
+nginx_ssl_certs:
+  - openspending_org
+graphite_collectors:
+  - nginx_stats.py

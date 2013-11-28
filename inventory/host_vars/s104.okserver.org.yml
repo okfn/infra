@@ -1,0 +1,15 @@
+---
+ckan_project: sa.ckan.net
+site_id: sa
+dbserver_private_ip: 10.179.189.205
+solrserver_private_ip: 10.179.189.205
+elasticserver_private_ip: 10.179.189.205
+sites_to_monitor: ['sa.ckanhosted.com:80:200']
+sites_enabled:
+    - [ 'sa.ckanhosted.com', [[ 'www.sa.ckanhosted.com', 'data.sa.au', 'www.data.sa.au' ]], '0.0.0.0', '8080' ]
+ckan_plugins: [ 'stats', 'datastore', 'sa', 'recline_preview', 'googleanalytics', 'hidegroups' ]
+ckan_site_title: sa.ckanhosted.com
+ckan_site_url: http://data.sa.gov.au
+googleanalytics_id: UA-40531646-1
+googleanalytics_account: South Australia Data Portal
+googleanalytics_username: okfn.admin

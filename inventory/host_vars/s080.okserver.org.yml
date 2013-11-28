@@ -1,0 +1,10 @@
+---
+# NB was also flagged as ckan_testing, but this seems most likely:
+ckan_project: ckan_community
+sites_to_monitor:
+  - br.ckan.net:80:200
+  - cz.ckan.net:80:200
+  - ie.ckan.net:80:200
+  - it.ckan.net:80:200
+  - no.ckan.net:80:200
+  - data.gov.sk:80:200

@@ -1,3 +1,0 @@
----
-sites_enabled: ['graphs.okserver.org','booktype.okfn.org', 'apt.okserver.org']
-percona_mysql: True

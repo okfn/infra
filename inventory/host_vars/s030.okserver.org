@@ -1,2 +1,0 @@
----
-sites_to_monitor: ['queremossaber.org.br:80:200'] #sitename:port:expected http_status

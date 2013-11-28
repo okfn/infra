@@ -1,4 +1,0 @@
----
-site_id: sa
-webserver_private_ip: 10.179.187.168
-solr_cores: [ 'schema-1.4', 'schema-2.0' ]

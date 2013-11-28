@@ -1,0 +1,5 @@
+---
+ckan_project: iati
+backup_postgres: true
+webserver_private_ip: 10.176.42.94
+db_type: postgres
