@@ -20,16 +20,19 @@
   when: scripts is defined
   tags: scripts
 
+- name: ensure_configparser
+  action: pip name=configparser
+  tags: scripts
+
 #some script config might be private
 - name: ensure_script_config
   action: template src={{ item }} dest=/opt/scripts/config/config.ini
   with_first_found:
      - files:
         - opt/scripts/config/{{ inventory_hostname }}/config.j2
-        - opt/scripts/config.j2
+        - opt/scripts/config/config.j2
        paths: 
         - ../templates 
-  when: scripts is defined
   ignore_errors: true
   tags: scripts
 

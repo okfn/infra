@@ -4,9 +4,9 @@ import subprocess
 import re
 import time
 from myutils import graphite_pickle
-import configParser
+import configparser
 
-config = ConfigParser.RawConfigParser()
+config = configparser.RawConfigParser()
 
 config.read('/opt/scripts/config/config.ini')
 graphite_host=config.get('graphite', 'host')
