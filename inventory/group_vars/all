@@ -4,7 +4,7 @@ alert_escalation_contact: 'nils.toedtmann@okfn.org'
 ckan_sysadmin_email: 'ckan-sysadmin@okfn.org'
 openspending_sysadmin_email: 'openspending-sysadmin@okfn.org'
 monitoring_server: nagios.okfn.org
-graphite_server: ansible-dev.okserver.org
+graphite_server: graphite.okfn.org
 graphite_port: 2003
 munin_port: 4949
 check_mk_port: 6556
