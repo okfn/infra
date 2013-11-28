@@ -1,4 +1,5 @@
 ---
+ckan_project: datahub.io
 site_id: datahub
 webserver_private_ip: 10.181.26.71
 solr_cores: [ 'schema-1.4', 'schema-2.0' ]

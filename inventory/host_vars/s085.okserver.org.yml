@@ -1,3 +1,4 @@
 ---
+ckan_project: ckan_community
 db_type: postgres
 webserver_private_ip_list: ['10.181.160.49','10.181.160.73','10.181.160.74']

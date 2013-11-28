@@ -1,2 +1,4 @@
 ---
+ckan_project: edostate.ckan.net
+backup_postgres: true
 webserver_private_ip: 10.182.4.68

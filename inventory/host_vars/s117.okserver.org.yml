@@ -1,2 +1,4 @@
 ---
-sites_enabled: ['status.okfn.org']
+aws: true
+sites_enabled:
+  - status.okfn.org

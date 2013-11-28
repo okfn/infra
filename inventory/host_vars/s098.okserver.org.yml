@@ -1,8 +1,26 @@
 ---
+dbserver: localhost
+managed: false
+hoster: RS
 db_type: mysql
-sites_enabled: ['product.okfn.org', 'product-open-data.com', 'wikifarm']
-sites_to_monitor: ['product-open-data.com:80:200', 'product.okfn.org:80:200']
-enabled_plugin_checks: ['mk_mysql'] #mk_mysql adopted from http://mathias-kettner.de/checkmk_mysql.html 
-backup_scripts: ['mysql_backup.sh']
-db_backup_list: ['mysql', 'products', 'wiki_dm2e_eu', 'wiki_offenerhaushalt_de', 'wiki_okfn_de', 'wiki_okfn_jp', 'wiki_okfn_org', 'wiki_opendataday_org' ]
+sites_enabled:
+  - product.okfn.org
+  - product-open-data.com
+  - wikifarm
+sites_to_monitor:
+  - product-open-data.com:80:200
+  - product.okfn.org:80:200']
+enabled_plugin_checks:
+  - mk_mysql
+backup_scripts:
+  - mysql_backup.sh
+db_backup_list:
+  - mysql
+  - products
+  - wiki_dm2e_eu
+  - wiki_offenerhaushalt_de
+  - wiki_okfn_de
+  - wiki_okfn_jp
+  - wiki_okfn_org
+  - wiki_opendataday_org
 private_ip: 10.179.249.37

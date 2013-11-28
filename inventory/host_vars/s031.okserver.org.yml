@@ -1,5 +1,11 @@
 ---
+ckan_project: ckan_testing
 rsnapshot_backup:
-   - { src: 'root@s031.okserver.org:/etc/', dest: 's031.okserver.org/' }
-   - { src: 'root@s031.okserver.org:/var/lib/jenkins/', dest: 's031.okserver.org/', exclude: '/var/lib/jenkins/jobs/CKAN_PostgreSQL_Tests/builds/' }
-   - { src: 'root@s031.okserver.org:/home/okfn/', dest: 's031.okserver.org/',  exclude: '*.vmdk' }
+  - src: 'root@s031.okserver.org:/etc/'
+    dest: 's031.okserver.org/'
+  - src: 'root@s031.okserver.org:/var/lib/jenkins/'
+    dest: 's031.okserver.org/'
+    exclude: '/var/lib/jenkins/jobs/CKAN_PostgreSQL_Tests/builds/'
+  - src: 'root@s031.okserver.org:/home/okfn/'
+    dest: 's031.okserver.org/'
+    exclude: '*.vmdk'
