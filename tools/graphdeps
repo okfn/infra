@@ -1,0 +1,108 @@
+#!/usr/bin/env python
+
+# graphdeps
+# =========
+#
+# A small hack to print out a graphviz ("dot") representation of role
+# dependencies in an Ansible repository. Its use is in theory very simple: you
+# pass it a roles directory, and one or more playbooks to use as a starting
+# point. For example:
+#
+#     graphdeps roles/ main.yml staging.yml
+#
+# It will emit a graphviz graph on STDOUT, which can be turned into something
+# visual with the graphviz tools. For example:
+#
+#     graphdeps ... | dot -T png -o dependencies.png
+#
+
+from __future__ import absolute_import, print_function, unicode_literals
+
+import argparse
+import errno
+import os
+import sys
+
+try:
+    import networkx as nx
+    import pygraphviz
+except ImportError:
+    print("You'll need to install 'networkx' and 'pygraphviz' before this "
+          "will work.",
+          file=sys.stderr)
+    sys.exit(1)
+
+# Should be present anyway thanks to Ansible
+import yaml
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('rolesdir', help="Roles directory")
+parser.add_argument('playbook', nargs='+',
+                    help="A list of playbook files from which to start the "
+                         "search for dependent roles")
+
+
+def _get_roles(roles):
+    for item in roles:
+        if isinstance(item, basestring):
+            yield item
+        else:
+            try:
+                yield item['role']
+            except KeyError:
+                raise RuntimeError("unknown role format: %s" % item)
+
+
+def add_role(graph, rolesdir, role):
+    graph.add_node(role)
+    try:
+        with open(os.path.join(rolesdir, role, 'meta', 'main.yml')) as fp:
+            role_meta = yaml.safe_load(fp)
+    except IOError as e:
+        # No dependencies, ok
+        if e.errno == errno.ENOENT:
+            return
+        else:
+            raise
+    else:
+        try:
+            role_deps = role_meta['dependencies']
+        except KeyError:
+            pass
+        else:
+            for role_dep in _get_roles(role_deps):
+                graph.add_edge(role, role_dep)
+
+
+def add_playbook(graph, filename):
+    with open(filename) as fp:
+        playbook = yaml.safe_load(fp)
+    node_name = "playbook:%s" % filename
+    graph.add_node(node_name)
+    for item in playbook:
+        try:
+            roles = item['roles']
+        except KeyError:
+            # No roles for this item, no worries
+            pass
+        else:
+            for role in _get_roles(roles):
+                graph.add_edge(node_name, role)
+
+
+def main():
+    args = parser.parse_args()
+
+    rolegraph = nx.DiGraph()
+
+    for role in os.listdir(args.rolesdir):
+        add_role(rolegraph, args.rolesdir, role)
+
+    for filename in args.playbook:
+        add_playbook(rolegraph, filename)
+
+    nx.write_dot(rolegraph, sys.stdout)
+
+if __name__ == '__main__':
+    main()
