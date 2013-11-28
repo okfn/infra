@@ -18,6 +18,10 @@ check_prereqs () {
     abort "ansible is not installed"
   fi
 
+  if ! python -c "import sys, ansible; sys.exit(ansible.__version__ < '1.4.1')"; then
+    abort "incorrect ansible version: need >=1.4.1 to run"
+  fi
+
   # We need credentials to run
   if [ ! -d "$CREDENTIALS_DIR" ]; then
     abort "okfn/credentials must be checked out alongside this repository"
