@@ -3,6 +3,5 @@
 - name: -> install_ansible_prereq
   action: apt pkg={{ item }} state=installed
   with_items:
-     - python-apt
      - python-simplejson 
   tags: install_ansible_prereq
