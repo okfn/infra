@@ -1,12 +1,28 @@
 #ansible-playbook main.yml --tags="base-roles" -vvv
 ---
+- hosts: all
+  sudo: true
+  vars_files:
+    - vars/users.yml
+    - "{{ private_dir }}/p.yml"
+  roles:
+    - ansible-prereq
+    - check_mk-agent
+    - collectd
+    - cron
+    - iptables-persistent
+    - motd
+    - nagios-client
+    - ntpd
+    - sysstat
+    - update-notifier
+    - users
 
 - hosts: openspending-web
   sudo: true
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
-    - base-role
     - varnish
     - nginx
     - statsd
@@ -16,7 +32,6 @@
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
-    - base-role
     - role: etherpad-lite
       install_path: /var/www/etherpad-lite
       user: etherpad-lite
@@ -26,7 +41,6 @@
 - hosts: backup
   sudo: true
   roles:
-    - base-role
     - role: rsnapshot
       snapshot_root: /home/backup/snapshots/
       cmd_rsync: /usr/bin/rsync
@@ -34,7 +48,6 @@
 - hosts: ansible-dev
   sudo: true
   roles:
-    - base-role
     - role: booktype
       install_path: /var/www/mybooktype
       user: booktype
@@ -45,16 +58,13 @@
   gather_facts: false
   sudo: true
   roles:
-    - base-role
     - nginx
 
 - hosts: monitoring
   sudo: true
   vars_files:
-    - vars/users.yml
     - "{{ private_dir }}/p.yml"
   roles:
-    - base-role
     - nagios-server
     - check_mk-server
 
@@ -66,7 +76,6 @@
 - hosts: listserv
   sudo: true
   vars_files:
-    - vars/users.yml
     - "{{ private_dir }}/p.yml"
   vars:
     mailhost_type: leaf
@@ -88,10 +97,8 @@
 - hosts: docker-host
   sudo: true
   vars_files:
-    - vars/users.yml
     - "{{ private_dir }}/p.yml"
   roles:
-    - base-role
     - postfix
     - docker
     - { role: nginx, tags: ['nginx'] }
