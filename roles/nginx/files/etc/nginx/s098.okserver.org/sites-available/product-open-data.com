@@ -65,8 +65,8 @@ server {
   rewrite ^/product-group-list-([0-9]+)(.*)$ /index.php?l=en&p=114&n=$1;
   rewrite ^/smartphone(.*)$ /index.php?l=en&p=115;
   rewrite ^/nutrition_us(.*)$ /index.php?l=en&p=116;
-  rewrite ^/(ar|zh|zt|en|fr|ja|es|ru)+(\/)?$ /index.php?l=$1&p=1;
-  rewrite ^/(ar|zh|zt|en|fr|ja|es|ru)+\/?([0-9]+)?([a-z0-9A-Z,_-]+)?(.*)$ /index.php?l=$1&p=$2;
+  rewrite ^/(en)+(\/)?$ /index.php?l=$1&p=1;
+  rewrite ^/(en)+\/?([0-9]+)?([a-z0-9A-Z,_-]+)?(.*)$ /index.php?l=$1&p=$2;
   rewrite ^/product/([0-9]+)$ /rest.php?p=$1 last;
 
 }
