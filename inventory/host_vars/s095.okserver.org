@@ -19,7 +19,7 @@ sites_enabled:
   - openspending-redirects
   - openspending.org
   - wheredoesmymoneygo.org
-ssl_sites_enabled:
+nginx_ssl_certs:
   - openspending_org
 graphite_collectors:
   - nginx_stats.py
