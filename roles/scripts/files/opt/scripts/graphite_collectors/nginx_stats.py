@@ -3,10 +3,16 @@ import re
 import time
 from myutils import graphite_pickle
 from myutils import reverse_tail
+import configParser
+
+config = ConfigParser.RawConfigParser()
+
+config.read('/opt/scripts/config/config.ini')
+graphite_host=config.get('graphite', 'host')
+
 
 logpath='/var/log/nginx/'
 namespace='application_metrics.nginx'
-graphite_host='ansible-dev.okserver.org'
 domains = ['openspending.org', 'openspending.org-ssl']
 
 

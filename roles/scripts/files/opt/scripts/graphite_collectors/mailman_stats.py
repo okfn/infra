@@ -4,12 +4,17 @@ import time
 import os
 from myutils import graphite_pickle
 from myutils import reverse_tail
+import configParser
+
+config = ConfigParser.RawConfigParser()
+
+config.read('/opt/scripts/config/config.ini')
+graphite_host=config.get('graphite', 'host')
 
 mailman_logs='/var/log/mailman/'
 qpath='/var/lib/mailman/qfiles'
 
 namespace='mail_metrics.mailman'
-graphite_host='ansible-dev.okserver.org'
 
 
 def get_post_stats():

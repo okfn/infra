@@ -4,13 +4,21 @@ import subprocess
 import re
 import time
 from myutils import graphite_pickle
+import configParser
+
+config = ConfigParser.RawConfigParser()
+
+config.read('/opt/scripts/config/config.ini')
+graphite_host=config.get('graphite', 'host')
 
 NAME='exim_stats'
 EXIM='/usr/sbin/exim'
 VERBOSE_LOGGING='False'
 LIST_ADDR='@lists.okfn.org'
 namespace='mail_metrics.exim'
-graphite_host='ansible-dev.okserver.org'
+
+
+
 
 def get_stats():
 	stats = {}
