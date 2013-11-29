@@ -12,6 +12,18 @@ server {
 
 server {
   listen 443;
+  server_name www.openspending.org;
+
+  ssl on;
+  include ssl_params;
+  ssl_certificate /etc/nginx/ssl/openspending_org.crt;
+  ssl_certificate_key /etc/nginx/ssl/openspending_org.key;
+
+  return 301 https://openspending.org$request_uri;
+}
+
+server {
+  listen 443;
   server_name openspending.org;
 
   ssl on;
