@@ -14,6 +14,7 @@
   action: copy src={{ item }} dest=/{{item}}
   with_items:
     - etc/nginx/mime.types
+    - etc/nginx/proxy_params
     - etc/nginx/ssl_params
   notify: reload nginx
 
