@@ -1,5 +1,7 @@
 ---
 rackspace: false
+nginx_ssl_certs:
+  - star_okfn_org
 sites_enabled:
   - lists.okfn.org
 mailhost_type: leaf

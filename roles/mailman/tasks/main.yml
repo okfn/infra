@@ -14,3 +14,12 @@
   tags:
      - install_fcgiwrap
      - mailman
+
+- name: install nginx mailman_fcgi config
+  action: copy
+          src=mailman_fcgi
+          dest=/etc/nginx/mailman_fcgi
+          owner=root
+          group=root
+          mode=644
+  notify: reload nginx

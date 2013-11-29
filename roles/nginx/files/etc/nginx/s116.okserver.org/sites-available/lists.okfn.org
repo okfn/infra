@@ -1,57 +1,28 @@
 server {
-
   listen 80;
   listen [::]:80 ipv6only=on;
+  server_name lists.dataexpeditions.org lists.knowledgeforge.net;
 
-  server_name lists.okfn.org lists.dataexpeditions.org;
+  include mailman_fcgi;
+}
 
-  # strange mailman DoS
-  if ($http_referer ~* "http://spam/") { return 499; }
-  if ($http_referer ~* "http://vipserver88.com/") { return 499; }
-  if ($http_referer ~* "http://4478.a.hostable.me/") { return 499; }
-  if ($http_referer ~* "http://wingsforever.com/") { return 499; }
+server {
+  listen 80;
+  listen [::]:80;
+  server_name lists.okfn.org;
 
-  location = /robots.txt {
-    return 200;
-  }
+  rewrite ^ https://lists.okfn.org$request_uri? permanent;
+}
 
-  # redirect /, /mailman, and /mailman/ to the listinfo page
-  location ~ ^/(mailman/?)?$ {
-    rewrite ^ /mailman/listinfo permanent;
-  }
+server {
+  listen 443;
+  listen [::]:443 ipv6only=on;
+  server_name lists.okfn.org;
 
-  location ~ ^/mailman/. {
-    gzip off;
+  ssl on;
+  include ssl_params;
+  ssl_certificate /etc/nginx/ssl/star_okfn_org.crt;
+  ssl_certificate_key /etc/nginx/ssl/star_okfn_org.key;
 
-    # Limit requests on the basis of the "slow" rate-limit zone. Any bursts of
-    # more than 5 requests exceeding the limit of 1r/s (defined in nginx.conf)
-    # will immediately be returned a 503.
-    limit_req zone=slow burst=5 nodelay;
-
-    root /usr/lib/cgi-bin/mailman;
-
-    fastcgi_split_path_info ^/mailman(/[^/]*)(.*)$;
-    if (!-f $document_root$fastcgi_script_name) {
-      return 404;
-    }
-
-    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    fastcgi_param PATH_INFO $fastcgi_path_info;
-    include fastcgi_params;
-    fastcgi_pass unix:/var/run/fcgiwrap.socket;
-  }
-
-  location /images/mailman {
-    alias /var/lib/mailman/icons;
-  }
-
-  location /pipermail {
-    alias /var/lib/mailman/archives/public;
-    autoindex on;
-  }
-
-  location / {
-    return 404;
-  }
-
+  include mailman_fcgi;
 }
