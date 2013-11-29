@@ -3,28 +3,7 @@ server {
   listen 80;
   listen [::]:80 ipv6only=on;
 
-  server_name {% for domain in listserv_domains %} {{ domain }} {% endfor %};
-
-  set_real_ip_from   204.93.240.0/24;
-  set_real_ip_from   204.93.177.0/24;
-  set_real_ip_from   199.27.128.0/21;
-  set_real_ip_from   173.245.48.0/20;
-  set_real_ip_from   103.21.244.0/22;
-  set_real_ip_from   103.22.200.0/22;
-  set_real_ip_from   103.31.4.0/22;
-  set_real_ip_from   141.101.64.0/18;
-  set_real_ip_from   108.162.192.0/18;
-  set_real_ip_from   190.93.240.0/20;
-  set_real_ip_from   188.114.96.0/20;
-  set_real_ip_from   197.234.240.0/22;
-  set_real_ip_from   198.41.128.0/17;
-  set_real_ip_from   162.158.0.0/15;
-  set_real_ip_from   2400:cb00::/32;
-  set_real_ip_from   2606:4700::/32;
-  set_real_ip_from   2803:f800::/32;
-  set_real_ip_from   2405:b500::/32;
-  set_real_ip_from   2405:8100::/32;
-  real_ip_header     CF-Connecting-IP;
+  server_name lists.okfn.org lists.dataexpeditions.org;
 
   # strange mailman DoS
   if ($http_referer ~* "http://spam/") { return 499; }
@@ -41,10 +20,7 @@ server {
     rewrite ^ /mailman/listinfo permanent;
   }
 
-  # I'm not sure we should need to whitelist the mailman CGI scripts like this,
-  # but fcgiwrap seems to bomb out if given duff URLs so this seems the safest
-  # option.
-  location ~ ^/mailman/(admin|admindb|confirm|create|edithtml|listinfo|options|private|rmlist|roster|subscribe)(/.*)?$ {
+  location ~ ^/mailman/. {
     gzip off;
 
     # Limit requests on the basis of the "slow" rate-limit zone. Any bursts of
@@ -53,7 +29,12 @@ server {
     limit_req zone=slow burst=5 nodelay;
 
     root /usr/lib/cgi-bin/mailman;
+
     fastcgi_split_path_info ^/mailman(/[^/]*)(.*)$;
+    if (!-f $document_root$fastcgi_script_name) {
+      return 404;
+    }
+
     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     fastcgi_param PATH_INFO $fastcgi_path_info;
     include fastcgi_params;

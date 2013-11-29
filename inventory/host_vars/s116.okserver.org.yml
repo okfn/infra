@@ -1,5 +1,7 @@
 ---
 rackspace: false
+sites_enabled:
+  - lists.okfn.org
 mailhost_type: leaf
 relayhost: false
 ses: false

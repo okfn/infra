@@ -14,10 +14,3 @@
   tags:
      - install_fcgiwrap
      - mailman
-
-- name: configure_mmweb
-  template: src=lists.cfg dest=/etc/nginx/sites-available/lists.cfg owner=root group=root mode=0644
-
-- name: enable_mmewb
-  action: file src=/etc/nginx/sites-available/lists.cfg dest=/etc/nginx/sites-enabled/lists.cfg force=yes state=link
-  notify: reload nginx
