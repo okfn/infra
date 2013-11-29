@@ -6,17 +6,17 @@
     - vars/users.yml
     - "{{ private_dir }}/p.yml"
   roles:
-    - ansible-prereq
-    - check_mk-agent
-    - collectd
-    - cron
-    - iptables-persistent
-    - motd
-    - nagios-client
-    - ntpd
-    - sysstat
-    - update-notifier
-    - users
+    - { role: ansible-prereq, tags: ['ansible-prereq'] }
+    - { role: check_mk-agent, tags: ['check_mk-agent'] }
+    - { role: collectd, tags: ['collectd'] }
+    - { role: cron, tags: ['cron'] }
+    - { role: iptables-persistent, tags: ['iptables-persistent'] }
+    - { role: motd, tags: ['motd'] }
+    - { role: nagios-client, tags: ['nagios-client'] }
+    - { role: ntpd, tags: ['ntpd'] }
+    - { role: sysstat, tags: ['sysstat'] }
+    - { role: update-notifier, tags: ['update-notifier'] }
+    - { role: users, tags: ['users'] }
 
 - hosts: openspending-web
   sudo: true
