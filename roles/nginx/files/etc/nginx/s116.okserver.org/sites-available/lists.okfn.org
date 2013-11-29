@@ -24,5 +24,7 @@ server {
   ssl_certificate /etc/nginx/ssl/star_okfn_org.crt;
   ssl_certificate_key /etc/nginx/ssl/star_okfn_org.key;
 
+  add_header Strict-Transport-Security "max-age=86400; includeSubDomains";
+
   include mailman_fcgi;
 }
