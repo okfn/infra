@@ -77,18 +77,6 @@
   sudo: true
   vars_files:
     - "{{ private_dir }}/p.yml"
-  vars:
-    mailhost_type: leaf
-    relayhost: false
-    ses: false
-    origin: okfn.org
-    listserv: true
-    transport: list_transport
-    relay_domains:
-      - lists.okfn.org
-      - lists.knowledgeforge.net
-      - lists.dataexpeditions.org
-    listserv_host: lists.okfn.org
   roles:
     - postfix
     - nginx
