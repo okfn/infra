@@ -17,6 +17,8 @@ server {
   error_log /var/log/nginx/rt.okfn.org-error.log;
 
   location /  {
+    add_header Strict-Transport-Security "max-age=86400; includeSubDomains";
+
     proxy_pass http://localhost:5080;
     include proxy_params;
   }
