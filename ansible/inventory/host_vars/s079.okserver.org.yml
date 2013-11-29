@@ -1,0 +1,5 @@
+---
+ckan_project: publicdata.eu
+sites_to_monitor:
+  - publicdata.eu:80:200
+db_type: postgres

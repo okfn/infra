@@ -1,0 +1,226 @@
+# {{ ansible_managed }}
+# all_hosts = [ 'localhost' ]
+
+
+all_hosts = [ 
+{% for host in groups['sysadmin-servers'] %}
+  {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
+"{{ host }}|sysadmin-servers",
+  {% endif %}
+{% endfor %}
+{% for host in groups['ckan']  %}
+  {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
+"{{ host }}|ckan",
+  {% endif %}
+{% endfor %}
+{% for host in groups['openspending'] %}
+  {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
+"{{ host }}|openspending",
+  {% endif %}
+{%endfor%}
+ {% if hostvars['blogfarm.okserver.org']['disable_nagios_checks'] is not defined %}
+"blogfarm.okserver.org",
+ {% endif %}
+
+]
+
+
+#check_mk calls this method of check definition legacy_checks (a bit misleading)
+legacy_checks = [
+
+# sites_to_monitor is an array of sites defined in inventory/host_vars/$host e.g, ['openspending.org:port:http_status']
+# if this fails to generate with the error ''
+
+
+#webservice monitoring
+{% for host in groups['all'] %}
+
+  {% if hostvars[host]['sites_to_monitor'] is defined %}
+    {% for site in hostvars[host]['sites_to_monitor'] %}
+( ( "check_http_basic!{{ host }}!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "HTTP {{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
+    {% endfor %}
+  {% endif %}                                                                                  
+  
+  {% if hostvars[host]['ssl_sites_to_monitor'] is defined %}
+    {% for site in hostvars[host]['ssl_sites_to_monitor'] %}
+( ( "check_http_ssl_works!{{ site }}", "HTTPS {{ site }}", False), [ "{{ host }}" ] ),
+( ( "check_http_ssl_cert!{{ site }}", "HTTPS SSL valid {{ site }}", False), [ "{{ host }}" ] ),
+    {% endfor %}
+  {% endif %}
+
+{% endfor %}
+
+
+
+#CKAN dbservice
+{% for host in groups['ckan-db-prod'] %}
+( ( "check_ssh_psql_running!localhost!5432", 'Postgres Server', False), [ "{{ host }}" ] ),
+{% endfor %}
+
+#Openspending dbservice
+{% for host in groups['openspending-db'] %}
+( ( "check_ssh_psql_running!localhost!5432", 'Postgres Server', False), [ "{{ host }}" ] ),
+{% endfor %}
+
+#All servers ssh service
+{% for host in groups['all'] %}
+( ( "check_tcp_2!{{ host }}!22", 'SSH', False), [ "{{ host }}" ] ),
+{% endfor %}
+
+#mailserver
+{% for host in groups['listserv'] %}
+( ( "check_smtp_basic!{{ host }}", 'SMTP', False), [ "{{ host }}" ] ),
+{% endfor %}
+
+#( ( "check-tcp", "POSTGRES", False), [ {% for host in groups['dbservers'] %} "{{ host }}", {%endfor%} ]  ),
+]
+
+define_servicegroups = True
+service_groups = [
+	#All services with the tag "webservices go into the webservice group
+	("webservice", ALL_HOSTS, ["HTTP(S|).*"]),
+]
+service_contactgroups = [
+	("pagerduty", [], ALL_HOSTS, ["HTTP(S|).*"]),
+]
+
+
+
+define_hostgroups = True
+define_hostgroups = {
+ "Sysadmin-servers" : "These servers are not specific to any project.",
+ "CKAN-Servers" : "These servers run CKAN.",
+ "Openspending-Servers" : "These servers run Openspending and related webservices."
+}
+
+host_groups = [
+
+('Sysadmin-Servers', [ {% for host in groups['sysadmin-servers'] %} '{{ host }}', {% endfor %} ] ), 
+('CKAN-Servers', [ {% for host in groups['ckan']  %} '{{ host }}', {% endfor %} ] ),
+('Openspending-Servers', [ {% for host in groups['openspending'] %} '{{ host }}', {% endfor %} ] ),
+
+]
+
+define_contactgroups = True
+define_contactgroups = {
+ "sysadmin" : "Le BOFH",
+ "CKAN-sysadmin" : "CKAN product owner sysadmins",
+ "Openspending-sysadmin" : "Openspending product owner sysadmins",
+ "pagerduty": "Pagerduty alerting",
+}
+
+host_contactgroups = [
+
+('sysadmin',  [ {% for host in groups['sysadmin-servers'] %} '{{ host }}', {% endfor %} ] ),
+('ckan-sysadmin',  [ {% for host in groups['ckan']  %} '{{ host }}', {% endfor %} ] ),
+('openspending-sysadmin', [ {% for host in groups['openspending'] %} '{{ host }}', {% endfor %} ] ),
+
+]
+
+
+extra_nagios_conf += r"""
+
+define contact{
+        name                            generic-contact
+        service_notification_period     24x7
+        host_notification_period        24x7
+        service_notification_options    u,c,r,f
+        host_notification_options       d,r,f,s
+        service_notification_commands   notify-service-by-email
+        host_notification_commands      notify-host-by-email
+}
+
+define contact {
+	contact_name alert_escalation_contact
+	use generic-contact
+	email {{ alert_escalation_contact }}
+}
+
+define contact {
+	contact_name sysadmin
+	contactgroups sysadmin
+	use generic-contact
+	email {{ sysadmin_email }}
+}
+
+define contact {
+	contact_name ckan-sysadmin
+        contactgroups ckan-sysadmin
+        use generic-contact
+	email  {{ ckan_sysadmin_email }}, {{ sysadmin_email }}
+}
+
+define contact {
+	contact_name openspending-sysadmin
+        contactgroups openspending-sysadmin
+        use generic-contact
+	email {{ openspending_sysadmin_email }}, {{ sysadmin_email }}
+}
+
+define serviceescalation {
+	hostgroup_name	Sysadmin-Servers,CKAN-Servers,Openspending-Servers	
+	service_description	*
+	first_notification 	4
+	last_notification	0
+	notification_interval	30
+        contacts alert_escalation_contact
+	escalation_options	w,c
+}
+
+define command{
+        command_name    check_http_basic
+        command_line    /usr/lib/nagios/plugins/check_http '$ARG1$'  -H '$ARG2$' -p '$ARG3$' -e '$ARG4$' -N
+}
+
+define command{
+        command_name    check_http_ssl_works
+        command_line    /usr/lib/nagios/plugins/check_http -w 5 -c 10 --ssl -H '$ARG1$'
+}
+
+
+define command{
+        command_name    check_http_ssl_cert
+        command_line    /usr/lib/nagios/plugins/check_http -H '$ARG1$' -C 30
+}
+
+
+define command{
+	 command_name    check_ssh_psql_running
+        command_line    /usr/lib/nagios/plugins/check_by_ssh -H '$HOSTADDRESS$' -C "/usr/lib/nagios/plugins/check_tcp -H $ARG1$  -p $ARG2$"
+}
+
+define command {
+	command_name	check_tcp_2
+	command_line	usr/lib/nagios/plugins/check_tcp -H '$ARG1$' -p '$ARG2$'	
+
+}
+
+define command{
+	command_name check_smtp_basic
+	command_line /usr/lib/nagios/plugins/check_smtp -H '$ARG1$'
+}
+
+
+################################################################################
+# NOTIFICATION COMMANDS
+################################################################################
+
+
+# 'notify-host-by-email' command definition
+define command{
+        command_name    notify-host-by-email
+        command_line    /usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\nHost: $HOSTNAME$\nState: $HOSTSTATE$\nAddress: $HOSTADDRESS$\nInfo: $HOSTOUTPUT$\n\nDate/Time: $LONGDATETIME$\n" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Host Alert: $HOSTNAME$ is $HOSTSTATE$ **" $CONTACTEMAIL$
+        }
+
+# 'notify-service-by-email' command definition
+define command{
+        command_name    notify-service-by-email
+        command_line    /usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\n\nService: $SERVICEDESC$\nHost: $HOSTALIAS$\nAddress: $HOSTADDRESS$\nState: $SERVICESTATE$\n\nDate/Time: $LONGDATETIME$\n\nAdditional Info:\n\n$SERVICEOUTPUT$" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Service Alert: $HOSTALIAS$/$SERVICEDESC$ is $SERVICESTATE$ **" $CONTACTEMAIL$
+        }
+
+
+
+
+
+
+"""

@@ -1,0 +1,41 @@
+#!/bin/sh
+
+cd "$(dirname "$0")"
+
+: ${CREDENTIALS_DIR:=$PWD/../credentials}
+
+set -eu
+
+abort () {
+  echo "ERROR: ${@}" >&2
+  echo "Aborting." >&2
+  exit 1
+}
+
+check_prereqs () {
+  # If ansible isn't installed, all is lost
+  if ! which ansible >/dev/null 2>&1; then
+    abort "ansible is not installed"
+  fi
+
+  if ! python -c "import sys, ansible; sys.exit(ansible.__version__ < '1.4.1')"; then
+    abort "incorrect ansible version: need >=1.4.1 to run"
+  fi
+
+  # We need credentials to run
+  if [ ! -d "$CREDENTIALS_DIR" ]; then
+    abort "okfn/credentials must be checked out alongside this repository"
+  fi
+
+  # But we also need those credentials to be decrypted
+  if ! GIT_DIR="$CREDENTIALS_DIR/.git" git config --local -l | 
+       grep -q filter.git-crypt; then
+    abort "${CREDENTIALS_DIR} must have been decrypted: see 'setup' in that directory"
+  fi
+}
+
+check_prereqs
+exec ansible-playbook \
+  -i inventory/hosts \
+  --extra-vars "private_dir='${CREDENTIALS_DIR}/ansible'" \
+  "$@"

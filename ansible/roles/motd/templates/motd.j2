@@ -1,0 +1,21 @@
+This is {{ ansible_fqdn }} running {{ ansible_lsb.description }}.
+
+NB: System and application configuration for this host is managed by automated
+systems. To ensure that any changes you make here are not lost, please follow
+the processes outlined in the relevant repository:
+
+    https://github.com/okfn/sysconfig-ansible
+
+Yours,
+The Open Knowledge Foundation system administrators
+
+{% if motd_custom is defined %}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+{{ motd_custom }}
+
+{% endif %}
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Last ansible run: {{ ansible_date_time.iso8601 }}
+

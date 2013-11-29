@@ -1,0 +1,24 @@
+---
+sysadmin_email: 'system-mails@okfn.org'
+alert_escalation_contact: 'nils.toedtmann@okfn.org'
+ckan_sysadmin_email: 'ckan-sysadmin@okfn.org'
+openspending_sysadmin_email: 'openspending-sysadmin@okfn.org'
+monitoring_server: nagios.okfn.org
+graphite_server: graphite.okfn.org
+graphite_port: 2003
+munin_port: 4949
+check_mk_port: 6556
+iptables_config_file: '/etc/iptables/rules.v4'
+hostname_tld: okserver.org
+local_checks: ['apt-security-check']
+timezone: UTC
+backup_rsync_target: 10.183.172.112    #s088, backup host internal ip
+role_private_dir: ../../../../credentials/ansible
+locale_list:
+   - en_GB.utf8
+rackspace: true
+mail_domains: []
+listserv_domains: []
+docker_host: false
+postfix_etc: /etc/postfix
+aliases: aliases

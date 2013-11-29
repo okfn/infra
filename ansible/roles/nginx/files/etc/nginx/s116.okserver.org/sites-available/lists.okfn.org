@@ -1,0 +1,30 @@
+server {
+  listen 80;
+  listen [::]:80 ipv6only=on;
+  server_name lists.dataexpeditions.org lists.knowledgeforge.net;
+
+  include mailman_fcgi;
+}
+
+server {
+  listen 80;
+  listen [::]:80;
+  server_name lists.okfn.org;
+
+  return 301 https://$host$request_uri;
+}
+
+server {
+  listen 443;
+  listen [::]:443 ipv6only=on;
+  server_name lists.okfn.org;
+
+  ssl on;
+  include ssl_params;
+  ssl_certificate /etc/nginx/ssl/star_okfn_org.crt;
+  ssl_certificate_key /etc/nginx/ssl/star_okfn_org.key;
+
+  add_header Strict-Transport-Security "max-age=86400; includeSubDomains";
+
+  include mailman_fcgi;
+}

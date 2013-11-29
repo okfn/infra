@@ -1,0 +1,2 @@
+---
+sites_to_monitor: ['okfn.org:80:200','publicdomainreview.org:80:200', 'ckan.org:80:200']

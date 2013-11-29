@@ -1,0 +1,21 @@
+#installs booktype from the custom deb - with a bunch of fixes to path and env .
+---
+- name: add_booktype_group
+  action: user name={{ group }} state=present
+  tags: add_booktype_group
+
+- name: add_booktype_user
+  action: user name={{ user }} group={{ group }} home={{ install_path }}
+  tags: add_booktype_user
+
+- name: fetch_booktype_deb
+  action: get_url url=http://apt.okserver.org/all/mybooktype-1.6-okf-custom_1.0_all.deb dest=/opt/mybooktype-1.6-okf-custom_1.0_all.deb force=yes
+  tags: fetch_booktype_deb
+
+- name: install_booktype_deb
+  action: shell dpkg -i /opt/mybooktype-1.6-okf-custom_1.0_all.deb creates={{ install_path }}/mybook
+  tags: install_booktype_deb
+
+- name: set_permissions_booktype
+  action: file path={{ install_path }} owner={{ user }} group={{ group }} recurse=yes state=directory
+  tags: set_permissions_booktype

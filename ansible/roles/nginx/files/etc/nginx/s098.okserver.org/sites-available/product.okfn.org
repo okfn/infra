@@ -1,0 +1,16 @@
+server {
+        server_name product.okfn.org;
+
+        access_log /var/log/nginx/product.okfn.org-access.log;
+        error_log /var/log/nginx/product.okfn.org-error.log;
+
+        location /brand/ {
+                proxy_pass http://brand-okfn.herokuapp.com;
+                include proxy_params;
+        }
+
+        location /  {
+                proxy_pass http://blogfarm.okserver.org;
+                include proxy_params;
+        }
+}

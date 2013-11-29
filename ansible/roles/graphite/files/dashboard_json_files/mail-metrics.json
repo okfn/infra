@@ -1,0 +1,73 @@
+[
+  {
+    "bgcolor": "000000",
+    "target": [
+      "aliasByNode(mail_metrics.exim.to_*, 2)"
+    ],
+    "fgcolor": "FFFFFF",
+    "title": "mails in queue"
+  },
+  {
+    "bgcolor": "000000",
+    "hideLegend": "true",
+    "target": [
+      "mail_metrics.exim.from_okfn_lists"
+    ],
+    "fgcolor": "FFFFFF",
+    "title": "mails from okf lists in exim queue"
+  },
+  {
+    "target": [
+      "mail_metrics.mailman.queue.virgin",
+      "mail_metrics.mailman.queue.shunt",
+      "mail_metrics.mailman.queue.retry",
+      "mail_metrics.mailman.queue.out",
+      "mail_metrics.mailman.queue.news",
+      "mail_metrics.mailman.queue.bounces",
+      "mail_metrics.mailman.queue.in",
+      "mail_metrics.mailman.queue.commands",
+      "mail_metrics.mailman.queue.bad",
+      "mail_metrics.mailman.queue.archive"
+    ],
+    "bgcolor": "000000",
+    "fgcolor": "FFFFFF",
+    "title": "mailman queue stats"
+  },
+  {
+    "target": [
+      "transformNull(mail_metrics.mailman.posts.total, 0)"
+    ],
+    "hideLegend": "true",
+    "title": "total posts in all lists",
+    "bgcolor": "000000",
+    "width": "1024",
+    "fgcolor": "FFFFFF"
+  },
+  {
+    "width": "1024",
+    "title": "mailman subscribe requests",
+    "fgcolor": "FFFFFF",
+    "bgcolor": "000000",
+    "target": [
+      "aliasByNode(mostDeviant(10, transformNull(mail_metrics.mailman.subscribe.*.pending, 0)), 3)"
+    ]
+  },
+  {
+    "width": "1024",
+    "bgcolor": "000000",
+    "target": [
+      "aliasByNode(transformNull(mostDeviant(10, mail_metrics.mailman.subscribe.*.new),0), 3)"
+    ],
+    "fgcolor": "FFFFFF",
+    "title": "mailman subscribe approved"
+  },
+  {
+    "width": "1024",
+    "title": "mailman outbound mail",
+    "fgcolor": "FFFFFF",
+    "bgcolor": "000000",
+    "target": [
+      "aliasByNode(transformNull(mostDeviant(10, mail_metrics.mailman.*.*.total), 0), 3)"
+    ]
+  }
+]

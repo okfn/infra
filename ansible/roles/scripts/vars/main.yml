@@ -1,0 +1,3 @@
+---
+local_checks_path: '/usr/lib/check_mk_agent/local'
+

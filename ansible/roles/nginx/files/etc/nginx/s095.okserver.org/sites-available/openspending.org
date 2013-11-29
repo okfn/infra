@@ -1,0 +1,93 @@
+server {
+  listen 80;
+  server_name openspending.mobi www.openspending.mobi;
+  return 301 http://community.openspending.org/research/mobi$request_uri;
+}
+
+server {
+  listen 80;
+  server_name spendingdata.org www.spendingdata.org;
+  return 301 http://community.openspending.org/research/standard$request_uri;
+}
+
+server {
+  listen 80;
+  server_name cra.openspending.org
+              etl.sandbox.openspending.org
+              sandbox.openspending.org
+              wiki.openspending.org;
+  return 301 https://openspending.org$request_uri;
+}
+
+server {
+  listen 80;
+  server_name openspending.org www.openspending.org;
+  return 301 https://openspending.org$request_uri;
+}
+
+server {
+  listen 443;
+  server_name www.openspending.org;
+
+  ssl on;
+  include ssl_params;
+  ssl_certificate /etc/nginx/ssl/openspending_org.crt;
+  ssl_certificate_key /etc/nginx/ssl/openspending_org.key;
+
+  return 301 https://openspending.org$request_uri;
+}
+
+server {
+  listen 443;
+  server_name openspending.org;
+
+  ssl on;
+  include ssl_params;
+  ssl_certificate /etc/nginx/ssl/openspending_org.crt;
+  ssl_certificate_key /etc/nginx/ssl/openspending_org.key;
+
+  access_log /var/log/nginx/openspending.org-ssl-access.log;
+  error_log /var/log/nginx/openspending.org-ssl-error.log warn;
+
+  client_max_body_size 4G;
+  keepalive_timeout 60;
+
+  gzip on;
+  gzip_vary on;
+  gzip_min_length 1000;
+  gzip_proxied expired no-cache no-store private auth;
+  gzip_types text/plain application/xml application/json image/svg+xml text/javascript text/css;
+  gzip_disable "MSIE [1-6]\.";
+
+  # cf https://github.com/okfn/openspending/issues/432
+  rewrite ^/dataset/italyregionalaccounts /it-regional-accounts/embed?widget=treemap&state=%7B"drilldown"%3A"function"%2C"cuts"%3A%7B"year"%3A"2008"%7D%7D permanent;
+
+  # blog
+  rewrite ^/blog/index.html$ http://community.openspending.org/ permanent;
+  rewrite ^/blog/feed.rss$   http://community.openspending.org/feed/ permanent;
+  rewrite ^/blog/?$          http://community.openspending.org/ permanent;
+  rewrite ^/blog/(.*).html$  http://community.openspending.org/$1/ permanent;
+
+  # resources
+  rewrite ^/resources/ http://community.openspending.org/research$request_uri permanent;
+
+  add_header Access-Control-Allow-Origin *;
+
+  location /static {
+    alias /home/okfn/var/srvc/openspending.org/src/openspending/openspending/ui/public/static;
+  }
+
+  location /files {
+    alias /home/okfn/var/srvc/openspending.org/uploads;
+  }
+
+  location / {
+    include proxy_params;
+    proxy_buffers 16 16k;
+    proxy_buffer_size 32k;
+    proxy_redirect off;
+    proxy_connect_timeout 600s;
+    proxy_read_timeout 3600s;
+    proxy_pass http://127.0.0.1:8080;
+  }
+}

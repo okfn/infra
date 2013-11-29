@@ -1,0 +1,23 @@
+---
+# This play sets up cronjobs
+- name: add_pgbackup_cron
+  action: copy src=etc/cron.daily/pg_backup dest=/etc/cron.daily/pg_backup
+  when: backup_postgres is defined and inventory_hostname in groups['dbservers']
+  tags: add_pgbackup_cron
+
+#- name: add_ansible_facts_cron
+#  action: copy src=files/cron.hourly/populate_ansible_facts.py dest=/etc/cron.hourly/populate_ansible_facts.py mode=744
+#  when: ansible_distribution == 'Ubuntu'
+#  tags: add_ansible_facts_cron
+
+- name: backups_to_s3_cron
+  action: copy src=etc/cron.daily/{{ inventory_hostname }}/backups_to_s3 /etc/cron.daily/
+  when: backup_host is defined
+  tags: 
+     - cron
+     - backups_to_s3_cron
+#neeed to fix - when: doesnt seemt to work very well, uncomment and test with tag
+#- name: remove_pgbackup_cron
+#  action: file path=/etc/cron.daily/pg_backup state=absent
+#  when: backup_postgres not defined or inventory_hostname not in groups['dbservers']
+#  tags: remove_pgbackup_cron

@@ -1,0 +1,44 @@
+server {
+    listen *:80;
+    server_name www.wheredoesmymoneygo.org wheredoesmymoneygo.org wdmmg.org www.wdmmg.org;
+
+    keepalive_timeout 5;
+
+    access_log /var/log/nginx/wheredoesmymoneygo.org.org-access.log;
+    error_log /var/log/nginx/wheredoesmymoneygo.org.org-error.log debug;
+
+    rewrite ^/contact/? http://openspending.org/help/contact.html permanent;
+    rewrite ^/(budget.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+    rewrite ^/dailybread/?$ /dailybread.html permanent;
+    rewrite ^/dashboard/?$ /bubbletree-map.html permanent;
+    rewrite ^/dfid/? http://openspending.org/iati permanent;
+    rewrite ^/faq/? /about.html permanent;
+    rewrite ^/(investigate.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+    rewrite ^/legal/? http://okfn.org/contact/ permanent;
+    rewrite ^/(tax-calculator.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+    rewrite ^/(cuts.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+    rewrite ^/about/?$ /about.html permanent;
+    rewrite ^/about/what-people-say/? /about.html permanent;
+    rewrite ^/(comments.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+    rewrite ^/(2008/.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+    rewrite ^/(2009/.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+    rewrite ^/(2010/.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+    rewrite ^/(2011/.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+    rewrite ^/getting-started/? /about.html permanent;
+    rewrite ^/blog/? http://blog.openspending.org permanent;
+    rewrite ^/(people.*) http://phase2.wheredoesmymoneygo.org/$1 permanent;
+    rewrite ^/(visualizations.*) /bubbletree-map.html permanent;
+    rewrite ^/data/? /sources.html permanent;
+    rewrite ^/data/overview/? /sources.html permanent;
+    rewrite ^/data/coins/? /sources.html permanent;
+    rewrite ^/ideas/? /about.html permanent;
+    rewrite ^/get-involved/? http://openspending.org/getinvolved permanent;
+
+    location / {
+             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+             #proxy_set_header Host $http_host;
+             proxy_redirect off;
+             proxy_pass   http://app.wheredoesmymoneygo.org;
+             break;
+    }
+}

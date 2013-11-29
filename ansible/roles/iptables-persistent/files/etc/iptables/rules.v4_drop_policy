@@ -1,0 +1,30 @@
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [24:13024]
+:admin - [0:0]
+:application - [0:0]
+:monitoring - [0:0]
+:backup - [0:0]
+:rackspace_support - [0:0]
+:logging - [0:0]
+
+-A INPUT -j logging
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 22 -j admin
+-A INPUT -j DROP
+
+-A admin -j ACCEPT
+-A application -j ACCEPT
+-A monitoring -j ACCEPT
+-A backup -j ACCEPT
+-A rackspace_support -j ACCEPT
+
+-A logging -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[ALLOW] "
+-A logging -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[BLOCK] "
+-A logging -m limit --limit 3/min -j LOG --log-prefix "[BLOCK] "
+-A logging -m state --state INVALID -m limit --limit 3/min --limit-burst 10 -j DROP
+-A logging -j RETURN
+
+COMMIT

@@ -1,0 +1,80 @@
+# ansible managed, do not edit manually.
+#jinja2: trim_blocks: True
+
+*filter
+:INPUT ACCEPT [0:0]
+{% if docker_host %}
+:FORWARD ACCEPT [0:0]
+{% else %}
+:FORWARD DROP [0:0]
+{% endif %}
+:OUTPUT ACCEPT [24:13024]
+:admin - [0:0]
+:application - [0:0]
+:monitoring - [0:0]
+:backup - [0:0]
+:fail2ban-ssh - [0:0]
+:rackspace_support - [0:0]
+:logging - [0:0]
+:ban_abusive_ips - [0:0]
+
+-A INPUT -p tcp -m multiport --dports 22 -j fail2ban-ssh
+-A INPUT -j logging
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 22 -j admin
+#-A INPUT -j DROP
+
+-A fail2ban-ssh -j RETURN
+-A admin -j ACCEPT
+-A application -j ACCEPT
+-A monitoring -j ACCEPT
+-A backup -j ACCEPT
+-A rackspace_support -j ACCEPT
+-A ban_abusive_ips -j DROP
+
+#Ansible template note: indentation for jinja conditionals was not done, cause resulting space characters in the iptables file was causing issues with iptables-restore
+#\{\%- trims spaces, but ensure the line is separated by an empty line.
+{% if inventory_hostname in groups['dbservers'] %}
+{% if hostvars[inventory_hostname]['webserver_private_ip_list'] is defined %}
+{% for ip in hostvars[inventory_hostname]['webserver_private_ip_list'] %}
+-A INPUT -s {{ ip }} -p tcp -m tcp --dport {{ postgres_port }} -j application
+{% if hostvars[inventory_hostname]['solr_port'] is defined %}
+-A INPUT -s {{ ip }} -p tcp -m tcp --dport {{ solr_port }} -j application
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if hostvars[inventory_hostname]['webserver_private_ip'] is defined %}
+{% if hostvars[inventory_hostname]['db_type'] == 'postgres' %}
+-A INPUT -s {{ hostvars[inventory_hostname]['webserver_private_ip'] }} -p tcp -m tcp --dport {{ postgres_port }} -j application
+{% elif hostvars[inventory_hostname]['db_type'] == 'mysql' %}
+-A INPUT -s {{ hostvars[inventory_hostname]['webserver_private_ip'] }} -p tcp -m tcp --dport {{ mysql_port }} -j application
+{% endif %}
+{% if hostvars[inventory_hostname]['solr_port'] is defined %}
+-A INPUT -s {{ hostvars[inventory_hostname]['webserver_private_ip'] }} -p tcp -m tcp --dport {{ solr_port }} -j application
+{% endif %}
+{% endif %}
+{% endif %}
+{% if inventory_hostname in groups['webservers'] %}
+-A INPUT -p tcp -m tcp --dport 80 -j application
+-A INPUT -p tcp -m tcp --dport 443 -j application
+{% endif %}
+{% if hostvars[inventory_hostname]['rackspace_support_ips'] is defined %}
+{% for ip in hostvars[inventory_hostname]['rackspace_support_ips'] %}
+-A INPUT -s {{ ip }} -p tcp -m tcp -j rackspace_support
+{% endfor %}
+{% endif %}
+{%if hostvars[inventory_hostname]['ban_abusive_ips'] is defined %}
+{% for ip in hostvars[inventory_hostname]['ban_abusive_ips'] %}
+-A INPUT -s {{ ip }} -j ban_abusive_ips
+{% endfor %}
+{% endif %}
+
+{%if hostvars[inventory_hostname]['custom_iptables_rules'] is defined %}
+{% for rule in hostvars[inventory_hostname]['custom_iptables_rules'] %}
+{{ rule }}
+{% endfor %}
+{% endif %}
+
+
+COMMIT

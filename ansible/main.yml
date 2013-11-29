@@ -1,0 +1,94 @@
+#ansible-playbook main.yml --tags="base-roles" -vvv
+---
+- hosts: all
+  sudo: true
+  vars_files:
+    - vars/users.yml
+    - "{{ private_dir }}/p.yml"
+  roles:
+    - ansible-prereq
+    - check_mk-agent
+    - collectd
+    - cron
+    - iptables-persistent
+    - motd
+    - nagios-client
+    - ntpd
+    - sysstat
+    - update-notifier
+    - users
+
+- hosts: openspending-web
+  sudo: true
+  vars_files:
+    - "{{ private_dir }}/p.yml"
+  roles:
+    - varnish
+    - { role: nginx, tags: ['nginx'] }
+    - statsd
+
+- hosts: s113.okserver.org
+  sudo: true
+  vars_files:
+    - "{{ private_dir }}/p.yml"
+  roles:
+    - role: etherpad-lite
+      install_path: /var/www/etherpad-lite
+      user: etherpad-lite
+      group: etherpad-lite
+      version: 1.2.11
+
+- hosts: backup
+  sudo: true
+  roles:
+    - role: rsnapshot
+      snapshot_root: /home/backup/snapshots/
+      cmd_rsync: /usr/bin/rsync
+
+- hosts: ansible-dev
+  sudo: true
+  roles:
+    - role: booktype
+      install_path: /var/www/mybooktype
+      user: booktype
+      group: booktype
+    - graphite
+
+- hosts: wiki
+  gather_facts: false
+  sudo: true
+  roles:
+    - { role: nginx, tags: ['nginx'] }
+
+- hosts: monitoring
+  sudo: true
+  vars_files:
+    - "{{ private_dir }}/p.yml"
+  roles:
+    - nagios-server
+    - check_mk-server
+
+- hosts: mail
+  sudo: true
+  tasks:
+    - action: debug msg="mailserver!"
+
+- hosts: listserv
+  sudo: true
+  vars_files:
+    - "{{ private_dir }}/p.yml"
+  roles:
+    - postfix
+    # Keep nginx before mailman, as mailman will want to install some config
+    # files into /etc/nginx.
+    - { role: nginx, tags: ['nginx'] }
+    - mailman
+
+- hosts: docker-host
+  sudo: true
+  vars_files:
+    - "{{ private_dir }}/p.yml"
+  roles:
+    - postfix
+    - docker
+    - { role: nginx, tags: ['nginx'] }

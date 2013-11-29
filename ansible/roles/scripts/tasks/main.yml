@@ -1,0 +1,188 @@
+#Adds scripts, which can be defined per host/group basis, these variables which accept a list,
+#
+# scripts: generic scripts 
+# graphite_collectors : list of  graphite collector script names to be included
+# enabled_local_checks: list of check_mk local checks which should be enabled - http://mathias-kettner.de/checkmk_localchecks.html
+# disabled_local_checks: local checks that should be disabled
+#
+# The script sets up /opt/scripts/config/config.cfg which is required by some scripts.
+---
+- name: ensure_directory
+  action: file state=directory dest={{ item }} owner=root group=root
+  with_items:
+     - /opt/scripts
+     - /opt/scripts/config
+  tags: scripts
+
+- name: ensure_scripts
+  action: copy src=opt/scripts/{{ item }} dest=/opt/scripts/ 
+  with_items: scripts
+  when: scripts is defined
+  tags: scripts
+
+- name: install pip
+  action: apt pkg=python-pip state=installed
+  tags: scripts
+
+- name: ensure_configparser
+  action: pip name=configparser
+  tags: scripts
+
+#some script config might be private
+- name: ensure_script_config
+  action: template src={{ item }} dest=/opt/scripts/config/config.ini
+  with_first_found:
+     - files:
+        - opt/scripts/config/{{ inventory_hostname }}/config.j2
+        - opt/scripts/config/config.j2
+       paths: 
+        - ../templates 
+  ignore_errors: true
+  tags: scripts
+
+## tasks for graphite collector scripts
+- name: ensure_graphite_scripts_dir
+  action: file path={{ item }} state=directory
+  when: graphite_collectors is defined
+  with_items:
+     - '/opt/scripts/graphite_collectors'
+     - '/opt/scripts/graphite_collectors/myutils'
+  tags:
+     - scripts
+     - graphite_collectors
+
+- name: add_myutils
+  action: copy src={{ item }} dest=/opt/scripts/graphite_collectors/myutils/
+  with_fileglob: 
+     - opt/scripts/graphite_collectors/myutils/*
+  when: graphite_collectors is defined
+  tags:
+     - scripts
+     - graphite_utils
+     - graphite_collectors
+
+- name: ensure_collectors
+  action: copy src=opt/scripts/graphite_collectors/{{ item }} dest=/opt/scripts/graphite_collectors/
+  with_items: graphite_collectors
+  when: graphite_collectors is defined
+  tags:
+     - scripts
+     - graphite_collectors
+
+- name: ensure_collector_cronjobs
+  action: copy src=opt/scripts/graphite_collectors/cron.d/{{ item.split('.')[0] }}_graphite dest=/etc/cron.d/ owner=root group=root
+  with_items: graphite_collectors
+  when: graphite_collectors is defined
+  tags:
+     - scripts
+     - graphite_collectors
+
+- name: ensure_backup_scripts_dir
+  action: file path={{ item }} state=directory
+  when: backup_scripts is defined
+  with_items:
+     - '/opt/scripts/backup'
+  tags:
+     - scripts
+     - ensure_backup_scripts_dir
+
+- name: copy_backup_scripts
+  action: copy src=opt/scripts/backup/{{ item }} dest=/opt/scripts/backup/ mode=760
+  with_items: backup_scripts
+  when: backup_scripts is defined #backup_scripts is an array with a list of backup scripts to be setup
+  tags:
+     - scripts
+     - copy_backup_scripts
+
+- name: ensure_backup_cron
+  action: copy src=opt/scripts/backup/cron.d/{{ item.split('.')[0] }} dest=/etc/cron.d/ owner=root group=root
+  with_items: backup_scripts
+  when: backup_scripts is defined
+  tags:
+     - scripts
+     - ensure_backup_cron
+
+- name: mysql_backup_config
+  action: template src=opt/scripts/backup/mysql_backup.conf.j2  dest=/opt/scripts/backup/mysql_backup.conf
+  when: db_backup_list is defined #backup dbs lists the dbs that should be backed up, this is dumped into the mysql_backup.conf, which is then read by the mysql_backup script.
+  tags:
+     - scripts
+     - mysql_backup_config
+
+## tasks for check_mk check scripts
+- name: setup_local_checks_dir
+  action: file path={{ item }} state=directory
+  when: local_checks is defined
+  with_items:
+     - '/opt/scripts/check_mk'
+     - '/usr/lib/check_mk_agent/local/86400'
+  tags:
+     - scripts
+     - local_checks
+
+- name: setup_local_checks
+  action: copy src=opt/scripts/check_mk/{{ item }} dest=/opt/scripts/check_mk/
+  with_items: enabled_local_checks
+  when: enabled_local_checks is defined
+  tags:
+     - scripts
+     - local_checks
+    
+- name: setup_local_checks
+  action: file src=/opt/scripts/check_mk/{{ item }} dest={{ local_checks_path }}/{{ item }} state=link force=yes
+  with_items: enabled_local_checks
+  when: enabled_local_checks is defined 
+  tags:
+     - scripts
+     - local_checks
+
+#these are checks that should run once every 600 secs, see http://mathias-kettner.de/checkmk_localchecks.html
+- name: setup_local_checks
+  action: copy src=opt/scripts/check_mk/{{ item }} dest=/opt/scripts/check_mk/
+  with_items: enabled_local_checks_86400
+  when: enabled_local_checks_86400 is defined
+  tags:
+     - scripts
+     - local_checks
+
+- name: setup_local_checks_86400
+  action: file src=/opt/scripts/check_mk/{{ item }} dest=/usr/lib/check_mk_agent/local/86400/{{ item }} state=link force=yes
+  with_items: enabled_local_checks_86400
+  when: enabled_local_checks_86400 is defined 
+  tags:
+     - scripts
+     - local_checks
+
+# this removes a check if the disabled_checks array is defined, and has names of checks to be disabled
+- name: disable_local_checks
+  action: file src={{ local_checks_path }}/{{ item }} state=absent
+  with_items: disabled_local_checks
+  when: disabled_local_checks is defined
+  tags:
+     - scripts
+     - local_checks
+     - disable_checks
+
+- name: disable_checks
+  action: file path=/opt/scripts/check_mk/{{ item }} state=absent
+  with_items: disabled_local_checks
+  when: disabled_local_checks is defined
+  tags:
+     - scripts
+     - local_checks 
+     - disable_checks
+
+# apt security updates script
+- name: security_updates_script
+  action: copy src=opt/scripts/security-updates/security-updates dest=/opt/scripts/security-updates group=root owner=root mode=655
+  when: ansible_distribution == 'Ubuntu'
+  tags:
+     - scripts
+     - security_updates_script
+
+- name: security_updates_cron
+  action: copy src=opt/scripts/security-updates/cron.d/security-updates dest=/etc/cron.d/security-updates group=root owner=root mode=655
+  when: ansible_distribution == 'Ubuntu'
+  tags:
+     - scripts
+     - security_updates_cron

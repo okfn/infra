@@ -1,0 +1,3 @@
+---
+private_dir: ../credentials/ansible
+files: files/

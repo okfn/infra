@@ -1,0 +1,10 @@
+server {
+        listen       80;
+        server_name  new.okfnpad.org;
+
+        access_log  /var/log/nginx/new.okfnpad.access.log;
+        error_log   /var/log/nginx/new.okfnpad.error.log;
+
+         rewrite ^/(.*)$ http://pad.okfn.org/$1 permanent;
+        rewrite_log on;
+}

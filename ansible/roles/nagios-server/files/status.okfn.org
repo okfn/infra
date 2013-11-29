@@ -1,0 +1,33 @@
+#This file is Ansible managed.
+
+<VirtualHost *:80>
+  ServerName status.okfn.org
+
+  ErrorLog /var/log/apache2/status.okfn.org.error.log
+  CustomLog /var/log/apache2/status.okfn.org.log combined
+
+  DocumentRoot /var/vhosts/status.okfn.org/
+
+  RedirectMatch ^/$ http://status.okfn.org/nagios3/
+
+  ScriptAlias /nagios3/cgi-bin     /usr/lib/cgi-bin/nagios3
+# ScriptAlias /nagios3/side.html   /usr/lib/cgi-bin/nagios3/grouplist.cgi
+  Alias       /nagios3/stylesheets /etc/nagios3/stylesheets
+  Alias       /nagios3             /usr/share/nagios3/htdocs
+
+  <DirectoryMatch (/usr/share/nagios3/htdocs|/usr/lib/cgi-bin/nagios3)>
+	  Options FollowSymLinks
+
+	  DirectoryIndex index.html
+
+	  AllowOverride AuthConfig
+	  Order Allow,Deny
+	  Allow From All
+
+	  AuthName "Nagios Access"
+	  AuthType Basic
+	  AuthUserFile /etc/nagios3/htpasswd.users
+	  require valid-user
+  </DirectoryMatch>
+</VirtualHost>
+

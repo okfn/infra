@@ -1,0 +1,64 @@
+- name: install_postfix 
+  action: apt pkg=postfix state=present 
+  when: docker_container is not defined
+  notify: restart postfix 
+  tags: 
+     - install_postfix
+     - postfix
+
+- set_fact: mailname={{ inventory_hostname }}
+  when: mailname is not defined
+
+- name: setup_main_cf
+  template: src={{ mailhost_type }}.cf dest={{ postfix_etc }}/main.cf
+  notify: restart postfix
+
+- name: default_aliases
+  template: src={{ aliases }} dest={{ postfix_etc }}/aliases owner=root group=root mode=0644
+
+- name: fixup_postfix_perms
+  action: shell chown -R root:root {{ postfix_etc }} && chmod -R 755 {{ postfix_etc }}
+
+- name: fixup_alias_link
+  when: docker_container is not defined
+  action: shell rm -f /etc/aliases && ln -s {{ postfix_etc }}/aliases /etc
+
+- name: cleanup_alias_db_link
+  when: docker_container is not defined
+  action: shell rm -f /etc/aliases.db
+
+- name: newaliases
+  command: postalias hash:{{ postfix_etc }}/aliases
+
+- name: create_transport_maps
+  when: transport is defined
+  template: src={{ transport }} dest={{ postfix_etc }}/transport owner=root group=root mode=0644
+
+- name: build_transport_maps
+  when: transport is defined
+  command: postmap hash:{{ postfix_etc }}/transport
+
+- name: create_sasl_password
+  when: ses == True
+  template: src=sasl_passwd dest={{ postfix_etc }}/sasl_passwd owner=root group=root mode=0600
+
+- name: build_sasl_passwd
+  when: ses == True
+  command: postmap hash:{{ postfix_etc }}/sasl_passwd
+
+### XXXX Better to figure out how to do this as a service
+
+- name: get container id
+  action: shell docker ps -notrunc | tail -n +2 | awk -v id={{ docker_container }} '{ n=split($NF, names, ","); for (i=1; i<=n; i++) { if (names[i] == id) { print $1; } } }'
+  when: docker_container is defined
+  register: docker_container_cmd_result
+
+- name: set container id var
+  when: docker_container is defined
+  set_fact:
+    docker_container_id: "{{ docker_container_cmd_result.stdout }}"
+
+- name: postfix reload
+  when: docker_container is defined
+  command: lxc-attach -n {{ docker_container_id }} /usr/sbin/postfix reload
+

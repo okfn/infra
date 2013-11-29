@@ -1,0 +1,73 @@
+#!/usr/bin/python2.7
+
+#import Imagemanager from openstack.compute
+import time
+import re
+from openstack.compute import Compute
+import configparser
+
+config = configparser.RawConfigParser()
+config.read('/opt/scripts/config/config.ini')
+okfn_readonly=config.get('rackspace', 'okfn_readonly')
+okfnmanaged_readonly=config.get('rackspace', 'okfnmanaged_readonly')
+okfnaumanaged_readonly=config.get('rackspace','okfnaumanaged_readonly')
+
+
+ignore = ['nils-test-VM-01']
+no_snapshots = []
+req_age = 604800 # one week
+servers = {}
+
+
+
+accounts = { 'okfn-readonly': okfn_readonly, 'okfnmanaged-readonly': okfnmanaged_readonly, 'okfnaumanaged-readonly': okfnaumanaged_readonly }
+
+for (user, key) in accounts.items():
+	compute =  Compute(username=user, apikey=key)
+	
+   
+	for server in compute.servers.list():
+		servers[server.id] = {}
+		servers[server.id]['name'] = server.name
+		servers[server.id]['snapshot'] = 'absent'
+		servers[server.id]['snapshots'] = 0
+		servers[server.id]['snapshot_timestamp'] = 0
+		
+	
+	ts_now = int(time.time())
+	for image in compute.images.list():
+		try:
+			if servers.has_key(image.serverId):
+				servers[image.serverId]['snapshot'] = 'present'
+				servers[image.serverId]['snapshots'] += 1
+				ts = str(image.created)
+				ts = re.split("-\d+:\d+$", ts)[0]
+				epoch_ts = int(time.mktime(time.strptime(ts, "%Y-%m-%dT%H:%M:%S")))
+				if epoch_ts > servers[image.serverId]['snapshot_timestamp']: # only store the latest snapshot timestamp
+					servers[image.serverId]['snapshot_timestamp'] = epoch_ts
+		except AttributeError: 
+			continue
+
+for server in servers:
+	try:
+		if servers[server]['name'] in ignore:
+			continue
+			
+		ts_now = int(time.time())
+		age = ts_now - servers[server]['snapshot_timestamp']
+		if age > req_age:
+			no_snapshots.append(servers[server]['name'])
+	except KeyError:
+		continue
+
+#print no_snapshots
+if len(no_snapshots) > 0:
+	msg = 'No snapshots in rackspace found for these host(s) since ' +  str(req_age/86400)  + ' days : ' 
+	msg = msg + ",".join(no_snapshots)
+	#http://mathias-kettner.de/checkmk_localchecks.html
+	print '2 rackspace_backups - ' + msg
+	exit(0)
+else:
+	print '0 rackspace_backups - All OK'
+	exit(0)
+

@@ -1,0 +1,79 @@
+#!/bin/sh
+
+if test "$1" = ""; then
+	cat 1>&2 <<EOF
+Usage: $0 ipaddr
+
+A little utility to pull network information out of the whois
+registries at ARIN, RIPE, APNIC &c. and the DNS.
+EOF
+	exit 255
+fi
+
+host=$1
+
+ririnfo() {
+	whois $host | awk -v host=$host '
+function dq2dec(dq) {
+	parts = split(dq, b, ".");
+	dec = b[4] + b[3]*256 + b[2]*256*256 + b[1]*256*256*256;
+	return dec;
+}
+
+BEGIN {
+	netnum=host;
+	netmask="";
+	netname="Unknown";
+	country="??";
+	origin=" ";
+}
+/^inetnum:[ \t]+[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/ {
+	size=dq2dec($4) - dq2dec($2) + 1;
+	netnum=$2;
+	netmask=sprintf("/%.0f", 32 - log(size) * 1.4426950408889634);
+}
+/^origin:/ {
+	for(i=2; i<=NF; i++) {
+		origin=sprintf("%s %s", origin, $i);
+	}
+}
+/^NetRange:[ \t]+[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/ {
+	size=dq2dec($4) - dq2dec($2) + 1;
+	netnum=$2;
+	netmask=sprintf("/%.0f", 32 - log(size) * 1.4426950408889634);
+}
+/^CIDR:/ {
+	netnum=$2;
+	netmask="";
+}
+/^OriginAS:/ {
+	for(i=2; i<=NF; i++) {
+		origin=sprintf("%s %s", origin, $i);
+	}
+}
+/^inet6num:/ { netnum=$2; }
+/^netname:/ { netname=$2; }
+/^NetName:/ { netname=$2; }
+/^country:/ { country=$2; }
+/^Country:/ { country=$2; }
+END {
+	printf("%s%s%s %s %s\n", netnum, netmask, origin, netname, country);
+}
+'
+}
+
+dnsinfo() {
+	host $host | awk -v host=$host '
+BEGIN {
+	dname="??";
+}
+/domain name pointer/ { sub(/\.$/, ""); dname=$NF; }
+END {
+	printf("%s", dname);
+}
+'
+}
+
+d=`dnsinfo $host`
+r=`ririnfo $host`
+echo "$host $d $r"

@@ -1,0 +1,44 @@
+# Nginx configuration file for gunicorn v1.0
+
+# This configuration assumes you are using Gunicorn (http://gunicorn.org/)
+# to run your Booktype installation on port 8000
+
+server {
+    # We assume you are running your web server on port 80
+    listen   80;
+
+    # You should insert your server name here. For instance: booktype.myserver.com
+    server_name booktype.okfn.org;
+
+    # Path to the log files
+    access_log /var/log/nginx/booktype_access.log;
+    error_log  /var/log/nginx/booktype_error.log;
+
+
+    location /static/ {
+        alias /var/www/mybooktype_v1/mybook/static/;
+
+        if ($query_string) {
+            expires max;
+        }
+    }
+
+    location /data/ {
+        alias /var/www/mybooktype_v1/mybook/data/;
+
+        if ($query_string) {
+            expires max;
+        }
+    }
+
+    location / {
+        proxy_pass_header Server;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Scheme $scheme;
+        proxy_connect_timeout 10;
+        proxy_read_timeout 10;
+        proxy_pass http://localhost:9009/;
+    }
+}

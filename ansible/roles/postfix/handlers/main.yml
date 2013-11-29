@@ -1,0 +1,4 @@
+---
+- name: restart postfix
+  when: docker_container is not defined
+  service: name=postfix state=restarted

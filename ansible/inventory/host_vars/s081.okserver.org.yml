@@ -1,0 +1,5 @@
+---
+ckan_project: ckan_community
+backup_postgres: true
+db_type: postgres
+webserver_private_ip: 10.181.161.26

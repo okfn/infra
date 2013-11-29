@@ -1,0 +1,91 @@
+---
+#ansible-playbook bootstrap.yml --extra-vars="hostip=212.110.189.81 hostip6=2001:41c8:1:63db::51 host=s116.okserver.org user=root"  -vvvv -k -i inventory/hosts
+- hosts: "{{ host }}"
+  gather_facts: false
+  connection: ssh
+  user: "{{ user }}"
+  sudo: true
+  vars_files:
+     - ./vars/users.yml
+     - "{{ private_dir }}/p.yml"
+     - vars/users.yml
+ 
+  pre_tasks:
+     
+    - name: set_hostname
+      action: shell echo "{{ host }}" > /etc/hostname && echo hostname "{{ host }}"
+      tags: set_hostname
+
+    - name: -> generate_locale
+      action: shell locale-gen "{{ item }}"
+      with_items: "{{ locale_list }}"
+      tags: generate_locale
+
+    - name: -> preseed debconf
+      action: copy src=files/bootstrap/debconf.preseed dest=/tmp/debconf.preseed force=yes
+      tags: preseed_debconf
+
+    - name: -> apt update
+      action: apt update_cache=yes
+
+    - name: -> run debconf
+      action: shell /usr/bin/debconf-set-selections /tmp/debconf.preseed       
+      tags: run_debconf
+    
+    - name: apt upgrade
+      environment: 
+         DEBIAN_FRONTEND: noninteractive
+      action: apt upgrade=yes
+      tags: apt_upgrade
+    
+    - name: install basic packages
+      action: apt state=installed pkg="{{ item }}"
+      with_items:
+        - ed
+        - vim-nox
+        - man-db
+        - sudo
+        - bsd-mailx
+        - ntpdate
+
+      # run ntpdate only if ntpd isn't running
+    - name: -> set correct date
+      action: shell netstat -an --inet | grep ':123 .*$' || /usr/sbin/ntpdate pool.ntp.org
+      ignore_errors: True
+      tags: set_date
+
+      # install ntp after running ntpdate 'cause otherwise the socket isn't available
+    - name: install basic packages
+      action: apt state=installed pkg=ntp
+
+      ## Add DME record, the DME module is timestamp sensitive, ensure the system clock is in syncd using ntpdate
+      ## msg: http://api.dnsmadeeasy.com/V2.0/dns/managed returned 403, with body: {error: ["Request sent with date header too far out of sync.  Difference in times is -98077, header value is 1376666747000"]}
+    - name: -> Add DME record
+      dnsmadeeasy: account_key="{{ dme_key }}" account_secret="{{ dme_secret }}" domain="{{ host.split('.', 1)[1] }}" state=present record_name="{{ host.split('.')[0] }}" record_type="A" record_value="{{ hostip }}"
+      tags: setup_dns
+
+    #- name: -> Add IPv6 Address
+    #  when: hostip6 is defined
+    #  dnsmadeeasy:  account_key="{{ dme_key }}" account_secret="{{ dme_secret }}" domain="{{ host.split('.', 1)[1] }}" state=present record_name="{{ host.split('.')[0] }}" record_type="AAAA" record_value="{{ hostip6 }}"
+    #  tags: setup_dns
+
+  roles:
+     - users
+     - motd
+
+  tasks:     
+    - name: add project sysadmin alias
+      lineinfile: "dest=/etc/aliases state=present regexp='^root:' line='root: {{ sysadmin_email }}'"
+      tags: set_project_sysadmin_email
+
+    - name: newaliases
+      action: command /usr/bin/newaliases
+      tags: run_newaliases
+    
+    - name: setup_snapshots
+      when: rackspace == true
+      local_action: shell echo {{ inventory_hostname }}
+      tags: local_action    
+#     - name: disable_root_login
+#       lineinfile: "dest=/etc/ssh/sshd_config state=present regexp='^PermitRootLogin' line='PermitRootLogin no'" 
+#       tags: disable_root_login

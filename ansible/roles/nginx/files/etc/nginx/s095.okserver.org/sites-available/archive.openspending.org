@@ -1,0 +1,19 @@
+server {
+    listen *:80;
+    client_max_body_size 14G;
+    server_name archive.openspending.org;
+
+    keepalive_timeout 5;
+
+    access_log /var/log/nginx/archive.openspending.org-access.log;
+    error_log /var/log/nginx/archive.openspending.org-error.log debug;
+
+    # path for static files
+    root /home/okfn/var/srvc/openspending.org/archive/;
+    
+    location / {
+    	alias /home/okfn/var/srvc/openspending.org/archive/;
+    	autoindex on;
+    }
+
+}

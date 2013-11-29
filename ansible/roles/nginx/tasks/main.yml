@@ -1,0 +1,38 @@
+---
+- name: install package
+  action: apt pkg=nginx-full state=installed
+
+- name: install nginx.conf
+  action: copy src={{ item }} dest=/etc/nginx/nginx.conf
+  with_first_found:
+    - etc/nginx/{{ project }}/{{ inventory_hostname }}_nginx.conf
+    - etc/nginx/{{ inventory_hostname }}/nginx.conf
+    - etc/nginx/default_nginx.conf
+  notify: reload nginx
+
+- name: install additional config
+  action: copy src={{ item }} dest=/{{item}}
+  with_items:
+    - etc/nginx/mime.types
+    - etc/nginx/proxy_params
+    - etc/nginx/ssl_params
+  notify: reload nginx
+
+- name: install sites-available
+  action: copy src={{ item }} dest=/etc/nginx/sites-available/
+  with_fileglob:
+    - etc/nginx/{{ inventory_hostname }}/sites-available/*
+  notify: reload nginx
+
+- include: ssl.yml
+  when: nginx_ssl_certs is defined
+
+- name: set up sites-enabled
+  when: sites_enabled is defined
+  action: file
+          src="/etc/nginx/sites-available/{{ item }}"
+          dest="/etc/nginx/sites-enabled/{{ item }}"
+          force=yes
+          state=link
+  with_items: sites_enabled
+  notify: reload nginx

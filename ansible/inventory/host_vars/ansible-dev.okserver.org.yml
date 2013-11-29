@@ -1,0 +1,9 @@
+---
+disable_nagios_checks: true
+backup_postgres: true
+project: ckan
+sites_enabled:
+  - graphs.okserver.org
+  - booktype.okfn.org
+  - apt.okserver.org
+percona_mysql: true

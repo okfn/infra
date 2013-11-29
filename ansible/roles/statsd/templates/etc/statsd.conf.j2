@@ -1,0 +1,12 @@
+{
+  port: 8125,
+  graphitePort: {{ graphite_port }},
+  graphiteHost: "{{ graphite_server }}",
+  backends: [ "./backends/graphite" ],
+  flushInterval: 10000,
+  deleteIdleStats: true,
+  graphite: {
+    legacyNamespace: false,
+    globalPrefix: "application_metrics.{{ inventory_hostname | replace(".", "_") }}"
+  }
+}
