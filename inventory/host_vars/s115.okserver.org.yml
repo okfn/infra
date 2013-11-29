@@ -6,7 +6,7 @@ sites_enabled:
   - sendy.okfn.org
 sites_to_monitor:
   - rt.okfn.org:80:301 # SSL redirect
-  - sendy.okfn.org:80:200
+  - sendy.okfn.org:80:301 # SSL redirect
 ssl_sites_to_monitor:
   - rt.okfn.org
   - sendy.okfn.org
