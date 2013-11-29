@@ -1,9 +1,0 @@
-<VirtualHost *:80>
-    ServerName old.wheredoesmymoneygo.org
-    ServerAlias www.wheredoesmymoneygo.org wp.staging.wheredoesmymoneygo.org wheredoesmymoneygo.org
-    DocumentRoot /home/okfn/var/wp/wheredoesmymoneygo.org
-
-    ErrorLog /var/log/apache2/wheredoesmymoneygo.org.error.log
-    CustomLog /var/log/apache2/wheredoesmymoneygo.org.custom.log combined
-</VirtualHost>
-

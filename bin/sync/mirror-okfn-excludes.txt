@@ -1,4 +1,0 @@
-# for moinmoin
-cache/*
-# all compiled python files
-*.pyc

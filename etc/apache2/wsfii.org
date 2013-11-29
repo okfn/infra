@@ -1,5 +1,0 @@
-<VirtualServer *:80>
-	ServerName wsfii.org
-	ServerAlias *.wsfii.org
-	DocumentRoot /home/okfn/var/www/wsfii.org
-</VirtualServer>

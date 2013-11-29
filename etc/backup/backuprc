@@ -1,4 +1,0 @@
-DB_DUMP_DIR=/mnt/db_dumps
-MOUNT_DEVICE=/dev/sdp
-SNAPSHOT_RW=/mnt/backup_rw
-SNAPSHOT_RO=/mnt/backup_ro

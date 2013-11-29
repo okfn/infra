@@ -1,7 +1,0 @@
-+ /etc
-+ /home
-+ /root
-+ /mnt
-+ /mnt/db_dumps
-- /mnt/**
-- /*

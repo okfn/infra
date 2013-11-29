@@ -1,7 +1,0 @@
-<VirtualHost *:80>
-	ServerName drn.okfn.org
-	DocumentRoot /usr/share/drupal
-	DirectoryIndex index.php
-	CustomLog /var/log/apache2/drn.okfn.org.access.log combined
-	ErrorLog  /var/log/apache2/drn.okfn.org.error.log
-</VirtualHost>

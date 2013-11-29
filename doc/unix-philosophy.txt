@@ -1,7 +1,0 @@
-Appendix: The Unix Philosophy Applied to App Infrastructure
-===========================================================
-
-
-Appendix: The Unix Philosophy Applied to Data
-=============================================
-

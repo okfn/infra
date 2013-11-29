@@ -1,8 +1,0 @@
-<VirtualHost *:80>
-    ServerName staging.wheredoesmymoneygo.org
-    DocumentRoot /home/okfn/var/srvc/staging.wheredoesmymoneygo.org/www
-
-    ErrorLog /var/log/apache2/staging.wheredoesmymoneygo.org.error.log
-    CustomLog /var/log/apache2/staging.wheredoesmymoneygo.org.custom.log combined
-</VirtualHost>
-

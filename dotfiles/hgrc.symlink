@@ -1,9 +1,0 @@
-[extensions]
-color=
-rebase=
-fetch=
-pager=
-
-[pager]
-pager=LESS='FSRX' less
-quiet=True

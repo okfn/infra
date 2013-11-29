@@ -1,2 +1,0 @@
-#!/bin/bash
-bttrack --port 6969 --dfile /home/okfn/var/bttrack/dstate --logfile /home/okfn/var/bttrack/tracker.log

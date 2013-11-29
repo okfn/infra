@@ -1,7 +1,0 @@
-<VirtualHost *:80>
-	ServerName witbd.org
-	ServerAlias *.witbd.org witbd.eu0.okfn.org
-	DocumentRoot /home/okfn/var/www/witbd.org
-	ErrorLog /var/log/apache2/witbd.org.error.log
-	CustomLog /var/log/apache2/witbd.org.access.log combined
-</VirtualHost>

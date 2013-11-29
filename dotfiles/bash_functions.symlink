@@ -1,9 +1,0 @@
-function activate () {
-  local activate_file="${HOME}/var/srvc/${1}/bin/activate"
-
-  if [ -f "${activate_file}" ]; then
-    source "${activate_file}"
-  else
-    echo "Error: ${activate_file} does not exist or is not a file"
-  fi
-}

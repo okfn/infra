@@ -1,4 +1,0 @@
-cluster.name: elasticsearch_okfn
-
-discovery.zen.ping.multicast.enabled: false
-discovery.zen.ping.unicast.hosts: ["elasticsearch.okserver.org", "elasticsearch2.okserver.org"]

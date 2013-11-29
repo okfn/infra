@@ -1,9 +1,0 @@
-<VirtualHost *:80>
-  ServerName wiki.okfn.org
-  DocumentRoot /home/okfn/var/mediawiki/wiki.okfn.org
-  RedirectMatch permanent /Ckan.* http://wiki.ckan.net/
-	
-#  Alias /wiki /home/okfn/var/mediawiki/wiki.okfn.org/wiki/index.php
-  ErrorLog /var/log/apache2/wiki.okfn.org.error.log
-  CustomLog /var/log//apache2/wiki.okfn.org.log combined
-</VirtualHost>

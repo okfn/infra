@@ -1,6 +1,0 @@
-<VirtualHost *:80>
-    # WARNING: Do not manually edit this file, it is desgined to be 
-    #          overwritten at any time by the postinst script of 
-    #          dependent packages
-    Include /etc/apache2/sites-available/br.ckan.net.common
-</VirtualHost>

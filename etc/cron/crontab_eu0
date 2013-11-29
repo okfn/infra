@@ -1,4 +1,0 @@
-# m h  dom mon dow   command
-21 *  *  *  * /home/okfn/svn-okfn/trunk/aggregator/runplanet.py
-0  5  *  *  * /home/okfn/var/srvc/ckan.net/pyenv/bin/paster --plugin ckan db --config /home/okfn/var/srvc/ckan.net/www.ckan.net.ini dump /home/okfn/var/srvc/ckan.net/dumps/ckan-daily.js && gzip --force /home/okfn/var/srvc/ckan.net/dumps/ckan-daily.js
-

@@ -1,3 +1,0 @@
-# This needs the following line in $ServerRoot/envvars :
-#    export HOSTNAME=`hostname`
-ServerName ${HOSTNAME}

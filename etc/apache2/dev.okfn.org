@@ -1,5 +1,0 @@
-<VirtualHost *:80>
-    ServerName dev.okfn.org
-
-    DocumentRoot /home/okfn/var/srvc/dev.okfn.org
-</VirtualHost>
