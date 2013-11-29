@@ -1,76 +1,62 @@
 server {
-    listen      *:80;
-    server_name openspending.org;
-    return 301 https://$host$request_uri;
+  listen 80;
+  server_name openspending.org;
+  return 301 https://$host$request_uri;
 }
 
 server {
-    listen      80;
-    server_name www.openspending.org;
-    return 301 https://openspending.org$request_uri;
-}
-
-upstream app_server {
-    server 127.0.0.1:8080 fail_timeout=0;
+  listen 80;
+  server_name www.openspending.org;
+  return 301 https://openspending.org$request_uri;
 }
 
 server {
-    listen *:443;
-    ssl on;
-    client_max_body_size 4G;
-    server_name openspending.org;
-    
-    set_real_ip_from  127.0.0.1;
-    real_ip_header    X-Forwarded-For;
-    keepalive_timeout 60;
-    
-    include ssl_params;
+  listen 443;
+  server_name openspending.org;
 
-    ssl_certificate /etc/nginx/ssl/openspending_org.crt;
-    ssl_certificate_key /etc/nginx/ssl/openspending_org.key;
-    
-    gzip             on;
-    gzip_vary 	 on;
-    gzip_min_length  1000;
-    gzip_proxied     expired no-cache no-store private auth;
-    gzip_types       text/plain application/xml application/json image/svg+xml text/javascript text/css;
-    gzip_disable     "MSIE [1-6]\.";
-    
-    add_header Access-Control-Allow-Origin *;
-    
-    # cf https://github.com/okfn/openspending/issues/432 
-    rewrite ^/dataset/italyregionalaccounts /it-regional-accounts/embed?widget=treemap&state=%7B"drilldown"%3A"function"%2C"cuts"%3A%7B"year"%3A"2008"%7D%7D permanent;
-    # blog
-    rewrite ^/blog/index.html$ http://blog.openspending.org/;
-    rewrite ^/blog/?$ http://blog.openspending.org/;
-    rewrite ^/blog/(.*).html$ http://blog.openspending.org/$1/;
-    rewrite ^/blog/feed.rss http://blog.openspending.org/feed/;
-    # will not bother to rewrite
-    # http://content.openspending.org/blog/images/(.*)$ http://blog.openspending.org/files/$1;
-    
-    access_log /var/log/nginx/openspending.org-ssl-access.log;
-    error_log /var/log/nginx/openspending.org-ssl-error.log warn;
-    
-    # path for static files
-    root /home/okfn/var/srvc/openspending.org/src/openspending/openspending/ui/public;
-    
-    location /static {
-    	alias /home/okfn/var/srvc/openspending.org/src/openspending/openspending/ui/public/static;
-    }
-    
-    location /files {
-            alias /home/okfn/var/srvc/openspending.org/uploads;
-    }
-    
-            location / {
-                     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                     proxy_set_header Host $http_host;
-                     proxy_buffers 16 16k;
-                     proxy_buffer_size 32k;
-                     proxy_redirect off;
-    		 proxy_connect_timeout 600s;
-    		 proxy_read_timeout 3600s;
-                     proxy_pass   http://app_server;
-                     break;
-    	}
+  ssl on;
+  include ssl_params;
+  ssl_certificate /etc/nginx/ssl/openspending_org.crt;
+  ssl_certificate_key /etc/nginx/ssl/openspending_org.key;
+
+  client_max_body_size 4G;
+  keepalive_timeout 60;
+
+  gzip on;
+  gzip_vary on;
+  gzip_min_length 1000;
+  gzip_proxied expired no-cache no-store private auth;
+  gzip_types text/plain application/xml application/json image/svg+xml text/javascript text/css;
+  gzip_disable "MSIE [1-6]\.";
+
+  add_header Access-Control-Allow-Origin *;
+
+  # cf https://github.com/okfn/openspending/issues/432
+  rewrite ^/dataset/italyregionalaccounts /it-regional-accounts/embed?widget=treemap&state=%7B"drilldown"%3A"function"%2C"cuts"%3A%7B"year"%3A"2008"%7D%7D permanent;
+  # blog
+  rewrite ^/blog/index.html$ http://blog.openspending.org/ permanent;
+  rewrite ^/blog/?$ http://blog.openspending.org/ permanent;
+  rewrite ^/blog/(.*).html$ http://blog.openspending.org/$1/ permanent;
+  rewrite ^/blog/feed.rss http://blog.openspending.org/feed/ permanent;
+
+  access_log /var/log/nginx/openspending.org-ssl-access.log;
+  error_log /var/log/nginx/openspending.org-ssl-error.log warn;
+
+  location /static {
+    alias /home/okfn/var/srvc/openspending.org/src/openspending/openspending/ui/public/static;
+  }
+
+  location /files {
+    alias /home/okfn/var/srvc/openspending.org/uploads;
+  }
+
+  location / {
+    include proxy_params;
+    proxy_buffers 16 16k;
+    proxy_buffer_size 32k;
+    proxy_redirect off;
+    proxy_connect_timeout 600s;
+    proxy_read_timeout 3600s;
+    proxy_pass http://127.0.0.1:8080;
+  }
 }
