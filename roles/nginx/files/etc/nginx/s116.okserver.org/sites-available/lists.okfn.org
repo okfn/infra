@@ -11,7 +11,7 @@ server {
   listen [::]:80;
   server_name lists.okfn.org;
 
-  rewrite ^ https://lists.okfn.org$request_uri? permanent;
+  return 301 https://$host$request_uri;
 }
 
 server {

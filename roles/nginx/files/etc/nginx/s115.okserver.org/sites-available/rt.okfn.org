@@ -1,7 +1,7 @@
 server {
   listen 80;
   server_name rt.okfn.org;
-  rewrite ^ https://rt.okfn.org$request_uri? permanent;
+  return 301 https://$host$request_uri;
 }
 
 server {

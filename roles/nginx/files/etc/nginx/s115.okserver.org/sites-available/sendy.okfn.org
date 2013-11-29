@@ -1,7 +1,7 @@
 server {
   listen 80;
   server_name sendy.okfn.org;
-  rewrite ^ https://sendy.okfn.org$request_uri? permanent;
+  return 301 https://$host$request_uri;
 }
 
 server {

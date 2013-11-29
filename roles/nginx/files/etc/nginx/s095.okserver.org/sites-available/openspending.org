@@ -1,12 +1,13 @@
 server {
     listen      *:80;
     server_name openspending.org;
-    rewrite     ^ https://openspending.org$request_uri? permanent;
+    return 301 https://$host$request_uri;
 }
+
 server {
     listen      80;
     server_name www.openspending.org;
-    rewrite     ^ https://openspending.org$request_uri? permanent;
+    return 301 https://openspending.org$request_uri;
 }
 
 upstream app_server {
