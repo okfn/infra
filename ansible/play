@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")"
 
-: ${CREDENTIALS_DIR:=$PWD/../credentials}
+: ${CREDENTIALS_DIR:=$PWD/../../credentials}
 
 set -eu
 
