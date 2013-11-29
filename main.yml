@@ -24,7 +24,7 @@
     - "{{ private_dir }}/p.yml"
   roles:
     - varnish
-    - nginx
+    - { role: nginx, tags: ['nginx'] }
     - statsd
 
 - hosts: s113.okserver.org
@@ -58,7 +58,7 @@
   gather_facts: false
   sudo: true
   roles:
-    - nginx
+    - { role: nginx, tags: ['nginx'] }
 
 - hosts: monitoring
   sudo: true
@@ -79,7 +79,7 @@
     - "{{ private_dir }}/p.yml"
   roles:
     - postfix
-    - nginx
+    - { role: nginx, tags: ['nginx'] }
     - mailman
 
 - hosts: docker-host
