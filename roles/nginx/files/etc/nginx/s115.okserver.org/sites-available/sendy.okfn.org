@@ -1,5 +1,17 @@
 server {
+  listen 80;
   server_name sendy.okfn.org;
+  rewrite ^ https://sendy.okfn.org$request_uri? permanent;
+}
+
+server {
+  listen 443;
+  server_name sendy.okfn.org;
+
+  ssl on;
+  include ssl_params;
+  ssl_certificate /etc/nginx/ssl/star_okfn_org.crt;
+  ssl_certificate_key /etc/nginx/ssl/star_okfn_org.key;
 
   access_log /var/log/nginx/sendy.okfn.org-access.log;
   error_log /var/log/nginx/sendy.okfn.org-error.log;
