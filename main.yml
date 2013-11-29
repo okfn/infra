@@ -79,6 +79,8 @@
     - "{{ private_dir }}/p.yml"
   roles:
     - postfix
+    # Keep nginx before mailman, as mailman will want to install some config
+    # files into /etc/nginx.
     - { role: nginx, tags: ['nginx'] }
     - mailman
 
