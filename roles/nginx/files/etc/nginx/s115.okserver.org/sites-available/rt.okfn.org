@@ -1,0 +1,25 @@
+server {
+  listen 80;
+  server_name rt.okfn.org;
+  rewrite ^ https://rt.okfn.org$request_uri? permanent;
+}
+
+server {
+  listen 443;
+  server_name rt.okfn.org;
+
+  ssl on;
+  include ssl_params;
+  ssl_certificate /etc/nginx/ssl/star_okfn_org.crt;
+  ssl_certificate_key /etc/nginx/ssl/star_okfn_org.key;
+
+  access_log /var/log/nginx/rt.okfn.org-access.log;
+  error_log /var/log/nginx/rt.okfn.org-error.log;
+
+  location /  {
+    proxy_pass http://localhost:5080;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+}
