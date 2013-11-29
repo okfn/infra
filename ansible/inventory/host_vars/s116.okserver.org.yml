@@ -10,6 +10,7 @@ ses: false
 origin: okfn.org
 listserv: true
 transport: list_transport
+aliases: "{{ inventory_hostname }}/aliases"
 relay_domains:
   - lists.okfn.org
   - lists.knowledgeforge.net
