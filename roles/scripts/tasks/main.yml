@@ -20,6 +20,10 @@
   when: scripts is defined
   tags: scripts
 
+- name: install pip
+  action: apt pkg=python-pip state=installed
+  tags: scripts
+
 - name: ensure_configparser
   action: pip name=configparser
   tags: scripts
