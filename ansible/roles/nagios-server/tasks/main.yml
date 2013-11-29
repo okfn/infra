@@ -1,5 +1,5 @@
 ---
-- include_vars: "{{ role_private_dir }}/p.yml"
+- include_vars: "{{ private_dir }}/p.yml"
 
 - name: add nagios user
   action: user name=nagios state=present
@@ -26,13 +26,13 @@
      - nagios_cgi_links
 
 - name: ensure_setuid for nagios_plugins
-  action: file path=/usr/lib/nagios/plugins/* owner=root group=nagios recurse=true mode=4755 
+  action: file path=/usr/lib/nagios/plugins/* owner=root group=nagios recurse=true mode=4755
   tags:
      - nagios
      - nagios_plugins_setuid
 
 - name: add private key for check_by_ssh checks
-  action: copy src={{ role_private_dir }}/nagios_id_rsa.private dest=/home/nagios/.ssh/id_rsa owner=nagios group=monitoring mode=600
+  action: copy src={{ private_dir }}/nagios_id_rsa.private dest=/home/nagios/.ssh/id_rsa owner=nagios group=monitoring mode=600
   tags:
      - nagios
      - nagios_ssh_key
@@ -46,9 +46,9 @@
 - name: nagios_config
   action: copy src={{ item }} dest=/etc/nagios3/
   notify: reload nagios
-  with_fileglob: 
+  with_fileglob:
      - etc/nagios3/*
-  tags: 
+  tags:
      - nagios_config
      - nagios
 
@@ -57,16 +57,16 @@
   notify: reload nagios
   with_fileglob:
      - etc/nagios3/conf.d/*
-  tags: 
+  tags:
      - nagios_config_confd
      - nagios
 
 - name: nagios_config
   action: copy src=usr/local/bin/pagerduty_nagios.pl dest=/usr/local/bin/pagerduty_nagios.pl mode=755 owner=nagios
   notify: reload nagios
-  with_fileglob: 
+  with_fileglob:
      - etc/nagios3/*
-  tags: 
+  tags:
      - nagios
      - nagios_pagerduty
      - nagios_pagerduty_script
@@ -74,14 +74,14 @@
 - name: nagios_pagerduty_config
   action: template src=etc/nagios3/conf.d/pagerduty_nagios.cfg.j2 dest=/etc/nagios3/conf.d/pagerduty_nagios.cfg owner=nagios
   notify: reload nagios
-  tags: 
+  tags:
     - nagios
     - nagios_pagerduty
     - nagios_pagerduty_config
 
 - name: nagios_pagerduty_cron
   action: copy src=etc/cron.d/pagerduty_nagios dest=/etc/cron.d/pagerduty_nagios mode=755 owner=root group=root
-  tags: 
+  tags:
     - nagios
     - nagios_pagerduty
     - nagios_pagerduty_cron
