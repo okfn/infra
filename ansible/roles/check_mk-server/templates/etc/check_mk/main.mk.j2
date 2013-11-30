@@ -81,7 +81,7 @@ service_groups = [
 	("webservice", ALL_HOSTS, ["HTTP(S|).*"]),
 ]
 service_contactgroups = [
-	("pagerduty", [], ALL_HOSTS, ["HTTP(S|).*"]),
+	("pagerduty_service_alerts", [], ALL_HOSTS, ["HTTP(S|).*"]),
 ]
 
 
@@ -106,7 +106,8 @@ define_contactgroups = {
  "sysadmin" : "Le BOFH",
  "CKAN-sysadmin" : "CKAN product owner sysadmins",
  "Openspending-sysadmin" : "Openspending product owner sysadmins",
- "pagerduty": "Pagerduty alerting",
+ "pagerduty_service_alerts": "Pagerduty alerting on critcal services",
+ "pagerduty_host_alerts": "Pagerduty alerting for host downtime", 
 }
 
 host_contactgroups = [
@@ -114,6 +115,7 @@ host_contactgroups = [
 ('sysadmin',  [ {% for host in groups['sysadmin-servers'] %} '{{ host }}', {% endfor %} ] ),
 ('ckan-sysadmin',  [ {% for host in groups['ckan']  %} '{{ host }}', {% endfor %} ] ),
 ('openspending-sysadmin', [ {% for host in groups['openspending'] %} '{{ host }}', {% endfor %} ] ),
+("pagerduty_host_alerts", ALL_HOSTS),
 
 ]
 

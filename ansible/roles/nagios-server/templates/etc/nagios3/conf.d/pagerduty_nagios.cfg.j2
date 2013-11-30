@@ -1,13 +1,28 @@
 define contact {
-       contact_name                             pagerduty
+       contact_name                             pagerduty_service_alerts
        alias                                    PagerDuty Pseudo-Contact
        service_notification_period              24x7
        host_notification_period                 24x7
        service_notification_options             w,u,c,r
+       host_notifications_enabled               0
+       host_notification_options                n
+       service_notification_commands            notify-service-by-pagerduty
+       host_notification_commands               notify-host-by-pagerduty
+       contactgroups                            pagerduty_service_alerts
+       pager                                    {{ pagerduty_key }}
+}
+
+define contact {
+       contact_name                             pagerduty_host_alerts
+       alias                                    PagerDuty Pseudo-Contact
+       service_notifications_enabled            0
+       service_notification_options             n
+       service_notification_period              24x7
+       host_notification_period                 24x7
        host_notification_options                d,r
        service_notification_commands            notify-service-by-pagerduty
-       host_notification_commands               notify-host-by-pagerduty	
-       contactgroups                            pagerduty  
+       host_notification_commands               notify-host-by-pagerduty
+       contactgroups                            pagerduty_host_alerts
        pager                                    {{ pagerduty_key }}
 }
 
