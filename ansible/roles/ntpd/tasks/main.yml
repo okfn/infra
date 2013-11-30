@@ -1,11 +1,34 @@
 #depends on timezone = being defined under inventory/host_vars or inventory/group_vars 
 ---
 
+- name: check_timezone
+  action: shell diff -s /etc/localtime /usr/share/zoneinfo/{{ timezone }}
+  register: timezone_ok
+  ignore_errors: true 
+  tags:
+     - check_timezone
+     - ntpd
+
+- name: check_timezone_file_exists
+  action: shell test -f /etc/timezone
+  register: timezonefile_exists
+  ignore_errors: True
+  tags:
+     - check_timezone_file_exists
+     - ntpd
+
 - name: setup_timezone
-  file: src=/usr/share/zoneinfo/{{ timezone }} dest=/etc/timezone state=link owner=root group=root force=yes
-  when: timezone is defined
+  action: shell echo {{ timezone }} > /etc/timezone
+  when: timezone_ok.rc != 0 or timezonefile_exists != 0
   tags: 
      - setup_timezone
+     - ntpd
+
+- name: reconfigure_to_new_timezone
+  action: shell dpkg-reconfigure -f noninteractive tzdata
+  when: timezone is defined and timezone_ok.rc != 0
+  tags: 
+     - reconfigure_to_new_timezone
      - ntpd
 
 #https://bugs.launchpad.net/ubuntu/+source/openntpd/+bug/458061 workaround
@@ -40,7 +63,6 @@
   ignore_errors: True
   tags:
      - ntpd
-
 
 - name: install_openntpd 
   action: apt pkg=openntpd state=present 
