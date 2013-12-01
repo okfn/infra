@@ -11,6 +11,7 @@ origin: okfn.org
 listserv: true
 transport: list_transport
 aliases: "{{ inventory_hostname }}/aliases"
+graphite_collectors: [ 'mailman_stats.py' ]
 relay_domains:
   - lists.okfn.org
   - lists.knowledgeforge.net
