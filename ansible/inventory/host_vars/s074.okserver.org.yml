@@ -1,4 +1,0 @@
----
-db_type: mysql
-sites_to_monitor: ['okfnpad.org:80:200', 'new.okfnpad.org:80:301'] # check port 80, look for status 301
-sites_enabled: ['message.okfnpad.org', 'okfnpad.org', 'test09.okfnpad.org']
