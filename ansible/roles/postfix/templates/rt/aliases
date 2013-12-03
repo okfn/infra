@@ -25,5 +25,5 @@ sys:		/dev/null
 uucp:		/dev/null
 www-data:	/dev/null
 
-rt:		"|/opt/rt4/bin/rt-mailgate --queue sysadmin-triage --action correspond --url http://rt.okfn.org/"
-rt-comment:	"|/opt/rt4/bin/rt-mailgate --queue sysadmin-triage --action comment --url http://rt.okfn.org/"
+rt:		"|/opt/rt4/bin/rt-mailgate --queue sysadmin-triage --action correspond --url https://rt.okfn.org/"
+rt-comment:	"|/opt/rt4/bin/rt-mailgate --queue sysadmin-triage --action comment --url https://rt.okfn.org/"
