@@ -23,9 +23,13 @@
   ignore_errors: True
 
 - name: docker rt volumes
-  command: mkdir -p /data/rt
+  command: mkdir -p /data/{{ docker_container }}
   when: rt.rc == 1
 
 - name: create docker rt server
-  command: docker run -d -e="RT_DATABASE_PW={{rt_database_pw}}" -v="/data/rt:/data" -p=127.0.0.1:5025:25 -p=127.0.0.1:5080:80 -link=rt_pg:db -name=rt okfn/rt:0.10
+  command: docker run -d -e="RT_DATABASE_PW={{rt_database_pw}}" -v="/data/rt:/data" -p=127.0.0.1:5025:25 -p=127.0.0.1:5080:80 -link=rt_pg:db -name={{ docker_container }} okfn/rt:0.10
   when: rt.rc == 1
+
+- name: configure docker rt server
+  action: copy src=RT_SiteConfig.pm dest=/data/rt/rt_conf/ owner=root group=www-data mode=0640
+  notify: restart rt
