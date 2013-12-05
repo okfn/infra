@@ -27,5 +27,5 @@
   when: rt.rc == 1
 
 - name: create docker rt server
-  command: docker run -d -e="RT_DATABASE_PW={{rt_database_pw}}" -v="/data/rt:/data" -p=127.0.0.1:5025:25 -p=127.0.0.1:5080:80 -link=rt_pg:db -name=rt okfn/rt:0.9
+  command: docker run -d -e="RT_DATABASE_PW={{rt_database_pw}}" -v="/data/rt:/data" -p=127.0.0.1:5025:25 -p=127.0.0.1:5080:80 -link=rt_pg:db -name=rt okfn/rt:0.10
   when: rt.rc == 1
