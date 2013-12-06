@@ -2,9 +2,12 @@ server {
 	listen 80;
 	client_max_body_size 4M;
 	server_name graphite.okfn.org;
-	access_log /var/log/nginx/stats.access.log;
-	error_log /var/log/nginx/stats.error.log;
+	access_log /var/log/nginx/graphite.okfn.org.access.log;
+	error_log /var/log/nginx/graphite.okfn.org.error.log;	
 	
+	satisfy any;
+        allow 54.211.250.65;
+        deny all;	
 	auth_basic      "Magic word?";
         auth_basic_user_file    htpasswd;
 	
