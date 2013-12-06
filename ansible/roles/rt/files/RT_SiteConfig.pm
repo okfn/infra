@@ -22,3 +22,12 @@ Plugin( "RT::Extension::RepeatTicket" );
 Set( $RepeatTicketCoexistentNumber, 1 ); # Optional
 Set( $RepeatTicketLeadTime, 14 ); # Optional
 Set( $RepeatTicketSubjectFormat, '__Subject__' );
+
+Set( %FullTextSearch,
+    Enable     => 1,
+    Indexed    => 1,
+    Column     => 'ContentIndex',
+    Table      => 'Fulltext',
+);
+
+1;
