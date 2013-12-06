@@ -13,7 +13,7 @@
   pre_tasks:
      
     - name: set_hostname
-      action: shell echo "{{ host }}" > /etc/hostname && echo hostname "{{ host }}"
+      action: shell echo "{{ host }}" > /etc/hostname && echo hostname "{{ host }}" && service hostname restart
       tags: set_hostname
 
     - name: -> generate_locale
