@@ -23,9 +23,9 @@
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
-    - varnish
+    - { role: varnish, tags: ['varnish'] }
     - { role: nginx, tags: ['nginx'] }
-    - statsd
+    - { role: statsd, tags: ['statsd'] }
 
 - hosts: s113.okserver.org
   sudo: true
@@ -33,6 +33,7 @@
     - "{{ private_dir }}/p.yml"
   roles:
     - role: etherpad-lite
+      tags: ['etherpad-lite']
       install_path: /var/www/etherpad-lite
       user: etherpad-lite
       group: etherpad-lite
@@ -42,6 +43,7 @@
   sudo: true
   roles:
     - role: rsnapshot
+      tags: ['rsnapshot']
       snapshot_root: /home/backup/snapshots/
       cmd_rsync: /usr/bin/rsync
 
@@ -49,10 +51,11 @@
   sudo: true
   roles:
     - role: booktype
+      tags: ['booktype']
       install_path: /var/www/mybooktype
       user: booktype
       group: booktype
-    - graphite
+    - { role: graphite, tags: ['graphite'] }
 
 - hosts: wiki
   gather_facts: false
@@ -65,25 +68,25 @@
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
-    - nagios-server
-    - check_mk-server
+    - { role: nagios-server, tags: ['nagios-server'] }
+    - { role: check_mk-server, tags: ['check_mk-server'] }
 
 - hosts: listserv
   sudo: true
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
-    - postfix
+    - { role: postfix, tags: ['postfix'] }
     # Keep nginx before mailman, as mailman will want to install some config
     # files into /etc/nginx.
     - { role: nginx, tags: ['nginx'] }
-    - mailman
+    - { role: mailman, tags: ['mailman'] }
 
 - hosts: docker-host
   sudo: true
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
-    - postfix
-    - docker
+    - { role: postfix, tags: ['postfix'] }
+    - { role: docker, tags: ['docker'] }
     - { role: nginx, tags: ['nginx'] }
