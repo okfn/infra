@@ -21,7 +21,7 @@ smtp_tls_note_starttls_offer = yes
 relayhost = {{ relayhost }}
 {% endif %}
 relay_domains =
-{% for dest in relay_domains %}
+{% for dest in postfix_relay_domains %}
         {{ dest }}
 {% endfor %}
 alias_maps = hash:/etc/postfix/aliases

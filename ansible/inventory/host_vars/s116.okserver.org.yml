@@ -14,7 +14,7 @@ aliases: "{{ inventory_hostname }}/aliases"
 graphite_collectors: [ 'mailman_stats.py' ]
 check_graphite: ['sum(mail_metrics.mailman.subscribe.*.pending):-1hours:20:30']
 check_parameters: ['Postfix Queue:80:120']
-relay_domains:
+postfix_relay_domains:
   - lists.okfn.org
   - lists.knowledgeforge.net
   - lists.dataexpeditions.org

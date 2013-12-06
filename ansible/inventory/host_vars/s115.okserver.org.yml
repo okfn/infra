@@ -17,5 +17,5 @@ nginx_ssl_certs:
 mailhost_type: leaf
 relayhost: False
 ses: False
-relay_domains: ['rt.okfn.org']
+postfix_relay_domains: ['rt.okfn.org']
 transport: "{{ inventory_hostname }}/transport"

@@ -1,4 +1,4 @@
 school-of-data@lists.okfn.org	local:
-{% for dest in relay_domains %}
+{% for dest in postfix_relay_domains %}
 {{ dest }}	mailman:
 {% endfor %}
