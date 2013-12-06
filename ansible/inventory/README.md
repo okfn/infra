@@ -18,6 +18,15 @@ need to be enabled on the host. Setting this var adds the script into the `check
 
     local_checks: ['exim_mailqueue']
 
+## `check_graphite`
+
+`check_graphite` is an array of metrics from graphite to be monitored, each array element looks like 
+
+    '<metric.datapoint>:timeperiod:<warning level>:<critical level>'
+e.g
+    ['mail_metrics.mailman.subscribe.lod2.pending:-1hours:20:30']
+
+
 ## `disabled_checks`
 
 `disabled_checks` accepts an array of elements with the names of local passive
