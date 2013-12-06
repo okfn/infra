@@ -63,13 +63,18 @@ IMAGE_LOGOS         = '/images/mailman/'
 
 #-------------------------------------------------------------
 # Default domain for email addresses of newly created MLs
-DEFAULT_EMAIL_HOST = '{{ listserv_host }}'
+DEFAULT_EMAIL_HOST = '{{ mailman_list_host }}'
 #-------------------------------------------------------------
 # Default host for web interface of newly created MLs
-DEFAULT_URL_HOST   = '{{ listserv_host }}'
+DEFAULT_URL_HOST   = '{{ mailman_list_host }}'
 #-------------------------------------------------------------
 # Required when setting any of its arguments.
 add_virtualhost(DEFAULT_URL_HOST, DEFAULT_EMAIL_HOST)
+{% if mailman_additional_list_hosts is defined %}
+{% for host in mailman_additional_list_hosts %}
+add_virtualhost('{{ host }}', '{{ host }}')
+{% endfor %}
+{% endif %}
 
 #-------------------------------------------------------------
 # The default language for this server.
