@@ -62,12 +62,14 @@
      - nagios
 
 - name: nagios_config
-  action: copy src=usr/local/bin/pagerduty_nagios.pl dest=/usr/local/bin/pagerduty_nagios.pl mode=755 owner=nagios
+  action: copy src=usr/local/bin/{{ item }} dest=/usr/local/bin/{{ item }} mode=755 owner=nagios
   notify: reload nagios
-  with_fileglob:
-     - etc/nagios3/*
+  with_items:
+     - check_graphite.py
+     - pagerduty_nagios.pl
   tags:
      - nagios
+     - nagios_scripts     
      - nagios_pagerduty
      - nagios_pagerduty_script
 
