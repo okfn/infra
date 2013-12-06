@@ -68,11 +68,6 @@
     - nagios-server
     - check_mk-server
 
-- hosts: mail
-  sudo: true
-  tasks:
-    - action: debug msg="mailserver!"
-
 - hosts: listserv
   sudo: true
   vars_files:
