@@ -26,6 +26,20 @@ need to be enabled on the host. Setting this var adds the script into the `check
 e.g
     ['mail_metrics.mailman.subscribe.lod2.pending:-1hours:20:30']
 
+## `check_parameters`
+
+`check_parameters` is an array of parameters should be used per check, these apply to both inventorized and manually defined checks,
+each array element should be in the format:
+
+    <check name>:<warning level>:<critical level>
+
+ e.g: 
+
+     check_parameters: ['Postfix Queue:80:120']
+
+For more details on [checkmk_check parameters](check parameters http://mathias-kettner.de/checkmk_check_parameters.html)
+
+
 
 ## `disabled_checks`
 

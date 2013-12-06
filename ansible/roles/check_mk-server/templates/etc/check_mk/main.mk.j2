@@ -24,6 +24,31 @@ all_hosts = [
 
 ]
 
+#check_parameters is an array of checks and the parameters that should be set, these apply to both inventorized and manually defined checks.
+#
+# '<check name>:<warning level>:<critical level>'
+# e.g: 
+#
+# check_parameters: ['Postfix Queue:80:120']
+#
+# ((90, 100), ["s116.okserver.org"], ["Postfix Queue"]),
+#http://mathias-kettner.de/checkmk_check_parameters.html
+check_parameters = [
+
+{% for host in groups['all'] %}
+
+  {% if hostvars[host]['check_parameters'] is defined %}
+    {% for param in hostvars[host]['check_parameters'] %}
+( ( {{ param.split(':')[1] }}, {{ param.split(':')[2] }} ), ["{{ host }}"], [ "{{ param.split(':')[0] }}" ] ),
+    {% endfor %}
+  {% endif %}                                                                                  
+
+{% endfor %}
+
+]
+
+
+
 
 #check_mk calls this method of check definition legacy_checks (a bit misleading)
 legacy_checks = [
