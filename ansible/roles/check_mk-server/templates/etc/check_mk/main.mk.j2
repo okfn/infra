@@ -31,6 +31,8 @@ legacy_checks = [
 # sites_to_monitor is an array of sites defined in inventory/host_vars/$host e.g, ['openspending.org:port:http_status']
 # if this fails to generate with the error ''
 
+# check_graphite is an array of metrics to be monitored, its defined under inventory/host_vars/$host; e.g ['mail_metrics.mailman.subscribe.lod2.pending:-1hours:20:30']
+# each array element looks like '<metric.datapoint>:timeperiod:<warning level>:<critical level>'
 
 #webservice monitoring
 {% for host in groups['all'] %}
@@ -46,6 +48,12 @@ legacy_checks = [
 ( ( "check_http_ssl_works!{{ site }}", "HTTPS {{ site }}", False), [ "{{ host }}" ] ),
 ( ( "check_http_ssl_cert!{{ site }}", "HTTPS SSL valid {{ site }}", False), [ "{{ host }}" ] ),
     {% endfor %}
+  {% endif %}
+
+  {% if hostvars[host]['check_graphite'] is defined %}
+   {% for check in hostvars[host]['check_graphite'] %}
+( ( "check_graphite!{{ check.split(':')[0] }}!{{ check.split(':')[1] }}!{{ check.split(':')[2] }}!{{ check.split(':')[3] }}", "Mailman subscription rate", False), [ "{{ host }}" ] ),
+   {% endfor %}
   {% endif %}
 
 {% endfor %}
@@ -193,7 +201,7 @@ define command{
 
 define command {
 	command_name	check_tcp_2
-	command_line	usr/lib/nagios/plugins/check_tcp -H '$ARG1$' -p '$ARG2$'	
+	command_line	/usr/lib/nagios/plugins/check_tcp -H '$ARG1$' -p '$ARG2$'	
 
 }
 
@@ -202,6 +210,10 @@ define command{
 	command_line /usr/lib/nagios/plugins/check_smtp -H '$ARG1$'
 }
 
+define command{
+	command_name check_graphite
+	command_line /usr/local/bin/check_graphite.py -U http://{{ graphite_server }} -t '$ARG1$' --from='$ARG2$' -W '$ARG3$' -C '$ARG4$'
+}
 
 ################################################################################
 # NOTIFICATION COMMANDS
