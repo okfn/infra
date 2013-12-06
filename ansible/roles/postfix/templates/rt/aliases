@@ -27,3 +27,4 @@ www-data:	/dev/null
 
 rt:		"|/opt/rt4/bin/rt-mailgate --queue sysadmin-triage --action correspond --url https://rt.okfn.org/"
 rt-comment:	"|/opt/rt4/bin/rt-mailgate --queue sysadmin-triage --action comment --url https://rt.okfn.org/"
+alarm:		"|/opt/rt4/bin/rt-mailgate --queue alerts --action comment --url https://rt.okfn.org/"
