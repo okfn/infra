@@ -30,6 +30,18 @@
 - name: newaliases
   command: postalias hash:{{ postfix_etc }}/aliases
 
+- name: create_access
+  action: copy src=access dest={{ postfix_etc }}/access owner=root group=root mode=0644
+
+- name: build_access
+  command: postmap hash:{{ postfix_etc }}/access
+
+- name: create_helo_access
+  action: copy src=helo_access dest={{ postfix_etc }}/helo_access owner=root group=root mode=0644
+
+- name: build_helo_access
+  command: postmap hash:{{ postfix_etc }}/helo_access
+
 - name: create_transport_maps
   when: transport is defined
   template: src={{ transport }} dest={{ postfix_etc }}/transport owner=root group=root mode=0644
