@@ -30,4 +30,6 @@ Set( %FullTextSearch,
     Table      => 'Fulltext',
 );
 
+Set( @Active_MakeClicky, qw(httpurl_overwrite short_ticket_link) );
+
 1;
