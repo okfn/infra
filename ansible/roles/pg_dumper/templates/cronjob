@@ -1,0 +1,4 @@
+#!/bin/sh
+
+docker start -a {{ dumper_container }}
+

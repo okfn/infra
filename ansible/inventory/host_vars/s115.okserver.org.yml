@@ -19,3 +19,8 @@ relayhost: False
 ses: False
 postfix_relay_domains: ['rt.okfn.org']
 transport: "{{ inventory_hostname }}/transport"
+
+database_container: rt_pg
+dumper_container: dumper
+dump_databases: rt4
+dumper_s3_bucket: s115_pg_dump

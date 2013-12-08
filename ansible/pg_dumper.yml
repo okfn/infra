@@ -1,0 +1,17 @@
+### This *must* be in a separate file from the rest. In fact this is true
+### whenever there is software in a container that must be configured alongside
+### similar software on the host. In this case the culprit is postfix.
+### This is because the same recipies might be run directly on the host, or
+### in a container on the host. Ansible doesn't know how to execute commands
+### in containers directly, so docker blurs the lines. Unblur them by
+### keeping this configuration separate.
+
+
+- hosts: s115.okserver.org
+  gather_facts: True
+  connection: ssh
+  sudo: true
+  vars_files:
+   - "{{ private_dir }}/p.yml"
+  roles:
+   - pg_dumper
