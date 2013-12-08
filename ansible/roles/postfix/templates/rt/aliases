@@ -25,6 +25,6 @@ sys:		/dev/null
 uucp:		/dev/null
 www-data:	/dev/null
 
-rt:		"|/opt/rt4/bin/rt-mailgate --queue sysadmin-triage --action correspond --url https://rt.okfn.org/"
-rt-comment:	"|/opt/rt4/bin/rt-mailgate --queue sysadmin-triage --action comment --url https://rt.okfn.org/"
-alarm:		"|/opt/rt4/bin/rt-mailgate --queue alerts --action comment --url https://rt.okfn.org/"
+rt:		"|/usr/bin/procmail -m ACTION=correspond QUEUE=sysadmin-triage /etc/postfix/procmailrc.rt"
+rt-comment:	"|/usr/bin/procmail -m ACTION=comment QUEUE=sysadmin-triage /etc/postfix/procmailrc.rt"
+alarm:		"|/usr/bin/procmail -m ACTION=comment QUEUE=alerts /etc/postfix/procmailrc.rt"
