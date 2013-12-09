@@ -9,6 +9,7 @@
   with_items:
     - nagios3
     - fcgiwrap
+  notify: setuid nagios plugins
 
 - name: setup symlinks for nagios cgi
   file: src='{{ item.src }}' dest='{{ item.dest }}' state=link
@@ -17,13 +18,6 @@
       dest: /usr/share/nagios3/htdocs/stylesheets
     - src: /usr/share/nagios3/htdocs/
       dest: /usr/share/nagios3/htdocs/nagios3
-
-- name: setuid for nagios_plugins
-  file: path=/usr/lib/nagios/plugins/*
-        owner=root
-        group=nagios
-        recurse=true
-        mode=4755
 
 - name: add private key for check_by_ssh checks
   copy: src='{{ private_dir }}/nagios_id_rsa.private'

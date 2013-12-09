@@ -1,2 +1,8 @@
 - name: reload nagios
   service: name=nagios3 state=reloaded
+
+- name: setuid nagios plugins
+  shell: dpkg-statoverride --update --add root nagios 4750 '/usr/lib/nagios/plugins/{{ item }}'
+  with_items:
+    - check_icmp
+    - check_dhcp
