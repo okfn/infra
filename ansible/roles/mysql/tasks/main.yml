@@ -19,7 +19,7 @@
      - add_percona_repo_src
 
 - name: add_percona_repo_src
-  apt_repository: repo='deb http://repo.percona.com/apt precise main' state=present update_cache=yes
+  apt_repository: repo='deb http://repo.percona.com/apt precise main' state=present
   when: percona_mysql is defined
   tags:
      - mysql

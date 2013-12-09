@@ -3,7 +3,7 @@
   apt_repository: repo=ppa:chris-lea/node.js
 
 - name: install nodejs
-  apt: pkg=nodejs state=installed update_cache=yes
+  apt: pkg=nodejs state=installed
 
 - name: create etherpad-lite database
   mysql_db: name=etherpad-lite encoding=utf8 state=present
