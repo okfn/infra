@@ -27,7 +27,7 @@
   tags: git_checkout_etherpad
 
 - name: install_etherpad_deps
-  shell: {{ install_path }}/bin/installDeps.sh
+  shell: '{{ install_path }}/bin/installDeps.sh'
 
 - name: set_permissions_etherpad
   file: path={{ install_path }} owner={{ user }} group={{ group }} recurse=yes state=directory
