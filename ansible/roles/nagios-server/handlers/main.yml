@@ -1,2 +1,2 @@
 - name: reload nagios
-  shell: nagios3 -v /etc/nagios3/nagios.cfg && /etc/init.d/nagios3 reload # we can probably do better than this
+  service: name=nagios3 state=reloaded
