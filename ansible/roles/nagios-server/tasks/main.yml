@@ -2,49 +2,49 @@
 - include_vars: "{{ private_dir }}/p.yml"
 
 - name: add nagios user
-  action: user name=nagios state=present
+  user: name=nagios state=present
   tags:
      - nagios
      - nagios_user
 
 - name: install nagios3
-  action: apt pkg=nagios3 update_cache=yes
+  apt: pkg=nagios3 update_cache=yes
   tags:
      - nagios
      - nagios_install
 
 - name: setup symlinks for nagios cgi app
-  action: file src=/etc/nagios3/stylesheets dest=/usr/share/nagios3/htdocs/stylesheets state=link
+  file: src=/etc/nagios3/stylesheets dest=/usr/share/nagios3/htdocs/stylesheets state=link
   tags:
      - nagios
      - nagios_cgi_links
 
 - name: setup symlinks for nagios cgi app
-  action: file src=/usr/share/nagios3/htdocs/ dest=/usr/share/nagios3/htdocs/nagios3
+  file: src=/usr/share/nagios3/htdocs/ dest=/usr/share/nagios3/htdocs/nagios3
   tags:
      - nagios
      - nagios_cgi_links
 
 - name: ensure_setuid for nagios_plugins
-  action: file path=/usr/lib/nagios/plugins/* owner=root group=nagios recurse=true mode=4755
+  file: path=/usr/lib/nagios/plugins/* owner=root group=nagios recurse=true mode=4755
   tags:
      - nagios
      - nagios_plugins_setuid
 
 - name: add private key for check_by_ssh checks
-  action: copy src={{ private_dir }}/nagios_id_rsa.private dest=/home/nagios/.ssh/id_rsa owner=nagios group=monitoring mode=600
+  copy: src={{ private_dir }}/nagios_id_rsa.private dest=/home/nagios/.ssh/id_rsa owner=nagios group=monitoring mode=600
   tags:
      - nagios
      - nagios_ssh_key
 
 - name: setup ssh config to disable strict host checking
-  action: copy src=ssh_config dest=/home/nagios/.ssh/config owner=nagios group=monitoring mode=600
+  copy: src=ssh_config dest=/home/nagios/.ssh/config owner=nagios group=monitoring mode=600
   tags:
      - nagios
      - nagios_ssh_config
 
 - name: nagios_config
-  action: copy src={{ item }} dest=/etc/nagios3/
+  copy: src={{ item }} dest=/etc/nagios3/
   notify: reload nagios
   with_fileglob:
      - etc/nagios3/*
@@ -53,7 +53,7 @@
      - nagios
 
 - name: nagios_config_confd
-  action: copy src={{ item }} dest=/etc/nagios3/conf.d/
+  copy: src={{ item }} dest=/etc/nagios3/conf.d/
   notify: reload nagios
   with_fileglob:
      - etc/nagios3/conf.d/*
@@ -62,7 +62,7 @@
      - nagios
 
 - name: nagios_config
-  action: copy src=usr/local/bin/{{ item }} dest=/usr/local/bin/{{ item }} mode=755 owner=nagios
+  copy: src=usr/local/bin/{{ item }} dest=/usr/local/bin/{{ item }} mode=755 owner=nagios
   notify: reload nagios
   with_items:
      - check_graphite.py
@@ -74,7 +74,7 @@
      - nagios_pagerduty_script
 
 - name: nagios_pagerduty_config
-  action: template src=etc/nagios3/conf.d/pagerduty_nagios.cfg.j2 dest=/etc/nagios3/conf.d/pagerduty_nagios.cfg owner=nagios
+  template: src=etc/nagios3/conf.d/pagerduty_nagios.cfg.j2 dest=/etc/nagios3/conf.d/pagerduty_nagios.cfg owner=nagios
   notify: reload nagios
   tags:
     - nagios
@@ -82,7 +82,7 @@
     - nagios_pagerduty_config
 
 - name: nagios_pagerduty_cron
-  action: copy src=etc/cron.d/pagerduty_nagios dest=/etc/cron.d/pagerduty_nagios mode=755 owner=root group=root
+  copy: src=etc/cron.d/pagerduty_nagios dest=/etc/cron.d/pagerduty_nagios mode=755 owner=root group=root
   tags:
     - nagios
     - nagios_pagerduty

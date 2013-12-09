@@ -1,12 +1,12 @@
 ---
 - name: install_php5-fpm
-  action: apt pkg=php5-fpm state=installed
+  apt: pkg=php5-fpm state=installed
   tags: 
      - install_php5-fpm
      - php-fpm
 
 - name: add_php-fpm_config
-  action: copy src={{ item }} dest=/etc/php5/fpm/
+  copy: src={{ item }} dest=/etc/php5/fpm/
   with_items:
      -  etc/php-fpm/php-fpm.conf
   notify: restart php5-fpm
@@ -15,7 +15,7 @@
      - php-fpm
 
 - name: add_php-fpm_pool_config
-  action: copy src={{ item }} dest=/etc/php5/fpm/pool.d/
+  copy: src={{ item }} dest=/etc/php5/fpm/pool.d/
   with_items:
      - etc/php-fpm/{{ inventory_hostname }}/fpm_pool_sites.conf
   notify: restart php5-fpm

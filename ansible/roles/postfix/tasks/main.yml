@@ -1,5 +1,5 @@
 - name: install_postfix 
-  action: apt pkg=postfix state=present 
+  apt: pkg=postfix state=present 
   when: docker_container is not defined
   notify: restart postfix 
   tags: 
@@ -17,27 +17,27 @@
   template: src={{ aliases }} dest={{ postfix_etc }}/aliases owner=root group=root mode=0644
 
 - name: fixup_postfix_perms
-  action: shell chown -R root:root {{ postfix_etc }} && chmod -R 755 {{ postfix_etc }}
+  shell: chown -R root:root {{ postfix_etc }} && chmod -R 755 {{ postfix_etc }}
 
 - name: fixup_alias_link
   when: docker_container is not defined
-  action: shell rm -f /etc/aliases && ln -s {{ postfix_etc }}/aliases /etc
+  shell: rm -f /etc/aliases && ln -s {{ postfix_etc }}/aliases /etc
 
 - name: cleanup_alias_db_link
   when: docker_container is not defined
-  action: shell rm -f /etc/aliases.db
+  shell: rm -f /etc/aliases.db
 
 - name: newaliases
   command: postalias hash:{{ postfix_etc }}/aliases
 
 - name: create_access
-  action: copy src=access dest={{ postfix_etc }}/access owner=root group=root mode=0644
+  copy: src=access dest={{ postfix_etc }}/access owner=root group=root mode=0644
 
 - name: build_access
   command: postmap hash:{{ postfix_etc }}/access
 
 - name: create_helo_access
-  action: copy src=helo_access dest={{ postfix_etc }}/helo_access owner=root group=root mode=0644
+  copy: src=helo_access dest={{ postfix_etc }}/helo_access owner=root group=root mode=0644
 
 - name: build_helo_access
   command: postmap hash:{{ postfix_etc }}/helo_access
@@ -61,7 +61,7 @@
 ### XXXX Better to figure out how to do this as a service
 
 - name: get container id
-  action: shell docker ps -notrunc | tail -n +2 | awk -v id={{ docker_container }} '{ n=split($NF, names, ","); for (i=1; i<=n; i++) { if (names[i] == id) { print $1; } } }'
+  shell: docker ps -notrunc | tail -n +2 | awk -v id={{ docker_container }} '{ n=split($NF, names, ","); for (i=1; i<=n; i++) { if (names[i] == id) { print $1; } } }'
   when: docker_container is defined
   register: docker_container_cmd_result
 

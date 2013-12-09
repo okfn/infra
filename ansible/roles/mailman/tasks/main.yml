@@ -1,5 +1,5 @@
 - name: install_mailman
-  action: apt pkg=mailman state=present
+  apt: pkg=mailman state=present
   notify: restart mailman
 
 - name: configure_mailman
@@ -7,10 +7,10 @@
   notify: restart mailman
 
 - name: install_fcgiwrap
-  action: apt pkg=fcgiwrap state=present
+  apt: pkg=fcgiwrap state=present
 
 - name: install nginx mailman_fcgi config
-  action: copy
+  copy:
           src=mailman_fcgi
           dest=/etc/nginx/mailman_fcgi
           owner=root

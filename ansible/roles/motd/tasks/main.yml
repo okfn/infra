@@ -6,20 +6,20 @@
 # ``motd_custom`` variable.
 #
 - name: check_motd_tail_supported
-  action: shell test -f /etc/update-motd.d/99-footer
+  shell: test -f /etc/update-motd.d/99-footer
   ignore_errors: True
   register: motd_tail_supported
   tags:
      - motd
 
 - name: add_motd_tail
-  action: template src=motd.j2 dest=/etc/motd.tail
+  template: src=motd.j2 dest=/etc/motd.tail
   when: motd_tail_supported|success
   tags:
      - motd
 
 - name: add_motd
-  action: template src=motd.j2 dest=/etc/motd
+  template: src=motd.j2 dest=/etc/motd
   when: motd_tail_supported|failed
   tags:
      - motd

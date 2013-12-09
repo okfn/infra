@@ -8,22 +8,22 @@
   
   tasks:
      - name: ensure facts directory
-       action: file dest={{ fact_path }} state=directory
+       file: dest={{ fact_path }} state=directory
        tags: ensure_facts_directory
 
      - name: ensure_facts_cron
-       action: copy src=files/cron.hourly/populate_ansible_facts.py dest=/etc/cron.hourly/populate_ansible_facts.py mode=744
+       copy: src=files/cron.hourly/populate_ansible_facts.py dest=/etc/cron.hourly/populate_ansible_facts.py mode=744
        tags: ensure_facts_cron
 
      - name: run_facts_script
-       action: shell /etc/cron.hourly/populate_ansible_facts.py
+       shell: /etc/cron.hourly/populate_ansible_facts.py
        tags: run_facts_script
   
      - name: install_updates
-       action: shell /usr/lib/check_mk_agent/local/apt-security-check --install-security-updates
+       shell: /usr/lib/check_mk_agent/local/apt-security-check --install-security-updates
        when: ansible_local.apt.package_updates.security_updates_available == 'True'
        tags: install_updates
     
 #     - name: check_updates_available
-#       action: debug msg="a  {{ ansible_local.apt.package_updates.security_updates_available }} --"
+#       debug: msg="a  {{ ansible_local.apt.package_updates.security_updates_available }} --"
 #       tags: check_updates_available

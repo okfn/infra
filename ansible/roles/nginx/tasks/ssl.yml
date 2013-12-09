@@ -1,8 +1,8 @@
 - name: ensure ssl directory exists
-  action: file path=/etc/nginx/ssl state=directory
+  file: path=/etc/nginx/ssl state=directory
 
 - name: install ssl certificates
-  action: copy
+  copy:
           src={{ private_dir }}/ssl/{{ item }}/{{ item }}.crt
           dest=/etc/nginx/ssl/
           owner=root
@@ -12,7 +12,7 @@
   notify: reload nginx
 
 - name: install ssl keys
-  action: copy
+  copy:
           src={{ private_dir }}/ssl/{{ item }}/{{ item }}.key
           dest=/etc/nginx/ssl/
           owner=root

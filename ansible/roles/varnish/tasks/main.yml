@@ -1,6 +1,6 @@
 ---
 - name: install_varnish
-  action: apt pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
      - varnish
      - libvarnishapi1 
@@ -9,14 +9,14 @@
      - varnish
 
 - name: add_config_varnish
-  action: copy src=etc/varnish/{{ inventory_hostname }}/default.vcl dest=/etc/varnish/default.vcl
+  copy: src=etc/varnish/{{ inventory_hostname }}/default.vcl dest=/etc/varnish/default.vcl
   notify: restart varnish
   tags: 
      - add_config_varnish
      - varnish
 
 - name: add_config_default_varnish
-  action: copy src=etc/varnish/{{ inventory_hostname }}/varnish dest=/etc/default/varnish
+  copy: src=etc/varnish/{{ inventory_hostname }}/varnish dest=/etc/default/varnish
   notify: restart varnish
   tags: 
      - add_config_default_varnish
@@ -24,7 +24,7 @@
 
 
 - name: secrets_varnish
-  action: template src=.j2 dest=/etc/varnish/secret
+  template: src=.j2 dest=/etc/varnish/secret
   when: hostvars[inventory_hostname]_varnish_secret is defined
   tags: 
      - secrets_varnish

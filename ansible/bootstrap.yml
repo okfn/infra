@@ -13,33 +13,33 @@
   pre_tasks:
      
     - name: set_hostname
-      action: shell echo "{{ host }}" > /etc/hostname && echo hostname "{{ host }}" && service hostname restart
+      shell: echo "{{ host }}" > /etc/hostname && echo hostname "{{ host }}" && service hostname restart
       tags: set_hostname
 
     - name: -> generate_locale
-      action: shell locale-gen "{{ item }}"
+      shell: locale-gen "{{ item }}"
       with_items: "{{ locale_list }}"
       tags: generate_locale
 
     - name: -> preseed debconf
-      action: copy src=files/bootstrap/debconf.preseed dest=/tmp/debconf.preseed force=yes
+      copy: src=files/bootstrap/debconf.preseed dest=/tmp/debconf.preseed force=yes
       tags: preseed_debconf
 
     - name: -> apt update
-      action: apt update_cache=yes
+      apt: update_cache=yes
 
     - name: -> run debconf
-      action: shell /usr/bin/debconf-set-selections /tmp/debconf.preseed       
+      shell: /usr/bin/debconf-set-selections /tmp/debconf.preseed       
       tags: run_debconf
     
     - name: apt upgrade
       environment: 
          DEBIAN_FRONTEND: noninteractive
-      action: apt upgrade=yes
+      apt: upgrade=yes
       tags: apt_upgrade
     
     - name: install basic packages
-      action: apt state=installed pkg="{{ item }}"
+      apt: state=installed pkg="{{ item }}"
       with_items:
         - ed
         - vim-nox
@@ -50,13 +50,13 @@
 
       # run ntpdate only if ntpd isn't running
     - name: -> set correct date
-      action: shell netstat -an --inet | grep ':123 .*$' || /usr/sbin/ntpdate pool.ntp.org
+      shell: netstat -an --inet | grep ':123 .*$' || /usr/sbin/ntpdate pool.ntp.org
       ignore_errors: True
       tags: set_date
 
       # install ntp after running ntpdate 'cause otherwise the socket isn't available
     - name: install basic packages
-      action: apt state=installed pkg=ntp
+      apt: state=installed pkg=ntp
 
       ## Add DME record, the DME module is timestamp sensitive, ensure the system clock is in syncd using ntpdate
       ## msg: http://api.dnsmadeeasy.com/V2.0/dns/managed returned 403, with body: {error: ["Request sent with date header too far out of sync.  Difference in times is -98077, header value is 1376666747000"]}
@@ -80,12 +80,12 @@
       tags: set_project_sysadmin_email
 
     - name: newaliases
-      action: command /usr/bin/newaliases
+      command: /usr/bin/newaliases
       tags: run_newaliases
     
     - name: setup_snapshots
       when: rackspace == true
-      local_action: shell echo {{ inventory_hostname }}
+      local_shell: echo {{ inventory_hostname }}
       tags: local_action    
 #     - name: disable_root_login
 #       lineinfile: "dest=/etc/ssh/sshd_config state=present regexp='^PermitRootLogin' line='PermitRootLogin no'" 

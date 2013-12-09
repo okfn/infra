@@ -1,5 +1,5 @@
 - name: check if our postgres container is there
-  action: shell docker ps | tail -n +2 | awk '{ print $NF }' | sed 's/,/\n/g' | grep '^rt_pg$'
+  shell: docker ps | tail -n +2 | awk '{ print $NF }' | sed 's/,/\n/g' | grep '^rt_pg$'
   register: rt_pg
   ignore_errors: True
 
@@ -12,13 +12,13 @@
   when: rt_pg.rc == 1
 
 #  - name: address of postgresql server
-#    action: set_fact db_host={{docker_containers[0].NetworkSettings.IPAddress}}
+#    set_fact: db_host={{docker_containers[0].NetworkSettings.IPAddress}}
 #
 #  - name: show db_host
 #    debug: msg="{{db_host}}"
 
 - name: check if our rt container is there
-  action: shell docker ps | tail -n +2 | awk '{ print $NF }' | sed 's/,/\n/g' | grep '^rt$'
+  shell: docker ps | tail -n +2 | awk '{ print $NF }' | sed 's/,/\n/g' | grep '^rt$'
   register: rt
   ignore_errors: True
 
@@ -31,8 +31,8 @@
   when: rt.rc == 1
 
 - name: configure docker rt server
-  action: copy src=RT_SiteConfig.pm dest=/data/rt/rt_conf/ owner=root group=www-data mode=0640
+  copy: src=RT_SiteConfig.pm dest=/data/rt/rt_conf/ owner=root group=www-data mode=0640
   notify: restart rt
 
 - name: configure procmail
-  action: copy src=procmailrc.rt dest=/data/rt/rt_postfix/procmailrc.rt owner=root group=root mode=0644
+  copy: src=procmailrc.rt dest=/data/rt/rt_postfix/procmailrc.rt owner=root group=root mode=0644

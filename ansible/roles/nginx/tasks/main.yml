@@ -1,9 +1,9 @@
 ---
 - name: install package
-  action: apt pkg=nginx-full state=installed
+  apt: pkg=nginx-full state=installed
 
 - name: install nginx.conf
-  action: copy src={{ item }} dest=/etc/nginx/nginx.conf
+  copy: src={{ item }} dest=/etc/nginx/nginx.conf
   with_first_found:
     - etc/nginx/{{ project }}/{{ inventory_hostname }}_nginx.conf
     - etc/nginx/{{ inventory_hostname }}/nginx.conf
@@ -11,7 +11,7 @@
   notify: reload nginx
 
 - name: install additional config
-  action: copy src={{ item }} dest=/{{item}}
+  copy: src={{ item }} dest=/{{item}}
   with_items:
     - etc/nginx/mime.types
     - etc/nginx/proxy_params
@@ -19,7 +19,7 @@
   notify: reload nginx
 
 - name: install sites-available
-  action: copy src={{ item }} dest=/etc/nginx/sites-available/
+  copy: src={{ item }} dest=/etc/nginx/sites-available/
   with_fileglob:
     - etc/nginx/{{ inventory_hostname }}/sites-available/*
   notify: reload nginx
@@ -29,7 +29,7 @@
 
 - name: set up sites-enabled
   when: sites_enabled is defined
-  action: file
+  file:
           src="/etc/nginx/sites-available/{{ item }}"
           dest="/etc/nginx/sites-enabled/{{ item }}"
           force=yes

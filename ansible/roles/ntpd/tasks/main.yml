@@ -2,7 +2,7 @@
 ---
 
 - name: check_timezone
-  action: shell diff -s /etc/localtime /usr/share/zoneinfo/{{ timezone }}
+  shell: diff -s /etc/localtime /usr/share/zoneinfo/{{ timezone }}
   register: timezone_ok
   ignore_errors: true 
   tags:
@@ -10,7 +10,7 @@
      - ntpd
 
 - name: check_timezone_file_exists
-  action: shell test -f /etc/timezone
+  shell: test -f /etc/timezone
   register: timezonefile_exists
   ignore_errors: True
   tags:
@@ -18,14 +18,14 @@
      - ntpd
 
 - name: setup_timezone
-  action: shell echo {{ timezone }} > /etc/timezone
+  shell: echo {{ timezone }} > /etc/timezone
   when: timezone_ok.rc != 0 or timezonefile_exists != 0
   tags: 
      - setup_timezone
      - ntpd
 
 - name: reconfigure_to_new_timezone
-  action: shell dpkg-reconfigure -f noninteractive tzdata
+  shell: dpkg-reconfigure -f noninteractive tzdata
   when: timezone is defined and timezone_ok.rc != 0
   tags: 
      - reconfigure_to_new_timezone
@@ -33,7 +33,7 @@
 
 #https://bugs.launchpad.net/ubuntu/+source/openntpd/+bug/458061 workaround
 - name: purge_ntpd
-  action: apt pkg=ntp state=absent purge=yes
+  apt: pkg=ntp state=absent purge=yes
   ignore_errors: True
   notify: restart openntpd
   register: ntpd_purged 
@@ -42,7 +42,7 @@
      - ntpd
 
 - name: restart_AA #reload apparmor to re-read profile
-  action: shell service apparmor restart
+  shell: service apparmor restart
   when: ntpd_purged|success
   ignore_errors: True
   tags:
@@ -50,7 +50,7 @@
      - restart_apparmor
 
 - name: check_if_ntpd_has_apparmour_profile #in some cases ntpd has been overwritten, we move the apparmor file
-  action: shell test -f /etc/apparmor.d/usr.sbin.ntpd
+  shell: test -f /etc/apparmor.d/usr.sbin.ntpd
   register: AA_profile_present
   ignore_errors: True
   tags:
@@ -58,21 +58,21 @@
      - ntpd
 
 - name: disable_ntpd_AA_profile
-  action: shell mv /etc/apparmor.d/usr.sbin.ntpd /etc/apparmor.d/disable/ && service apparmor restart
+  shell: mv /etc/apparmor.d/usr.sbin.ntpd /etc/apparmor.d/disable/ && service apparmor restart
   when: AA_profile_present|success
   ignore_errors: True
   tags:
      - ntpd
 
 - name: install_openntpd 
-  action: apt pkg=openntpd state=present 
+  apt: pkg=openntpd state=present 
   notify: restart openntpd 
   tags: 
      - install_openntpd
      - ntpd
 
 - name: reload cron #this is required or else cron doesnt pickup on the new timezone
-  action: shell service cron reload
+  shell: service cron reload
   ignore_errors: True
   tags: 
      - reload_cron

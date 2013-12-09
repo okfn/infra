@@ -3,4 +3,4 @@
   service: name=supervisor state=restarted
 
 - name: reread supervisor_confd
-  action: shell supervisorctl reread && supervisorctl update
+  shell: supervisorctl reread && supervisorctl update

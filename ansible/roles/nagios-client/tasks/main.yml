@@ -1,7 +1,7 @@
 ---
 # This playbook deploys nagios plugins for monitoring purposes.
 - name: -> install_nagios_plugins
-  action: apt pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
      - nagios-plugins
      - nagios-plugins-standard
@@ -9,13 +9,13 @@
   tags: install_nagios_plugins
 
 - name: -> add_monitoring_group
-  action: group name={{ item }} state=present
+  group: name={{ item }} state=present
   with_items:
     - monitoring
   tags: add_nagios_group
 
 - name: -> add_user
-  action: user name={{ item.name }} group={{ item.group }} state=present shell=/bin/bash
+  user: name={{ item.name }} group={{ item.group }} state=present shell=/bin/bash
   with_items: 
     - "{{ users.monitoring }}"
   tags: add_nagios_users
