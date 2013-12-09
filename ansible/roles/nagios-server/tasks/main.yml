@@ -4,11 +4,16 @@
 - name: add nagios user
   user: name=nagios state=present
 
+# We set install_recommends to no here, and install php5 explicitly, to ensure
+# that installing nagios doesn't automatically pull in Apache.
 - name: install nagios3
-  apt: pkg='{{ item }}' state=present
+  apt: pkg='{{ item }}'
+       install_recommends=no
+       state=present
   with_items:
-    - nagios3
+    - php5
     - fcgiwrap
+    - nagios3
   notify: setuid nagios plugins
 
 - name: setup symlinks for nagios cgi
