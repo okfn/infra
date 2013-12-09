@@ -63,9 +63,9 @@ server {
   rewrite ^/dataset/italyregionalaccounts /it-regional-accounts/embed?widget=treemap&state=%7B"drilldown"%3A"function"%2C"cuts"%3A%7B"year"%3A"2008"%7D%7D permanent;
 
   # blog
-  rewrite ^/blog/index.html$ http://community.openspending.org/blog permanent;
+  rewrite ^/blog/index.html$ http://community.openspending.org/blog/ permanent;
   rewrite ^/blog/feed.rss$   http://community.openspending.org/feed/ permanent;
-  rewrite ^/blog/?$          http://community.openspending.org/blog permanent;
+  rewrite ^/blog/?$          http://community.openspending.org/blog/ permanent;
   rewrite ^/blog/(\d{4})/(\d{2})/\d{2}/(.*).html$  http://community.openspending.org/blog/$1/$2/$3 permanent;
 
   # resources
