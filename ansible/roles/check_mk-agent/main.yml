@@ -2,13 +2,13 @@
 # This play sets up the check_mk agent
 - name: fetch_check-mk_deb
   command: wget http://mathias-kettner.com/download/check-mk-agent_1.2.2p2-2_all.deb -O /opt/check-mk-agent_1.2.2p2-2_all.deb creates=/opt/check-mk-agent_1.2.2p2-2_all.deb
-  tags: 
+  tags:
      - fetch_check-mk_deb
      - check-mk_agent
 
 - name: install_xinetd
   apt: pkg=xinetd state=installed
-  tags: 
+  tags:
      - install_xinetd
      - check-mk_agent
 
@@ -21,7 +21,7 @@
 - name: -> allow_check_mk_in_fw
   lineinfile: dest={{ iptables_config_file }} regexp='dport {{ check_mk_port }} -j monitoring$'  line='-A INPUT -s {{ monitoring_server }} -p tcp -m tcp --dport {{ check_mk_port }} -j monitoring' insertbefore='^COMMIT' state=present
   notify: restart iptables-persistent
-  tags: 
+  tags:
      - allow_check_mk_in_fw
      - check-mk_agent
 
@@ -35,5 +35,5 @@
 
 # http://exchange.check-mk.org/index.php?option=com_remository&Itemid=53&func=startdown&id=20w
 - name: firewall_allow_check-mk
-  shell: sudo iptables -A monitoring -s {{ nagios_server }}  -p tcp -m tcp --dport 6556 -j ACCEPT 
-  when: rule_present.rc == 1 
+  shell: sudo iptables -A monitoring -s {{ nagios_server }}  -p tcp -m tcp --dport 6556 -j ACCEPT
+  when: rule_present.rc == 1

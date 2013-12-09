@@ -9,9 +9,9 @@
      - ./vars/users.yml
      - "{{ private_dir }}/p.yml"
      - vars/users.yml
- 
+
   pre_tasks:
-     
+
     - name: set_hostname
       shell: echo "{{ host }}" > /etc/hostname && echo hostname "{{ host }}" && service hostname restart
       tags: set_hostname
@@ -29,15 +29,15 @@
       apt: update_cache=yes
 
     - name: -> run debconf
-      shell: /usr/bin/debconf-set-selections /tmp/debconf.preseed       
+      shell: /usr/bin/debconf-set-selections /tmp/debconf.preseed
       tags: run_debconf
-    
+
     - name: apt upgrade
-      environment: 
+      environment:
          DEBIAN_FRONTEND: noninteractive
       apt: upgrade=yes
       tags: apt_upgrade
-    
+
     - name: install basic packages
       apt: state=installed pkg="{{ item }}"
       with_items:
@@ -74,7 +74,7 @@
      - motd
      - ntpd
 
-  tasks:     
+  tasks:
     - name: add project sysadmin alias
       lineinfile: "dest=/etc/aliases state=present regexp='^root:' line='root: {{ sysadmin_email }}'"
       tags: set_project_sysadmin_email
@@ -82,11 +82,11 @@
     - name: newaliases
       command: /usr/bin/newaliases
       tags: run_newaliases
-    
+
     - name: setup_snapshots
       when: rackspace == true
       local_shell: echo {{ inventory_hostname }}
-      tags: local_action    
+      tags: local_action
 #     - name: disable_root_login
-#       lineinfile: "dest=/etc/ssh/sshd_config state=present regexp='^PermitRootLogin' line='PermitRootLogin no'" 
+#       lineinfile: "dest=/etc/ssh/sshd_config state=present regexp='^PermitRootLogin' line='PermitRootLogin no'"
 #       tags: disable_root_login

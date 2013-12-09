@@ -1,8 +1,8 @@
-- name: install_postfix 
-  apt: pkg=postfix state=present 
+- name: install_postfix
+  apt: pkg=postfix state=present
   when: docker_container is not defined
-  notify: restart postfix 
-  tags: 
+  notify: restart postfix
+  tags:
      - install_postfix
      - postfix
 

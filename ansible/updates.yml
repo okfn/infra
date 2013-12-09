@@ -5,7 +5,7 @@
   connection: ssh
   user: okfn
   sudo: true
-  
+
   tasks:
      - name: ensure facts directory
        file: dest={{ fact_path }} state=directory
@@ -18,12 +18,12 @@
      - name: run_facts_script
        shell: /etc/cron.hourly/populate_ansible_facts.py
        tags: run_facts_script
-  
+
      - name: install_updates
        shell: /usr/lib/check_mk_agent/local/apt-security-check --install-security-updates
        when: ansible_local.apt.package_updates.security_updates_available == 'True'
        tags: install_updates
-    
+
 #     - name: check_updates_available
 #       debug: msg="a  {{ ansible_local.apt.package_updates.security_updates_available }} --"
 #       tags: check_updates_available

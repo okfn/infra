@@ -3,13 +3,13 @@
 - name: fetch_collectd_deb
 #  shell: wget http://apt.okserver.org/{{ ansible_architecture }}/collectd-okfcustom-5.4.0_1.0_{{ ansible_architecture }}.deb -O /opt/collectd-okfcustom-5.4.0_1.0_{{ ansible_architecture }}.deb creates=/opt/collectd-okfcustom-5.4.0_1.0_{{ ansible_architecture }}.deb
   get_url: url=http://apt.okserver.org/{{ ansible_architecture }}/collectd-okfcustom-5.4.0_1.0_{{ ansible_architecture }}.deb dest=/opt/collectd-okfcustom-5.4.0_1.0_{{ ansible_architecture }}.deb force=yes
-  tags: 
+  tags:
      - fetch_collectd_deb
      - collectd
 
 - name: install_collectd_deb
   shell: dpkg -i /opt/collectd-okfcustom-5.4.0_1.0_{{ ansible_architecture }}.deb creates=/opt/collectd/etc/collectd.conf
-  tags: 
+  tags:
      - install_collectd_deb
      - collectd
 
@@ -24,20 +24,20 @@
        paths:
           - ../templates
   notify: restart collectd
-  tags: 
+  tags:
      - setup_collectd_config
      - collectd
 
 - name: collectd_init_script
   copy: src=opt/collectd/etc/init.d/collectd dest=/etc/init.d/collectd
   notify: restart collectd
-  tags: 
+  tags:
      - collectd_init_script
      - collectd
 
 - name: reload_collectd
   shell: service collectd restart
   when: reload_collectd is defined #pass true with --extra-vars="reload_collectd=True"
-  tags: 
+  tags:
      - reload_collectd
      - collectd

@@ -4,7 +4,7 @@
   environment:
      DEBIAN_FRONTEND: noninteractive
   apt: pkg=iptables-persistent state=present
-  notify: restart iptables-persistent 
+  notify: restart iptables-persistent
   tags: install_iptables_persistent
 
 - name: iptables_config

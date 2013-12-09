@@ -69,7 +69,7 @@
      - pagerduty_nagios.pl
   tags:
      - nagios
-     - nagios_scripts     
+     - nagios_scripts
      - nagios_pagerduty
      - nagios_pagerduty_script
 

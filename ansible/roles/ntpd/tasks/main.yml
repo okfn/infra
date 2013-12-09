@@ -1,10 +1,10 @@
-#depends on timezone = being defined under inventory/host_vars or inventory/group_vars 
+#depends on timezone = being defined under inventory/host_vars or inventory/group_vars
 ---
 
 - name: check_timezone
   shell: diff -s /etc/localtime /usr/share/zoneinfo/{{ timezone }}
   register: timezone_ok
-  ignore_errors: true 
+  ignore_errors: true
   tags:
      - check_timezone
      - ntpd
@@ -20,14 +20,14 @@
 - name: setup_timezone
   shell: echo {{ timezone }} > /etc/timezone
   when: timezone_ok.rc != 0 or timezonefile_exists != 0
-  tags: 
+  tags:
      - setup_timezone
      - ntpd
 
 - name: reconfigure_to_new_timezone
   shell: dpkg-reconfigure -f noninteractive tzdata
   when: timezone is defined and timezone_ok.rc != 0
-  tags: 
+  tags:
      - reconfigure_to_new_timezone
      - ntpd
 
@@ -36,8 +36,8 @@
   apt: pkg=ntp state=absent purge=yes
   ignore_errors: True
   notify: restart openntpd
-  register: ntpd_purged 
-  tags: 
+  register: ntpd_purged
+  tags:
      - purge_ntpd
      - ntpd
 
@@ -64,17 +64,17 @@
   tags:
      - ntpd
 
-- name: install_openntpd 
-  apt: pkg=openntpd state=present 
-  notify: restart openntpd 
-  tags: 
+- name: install_openntpd
+  apt: pkg=openntpd state=present
+  notify: restart openntpd
+  tags:
      - install_openntpd
      - ntpd
 
 - name: reload cron #this is required or else cron doesnt pickup on the new timezone
   shell: service cron reload
   ignore_errors: True
-  tags: 
+  tags:
      - reload_cron
      - ntpd
-     - setup_timezone 
+     - setup_timezone

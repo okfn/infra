@@ -2,7 +2,7 @@
 ---
 - name: create_backup_directory
   file: path={{ snapshot_root }} owner=root group=root state=directory
-  tags: create_backup_directory 
+  tags: create_backup_directory
 
 - name: rsnapshot_config
   template: src=etc/rsnapshot.conf.j2 dest=/etc/rsnapshot.conf

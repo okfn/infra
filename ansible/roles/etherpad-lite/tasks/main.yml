@@ -8,12 +8,12 @@
 - name: create etherpad-lite database
   mysql_db: name=etherpad-lite encoding=utf8 state=present
 
-# this task needs fixing 
+# this task needs fixing
 #- name: create etherpad-lite mysql user
 #  mysql_user: name=etherpad_lite password={{ etherpad_lite_db_pass }} priv=`etherpad-lite`.*:ALL state=present
 #  ignore_errors: True # havent been able to figure out this part as yet if the name contains a -
 #  tags: create_etherpad-lite_mysql_user
- 
+
 - name: add_etherpad_group
   user: name={{ group }} state=present
   tags: add_etherpad_group
@@ -31,7 +31,7 @@
 
 - name: set_permissions_etherpad
   file: path={{ install_path }} owner={{ user }} group={{ group }} recurse=yes state=directory
-  tags: set_permissions_etherpad 
+  tags: set_permissions_etherpad
 
 - name: settings_config_etherpad
   template: src=settings_json.j2 dest={{ install_path }}/settings.json owner={{ user }} group={{ group }} mode=600

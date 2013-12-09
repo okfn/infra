@@ -1,9 +1,9 @@
 #Todo add handlers to reload carbon_cache.py
-- name: easy_install_pip 
+- name: easy_install_pip
   easy_install: name=pip
   tags: easy_install_pip
 
-- name: pip_install_carbon # pip can move into its own role 
+- name: pip_install_carbon # pip can move into its own role
   pip: name={{ item }}
   with_items:
      - carbon
@@ -32,5 +32,5 @@
 
 - name: ensure_graphite_perms
   file: path=/opt/graphite/ state=directory owner=graphite group=graphite
-  tags: ensure_graphite_perms 
+  tags: ensure_graphite_perms
 

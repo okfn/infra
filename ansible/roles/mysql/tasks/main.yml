@@ -4,15 +4,15 @@
 #apt_expects the exact url to the key, the url can be found by searching for the id at http://keyserver.ubuntu.com/
 ## id=1C4CBDCDCD2EFD2A url="http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x1C4CBDCDCD2EFD2A"  state=present  apt_key module needs fixing to look up keys.
 - name: add_percona_aptkeys
-  apt_key: data="{{ lookup('file', '../files/percona.gpg') }}"    
+  apt_key: data="{{ lookup('file', '../files/percona.gpg') }}"
 
   when: percona_mysql is defined
-  tags: 
+  tags:
      - mysql
      - add_percona_aptkeys
 
 - name: add_percona_repo_src
-  apt_repository: repo='deb-src http://repo.percona.com/apt precise main' state=present 
+  apt_repository: repo='deb-src http://repo.percona.com/apt precise main' state=present
   when: percona_mysql is defined
   tags:
      - mysql
@@ -25,7 +25,7 @@
      - mysql
      - add_percona_repo_src
 
-  
+
 - name: install_percona_pkgs
   apt: pkg={{ item }} state=present
   with_items:
@@ -42,7 +42,7 @@
      - mysql-server
      - mysql-client
   when: vanilla_mysql is defined
-  tags: 
+  tags:
      - mysql
      - install_vanilla_mysql
 
@@ -59,16 +59,16 @@
      - "{{ inventory_hostname }}"
      - 127.0.0.1
      - localhost
-  tags: 
+  tags:
      - mysql
      - setup_mysql_root_user
 
 - name: setup_mysql_monitor_user
   mysql_user: name=mysql_monitor host=localhost password={{ mysql_monitor_password }} priv=*.*:PROCESS
-  tags: 
+  tags:
     - mysql
     - setup_mysql_monitor_user
- 
+
 - name: setup_mysql_root_cnf
   template: src=root/my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
   tags:

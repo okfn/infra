@@ -1,5 +1,5 @@
 ---
 dependencies:
 - { role: apt, pkg_list: ['git-core', 'python', 'python-dev', 'sqlite3', 'python-pip', 'python-virtualenv', 'redis-server', 'libxml2-dev', 'libxslt1-dev', 'libxslt1.1'] }
-- { role: supervisor } 
+- { role: supervisor }
 - { role: nginx }

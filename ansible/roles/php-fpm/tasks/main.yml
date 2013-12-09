@@ -1,7 +1,7 @@
 ---
 - name: install_php5-fpm
   apt: pkg=php5-fpm state=installed
-  tags: 
+  tags:
      - install_php5-fpm
      - php-fpm
 
@@ -10,7 +10,7 @@
   with_items:
      -  etc/php-fpm/php-fpm.conf
   notify: restart php5-fpm
-  tags: 
+  tags:
      - add_config_fpm
      - php-fpm
 

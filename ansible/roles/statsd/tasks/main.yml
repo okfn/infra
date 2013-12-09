@@ -1,13 +1,13 @@
 ---
 - name: fetch_statsd_deb
   get_url: url=http://apt.okserver.org/x86_64/statsd_0.6.0-ppa2~precise_amd64.deb dest=/opt/statsd_0.6.0-ppa2~precise_amd64.deb force=yes
-  tags: 
+  tags:
      - fetch_statsd_deb
      - statsd
 
 - name: install_statsd_deb
   shell: dpkg -i /opt/statsd_0.6.0-ppa2~precise_amd64.deb creates=/etc/statsd.conf
-  tags: 
+  tags:
      - install_statsd_deb
      - statsd
 - name: setup statsd_config

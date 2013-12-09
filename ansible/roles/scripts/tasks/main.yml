@@ -1,6 +1,6 @@
 #Adds scripts, which can be defined per host/group basis, these variables which accept a list,
 #
-# scripts: generic scripts 
+# scripts: generic scripts
 # graphite_collectors : list of  graphite collector script names to be included
 # enabled_local_checks: list of check_mk local checks which should be enabled - http://mathias-kettner.de/checkmk_localchecks.html
 # disabled_local_checks: local checks that should be disabled
@@ -15,7 +15,7 @@
   tags: scripts
 
 - name: ensure_scripts
-  copy: src=opt/scripts/{{ item }} dest=/opt/scripts/ 
+  copy: src=opt/scripts/{{ item }} dest=/opt/scripts/
   with_items: scripts
   when: scripts is defined
   tags: scripts
@@ -35,8 +35,8 @@
      - files:
         - opt/scripts/config/{{ inventory_hostname }}/config.j2
         - opt/scripts/config/config.j2
-       paths: 
-        - ../templates 
+       paths:
+        - ../templates
   ignore_errors: true
   tags: scripts
 
@@ -53,7 +53,7 @@
 
 - name: add_myutils
   copy: src={{ item }} dest=/opt/scripts/graphite_collectors/myutils/
-  with_fileglob: 
+  with_fileglob:
      - opt/scripts/graphite_collectors/myutils/*
   when: graphite_collectors is defined
   tags:
@@ -127,11 +127,11 @@
   tags:
      - scripts
      - local_checks
-    
+
 - name: setup_local_checks
   file: src=/opt/scripts/check_mk/{{ item }} dest={{ local_checks_path }}/{{ item }} state=link force=yes
   with_items: enabled_local_checks
-  when: enabled_local_checks is defined 
+  when: enabled_local_checks is defined
   tags:
      - scripts
      - local_checks
@@ -148,7 +148,7 @@
 - name: setup_local_checks_86400
   file: src=/opt/scripts/check_mk/{{ item }} dest=/usr/lib/check_mk_agent/local/86400/{{ item }} state=link force=yes
   with_items: enabled_local_checks_86400
-  when: enabled_local_checks_86400 is defined 
+  when: enabled_local_checks_86400 is defined
   tags:
      - scripts
      - local_checks
@@ -169,7 +169,7 @@
   when: disabled_local_checks is defined
   tags:
      - scripts
-     - local_checks 
+     - local_checks
      - disable_checks
 
 # apt security updates script

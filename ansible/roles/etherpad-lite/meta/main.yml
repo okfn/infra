@@ -2,5 +2,5 @@
 dependencies:
 - { role: nginx }
 - { role: apt, pkg_list: ['git', 'mysql-server', 'mysql-client', 'python-mysqldb', 'python-software-properties' ] }
-- { role: supervisor } 
+- { role: supervisor }
 #- { role: nodejs } - Todo, build a node deb or write up task to install nodejs

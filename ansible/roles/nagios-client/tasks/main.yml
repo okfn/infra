@@ -16,6 +16,6 @@
 
 - name: -> add_user
   user: name={{ item.name }} group={{ item.group }} state=present shell=/bin/bash
-  with_items: 
+  with_items:
     - "{{ users.monitoring }}"
   tags: add_nagios_users

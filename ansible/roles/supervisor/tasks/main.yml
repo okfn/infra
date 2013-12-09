@@ -1,4 +1,4 @@
---- 
+---
 - name: install supervisor
   apt: pkg=supervisor state=installed
   tags: install_supervisor
@@ -12,7 +12,7 @@
   notify: restart supervisor
   tags: supervisor_config
 
-- name:  supervisor_confd 
+- name:  supervisor_confd
   copy: src={{ item }} dest=/etc/supervisor/conf.d/
   notify: reread supervisor_confd
   with_fileglob: etc/supervisor/conf.d/{{ inventory_hostname }}/*

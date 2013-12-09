@@ -3,25 +3,25 @@
 
 - name: install check-mk_server
   apt: pkg=check-mk-server state=installed
-  tags: 
+  tags:
      - install_check-mk_server
      - check-mk_server
 
 - name: check_mk_config_main
   template: src=etc/check_mk/main.mk.j2 dest=/etc/check_mk/main.mk
   notify: reload check_mk
-  tags: 
+  tags:
      - check_mk_config_main
      - check-mk_server
 
 - name: check_mk_config_multisite
   copy: src=etc/check_mk/multisite.mk dest=/etc/check_mk/multisite.mk force=yes
-  tags:  
+  tags:
      - check_mk_config_multisite
      - check-mk_server
 
 - name: manual_reload_check_mk_server
   shell: /usr/bin/check_mk -II && /usr/bin/check_mk -O
-  tags: 
+  tags:
      - manual_reload_check_mk_server
      - check-mk_server
