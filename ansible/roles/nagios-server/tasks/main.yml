@@ -1,9 +1,6 @@
 ---
 - include_vars: "{{ private_dir }}/p.yml"
 
-- name: add nagios user
-  user: name=nagios state=present
-
 # We set install_recommends to no here, and install php5 explicitly, to ensure
 # that installing nagios doesn't automatically pull in Apache.
 - name: install nagios3
@@ -28,14 +25,14 @@
   copy: src='{{ private_dir }}/nagios_id_rsa.private'
         dest=/home/nagios/.ssh/id_rsa
         owner=nagios
-        group=monitoring
+        group=nagios
         mode=600
 
 - name: setup ssh config to disable strict host checking
   copy: src=ssh_config
         dest=/home/nagios/.ssh/config
         owner=nagios
-        group=monitoring
+        group=nagios
         mode=600
 
 - name: nagios_config
@@ -45,7 +42,11 @@
     - etc/nagios3/*
 
 - name: nagios_config_confd
-  copy: src='{{ item }}' dest=/etc/nagios3/conf.d/
+  copy: src='{{ item }}'
+        dest=/etc/nagios3/conf.d/
+        owner=root
+        group=nagios
+        mode=0664
   notify: reload nagios
   with_fileglob:
     - etc/nagios3/conf.d/*
@@ -59,8 +60,9 @@
 - name: install custom nagios plugins
   copy: src='usr/local/bin/{{ item }}'
         dest='/usr/local/bin/{{ item }}'
-        mode=755
-        owner=nagios
+        mode=775
+        owner=root
+        group=nagios
   notify: reload nagios
   with_items:
     - check_graphite.py
@@ -69,13 +71,15 @@
 - name: install pagerduty config
   template: src=etc/nagios3/conf.d/pagerduty_nagios.cfg.j2
             dest=/etc/nagios3/conf.d/pagerduty_nagios.cfg
-            owner=nagios
+            owner=root
+            group=nagios
+            mode=0664
   notify: reload nagios
 
 - name: install pagerduty cronjob
   copy: src=etc/cron.d/pagerduty_nagios
         dest=/etc/cron.d/pagerduty_nagios
-        mode=755
         owner=root
-        group=root
+        group=nagios
+        mode=775
 
