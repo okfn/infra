@@ -24,6 +24,9 @@ all_hosts = [
 
 ]
 
+#http://mathias-kettner.de/checkmk_inventory.html
+ignored_checktypes = [ "if", "lnx_if" ]
+
 #check_parameters is an array of checks and the parameters that should be set, these apply to both inventorized and manually defined checks.
 #
 # '<check name>:<warning level>:<critical level>'
