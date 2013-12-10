@@ -2,3 +2,5 @@
 aws: true
 sites_enabled:
   - status.okfn.org
+  - apt.okserver.org
+  - graphite.okfn.org
