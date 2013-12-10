@@ -237,7 +237,7 @@ define command{
 
 define command{
 	command_name check_graphite
-	command_line /usr/local/bin/check_graphite.py -U http://{{ graphite_server }} -t '$ARG1$' --from='$ARG2$' -W '$ARG3$' -C '$ARG4$'
+	command_line /usr/local/bin/check_graphite.py -U http://{{ graphite_server }} -t '$ARG1$' --from='$ARG2$' -W '$ARG3$' -C '$ARG4$' --empty-ok
 }
 
 ################################################################################
