@@ -22,13 +22,14 @@ need to be enabled on the host. Setting this var adds the script into the `check
 
 `check_graphite` is an array of metrics from graphite to be monitored, each array element looks like 
 
-    '<metric.datapoint>:timeperiod:<warning level>:<critical level>'
+    <metric.datapoint>:timeperiod:<warning level>:<critical level>
 e.g
+
     ['mail_metrics.mailman.subscribe.lod2.pending:-1hours:20:30']
 
 ## `check_parameters`
 
-`check_parameters` is an array of parameters should be used per check, these apply to both inventorized and manually defined checks,
+`check_parameters` is an array of parameters which should be setup per check, these apply to both inventorized and manually defined checks,
 each array element should be in the format:
 
     <check name>:<warning level>:<critical level>
@@ -37,7 +38,7 @@ each array element should be in the format:
 
      check_parameters: ['Postfix Queue:80:120']
 
-For more details on [checkmk_check parameters](check parameters http://mathias-kettner.de/checkmk_check_parameters.html)
+For more details on [`checkmk_check parameters`](http://mathias-kettner.de/checkmk_check_parameters.html)
 
 
 
