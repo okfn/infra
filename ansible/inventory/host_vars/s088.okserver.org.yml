@@ -1,0 +1,14 @@
+---
+# NB was also flagged as ckan_testing, but this seems most likely:
+ckan_project: ckan_community
+sites_to_monitor:
+  - br.ckan.net:80:200
+  - cz.ckan.net:80:200
+  - ie.ckan.net:80:200
+  - it.ckan.net:80:200
+  - no.ckan.net:80:200
+  - data.gov.sk:80:200
+rsyncd_hosts_allow:
+  - 50.57.171.80 #s113
+  - 184.106.136.198 #s098
+  - 162.243.79.75 #s115 

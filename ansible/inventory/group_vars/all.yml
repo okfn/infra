@@ -12,7 +12,6 @@ iptables_config_file: '/etc/iptables/rules.v4'
 hostname_tld: okserver.org
 local_checks: ['apt-security-check']
 timezone: UTC
-backup_rsync_target: 10.183.172.112    #s088, backup host internal ip
 locale_list:
    - en_GB.utf8
 rackspace: true
@@ -21,3 +20,4 @@ listserv_domains: []
 docker_host: false
 postfix_etc: /etc/postfix
 aliases: aliases
+backup_rsync_target: s088.okserver.org

@@ -28,6 +28,7 @@
     - { role: statsd, tags: ['statsd'] }
 
 - hosts: s113.okserver.org
+  gather_facts: True
   sudo: true
   vars_files:
     - "{{ private_dir }}/p.yml"
@@ -39,13 +40,16 @@
       group: etherpad-lite
       version: 1.2.11
 
+
 - hosts: backup
+  gather_facts: True
   sudo: true
   roles:
     - role: rsnapshot
       tags: ['rsnapshot']
       snapshot_root: /home/backup/snapshots/
       cmd_rsync: /usr/bin/rsync
+    - role: rsyncd
 
 - hosts: ansible-dev
   sudo: true
