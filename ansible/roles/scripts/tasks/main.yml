@@ -104,7 +104,7 @@
 
 - name: mysql_backup_config
   template: src=opt/scripts/backup/mysql_backup.conf.j2  dest=/opt/scripts/backup/mysql_backup.conf
-  when: db_backup_list is defined #backup dbs lists the dbs that should be backed up, this is dumped into the mysql_backup.conf, which is then read by the mysql_backup script.
+  when: mysql_backup_list is defined #backup dbs lists the dbs that should be backed up, this is dumped into the mysql_backup.conf, which is then read by the mysql_backup script.
   tags:
      - scripts
      - mysql_backup_config
