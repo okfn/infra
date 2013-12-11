@@ -18,6 +18,10 @@ LOGFILE=/var/log/procmail/rt.log
 * ^Subject:.*\[GANDI\] Invoice
 ! payments@okfn.org
 
+:0w
+* ^Subject:.*\[CloudFlare\] Invoice
+! payments@okfn.org
+
 #Is it spam?
 :0fw: spamassassin.lock
 * < 300000
