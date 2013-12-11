@@ -48,7 +48,7 @@
 
 - name: setup_mysqlpass_fact
   set_fact:
-    mysql_root_password: "{{ lookup('password', private_dir + '/mysql/' + inventory_hostname + ' length=6') }}"
+    mysql_root_password: "{{ lookup('password', '../' + private_dir + '/mysql/' + inventory_hostname + ' length=6') }}"
   tags:
     - mysql
     - setup_mysqlpass_fact
