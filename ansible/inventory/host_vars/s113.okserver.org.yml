@@ -5,5 +5,5 @@ sites_enabled: ['pad.okfn.org']
 sites_disabled: ['new.okfnpad.org']
 enabled_plugin_checks: ['mk_mysql'] #mk_mysql adopted from http://mathias-kettner.de/checkmk_mysql.html
 backup_scripts: ['mysql_backup.sh']
-db_backup_list: ['mysql','etherpad-lite']
+mysql_backup_list: ['mysql','etherpad-lite']
 private_ip: 10.183.32.96

@@ -26,3 +26,13 @@ database_container: rt_pg
 dumper_container: dumper
 dump_databases: rt4
 dumper_s3_bucket: s115_pg_dump
+
+backup_scripts: 
+   - mysql_backup.sh
+
+mysql_backup_list:
+   - sendy
+   - mysql
+
+mysql_port: 49158
+mysql_host: 127.0.0.1
