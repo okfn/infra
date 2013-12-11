@@ -1,0 +1,21 @@
+---
+- name: create_backup_dirs
+  action: file path={{ item }} state=directory
+  with_items:
+     - /home/backups/mysql_backups/
+  tags:
+     - rsync
+     - create_backup_dirs
+
+- name: enable_rsyncd
+  action: copy src=etc/default/rsync dest=/etc/default/rsync
+  tags:
+     - rsync
+     - enable_rsyncd
+
+- name: rsyncd_conf
+  action: template src=etc/rsyncd.conf.j2 dest=/etc/rsyncd.conf
+  notify: restart rsync
+  tags:
+     - rsync
+     - rsyncd_conf

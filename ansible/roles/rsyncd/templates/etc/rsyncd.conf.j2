@@ -1,0 +1,12 @@
+log file = /var/log/rsyncd.log
+hosts allow = {% for ip in rsyncd_hosts_allow %}{{ ip }}, {% endfor %}
+
+hosts deny = *
+list = true
+uid = root
+gid = root
+read only = false
+
+[mysql_backups]
+path = /home/backup/mysql_backups
+comment = MySQL backups directory
