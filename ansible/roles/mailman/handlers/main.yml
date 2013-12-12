@@ -6,4 +6,4 @@
   service: name=nginx state=reloaded
 
 - name: update community_admin
-  shell: python /opt/scripts/add_community_admin.py
+  shell: python /usr/lib/mailman/bin/community_admin.py

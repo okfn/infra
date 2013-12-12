@@ -46,6 +46,6 @@
           owner=root
           group=root
           mode=644
-#  notify: update community_admin
+  notify: update community_admin
   tags:
      - community_admin
