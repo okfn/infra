@@ -15,6 +15,10 @@ LOGFILE=/var/log/procmail/rt.log
 ! payments@okfn.org
 
 :0w
+* ^Subject:.*\[GANDI\] Insufficient funds
+! payments@okfn.org
+
+:0w
 * ^Subject:.*\[GANDI\] Invoice
 ! payments@okfn.org
 
