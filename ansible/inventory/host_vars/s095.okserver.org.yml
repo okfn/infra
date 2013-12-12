@@ -18,6 +18,7 @@ sites_enabled:
   - farmsubsidy.org
   - openspending.org
   - wheredoesmymoneygo.org
+  - upload.openspending.org
 nginx_ssl_certs:
   - star_openspending_org
 graphite_collectors:
