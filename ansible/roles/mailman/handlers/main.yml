@@ -4,3 +4,6 @@
 
 - name: reload nginx
   service: name=nginx state=reloaded
+
+- name: update community_admin
+  shell: python /opt/scripts/add_community_admin.py
