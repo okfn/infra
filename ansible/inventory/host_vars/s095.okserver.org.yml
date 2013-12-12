@@ -19,6 +19,6 @@ sites_enabled:
   - openspending.org
   - wheredoesmymoneygo.org
 nginx_ssl_certs:
-  - openspending_org
+  - star_openspending_org
 graphite_collectors:
   - nginx_stats.py

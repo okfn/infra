@@ -31,8 +31,8 @@ server {
 
   ssl on;
   include ssl_params;
-  ssl_certificate /etc/nginx/ssl/openspending_org.crt;
-  ssl_certificate_key /etc/nginx/ssl/openspending_org.key;
+  ssl_certificate /etc/nginx/ssl/star_openspending_org.crt;
+  ssl_certificate_key /etc/nginx/ssl/star_openspending_org.key;
 
   return 301 https://openspending.org$request_uri;
 }
@@ -43,8 +43,8 @@ server {
 
   ssl on;
   include ssl_params;
-  ssl_certificate /etc/nginx/ssl/openspending_org.crt;
-  ssl_certificate_key /etc/nginx/ssl/openspending_org.key;
+  ssl_certificate /etc/nginx/ssl/star_openspending_org.crt;
+  ssl_certificate_key /etc/nginx/ssl/star_openspending_org.key;
 
   access_log /var/log/nginx/openspending.org-ssl-access.log;
   error_log /var/log/nginx/openspending.org-ssl-error.log warn;
