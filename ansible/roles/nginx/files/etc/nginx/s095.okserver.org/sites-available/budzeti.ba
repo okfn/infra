@@ -1,5 +1,5 @@
 server {
-    listen *:80;
+    listen [::]:80;
     server_name budzeti.ba www.budzeti.ba;
 
     keepalive_timeout 5;

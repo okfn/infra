@@ -1,17 +1,17 @@
 server {
-  listen 80;
+  listen [::]:80;
   server_name openspending.mobi www.openspending.mobi;
   return 301 http://community.openspending.org/research/mobi$request_uri;
 }
 
 server {
-  listen 80;
+  listen [::]:80;
   server_name spendingdata.org www.spendingdata.org;
   return 301 http://community.openspending.org/research/standard$request_uri;
 }
 
 server {
-  listen 80;
+  listen [::]:80;
   server_name cra.openspending.org
               etl.sandbox.openspending.org
               sandbox.openspending.org
@@ -20,13 +20,13 @@ server {
 }
 
 server {
-  listen 80;
+  listen [::]:80;
   server_name openspending.org www.openspending.org;
   return 301 https://openspending.org$request_uri;
 }
 
 server {
-  listen 443;
+  listen [::]:443;
   server_name www.openspending.org;
 
   ssl on;
@@ -38,7 +38,7 @@ server {
 }
 
 server {
-  listen 443;
+  listen [::]:443;
   server_name openspending.org;
 
   ssl on;

@@ -1,5 +1,5 @@
 server {
-    listen *:80;
+    listen [::]:80;
     client_max_body_size 14G;
     server_name archive.openspending.org;
 

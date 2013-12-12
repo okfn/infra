@@ -3,13 +3,13 @@ upstream app_server_fs{
 }
 
 server {
-    listen *:80;
+    listen [::]:80;
     server_name farmsubsidy.org www.farmsubsidy.org;
     return 301 http://farmsubsidy.openspending.org$request_uri;
 }
 
 server {
-    listen *:80;
+    listen [::]:80;
     server_name farmsubsidy.openspending.org;
 
     access_log /var/log/nginx/farmsubsidy.org-access.log;
