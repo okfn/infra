@@ -1,0 +1,17 @@
+- name: check mailman patch applied
+  command: test -e /var/lib/mailman/Mailman/HTMLFormatter.py.orig
+  failed_when: false
+  changed_when: false
+  register: mailman_patch_test
+
+- name: upload patch file
+  copy: src='add-moderator-link.patch'
+        dest='/tmp/mailman-add-moderator-link.patch'
+        owner=root
+        group=root
+        mode=0600
+  when: mailman_patch_test|failed
+
+- name: apply patch
+  command: /usr/bin/patch -d /var/lib/mailman -p0 -b -N -r- -i/tmp/mailman-add-moderator-link.patch
+  when: mailman_patch_test|failed
