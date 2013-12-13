@@ -18,7 +18,7 @@
 
     - name: -> generate_locale
       shell: locale-gen "{{ item }}"
-      with_items: "{{ locale_list }}"
+      with_items: locale_list
       tags: generate_locale
 
     - name: -> preseed debconf
