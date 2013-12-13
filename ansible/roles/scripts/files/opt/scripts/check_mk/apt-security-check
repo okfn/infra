@@ -191,7 +191,7 @@ def run(options=None):
     else:
         # print the number of regular upgrades and the number of 
         # security upgrades
-	if len(security_pkgs) > 0:
+	if len(security_pkgs) > 10:
 		#<0|1|2|3> <checkname> count=<current_value>;<warn>;<crit>;<min>;<max> <text output of command>
 		print '2 Security_updates_apt ' + 'count=' + str(security_updates) +';1;1;1;1 ' + str(security_updates) + ' pending security updates, pkg list: ' + str(security_pkgs)  
 		exit(2)
