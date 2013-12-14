@@ -11,6 +11,10 @@ LOGFILE=/var/log/procmail/rt.log
 /dev/null
 
 :0w
+* ^From:.*MAILER-DAEMON
+/dev/null
+
+:0w
 * ^Subject:.*\[billing\] Heroku Invoice
 ! payments@okfn.org
 
@@ -33,7 +37,7 @@ LOGFILE=/var/log/procmail/rt.log
  
 #if the spam trigger is fired send to spam queue
 :0w
-* ^X-spam-Status: Yes
+* ^X-Spam-Flag: YES
 | rt-mailgate --queue spam --action correspond --url https://rt.okfn.org/
  
 #if the spam trigger is not fired then send to expected destination
