@@ -24,5 +24,7 @@
    - postfix_etc: /data/rt/rt_postfix
    - aliases: rt/aliases
   roles:
-   - rt
-   - postfix
+   - role: rt
+     tags: ['rt']
+   - role: postfix
+     tags: ['postfix']
