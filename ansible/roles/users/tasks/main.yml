@@ -50,16 +50,16 @@
 - name: -> add_project_users
   when:  project is defined
   user: name={{ item.name }} group={{ item.group }} state=present shell=/bin/bash
-  with_items: users.devs_group
+  with_items: users[devs_group]
   tags: add_project_users
 
 - name: -> install_project_ssh_keys
   when: project is defined
   authorized_key:
           user={{ item.name }}
-          key="{{ lookup(inventory_dir + '/files/keys/' + item.authorized_keys[0] + '.pub') }}"
+          key="{{ lookup('file', inventory_dir + '/../files/keys/' + item.authorized_keys[0] + '.pub') }}"
           state=present
-  with_items:  users.devs_group
+  with_items:  users[devs_group]
   tags: install_project_ssh_keys
 
 - name: setup_project_sudoers
