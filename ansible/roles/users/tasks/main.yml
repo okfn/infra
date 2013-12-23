@@ -64,6 +64,6 @@
 
 - name: setup_project_sudoers
   when: project is defined
-  lineinfile: "dest=/etc/sudoers state=present regexp='^%{{ item }}' line='%${{ item }} ALL=(ALL) NOPASSWD: ALL'"
+  lineinfile: "dest=/etc/sudoers state=present regexp='^%{{ item }}' line='%{{ item }} ALL=(ALL) NOPASSWD: ALL'"
   with_items: devs_group
   tags: setup_project_sudoers
