@@ -1,7 +1,6 @@
 ---
 #ansible-playbook bootstrap.yml --extra-vars="hostip=212.110.189.81 hostip6=2001:41c8:1:63db::51 host=s116.okserver.org user=root"  -vvvv -k -i inventory/hosts
 - hosts: "{{ host }}"
-  gather_facts: false
   connection: ssh
   user: "{{ user }}"
   sudo: true
@@ -82,11 +81,3 @@
     - name: newaliases
       command: /usr/bin/newaliases
       tags: run_newaliases
-
-    - name: setup_snapshots
-      when: rackspace == true
-      local_shell: echo {{ inventory_hostname }}
-      tags: local_action
-#     - name: disable_root_login
-#       lineinfile: "dest=/etc/ssh/sshd_config state=present regexp='^PermitRootLogin' line='PermitRootLogin no'"
-#       tags: disable_root_login
