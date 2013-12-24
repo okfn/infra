@@ -13,3 +13,4 @@ security: root
 root: system-mails@okfn.org
 
 school-of-data:	/dev/null
+list-admin: /dev/null
