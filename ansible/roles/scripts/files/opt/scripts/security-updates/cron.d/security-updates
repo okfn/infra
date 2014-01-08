@@ -1,1 +1,1 @@
-05 */2 * * * root /opt/scripts/security-updates
+05 */2 * * * root /opt/scripts/security-updates &>/dev/null
