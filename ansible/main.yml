@@ -51,16 +51,6 @@
       cmd_rsync: /usr/bin/rsync
     - role: rsyncd
 
-- hosts: ansible-dev
-  sudo: true
-  roles:
-    - role: booktype
-      tags: ['booktype']
-      install_path: /var/www/mybooktype
-      user: booktype
-      group: booktype
-    - { role: graphite, tags: ['graphite'] }
-
 - hosts: wiki
   gather_facts: false
   sudo: true
@@ -74,6 +64,7 @@
   roles:
     - { role: nagios-server, tags: ['nagios-server'] }
     - { role: check_mk-server, tags: ['check_mk-server'] }
+    - { role: graphite, tags: ['graphite'] }
 
 - hosts: listserv
   sudo: true
