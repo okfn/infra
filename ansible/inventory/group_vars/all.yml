@@ -1,5 +1,5 @@
 ---
-sysadmin_email: 'system-mails@okfn.org'
+sysadmin_email: 'sysadmin-alert@okfn.org'
 alert_escalation_contact: 'nils.toedtmann@okfn.org'
 ckan_sysadmin_email: 'ckan-sysadmin@okfn.org'
 openspending_sysadmin_email: 'openspending-sysadmin@okfn.org'
