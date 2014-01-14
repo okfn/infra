@@ -17,6 +17,7 @@
     - { role: sysstat, tags: ['sysstat'] }
     - { role: update-notifier, tags: ['update-notifier'] }
     - { role: users, tags: ['users'] }
+    - { role: git, tags: ['git'] }
 
 - hosts: openspending-web
   sudo: true
