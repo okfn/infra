@@ -1,0 +1,9 @@
+- name: install python
+  apt: pkg=python state=installed
+
+- name: install python 3
+  apt: pkg=python3 state=installed
+  when: install_python3
+
+- name: install virtualenv
+  apt: pkg=python-virtualenv state=installed

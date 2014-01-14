@@ -45,6 +45,9 @@
   sudo: true
   roles:
     - { role: nginx, tags: ['nginx'] }
+    - role: python
+      tags: ['python']
+      install_python3: true
 
 - hosts: backup
   gather_facts: True
