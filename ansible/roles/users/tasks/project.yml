@@ -1,0 +1,14 @@
+- name: Add project group
+  group: name='{{ item }}' state=present
+  with_items: devs_group
+
+- name: Add project users
+  user: name='{{ item.name }}' group='{{ item.group }}' state=present shell=/bin/bash
+  with_items: users[devs_group]
+
+- name: Install project SSH keys
+  authorized_key:
+    user='{{ item.name }}'
+    key="{{ lookup('file', inventory_dir + '/../files/keys/' + item.authorized_keys[0] + '.pub') }}"
+    state=present
+  with_items: users[devs_group]
