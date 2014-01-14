@@ -123,6 +123,16 @@ users:
       authorized_keys:
         - ross.jones
 
+  iatimali:
+    - name: 'tryggvib'
+      group: 'iatimali'
+      authorized_keys:
+        - tryggvib
+    - name: 'yohan.boniface'
+      group: 'iatimali'
+      authorized_keys:
+        - yohan.boniface
+
   monitoring:
     - name: 'nagios'
       group: 'monitoring'
