@@ -1,6 +1,5 @@
 - name: Add project group
-  group: name='{{ item }}' state=present
-  with_items: devs_group
+  group: name='{{ devs_group }}' state=present
 
 - name: Add project users
   user: name='{{ item.name }}' group='{{ item.group }}' state=present shell=/bin/bash
