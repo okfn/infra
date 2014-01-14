@@ -1,0 +1,9 @@
+server {
+  listen [::]:80;
+  server_name transparence.ambafrance-ml.org;
+
+  location / {
+    alias /srv/piati/public;
+  }
+}
+

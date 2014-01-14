@@ -40,6 +40,10 @@
       group: etherpad-lite
       version: 1.3.0
 
+- hosts: s120.okserver.org
+  sudo: true
+  roles:
+    - { role: nginx, tags: ['nginx'] }
 
 - hosts: backup
   gather_facts: True
