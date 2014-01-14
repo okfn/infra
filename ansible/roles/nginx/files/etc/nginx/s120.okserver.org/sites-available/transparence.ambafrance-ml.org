@@ -3,7 +3,7 @@ server {
   server_name transparence.ambafrance-ml.org;
 
   location / {
-    alias /srv/piati/public;
+    alias /srv/piati/public/;
   }
 }
 
