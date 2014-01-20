@@ -1,4 +1,12 @@
 #!/bin/sh
 
-docker start -a {{ dumper_container }}
+set -eu
 
+docker start -a "{{ dumper_container }}"
+
+# The following is a call to Dead Man's Snitch, a monitoring service that
+# ensures this cronjob is running once a DEFINED_TIME_INTERVAL (probably once a
+# day).
+#
+# Do not remove.
+curl -sSL "{{ dumper_snitch_url }}" -o /dev/null

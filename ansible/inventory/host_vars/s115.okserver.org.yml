@@ -26,8 +26,9 @@ database_container: rt_pg
 dumper_container: dumper
 dump_databases: rt4
 dumper_s3_bucket: s115_pg_dump
+dumper_snitch_url: "https://nosnch.in/32cc60bb75"
 
-backup_scripts: 
+backup_scripts:
    - mysql_backup.sh
 
 mysql_backup_list:

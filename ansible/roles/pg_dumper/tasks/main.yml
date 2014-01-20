@@ -12,4 +12,9 @@
   when: dump.rc == 1
 
 - name: create dumper cron job
-  template: src=cronjob dest=/etc/cron.daily/dumper
+  template:
+    src=cronjob
+    dest=/etc/cron.daily/dumper
+    owner=root
+    group=root
+    mode=0755
