@@ -5,5 +5,8 @@
   apt: pkg=python3 state=installed
   when: install_python3
 
-- name: install virtualenv
-  apt: pkg=python-virtualenv state=installed
+- name: install core python packages
+  apt: pkg='{{ item }}' state=installed
+  with_items:
+    - python-setuptools
+    - python-virtualenv
