@@ -17,6 +17,5 @@
         mode=644
   notify: reload nginx
 
-- include: community_admin.yml
 
 - include: patches.yml
