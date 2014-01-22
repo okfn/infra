@@ -71,9 +71,6 @@ s106.okserver.org
 [listserv]
 s116.okserver.org
 
-[trac]
-s039.okserver.org
-
 [etherpad]
 s113.okserver.org
 
@@ -130,7 +127,6 @@ backup
 labs
 listserv
 etherpad
-trac
 other
 docker-host
 
@@ -147,7 +143,6 @@ openspending-web
 wiki
 LOV
 etherpad
-trac
 queremossaber
 labs
 listserv
