@@ -17,5 +17,11 @@
         mode=644
   notify: reload nginx
 
+- name: install change_mod_pw script
+  copy: src=change_mod_pw
+        dest=/usr/lib/mailman/bin
+        owner=root
+        group=list
+        mode=755
 
 - include: patches.yml
