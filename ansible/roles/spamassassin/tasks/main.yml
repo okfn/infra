@@ -1,0 +1,23 @@
+---
+- name: install_spamassassin
+  apt: pkg=spamassassin state=installed
+  tags:
+     - install_spamassassin
+     - spamassassin
+
+- name: spamd_default
+  file: src=etc/default/spamassassin dest=/etc/default/spamassassin
+  notify: reload spamassasin
+  tags:
+     - spamd_default
+     - spamassassin_config
+     - spamassassin
+
+- name: spamassassin_config
+  copy: src={{ item }} dest=/etc/spamassassin/
+  with_fileglob:
+     - etc/spamassassin/*
+  notify: reload spamassasin
+  tags:
+     - spamassassin_config
+     - spamassassin

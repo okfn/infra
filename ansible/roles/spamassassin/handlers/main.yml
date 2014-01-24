@@ -1,0 +1,3 @@
+---
+- name: reload spamassassin
+  shell: /usr/bin/spamassassin --lint && service spamassassin reload
