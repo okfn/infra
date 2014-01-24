@@ -9,6 +9,7 @@ relayhost: false
 ses: false
 origin: okfn.org
 listserv: true
+mm_spamassassin: true
 transport: list_transport
 aliases: "{{ inventory_hostname }}/aliases"
 graphite_collectors: [ 'mailman_stats.py' ]
