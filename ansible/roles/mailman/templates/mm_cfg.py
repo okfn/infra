@@ -1,5 +1,6 @@
 # -*- python -*-
-
+# {{ ansible_managed }}
+#
 # Copyright (C) 1998,1999,2000 by the Free Software Foundation, Inc.
 #
 # This program is free software; you can redistribute it and/or
@@ -106,7 +107,10 @@ MTA=None   # Misnomer, suppresses alias output on newlist
 # Uncomment if you want to filter mail with SpamAssassin. For
 # more information please visit this website:
 # http://www.jamesh.id.au/articles/mailman-spamassassin/
-# GLOBAL_PIPELINE.insert(1, 'SpamAssassin')
+
+{% if mm_spamassassin %}
+GLOBAL_PIPELINE.insert(1, 'SpamAssassin')
+{% endif %}
 
 # Note - if you're looking for something that is imported from mm_cfg, but you
 # didn't find it above, it's probably in /usr/lib/mailman/Mailman/Defaults.py.
