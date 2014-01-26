@@ -224,7 +224,7 @@ define command{
 
 define command{
 	 command_name    check_ssh_psql_running
-        command_line    /usr/lib/nagios/plugins/check_by_ssh -H '$HOSTADDRESS$' -C "/usr/lib/nagios/plugins/check_tcp -H $ARG1$  -p $ARG2$"
+        command_line    /usr/lib/nagios/plugins/check_by_ssh -t 30 -H '$HOSTADDRESS$' -C "/usr/lib/nagios/plugins/check_tcp -H $ARG1$  -p $ARG2$"
 }
 
 define command {
