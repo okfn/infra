@@ -24,6 +24,8 @@ all_hosts = [
 
 ]
 
+tcp_connect_timeout = 30
+
 #http://mathias-kettner.de/checkmk_inventory.html
 ignored_checktypes = [ "if", "lnx_if" ]
 
@@ -224,7 +226,7 @@ define command{
 
 define command{
 	 command_name    check_ssh_psql_running
-        command_line    /usr/lib/nagios/plugins/check_by_ssh -t 30 -H '$HOSTADDRESS$' -C "/usr/lib/nagios/plugins/check_tcp -H $ARG1$  -p $ARG2$"
+        command_line    /usr/lib/nagios/plugins/check_by_ssh -t 60 -H '$HOSTADDRESS$' -C "/usr/lib/nagios/plugins/check_tcp -H $ARG1$  -p $ARG2$"
 }
 
 define command {
