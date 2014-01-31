@@ -10,6 +10,7 @@ sites_enabled:
 sites_to_monitor:
   - product-open-data.com:80:200
   - product.okfn.org:80:200
+  - wiki.okfn.org:80:200
 enabled_plugin_checks:
   - mk_mysql
 backup_scripts:
@@ -23,4 +24,5 @@ mysql_backup_list:
   - wiki_okfn_jp
   - wiki_okfn_org
   - wiki_opendataday_org
+  - wiki_okfestival_org
 private_ip: 10.179.249.37
