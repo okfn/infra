@@ -209,29 +209,29 @@ define serviceescalation {
 
 define command{
         command_name    check_http_basic
-        command_line    /usr/lib/nagios/plugins/check_http '$ARG1$'  -H '$ARG2$' -p '$ARG3$' -e '$ARG4$' -N
+        command_line    /usr/lib/nagios/plugins/check_http '$ARG1$'  -H '$ARG2$' -p '$ARG3$' -e '$ARG4$' -N -t 30
 }
 
 define command{
         command_name    check_http_ssl_works
-        command_line    /usr/lib/nagios/plugins/check_http -w 5 -c 10 --ssl -H '$ARG1$'
+        command_line    /usr/lib/nagios/plugins/check_http -w 5 -c 10 --ssl -H '$ARG1$' -t 30
 }
 
 
 define command{
         command_name    check_http_ssl_cert
-        command_line    /usr/lib/nagios/plugins/check_http -H '$ARG1$' -C 30
+        command_line    /usr/lib/nagios/plugins/check_http -H '$ARG1$' -C 30 -t 30
 }
 
 
 define command{
 	 command_name    check_ssh_psql_running
-        command_line    /usr/lib/nagios/plugins/check_by_ssh -t 60 -H '$HOSTADDRESS$' -C "/usr/lib/nagios/plugins/check_tcp -H $ARG1$  -p $ARG2$"
+        command_line    /usr/lib/nagios/plugins/check_by_ssh -t 60 -H '$HOSTADDRESS$' -C "/usr/lib/nagios/plugins/check_tcp -H $ARG1$  -p $ARG2$ -t 30"
 }
 
 define command {
 	command_name	check_tcp_2
-	command_line	/usr/lib/nagios/plugins/check_tcp -H '$ARG1$' -p '$ARG2$'	
+	command_line	/usr/lib/nagios/plugins/check_tcp -H '$ARG1$' -p '$ARG2$' -t 30	
 
 }
 
