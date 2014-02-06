@@ -25,6 +25,11 @@ all_hosts = [
 ]
 
 tcp_connect_timeout = 30
+extra_service_conf["max_check_attempts"] = [
+        ( "3", ALL_HOSTS, "Check_MK" ),
+        ( "3", ALL_HOSTS, "PING" ),
+        ( "5", ALL_HOSTS, ALL_SERVICES ),
+]
 
 #http://mathias-kettner.de/checkmk_inventory.html
 ignored_checktypes = [ "if", "lnx_if" ]
