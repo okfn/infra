@@ -24,11 +24,14 @@ all_hosts = [
 
 ]
 
-tcp_connect_timeout = 30
+tcp_connect_timeout = 60
 extra_service_conf["max_check_attempts"] = [
         ( "3", ALL_HOSTS, "Check_MK" ),
         ( "3", ALL_HOSTS, "PING" ),
         ( "5", ALL_HOSTS, ALL_SERVICES ),
+]
+extra_host_conf["retry_interval"] = [
+        ( "120", ALL_HOSTS ),
 ]
 
 #http://mathias-kettner.de/checkmk_inventory.html
