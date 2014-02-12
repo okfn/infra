@@ -22,6 +22,9 @@ server {
 server {
   listen [::]:80;
   server_name openspending.org www.openspending.org;
+
+  add_header Access-Control-Allow-Origin *;
+
   return 301 https://openspending.org$request_uri;
 }
 
@@ -33,6 +36,8 @@ server {
   include ssl_params;
   ssl_certificate /etc/nginx/ssl/star_openspending_org.crt;
   ssl_certificate_key /etc/nginx/ssl/star_openspending_org.key;
+
+  add_header Access-Control-Allow-Origin *;
 
   return 301 https://openspending.org$request_uri;
 }
