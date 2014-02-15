@@ -5,5 +5,4 @@ devs_group: 'ckan_dev'
 postgres_port: 5432
 solr_port: 8983
 db_type: postgres
-sysadmin_email: "{{ sysadmin_email }}"
 ckan_locale_default: en
