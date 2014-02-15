@@ -10,5 +10,5 @@ ftp: root
 abuse: root
 noc: root
 security: root
-root: system-mails@okfn.org
-list-admin: /dev/null
+root: sysadmin-alert@okfn.org
+school-of-data: /dev/null
