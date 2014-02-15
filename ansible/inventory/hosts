@@ -67,6 +67,13 @@ s079.okserver.org
 [ckan-packaging]
 s106.okserver.org
 
+[ckan-build-host]
+s122.okserver.org
+
+[ckan-staging]
+s123.okserver.org
+
+
 [listserv]
 s116.okserver.org
 
@@ -114,6 +121,8 @@ ckan-db-dev
 ckan-web-prod
 ckan-db-prod
 ckan-packaging
+ckan-build-host
+ckan-staging
 
 [test-group:children]
 backup
