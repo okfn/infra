@@ -1,8 +1,6 @@
 # Server in Gandi for IATI Mali project -- Anders
 s120.okserver.org
 
-# Solr server in AWS for OpenSpending, FarmSubsidies
-s121.okserver.org
 
 [monitoring]
 s117.okserver.org
@@ -17,6 +15,8 @@ s095.okserver.org
 s096.okserver.org
 s030.okserver.org
 s114.okserver.org
+# Solr server in AWS for OpenSpending, FarmSubsidies
+s121.okserver.org
 
 [blogfarm]
 # this is not really a host in our infrastructure, but added so we can manage
