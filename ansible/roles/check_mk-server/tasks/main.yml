@@ -8,7 +8,7 @@
      - check-mk_server
 
 - name: check_mk_template
-  template: src=etc/check_mk/check_mk_templates.cfg dest=/etc/nagios3/conf.d/check_mk/check_mk_templates.cfg
+  copy: src=etc/check_mk/check_mk_templates.cfg dest=/etc/nagios3/conf.d/check_mk/check_mk_templates.cfg force=yes
   notify: reload check_mk
   tags:
      - check_mk_template
