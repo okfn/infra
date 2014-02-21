@@ -4,6 +4,8 @@
   connection: ssh
   user: "{{ user }}"
   sudo: true
+  vars:
+     - private_dir: ../../credentials/ansible/
   vars_files:
      - ./vars/users.yml
      - "{{ private_dir }}/p.yml"
