@@ -1,21 +1,26 @@
 ---
 
-#adds sysadmin users
-- name: -> add_group
+- name: Add groups
   group: name={{ item }} state=present
   with_items:
     - sysadmin
     - monitoring
-  tags: add_group
 
-
-- name: -> add_user
-  user: name={{ item.name }} group={{ item.group }} state=present shell=/bin/bash
-#  debug: msg="{{ item.name }} - {{ item.group  }}"
+- name: Add user groups
+  group: name={{ item.group | default(item.name) }} state=present
   with_flattened:
-     - users.sysadmin
-     - users.monitoring
-  tags: add_users
+    - users.sysadmin
+    - users.monitoring
+
+- name: Add users
+  user: name={{ item.name }}
+        group='{{ item.group | default(item.name) }}'
+        groups='{{ item.groups | default('') }}'
+        state=present
+        shell=/bin/bash
+  with_flattened:
+    - users.sysadmin
+    - users.monitoring
 
 # NB: although user's authorized_keys property is a list, only the first key in
 # the list is currently managed.
@@ -24,21 +29,20 @@
 # like them (i.e. with the list of named users only defined once and then the
 # list of users that should be present in group_vars/host_vars rather than the
 # current arrangement with duplicated users.
-- name: -> install_ssh_keys
+- name: Add user SSH keys
   authorized_key:
           user={{ item.name }}
           key="{{ lookup('file', inventory_dir + '/../files/keys/' + item.authorized_keys[0] + '.pub') }}"
           state=present
   with_flattened:
-     - users.sysadmin
-     - users.monitoring
+    - users.sysadmin
+    - users.monitoring
   tags: add_ssh_keys
 
-- name: sudoers
+- name: Configuring sudoers
   lineinfile: "dest=/etc/sudoers state=present regexp='^%{{ item }}' line='%{{ item }} ALL=(ALL) NOPASSWD: ALL'"
   with_items:
-     - sysadmin
-  tags: sudoers
+    - sysadmin
 
 - include: project.yml
   when: devs_group is defined

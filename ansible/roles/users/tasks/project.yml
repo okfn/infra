@@ -1,8 +1,16 @@
 - name: Add project group
   group: name='{{ devs_group }}' state=present
 
+- name: Add project user groups
+  group: name='{{ item.group | default(item.name) }}' state=present
+  with_items: users[devs_group]
+
 - name: Add project users
-  user: name='{{ item.name }}' group='{{ item.group }}' state=present shell=/bin/bash
+  user: name='{{ item.name }}'
+        group='{{ item.group | default(item.name) }}'
+        groups='{{ item.groups | default('') }}'
+        state=present
+        shell=/bin/bash
   with_items: users[devs_group]
 
 - name: Install project SSH keys

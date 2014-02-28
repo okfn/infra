@@ -123,6 +123,13 @@ users:
       authorized_keys:
         - ross.jones
 
+    # UGH! Michael doesn't need to be in 'labs_dev' but he's here because we
+    # can't manage users in a more sensible way without a total overhaul of the
+    # users role.
+    - name: mihi
+      authorized_keys:
+        - mihi
+
   iatimali:
     - name: 'tryggvib'
       group: 'iatimali'
