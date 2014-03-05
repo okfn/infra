@@ -17,10 +17,10 @@ all_hosts = [
   {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
 "{{ host }}|openspending",
   {% endif %}
-{%endfor%}
- {% if hostvars['blogfarm.okserver.org']['disable_nagios_checks'] is not defined %}
-"blogfarm.okserver.org",
- {% endif %}
+{% endfor %}
+{% for host in nagios_additional_hosts %}
+"{{ host }}",
+{% endfor %}
 
 ]
 

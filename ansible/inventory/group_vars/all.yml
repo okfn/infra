@@ -21,3 +21,5 @@ docker_host: false
 postfix_etc: /etc/postfix
 aliases: aliases
 backup_rsync_target: s088.okserver.org
+nagios_additional_hosts:
+  - blogfarm.okserver.org

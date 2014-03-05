@@ -16,11 +16,6 @@ s114.okserver.org
 # Solr server in AWS for OpenSpending, FarmSubsidies
 s121.okserver.org
 
-[blogfarm]
-# this is not really a host in our infrastructure, but added so we can manage
-# nagios checks for it
-blogfarm.okserver.org
-
 [queremossaber]
 s030.okserver.org
 
@@ -143,7 +138,6 @@ docker-host
 wiki
 etherpad
 listserv
-blogfarm
 
 [webservers:children]
 ckan-web-dev
