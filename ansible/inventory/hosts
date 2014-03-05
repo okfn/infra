@@ -1,7 +1,6 @@
 # Server in Gandi for IATI Mali project -- Anders
 s120.okserver.org
 
-
 [monitoring]
 s117.okserver.org
 
@@ -12,7 +11,6 @@ s115.okserver.org
 s095.okserver.org
 
 [openspending-db]
-s096.okserver.org
 s030.okserver.org
 s114.okserver.org
 # Solr server in AWS for OpenSpending, FarmSubsidies
