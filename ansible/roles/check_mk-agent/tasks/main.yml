@@ -1,8 +1,4 @@
 ---
-- name: debug
-  debug: msg=":=D"
-  tags: check-mk_agent
-
 # This play sets up the check_mk agent
 - name: fetch_check-mk_deb
   command: wget http://mathias-kettner.com/download/check-mk-agent_1.2.2p2-2_all.deb -O /opt/check-mk-agent_1.2.2p2-2_all.deb creates=/opt/check-mk-agent_1.2.2p2-2_all.deb
