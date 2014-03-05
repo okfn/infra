@@ -26,6 +26,10 @@ users:
       group: 'sysadmin'
       authorized_keys:
         - borior
+    - name: 'nigelb'
+      group: 'sysadmin'
+      authorized_keys:
+        - nigelb
 
   ckan_dev:
     - name: 'seanh'
@@ -88,10 +92,6 @@ users:
       group: 'openspending_dev'
       authorized_keys:
         - mkeegan
-    - name: 'nigelb'
-      group: 'openspending_dev'
-      authorized_keys:
-        - nigelb
     - name: 'stefan'
       group: 'openspending_dev'
       authorized_keys:
