@@ -13,7 +13,8 @@
     - { role: iptables-persistent, tags: ['iptables-persistent'] }
     - { role: motd, tags: ['motd'] }
     - { role: nagios-client, tags: ['nagios-client'] }
-    - { role: ntpd, tags: ['ntpd'] }
+    - { role: knopki.timezone, tags: ['time'] }
+    - { role: bennojoy.ntp, tags: ['time'] }
     - { role: sysstat, tags: ['sysstat'] }
     - { role: update-notifier, tags: ['update-notifier'] }
     - { role: users, tags: ['users'] }

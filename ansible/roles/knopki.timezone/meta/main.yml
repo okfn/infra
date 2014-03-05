@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Sergey Korolev
+  description: Set timezone on Debian-like systems.
+  license: MIT
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  categories:
+  - system
+dependencies: []
