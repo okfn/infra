@@ -1,3 +1,6 @@
 #!/bin/bash
+
+set -eu
+
 /usr/bin/s3cmd sync /home/backup/mysql_backups s3://attic.okfn.org/ --config=/home/okfn/.s3
 find /home/backup/mysql_backups -mtime +14 -exec rm {} \;
