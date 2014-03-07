@@ -2,19 +2,19 @@
 # all_hosts = [ 'localhost' ]
 
 
-all_hosts = [ 
+all_hosts = [
 {% for host in groups['sysadmin-servers'] %}
-  {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
+  {% if hostvars[host]['disable_nagios_checks'] is not defined %}
 "{{ host }}|sysadmin-servers",
   {% endif %}
 {% endfor %}
 {% for host in groups['ckan']  %}
-  {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
+  {% if hostvars[host]['disable_nagios_checks'] is not defined %}
 "{{ host }}|ckan",
   {% endif %}
 {% endfor %}
 {% for host in groups['openspending'] %}
-  {% if hostvars[host]['disable_nagios_checks'] is not defined %} 
+  {% if hostvars[host]['disable_nagios_checks'] is not defined %}
 "{{ host }}|openspending",
   {% endif %}
 {% endfor %}
@@ -40,7 +40,7 @@ ignored_checktypes = [ "if", "lnx_if" ]
 #check_parameters is an array of checks and the parameters that should be set, these apply to both inventorized and manually defined checks.
 #
 # '<check name>:<warning level>:<critical level>'
-# e.g: 
+# e.g:
 #
 # check_parameters: ['Postfix Queue:80:120']
 #
@@ -54,7 +54,7 @@ check_parameters = [
     {% for param in hostvars[host]['check_parameters'] %}
 ( ( {{ param.split(':')[1] }}, {{ param.split(':')[2] }} ), ["{{ host }}"], [ "{{ param.split(':')[0] }}" ] ),
     {% endfor %}
-  {% endif %}                                                                                  
+  {% endif %}
 
 {% endfor %}
 
@@ -79,8 +79,8 @@ legacy_checks = [
     {% for site in hostvars[host]['sites_to_monitor'] %}
 ( ( "check_http_basic!{{ host }}!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "HTTP {{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
     {% endfor %}
-  {% endif %}                                                                                  
-  
+  {% endif %}
+
   {% if hostvars[host]['ssl_sites_to_monitor'] is defined %}
     {% for site in hostvars[host]['ssl_sites_to_monitor'] %}
 ( ( "check_http_ssl_works!{{ site }}", "HTTPS {{ site }}", False), [ "{{ host }}" ] ),
@@ -100,11 +100,6 @@ legacy_checks = [
 
 #CKAN dbservice
 {% for host in groups['ckan-db-prod'] %}
-( ( "check_ssh_psql_running!localhost!5432", 'Postgres Server', False), [ "{{ host }}" ] ),
-{% endfor %}
-
-#Openspending dbservice
-{% for host in groups['openspending-db'] %}
 ( ( "check_ssh_psql_running!localhost!5432", 'Postgres Server', False), [ "{{ host }}" ] ),
 {% endfor %}
 
@@ -141,7 +136,7 @@ define_hostgroups = {
 
 host_groups = [
 
-('Sysadmin-Servers', [ {% for host in groups['sysadmin-servers'] %} '{{ host }}', {% endfor %} ] ), 
+('Sysadmin-Servers', [ {% for host in groups['sysadmin-servers'] %} '{{ host }}', {% endfor %} ] ),
 ('CKAN-Servers', [ {% for host in groups['ckan']  %} '{{ host }}', {% endfor %} ] ),
 ('Openspending-Servers', [ {% for host in groups['openspending'] %} '{{ host }}', {% endfor %} ] ),
 
@@ -153,7 +148,7 @@ define_contactgroups = {
  "CKAN-sysadmin" : "CKAN product owner sysadmins",
  "Openspending-sysadmin" : "Openspending product owner sysadmins",
  "pagerduty_service_alerts": "Pagerduty alerting on critcal services",
- "pagerduty_host_alerts": "Pagerduty alerting for host downtime", 
+ "pagerduty_host_alerts": "Pagerduty alerting for host downtime",
 }
 
 host_contactgroups = [
@@ -206,7 +201,7 @@ define contact {
 }
 
 define serviceescalation {
-	hostgroup_name	Sysadmin-Servers,CKAN-Servers,Openspending-Servers	
+	hostgroup_name	Sysadmin-Servers,CKAN-Servers,Openspending-Servers
 	service_description	*
 	first_notification 	4
 	last_notification	0
@@ -239,7 +234,7 @@ define command{
 
 define command {
 	command_name	check_tcp_2
-	command_line	/usr/lib/nagios/plugins/check_tcp -H '$ARG1$' -p '$ARG2$' -t 30	
+	command_line	/usr/lib/nagios/plugins/check_tcp -H '$ARG1$' -p '$ARG2$' -t 30
 
 }
 

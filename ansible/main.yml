@@ -20,12 +20,6 @@
     - { role: users, tags: ['users'] }
     - { role: git, tags: ['git'] }
 
-- hosts: openspending-db
-  sudo: true
-  roles:
-    - { role: python, tags: ['python'] }
-    - { role: supervisor, tags: ['supervisor'] }
-
 - hosts: openspending-web
   sudo: true
   vars_files:

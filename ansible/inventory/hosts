@@ -10,9 +10,7 @@ s115.okserver.org
 [openspending-web]
 s095.okserver.org
 
-[openspending-db]
-s030.okserver.org
-s114.okserver.org
+[openspending-solr]
 # Solr server in AWS for OpenSpending, FarmSubsidies
 s121.okserver.org
 
@@ -106,7 +104,7 @@ s098.okserver.org
 s113.okserver.org
 
 [openspending:children]
-openspending-db
+openspending-solr
 openspending-web
 
 [ckan:children]
@@ -151,7 +149,6 @@ listserv
 [dbservers:children]
 ckan-db-prod
 ckan-db-dev
-openspending-db
 etherpad
 
 [rt]
