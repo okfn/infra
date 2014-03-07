@@ -36,7 +36,6 @@ s118.okserver.org
 
 [ckan-db-dev]
 s031.okserver.org
-s032.okserver.org
 # s119 is TEMPORARY, set up for David Raznick, and should be reviewed at the end
 # of January
 s119.okserver.org
@@ -99,7 +98,6 @@ s111.okserver.org
 [hetzner]
 s030.okserver.org
 s031.okserver.org
-s032.okserver.org
 s033.okserver.org
 s110.okserver.org
 
