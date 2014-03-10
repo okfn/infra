@@ -1,0 +1,24 @@
+---
+
+- name: git_clone_nagios-api
+  git: repo=https://github.com/zorkian/nagios-api.git dest={{ src_dir }} update=no
+  tags: 
+     - nagios-api_clone_repo
+     - nagios-api
+
+- name: nagios-api_deps
+  pip: name={{ item }}
+  with_items:
+     - diesel
+     - greenlet
+  tags:
+     - nagios-api_install_deps
+     - nagios-api
+
+- name: nagios-api_install
+  shell: cd {{ src_dir }} && python {{ src_dir }}/setup.py install creates=/usr/local/bin/nagios-api
+  tags:
+     - nagios-api_install
+     - nagios-api
+
+- meta: flush_handlers
