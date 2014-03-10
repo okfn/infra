@@ -37,4 +37,11 @@ server {
                 include /etc/nginx/fastcgi_params;
                 fastcgi_pass php;
         }
+
+        location /api/ {
+            proxy_pass             http://localhost:8118/;
+            proxy_set_header       Host $host;
+            proxy_buffering off;
+        }
+
 }
