@@ -4,7 +4,6 @@ sites_to_monitor:
   - content.openspending.org:80:200
   - farmsubsidy.org:80:301
   - openspending.org:80:301
-  - wheredoesmymoneygo.org:80:200
 ssl_sites_to_monitor:
   - openspending.org
 collectd_plugins:
