@@ -9,54 +9,75 @@
 - set_fact: mailname={{ inventory_hostname }}
   when: mailname is not defined
 
-- name: setup_main_cf
-  template: src={{ mailhost_type }}.cf dest={{ postfix_etc }}/main.cf
+- name: managed postfix config
+  copy: src={{ item }} dest={{ postfix_etc }} owner=root group=root mode=755
+  with_fileglob: etc/postfix/{{ inventory_hostname }}/*
+  when: postfix_managed is defined
   notify: restart postfix
 
-- name: default_aliases
-  template: src={{ aliases }} dest={{ postfix_etc }}/aliases owner=root group=root mode=0644
+- name: check postfix alias managed
+  shell: test -e /etc/postfix/aliases
+  register: aliases_managed
+  ignore_errors: True
 
-- name: fixup_postfix_perms
-  shell: chown -R root:root {{ postfix_etc }} && chmod -R 755 {{ postfix_etc }}
+- name: setup_aliases_link
+  file: src={{ postfix_etc }}/aliases dest=/etc/aliases state=link force=yes
+  when: postfix_managed is defined and aliases_managed.rc == 0
+  notify: 
+     - rebuild postfix_aliases
+     - restart postfix
 
-- name: fixup_alias_link
-  when: docker_container is not defined
-  shell: rm -f /etc/aliases && ln -s {{ postfix_etc }}/aliases /etc
+- name: generic postfix config
+  copy: src={{ item }} dest={{ postfix_etc }} owner=root group=root mode=755
+  with_items:
+     - etc/postfix/main.cf  
+  when: postfix_managed is not defined
+  notify: restart postfix
 
-- name: cleanup_alias_db_link
-  when: docker_container is not defined
-  shell: rm -f /etc/aliases.db
+- name: generic aliases
+  copy: src=etc/aliases dest=/etc/aliases owner=root group=root mode=755
+  when: (aliases_managed.rc == 1) or (postfix_managed is undefined)
+  notify:
+     - rebuild generic_aliases
+     - restart postfix
+  tags: generic_aliases
 
-- name: newaliases
-  command: postalias hash:{{ postfix_etc }}/aliases
-
-- name: create_access
-  copy: src=access dest={{ postfix_etc }}/access owner=root group=root mode=0644
-
-- name: build_access
-  command: postmap hash:{{ postfix_etc }}/access
-
-- name: create_helo_access
-  copy: src=helo_access dest={{ postfix_etc }}/helo_access owner=root group=root mode=0644
-
-- name: build_helo_access
-  command: postmap hash:{{ postfix_etc }}/helo_access
-
-- name: create_transport_maps
-  when: transport is defined
-  template: src={{ transport }} dest={{ postfix_etc }}/transport owner=root group=root mode=0644
-
-- name: build_transport_maps
-  when: transport is defined
-  command: postmap hash:{{ postfix_etc }}/transport
+- name: postmap_hash_files
+  command: postmap hash:{{ postfix_etc }}/{{ item }}
+  with_items: postfix_map_files
+  when: postfix_managed is defined
 
 - name: create_sasl_password
-  when: ses == True
+  when: ses is defined and ses == True
   template: src=sasl_passwd dest={{ postfix_etc }}/sasl_passwd owner=root group=root mode=0600
+  tags: create_sasl_password
 
 - name: build_sasl_passwd
-  when: ses == True
+  when: ses is defined and ses == True
   command: postmap hash:{{ postfix_etc }}/sasl_passwd
+  tags: create_sasl_password
+
+
+#- name: create_access
+#  copy: src=access dest={{ postfix_etc }}/access owner=root group=root mode=0644
+
+#- name: build_access
+#  command: postmap hash:{{ postfix_etc }}/access
+
+#- name: create_helo_access
+#  copy: src=helo_access dest={{ postfix_etc }}/helo_access owner=root group=root mode=0644
+
+#- name: build_helo_access
+#  command: postmap hash:{{ postfix_etc }}/helo_access
+
+#- name: create_transport_maps
+#  when: transport is defined
+#  template: src={{ transport }} dest={{ postfix_etc }}/transport owner=root group=root mode=0644
+
+#- name: build_transport_maps
+#  when: transport is defined
+#  command: postmap hash:{{ postfix_etc }}/transport
+
 
 ### XXXX Better to figure out how to do this as a service
 

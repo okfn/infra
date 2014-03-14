@@ -2,3 +2,10 @@
 - name: restart postfix
   when: docker_container is not defined
   service: name=postfix state=restarted
+
+- name: rebuild postfix_aliases
+  shell: postalias hash:{{ postfix_etc }}/aliases
+
+- name: rebuild generic_aliases
+  shell: postalias hash:/etc/aliases
+
