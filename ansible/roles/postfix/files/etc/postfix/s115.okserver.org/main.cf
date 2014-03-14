@@ -1,0 +1,33 @@
+mail_owner = postfix
+myhostname = s115.okserver.org
+mydomain = s115.okserver.org
+myorigin = s115.okserver.org
+inet_interfaces = all
+mydestination = $myhostname
+unknown_local_recipient_reject_code = 550
+relay_domains =
+        rt.okfn.org
+alias_maps = hash:/etc/postfix/aliases
+alias_database = hash:/etc/postfix/aliases
+transport_maps = hash:/etc/postfix/transport
+mailman_destination_recipient_limit=1
+smtpd_helo_restrictions =
+	check_helo_access hash:/etc/postfix/helo_access,
+	reject_non_fqdn_hostname,
+	reject_invalid_hostname,
+	permit
+smtpd_sender_restrictions =
+	check_sender_access hash:/etc/postfix/access,
+	permit_mynetworks,
+	reject_non_fqdn_sender,
+	reject_unknown_sender_domain,
+	permit
+smtpd_recipient_restrictions =
+	check_recipient_access regexp:/etc/postfix/recipient_access,
+	permit_mynetworks,
+	reject_unauth_pipelining,
+	reject_non_fqdn_recipient,
+	reject_invalid_hostname,
+	reject_unauth_destination,
+	reject_rbl_client sbl-xbl.spamhaus.org,
+	permit
