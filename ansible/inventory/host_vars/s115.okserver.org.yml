@@ -21,6 +21,9 @@ relayhost: False
 ses: False
 postfix_relay_domains: ['rt.okfn.org']
 transport: "{{ inventory_hostname }}/transport"
+postfix_managed: true
+postfix_map_files: ['access','helo_access','recipient_access','sender_access','transport']
+
 
 database_container: rt_pg
 dumper_container: dumper

@@ -5,6 +5,7 @@ nginx_ssl_certs:
 sites_enabled:
   - lists.okfn.org
 mailhost_type: leaf
+postfix_managed: true
 relayhost: false
 ses: false
 origin: okfn.org
@@ -15,6 +16,8 @@ aliases: "{{ inventory_hostname }}/aliases"
 graphite_collectors: [ 'mailman_stats.py' ]
 check_graphite: ['sum(mail_metrics.mailman.subscribe.*.pending):-1hours:20:30']
 check_parameters: ['Postfix Queue:80:120']
+postfix_map_files: ['access','helo_access','transport']
+postfix_managed: true
 postfix_relay_domains:
   - lists.okfn.org
   - lists.knowledgeforge.net
