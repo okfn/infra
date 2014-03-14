@@ -41,7 +41,6 @@ each array element should be in the format:
 For more details on [`checkmk_check parameters`](http://mathias-kettner.de/checkmk_check_parameters.html)
 
 
-
 ## `disabled_checks`
 
 `disabled_checks` accepts an array of elements with the names of local passive
@@ -121,4 +120,6 @@ then setup by the ntpd role. The defined timezone should be a tz file defined un
  
     timezone: UTC
 
+## `postfix_map_files`
 
+Defines the set of postfix map hash files that postmap should be run on for each host.
