@@ -1,0 +1,16 @@
+---
+- name: install fail2ban
+  apt: pkg=fail2ban state=installed
+
+- name: setup fail2ban config
+  copy: src={{ item }} dest=/etc/fail2ban/
+  with_items:
+    - etc/fail2ban/{{ inventory_hostname }}/fail2ban.conf
+    - etc/fail2ban/{{ inventory_hostname }}/jail.conf
+  notify: reload fail2ban
+
+- name: setup fail2ban filters
+  copy: src={{ item }} dest=/etc/fail2ban/filter.d/
+  with_items: 
+    - etc/fail2ban/{{ inventory_hostname }}/filter.d/mailman.conf
+  notify: reload fail2ban
