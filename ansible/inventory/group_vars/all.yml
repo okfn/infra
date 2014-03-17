@@ -22,4 +22,4 @@ openspending_sysadmin_email: 'openspending-sysadmin@okfn.org'
 postfix_etc: /etc/postfix
 rackspace: true
 sysadmin_email: 'sysadmin-alert@okfn.org'
-timezone: UTC
+timezone: Etc/UTC
