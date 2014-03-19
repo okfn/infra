@@ -5,6 +5,6 @@
      - tmpreaper
 
 - name: setup config
-  template: src=etc/tmpreaper.conf.j2 dest=/etc/tmpreaper.conf
+  file: src=etc/tmpreaper.conf dest=/etc/tmpreaper.conf
   tags:
      - tmpreaper
