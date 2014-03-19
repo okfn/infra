@@ -74,6 +74,8 @@
      - users
      - motd
      - ntpd
+     - tmpreaper
+     - postfix
 
   tasks:
     - name: add project sysadmin alias

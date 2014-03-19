@@ -1,0 +1,10 @@
+---
+- name: install tmpreaper
+  apt: pkg=tmpreaper state=installed
+  tags:
+     - tmpreaper
+
+- name: setup config
+  template: src=etc/tmpreaper.conf.j2 dest=/etc/tmpreaper.conf
+  tags:
+     - tmpreaper
