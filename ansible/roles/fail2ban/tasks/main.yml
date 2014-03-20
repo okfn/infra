@@ -11,6 +11,6 @@
 
 - name: setup fail2ban filters
   copy: src={{ item }} dest=/etc/fail2ban/filter.d/
-  with_items: 
-    - etc/fail2ban/{{ inventory_hostname }}/filter.d/mailman.conf
+  with_fileglob: 
+    - etc/fail2ban/{{ inventory_hostname }}/filter.d/*
   notify: reload fail2ban
