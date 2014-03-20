@@ -5,6 +5,6 @@
      - tmpreaper
 
 - name: setup config
-  file: src=etc/tmpreaper.conf dest=/etc/tmpreaper.conf
+  copy: src=etc/tmpreaper.conf dest=/etc/tmpreaper.conf
   tags:
      - tmpreaper
