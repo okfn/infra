@@ -46,6 +46,7 @@
   command: postmap hash:{{ postfix_etc }}/{{ item }}
   with_items: postfix_map_files
   when: postfix_managed is defined
+  tags: postfix_map_files
 
 - name: create_sasl_password
   when: ses is defined and ses == True

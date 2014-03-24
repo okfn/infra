@@ -5,6 +5,7 @@
 - name: configure_mailman
   template: src=mm_cfg.py dest=/etc/mailman/mm_cfg.py owner=root group=root mode=0644
   notify: restart mailman
+  tags: mailman_config
 
 - name: install_fcgiwrap
   apt: pkg=fcgiwrap state=present

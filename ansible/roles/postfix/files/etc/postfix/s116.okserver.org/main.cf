@@ -10,6 +10,7 @@ relay_domains =
         lists.okfn.org
         lists.knowledgeforge.net
         lists.dataexpeditions.org
+	list.irail.be
 alias_maps = hash:/etc/postfix/aliases
 alias_database = hash:/etc/postfix/aliases
 transport_maps = hash:/etc/postfix/transport

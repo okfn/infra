@@ -26,3 +26,4 @@ mailman_list_host: lists.okfn.org
 mailman_additional_list_hosts:
   - lists.knowledgeforge.net
   - lists.dataexpeditions.org
+  - list.irail.be
