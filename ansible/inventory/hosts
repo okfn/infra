@@ -25,7 +25,6 @@ s084.okserver.org
 s107.okserver.org
 s099.okserver.org
 s031.okserver.org
-s112.okserver.org
 # s118 is TEMPORARY, set up for David Raznick, and should be reviewed at the end
 # of January
 s118.okserver.org
@@ -39,7 +38,6 @@ s119.okserver.org
 [ckan-web-prod]
 s080.okserver.org
 s079.okserver.org
-s075.okserver.org
 s086.okserver.org
 s107.okserver.org
 s104.okserver.org
