@@ -11,8 +11,8 @@
 #  tags: add_ansible_facts_cron
 
 - name: backups_to_s3_cron
-  copy: src=etc/cron.daily/{{ inventory_hostname }}/backups_to_s3 /etc/cron.daily/
-  when: backup_host is defined
+  copy: src=etc/cron.daily/{{ inventory_hostname }}/backups_to_s3 dest=/etc/cron.daily/
+  when: backup_host is defined and backup_host == True
   tags:
      - cron
      - backups_to_s3_cron
