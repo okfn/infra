@@ -5,7 +5,8 @@
   with_items:
     - sysadmin
     - monitoring
-  tags: users
+    - others
+  tags: add_groups
 
 - name: Add user groups
   group: name={{ item.group | default(item.name) }} state=present
@@ -49,6 +50,28 @@
     - sysadmin
   tags: users
 
+#Add any extra users defined in the per host/group .yml files
+- name: add extra users
+  user: >
+     name={{ item.name }}
+     group='others'
+     groups='{{ item.groups|join(',') if item.groups is defined else '' }}'
+     state=present
+  with_flattened:
+     - extra_users.extras
+  when: extra_users is defined
+  tags: extra_users
+
+- name: add extra users ssh keys
+  authorized_key:
+          user={{ item.name }}
+          key="{{ lookup('file', inventory_dir + '/../files/keys/' + item.authorized_keys[0] + '.pub') }}"
+          state=present
+  with_flattened:
+    - extra_users.extras
+  when: extra_users is defined
+  tags: extra_users
+
 - include: project.yml
-  when: devs_group != 'False' and devs_group is defined
-  tags: users
+  when: devs_group != 'False'
+  tags: check_project
