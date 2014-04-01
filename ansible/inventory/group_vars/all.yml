@@ -1,6 +1,7 @@
 ---
 alert_escalation_contact: 'nils.toedtmann@okfn.org'
 aliases: aliases
+devs_group: false 
 backup_rsync_target: s088.okserver.org
 check_mk_port: 6556
 ckan_sysadmin_email: 'ckan-sysadmin@okfn.org'

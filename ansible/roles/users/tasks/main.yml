@@ -5,12 +5,14 @@
   with_items:
     - sysadmin
     - monitoring
+  tags: users
 
 - name: Add user groups
   group: name={{ item.group | default(item.name) }} state=present
   with_flattened:
     - users.sysadmin
     - users.monitoring
+  tags: users
 
 - name: Add users
   user: name={{ item.name }}
@@ -21,6 +23,7 @@
   with_flattened:
     - users.sysadmin
     - users.monitoring
+  tags: users
 
 # NB: although user's authorized_keys property is a list, only the first key in
 # the list is currently managed.
@@ -38,11 +41,14 @@
     - users.sysadmin
     - users.monitoring
   tags: add_ssh_keys
+  tags: users
 
 - name: Configuring sudoers
   lineinfile: "dest=/etc/sudoers state=present regexp='^%{{ item }}' line='%{{ item }} ALL=(ALL) NOPASSWD: ALL'"
   with_items:
     - sysadmin
+  tags: users
 
 - include: project.yml
-  when: devs_group is defined
+  when: devs_group != 'False' and devs_group is defined
+  tags: users
