@@ -1,5 +1,36 @@
+---
+
+- include_vars: "{{ private_dir }}/p.yml"
+
 - name: install pip
   apt: pkg=python-pip state=present
 
 - name: install docker-py
   command: pip install docker-py
+
+- name: upstart docker conf - ulimit open files
+  copy: src=etc/init/upstart_docker.conf dest=/etc/init/docker.conf
+        owner=root
+        group=root
+        mode=644
+#notify: reload docker 
+  tags: upstart-docker
+
+- name: setup quay.io /root/.docker.cfg
+  copy: src='{{ private_dir }}/../docker/docker.cfg'
+        dest=/root/.docker.cfg
+        owner=root
+        group=root
+        mode=600
+
+- name: ensure /data dir
+  file: path=/data state=directory
+
+- name: ensure /data/mariadb directory for mariadb55 container
+  file: path=/data/mariadb state=directory
+
+#docker run -d -v /data/mariadb:/var/lib/mysql/ -p 127.0.0.1:3333:3306 -name mariadb55 be82b3429287
+#expects the okfn/mariadb55 image to be present
+- name: ensure mariadb55 container is running
+  docker: image=okfn/mariadb55 volumes=/data/mariadb:/var/lib/mysql ports=127.0.0.1:3333:3306 name=mariadb55 env='MARIADB_ROOT_PW={{ mariadb55_pw }}'
+  tags: start-mariadb55
