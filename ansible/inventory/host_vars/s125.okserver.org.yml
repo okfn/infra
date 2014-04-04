@@ -2,6 +2,15 @@
 hosted: aws
 docker_host: true
 
+db_type: mysql
+sites_to_monitor: ['pad.okfn.org:80:200'] # monitor port 80, and check for status 200
+
+#To fix mysql backups from docker instances
+#
+#enabled_plugin_checks: ['mk_mysql'] #mk_mysql adopted from http://mathias-kettner.de/checkmk_mysql.html
+#backup_scripts: ['mysql_backup.sh']
+#mysql_backup_list: ['mysql','etherpad-lite']
+
 sites_enabled: ['pad.okfn.org']
 
 extra_users:
