@@ -2,9 +2,6 @@
 
 - include_vars: "{{ private_dir }}/p.yml"
 
-- name: install pip
-  apt: pkg=python-pip state=present
-
 - name: install docker-py
   command: pip install docker-py
 
@@ -30,7 +27,12 @@
   file: path=/data/mariadb state=directory
 
 #docker run -d -v /data/mariadb:/var/lib/mysql/ -p 127.0.0.1:3333:3306 -name mariadb55 be82b3429287
-#expects the okfn/mariadb55 image to be present
+#expects the okfn/mariadb56 image to be present
 - name: ensure mariadb55 container is running
-  docker: image=okfn/mariadb55 volumes=/data/mariadb:/var/lib/mysql ports=127.0.0.1:3333:3306 name=mariadb55 env='MARIADB_ROOT_PW={{ mariadb55_pw }}'
+  docker: image=okfn/mariadb55 volumes=/data/mariadb:/var/lib/mysql ports=127.0.0.1:3306:3306 name=mariadb55 env='MARIADB_ROOT_PW={{ mariadb55_pw }}'
   tags: start-mariadb55
+
+#docker run -d -p  127.0.0.1:9001:9001 -link mariadb55:db -name etherpad_lite f8f7284f1e42
+- name: ensure etherpad container is running
+  docker: image=okfn/etherpad_lite ports=127.0.0.1:9001:9001 links=mariadb55:db name=okfnpad.org
+  tags: start-okfnpad
