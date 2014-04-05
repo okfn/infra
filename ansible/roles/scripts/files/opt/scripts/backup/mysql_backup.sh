@@ -1,6 +1,8 @@
 #!/bin/bash
 
 #this config file is placed by ansible, look in the scripts role for mysql related scripts
+#this script expects /root/.my.cnf to be in place with the passwords
+
 backup_config=/opt/scripts/backup/mysql_backup.conf
 backup_dir=/root/mysql_backups
 db_host=localhost
