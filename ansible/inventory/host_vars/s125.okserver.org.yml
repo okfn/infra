@@ -6,7 +6,9 @@ docker_host: true
 sites_to_monitor: ['pad.okfn.org:80:200'] # monitor port 80, and check for status 200
 
 #for nginx
-sites_enabled: ['pad.okfn.org']
+sites_enabled: 
+  - pad.okfn.org
+  - booktype.okfn.org
 
 #for mysql backups
 db_type: mysql
