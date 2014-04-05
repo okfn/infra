@@ -36,3 +36,11 @@
 - name: ensure etherpad container is running
   docker: image=okfn/etherpad_lite ports=127.0.0.1:9001:9001 links=mariadb55:db name=okfnpad.org
   tags: start-okfnpad
+
+#docker run -d -p  127.0.0.1:8000:8000  --name booktype.okfn.org okfn/booktype.okfn.org
+- name: ensure booktype container is running
+  docker: image=okfn/booktype.okfn.org ports=127.0.0.1:8000:8000 name=booktype.okfn.org
+  tags: start-booktype
+
+##Todo
+#setup postgres db for booktype using ansible, and pass in db params via -env

@@ -1,4 +1,4 @@
 ---
 dependencies:
 - { role: nginx }
-- { role: apt, pkg_list: ['python-pip'] }
+- { role: apt, pkg_list: ['python-pip', 'python-psycopg2'] }
