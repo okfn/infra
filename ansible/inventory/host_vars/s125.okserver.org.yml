@@ -3,7 +3,9 @@ hosted: aws
 docker_host: true
 
 #for nagios
-sites_to_monitor: ['pad.okfn.org:80:200'] # monitor port 80, and check for status 200
+sites_to_monitor: 
+  - pad.okfn.org:80:200 # monitor port 80, and check for status 200
+  - booktype.okfn.org:80:200
 
 #for nginx
 sites_enabled: 
