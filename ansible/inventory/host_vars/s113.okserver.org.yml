@@ -1,9 +1,0 @@
----
-db_type: mysql
-#sites_to_monitor: ['pad.okfn.org:80:200'] # monitor port 80, and check for status 200
-#sites_enabled: ['pad.okfn.org']
-#sites_disabled: ['new.okfnpad.org']
-#enabled_plugin_checks: ['mk_mysql'] #mk_mysql adopted from http://mathias-kettner.de/checkmk_mysql.html
-#backup_scripts: ['mysql_backup.sh']
-#mysql_backup_list: ['mysql','etherpad-lite']
-private_ip: 10.183.32.96

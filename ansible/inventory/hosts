@@ -68,9 +68,6 @@ s123.okserver.org
 [listserv]
 s116.okserver.org
 
-[etherpad]
-s113.okserver.org
-
 [LOV]
 s087.okserver.org
 
@@ -99,7 +96,6 @@ s110.okserver.org
 
 [mysql-servers]
 s098.okserver.org
-s113.okserver.org
 
 [openspending:children]
 openspending-solr
@@ -116,7 +112,6 @@ ckan-staging
 
 [test-group:children]
 backup
-etherpad
 labs
 
 [sysadmin-servers:children]
@@ -124,13 +119,11 @@ wiki
 backup
 labs
 listserv
-etherpad
 other
 docker-host
 
 [sysadmin-web:children]
 wiki
-etherpad
 listserv
 
 [webservers:children]
@@ -139,15 +132,12 @@ ckan-web-prod
 openspending-web
 wiki
 LOV
-etherpad
-queremossaber
 labs
 listserv
 
 [dbservers:children]
 ckan-db-prod
 ckan-db-dev
-etherpad
 
 [rt]
 s115.okserver.org
