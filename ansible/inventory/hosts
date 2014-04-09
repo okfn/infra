@@ -6,7 +6,7 @@ s117.okserver.org
 
 [docker-host]
 s115.okserver.org
-s125.okserver.org 
+s125.okserver.org
 
 [openspending-web]
 s095.okserver.org
@@ -138,6 +138,9 @@ listserv
 [dbservers:children]
 ckan-db-prod
 ckan-db-dev
+
+[solrservers:children]
+openspending-solr
 
 [rt]
 s115.okserver.org

@@ -1,0 +1,3 @@
+---
+enabled_nagios_checks:
+  - check_solr.py
