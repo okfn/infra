@@ -115,7 +115,7 @@ legacy_checks = [
 
 #solr
 {% for host in groups['solrserver'] %}
-( ( "check_ssh_solr!localhost!{{ host }}!8983", 'Solr Server', False), [ "{{ host }}" ] ),
+( ( "check_ssh_solr!8983", 'Solr Server', False), [ "{{ host }}" ] ),
 {% endfor %}
 
 #( ( "check-tcp", "POSTGRES", False), [ {% for host in groups['dbservers'] %} "{{ host }}", {%endfor%} ]  ),
@@ -250,7 +250,7 @@ define command{
 
 define command{
         command_name    check_ssh_solr
-        command_line    /usr/lib/nagios/plugins/check_by_ssh -t 60 -H '$HOSTADDRESS$' -C "/opt/scripts/nagios-checks/check_solr.py -H $ARG1$  -p $ARG2$ -W solr -P"
+        command_line    /usr/lib/nagios/plugins/check_by_ssh -t 60 -H '$HOSTADDRESS$' -C "/opt/scripts/nagios-checks/check_solr.py -H localhost -p $ARG1$ -W solr -P"
 }
 
 
