@@ -114,10 +114,6 @@ legacy_checks = [
 {% endfor %}
 
 #solr
-{% for host in groups['solrserver_new'] %}
-( ( "check_ssh_solr_new!localhost!{{ host }}!8983", 'Solr Server (new)', False), [ "{{ host }}" ] ),
-{% endfor %}
-
 {% for host in groups['solrserver'] %}
 ( ( "check_ssh_solr!localhost!{{ host }}!8983", 'Solr Server', False), [ "{{ host }}" ] ),
 {% endfor %}
@@ -253,13 +249,8 @@ define command{
 }
 
 define command{
-        command_name    check_ssh_solr_new
-        command_line    /usr/lib/nagios/plugins/check_by_ssh -t 60 -H '$HOSTADDRESS$' -C "/opt/scripts/nagios-checks/check_solr_new.py -H $ARG1$  -p $ARG2$ -W solr -P"
-}
-
-define command{
-        command_name    check_ssh_solr_new
-        command_line    /usr/lib/nagios/plugins/check_by_ssh -t 60 -H '$HOSTADDRESS$' -C "/opt/scripts/nagios-checks/check_solr.py -H $ARG1$  -p $ARG2$ -W solr"
+        command_name    check_ssh_solr
+        command_line    /usr/lib/nagios/plugins/check_by_ssh -t 60 -H '$HOSTADDRESS$' -C "/opt/scripts/nagios-checks/check_solr.py -H $ARG1$  -p $ARG2$ -W solr -P"
 }
 
 
