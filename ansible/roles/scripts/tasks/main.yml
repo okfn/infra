@@ -172,6 +172,24 @@
      - local_checks
      - disable_checks
 
+# this adds custom nagios checks
+- name: enable_nagios_checks
+  copy: source=opt/scripts/nagios_checks/{{ item }} dest=/opt/scripts/nagios_checks/{{ item }} state=absent
+  with_items: enabled_nagios_checks
+  when: enabled_nagios_checks is defined
+  tags:
+     - scripts
+     - nagios_checks
+
+- name: disable_nagios_checks
+  file: path=/opt/scripts/nagios_checks/{{ item }} state=absent
+  with_items: disabled_nagios_checks
+  when: disabled_nagios_checks is defined
+  tags:
+     - scripts
+     - local_checks
+     - disable_nagios_checks
+
 # apt security updates script
 - name: security_updates_script
   copy: src=opt/scripts/security-updates/security-updates dest=/opt/scripts/security-updates group=root owner=root mode=655
