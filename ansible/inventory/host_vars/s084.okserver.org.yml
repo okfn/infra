@@ -1,2 +1,9 @@
 ---
 ckan_project: demosites
+extra_users:
+  extras:
+   - name: 'sam.smith'
+     groups:
+        - sysadmin
+     authorized_keys:
+        - 'sam.smith'
