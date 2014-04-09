@@ -17,21 +17,23 @@ import xml.etree.ElementTree as ET
 from optparse import OptionParser
 
 
-class CollectStat:
+def collect_stat(groupname, entryname):
     '''
-    Object to Collect the Statistics from the specified Element of the XML Data
+    Function to Collect the Statistics from the specified Element of the XML
+    Data.
     '''
-    def __init__(self, groupname, entryname):
-        self.stats={}
+    final_stats = {}
 
-        doc=ET.fromstring(urllib.urlopen(cmd_options.solr_url).read())
+    doc = ET.fromstring(urllib.urlopen(cmd_options.solr_url).read())
+    tags = doc.findall(".//solr-info/" + groupname + "/entry")
 
-        tags=doc.findall(".//solr-info/" + groupname + "/entry")
-        for b in tags:
-            if b.find('name').text.strip() == entryname:
-                stats=b.findall("stats/*")
-                for stat in stats:
-                    self.stats[stat.get('name')]=stat.text.strip()
+    for b in tags:
+        if b.find('name').text.strip() == entryname:
+            stats = b.findall("stats/*")
+            for stat in stats:
+                final_stats[stat.get('name')] = stat.text.strip()
+
+    return final_stats
 
 
 def main():
@@ -47,11 +49,11 @@ def main():
            ="http://localhost:8983/solr/admin/stats.jsp")
     cmd_parser.add_option("-w", "--warning", type="float", action="store",
             dest="warning_per", help="Exit with WARNING status if higher"
-            "than the percentage", metavar="70") cmd_parser.add_option("-c",
-            "--critical", type="float", action="store", dest
-           ="critical_per", help="Exit with CRITICAL status if higher than"
-            "the percentage", metavar="99") (cmd_options, cmd_args)
-           =cmd_parser.parse_args()
+            "than the percentage", metavar="70")
+    cmd_parser.add_option("-c", "--critical", type="float", action="store",
+            dest ="critical_per", help="Exit with CRITICAL status if higher
+            than" "the percentage", metavar="99")
+    (cmd_options, cmd_args) = cmd_parser.parse_args()
 
     # Check the Command syntax
     if not (cmd_options.warning_per and cmd_options.critical_per and
@@ -61,40 +63,41 @@ def main():
 
     # Check QPS
     if cmd_options.qps:
-        solr_qps_stats=CollectStat('QUERYHANDLER', 'search')
-        if float(solr_qps_stats.stats['avgRequestsPerSecond']) >= cmd_options.critical_per:
-            print "SOLR QPS CRITICAL : %.2f requests per second | ReqPerSec=%.2freqs" % (float(solr_qps_stats.stats['avgRequestsPerSecond']), float(solr_qps_stats.stats['avgRequestsPerSecond']))
+        solr_qps_stats = collect_stat('QUERYHANDLER', 'search')
+        if float(solr_qps_stats['avgRequestsPerSecond']) >= cmd_options.critical_per:
+            print "SOLR QPS CRITICAL : %.2f requests per second | ReqPerSec=%.2freqs" % (float(solr_qps_stats['avgRequestsPerSecond']), float(solr_qps_stats['avgRequestsPerSecond']))
             return(2)
-        elif float(solr_qps_stats.stats['avgRequestsPerSecond']) >= cmd_options.warning_per:
-            print "SOLR QPS WARNING : %.2f requests per second | ReqPerSec=%.2freqs" % (float(solr_qps_stats.stats['avgRequestsPerSecond']), float(solr_qps_stats.stats['avgRequestsPerSecond']))
+        elif float(solr_qps_stats['avgRequestsPerSecond']) >= cmd_options.warning_per:
+            print "SOLR QPS WARNING : %.2f requests per second | ReqPerSec=%.2freqs" % (float(solr_qps_stats['avgRequestsPerSecond']), float(solr_qps_stats['avgRequestsPerSecond']))
             return(1)
         else:
-            print "SOLR QPS OK : %.2f requests per second | ReqPerSec=%.2freqs" % (float(solr_qps_stats.stats['avgRequestsPerSecond']), float(solr_qps_stats.stats['avgRequestsPerSecond']))
+            print "SOLR QPS OK : %.2f requests per second | ReqPerSec=%.2freqs" % (float(solr_qps_stats['avgRequestsPerSecond']), float(solr_qps_stats['avgRequestsPerSecond']))
             return(0)
+
     # Check Average Response Time
     elif cmd_options.tpr:
-        solr_tpr_stats=CollectStat('QUERYHANDLER', 'search')
-        if float(solr_tpr_stats.stats['avgTimePerRequest']) >= float(cmd_options.critical_per):
-            print "SOLR AvgRes CRITICAL : %.2f msecond response time | AvgRes=%.2f" % (float(solr_tpr_stats.stats['avgTimePerRequest']), float(solr_tpr_stats.stats['avgTimePerRequest']))
+        solr_tpr_stats = collect_stat('QUERYHANDLER', 'search')
+        if float(solr_tpr_stats['avgTimePerRequest']) >= float(cmd_options.critical_per):
+            print "SOLR AvgRes CRITICAL : %.2f msecond response time | AvgRes=%.2f" % (float(solr_tpr_stats['avgTimePerRequest']), float(solr_tpr_stats['avgTimePerRequest']))
             return(2)
-        elif float(solr_tpr_stats.stats['avgTimePerRequest']) >= float(cmd_options.warning_per):
-            print "SOLR AvgRes WARNING : %.2f msecond response time | AvgRes=%.2f" % (float(solr_tpr_stats.stats['avgTimePerRequest']), float(solr_tpr_stats.stats['avgTimePerRequest']))
+        elif float(solr_tpr_stats['avgTimePerRequest']) >= float(cmd_options.warning_per):
+            print "SOLR AvgRes WARNING : %.2f msecond response time | AvgRes=%.2f" % (float(solr_tpr_stats['avgTimePerRequest']), float(solr_tpr_stats['avgTimePerRequest']))
             return(1)
         else:
-            print "SOLR AvgRes OK : %.2f msecond response time | AvgRes=%.2f" % (float(solr_tpr_stats.stats['avgTimePerRequest']), float(solr_tpr_stats.stats['avgTimePerRequest']))
+            print "SOLR AvgRes OK : %.2f msecond response time | AvgRes=%.2f" % (float(solr_tpr_stats['avgTimePerRequest']), float(solr_tpr_stats['avgTimePerRequest']))
             return(0)
     # Check Docs
     elif cmd_options.doc:
         # Get the Documents Statistics
-        solr_doc_stats=CollectStat('CORE', 'searcher')
-        if int(solr_doc_stats.stats['numDocs']) >= int(cmd_options.critical_per):
-            print "SOLR DOCS CRITICAL : %d Total Documents | numDocs=%d" % (int(solr_doc_stats.stats['numDocs']), int(solr_doc_stats.stats['numDocs']))
+        solr_doc_stats = collect_stat('CORE', 'searcher')
+        if int(solr_doc_stats['numDocs']) >= int(cmd_options.critical_per):
+            print "SOLR DOCS CRITICAL : %d Total Documents | numDocs=%d" % (int(solr_doc_stats['numDocs']), int(solr_doc_stats['numDocs']))
             return(2)
-        elif int(solr_doc_stats.stats['numDocs']) >= int(cmd_options.warning_per):
-            print "SOLR DOCS WARNING : %d Total Documents | numDocs=%d" % (int(solr_doc_stats.stats['numDocs']), int(solr_doc_stats.stats['numDocs']))
+        elif int(solr_doc_stats['numDocs']) >= int(cmd_options.warning_per):
+            print "SOLR DOCS WARNING : %d Total Documents | numDocs=%d" % (int(solr_doc_stats['numDocs']), int(solr_doc_stats['numDocs']))
             return(1)
         else:
-            print "SOLR DOCS OK : %d Total Documents | numDocs=%d" % (int(solr_doc_stats.stats['numDocs']), int(solr_doc_stats.stats['numDocs']))
+            print "SOLR DOCS OK : %d Total Documents | numDocs=%d" % (int(solr_doc_stats['numDocs']), int(solr_doc_stats['numDocs']))
             return(0)
     else:
         return(3)
