@@ -113,6 +113,15 @@ legacy_checks = [
 ( ( "check_smtp_basic!{{ host }}", 'SMTP', False), [ "{{ host }}" ] ),
 {% endfor %}
 
+#solr
+{% for host in groups['solrserver_new'] %}
+( ( "check_ssh_solr_new!localhost!{{ host }}!8983", 'Solr Server (new)', False), [ "{{ host }}" ] ),
+{% endfor %}
+
+{% for host in groups['solrserver'] %}
+( ( "check_ssh_solr!localhost!{{ host }}!8983", 'Solr Server', False), [ "{{ host }}" ] ),
+{% endfor %}
+
 #( ( "check-tcp", "POSTGRES", False), [ {% for host in groups['dbservers'] %} "{{ host }}", {%endfor%} ]  ),
 ]
 
@@ -242,6 +251,17 @@ define command{
 	command_name check_smtp_basic
 	command_line /usr/lib/nagios/plugins/check_smtp -H '$ARG1$'
 }
+
+define command{
+        command_name    check_ssh_solr_new
+        command_line    /usr/lib/nagios/plugins/check_by_ssh -t 60 -H '$HOSTADDRESS$' -C "/opt/scripts/nagios-checks/check_solr_new.py -H $ARG1$  -p $ARG2$ -W solr -P"
+}
+
+define command{
+        command_name    check_ssh_solr_new
+        command_line    /usr/lib/nagios/plugins/check_by_ssh -t 60 -H '$HOSTADDRESS$' -C "/opt/scripts/nagios-checks/check_solr.py -H $ARG1$  -p $ARG2$ -W solr"
+}
+
 
 define command{
 	command_name check_graphite
