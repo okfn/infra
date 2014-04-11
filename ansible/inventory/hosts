@@ -119,6 +119,7 @@ ckan-db-prod
 ckan-packaging
 ckan-build-host
 ckan-staging
+ckan-solr-prod
 
 [test-group:children]
 backup
