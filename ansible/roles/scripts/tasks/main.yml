@@ -181,7 +181,7 @@
      - nagios_check_scripts
 
 - name: enable_nagios_checks
-  copy: src=opt/scripts/nagios_checks/{{ item }} dest=/opt/scripts/nagios_checks/{{ item }}
+  copy: src=opt/scripts/nagios_checks/{{ item }} dest=/opt/scripts/nagios_checks/{{ item }} mode=0655
   with_items: enabled_nagios_checks
   when: enabled_nagios_checks is defined
   tags:
