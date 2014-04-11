@@ -55,6 +55,16 @@ s108.okserver.org
 s105.okserver.org
 s079.okserver.org
 
+[ckan-solr-prod]
+s081.okserver.org
+s085.okserver.org
+s078.okserver.org
+s076.okserver.org
+s103.okserver.org
+s108.okserver.org
+s105.okserver.org
+s079.okserver.org
+
 [ckan-packaging]
 s106.okserver.org
 
@@ -141,6 +151,7 @@ ckan-db-dev
 
 [solrservers:children]
 openspending-solr
+ckan-solr-prod
 
 [rt]
 s115.okserver.org
