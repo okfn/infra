@@ -15,9 +15,6 @@ s095.okserver.org
 # Solr server in AWS for OpenSpending, FarmSubsidies
 s121.okserver.org
 
-[queremossaber]
-s030.okserver.org
-
 [ckan-web-dev]
 s080.okserver.org
 s082.okserver.org
@@ -99,7 +96,6 @@ s110.okserver.org
 s111.okserver.org
 
 [hetzner]
-s030.okserver.org
 s031.okserver.org
 s033.okserver.org
 s110.okserver.org
