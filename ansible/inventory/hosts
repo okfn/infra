@@ -13,7 +13,6 @@ s095.okserver.org
 
 [openspending-solr]
 # Solr server in AWS for OpenSpending, FarmSubsidies
-s121.okserver.org
 s126.okserver.org
 
 [ckan-web-dev]
