@@ -1,0 +1,52 @@
+# Only to bootstrap a new solr server. DO NOT run on a machine with existing
+# solr
+- hosts: all
+  tasks:
+    - name: Make sure packages are installed
+      apt: pkg={{ item }} state=present update_cache=yes
+      with_items:
+        - tomcat7
+
+    - name: Download Solr 4
+      get_url: dest=/tmp/solr-4.7.1.tgz url=http://archive.apache.org/dist/lucene/solr/4.7.1/solr-4.7.1.tgz
+
+    - name: Create Solr dir in /usr/share
+      file: path={{ item }} state=directory
+      with_items:
+        - /usr/share/solr
+        - /tmp/solr
+
+    - name: Extract to /usr/share
+      command: tar -zxf /tmp/solr-4.7.1.tgz -C /tmp/solr --strip-components 1
+
+    - name: Copy war file
+      command: cp /tmp/solr/example/webapps/solr.war /usr/share/solr/solr.war
+
+    - name: Copy the solr app
+      command: cp -a /tmp/solr/example/solr/. /usr/share/solr/
+
+    - name: Copy necessary logging libraries (I)
+      shell: cp -R /tmp/solr/example/lib/ext/*.jar /usr/share/tomcat7/lib/
+
+    - name: Copy necessary logging libraries (II)
+      command: cp /tmp/solr/example/resources/log4j.properties /usr/share/tomcat7/lib/
+
+    - name: Make log dir
+      file: path=/var/log/solr owner=tomcat7 group=tomcat7 state=directory
+
+    - name: Change log config
+      lineinfile: dest=/usr/share/tomcat7/lib/log4j.properties
+                  backup=yes
+                  state=present
+                  regexp='solr.log=logs/'
+                  line='/var/log/solr/'
+
+    - name: Make data dir
+      file: path=/usr/share/solr//collection1/data owner=tomcat7 group=tomcat7 state=directory
+
+    - name: Create Solr Tomcat context file
+      copy: src=files/solr/solr.xml dest=/etc/tomcat7/Catalina/localhost/solr.xml
+
+    - name: Restart Tomcat
+      service: name=tomcat7 state=restarted
+
