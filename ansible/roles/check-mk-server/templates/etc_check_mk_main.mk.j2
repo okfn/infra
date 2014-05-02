@@ -1,6 +1,4 @@
 # {{ ansible_managed }}
-# all_hosts = [ 'localhost' ]
-
 
 all_hosts = [
 {% for host in groups['sysadmin-servers'] %}
