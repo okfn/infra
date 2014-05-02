@@ -1,10 +1,11 @@
-- name: install check-mk-server
-  apt: pkg=check-mk-server state=installed
+- name: add check-mk ppa
+  apt_repository: repo=ppa:deathon2legs/check-mk-backport
 
-- name: install templates
-  copy: src=etc_nagios3_conf.d_check_mk_templates.cfg
-        dest=/etc/nagios3/conf.d/check_mk_templates.cfg
-  notify: reload check_mk
+- name: install check-mk-server
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - check-mk-server=1.2.4-0ubuntu1~ubuntu12.04.1~ppa1
+    - check-mk-config-nagios3
 
 - name: install main.mk
   template: src=etc_check_mk_main.mk.j2 dest=/etc/check_mk/main.mk
