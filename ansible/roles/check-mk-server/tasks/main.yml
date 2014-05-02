@@ -1,0 +1,1 @@
+- include: check-mk-server.yml tags=check-mk,check-mk-server

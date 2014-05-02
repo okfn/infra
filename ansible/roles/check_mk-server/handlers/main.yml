@@ -1,3 +1,0 @@
----
-- name: reload check_mk
-  shell: /usr/bin/check_mk -O

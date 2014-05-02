@@ -78,7 +78,7 @@
     - "{{ private_dir }}/p.yml"
   roles:
     - { role: nagios-server, tags: ['nagios-server'] }
-    - { role: check_mk-server, tags: ['check_mk-server'] }
+    - check-mk-server
     - { role: graphite, tags: ['graphite'] }
 
 - hosts: listserv

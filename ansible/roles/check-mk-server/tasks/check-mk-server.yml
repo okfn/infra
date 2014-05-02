@@ -1,0 +1,15 @@
+- name: install check-mk-server
+  apt: pkg=check-mk-server state=installed
+
+- name: install templates
+  copy: src=etc_nagios3_conf.d_check_mk_templates.cfg
+        dest=/etc/nagios3/conf.d/check_mk_templates.cfg
+  notify: reload check_mk
+
+- name: install main.mk
+  template: src=etc_check_mk_main.mk.j2 dest=/etc/check_mk/main.mk
+  notify: reload check_mk
+
+- name: install multisite.mk
+  copy: src=etc_check_mk_multisite.mk dest=/etc/check_mk/multisite.mk
+  notify: reload check_mk
