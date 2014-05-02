@@ -7,7 +7,7 @@
     - "{{ private_dir }}/p.yml"
   roles:
     - { role: ansible-prereq, tags: ['ansible-prereq'] }
-    - { role: check-mk-agent, tags: ['check-mk-agent'] }
+    - check-mk-agent
     - { role: collectd, tags: ['collectd'] }
     - { role: cron, tags: ['cron'] }
     - { role: iptables-persistent, tags: ['iptables-persistent'] }
