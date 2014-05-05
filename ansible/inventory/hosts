@@ -78,8 +78,6 @@ s116.okserver.org
 s087.okserver.org
 
 [other]
-# Should be shut down once knowledgeforge is moved or decommissioned
-s021.okserver.org
 s127.okserver.org
 
 [backup]
