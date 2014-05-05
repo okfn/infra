@@ -16,13 +16,12 @@ postfix_relay_domains:
   - lists.okfn.org
   - lists.knowledgeforge.net
   - lists.dataexpeditions.org
+  - lists.irail.be
 
 postfix_transport: |
-  community.okfn.org        local:
   lists.okfn.org            mailman:
   lists.knowledgeforge.net  mailman:
   lists.dataexpeditions.org mailman:
-  lists.okserver.org        mailman:
   list.irail.be             mailman:
 
 postfix_additional_config: |
