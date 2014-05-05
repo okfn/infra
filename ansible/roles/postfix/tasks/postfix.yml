@@ -1,0 +1,97 @@
+- name: install_postfix
+  apt: pkg=postfix state=present
+  when: docker_container is not defined
+  notify: restart postfix
+  tags:
+     - install_postfix
+     - postfix
+
+- set_fact: mailname={{ inventory_hostname }}
+  when: mailname is not defined
+
+- name: managed postfix config
+  copy: src={{ item }} dest={{ postfix_etc }} owner=root group=root mode=755
+  with_fileglob: etc/postfix/{{ inventory_hostname }}/*
+  when: postfix_managed is defined
+  notify: restart postfix
+
+- name: check postfix alias managed
+  shell: test -e /etc/postfix/aliases
+  register: aliases_managed
+  ignore_errors: True
+
+- name: setup_aliases_link
+  file: src={{ postfix_etc }}/aliases dest=/etc/aliases state=link force=yes
+  when: postfix_managed is defined and aliases_managed.rc == 0
+  notify:
+     - rebuild postfix_aliases
+     - restart postfix
+
+- name: generic postfix config
+  copy: src={{ item }} dest={{ postfix_etc }} owner=root group=root mode=755
+  with_items:
+     - etc/postfix/main.cf
+  when: postfix_managed is not defined
+  notify: restart postfix
+
+- name: generic aliases
+  copy: src=etc/aliases dest=/etc/aliases owner=root group=root mode=755
+  when: (aliases_managed.rc == 1) or (postfix_managed is undefined)
+  notify:
+     - rebuild generic_aliases
+     - restart postfix
+  tags: generic_aliases
+
+- name: postmap_hash_files
+  command: postmap hash:{{ postfix_etc }}/{{ item }}
+  with_items: postfix_map_files
+  when: postfix_managed is defined
+  tags: postfix_map_files
+
+- name: create_sasl_password
+  when: ses is defined and ses == True
+  template: src=sasl_passwd dest={{ postfix_etc }}/sasl_passwd owner=root group=root mode=0600
+  tags: create_sasl_password
+
+- name: build_sasl_passwd
+  when: ses is defined and ses == True
+  command: postmap hash:{{ postfix_etc }}/sasl_passwd
+  tags: create_sasl_password
+
+
+#- name: create_access
+#  copy: src=access dest={{ postfix_etc }}/access owner=root group=root mode=0644
+
+#- name: build_access
+#  command: postmap hash:{{ postfix_etc }}/access
+
+#- name: create_helo_access
+#  copy: src=helo_access dest={{ postfix_etc }}/helo_access owner=root group=root mode=0644
+
+#- name: build_helo_access
+#  command: postmap hash:{{ postfix_etc }}/helo_access
+
+#- name: create_transport_maps
+#  when: transport is defined
+#  template: src={{ transport }} dest={{ postfix_etc }}/transport owner=root group=root mode=0644
+
+#- name: build_transport_maps
+#  when: transport is defined
+#  command: postmap hash:{{ postfix_etc }}/transport
+
+
+### XXXX Better to figure out how to do this as a service
+
+- name: get container id
+  shell: docker ps -notrunc | tail -n +2 | awk -v id={{ docker_container }} '{ n=split($NF, names, ","); for (i=1; i<=n; i++) { if (names[i] == id) { print $1; } } }'
+  when: docker_container is defined
+  register: docker_container_cmd_result
+
+- name: set container id var
+  when: docker_container is defined
+  set_fact:
+    docker_container_id: "{{ docker_container_cmd_result.stdout }}"
+
+- name: postfix reload
+  when: docker_container is defined
+  command: lxc-attach -n {{ docker_container_id }} /usr/sbin/postfix reload

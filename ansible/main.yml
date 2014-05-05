@@ -86,7 +86,7 @@
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
-    - { role: postfix, tags: ['postfix'] }
+    - postfix
     # Keep nginx before mailman, as mailman will want to install some config
     # files into /etc/nginx.
     - { role: nginx, tags: ['nginx'] }
@@ -97,6 +97,6 @@
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
-    - { role: postfix, tags: ['postfix'] }
+    - postfix
     - { role: docker, tags: ['docker'] }
     - { role: nginx, tags: ['nginx'] }
