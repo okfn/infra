@@ -1,7 +1,7 @@
 server {
   listen 80;
   listen [::]:80 ipv6only=on;
-  server_name lists.dataexpeditions.org lists.knowledgeforge.net;
+  server_name lists.dataexpeditions.org lists.knowledgeforge.net lists.p4od.org;
 
   include mailman_fcgi;
 }
