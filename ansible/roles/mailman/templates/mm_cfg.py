@@ -108,7 +108,7 @@ MTA=None   # Misnomer, suppresses alias output on newlist
 # more information please visit this website:
 # http://www.jamesh.id.au/articles/mailman-spamassassin/
 
-{% if mm_spamassassin %}
+{% if mailman_spamassassin %}
 GLOBAL_PIPELINE.insert(1, 'SpamAssassin')
 {% endif %}
 
