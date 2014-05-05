@@ -8,9 +8,9 @@ message_size_limit = 26214400
 unknown_local_recipient_reject_code = 550
 relay_domains =
         lists.okfn.org
-        lists.knowledgeforge.net
         lists.dataexpeditions.org
-	list.irail.be
+        lists.knowledgeforge.net
+        list.irail.be
 alias_maps = hash:/etc/postfix/aliases
 alias_database = hash:/etc/postfix/aliases
 transport_maps = hash:/etc/postfix/transport
