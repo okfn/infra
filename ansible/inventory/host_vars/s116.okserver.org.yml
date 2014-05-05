@@ -16,12 +16,14 @@ postfix_relay_domains:
   - lists.okfn.org
   - lists.knowledgeforge.net
   - lists.dataexpeditions.org
+  - lists.p4od.org
   - list.irail.be
 
 postfix_transport: |
   lists.okfn.org            mailman:
   lists.knowledgeforge.net  mailman:
   lists.dataexpeditions.org mailman:
+  lists.p4od.org            mailman:
   list.irail.be             mailman:
 
 postfix_additional_config: |
@@ -31,6 +33,7 @@ mailman_list_host: lists.okfn.org
 mailman_additional_list_hosts:
   - lists.knowledgeforge.net
   - lists.dataexpeditions.org
+  - lists.p4od.org
   - list.irail.be
 mailman_spamassassin: true
 postfix_delete_script: true
