@@ -27,3 +27,4 @@ mailman_additional_list_hosts:
   - lists.knowledgeforge.net
   - lists.dataexpeditions.org
   - list.irail.be
+postfix_delete_script: true
