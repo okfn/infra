@@ -1,11 +1,18 @@
 ---
-- name: restart postfix
-  when: docker_container is not defined
-  service: name=postfix state=restarted
+- name: reload postfix
+  service: name=postfix state=reloaded
 
-- name: rebuild postfix_aliases
-  shell: postalias hash:{{ postfix_etc }}/aliases
+- name: postalias aliases
+  shell: postalias hash:/etc/postfix/aliases
 
-- name: rebuild generic_aliases
-  shell: postalias hash:/etc/aliases
+- name: postmap access
+  shell: postmap hash:/etc/postfix/access
 
+- name: postmap sender_access
+  shell: postmap hash:/etc/postfix/sender_access
+
+- name: postmap recipient_access
+  shell: postmap hash:/etc/postfix/recipient_access
+
+- name: postmap transport
+  shell: postmap hash:/etc/postfix/transport

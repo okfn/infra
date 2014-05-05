@@ -4,23 +4,30 @@ nginx_ssl_certs:
   - star_okfn_org
 sites_enabled:
   - lists.okfn.org
-mailhost_type: leaf
-postfix_managed: true
-relayhost: false
-ses: false
-origin: okfn.org
-listserv: true
-transport: list_transport
-aliases: "{{ inventory_hostname }}/aliases"
+
 graphite_collectors: [ 'mailman_stats.py' ]
 check_graphite: ['sum(mail_metrics.mailman.subscribe.*.pending):-1hours:20:30']
 check_parameters: ['Postfix Queue:80:120']
-postfix_map_files: ['access','helo_access','transport']
-postfix_managed: true
+
+postfix_additional_aliases: |
+  list-admin: /dev/null
+
 postfix_relay_domains:
   - lists.okfn.org
   - lists.knowledgeforge.net
   - lists.dataexpeditions.org
+
+postfix_transport: |
+  community.okfn.org        local:
+  lists.okfn.org            mailman:
+  lists.knowledgeforge.net  mailman:
+  lists.dataexpeditions.org mailman:
+  lists.okserver.org        mailman:
+  list.irail.be             mailman:
+
+postfix_additional_config: |
+  mailman_destination_recipient_limit=1
+
 mailman_list_host: lists.okfn.org
 mailman_additional_list_hosts:
   - lists.knowledgeforge.net

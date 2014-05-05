@@ -11,4 +11,6 @@ abuse: root
 noc: root
 security: root
 root: sysadmin-alert@okfn.org
-list-admin: /dev/null
+{% if postfix_additional_aliases is defined %}
+{{ postfix_additional_aliases }}
+{% endif %}

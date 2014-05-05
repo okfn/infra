@@ -1,0 +1,68 @@
+#
+#
+
+# Configure some sane defaults, and disable some legacy features
+biff = no
+append_dot_mydomain = no
+delay_warning_time = 4h
+readme_directory = no
+mailbox_size_limit = 0
+recipient_delimiter = +
+smtpd_banner = $myhostname ESMTP
+
+# TLS parameters
+smtpd_tls_cert_file = /etc/ssl/certs/ssl-cert-snakeoil.pem
+smtpd_tls_key_file = /etc/ssl/private/ssl-cert-snakeoil.key
+smtpd_use_tls = yes
+smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
+smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
+
+# Configure network listeners
+inet_interfaces = all
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+
+# Security
+smtpd_helo_required = yes
+smtpd_helo_restrictions =
+	permit_mynetworks,
+	reject_non_fqdn_hostname,
+	reject_invalid_hostname,
+	permit
+smtpd_client_restrictions =
+	check_client_access hash:/etc/postfix/access,
+	permit_mynetworks,
+	reject_rbl_client sbl-xbl.spamhaus.org,
+	permit
+smtpd_sender_restrictions =
+	check_sender_access hash:/etc/postfix/sender_access,
+	permit_mynetworks,
+	reject_non_fqdn_sender,
+	reject_unknown_sender_domain,
+	permit
+smtpd_recipient_restrictions =
+	check_recipient_access hash:/etc/postfix/recipient_access,
+	permit_mynetworks,
+	reject_unauth_pipelining,
+	reject_non_fqdn_recipient,
+	reject_unknown_recipient_domain,
+	reject_invalid_hostname,
+	reject_unauth_destination,
+	permit
+
+# Routing
+mydestination = $myhostname, localhost
+alias_maps = hash:/etc/postfix/aliases
+alias_database = hash:/etc/postfix/aliases
+relayhost =
+relay_domains =
+{% if postfix_relay_domains is defined %}
+{% for domain in postfix_relay_domains %}
+  {{ domain }}
+{% endfor %}
+{% endif %}
+transport_maps = hash:/etc/postfix/transport
+
+{% if postfix_additional_config is defined %}
+# Additional config
+{{ postfix_additional_config }}
+{% endif %}

@@ -15,14 +15,19 @@ nginx_ssl_certs:
   - star_okfn_org
 
 # postfix config
-mailhost_type: leaf
-relayhost: False
-ses: False
-postfix_relay_domains: ['rt.okfn.org']
-transport: "{{ inventory_hostname }}/transport"
-postfix_managed: true
-postfix_map_files: ['access','helo_access','recipient_access','sender_access','transport']
-
+postfix_additional_aliases: |
+  school-of-data: /dev/null
+postfix_relay_domains:
+  - rt.okfn.org
+postfix_transport: |
+  rt.okfn.org                   smtp:127.0.0.1:5025
+  school-of-data@lists.okfn.org local:
+postfix_recipient_access: |
+  /^(noreply|no-reply|MAILER-DAEMON|nagios)@/ REJECT
+postfix_sender_access: |
+  tenderapp.com      REJECT
+  pm.mtasv.net       REJECT
+  rackspacecloud.com REJECT
 
 database_container: rt_pg
 dumper_container: dumper
