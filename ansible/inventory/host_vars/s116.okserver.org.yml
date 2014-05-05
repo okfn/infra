@@ -16,7 +16,7 @@ postfix_relay_domains:
   - lists.okfn.org
   - lists.knowledgeforge.net
   - lists.dataexpeditions.org
-  - lists.irail.be
+  - list.irail.be
 
 postfix_transport: |
   lists.okfn.org            mailman:
