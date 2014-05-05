@@ -17,6 +17,7 @@ nginx_ssl_certs:
 # postfix config
 postfix_additional_aliases: |
   school-of-data: /dev/null
+postfix_additional_trusted_networks: "172.17.0.0/16"
 postfix_relay_domains:
   - rt.okfn.org
 postfix_transport: |
