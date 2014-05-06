@@ -26,6 +26,8 @@ postfix_transport: |
 postfix_recipient_access: |
   # Don't send emails to non-humans
   /^(noreply|no-reply|MAILER-DAEMON|nagios)@/ REJECT
+  # Don't send emails to our machines
+  /^root@[^.]+\.okserver\.org/                REJECT
 postfix_sender_access: |
   tenderapp.com      REJECT
   pm.mtasv.net       REJECT
