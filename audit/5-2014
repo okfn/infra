@@ -1,0 +1,62 @@
+# Commercial
+## Hetzner
+s031.okserver.org services="postgres (ckantest db), virtualbox, jenkins,solr" notes="ckan build host; currently unused; ticket in for removal (RT#8037)"
+## Rax Managed
+s076.okserver.org services="datagm, iati backend (postgres + solr)"
+s078.okserver.org services="publicdata.eu backend (postgres + solr)"
+s079.okserver.org services="publicdata.ru frontend (nginx, py, rabbitmq), postgres" notes="nothing seems to be using the postgres instance running on the host; could be consolidated"
+s086.okserver.org services="iatiregistry.org frontend (apache, nginx, py)" notes="another frontend that could probably be dockerized"
+s099.okserver.org services="datagm.org.uk, sa-live.ckanhosted.com frontend (apache, nginx, py)"
+## Rax
+s080.okserver.org services="{br,cz,ie,it,no}.ckan.org frontend (nginx, py)" notes="community ckan sites; ideal candidate for a docker setup"
+s081.okserver.org services="{br,cz,ie,it,no}.ckan.org backend (postgres)" notes="ideal candidate for a docker setup"
+s082.okserver.org services="{asheville,ausgoal,birmingham + 11 other}.ckanhosted.org site frontend"
+s083.okserver.org services="demo.ckan.org frontent (apache, nginx, py)" notes="could be moved into docker"
+s084.okserver.org services="{disqus,edo, andothers}.staging.ckanhosted.com frontend setup (apache, nginx)" notes="this host is similar to s083 - why a separate server for staging sites?"
+s085.okserver.org services="postgres backend host for s082,s083,s084"
+s102.okserver.org services="edostate.ckanhosted.com webserver"
+s103.okserver.org services="edostate.ckanhosted.com db, solr"
+s106.okserver.org services="ckan packaging"
+s118.okserver.org services="pakistan.ckanhosted.com webhead STAGING" notes="talk to kindly about shutting this down"
+s119.okserver.org services="pakistan.ckanhosted.com postgresql, solr STAGING" notes="talk to kindly about shutting this down"
+s122.okserver.org services="datapackager"
+s123.okserver.org services="datapackager ckan-web, ckan-db, and ckan-solr"
+## Rax AU
+s104.okserver.org services="sa.ckanhosted.com webserver"
+s105.okserver.org services="sa.ckanhosted.com db, solr"
+## Linode
+s124.okserver.org services="pakistan"
+--------
+
+# Labs
+## Hetzner
+s033.okserver.org services="fyi.org.nz (nginx, passenger ruby,postgres), some python app run by michael bauer" notes=""
+s110.okserver.org services="ckan, nginx" notes="who owns this? Also, only purpose of this server is to do a redirect of transport.datahub.io"
+## Rax managed
+s087.okserver.org services="lov.okfn.org (apache, java, nodejs based apps) " notes="owner: Pierre-Yves Vandenbussche; ticket in for review (RT#8038); probably doesn't need to be in managed"
+s107.okserver.org services="datahub.io webhead" owner="rgrp,rossjones"
+s108.okserver.org services="datahub.io db, solr" owner="rgrp,rossjones"
+s111.okserver.org services="sparqles.okfn.org, mongodb" owner="pierre.yves? perhaps? possibly" notes="ticket in for review (RT#8038)"
+--------
+
+# Knowledge
+## Rax managed
+s095.okserver.org services="OS,farmsubsidy frontend (varnish, nginx, py, postgres)" notes="unused instance of postgres running; ticket in for review (RT#8043)"
+## Gandi
+s120.okserver.org services="transparence.ambafrance-ml.org
+## AWS
+s126.okserver.org services="openspending" host="aws"
+--------
+
+# Operations
+## Rax
+s088.okserver.org host="rackspace" services="backup host" notes="backups made to this server need to be reviewed, if we already have snapshotting for most hosts, maybe this box can be killed"
+s098.okserver.org host="rackspace" services="wikifarm (nginx, php-fpm, mysql)" notes="potential candidate to move to docker (RT#8041)"
+## DigitalOcean
+s115.okserver.org services="docker, RT, sendy" notes="move RT to docker: #8044; move Sendy to docker: #8045"
+## AWS
+s117.okserver.org services="nagios.okfn.org,graphite.okfn.org"
+s125.okserver.org services="docker: booktype, etherpad"
+s127.okserver.org services="knowledgeforge" notes="temporary -- to be shut down in due course"
+## Bytemark
+s116.okserver.org services="lists.okfn.org"
