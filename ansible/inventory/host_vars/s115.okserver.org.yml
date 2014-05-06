@@ -24,6 +24,7 @@ postfix_transport: |
   rt.okfn.org                   smtp:127.0.0.1:5025
   school-of-data@lists.okfn.org local:
 postfix_recipient_access: |
+  # Don't send emails to non-humans
   /^(noreply|no-reply|MAILER-DAEMON|nagios)@/ REJECT
 postfix_sender_access: |
   tenderapp.com      REJECT

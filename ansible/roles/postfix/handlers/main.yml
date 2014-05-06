@@ -12,7 +12,7 @@
   shell: postmap hash:/etc/postfix/sender_access
 
 - name: postmap recipient_access
-  shell: postmap hash:/etc/postfix/recipient_access
+  debug: msg="postmap not needed for regexp table"
 
 - name: postmap transport
   shell: postmap hash:/etc/postfix/transport
