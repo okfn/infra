@@ -23,11 +23,14 @@ postfix_relay_domains:
 postfix_transport: |
   rt.okfn.org                   smtp:127.0.0.1:5025
   school-of-data@lists.okfn.org local:
+# We use recipient_access to enable restrictions on outbound mail from RT. Use
+# DISCARD rather than reject (thus simulating successful delivery) to prevent
+# RT's own postfix instance from accumulating failed deliveries in the queue.
 postfix_recipient_access: |
   # Don't send emails to non-humans
-  /^(noreply|no-reply|MAILER-DAEMON|nagios)@/ REJECT
+  /^(noreply|no-reply|MAILER-DAEMON|nagios)@/ DISCARD
   # Don't send emails to our machines
-  /^root@[^.]+\.okserver\.org/                REJECT
+  /^root@[^.]+\.okserver\.org/                DISCARD
 postfix_sender_access: |
   tenderapp.com      REJECT
   pm.mtasv.net       REJECT
