@@ -11,7 +11,9 @@
   file: state=directory dest={{ item }} owner=root group=root
   with_items:
      - /opt/scripts
-     - /opt/scripts/config tags: scripts
+     - /opt/scripts/config 
+  tags: scripts
+
 - name: ensure_scripts
   copy: src=opt/scripts/{{ item }} dest=/opt/scripts/
   with_items: scripts

@@ -2,5 +2,5 @@
 
 set -eu
 
-/usr/bin/s3cmd sync /home/backup/mysql_backups s3://attic.okfn.org/ --config=/home/okfn/.s3 2>&1 > /home/backup/$(data +%s)_mysql_backup.log
+/usr/bin/s3cmd sync /home/backup/mysql_backups s3://attic.okfn.org/ --config=/home/okfn/.s3 2>&1 > /home/backup/$(date +%s)_mysql_backup.log
 find /home/backup/mysql_backups -mtime +14 -exec rm {} \;
