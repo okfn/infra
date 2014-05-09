@@ -1,0 +1,9 @@
+---
+extra_users:
+  extras:
+   - name: 'mbrett'
+     groups:
+        - sysadmin
+     authorized_keys:
+        - 'mbrett'
+
