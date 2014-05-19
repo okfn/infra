@@ -1,0 +1,10 @@
+- name: add check-mk ppa
+  apt_repository: repo='deb http://ppa.launchpad.net/deathon2legs/check-mk-backport/ubuntu precise main' state=present
+
+#We install the package from precise on deb boxes by default, good idea?
+- name: set pkg name 
+  set_fact:
+   pkg_name: check-mk-agent=1.2.4-0ubuntu1~ubuntu12.04.1~ppa1
+
+- name: install check-mk-agent
+  apt: pkg={{ pkg_name }} state=installed force=yes

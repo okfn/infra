@@ -1,18 +1,13 @@
-- name: add check-mk ppa
-  apt_repository: repo=ppa:deathon2legs/check-mk-backport
-
 - name: install xinetd
   apt: pkg=xinetd state=installed
 
-# FIXME: This will FAIL on machines which aren't running Ubuntu 12.04
-# (precise). I've had to do this in order to get check_mk even vaguely working
-# again, but it means that a few machines in the infrastructure won't be
-# reporting to check_mk.
-#
-# Fix this role so that it works on non-Precise Ubuntu releases, and ideally
-# also on Debian Wheezy.
-- name: install check-mk-agent
-  apt: pkg=check-mk-agent=1.2.4-0ubuntu1~ubuntu12.04.1~ppa1 state=installed
+- name: setup check-mk-agent based on distribution
+  include: debian.yml
+  when: ansible_distribution == 'Debian'
+
+- name: setup check-mk-agent based on distribution
+  include: ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
 
 - name: add firewall rule for check_mk
   lineinfile: dest="{{ iptables_config_file }}"
