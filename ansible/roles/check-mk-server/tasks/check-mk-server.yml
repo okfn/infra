@@ -14,3 +14,10 @@
 - name: install multisite.mk
   copy: src=etc_check_mk_multisite.mk dest=/etc/check_mk/multisite.mk
   notify: reload check_mk
+
+- name: ensure_directory
+  file: state=directory dest=/etc/nagios3/conf.d/check_mk/ owner=root group=nagios
+
+- name: check_mk nagios template cfg
+  copy: src=check_mk_templates.cfg dest=/etc/nagios3/conf.d/check_mk/
+  notify: reload check_mk
