@@ -1,0 +1,49 @@
+proxy_cache_path /tmp/nginx_cache levels=1:2 keys_zone=cache:30m max_size=250m;
+proxy_temp_path /tmp/nginx_proxy 1 2;
+
+server {
+  location / {
+    proxy_pass http://127.0.0.1:8080/;
+    proxy_set_header Host $host;
+    proxy_cache cache;
+    proxy_cache_bypass $cookie_auth_tkt;
+    proxy_no_cache $cookie_auth_tkt;
+    proxy_cache_valid 30m;
+    proxy_cache_key $host$scheme$proxy_host$request_uri;
+    # In emergency comment out line to force caching
+    proxy_ignore_headers Cache-Control;
+  }
+}
+
+server {
+  listen [::]:443;
+  server_name www.publicdata.eu;
+
+  ssl on;
+  include ssl_params;
+  ssl_certificate /etc/nginx/ssl/publicdata.eu.crt;
+  ssl_certificate_key /etc/nginx/ssl/publicdata.eu.key;
+
+  return 301 https://publicdata.eu$request_uri;
+}
+
+server {
+  listen [::]:443;
+  server_name publicdata.eu;
+
+  ssl on;
+  include ssl_params;
+  ssl_certificate /etc/nginx/ssl/publicdata.eu.crt;
+  ssl_certificate_key /etc/nginx/ssl/publicdata.eu.key;
+
+  access_log /var/log/nginx/publicdata.eu-ssl-access.log;
+  error_log /var/log/nginx/publicdata.eu-ssl-error.log warn;
+
+  location / {
+    include proxy_params;
+    proxy_buffers 16 16k;
+    proxy_buffer_size 32k;
+    proxy_redirect off;
+    proxy_pass http://127.0.0.1:8080/;
+  }
+}

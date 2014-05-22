@@ -1,5 +1,11 @@
 ---
 ckan_project: publicdata.eu
+sites_enabled:
+  - publicdata.eu
+nginx_ssl_certs:
+  - publicdata.eu
 sites_to_monitor:
   - publicdata.eu:80:200
+ssl_sites_to_monitor:
+  - publicdata.eu
 db_type: postgres
