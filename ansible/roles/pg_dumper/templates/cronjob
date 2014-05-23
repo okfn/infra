@@ -2,7 +2,7 @@
 
 set -eu
 
-docker start -a "{{ dumper_container }}"
+docker start -a "{{ dumper_container }}" 1>/dev/null
 
 # The following is a call to Dead Man's Snitch, a monitoring service that
 # ensures this cronjob is running once a DEFINED_TIME_INTERVAL (probably once a
