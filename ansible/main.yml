@@ -57,6 +57,11 @@
       tags: ['python']
       install_python3: true
 
+- hosts: s079.okserver.org
+  sudo: true
+  roles:
+    - { role: nginx, tags: ['nginx'] }
+
 - hosts: backup
   gather_facts: True
   sudo: true
