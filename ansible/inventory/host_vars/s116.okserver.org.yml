@@ -41,3 +41,7 @@ mailman_additional_list_hosts:
   - list.irail.be
 mailman_spamassassin: true
 postfix_delete_script: true
+
+rsnapshot_backup:
+  - src: 'root@s116.okserver.org:/var/lib/mailman'
+    dest: 's116.okserver.org/mailman'
