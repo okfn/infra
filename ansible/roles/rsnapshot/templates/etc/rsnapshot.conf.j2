@@ -25,7 +25,7 @@ config_version	1.2
 
 # All snapshots will be stored under this root directory.
 #
-snapshot_root	{{ snapshot_root }}
+snapshot_root	{{ rsnapshot_dest_root }}
 
 # If no_create_root is enabled, rsnapshot will not automatically create the
 # snapshot_root directory. This is particularly useful if you are backing
@@ -51,7 +51,7 @@ cmd_rm		/bin/rm
 # rsync must be enabled for anything to work. This is the only command that
 # must be enabled.
 #
-cmd_rsync	{{ cmd_rsync }}
+cmd_rsync	/usr/bin/rsync
 
 # Uncomment this to enable remote ssh backups over rsync.
 #
