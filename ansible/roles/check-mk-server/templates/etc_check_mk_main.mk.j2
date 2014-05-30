@@ -134,15 +134,21 @@ define_hostgroups = True
 define_hostgroups = {
  "Sysadmin-servers" : "These servers are not specific to any project.",
  "CKAN-Servers" : "These servers run CKAN.",
- "Openspending-Servers" : "These servers run Openspending and related webservices."
+ "Openspending-Servers" : "These servers run Openspending and related webservices.",
+ "Rackspace" : "Hosts at rackspace",
+ "Hetzner" : "Hosts at hetzner",
+ "AWS": "Hosts at AWS",
+ "Digital Ocean": "Hosts at Digital Ocean",
 }
 
 host_groups = [
-
 ('Sysadmin-Servers', [ {% for host in groups['sysadmin-servers'] %} '{{ host }}', {% endfor %} ] ),
 ('CKAN-Servers', [ {% for host in groups['ckan']  %} '{{ host }}', {% endfor %} ] ),
 ('Openspending-Servers', [ {% for host in groups['openspending'] %} '{{ host }}', {% endfor %} ] ),
-
+('Rackspace', [ {% for host in groups['all'] %}{% if hostvars[host]['hosted'] == 'rackspace' or hostvars[host]['hosted'] == 'rackspace-managed' %} '{{ host }}', {% endif %}{% endfor %} ] ),
+('AWS', [ {% for host in groups['all'] %}{% if hostvars[host]['hosted'] == 'aws' %} '{{ host }}', {% endif %}{% endfor %} ] ),
+('Hetzner', [ {% for host in groups['all'] %}{% if hostvars[host]['hosted'] == 'hetzner' %} '{{ host }}', {% endif %}{% endfor %} ] ),
+('Digital Ocean', [ {% for host in groups['all'] %}{% if hostvars[host]['hosted'] == 'digitalocean' %} '{{ host }}', {% endif %}{% endfor %} ] )
 ]
 
 define_contactgroups = True
