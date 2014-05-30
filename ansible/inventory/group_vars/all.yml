@@ -19,6 +19,5 @@ munin_port: 4949
 nagios_additional_hosts:
   - blogfarm.okserver.org
 openspending_sysadmin_email: 'openspending-sysadmin@okfn.org'
-rackspace: true
 sysadmin_email: 'sysadmin-alert@okfn.org'
 timezone: Etc/UTC

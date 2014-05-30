@@ -1,56 +1,56 @@
 # Server in Gandi for IATI Mali project -- Anders
-s120.okserver.org
+s120.okserver.org hosted=gandi
 
 [monitoring]
-s117.okserver.org
+s117.okserver.org hosted=aws
 
 [docker-host]
-s115.okserver.org
-s125.okserver.org
+s115.okserver.org hosted=digitalocean
+s125.okserver.org hosted=aws
 
 [openspending-web]
-s095.okserver.org
+s095.okserver.org hosted=rackspace-managed
 
 [openspending-solr]
 # Solr server in AWS for OpenSpending, FarmSubsidies
-s126.okserver.org
+s126.okserver.org hosted=aws
 
 [ckan-web-dev]
-s080.okserver.org
-s082.okserver.org
-s083.okserver.org
-s084.okserver.org
-s107.okserver.org
-s099.okserver.org
-s031.okserver.org
+s080.okserver.org hosted=rackspace
+s082.okserver.org hosted=rackspace
+s083.okserver.org hosted=rackspace
+s084.okserver.org hosted=rackspace
+s107.okserver.org hosted=rackspace-managed
+s099.okserver.org hosted=rackspace-managed
+s031.okserver.org hosted=hetzner
 # s118 is TEMPORARY, set up for David Raznick, and should be reviewed at the end
 # of January
-s118.okserver.org
+s118.okserver.org hosted=rackspace
 
 [ckan-db-dev]
 s031.okserver.org
 # s119 is TEMPORARY, set up for David Raznick, and should be reviewed at the end
 # of January
-s119.okserver.org
+s119.okserver.org hosted=rackspace
 
 [ckan-web-prod]
-s080.okserver.org
-s079.okserver.org
-s086.okserver.org
-s107.okserver.org
-s104.okserver.org
-s102.okserver.org
-s124.okserver.org
+s080.okserver.org hosted=rackspace
+s079.okserver.org hosted=rackspace-managed 
+s086.okserver.org hosted=rackspace-managed
+s107.okserver.org 
+s104.okserver.org hosted=rackspace-managed
+s102.okserver.org hosted=rackspace
+s124.okserver.org hosted=rackspace
 
 [ckan-db-prod]
-s081.okserver.org
-s085.okserver.org
-s078.okserver.org
-s076.okserver.org
-s103.okserver.org
-s108.okserver.org
-s105.okserver.org
-s079.okserver.org
+s081.okserver.org hosted=rackspace
+s085.okserver.org hosted=rackspace
+s078.okserver.org hosted=rackspace-managed
+s076.okserver.org hosted=rackspace-managed
+s103.okserver.org hosted=rackspace
+s108.okserver.org hosted=rackspace-managed
+s105.okserver.org hosted=rackspace-managed
+s079.okserver.org 
 
 [ckan-solr-prod]
 s081.okserver.org
@@ -62,44 +62,36 @@ s108.okserver.org
 s105.okserver.org
 
 [ckan-packaging]
-s106.okserver.org
+s106.okserver.org hosted=rackspace
 
 [ckan-build-host]
-s122.okserver.org
+s122.okserver.org hosted=rackspace
 
 [ckan-staging]
-s123.okserver.org
+s123.okserver.org hosted=rackspace
 
 
 [listserv]
-s116.okserver.org
+s116.okserver.org hosted=bytemark
 
 [LOV]
-s087.okserver.org
+s087.okserver.org hosted=rackspace-managed
 
 [other]
-s127.okserver.org
+s127.okserver.org hosted=aws
 
 [backup]
-s088.okserver.org
+s088.okserver.org hosted=rackspace
 
 [wiki]
-s098.okserver.org
+s098.okserver.org hosted=rackspace
 
 [labs]
-s033.okserver.org
-s110.okserver.org
+s033.okserver.org hosted=hetzner
+s110.okserver.org hosted=hetzner
 
 [sparql]
-s111.okserver.org
-
-[hetzner]
-s031.okserver.org
-s033.okserver.org
-s110.okserver.org
-
-[mysql-servers]
-s098.okserver.org
+s111.okserver.org hosted=rackspace
 
 [openspending:children]
 openspending-solr
