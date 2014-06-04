@@ -36,6 +36,13 @@
     - { role: nginx, tags: ['nginx'] }
     - { role: statsd, tags: ['statsd'] }
 
+- hosts: s088.okserver.org
+  sudo: true
+  vars_files:
+    - "{{ private_dir }}/p.yml"
+  roles:
+    - heroku-toolbelt
+
 - hosts: s113.okserver.org
   gather_facts: True
   sudo: true
