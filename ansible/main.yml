@@ -41,7 +41,7 @@
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
-    - heroku-toolbelt
+    - okfn-org-manager
 
 - hosts: s113.okserver.org
   gather_facts: True

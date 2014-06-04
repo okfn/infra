@@ -1,0 +1,17 @@
+- name: install awscli
+  pip: name=awscli state=present
+
+- name: install okfn-heroku-copyapp script
+  copy: src=copyapp
+        dest=/usr/local/bin/okfn-heroku-copyapp
+        owner=root
+        group=root
+        mode=0755
+
+- name: install cronjob
+  cron: name="copy okfn.org production data to staging"
+        user=heroku
+        hour=2
+        minute=0
+        job="QUIET=1 AWS_DEFAULT_REGION=us-east-1 AWS_ACCESS_KEY_ID='{{ okfn_org_manager_aws_access_key_id }}' AWS_SECRET_ACCESS_KEY='{{ okfn_org_manager_aws_secret_access_key }}' /usr/local/bin/okfn-heroku-copyapp okfn-production okfn-staging && curl https://nosnch.in/{{ okfn_org_manager_snitch_id }} >/dev/null 2>&1"
+        state=present
