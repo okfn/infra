@@ -212,9 +212,11 @@
      - scripts
      - security_updates_cron
 
-- name: copy postfix queue deletion script
-  copy: src=opt/scripts/postfix_queue_del.pl dest=/opt/scripts/postfix_queue_del.pl owner=root mode=0655
-  when: postfix_delete_script is defined
+- name: copy postfix related scripts
+  copy: src={{ item }} dest=/opt/scripts/ owner=root mode=0655
+  with_fileglob: 
+     - opt/scripts/mail/*
+  when: mail_scripts is defined
   tags:
      - scripts
-     - postfix_delete_script
+     - mail_scripts

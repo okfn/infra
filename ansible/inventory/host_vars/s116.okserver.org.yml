@@ -29,6 +29,7 @@ postfix_transport: |
   lists.dataexpeditions.org mailman:
   lists.p4od.org            mailman:
   list.irail.be             mailman:
+  learn-spam@lists.okfn.org sa-learn-spam:
 
 postfix_additional_config: |
   mailman_destination_recipient_limit=1
@@ -40,7 +41,7 @@ mailman_additional_list_hosts:
   - lists.p4od.org
   - list.irail.be
 mailman_spamassassin: true
-postfix_delete_script: true
+mail_scripts: true
 
 rsnapshot_backup:
   - src: 'root@s116.okserver.org:/var/lib/mailman'
