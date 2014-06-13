@@ -110,7 +110,6 @@ scalemail-backend unix	-	n	n	-	2	pipe
 mailman   unix  -       n       n       -       -       pipe
   flags=FR user=list argv=/usr/lib/mailman/bin/postfix-to-mailman.py
   ${nexthop} ${user}
-sa-learn-spam   unix  -       n       n       -       -       pipe
-  flags=FR user=list argv=/opt/scripts/sa-learn-spam.sh
-  ${nexthop} ${user}
-
+{% if postfix_external_delivery is defined %}
+{{ postfix_external_delivery }}
+{% endif %}

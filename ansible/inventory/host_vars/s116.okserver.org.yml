@@ -34,6 +34,12 @@ postfix_transport: |
 postfix_additional_config: |
   mailman_destination_recipient_limit=1
 
+#postfix_external_delivery appends external delivery methods to master.cf
+postfix_external_delivery: |
+ sa-learn-spam   unix  -       n       n       -       -       pipe
+   flags=FR user=list argv=/opt/scripts/sa-learn-spam.sh
+   ${nexthop} ${user}
+
 mailman_list_host: lists.okfn.org
 mailman_additional_list_hosts:
   - lists.knowledgeforge.net

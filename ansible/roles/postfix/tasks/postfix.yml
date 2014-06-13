@@ -11,14 +11,14 @@
     owner=root group=root mode=0644
   notify: reload postfix
 
-- name: install master.cf if exists
-  copy:
-    src=etc/postfix/{{ inventory_hostname }}/master.cf
+- name: install templated master.cf if required
+  template:
+    src=master.j2
     dest=/etc/postfix/master.cf
     owner=root group=root mode=0644
-  ignore_errors: true 
+  when: postfix_external_delivery is defined 
+  tags: mastercf
   notify: reload postfix
-  tags: mastercf 
 
 - name: install aliases
   template:
