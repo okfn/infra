@@ -6,3 +6,5 @@ rsyncd_hosts_allow:
   - 162.243.79.75 #s115
 backup_host: True
 rsnapshot_dest_root: /home/backup/snapshots/
+postfix_additional_aliases: |
+  heroku: root
