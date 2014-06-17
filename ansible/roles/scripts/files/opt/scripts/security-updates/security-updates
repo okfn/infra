@@ -1,6 +1,6 @@
 #!/bin/bash
-PATH=/usr/bin:/bin:/usr/sbin:/sbin
-DEBIAN_FRONTEND=noninteractive
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin
+export DEBIAN_FRONTEND=noninteractive
 
 echo "**************" >> /var/log/apt-security-updates
 date >> /var/log/apt-security-updates
