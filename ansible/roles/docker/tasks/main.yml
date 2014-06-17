@@ -42,5 +42,7 @@
   docker: image=okfn/booktype.okfn.org ports=127.0.0.1:8000:8000 name=booktype.okfn.org
   tags: start-booktype
 
-##Todo
-#setup postgres db for booktype using ansible, and pass in db params via -env
+#docker run -d --env="APP_PATH=https://sendy.okfn.org DATABASE_PASS=***" -p  127.0.0.1:8001:80 --link="mariadb55:db" --name sendy.okfn.org  okfn/opensendy:1.1.9~2
+- name: ensure sendy container is running
+  docker: image=okfn/opensendy:1.1.9~2 ports=127.0.0.1:8001:80 name=sendy.okfn.org links=mariadb55:db env="DATABASE_PASS={{ sendy_okfn_org_db_pw }},APP_PATH=https://sendy.okfn.org"
+  tags: start-sendy 

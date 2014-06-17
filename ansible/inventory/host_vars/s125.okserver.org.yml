@@ -11,6 +11,10 @@ sites_to_monitor:
 sites_enabled: 
   - pad.okfn.org
   - booktype.okfn.org
+  - sendy.okfn.org
+
+nginx_ssl_certs:
+  - star_okfn_org
 
 #for mysql backups
 db_type: mysql
