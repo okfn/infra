@@ -8,7 +8,7 @@ The files in this repository are used by
 
 ## Using this repository
 
-1. Install Ansible. The simplest way to do this is to `pip install ansible`.
+1. [Install Ansible](http://docs.ansible.com/intro_installation.html).
 
 2. Clone this repository and
    [`okfn/credentials`](https://github.com/okfn/credentials) alongside one

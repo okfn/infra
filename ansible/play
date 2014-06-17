@@ -13,7 +13,9 @@ abort () {
 }
 
 check_prereqs () {
-  pip install -q -r requirements.txt
+  if ! ansible --version | grep -q '^ansible 1\.6\.'; then
+    abort "ansible 1.6.x must be installed"
+  fi
 
   # We need credentials to run
   if [ ! -d "$CREDENTIALS_DIR" ]; then
