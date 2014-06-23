@@ -1,2 +1,5 @@
 - name: reload iptables-persistent
   service: name=iptables-persistent state=reloaded
+
+- name: reload xinetd
+  service: name=xinetd state=restarted
