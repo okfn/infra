@@ -1,5 +1,4 @@
 ---
-alert_escalation_contact: 'nils.toedtmann@okfn.org'
 aliases: aliases
 devs_group: false 
 backup_rsync_target: s088.okserver.org
