@@ -1,7 +1,7 @@
 ---
 # Handlers
 - name: restart php5-fpm
-  service: name=php5-fpm state=restart
+  service: name=php5-fpm state=restarted
 
 - name: reload php5-fpm
-  service: name=php5-fpm state=reload
+  service: name=php5-fpm state=reloaded
