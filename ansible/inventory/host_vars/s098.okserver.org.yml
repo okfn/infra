@@ -26,3 +26,10 @@ mysql_backup_list:
   - wiki_opendataday_org
   - wiki_okfestival_org
 private_ip: 10.179.249.37
+extra_users:
+  extras:
+   - name: 'harry.wood'
+     groups:
+        - sysadmin
+     authorized_keys:
+        - 'harry.wood'
