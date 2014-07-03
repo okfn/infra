@@ -35,12 +35,13 @@ s119.okserver.org hosted=rackspace
 
 [ckan-web-prod]
 s080.okserver.org hosted=rackspace
-s079.okserver.org hosted=rackspace-managed 
+s079.okserver.org hosted=rackspace-managed
 s086.okserver.org hosted=rackspace-managed
-s107.okserver.org 
+s107.okserver.org
 s104.okserver.org hosted=rackspace-managed
 s102.okserver.org hosted=rackspace
 s124.okserver.org hosted=rackspace
+s128.okserver.org hosted=linode
 
 [ckan-db-prod]
 s081.okserver.org hosted=rackspace
@@ -50,7 +51,8 @@ s076.okserver.org hosted=rackspace-managed
 s103.okserver.org hosted=rackspace
 s108.okserver.org hosted=rackspace-managed
 s105.okserver.org hosted=rackspace-managed
-s079.okserver.org 
+s079.okserver.org
+s129.okserver.org hosted=linode
 
 [ckan-solr-prod]
 s081.okserver.org
