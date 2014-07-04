@@ -125,7 +125,7 @@ service_groups = [
 	("webservice", ALL_HOSTS, ["HTTP(S|).*"]),
 ]
 service_contactgroups = [
-	("pagerduty_service_alerts", [], ALL_HOSTS, ["HTTP(S|).*"]),
+	("sysadmin", [], ALL_HOSTS, ["HTTP(S|).*"]),
 ]
 
 
@@ -171,6 +171,14 @@ host_contactgroups = [
 
 
 extra_nagios_conf += r"""
+define serviceescalation{
+    host_name               *
+    service_description     check_http_basic
+    first_notification      5
+    last_notification       0
+    notification_interval   30
+    contact_groups          pagerduty_service_alerts
+}
 
 define contact{
         name                            generic-contact
