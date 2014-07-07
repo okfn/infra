@@ -26,6 +26,7 @@
 
 - include: ssl.yml
   when: nginx_ssl_certs is defined
+  tags: nginx_ssl
 
 - name: set up sites-enabled
   when: sites_enabled is defined
