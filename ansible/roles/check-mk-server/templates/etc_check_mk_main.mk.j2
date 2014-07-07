@@ -58,9 +58,6 @@ check_parameters = [
 
 ]
 
-
-
-
 #check_mk calls this method of check definition legacy_checks (a bit misleading)
 legacy_checks = [
 
@@ -165,19 +162,27 @@ host_contactgroups = [
 ('sysadmin',  [ {% for host in groups['sysadmin-servers'] %} '{{ host }}', {% endfor %} ] ),
 ('ckan-sysadmin',  [ {% for host in groups['ckan']  %} '{{ host }}', {% endfor %} ] ),
 ('openspending-sysadmin', [ {% for host in groups['openspending'] %} '{{ host }}', {% endfor %} ] ),
-("pagerduty_host_alerts", ALL_HOSTS),
+('sysadmin', ALL_HOSTS),
 
 ]
 
 
 extra_nagios_conf += r"""
-define serviceescalation{
+define serviceescalation {
     host_name               *
-    service_description     check_http_basic
+    service_description     check_http_basic, check_http_ssl_works
     first_notification      5
     last_notification       0
     notification_interval   30
     contact_groups          pagerduty_service_alerts
+}
+
+define hostescalation {
+    host_name               *
+    first_notification      5
+    last_notification       0
+    notification_interval   30
+    contact_groups          pagerduty_host_alerts
 }
 
 define contact{
