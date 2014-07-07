@@ -46,3 +46,10 @@
 - name: ensure sendy container is running
   docker: image=okfn/opensendy:1.1.9~2 ports=127.0.0.1:8001:80 name=sendy.okfn.org links=mariadb55:db env="DATABASE_PASS={{ sendy_okfn_org_db_pw }},APP_PATH=https://sendy.okfn.org"
   tags: start-sendy 
+
+#need to figure how to multiline the env="" section for readability
+- name: ensure rt.okfn.org is running
+  docker: >
+    image=rt.okfn.org env="DATABASE_HOST={{ aws_rds_host }},DATABASE_USER={{ rt_db_user }},DATABASE_PASSWORD={{ rt_db_pass }},DATABASE_NAME={{ rt_db_name }},RT_NAME={{ rt_name }},Organisation={{ rt_org }},WEB_PORT={{ rt_web_port }},WEB_DOMAIN={{ rt_web_domain }}"
+    ports=25,80
+  tags: start-rt
