@@ -19,7 +19,7 @@ server {
   location /  {
     add_header Strict-Transport-Security "max-age=86400; includeSubDomains";
     client_max_body_size 10M;
-    proxy_pass http://localhost:5080;
+    proxy_pass http://localhost:49154;
     include proxy_params;
   }
 }
