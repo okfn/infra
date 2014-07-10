@@ -8,7 +8,6 @@ define contact {
        host_notification_options                n
        service_notification_commands            notify-service-by-pagerduty
        host_notification_commands               notify-host-by-pagerduty
-       contactgroups                            pagerduty_service_alerts
        pager                                    {{ pagerduty_servicealerts_key }}
 }
 
@@ -22,7 +21,6 @@ define contact {
        host_notification_options                d,r
        service_notification_commands            notify-service-by-pagerduty
        host_notification_commands               notify-host-by-pagerduty
-       contactgroups                            pagerduty_host_alerts
        pager                                    {{ pagerduty_hostalerts_key }}
 }
 
