@@ -145,4 +145,8 @@ ckan-solr-prod
 [rt]
 s115.okserver.org
 
+[southaustralia]
+s104.okserver.org
+s105.okserver.org
+
 # vim:ft=ini
