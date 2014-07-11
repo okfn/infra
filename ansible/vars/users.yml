@@ -6,18 +6,10 @@ users:
       group: 'sysadmin'
       authorized_keys:
         - joel.re
-    - name: 'ntoedtma'
-      group: 'sysadmin'
-      authorized_keys:
-        - ntoedtma
     - name: 'rgrp'
       group: 'sysadmin'
       authorized_keys:
         - rgrp
-    - name: 'ww'
-      group: 'sysadmin'
-      authorized_keys:
-        - ww
     - name: 'okfn'
       group: 'sysadmin'
       authorized_keys:
@@ -48,10 +40,6 @@ users:
       group: 'ckan_dev'
       authorized_keys:
         - david
-    - name: 'johnglover'
-      group: 'ckan_dev'
-      authorized_keys:
-        - johnglover
     - name: 'joetsoi'
       group: 'ckan_dev'
       authorized_keys:
@@ -60,10 +48,6 @@ users:
       group: 'ckan_dev'
       authorized_keys:
         - vitor
-    - name: 'ross.jones'
-      group: 'ckan_dev'
-      authorized_keys:
-        - ross.jones
     - name: 'tryggvib'
       group: 'ckan_dev'
       authorized_keys:
@@ -88,22 +72,10 @@ users:
       group: 'openspending_dev'
       authorized_keys:
         - tryggvib
-    - name: 'mkeegan'
-      group: 'openspending_dev'
-      authorized_keys:
-        - mkeegan
     - name: 'stefan'
       group: 'openspending_dev'
       authorized_keys:
         - stefan
-    - name: 'david.read'
-      group: 'openspending_dev'
-      authorized_keys:
-        - david.read
-    - name: 'friedrich'
-      group: 'openspending_dev'
-      authorized_keys:
-        - friedrich
 
   labs_dev:
     - name: 'rowan.crawford'
