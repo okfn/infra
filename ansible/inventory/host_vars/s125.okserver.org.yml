@@ -60,11 +60,10 @@ rt_org: OKF
 rt_web_port: 443
 rt_web_domain: rt.okfn.org
 
-extra_users:
-  extras:
-   - name: 'vitor'
-     groups:
-        - docker
-        - admin
-     authorized_keys:
-        - 'vitor'
+users_extra:
+  - name: 'vitor'
+    groups:
+      - docker
+      - admin
+    authorized_keys:
+      - 'vitor'

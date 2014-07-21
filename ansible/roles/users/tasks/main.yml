@@ -13,6 +13,7 @@
   with_flattened:
     - users.sysadmin
     - users.monitoring
+    - users_extra
   tags: users
 
 - name: Add users
@@ -24,6 +25,7 @@
   with_flattened:
     - users.sysadmin
     - users.monitoring
+    - users_extra
   tags: users
 
 # NB: although user's authorized_keys property is a list, only the first key in
@@ -41,6 +43,7 @@
   with_flattened:
     - users.sysadmin
     - users.monitoring
+    - users_extra
   tags: add_ssh_keys
   tags: users
 
@@ -50,27 +53,6 @@
     - sysadmin
   tags: users
 
-#Add any extra users defined in the per host/group .yml files
-- name: add extra users
-  user: >
-     name={{ item.name }}
-     group='others'
-     groups='{{ item.groups|join(',') if item.groups is defined else '' }}'
-     state=present
-  with_flattened:
-     - extra_users.extras
-  when: extra_users is defined
-  tags: extra_users
-
-- name: add extra users ssh keys
-  authorized_key:
-          user={{ item.name }}
-          key="{{ lookup('file', inventory_dir + '/../files/keys/' + item.authorized_keys[0] + '.pub') }}"
-          state=present
-  with_flattened:
-    - extra_users.extras
-  when: extra_users is defined
-  tags: extra_users
 
 - include: project.yml
   when: devs_group != 'False'

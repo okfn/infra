@@ -1,6 +1,6 @@
 ---
 aliases: aliases
-devs_group: false 
+devs_group: false
 backup_rsync_target: s088.okserver.org
 check_mk_port: 6556
 ckan_sysadmin_email: 'ckan-sysadmin@okfn.org'
@@ -22,3 +22,4 @@ nagios_additional_hosts:
 openspending_sysadmin_email: 'openspending-sysadmin@okfn.org'
 sysadmin_email: 'sysadmin-alert@okfn.org'
 timezone: Etc/UTC
+users_extra: []

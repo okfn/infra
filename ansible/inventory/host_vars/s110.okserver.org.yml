@@ -1,9 +1,8 @@
 ---
-extra_users:
-  extras:
-   - name: 'everton'
-     groups:
-        - docker
-        - sysadmin
-     authorized_keys:
-        - 'everton'
+users_extra:
+  - name: 'everton'
+    groups:
+      - docker
+      - sysadmin
+    authorized_keys:
+      - 'everton'
