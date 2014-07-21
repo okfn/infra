@@ -1,8 +1,0 @@
-extra_users:
-  # These can be removed after 2014-07-15
-  extras:
-   - name: 'xvt'
-     groups:
-        - sysadmin
-     authorized_keys:
-        - 'xvt'
