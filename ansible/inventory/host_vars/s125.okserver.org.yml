@@ -64,6 +64,6 @@ users_extra:
   - name: 'vitor'
     groups:
       - docker
-      - admin
+      - sysadmin
     authorized_keys:
       - 'vitor'
