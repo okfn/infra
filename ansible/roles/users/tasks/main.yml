@@ -17,7 +17,7 @@
 - name: Add users
   user: name={{ item.name }}
         group='{{ item.group | default(item.name) }}'
-        groups='{{ item.groups | default('') }}'
+        groups='{{ item.groups | default([]) | join(",") }}'
         state=present
         shell=/bin/bash
   with_flattened:
