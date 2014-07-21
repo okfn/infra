@@ -23,3 +23,5 @@ openspending_sysadmin_email: 'openspending-sysadmin@okfn.org'
 sysadmin_email: 'sysadmin-alert@okfn.org'
 timezone: Etc/UTC
 users_extra: []
+users_purge:
+  - xvt

@@ -53,6 +53,9 @@
     - sysadmin
   tags: users
 
+- name: Purging old users
+  user: name={{ item }} state=absent
+  with_items: users_purge
 
 - include: project.yml
   when: devs_group != 'False'
