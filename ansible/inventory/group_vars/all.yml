@@ -24,4 +24,10 @@ sysadmin_email: 'sysadmin-alert@okfn.org'
 timezone: Etc/UTC
 users_extra: []
 users_purge:
+  - david.read
+  - friedrich
+  - johnglover
+  - mkeegan
+  - ntoedtma
+  - ww
   - xvt
