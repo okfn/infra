@@ -6,7 +6,6 @@
     - sysadmin
     - monitoring
     - others
-  tags: add_groups
 
 - name: Add user groups
   group: name={{ item.group | default(item.name) }} state=present
@@ -14,7 +13,6 @@
     - users.sysadmin
     - users.monitoring
     - users_extra
-  tags: users
 
 - name: Add users
   user: name={{ item.name }}
@@ -26,7 +24,6 @@
     - users.sysadmin
     - users.monitoring
     - users_extra
-  tags: users
 
 # NB: although user's authorized_keys property is a list, only the first key in
 # the list is currently managed.
@@ -44,14 +41,11 @@
     - users.sysadmin
     - users.monitoring
     - users_extra
-  tags: add_ssh_keys
-  tags: users
 
 - name: Configuring sudoers
   lineinfile: "dest=/etc/sudoers state=present regexp='^%{{ item }}' line='%{{ item }} ALL=(ALL) NOPASSWD: ALL'"
   with_items:
     - sysadmin
-  tags: users
 
 - name: Purging old users
   user: name={{ item }} state=absent
@@ -59,4 +53,3 @@
 
 - include: project.yml
   when: devs_group != 'False'
-  tags: check_project
