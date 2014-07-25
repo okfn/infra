@@ -17,7 +17,7 @@
   copy: src={{ item }} dest=/etc/spamassassin/
   with_fileglob:
      - etc/spamassassin/*
-  notify: reload spamassasin
+  notify: reload spamassassin
   tags:
      - spamassassin_config
      - spamassassin
