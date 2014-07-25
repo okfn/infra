@@ -22,6 +22,7 @@ postfix_relay_domains:
   - lists.dataexpeditions.org
   - lists.p4od.org
   - list.irail.be
+  - lists.ckan.org
 
 postfix_transport: |
   lists.okfn.org            mailman:
@@ -30,6 +31,7 @@ postfix_transport: |
   lists.p4od.org            mailman:
   list.irail.be             mailman:
   learn-spam@lists.okfn.org sa-learn-spam:
+  lists.ckan.org	    mailman:
 
 postfix_additional_config: |
   mailman_destination_recipient_limit=1
@@ -46,6 +48,8 @@ mailman_additional_list_hosts:
   - lists.dataexpeditions.org
   - lists.p4od.org
   - list.irail.be
+  - lists.ckan.org
+
 mailman_spamassassin: true
 mail_scripts: true
 
