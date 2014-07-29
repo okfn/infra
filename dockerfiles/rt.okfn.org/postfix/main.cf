@@ -1,0 +1,32 @@
+mail_owner = postfix
+myhostname = WEB_DOMAIN
+mydomain = WEB_DOMAIN
+myorigin = WEB_DOMAIN
+inet_interfaces = all
+mydestination = $myhostname
+unknown_local_recipient_reject_code = 550
+relayhost = RELAY_IP
+relay_domains =
+        WEB_DOMAIN
+alias_maps = hash:/etc/postfix/aliases
+alias_database = hash:/etc/postfix/aliases
+mailman_destination_recipient_limit=1
+smtpd_helo_restrictions =
+        reject_non_fqdn_hostname,
+        reject_invalid_hostname,
+        permit
+smtpd_sender_restrictions =
+        permit_mynetworks,
+        reject_non_fqdn_sender,
+        reject_unknown_sender_domain,
+        permit
+smtpd_recipient_restrictions =
+        permit_mynetworks,
+        reject_unauth_pipelining,
+        reject_non_fqdn_recipient,
+        reject_unknown_recipient_domain,
+        reject_invalid_hostname,
+        reject_unauth_destination,
+        reject_rbl_client sbl-xbl.spamhaus.org,
+        permit
+

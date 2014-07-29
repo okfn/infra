@@ -1,0 +1,33 @@
+root:           sysadmin@okfn.org
+
+MAILER-DAEMON:  postmaster
+postmaster:     root
+abuse:          root
+
+backup:         /dev/null
+bin:            /dev/null
+daemon:         /dev/null
+games:          /dev/null
+gnats:          /dev/null
+irc:            /dev/null
+libuuid:        /dev/null
+list:           /dev/null
+lp:             /dev/null
+mail:           /dev/null
+man:            /dev/null
+news:           /dev/null
+nobody:         /dev/null
+postfix:        /dev/null
+postgres:       /dev/null
+proxy:          /dev/null
+sync:           /dev/null
+sys:            /dev/null
+uucp:           /dev/null
+www-data:       /dev/null
+
+sysadmin:               "|/usr/bin/procmail -m ACTION=correspond QUEUE=sysadmin-triage /etc/postfix/procmailrc.rt"
+sysadmin-comment:       "|/usr/bin/procmail -m ACTION=comment QUEUE=sysadmin-triage /etc/postfix/procmailrc.rt"
+sysadmin-alert:         "|/usr/bin/procmail -m ACTION=correspond QUEUE=sysadmin-alert /etc/postfix/procmailrc.rt"
+sysadmin-alert-comment: "|/usr/bin/procmail -m ACTION=comment QUEUE=sysadmin-alert /etc/postfix/procmailrc.rt"
+sysadmin-community:             "|/usr/bin/procmail -m ACTION=correspond QUEUE=sysadmin-community /etc/postfix/procmailrc.rt"
+sysadmin-community-comment:     "|/usr/bin/procmail -m ACTION=comment QUEUE=sysadmin-community /etc/postfix/procmailrc.rt"

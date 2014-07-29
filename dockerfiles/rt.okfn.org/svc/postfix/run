@@ -1,0 +1,17 @@
+#!/bin/sh
+exec 2>&1
+
+
+#these are expected to be passed in via docker -e
+if [ -z ${RELAY_IP} ];
+then
+    RELAY_IP=$(route -n | awk /UG/'{print $2}' | head -1)
+fi
+
+sed -e "s/RELAY_IP/${RELAY_IP}/g" -i /etc/postfix/main.cf
+sed -e "s/WEB_DOMAIN/${WEB_DOMAIN}/g" -i /etc/postfix/main.cf
+sed -e "s/WEB_DOMAIN/${WEB_DOMAIN}/g" -i /etc/postfix/procmailrc.rt
+
+service postfix start
+sleep 5
+exec tail -F /var/log/mail.log
