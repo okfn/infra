@@ -1,0 +1,1 @@
+*/5 * * * * root /opt/scripts/graphite_collectors/postfix_spam_stats.py
