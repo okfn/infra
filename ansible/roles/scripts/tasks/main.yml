@@ -220,3 +220,10 @@
   tags:
      - scripts
      - mail_scripts
+
+- name: copy mail cronjobs
+  copy: src=opt/scripts/mail/cron.d/mailman_weekly_stats dest=/etc/cron.d/mailman_weekly_stats group=root owner=root mode=655
+  when: mail_scripts is defined
+  tags:
+     - scripts
+     - mail_scripts

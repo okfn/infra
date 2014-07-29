@@ -1,0 +1,1 @@
+0 0 * * 0 root /opt/scripts/mailman-weekly-stats.py
