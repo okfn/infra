@@ -92,6 +92,11 @@ s098.okserver.org hosted=rackspace
 s033.okserver.org hosted=hetzner
 s110.okserver.org hosted=hetzner
 
+[hetzner]
+s031.okserver.org
+s033.okserver.org
+s110.okserver.org
+
 [sparql]
 s111.okserver.org hosted=rackspace
 
