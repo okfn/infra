@@ -94,6 +94,10 @@ users:
       group: 'labs_dev'
       authorized_keys:
         - ross.jones
+    - name: 'pudo'
+      group: 'labs_dev'
+      authorized_keys:
+        - pudo
 
     # UGH! Michael and Tony don't need to be in 'labs_dev' but he's here because
     # we can't manage users in a more sensible way without a total overhaul of
