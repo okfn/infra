@@ -38,15 +38,11 @@ smtpd_sender_restrictions =
 	permit_mynetworks,
 	reject_non_fqdn_sender,
 	reject_unknown_sender_domain,
-	permit
-smtpd_recipient_restrictions =
-	check_recipient_access regexp:/etc/postfix/recipient_access,
-	permit_mynetworks,
-	reject_unauth_pipelining,
-	reject_non_fqdn_recipient,
-	reject_unknown_recipient_domain,
-	reject_invalid_hostname,
-	reject_unauth_destination,
+{% if postfix_smtpd_recipient_restrictions is defined %}
+{% for param in postfix_smtpd_recipient_restrictions %}
+	{{ param }},
+{% endfor %}
+{% endif %}
 	permit
 
 # Routing

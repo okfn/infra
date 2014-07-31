@@ -42,6 +42,9 @@ postfix_external_delivery: |
    flags=FR user=list argv=/opt/scripts/sa-learn-spam.sh
    ${nexthop} ${user}
 
+postfix_smtpd_recipient_restrictions:
+  - check_policy_service inet:127.0.0.1:10023
+
 mailman_list_host: lists.okfn.org
 mailman_additional_list_hosts:
   - lists.knowledgeforge.net
