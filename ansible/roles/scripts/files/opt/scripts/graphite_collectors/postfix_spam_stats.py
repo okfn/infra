@@ -35,7 +35,7 @@ def get_spam_stats():
 		if not line:
 			continue
 
-		m = re.match(r"(?P<ts>\w+ \d+ \d+:\d+:\d+).*$", line)
+		m = re.match(r"(?P<ts>\w+\s+\d+ \d+:\d+:\d+).*$", line)
 		if m:  
 		        ts = m.group('ts')
 		        ts = ts + ' ' + year
@@ -43,7 +43,7 @@ def get_spam_stats():
 		        if ts < five_mins_ago:
 		                break
 	
-		m = re.match(r"^\w+ \d+ \d+:\d+:\d+.*: (?:554.*(?P<spamhaus>blocked)|(?P<spamd>spamd): result: Y)", line)
+		m = re.match(r"^\w+\s+\d+ \d+:\d+:\d+.*: (?:554.*(?P<spamhaus>blocked)|(?P<spamd>spamd): result: Y)", line)
 		if m:  
 		        if m.group('spamhaus'):
 		                stats['spamhaus_blocks'] += 1
@@ -51,7 +51,7 @@ def get_spam_stats():
 		        if m.group('spamd'):
 		                stats['spamasassin_rejects'] += 1
 		
-		m = re.match(r"\w+ \d+ \d+:\d+:\d+.* postgrey\[\d+\]: action=(:?(?P<greylist>greylist)|(?P<pass>pass)),.*", line)
+		m = re.match(r"\w+\s+\d+ \d+:\d+:\d+.* postgrey\[\d+\]: action=(:?(?P<greylist>greylist)|(?P<pass>pass)),.*", line)
 		if m:  
 		        if m.group('greylist'):
 		                stats['greylist_rejects'] += 1
