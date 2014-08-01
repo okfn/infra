@@ -1,0 +1,4 @@
+backup_rsync_target: {{ backup_rsync_target }}
+psql_backup_list: {% for db in psql_backup_list %}{{ db }} {% endfor %}
+
+psql_host: {{ psql_host }}
