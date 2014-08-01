@@ -3,6 +3,7 @@
   action: file path={{ item }} state=directory
   with_items:
      - /home/backups/mysql_backups/
+     - /home/backups/psql_backups/
   tags:
      - rsync
      - create_backup_dirs

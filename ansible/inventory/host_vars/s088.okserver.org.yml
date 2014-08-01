@@ -4,6 +4,8 @@ rsyncd_hosts_allow:
   - 50.57.171.80 #s113
   - 184.106.136.198 #s098
   - 162.243.79.75 #s115
+  - 54.195.174.143 #s125
+
 backup_host: True
 rsnapshot_dest_root: /home/backup/snapshots/
 postfix_additional_aliases: |
