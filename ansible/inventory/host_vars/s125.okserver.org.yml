@@ -48,9 +48,15 @@ postfix_sender_access: |
 db_type: mysql
 mysql_host: 127.0.0.1
 mysql_port: 3306
-backup_scripts: ['mysql_backup.sh']
+backup_scripts: ['mysql_backup.sh', 'psql_backup.sh']
 mysql_backup_list: ['mysql','etherpad-lite']
 #enabled_plugin_checks: ['mk_mysql'] #mk_mysql adopted from http://mathias-kettner.de/checkmk_mysql.html
+
+#for psql backups
+psql_host: db001.cxglaymtrf0h.eu-west-1.rds.amazonaws.com
+psql_backup_list:
+  - rt4
+  - booktype
 
 #RT docker instance config
 rt_db_user: rt_user
