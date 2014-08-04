@@ -49,7 +49,10 @@ db_type: mysql
 mysql_host: 127.0.0.1
 mysql_port: 3306
 backup_scripts: ['mysql_backup.sh', 'psql_backup.sh']
-mysql_backup_list: ['mysql','etherpad-lite']
+mysql_backup_list: 
+  - mysql
+  - etherpad-lite
+
 #enabled_plugin_checks: ['mk_mysql'] #mk_mysql adopted from http://mathias-kettner.de/checkmk_mysql.html
 
 #for psql backups
