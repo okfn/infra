@@ -111,3 +111,6 @@
   roles:
     - { role: docker, tags: ['docker'] }
     - { role: nginx, tags: ['nginx'] }
+    - { role: postgrey }
+    - { role: postfix }
+

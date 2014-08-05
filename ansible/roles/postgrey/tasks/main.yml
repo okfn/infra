@@ -4,4 +4,4 @@
 
 - name: setup postgrey default
   copy: src=etc/default/postgrey dest=/etc/default/postgrey
-  notice: reload postgrey
+  notify: reload postgrey
