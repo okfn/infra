@@ -1,5 +1,6 @@
 define contact {
        contact_name                             pagerduty_service_alerts
+       contact_groups                           pagerduty_service_alerts
        alias                                    PagerDuty Pseudo-Contact
        service_notification_period              24x7
        host_notification_period                 24x7
@@ -13,6 +14,7 @@ define contact {
 
 define contact {
        contact_name                             pagerduty_host_alerts
+       contact_groups                           pagerduty_host_alerts
        alias                                    PagerDuty Pseudo-Contact
        service_notifications_enabled            0
        service_notification_options             n

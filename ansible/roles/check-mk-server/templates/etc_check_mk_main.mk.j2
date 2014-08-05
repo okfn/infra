@@ -25,11 +25,11 @@ all_hosts = [
 tcp_connect_timeout = 60
 extra_service_conf["max_check_attempts"] = [
         ( "3", ALL_HOSTS, "Check_MK" ),
-        ( "3", ALL_HOSTS, "PING" ),
+        ( "5", ALL_HOSTS, "PING" ),
         ( "5", ALL_HOSTS, ALL_SERVICES ),
 ]
 extra_host_conf["retry_interval"] = [
-        ( "120", ALL_HOSTS ),
+        ( "3", ALL_HOSTS ),
 ]
 
 #http://mathias-kettner.de/checkmk_inventory.html
@@ -47,13 +47,11 @@ ignored_checktypes = [ "if", "lnx_if", "lnx_thermal" ]
 check_parameters = [
 
 {% for host in groups['all'] %}
-
-  {% if hostvars[host]['check_parameters'] is defined %}
-    {% for param in hostvars[host]['check_parameters'] %}
+{% if hostvars[host]['check_parameters'] is defined %}
+{% for param in hostvars[host]['check_parameters'] %}
 ( ( {{ param.split(':')[1] }}, {{ param.split(':')[2] }} ), ["{{ host }}"], [ "{{ param.split(':')[0] }}" ] ),
-    {% endfor %}
-  {% endif %}
-
+{% endfor %}
+{% endif %}
 {% endfor %}
 
 ]
@@ -123,6 +121,7 @@ service_groups = [
 ]
 service_contactgroups = [
 	("sysadmin", [], ALL_HOSTS, ["HTTP(S|).*"]),
+	("pagerduty_service_alerts", [], ALL_HOSTS, ["HTTP(S|).*"] ),
 ]
 
 
@@ -163,7 +162,7 @@ host_contactgroups = [
 ('ckan-sysadmin',  [ {% for host in groups['ckan']  %} '{{ host }}', {% endfor %} ] ),
 ('openspending-sysadmin', [ {% for host in groups['openspending'] %} '{{ host }}', {% endfor %} ] ),
 ('sysadmin', ALL_HOSTS),
-
+('pagerduty_host_alerts', ALL_HOSTS),
 ]
 
 
@@ -173,16 +172,16 @@ define serviceescalation {
     servicegroup_name   webservice
     first_notification      5
     last_notification       0
-    notification_interval   30
-    contacts          pagerduty_service_alerts
+    notification_interval   60
+    contact_groups          pagerduty_service_alerts
 }
 
 define hostescalation {
     hostgroup_name  Sysadmin-Servers,CKAN-Servers,Openspending-Servers
     first_notification      5
     last_notification       0
-    notification_interval   30
-    contacts          pagerduty_host_alerts
+    notification_interval   60
+    contact_groups         pagerduty_host_alerts
 }
 
 define contact{
