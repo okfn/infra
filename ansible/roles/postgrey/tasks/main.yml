@@ -3,5 +3,8 @@
   apt: pkg=postgrey state=installed
 
 - name: setup postgrey default
-  copy: src=etc/default/postgrey dest=/etc/default/postgrey
+  copy: src={{ item }} dest=/{{ item }}
+  with_items:
+     - etc/default/postgrey
+     - etc/postgrey/whitelist_clients 
   notify: reload postgrey
