@@ -29,36 +29,38 @@ def get_post_stats():
 			continue
 		
 		s = re.match(r"^(?P<ts>\w+ \d+ \d+:\d+:\d+ \d+) .*post to (?P<list_name>.*) from (?P<poster>.*@*.), size=(?P<msg_size>\d+), message-id.*, (?P<result>.*)$", line)
-		ts = s.group('ts')
-		list_name = s.group('list_name')
-		poster = s.group('poster')
-		msg_size = s.group('msg_size')
-		result = s.group('result')
+		if s:
+			ts = s.group('ts')
+			list_name = s.group('list_name')
+			poster = s.group('poster')
+			msg_size = s.group('msg_size')
+			result = s.group('result')
 
-		ts = int(time.mktime(time.strptime(ts,'%b %d %H:%M:%S %Y')))	
-		if ts < five_mins_ago:
-			break
-		else:
-			#print line
-			stats['posts.total'] += 1
-			list_name = re.sub('\.', '-', list_name)
-			
-			# collect stats on posts - success/failures, posts per list
-			if result == 'success':
-				list_ns = list_name + '.posts' #set the graphite namespace to ${list-name}.posts
-				if not list_ns in stats:
-					stats[list_ns] = 0
-				
-				stats[list_ns] += 1
-
+			ts = int(time.mktime(time.strptime(ts,'%b %d %H:%M:%S %Y')))	
+			if ts < five_mins_ago:
+				break
 			else:
-				list_ns = list_name + '.post_failures'
-				if not list_ns in stats:
-					stats[list_ns] = 0
+				#print line
+				stats['posts.total'] += 1
+				list_name = re.sub('\.', '-', list_name)
+				
+				# collect stats on posts - success/failures, posts per list
+				if result == 'success':
+					list_ns = list_name + '.posts' #set the graphite namespace to ${list-name}.posts
+					if not list_ns in stats:
+						stats[list_ns] = 0
+					
+					stats[list_ns] += 1
 
-				stats[list_ns] += int(result.split()[0])
-			
-	push_stats(stats)	
+				else:
+					list_ns = list_name + '.post_failures'
+					if not list_ns in stats:
+						stats[list_ns] = 0
+
+					stats[list_ns] += int(result.split()[0])
+
+	if stats['posts.total'] > 0:			
+		push_stats(stats)	
 
 def get_outbound_stats(): #smtp
 	logfile = mailman_logs + 'smtp'
