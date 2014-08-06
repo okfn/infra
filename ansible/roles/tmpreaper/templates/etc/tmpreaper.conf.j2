@@ -45,7 +45,7 @@
 TMPREAPER_TIME=7d
 TMPREAPER_PROTECT_EXTRA=''
 {% if project is defined and project == 'ckan' %}
-TMPREAPER_DIRS='/tmp/. /tmp/*/session/. /tmp/sstore/.'
+TMPREAPER_DIRS='/tmp/. /tmp/*/session/.'
 {% else %}
 TMPREAPER_DIRS='/tmp/.'
 {% endif %}
