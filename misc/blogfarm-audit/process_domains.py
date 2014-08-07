@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # This script helps check if all the domains in the blogfarm are pointing to
 # the blogfarm and if all the domains pointing to the blogfarm are in the
-# blogfarm
+# blogfarm. This assumes that the file from dnsmadeeasy is called
+# domains-pointing.csv and the list of domains in the blogfarm is called
+# domains.txt
 
 import argparse
 import csv
