@@ -79,9 +79,6 @@ s116.okserver.org hosted=bytemark
 [LOV]
 s087.okserver.org hosted=rackspace-managed
 
-[other]
-s127.okserver.org hosted=aws
-
 [backup]
 s088.okserver.org hosted=rackspace
 
@@ -123,7 +120,6 @@ wiki
 backup
 labs
 listserv
-other
 docker-host
 
 [sysadmin-web:children]
