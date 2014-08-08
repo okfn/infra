@@ -75,26 +75,29 @@ def get_outbound_stats(): #smtp
 		
 		s = re.match(r"^(?P<ts>\w+ \d+ \d+:\d+:\d+ \d+).* smtp to (?P<list_name>.*) for (?P<rcpt_count>\d+) recips", line)
 		#print line
-		ts = s.group('ts')
-		list_name = s.group('list_name')
-		rcpt_count = s.group('rcpt_count')
+		if s:
+			ts = s.group('ts')
+			list_name = s.group('list_name')
+			rcpt_count = s.group('rcpt_count')
 
-		ts = int(time.mktime(time.strptime(ts,'%b %d %H:%M:%S %Y')))	
-		if ts < five_mins_ago:
-			break
-		else:
-			stats['outbound_mails.total'] += int(rcpt_count)
-			
-			list_name = re.sub('\.', '-', list_name)
-			
-			# collect stats on outbound mails per list
-			list_ns = 'outbound_mails.' + list_name + '.total' 
-			
-			if not list_ns in stats:
-				stats[list_ns] = 0
+			ts = int(time.mktime(time.strptime(ts,'%b %d %H:%M:%S %Y')))	
+			if ts < five_mins_ago:
+				break
+			else:
+				stats['outbound_mails.total'] += int(rcpt_count)
 				
-			stats[list_ns] += int(rcpt_count)				
-	push_stats(stats)	
+				list_name = re.sub('\.', '-', list_name)
+				
+				# collect stats on outbound mails per list
+				list_ns = 'outbound_mails.' + list_name + '.total' 
+				
+				if not list_ns in stats:
+					stats[list_ns] = 0
+					
+				stats[list_ns] += int(rcpt_count)
+
+	if stats['outbound_mails.total'] > 0:
+		push_stats(stats)
 
 	
 def get_subscribe_stats():
@@ -107,31 +110,33 @@ def get_subscribe_stats():
 	for line in reverse_tail.run(logfile):
 		if not line:
 			continue
-		
+			
 		s = re.match(r"^(?P<ts>\w+ \d+ \d+:\d+:\d+ \d+) \(.*\) (?P<list_name>.*?): (?:(?P<action>new|deleted|pending))", line)
-		ts = s.group('ts')
-		list_name = s.group('list_name')
-		action = s.group('action')
+		if s:
+			ts = s.group('ts')
+			list_name = s.group('list_name')
+			action = s.group('action')
 
-		ts = int(time.mktime(time.strptime(ts,'%b %d %H:%M:%S %Y')))	
-		if ts < five_mins_ago:
-			break
-		else:
-			
-			list_name = re.sub('\.', '-', list_name)
-			
-			if action == 'new':
-				list_ns = 'subscribe.' + list_name + '.new' #setup graphite ns 
-			if action == 'deleted':
-				list_ns = 'subscribe.' + list_name + '.deleted' 
-			if action == 'pending':
-				list_ns = 'subscribe.' + list_name + '.pending'
-		#		ip = re.match(r"^.*: pending .* (\d+\.\d+\.\d+\.\d+)", line)
-			
-			if not list_ns in stats:
-				stats[list_ns]	= 0
-			
-			stats[list_ns] += 1
+			ts = int(time.mktime(time.strptime(ts,'%b %d %H:%M:%S %Y')))	
+			if ts < five_mins_ago:
+				break
+			else:
+				
+				list_name = re.sub('\.', '-', list_name)
+				
+				if action == 'new':
+					list_ns = 'subscribe.' + list_name + '.new' #setup graphite ns 
+				if action == 'deleted':
+					list_ns = 'subscribe.' + list_name + '.deleted' 
+				if action == 'pending':
+					list_ns = 'subscribe.' + list_name + '.pending'
+			#		ip = re.match(r"^.*: pending .* (\d+\.\d+\.\d+\.\d+)", line)
+				
+				if not list_ns in stats:
+					stats[list_ns]	= 0
+				
+				stats[list_ns] += 1
+
 	push_stats(stats)
 			
 def get_qfiles_stats():
