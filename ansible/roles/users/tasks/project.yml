@@ -19,6 +19,7 @@
         groups='{{ item.groups | default('') }}'
         state=present
         shell=/bin/bash
+  tags: project-users
   with_items: users[devs_group]
 
 - name: Install project SSH keys

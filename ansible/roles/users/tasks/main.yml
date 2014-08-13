@@ -53,3 +53,4 @@
 
 - include: project.yml
   when: devs_group != 'False'
+  tags: project_users
