@@ -31,3 +31,7 @@ users_purge:
   - ntoedtma
   - ww
   - xvt
+sudo_default:
+  - "%sudo"
+  - "%sysadmin"
+sudo_extras: []

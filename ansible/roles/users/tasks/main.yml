@@ -42,11 +42,6 @@
     - users.monitoring
     - users_extra
 
-- name: Configuring sudoers
-  lineinfile: "dest=/etc/sudoers state=present regexp='^%{{ item }}' line='%{{ item }} ALL=(ALL) NOPASSWD: ALL'"
-  with_items:
-    - sysadmin
-
 - name: Purging old users
   user: name={{ item }} state=absent
   with_items: users_purge

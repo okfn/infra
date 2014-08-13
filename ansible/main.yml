@@ -6,6 +6,7 @@
     - vars/users.yml
     - "{{ private_dir }}/p.yml"
   roles:
+    - { role: set-facts }
     - { role: ansible-prereq, tags: ['ansible-prereq'] }
     - check-mk-agent
     - { role: collectd, tags: ['collectd'] }
@@ -19,6 +20,7 @@
     - { role: sysstat, tags: ['sysstat'] }
     - { role: update-notifier, tags: ['update-notifier'] }
     - { role: users, tags: ['users'] }
+    - { role: sudo }
     - { role: git, tags: ['git'] }
 
 - hosts: openspending-solr
