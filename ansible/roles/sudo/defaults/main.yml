@@ -1,0 +1,8 @@
+---
+# Who has sudo access - use %foo for groups
+sudo_users:
+  - root
+  - "%wheel"
+
+# Do users need to enter a password?
+sudo_nopasswd: true
