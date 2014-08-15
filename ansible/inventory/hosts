@@ -22,13 +22,11 @@ s083.okserver.org hosted=rackspace
 s084.okserver.org hosted=rackspace
 s107.okserver.org hosted=rackspace-managed
 s099.okserver.org hosted=rackspace-managed
-s031.okserver.org hosted=hetzner
 # s118 is TEMPORARY, set up for David Raznick, and should be reviewed at the end
 # of January
 s118.okserver.org hosted=rackspace
 
 [ckan-db-dev]
-s031.okserver.org
 # s119 is TEMPORARY, set up for David Raznick, and should be reviewed at the end
 # of January
 s119.okserver.org hosted=rackspace
@@ -90,7 +88,6 @@ s033.okserver.org hosted=hetzner
 s110.okserver.org hosted=hetzner
 
 [hetzner]
-s031.okserver.org
 s033.okserver.org
 s110.okserver.org
 
