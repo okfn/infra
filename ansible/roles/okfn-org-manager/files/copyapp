@@ -90,8 +90,8 @@ status "enabling maintenance mode on destination app"
 maybe quietly heroku maintenance:on -a "$DST_APP"
 
 status "transferring data from source to destination"
-maybe quietly heroku pgbackups:transfer -a "$SRC_APP" --confirm "$SRC_APP" \
-  DATABASE_URL "$DST_APP"::DATABASE_URL
+maybe quietly heroku pgbackups:transfer -a "$DST_APP" --confirm "$DST_APP" \
+  "$SRC_APP"::DATABASE_URL DATABASE_URL
 
 status "syncing asset buckets"
 syncassets "$SRC_APP" "$DST_APP"
