@@ -69,6 +69,7 @@ s122.okserver.org hosted=rackspace
 
 [ckan-staging]
 s123.okserver.org hosted=rackspace
+s130.okserver.org hosted=linode
 
 
 [listserv]
