@@ -35,3 +35,4 @@ sudo_default:
   - "%sudo"
   - "%sysadmin"
 sudo_extras: []
+sudo_extra_lines: []

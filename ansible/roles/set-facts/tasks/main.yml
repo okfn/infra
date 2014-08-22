@@ -3,4 +3,3 @@
 - name: setup facts
   set_fact:
      sudo_users: "{{ sudo_default + sudo_extras }}"
-     sudo_lines: "{{ sudo_extra_lines|default([]) }}"

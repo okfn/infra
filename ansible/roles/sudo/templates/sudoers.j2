@@ -2,6 +2,8 @@
 {% for i in sudo_users %}
 {{i}} ALL=(ALL) {{"NOPASSWD: " if sudo_nopasswd else ""}}ALL
 {% endfor %}
-{% for i in sudo_lines %}
+{% if sudo_extra_lines %}
+{% for i in sudo_extra_lines %}
 {{ i }}
 {% endfor %}
+{% endif %}
