@@ -1,4 +1,11 @@
 backup_rsync_target: {{ backup_rsync_target }}
-psql_backup_list: {% for db in psql_backup_list %}{{ db }} {% endfor %}
+
+{% if hostvars[host]['psql_db_admin'] is defined %}
+psql_db_admin: {{ psql_db_admin }}
+{% endif %}
+
+{% if hostvars[host]['psql_exclude_dbs'] is defined %}
+psql_exclude_dbs: {% for db in psql_exclude_dbs %}{{ db }} {%endfor %}
+{% endif %}
 
 psql_host: {{ psql_host }}
