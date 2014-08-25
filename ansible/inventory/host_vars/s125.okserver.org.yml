@@ -60,9 +60,13 @@ mysql_backup_list:
 
 #for psql backups
 psql_host: db001.cxglaymtrf0h.eu-west-1.rds.amazonaws.com
-psql_backup_list:
-  - rt4
-  - booktype
+psql_db_admin: dbadmin
+psql_exclude_dbs: 
+  - farmsubsidy-org-production
+  - openspending-org-production
+  - postgres
+  - rdsadmin
+  - dbadmin
 
 #RT docker instance config
 rt_db_user: rt_user
