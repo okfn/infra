@@ -1,6 +1,7 @@
 backup_rsync_target: {{ backup_rsync_target }}
-mysql_backup_list: {% for db in mysql_backup_list %}{{ db }} {% endfor %}
-
+{% if hostvars[host]['mysql_exclude_dbs'] is defined %}
+mysql_exclude_dbs: {% for db in mysql_exclude_dbs %}{{ db }} {% endfor %}
+{% endif %}
 {% if hostvars[host]['mysql_host'] is defined %}
 mysql_host: {{ mysql_host }}
 mysql_port: {{ mysql_port }}
