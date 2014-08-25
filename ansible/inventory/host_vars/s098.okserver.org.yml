@@ -15,16 +15,8 @@ enabled_plugin_checks:
   - mk_mysql
 backup_scripts:
   - mysql_backup.sh
-mysql_backup_list:
-  - mysql
-  - products
-  - wiki_dm2e_eu
-  - wiki_offenerhaushalt_de
-  - wiki_okfn_de
-  - wiki_okfn_jp
-  - wiki_okfn_org
-  - wiki_opendataday_org
-  - wiki_okfestival_org
+mysql_exclude_dbs:
+  - test
 private_ip: 10.179.249.37
 users_extra:
   - name: 'harry.wood'
