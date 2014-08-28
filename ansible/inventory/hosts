@@ -39,7 +39,6 @@ s131.okserver.org hosted=aws
 
 [ckan-db-prod]
 s081.okserver.org hosted=rackspace
-s085.okserver.org hosted=rackspace
 s078.okserver.org hosted=rackspace-managed
 s076.okserver.org hosted=rackspace-managed
 s103.okserver.org hosted=rackspace
