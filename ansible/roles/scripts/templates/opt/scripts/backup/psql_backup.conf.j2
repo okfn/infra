@@ -8,4 +8,6 @@ psql_db_admin: {{ psql_db_admin }}
 psql_exclude_dbs: {% for db in psql_exclude_dbs %}{{ db }} {%endfor %}
 {% endif %}
 
+{% if hostvars[host]['psql_host'] is defined %}
 psql_host: {{ psql_host }}
+{% endif %}
