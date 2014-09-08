@@ -1,5 +1,9 @@
 ---
 ckan_project: datahub_old
+backup_scripts:
+  - psql_backup.sh
+psql_exclude_dbs:
+  - pdeu_datastore
 backup_postgres: true
 webserver_private_ip_list: ['10.176.41.233','10.176.41.139']
 db_type: postgres

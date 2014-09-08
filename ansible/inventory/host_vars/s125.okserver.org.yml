@@ -47,18 +47,17 @@ postfix_sender_access: |
 postfix_smtpd_recipient_restrictions:
   - check_policy_service inet:127.0.0.1:10023
 
+backup_scripts: ['mysql_backup.sh', 'psql_backup.sh']
+
 #for mysql backups
+backup_mysql: true
 db_type: mysql
 mysql_host: 127.0.0.1
 mysql_port: 3306
-backup_scripts: ['mysql_backup.sh', 'psql_backup.sh']
-mysql_backup_list: 
-  - mysql
-  - etherpad-lite
 
-#enabled_plugin_checks: ['mk_mysql'] #mk_mysql adopted from http://mathias-kettner.de/checkmk_mysql.html
 
 #for psql backups
+backup_postgres: true
 psql_host: db001.cxglaymtrf0h.eu-west-1.rds.amazonaws.com
 psql_db_admin: dbadmin
 psql_exclude_dbs: 
@@ -72,7 +71,7 @@ psql_exclude_dbs:
 rt_db_user: rt_user
 rt_db_name: rt4
 rt_name: rt.okfn.org
-rt_org: OKF
+rt_org: rt.okfn.org
 rt_web_port: 443
 rt_web_domain: rt.okfn.org
 
