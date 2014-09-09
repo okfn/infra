@@ -1,0 +1,34 @@
+- name: ensure_backup_scripts_dir
+  file: path={{ item }} state=directory
+  when: backup_scripts is defined
+  with_items:
+     - '/opt/scripts/backup'
+  tags:
+     - scripts
+     - ensure_backup_scripts_dir
+
+- name: copy_backup_scripts
+  copy: src=opt/scripts/backup/{{ item }} dest=/opt/scripts/backup/ mode=760
+  with_items: backup_scripts
+  when: backup_scripts is defined #backup_scripts is an array with a list of backup scripts to be setup
+  tags:
+     - copy_backup_scripts
+
+- name: ensure_backup_cron
+  copy: src=opt/scripts/backup/cron.d/{{ item.split('.')[0] }} dest=/etc/cron.d/ owner=root group=root
+  with_items: backup_scripts
+  when: backup_scripts is defined
+  tags:
+     - ensure_backup_cron
+
+- name: mysql_backup_config
+  template: src=opt/scripts/backup/mysql_backup.conf.j2  dest=/opt/scripts/backup/mysql_backup.conf
+  when: backup_mysql is defined #backup dbs lists the dbs that should be backed up, this is dumped into the mysql_backup.conf, which is then read by the mysql_backup script.
+  tags:
+     - mysql_backup_config
+
+- name: psql_backup_config
+  template: src=opt/scripts/backup/psql_backup.conf.j2  dest=/opt/scripts/backup/psql_backup.conf
+  when: backup_postgres is defined #backup dbs lists the dbs that should be backed up, this is dumped into the mysql_backup.conf, which is then read by the mysql_backup script.
+  tags:
+     - psql_backup_config
