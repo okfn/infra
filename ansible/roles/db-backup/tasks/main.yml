@@ -2,6 +2,7 @@
   file: path={{ item }} state=directory
   when: backup_scripts is defined
   with_items:
+     - '/opt/scripts'
      - '/opt/scripts/backup'
   tags:
      - scripts
