@@ -47,7 +47,6 @@ s076.okserver.org hosted=rackspace-managed
 s103.okserver.org hosted=rackspace
 s108.okserver.org hosted=rackspace-managed
 s105.okserver.org hosted=rackspace-managed
-s079.okserver.org hosted=rackspace-managed
 s124.okserver.org hosted=linode
 s129.okserver.org hosted=linode
 s131.okserver.org hosted=aws
