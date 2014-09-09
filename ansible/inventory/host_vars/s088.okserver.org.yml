@@ -1,10 +1,16 @@
 ---
 # NB was also flagged as ckan_testing, but this seems most likely:
 rsyncd_hosts_allow:
-  - 50.57.171.80 #s113
+  - 50.57.171.80    #s113
   - 184.106.136.198 #s098
-  - 162.243.79.75 #s115
-  - 54.195.174.143 #s125
+  - 162.243.79.75   #s115
+  - 54.195.174.143  #s125
+  - 208.78.96.178   #s078
+  - 208.78.96.26    #s076
+  - 50.56.25.25     #s108
+  - 50.57.74.20     #s103
+  - 85.159.213.182  #s129
+  - 184.106.219.171 #s105
 
 backup_host: True
 rsnapshot_dest_root: /home/backup/snapshots/
