@@ -1,1 +1,0 @@
-30 02 * * * root /opt/scripts/backup/psql_backup.sh &> /var/log/psql_backup.log && curl https://nosnch.in/304f7bf902 &> /dev/null
