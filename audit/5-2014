@@ -36,6 +36,7 @@ s110.okserver.org services="ckan, nginx" notes="who owns this? Also, only purpos
 s087.okserver.org services="lov.okfn.org (apache, java, nodejs based apps) " notes="owner: Pierre-Yves Vandenbussche; ticket in for review (RT#8038); probably doesn't need to be in managed"
 s107.okserver.org services="datahub.io webhead" owner="rgrp,rossjones"
 s108.okserver.org services="datahub.io db, solr" owner="rgrp,rossjones"
+## Rax
 s111.okserver.org services="sparqles.okfn.org, mongodb" owner="pierre.yves? perhaps? possibly" notes="ticket in for review (RT#8038)"
 --------
 
