@@ -3,8 +3,8 @@ LOGFILE=/var/log/procmail/rt.log
 
 #Messages >300000 characters proceed to recipient (unlikely to be spam)
 :0w
-* > 300000
-| rt-mailgate --queue $QUEUE --action $ACTION --url https://WEB_DOMAIN/
+* > 300000   
+| rt-mailgate --queue $QUEUE --action $ACTION --url https://rt.okfn.org/
 
 :0w
 * ^X-RT-Loop-Prevention: okfn.org
@@ -12,30 +12,38 @@ LOGFILE=/var/log/procmail/rt.log
 
 :0w
 * ^Subject:.*\[billing\] Heroku Invoice
-! payments@okfn.org
+| rt-mailgate --queue payments --action correspond --url https://rt.okfn.org/
 
 :0w
 * ^Subject:.*\[GANDI\] Insufficient funds
-! payments@okfn.org
+| rt-mailgate --queue payments --action correspond --url https://rt.okfn.org/
 
 :0w
 * ^Subject:.*\[GANDI\] Invoice
-! payments@okfn.org
+| rt-mailgate --queue payments --action correspond --url https://rt.okfn.org/
 
 :0w
 * ^Subject:.*\[CloudFlare\] Invoice
-! payments@okfn.org
+| rt-mailgate --queue payments --action correspond --url https://rt.okfn.org/
+
+:0w
+* ^Subject:.*\[Open Knowledge Foundation\] New User Registration
+| rt-mailgate --queue sysadmin-alert --action correspond --url https://rt.okfn.org/
+
+:0w
+* ^Subject:.*\[Open Knowledge Foundation\] Password Lost/Changed
+| rt-mailgate --queue sysadmin-alert --action correspond --url https://rt.okfn.org/
 
 #Is it spam?
 :0fw: spamassassin.lock
 * < 300000
 | spamc
- 
+
 #if the spam trigger is fired send to spam queue
 :0w
 * ^X-spam-Status: Yes
-| rt-mailgate --queue spam --action correspond --url https://WEB_DOMAIN/
- 
+| rt-mailgate --queue spam --action correspond --url https://rt.okfn.org/
+
 #if the spam trigger is not fired then send to expected destination
 :0w
-| rt-mailgate --queue $QUEUE --action $ACTION --url https://WEB_DOMAIN/
+| rt-mailgate --queue $QUEUE --action $ACTION --url https://rt.okfn.org/
