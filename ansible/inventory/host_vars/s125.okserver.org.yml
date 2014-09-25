@@ -2,17 +2,19 @@
 hosted: aws
 docker_host: true
 
-#for nagios
+##for nagios
 sites_to_monitor: 
   - pad.okfn.org:80:301 # monitor port 80, and check for status 200
   - booktype.okfn.org:80:200
   - rt.okfn.org:80:301 # SSL redirect
+  - sendy.okfn.org:80:301 # SSL redirect
 
 ssl_sites_to_monitor:
   - rt.okfn.org
   - pad.okfn.org
+  - sendy.okfn.org
 
-#for nginx
+##for nginx
 sites_enabled:
   - rt.okfn.org
   - pad.okfn.org
