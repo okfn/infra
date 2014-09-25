@@ -9,6 +9,7 @@
 
 - name: install main.mk
   template: src=etc_check_mk_main.mk.j2 dest=/etc/check_mk/main.mk
+  tags: setup-main.mk
   notify: reload check_mk
 
 - name: install multisite.mk
