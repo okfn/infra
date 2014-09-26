@@ -1,0 +1,4 @@
+---
+hosted: aws
+sudo_extras:
+  - tryggvib
