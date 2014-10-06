@@ -15,6 +15,7 @@ enabled_plugin_checks:
   - mk_mysql
 backup_scripts:
   - mysql_backup.sh
+backup_mysql: true
 mysql_exclude_dbs:
   - test
 private_ip: 10.179.249.37
