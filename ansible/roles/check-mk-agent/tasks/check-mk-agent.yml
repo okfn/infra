@@ -1,11 +1,6 @@
 - name: install xinetd
   apt: pkg=xinetd state=installed
 
-- name: setup check_mk xinetd file
-  template: src=check_mk.j2 dest=/etc/xinetd.d/check_mk owner=root group=root mode=644
-  tags: check_mk-xinetd
-  notify: reload xinetd 
-
 - name: setup check-mk-agent based on distribution
   include: debian.yml
   when: ansible_distribution == 'Debian'
@@ -13,6 +8,11 @@
 - name: setup check-mk-agent based on distribution
   include: ubuntu.yml
   when: ansible_distribution == 'Ubuntu'
+
+- name: setup check_mk xinetd file
+  template: src=check_mk.j2 dest=/etc/xinetd.d/check_mk owner=root group=root mode=644
+  tags: check_mk-xinetd
+  notify: reload xinetd
 
 - name: add firewall rule for check_mk
   lineinfile: dest="{{ iptables_config_file }}"
