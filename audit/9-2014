@@ -2,7 +2,7 @@
 ## Rax Managed
 s076.okserver.org services="datagm, iati backend (postgres + solr)"
 s078.okserver.org services="publicdata.eu backend (postgres + solr)"
-s079.okserver.org services="publicdata.ru frontend (nginx, py, rabbitmq), postgres" notes="nothing seems to be using the postgres instance running on the host; could be consolidated"
+s079.okserver.org services="publicdata.eu frontend (nginx, py, rabbitmq), postgres" notes="nothing seems to be using the postgres instance running on the host; could be consolidated"
 s086.okserver.org services="iatiregistry.org frontend (apache, nginx, py)" notes="another frontend that could probably be dockerized"
 s099.okserver.org services="datagm.org.uk, sa-live.ckanhosted.com frontend (apache, nginx, py)"
 ## Rax
