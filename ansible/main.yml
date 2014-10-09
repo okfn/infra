@@ -22,6 +22,7 @@
     - { role: users, tags: ['users'] }
     - { role: sudo , tags: ['sudo'] }
     - { role: git, tags: ['git'] }
+    - { role: db-backup, tags: ['db-backup'] }
 
 - hosts: openspending-solr
   sudo: true
