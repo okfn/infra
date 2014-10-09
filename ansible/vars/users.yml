@@ -98,6 +98,10 @@ users:
       group: 'labs_dev'
       authorized_keys:
         - pudo
+    - name: 'pierre.yves'
+      group: 'sparql_dev'
+      authorized_keys:
+        - pierre.yves
 
     # UGH! Michael and Tony don't need to be in 'labs_dev' but he's here because
     # we can't manage users in a more sensible way without a total overhaul of
