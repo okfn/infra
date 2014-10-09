@@ -4,6 +4,9 @@
        - "devs_group != false"
   tags: assert
 
+- name: Print some debugging info
+  debug: msg="{{devs_group}}"
+
 - name: Add project group
   group: name='{{ devs_group }}' state=present
   when: devs_group != 'false'

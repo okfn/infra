@@ -1,6 +1,5 @@
 ---
 aliases: aliases
-devs_group: false
 backup_rsync_target: s134.okserver.org
 check_mk_port: 6556
 ckan_sysadmin_email: 'ckan-sysadmin@okfn.org'
