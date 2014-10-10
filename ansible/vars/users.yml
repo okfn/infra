@@ -102,6 +102,10 @@ users:
       group: 'sparql_dev'
       authorized_keys:
         - pierre.yves
+    - name: 'umbrich'
+      group: 'sparql_dev'
+      authorized_keys:
+        - umbrich
 
     # UGH! Michael and Tony don't need to be in 'labs_dev' but he's here because
     # we can't manage users in a more sensible way without a total overhaul of
