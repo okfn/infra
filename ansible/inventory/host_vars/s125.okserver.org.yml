@@ -3,7 +3,7 @@ hosted: aws
 docker_host: true
 
 ##for nagios
-sites_to_monitor: 
+sites_to_monitor:
   - pad.okfn.org:80:301 # monitor port 80, and check for status 200
   - booktype.okfn.org:80:200
   - rt.okfn.org:80:301 # SSL redirect
@@ -54,7 +54,7 @@ backup_scripts: ['mysql_backup.sh', 'psql_backup.sh']
 #for mysql backups
 backup_mysql: true
 db_type: mysql
-mysql_host: 127.0.0.1
+mysql_host: db002.cxglaymtrf0h.eu-west-1.rds.amazonaws.com
 mysql_port: 3306
 
 
@@ -62,7 +62,7 @@ mysql_port: 3306
 backup_postgres: true
 psql_host: db001.cxglaymtrf0h.eu-west-1.rds.amazonaws.com
 psql_db_admin: dbadmin
-psql_exclude_dbs: 
+psql_exclude_dbs:
   - farmsubsidy-org-production
   - openspending-org-production
   - postgres
