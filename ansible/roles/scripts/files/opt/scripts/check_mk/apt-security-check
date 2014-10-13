@@ -80,7 +80,7 @@ def install_security_updates(pkgs):
 	#print myenv
 	for pkg in pkgs:
 	#	print 'installing security update -> ' + pkg
-		c = subprocess.Popen(["apt-get","install", "-y", pkg], env=myenv, stdout=subprocess.PIPE)
+		c = subprocess.Popen(["apt-get","install", "-y", "-o Dpkg::Options::=\"--force-confdef\"","-o Dpkg::Options::=\"--force-confold\"", pkg], env=myenv, stdout=subprocess.PIPE)
 		streamdata = c.communicate()[0]
 		if c.returncode != 0:
 	#		print 'exit: ' + str(c.returncode) + ' ,'  + 'install failed for ' + pkg
