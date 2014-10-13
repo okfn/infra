@@ -7,7 +7,7 @@ s033.okserver.org owner="labs" host="hetzner" services="fyi.org.nz (nginx, passe
 s075.okserver.org owner="commercial" host="rackspace" services="datagm.org.uk (nginx, ckanapp)" notes="could possibly be consolidated"
 s076.okserver.org owner="commercial" host="rackspace" services="datagm, iati backend (postgres + solr)"
 s078.okserver.org owner="commercial" host="rackspace" services="publicdata.eu backend (postgres + solr)"
-s079.okserver.org owner="commercial" host="rackspace" services="publicdata.ru frontend (nginx, py, rabbitmq), postgres" notes="nothing seems to be using the postgres instance running on the host; could be consolidated"
+s079.okserver.org owner="commercial" host="rackspace" services="publicdata.eu frontend (nginx, py, rabbitmq), postgres" notes="nothing seems to be using the postgres instance running on the host; could be consolidated"
 s080.okserver.org owner="commercial" host="rackspace" services="{br,cz,ie,it,no}.ckan.org frontend (nginx, py)" notes="community ckan sites; ideal candidate for a docker setup"
 s081.okserver.org owner="commercial" host="rackspace" services="{br,cz,ie,it,no}.ckan.org  backend (postgres)" notes="ideal candidate for a docker setup"
 s082.okserver.org owner="commercial" host="rackspace" services="{asheville,ausgoal,birmingham + 11 other}.ckanhosted.org site frontend"
