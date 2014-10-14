@@ -1,0 +1,12 @@
+---
+- name: install unattended-upgrades
+  apt: pkg=unattended-upgrades state=present
+  tags: unattended
+
+- name: copy unattended upgrades config over
+  copy: src=
+	dst=/etc/apt/apt.conf.d/
+
+- name: copy confold and confdef config over
+  copy: src=
+        dst=/etc/apt/apt.conf.d/
