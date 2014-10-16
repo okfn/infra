@@ -1,3 +1,4 @@
 ---
 - name: copy config into apt.conf.d folder
   copy: src=20mainubuntumirrors dest=/etc/apt/apt.conf.d/
+  when: ansible_distribution == 'Ubuntu'
