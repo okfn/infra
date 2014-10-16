@@ -52,6 +52,12 @@ users:
       group: 'ckan_dev'
       authorized_keys:
         - tryggvib
+    - name: 'adam'
+      group: 'ckan_dev'
+      authorized_keys:
+        - adam-aragog
+        - adam-hendricks
+        - adam-millers
 
   sparql_dev:
     - name: 'pierre.yves'
