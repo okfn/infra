@@ -1,2 +1,4 @@
 project: 'labs'
 devs_group: 'labs_dev'
+sudo_extras:
+  - '%labs_dev'
