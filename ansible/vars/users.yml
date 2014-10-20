@@ -105,11 +105,11 @@ users:
       authorized_keys:
         - pudo
     - name: 'pierre.yves'
-      group: 'sparql_dev'
+      group: 'labs_dev'
       authorized_keys:
         - pierre.yves
     - name: 'umbrich'
-      group: 'sparql_dev'
+      group: 'labs_dev'
       authorized_keys:
         - umbrich
 
