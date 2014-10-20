@@ -7,7 +7,7 @@ Set( $WebSecureCookies, 1 );
 Set( $DatabaseHost, $ENV{DB_PORT_5432_TCP_ADDR} );
 Set( $DatabasePassword, $ENV{RT_DATABASE_PW} );
 Set( $Timezone, "UTC" );
-Set( $MaxInlineBody, 120000 );
+Set( $MaxInlineBody, 0 );
 
 Plugin( "RT::Extension::ActivityReports" );
 Plugin( "RT::Extension::ResetPassword" );
