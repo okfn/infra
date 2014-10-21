@@ -23,7 +23,8 @@
     - { role: sudo , tags: ['sudo'] }
     - { role: git, tags: ['git'] }
     - { role: db-backup, tags: ['db-backup'] }
-
+    - { role: apt-mirror-config, tags: ['apt-mirror-config'] }
+      
 - hosts: openspending-solr
   sudo: true
   roles:
