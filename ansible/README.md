@@ -14,23 +14,27 @@ The files in this repository are used by
    [`okfn/credentials`](https://github.com/okfn/credentials) alongside one
    another.
 
-3. Run `ansible-playbook` using the wrapper script, `./play`:
-
-        ./play -h
+3. Run `ansible-playbook` 
 
 ## Example invocations
 
 Run plays that apply to nodes tagged with `monitoring`:
 
-    ./play main.yml -t monitoring
+    ansible-playbook main.yml -t monitoring
 
 Run play to add a new group and its users
 
-    ./play main.yml -t add_group,add_users,add_ssh_keys,sudoers -e host=all
+    ansible-playbook main.yml -t add_group,add_users,add_ssh_keys,sudoers -e host=all
+
+Run a play to just run one role
+
+    ansible-playbook main.yml -vvvv -i inventory/hosts -s -t project_users -l s107.okserver.org
 
 You can also use the `ansible` command directly to run tasks on remote hosts:
 
     ansible all -i inventory/hosts -e uptime
+
+Adding -vvvv (or --verbose) will get you lots of useful debug info.
 
 ## Repository structure
 
