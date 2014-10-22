@@ -226,11 +226,11 @@ if __name__ == "__main__":
                       action="store_true",
                       dest="sec_pkg_count",
                       help=_("Display the count of security updates"))
-    parser.add_option("",
-                      "--install-security-updates",
-                      action="store_true",
-                      dest="install_security_pkgs",
-                      help=_("install package security updates"))
+    #parser.add_option("",
+     #                 "--install-security-updates",
+      #                action="store_true",
+       #               dest="install_security_pkgs",
+        #              help=_("install package security updates"))
 
     (options, args) = parser.parse_args()
 
