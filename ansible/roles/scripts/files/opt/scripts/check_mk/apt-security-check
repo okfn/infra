@@ -178,16 +178,16 @@ def run(options=None):
 		print 0
 		exit(0)
 #        write_human_readable_summary(sys.stdout, security_updates)
-    elif options and options.install_security_pkgs:
-	if len(security_pkgs) > 0:
-		r = install_security_updates(security_pkgs)
-		if r != 0:
-			print 'one or more updates failed to install, check apt log.'
-		else:
-			exit(0)
-	else:
-		print 'No updates available'
-		exit(0)
+#    elif options and options.install_security_pkgs:
+#	if len(security_pkgs) > 0:
+#		r = install_security_updates(security_pkgs)
+#		if r != 0:
+#			print 'one or more updates failed to install, check apt log.'
+#		else:
+#			exit(0)
+#	else:
+#		print 'No updates available'
+#		exit(0)
     else:
         # print the number of regular upgrades and the number of 
         # security upgrades
