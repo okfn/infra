@@ -11,7 +11,7 @@
   file: state=directory dest={{ item }} owner=root group=root
   with_items:
      - /opt/scripts
-     - /opt/scripts/config 
+     - /opt/scripts/config
   tags: scripts
 
 - name: ensure_scripts
@@ -90,7 +90,7 @@
      - local_checks
 
 - name: setup_local_checks
-  copy: src=opt/scripts/check_mk/{{ item }} dest=/opt/scripts/check_mk/
+  copy: src=opt/scripts/check_mk/{{ item }} dest=/opt/scripts/check_mk/ mode=0744
   with_items: enabled_local_checks
   when: enabled_local_checks is defined
   tags:
@@ -183,7 +183,7 @@
 
 - name: copy postfix related scripts
   copy: src={{ item }} dest=/opt/scripts/ owner=root mode=0655
-  with_fileglob: 
+  with_fileglob:
      - opt/scripts/mail/*
   when: mail_scripts is defined
   tags:
