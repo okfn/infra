@@ -1,5 +1,5 @@
 ---
 - name: copy config into apt.conf.d folder
-  copy: src=roles/apt-mirror-config/templates/20mainubuntumirrors.j2 dest=/etc/apt/apt.conf.d/20mainubuntumirrors
+  templates: src=20mainubuntumirrors.j2 dest=/etc/apt/sources.list.d/mainubuntumirrors.list
   when: ansible_distribution == 'Ubuntu'
   tags: copy_apt_config
