@@ -1,9 +1,13 @@
-# sudo Role
+# Simple sudo role
 
-## Usage
-
-ansible-playbook --verbose main.yml -i inventory/hosts --sudo --tags=
+This role sets up a simple sudoers file. Each user has full sudo access, and a
+global setting determines whether NOPASSWD is set or not.
 
 ## Variables
 
-None
+ * sudo_users - A list of users who have sudo access. Use '%foo' to specify
+   that users in a given group have sudo access.
+   * default: root, users in group wheel
+ * sudo_nopasswd - if set, NOPASSWD is added to all sudoers entries. Use this
+   when users don't have passwords set.
+   * default: true
