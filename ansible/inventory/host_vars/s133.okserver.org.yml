@@ -2,3 +2,5 @@
 hosted: aws
 sudo_extras:
   - tryggvib
+sudo_extra_lines:
+  - '%openspending_dev ALL=(ALL) NOPASSWD: /usr/bin/supervisorctl *'
