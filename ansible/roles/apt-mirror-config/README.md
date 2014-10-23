@@ -1,4 +1,4 @@
-# varnish Role
+# apt-mirror-config Role
 
 ## Usage
 

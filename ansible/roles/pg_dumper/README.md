@@ -1,4 +1,4 @@
-# varnish Role
+# pg_dumper Role
 
 ## Usage
 

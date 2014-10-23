@@ -1,4 +1,4 @@
-# varnish Role
+# graphite Role
 
 ## Usage
 

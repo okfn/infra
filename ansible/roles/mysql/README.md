@@ -1,4 +1,4 @@
-# varnish Role
+# mysql Role
 
 ## Usage
 

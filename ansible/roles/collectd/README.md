@@ -1,4 +1,4 @@
-# varnish Role
+# collectd Role
 
 ## Usage
 

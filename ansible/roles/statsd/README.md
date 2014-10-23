@@ -1,4 +1,4 @@
-# varnish Role
+# statsd Role
 
 ## Usage
 

@@ -1,4 +1,4 @@
-# varnish Role
+# nginx Role
 
 ## Usage
 

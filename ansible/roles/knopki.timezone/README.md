@@ -1,19 +1,9 @@
-timezone
-========
+# knopki.timezone Role
 
-Set timezone on Debian-like systems.
+## Usage
 
-Role Variables
---------------
+ansible-playbook --verbose main.yml -i inventory/hosts --sudo --tags=
 
- * *timezone* - timezone (like _UTC_, _Europe/Moscow_)
+## Variables
 
-License
--------
-
-MIT
-
-Author Information
-------------------
-
-Sergey Korolev (<korolev.srg@gmail.com>)
+None

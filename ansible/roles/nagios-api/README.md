@@ -1,4 +1,4 @@
-# varnish Role
+# nagios-api Role
 
 ## Usage
 

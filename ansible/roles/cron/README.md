@@ -1,4 +1,4 @@
-# varnish Role
+# cron Role
 
 ## Usage
 

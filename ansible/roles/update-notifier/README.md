@@ -1,3 +1,9 @@
-# Update notifier common role
+# update-notifier Role
 
-Installs the update-notifier-common package.  Which is a program which can tell you what packages need to be updated.
+## Usage
+
+ansible-playbook --verbose main.yml -i inventory/hosts --sudo --tags=
+
+## Variables
+
+None

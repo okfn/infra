@@ -1,4 +1,4 @@
-# varnish Role
+# heroku-toolbelt Role
 
 ## Usage
 

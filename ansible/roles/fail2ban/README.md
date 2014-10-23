@@ -1,4 +1,4 @@
-# varnish Role
+# fail2ban Role
 
 ## Usage
 

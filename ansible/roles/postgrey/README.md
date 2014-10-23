@@ -1,4 +1,4 @@
-# varnish Role
+# postgrey Role
 
 ## Usage
 

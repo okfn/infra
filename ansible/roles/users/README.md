@@ -1,13 +1,9 @@
-# Users role
-
-This role is used to create users across all OKFN servers.
+# users Role
 
 ## Usage
 
-An example of how to use the role.
+ansible-playbook --verbose main.yml -i inventory/hosts --sudo --tags=
 
 ## Variables
 
- - devs_group 
-
-There may be others.
+None

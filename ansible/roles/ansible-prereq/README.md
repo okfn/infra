@@ -1,4 +1,4 @@
-# varnish Role
+# ansible-prereq Role
 
 ## Usage
 

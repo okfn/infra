@@ -1,4 +1,4 @@
-# varnish Role
+# motd Role
 
 ## Usage
 

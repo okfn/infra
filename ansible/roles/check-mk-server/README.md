@@ -1,4 +1,4 @@
-# varnish Role
+# check-mk-server Role
 
 ## Usage
 

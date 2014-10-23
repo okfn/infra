@@ -1,4 +1,4 @@
-# varnish Role
+# rsyncd Role
 
 ## Usage
 

@@ -1,4 +1,4 @@
-# varnish Role
+# okfn-org-manager Role
 
 ## Usage
 

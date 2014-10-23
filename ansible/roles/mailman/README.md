@@ -1,4 +1,4 @@
-# varnish Role
+# mailman Role
 
 ## Usage
 

@@ -1,11 +1,9 @@
-# Sysstat nagios plugin installer
-
-This role installs the sysstat nagios plugin.
+# sysstat Role
 
 ## Usage
 
-ansible-playbook --verbose main.yml -i inventory/hosts -s --tags install_sysstat
+ansible-playbook --verbose main.yml -i inventory/hosts --sudo --tags=
 
-## Variable
+## Variables
 
 None

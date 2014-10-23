@@ -1,4 +1,4 @@
-# varnish Role
+# etherpad-lite Role
 
 ## Usage
 
