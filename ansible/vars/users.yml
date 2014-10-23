@@ -82,6 +82,10 @@ users:
       group: 'openspending_dev'
       authorized_keys:
         - stefan
+    - name: 'holger'
+      group: 'openspending_dev'
+      authorized_keys:
+        - holger
 
   labs_dev:
     - name: 'rowan.crawford'
