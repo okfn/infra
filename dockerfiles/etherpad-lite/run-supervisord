@@ -1,0 +1,53 @@
+#!/bin/bash
+
+#set -eu
+
+status() {
+
+ echo "----> ${@}" >&2
+
+}
+
+etherpad_config=/src/etherpad-lite/settings.json
+
+status "updating ${etherpad_config} with config"
+sed -e 's/ETHERPAD_DBHOST/'${DATABASE_URL}'/g' -i ${etherpad_config}
+sed -e 's/ETHERPAD_DB/'${ETHERPAD_DB}'/g' -i ${etherpad_config}
+sed -e 's/ETHERPAD_USER/'${ETHERPAD_USER}'/g' -i ${etherpad_config}
+sed -e 's/ETHERPAD_PASS/'${ETHERPAD_PASS}'/g' -i ${etherpad_config}
+sed -e 's/ADMIN_PASS/'${ADMIN_PASS}'/g' -i ${etherpad_config}
+
+status "checking if required DB and users exist..."
+#check if etherpad db exists as root
+mysql -uroot -p${DB_ENV_MARIADB_ROOT_PW} -h${DATABASE_URL} -e "show databases" | grep  ${ETHERPAD_DB}
+if [ $? -ne 0 ];
+then
+        status "etherpad database : ${ETHERPAD_DB} is missing on mysql host ${DATABASE_URL}, creating.."
+        mysql -uroot -p${DB_ENV_MARIADB_ROOT_PW} -h${DATABASE_URL} -e "create database ${ETHERPAD_DB}"
+fi
+
+#check if required db users exist, else create.
+mysql -uroot -p${DB_ENV_MARIADB_ROOT_PW} -h${DATABASE_URL} mysql -e "select * from user where User='${ETHERPAD_USER}'" | grep ${ETHERPAD_USER}
+if [ $? -ne 0 ];
+then
+        status "etherpad user: ${ETHERPAD_USER} doesnt exist on mysql host ${DATABASE_URL}, creating .."
+        mysql -uroot -p${DB_ENV_MARIADB_ROOT_PW} -h${DATABASE_URL} -e "CREATE USER '${ETHERPAD_USER}'@'%' IDENTIFIED BY '${ETHERPAD_PASS}'"
+        mysql -uroot -p${DB_ENV_MARIADB_ROOT_PW} -h${DATABASE_URL} -e "GRANT ALL PRIVILEGES ON ${ETHERPAD_DB}.* TO '${ETHERPAD_USER}'@'%'"
+fi
+
+#test if we can access the db as the created user
+mysql -u${ETHERPAD_USER} -p${ETHERPAD_PASS} -h${DATABASE_URL} ${ETHERPAD_DB} -e "show tables"
+if [ $? -ne 0 ];
+then
+        status "failed to access ${ETHERPAD_DB} using : mysql -u${ETHERPAD_USER} -p${ETHERPAD_PASS} -h${DATABASE_URL}"
+        status "please make sure the etherpad user is created and can access the db properly"
+        exit 1
+fi
+
+
+status "All systems are go!"
+#check if etherpad db exists as root
+
+status "running supervisord"
+exec /usr/bin/supervisord -n
+
