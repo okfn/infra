@@ -1,4 +1,3 @@
-timezone
 ========
 
 Set timezone on Debian-like systems.
@@ -17,3 +16,4 @@ Author Information
 ------------------
 
 Sergey Korolev (<korolev.srg@gmail.com>)
+

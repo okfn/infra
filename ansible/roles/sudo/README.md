@@ -10,4 +10,4 @@ global setting determines whether NOPASSWD is set or not.
    * default: root, users in group wheel
  * sudo_nopasswd - if set, NOPASSWD is added to all sudoers entries. Use this
    when users don't have passwords set.
-   * default: true
+   * default: true
