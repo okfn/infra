@@ -2,9 +2,9 @@
 - name: install tmpreaper
   apt: pkg=tmpreaper state=installed
   tags:
-     - tmpreaper
+     - install_tmpreaper
 
 - name: setup config
   copy: src=etc/tmpreaper.conf dest=/etc/tmpreaper.conf
   tags:
-     - tmpreaper
+     - configure_tmpreaper
