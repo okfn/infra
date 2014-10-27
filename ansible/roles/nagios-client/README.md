@@ -3,7 +3,9 @@
 ## Tags
 
 install_nagios_plugins
+
 add_nagios_group
+
 add_nagios_users
 
 ## Dependencies
