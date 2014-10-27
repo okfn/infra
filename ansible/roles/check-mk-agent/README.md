@@ -6,6 +6,10 @@ Installs the check_mk agent on either debian or ubuntu servers.  Also installed 
 
 ## Dependencies
 
+
+role: scripts 
+role: iptables-persistent 
+
 ## Usage
 
 ansible-playbook --verbose main.yml -i inventory/hosts --sudo --tags=
