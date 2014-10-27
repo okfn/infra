@@ -1,5 +1,7 @@
 # nagios-client Role
 
+Installs the nagios plugins and adds users and groups for the plugins.
+
 ## Tags
 
 install_nagios_plugins
