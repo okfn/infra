@@ -74,7 +74,6 @@ s116.okserver.org hosted=bytemark
 s087.okserver.org hosted=rackspace-managed
 
 [backup]
-s088.okserver.org hosted=rackspace
 s134.okserver.org hosted=aws
 
 [wiki]
