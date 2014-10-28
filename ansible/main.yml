@@ -24,7 +24,7 @@
     - { role: git, tags: ['git'] }
     - { role: db-backup, tags: ['db-backup'] }
     - { role: apt-mirror-config, tags: ['apt-mirror-config'] }
-      
+
 - hosts: openspending-solr
   sudo: true
   roles:
@@ -40,12 +40,12 @@
     - { role: nginx, tags: ['nginx'] }
     - { role: statsd, tags: ['statsd'] }
 
-- hosts: s088.okserver.org
+- hosts: s134.okserver.org
   sudo: true
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
-    - okfn-org-manager
+    - { role: okfn-org-manager, tags: ['heroku-backup'] }
 
 - hosts: s113.okserver.org
   gather_facts: True
