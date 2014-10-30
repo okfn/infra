@@ -4,11 +4,9 @@
   tags: install_unattended_upgrades
 
 - name: copy unattended upgrades config over
-  copy: src=50unattended-upgrades
-	dest=/etc/apt/apt.conf.d/
+  copy: src=50unattended-upgrades dest=/etc/apt/apt.conf.d/
   tags: configure_unattended_upgrades
 
 - name: copy confold and confdef config over
-  copy: src=10confoldanddef
-        dst=/etc/apt/apt.conf.d/
+  copy: src=10confoldanddef dest=/etc/apt/apt.conf.d/
   tags: configure_apt_options
