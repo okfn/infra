@@ -78,6 +78,7 @@ s134.okserver.org hosted=aws
 
 [wiki]
 s098.okserver.org hosted=rackspace
+s135.okserver.org hosted=aws
 
 [labs]
 s033.okserver.org hosted=hetzner
