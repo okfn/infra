@@ -24,6 +24,7 @@
     - { role: git, tags: ['git'] }
     - { role: db-backup, tags: ['db-backup'] }
     - { role: apt-mirror-config, tags: ['apt-mirror-config'] }
+    - { role: unattended-upgrades, tags: ['unattended-upgrades'] }
 
 - hosts: openspending-solr
   sudo: true
