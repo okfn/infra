@@ -8,7 +8,12 @@ backup_dir=/root/mysql_backups
 db_host=localhost
 db_port=3306
 mysql_exclude_dbs='information_schema performance_schema'
+snitch=ecc09ca67b
 
+function deadmansnitch()
+{
+  curl "https://nosnch.in/$1" &> /dev/null
+}
 
 if [ -f $backup_config ];
 then
@@ -57,8 +62,11 @@ then
                                 /usr/bin/rsync ${backup_dir}/${backup_archive} rsync://${rsync_target}/mysql_backups/
                         fi
                 fi
+	deadmansnitch("$snitch")	
         done
 else
         echo "$backup_config not found, please check if you've defined the dbs to be backed up in ansible."
         exit 1
 fi
+
+
