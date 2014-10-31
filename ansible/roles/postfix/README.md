@@ -2,6 +2,13 @@
 
 Installs and configures the postfix MTA suite of software.
 
+## Tags
+
+postfix
+mastercf
+
+## Dependancies
+
 Has a dependancy on the scripts role.
 
 ## Usage
