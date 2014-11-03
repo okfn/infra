@@ -48,6 +48,7 @@
         - sudo
         - bsd-mailx
         - ntpdate
+        - language-pack-en
 
       # run ntpdate only if ntpd isn't running
     - name: -> set correct date
