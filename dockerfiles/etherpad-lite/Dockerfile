@@ -22,6 +22,7 @@ env	ETHERPAD_USER etherpad_lite
 env	ETHERPAD_PASS change_password
 env	ETHERPAD_DB   etherpad_lite
 env	ADMIN_PASS change_password
+env	ETHERPAD_DBHOST etherpad_dbhost
 env	DATABASE_URL changeme
 
 add	./etherpad-lite.conf /etc/supervisor/conf.d/etherpad-lite.conf
