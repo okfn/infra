@@ -11,7 +11,7 @@ status() {
 etherpad_config=/src/etherpad-lite/settings.json
 
 status "updating ${etherpad_config} with config"
-sed -e 's/ETHERPAD_DBHOST/'${DATABASE_URL}'/g' -i ${etherpad_config}
+sed -e 's/ETHERPAD_DBHOST/'${ETHERPAD_DBHOST}'/g' -i ${etherpad_config}
 sed -e 's/ETHERPAD_DB/'${ETHERPAD_DB}'/g' -i ${etherpad_config}
 sed -e 's/ETHERPAD_USER/'${ETHERPAD_USER}'/g' -i ${etherpad_config}
 sed -e 's/ETHERPAD_PASS/'${ETHERPAD_PASS}'/g' -i ${etherpad_config}
