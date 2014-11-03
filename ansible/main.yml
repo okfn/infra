@@ -8,7 +8,7 @@
   roles:
     - { role: set-facts, tags: ['sudo'] }
     - { role: ansible-prereq, tags: ['ansible-prereq'] }
-    - check-mk-agent
+    - { role: check-mk-agent, tags: ['check-mk-agent'] }
     - { role: collectd, tags: ['collectd'] }
     - { role: cron, tags: ['cron'] }
     - { role: iptables-persistent, tags: ['iptables-persistent'] }
