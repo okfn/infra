@@ -81,7 +81,7 @@
 ## tasks for check_mk check scripts
 - name: setup_local_checks_dir
   file: path={{ item }} state=directory
-  when: local_checks is defined
+  when: enabled_local_checks is defined
   with_items:
      - '/opt/scripts/check_mk'
      - '/usr/lib/check_mk_agent/local/86400'
