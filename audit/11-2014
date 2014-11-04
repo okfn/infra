@@ -57,7 +57,10 @@ s126.okserver.org services="openspending" host="aws"
 ## Rax
 s088.okserver.org host="rackspace" services="backup host" notes="backups made to this server need to be reviewed, if we already have snapshotting for most hosts, maybe this box can be killed"
 s098.okserver.org host="rackspace" services="wikifarm (nginx, php-fpm, mysql)"
-s135.okserver.org host="AWS" services="wikifarm" notes="replacement for s098"
+<<<<<<< HEAD
+=======
+
+>>>>>>> okfn/master
 ## DigitalOcean
 s115.okserver.org services="docker, sendy" notes="move Sendy to docker: #8045"
 ## AWS
