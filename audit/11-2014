@@ -56,6 +56,7 @@ s126.okserver.org services="openspending" host="aws"
 # Operations
 ## Rax
 s098.okserver.org host="rackspace" services="wikifarm (nginx, php-fpm, mysql)"
+## AWS
 s135.okserver.org host="aws" services="wikifarm" notes="to replace s098"
 
 ## DigitalOcean
