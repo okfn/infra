@@ -9,6 +9,12 @@ db_port=5432
 db_admin=postgres
 pg_pass=/root/.pgpass
 psql_exclude_dbs='template1 template0'
+snitch=304f7bf902
+
+function deadmansnitch()
+{
+  curl "https://nosnch.in/$1" &> /dev/null
+}
 
 
 if [ -f $backup_config ];
@@ -93,6 +99,8 @@ then
 				fi
 	   		fi
 		fi		
+	deadmansnitch($snitch)
+
 	done
 else
         echo "$backup_config not found, please check if you've defined the dbs to be backed up in ansible."
