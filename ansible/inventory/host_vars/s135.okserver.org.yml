@@ -1,3 +1,4 @@
 ---
 hosted: aws
 vanilla_mysql: true
+private_dir: /home/
