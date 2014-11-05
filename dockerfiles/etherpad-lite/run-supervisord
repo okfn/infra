@@ -17,7 +17,7 @@ sed -e 's/ETHERPAD_USER/'${ETHERPAD_USER}'/g' -i ${etherpad_config}
 sed -e 's/ETHERPAD_PASS/'${ETHERPAD_PASS}'/g' -i ${etherpad_config}
 sed -e 's/ADMIN_PASS/'${ADMIN_PASS}'/g' -i ${etherpad_config}
 
-status "checking if required DB and users exist..."
+#status "checking if required DB and users exist..."
 #check if etherpad db exists as root
 
 #test if we can access the db as the created user
