@@ -48,6 +48,11 @@
   roles:
     - { role: okfn-org-manager, tags: ['heroku-backup'] }
 
+- hosts: s135.okserver.org
+  sudo: true
+  roles:
+    - role: mysql
+
 - hosts: s113.okserver.org
   gather_facts: True
   sudo: true
