@@ -1,2 +1,3 @@
 ---
 hosted: aws
+apt: mysql-server
