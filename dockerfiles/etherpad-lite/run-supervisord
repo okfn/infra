@@ -21,13 +21,13 @@ status "checking if required DB and users exist..."
 #check if etherpad db exists as root
 
 #test if we can access the db as the created user
-mysql -u ${ETHERPAD_USER} -p ${ETHERPAD_PASS} -h ${ETHERPAD_DBHOST} ${ETHERPAD_DB} -e "show tables"
-if [ $? -ne 0 ];
-then
-        status "failed to access ${ETHERPAD_DB} using : mysql -u${ETHERPAD_USER} -p${ETHERPAD_PASS} -h${ETHERPAD_DBHOST}"
-        status "please make sure the etherpad user is created and can access the db properly"
-        exit 1
-fi
+#mysql -u ${ETHERPAD_USER} -p ${ETHERPAD_PASS} -h ${ETHERPAD_DBHOST} ${ETHERPAD_DB} -e "show tables"
+#if [ $? -ne 0 ];
+#then
+#        status "failed to access ${ETHERPAD_DB} using : mysql -u${ETHERPAD_USER} -p${ETHERPAD_PASS} -h${ETHERPAD_DBHOST}"
+#        status "please make sure the etherpad user is created and can access the db properly"
+#        exit 1
+#fi
 
 
 status "All systems are go!"
