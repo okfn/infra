@@ -16,7 +16,7 @@
      - copy_backup_scripts
 
 - name: ensure_backup_cron
-  copy: src=opt/scripts/backup/cron.d/{{ item.split('.')[0] }} dest=/etc/cron.d/ owner=root group=root
+  copy: src=etc/cron.d/{{ item.split('.')[0] }} dest=/etc/cron.d/ owner=root group=root
   with_items: backup_scripts
   when: backup_scripts is defined
   tags:
