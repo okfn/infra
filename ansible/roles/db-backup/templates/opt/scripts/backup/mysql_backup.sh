@@ -64,5 +64,3 @@ else
         echo "$backup_config not found, please check if you've defined the dbs to be backed up in ansible."
         exit 1
 fi
-
-
