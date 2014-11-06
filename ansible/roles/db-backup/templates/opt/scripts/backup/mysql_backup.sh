@@ -9,7 +9,6 @@ db_host=localhost
 db_port=3306
 mysql_exclude_dbs='information_schema performance_schema'
 
-
 if [ -f $backup_config ];
 then
         rsync_target=$(awk -F: /backup_rsync_target/'{print $2}' $backup_config | sed -e 's/^ //g')
@@ -57,7 +56,10 @@ then
                                 /usr/bin/rsync ${backup_dir}/${backup_archive} rsync://${rsync_target}/mysql_backups/
                         fi
                 fi
-        done
+	{% if mysql_snitch %}
+        curl "https://nosnch.in/{{ mysql_snitch }}" &> /dev/null
+	{% endif %}
+	done
 else
         echo "$backup_config not found, please check if you've defined the dbs to be backed up in ansible."
         exit 1

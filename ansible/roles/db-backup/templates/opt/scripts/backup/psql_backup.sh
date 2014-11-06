@@ -10,7 +10,6 @@ db_admin=postgres
 pg_pass=/root/.pgpass
 psql_exclude_dbs='template1 template0'
 
-
 if [ -f $backup_config ];
 then
 	rsync_target=$(awk -F: /backup_rsync_target/'{print $2}' $backup_config | sed -e 's/^ //g')
@@ -93,6 +92,11 @@ then
 				fi
 	   		fi
 		fi		
+        {% if psql_snitch %}
+        curl "https://nosnch.in/{{ psql_snitch }}" &> /dev/null
+        {% endif %}
+
+
 	done
 else
         echo "$backup_config not found, please check if you've defined the dbs to be backed up in ansible."
