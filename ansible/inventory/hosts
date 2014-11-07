@@ -89,7 +89,7 @@ s033.okserver.org
 s110.okserver.org
 
 [sparql]
-s111.okserver.org hosted=rackspace
+
 
 [openspending:children]
 openspending-solr
