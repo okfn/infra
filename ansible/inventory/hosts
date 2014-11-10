@@ -8,7 +8,6 @@ s117.okserver.org hosted=aws
 s125.okserver.org hosted=aws
 
 [openspending-web]
-s095.okserver.org hosted=rackspace-managed
 s133.okserver.org hosted=aws
 
 [openspending-solr]
