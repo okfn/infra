@@ -1,5 +1,0 @@
-{% if inventory_hostname == 's125.okserver.org' %}
-30 01 * * * root /opt/scripts/backup/mysql_backup.sh &> /var/log/mysql_backup.log && curl https://nosnch.in/ecc09ca67b &> /dev/null
-{% else %}
-30 01 * * * root /opt/scripts/backup/mysql_backup.sh &> /var/log/mysql_backup.log 
-{% endif %}

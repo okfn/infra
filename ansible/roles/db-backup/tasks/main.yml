@@ -9,14 +9,14 @@
      - ensure_backup_scripts_dir
 
 - name: copy_backup_scripts
-  copy: src=opt/scripts/backup/{{ item }} dest=/opt/scripts/backup/ mode=760
+  template: src=opt/scripts/backup/{{ item }} dest=/opt/scripts/backup/ mode=760
   with_items: backup_scripts
   when: backup_scripts is defined #backup_scripts is an array with a list of backup scripts to be setup
   tags:
      - copy_backup_scripts
 
 - name: ensure_backup_cron
-  template: src=opt/scripts/backup/cron.d/{{ item.split('.')[0] }} dest=/etc/cron.d/ owner=root group=root
+  copy: src=etc/cron.d/{{ item.split('.')[0] }} dest=/etc/cron.d/ owner=root group=root
   with_items: backup_scripts
   when: backup_scripts is defined
   tags:

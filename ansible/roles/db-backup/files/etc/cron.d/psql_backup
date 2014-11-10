@@ -1,0 +1,1 @@
+30 02 * * * root /opt/scripts/backup/psql_backup.sh &> /var/log/psql_backup.log 
