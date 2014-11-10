@@ -48,7 +48,6 @@
   roles:
     - { role: okfn-org-manager, tags: ['heroku-backup'] }
 
-
 - hosts: s113.okserver.org
   gather_facts: True
   sudo: true
