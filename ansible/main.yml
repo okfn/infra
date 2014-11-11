@@ -89,6 +89,7 @@
   sudo: true
   roles:
     - { role: nginx, tags: ['nginx'] }
+    - { role: php-fpm, tags: ['php-fpm'] }
 
 - hosts: monitoring
   sudo: true
