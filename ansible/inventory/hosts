@@ -122,5 +122,4 @@ ckan-db-dev
 [solrservers:children]
 openspending-solr
 ckan-solr-prod
-
 # vim:ft=ini
