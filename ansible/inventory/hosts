@@ -19,8 +19,8 @@ s080.okserver.org hosted=rackspace
 s082.okserver.org hosted=rackspace
 s083.okserver.org hosted=rackspace
 s084.okserver.org hosted=rackspace
-s107.okserver.org hosted=rackspace-managed
 s099.okserver.org hosted=rackspace-managed
+s107.okserver.org hosted=rackspace-managed
 s130.okserver.org hosted=linode
 
 [ckan-db-dev]
@@ -28,43 +28,38 @@ s085.okserver.org hosted=rackspace
 s130.okserver.org hosted=linode
 
 [ckan-web-prod]
-s080.okserver.org hosted=rackspace
 s079.okserver.org hosted=rackspace-managed
+s080.okserver.org hosted=rackspace
 s086.okserver.org hosted=rackspace-managed
-s107.okserver.org
-s104.okserver.org hosted=rackspace-managed
 s102.okserver.org hosted=rackspace
+s107.okserver.org hosted=rackspace-managed
+s122.okserver.org hosted=rackspace
 s128.okserver.org hosted=linode
 s131.okserver.org hosted=aws
 s132.okserver.org hosted=linode
-s122.okserver.org hosted=rackspace
 
 [ckan-db-prod]
-s081.okserver.org hosted=rackspace
-s078.okserver.org hosted=rackspace-managed
 s076.okserver.org hosted=rackspace-managed
+s078.okserver.org hosted=rackspace-managed
+s081.okserver.org hosted=rackspace
 s103.okserver.org hosted=rackspace
 s108.okserver.org hosted=rackspace-managed
-s105.okserver.org hosted=rackspace-managed
+s123.okserver.org hosted=rackspace
 s124.okserver.org hosted=linode
 s129.okserver.org hosted=linode
 s131.okserver.org hosted=aws
-s123.okserver.org hosted=rackspace
 
 [ckan-solr-prod]
-s081.okserver.org
-s078.okserver.org
-s076.okserver.org
-s085.okserver.org
-s103.okserver.org
-s108.okserver.org
-s105.okserver.org
-s131.okserver.org
+s076.okserver.org hosted=rackspace-managed
+s078.okserver.org hosted=rackspace-managed
+s081.okserver.org hosted=rackspace
+s085.okserver.org hosted=rackspace
+s103.okserver.org hosted=rackspace
+s108.okserver.org hosted=rackspace-managed
+s131.okserver.org hosted=linode
 
 [ckan-packaging]
 s106.okserver.org hosted=rackspace
-
-[ckan-staging]
 
 [listserv]
 s116.okserver.org hosted=bytemark
@@ -87,9 +82,6 @@ s110.okserver.org hosted=hetzner
 s033.okserver.org
 s110.okserver.org
 
-[sparql]
-
-
 [openspending:children]
 openspending-solr
 openspending-web
@@ -100,7 +92,6 @@ ckan-db-dev
 ckan-web-prod
 ckan-db-prod
 ckan-packaging
-ckan-staging
 ckan-solr-prod
 
 [test-group:children]
@@ -134,6 +125,5 @@ ckan-db-dev
 [solrservers:children]
 openspending-solr
 ckan-solr-prod
-
 
 # vim:ft=ini
