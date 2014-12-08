@@ -23,14 +23,12 @@
           - opt/collectd/etc/collectd.conf.j2
        paths:
           - ../templates
-  notify: restart collectd
   tags:
      - setup_collectd_config
      - collectd
 
 - name: collectd_init_script
   copy: src=opt/collectd/etc/init.d/collectd dest=/etc/init.d/collectd
-  notify: restart collectd
   tags:
      - collectd_init_script
      - collectd
