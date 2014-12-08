@@ -28,14 +28,14 @@
      - collectd
 
 - name: collectd_init_script
-  copy: src=opt/collectd/etc/init.d/collectd dest=/etc/init.d/collectd
+  copy: src=opt/collectd/etc/init.d/collectd dest=/etc/init.d/collectd mode=0755
   tags:
      - collectd_init_script
      - collectd
 
-- name: reload_collectd
+- name: restart_collectd
   shell: service collectd restart
   when: reload_collectd is defined #pass true with --extra-vars="reload_collectd=True"
   tags:
-     - reload_collectd
+     - restart_collectd
      - collectd
