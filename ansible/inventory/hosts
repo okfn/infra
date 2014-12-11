@@ -80,6 +80,9 @@ s140.okserver.org hosted=digital-ocean
 [labs]
 s110.okserver.org hosted=hetzner
 
+[rt]
+s136.okserver.org hosted=aws
+
 [openspending:children]
 openspending-solr
 openspending-web
