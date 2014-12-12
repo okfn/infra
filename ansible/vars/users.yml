@@ -58,6 +58,10 @@ users:
         - adam-aragog
         - adam-hendricks
         - adam-millers
+    - name: 'brook'
+      group: 'ckan_dev'
+      authorized_keys:
+        - brook
 
   sparql_dev:
     - name: 'pierre.yves'
