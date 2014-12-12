@@ -1,2 +1,3 @@
 ---
-hosted=aws
+hosted: aws
+rt: true

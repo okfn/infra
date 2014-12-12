@@ -36,6 +36,11 @@
     - { role: omeka, tags: ['omeka'] }
     - { role: nginx, tags: ['nginx'] }
 
+- hosts: rt
+  sudo: true
+  roles: 
+    - { role: rt, tags: ['rt'] }
+
 - hosts: openspending-solr
   sudo: true
   roles:
