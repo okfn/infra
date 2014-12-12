@@ -1,38 +1,18 @@
-- name: check if our postgres container is there
-  shell: docker ps | tail -n +2 | awk '{ print $NF }' | sed 's/,/\n/g' | grep '^rt_pg$'
-  register: rt_pg
-  ignore_errors: True
+# Setup RT pre-reqs
 
-- name: docker postgres volumes
-  command: mkdir -p /data/rt_pg
-  when: rt_pg.rc == 1
+# Install RT
 
-- name: docker postgres server
-  command: docker run -d -e="POSTGRES_DBA_PW={{postgres_dba_pw}}" -v="/data/rt_pg:/data" -p=5432 -name=rt_pg okfn/postgres:0.4
-  when: rt_pg.rc == 1
 
-#  - name: address of postgresql server
-#    set_fact: db_host={{docker_containers[0].NetworkSettings.IPAddress}}
-#
-#  - name: show db_host
-#    debug: msg="{{db_host}}"
+# Configure RT
 
-- name: check if our rt container is there
-  shell: docker ps | tail -n +2 | awk '{ print $NF }' | sed 's/,/\n/g' | grep '^rt$'
-  register: rt
-  ignore_errors: True
-
-- name: docker rt volumes
-  command: mkdir -p /data/{{ docker_container }}
-  when: rt.rc == 1
-
-- name: create docker rt server
-  command: docker run -d -e="RT_DATABASE_PW={{rt_database_pw}}" -v="/data/rt:/data" -p=127.0.0.1:5025:25 -p=127.0.0.1:5080:80 -link=rt_pg:db -name={{ docker_container }} okfn/rt:0.16
-  when: rt.rc == 1
-
-- name: configure docker rt server
+- name: configure rt server
   copy: src=RT_SiteConfig.pm dest=/data/rt/rt_conf/ owner=root group=www-data mode=0640
   notify: restart rt
+
+# Configure Postfix
+
+
+# Configure Procmail
 
 - name: configure procmail
   copy: src=procmailrc.rt dest=/data/rt/rt_postfix/procmailrc.rt owner=root group=root mode=0644

@@ -1,6 +1,6 @@
 # rt Role
 
-Installs and configures RT in a docker container.
+Installs and configures RT on a server.  
 
 ## Usage
 
