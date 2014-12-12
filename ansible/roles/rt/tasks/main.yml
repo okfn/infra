@@ -1,18 +1,31 @@
 # Setup RT pre-reqs
 
+- name: Install RT pre-reqs through apt-get
+  apt: pkg={ item } state=installed
+  with_items:
+    build-essential 
+    psql-client 
+    apache2 
+    mailutils 
+    openssl 
+    libyaml 
+    libyaml-appconfig-perl 
+    openssl-dev 
+    libexpat1-dev
+
 # Install RT
 
 
 # Configure RT
 
-- name: configure rt server
-  copy: src=RT_SiteConfig.pm dest=/data/rt/rt_conf/ owner=root group=www-data mode=0640
-  notify: restart rt
+#- name: configure rt server
+ # copy: src=RT_SiteConfig.pm dest=/data/rt/rt_conf/ owner=root group=www-data mode=0640
+  #notify: restart rt
 
 # Configure Postfix
 
 
 # Configure Procmail
 
-- name: configure procmail
-  copy: src=procmailrc.rt dest=/data/rt/rt_postfix/procmailrc.rt owner=root group=root mode=0644
+#- name: configure procmail
+ # copy: src=procmailrc.rt dest=/data/rt/rt_postfix/procmailrc.rt owner=root group=root mode=0644
