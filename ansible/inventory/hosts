@@ -70,6 +70,9 @@ s087.okserver.org hosted=rackspace-managed
 [backup]
 s134.okserver.org hosted=aws
 
+[rt]
+s136.okserver.org hosted=aws
+
 [wiki]
 s098.okserver.org hosted=rackspace
 s135.okserver.org hosted=aws
