@@ -31,7 +31,7 @@ then
                 db_host=${host}
         fi
 
-        db_list=$(mysql -e "show databases" $db_host --skip-column-names -B)
+        db_list=$(mysql -e "show databases" -h$db_host --skip-column-names -B)
 
         if [ ! -d ${backup_dir} ];
         then
@@ -49,7 +49,7 @@ then
                         ts=$(date +%s)
                         backup_archive="${ts}-$(hostname -s)-${db}-sql.gz"
 
-                        /usr/bin/mysqldump -uroot -P${db_port} -h${db_host} ${db} | gzip > ${backup_dir}/${backup_archive}
+                        /usr/bin/mysqldump -P${db_port} -h${db_host} ${db} | gzip > ${backup_dir}/${backup_archive}
 
                         if [ -s ${backup_dir}/${backup_archive} ];
                         then
