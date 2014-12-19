@@ -1,3 +1,0 @@
----
-- name: restart rt
-  shell: docker stop {{ docker_container }}; docker start {{ docker_container }}
