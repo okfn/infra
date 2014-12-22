@@ -11,13 +11,6 @@ sites_to_monitor:
   - product-open-data.com:80:200
   - product.okfn.org:80:200
   - wiki.okfn.org:80:301
-enabled_plugin_checks:
-  - mk_mysql
-backup_scripts:
-  - mysql_backup.sh
-backup_mysql: true
-mysql_exclude_dbs:
-  - test
 private_ip: 10.179.249.37
 users_extra:
   - name: 'harry.wood'
