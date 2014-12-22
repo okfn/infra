@@ -2,3 +2,5 @@
 hosted: aws
 sites_enabled:
 - wikifarm
+sites_to_monitor:
+  - wiki.okfn.org:80:301
