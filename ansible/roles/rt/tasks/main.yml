@@ -13,6 +13,7 @@
   - libexpat1-dev
   - libdbd-mysql-perl
   - libnet-smtp-ssl-perl 
+  - procmail
 
 - name: get latest RT release
   get_url: url=https://download.bestpractical.com/pub/rt/release/rt-4.2.9.tar.gz dest=/opt/
@@ -52,10 +53,7 @@
 - name: configure rt server
   copy: src=RT_SiteConfig.pm dest=/opt/rt4/etc owner=root group=www-data mode=0640
 
-# Configure Postfix
-
-
 # Configure Procmail
 
-#- name: configure procmail
- # copy: src=procmailrc.rt dest=/data/rt/rt_postfix/procmailrc.rt owner=root group=root mode=0644
+- name: configure procmail
+  copy: src=procmailrc.rt dest=/opt/rt4/etc/rt_postfix/procmailrc.rt owner=root group=root mode=0644
