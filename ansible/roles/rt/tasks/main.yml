@@ -46,6 +46,76 @@
   args:
     chdir: /opt/rt4-install
 
+# Install plugins
+# auto close plugin
+#- name: get nagios autoclose plugin
+#  get_url: url=https://github.com/bestpractical/rt-extension-nagios/archive/master.zip dest=/opt/
+
+#- name: extract nagios autoclose plugin
+#  unarchive: src=/opt/master dest=/opt/ copy=no
+
+#- name: run perl Makefile.PL for nagios autoclose
+#  command: perl Makefile.PL
+#  args:
+#    chdir: /opt/rt-extension-nagios-master
+
+#- name: run make for nagios 
+#  command: make
+#  args:
+#    chdir: /opt/rt-extension-nagios-master
+
+#- name: run make install for nagios autoclose
+#  command: make install
+#  args:
+#    chdir: /opt/rt-extension-nagios-master
+
+# Extra plugins
+
+#- name: make directories to put the plugins in
+#  file: path=/opt/{{ item }} state=directory
+#  with_items:
+#    - RT-Extension-ActivityReports
+#    - rt-extension-commandbymail
+
+- name: get nagios all nagios plugins
+  get_url: url={{ item.url }} dest=/opt/{{ item.name }}-master.zip
+  with_items:
+    - { url: 'https://github.com/bestpractical/rt-extension-activityreports/archive/master.zip', name: 'RT-Extension-ActivityReports' }
+    - { url: 'https://github.com/bestpractical/rt-extension-commandbymail/archive/master.zip', name: 'rt-extension-commandbymail' }
+
+- name: extract all nagios plugins
+  unarchive: src=/opt/{{ item }}-master.zip dest=/opt/{{ item }} copy=no
+  with_items:
+    - RT-Extension-ActivityReports
+    - rt-extension-commandbymail
+
+- name: run perl Makefile.PL for all nagios plugins
+  command: perl Makefile.PL
+  args:
+    chdir: /opt/{{ item }}
+  with_items:
+    - RT-Extension-ActivityReports
+    - rt-extension-commandbymail
+
+- name: run make for nagios plugins
+  command: make
+  args:
+    chdir: /opt/{{ item }}
+  with_items:
+    - RT-Extension-ActivityReports
+    - rt-extension-commandbymail
+
+
+- name: run make install for nagios plugins
+  command: make install
+  args:
+    chdir: /opt/{{ item }}
+  with_items:
+    - RT-Extension-ActivityReports
+    - rt-extension-commandbymail
+
+
+
 # We already have a DB, so no need to initialise the database
 
 # Configure RT
@@ -56,4 +126,4 @@
 # Configure Procmail
 
 - name: configure procmail
-  copy: src=procmailrc.rt dest=/opt/rt4/etc/rt_postfix/procmailrc.rt owner=root group=root mode=0644
+  copy: src=procmailrc.rt dest=/opt/rt4/etc/procmailrc.rt owner=root group=root mode=0644
