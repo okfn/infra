@@ -22,10 +22,12 @@ s084.okserver.org hosted=rackspace
 s099.okserver.org hosted=rackspace-managed
 s107.okserver.org hosted=rackspace-managed
 s130.okserver.org hosted=linode
+s137.okserver.org hosted=linode
 
 [ckan-db-dev]
 s085.okserver.org hosted=rackspace
 s130.okserver.org hosted=linode
+s137.okserver.org hosted=linode
 
 [ckan-web-prod]
 s079.okserver.org hosted=rackspace-managed
