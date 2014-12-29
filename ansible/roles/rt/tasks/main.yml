@@ -13,6 +13,7 @@
   - libexpat1-dev
   - libdbd-mysql-perl
   - libnet-smtp-ssl-perl 
+  - libdatetime-event-ical-perl
   - procmail
 
 - name: get latest RT release
@@ -36,6 +37,9 @@
   async: 3600
   poll: 60
 
+- name: install RTx to install RT extensions
+  command: /usr/bin/perl -MCPAN -e 'install Module::Install::RTx::Runtime'
+
 - name: make fixdeps
   shell: cd /opt/rt4-install && make fixdeps
   async: 3600
@@ -46,73 +50,87 @@
   args:
     chdir: /opt/rt4-install
 
-# Install plugins
-# auto close plugin
-#- name: get nagios autoclose plugin
-#  get_url: url=https://github.com/bestpractical/rt-extension-nagios/archive/master.zip dest=/opt/
-
-#- name: extract nagios autoclose plugin
-#  unarchive: src=/opt/master dest=/opt/ copy=no
-
-#- name: run perl Makefile.PL for nagios autoclose
-#  command: perl Makefile.PL
-#  args:
-#    chdir: /opt/rt-extension-nagios-master
-
-#- name: run make for nagios 
-#  command: make
-#  args:
-#    chdir: /opt/rt-extension-nagios-master
-
-#- name: run make install for nagios autoclose
-#  command: make install
-#  args:
-#    chdir: /opt/rt-extension-nagios-master
-
 # Extra plugins
+# To add an extra plugin, just add it to the with_items below
+# Make sure you copy the format in the with items
+# It assumes you pick-up the files from github
+# Make sure you check the play after each plugin is added
 
-#- name: make directories to put the plugins in
-#  file: path=/opt/{{ item }} state=directory
-#  with_items:
-#    - RT-Extension-ActivityReports
-#    - rt-extension-commandbymail
-
-- name: get nagios all nagios plugins
-  get_url: url={{ item.url }} dest=/opt/{{ item.name }}-master.zip
-  with_items:
-    - { url: 'https://github.com/bestpractical/rt-extension-activityreports/archive/master.zip', name: 'RT-Extension-ActivityReports' }
-    - { url: 'https://github.com/bestpractical/rt-extension-commandbymail/archive/master.zip', name: 'rt-extension-commandbymail' }
-
-- name: extract all nagios plugins
-  unarchive: src=/opt/{{ item }}-master.zip dest=/opt/{{ item }} copy=no
+- name: make directories to put the plugins in
+  file: path=/opt/{{ item }} state=directory
   with_items:
     - RT-Extension-ActivityReports
     - rt-extension-commandbymail
+    - rt-extension-nagios
+    - rt-extension-mergeusers
+    - rt-extension-repeatticket
+    - rt-extension-resetpassword
+    - rt-extension-spawnlinkedticketinqueue
+
+- name: get nagios all nagios plugins
+  get_url: url={{ item.url }} dest=/opt/{{ item.name }}/master.zip
+  with_items:
+    - { url: 'https://github.com/bestpractical/rt-extension-activityreports/archive/master.zip', name: 'RT-Extension-ActivityReports' }
+    - { url: 'https://github.com/bestpractical/rt-extension-commandbymail/archive/master.zip', name: 'rt-extension-commandbymail' }
+    - { url: 'https://github.com/bestpractical/rt-extension-nagios/archive/master.zip', name: 'rt-extension-nagios' }
+    - { url: 'https://github.com/bestpractical/rt-extension-mergeusers/archive/master.zip', name: 'rt-extension-mergeusers' }
+    - { url: 'https://github.com/bestpractical/rt-extension-repeatticket/archive/master.zip', name: 'rt-extension-repeatticket' }
+    - { url: 'https://github.com/gitpan/RT-Extension-ResetPassword/archive/master.zip', name: 'rt-extension-resetpassword' }
+    - { url: 'https://github.com/bestpractical/rt-extension-spawnlinkedticketinqueue/archive/master.zip', name: 'rt-extension-spawnlinkedticketinqueue' }
+
+- name: extract all nagios plugins
+  unarchive: src=/opt/{{ item }}/master.zip dest=/opt/ copy=no
+  with_items:
+    - RT-Extension-ActivityReports
+    - rt-extension-commandbymail
+    - rt-extension-nagios
+    - rt-extension-mergeusers
+    - rt-extension-repeatticket
+    - rt-extension-resetpassword
+    - rt-extension-spawnlinkedticketinqueue
+
+
+# Due to the way the files get extracted, everything ends up in lower-case with 
+# -master, hence the item names below.
 
 - name: run perl Makefile.PL for all nagios plugins
   command: perl Makefile.PL
   args:
     chdir: /opt/{{ item }}
   with_items:
-    - RT-Extension-ActivityReports
-    - rt-extension-commandbymail
+    - rt-extension-activityreports-master
+    - rt-extension-commandbymail-master
+    - rt-extension-nagios-master
+    - rt-extension-mergeusers-master
+    - rt-extension-repeatticket-master
+    - RT-Extension-ResetPassword-master
+    - rt-extension-spawnlinkedticketinqueue-master
 
 - name: run make for nagios plugins
   command: make
   args:
     chdir: /opt/{{ item }}
   with_items:
-    - RT-Extension-ActivityReports
-    - rt-extension-commandbymail
-
+    - rt-extension-activityreports-master
+    - rt-extension-commandbymail-master
+    - rt-extension-nagios-master
+    - rt-extension-mergeusers-master
+    - rt-extension-repeatticket-master
+    - RT-Extension-ResetPassword-master
+    - rt-extension-spawnlinkedticketinqueue-master
 
 - name: run make install for nagios plugins
   command: make install
   args:
     chdir: /opt/{{ item }}
   with_items:
-    - RT-Extension-ActivityReports
-    - rt-extension-commandbymail
+    - rt-extension-activityreports-master
+    - rt-extension-commandbymail-master
+    - rt-extension-nagios-master
+    - rt-extension-mergeusers-master
+    - rt-extension-repeatticket-master
+    - RT-Extension-ResetPassword-master
+    - rt-extension-spawnlinkedticketinqueue-master
 
 
 

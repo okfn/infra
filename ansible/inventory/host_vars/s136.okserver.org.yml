@@ -5,15 +5,6 @@ rt: true
 postfix_additional_trusted_networks: "172.17.0.0/16"
 postfix_relay_domains:
   - rt.okfn.org
-postfix_transport: rt.okfn.org smtp:127.0.0.1:49153
-# We use recipient_access to enable restrictions on outbound mail from RT. Use
-# DISCARD rather than reject (thus simulating successful delivery) to prevent
-# RT's own postfix instance from accumulating failed deliveries in the queue.
-postfix_recipient_access: |
-  # Don't send emails to non-humans
-  /^(noreply|no-reply|MAILER-DAEMON|nagios)@/ DISCARD
-  # Don't send emails to our machines
-  /^root@[^.]+\.okserver\.org/ DISCARD
 postfix_sender_access: |
   tenderapp.com REJECT
   pm.mtasv.net REJECT
