@@ -62,6 +62,7 @@ s131.okserver.org hosted=linode
 
 [ckan-packaging]
 s106.okserver.org hosted=rackspace
+s138.okserver.org hosted=linode
 
 [listserv]
 s116.okserver.org hosted=bytemark
