@@ -1,5 +1,16 @@
 ---
 hosted: aws
+users_extra:
+  - name: 'pudo'
+    groups:
+      - openspending_dev
+    authorized_keys:
+      - 'pudo'
+  - name: 'stiivi'
+    groups:
+      - openspending_dev
+    authorized_keys:
+      - 'stiivi'
 sudo_extras:
   - tryggvib
 sudo_extra_lines:
