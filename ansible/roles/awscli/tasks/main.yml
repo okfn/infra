@@ -7,3 +7,11 @@
   tags: 
     - awscli
     - awscli_install
+
+- name: Create directory for aws config
+  file: path=/root/.aws state=directory
+
+- name: Create config file with secret keys
+  template: src=awscli_config.j2 dest=/root/.aws/config
+
+
