@@ -48,6 +48,13 @@
   roles:
     - { role: okfn-org-manager, tags: ['heroku-backup'] }
 
+- hosts: s138.okserver.org
+  sudo: true 
+  vars_files:
+    - "{{ private_dir }}/p.yml"
+  roles:    
+    - { role: awscli , tags: ['awscli'] }
+
 - hosts: s113.okserver.org
   gather_facts: True
   sudo: true
