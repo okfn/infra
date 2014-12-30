@@ -1,6 +1,6 @@
 ---
 - name: Make sure that pip is installed
-  apt: name=pip state=installed
+  apt: name=python-pip state=installed
 
 - name: Install aws cli through pip
   pip: name=awscli
