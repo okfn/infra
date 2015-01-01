@@ -16,8 +16,6 @@ sudo_extras:
 sudo_extra_lines:
   - '%openspending_dev ALL=(ALL) NOPASSWD: /usr/bin/supervisorctl *'
 sites_to_monitor:
-  - archive.openspending.org:80:200
-  - content.openspending.org:80:200
   - farmsubsidy.openspending.org:80:200
   - openspending.org:80:301
 ssl_sites_to_monitor:
