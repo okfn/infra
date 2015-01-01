@@ -1,0 +1,36 @@
+#!/bin/sh
+
+RTPATH=/opt/rt4/
+RTUSER=www-data
+
+case $1 in
+start)
+echo -n "Starting RT: "
+spawn-fcgi -F 3 -u www-data -g www-data -a 127.0.0.1 -p 9000 \
+-- /opt/rt4/sbin/rt-server.fcgi
+echo
+;;
+
+stop)
+echo -n "Stopping RT: "
+PIDS=`ps axww | awk '/[r]t-server.fcgi/ { print $1}'`
+if [ -n "$PIDS" ]
+then
+echo -n kill -TERM $PIDS
+kill $PIDS
+echo
+else
+echo RT not running
+fi
+;;
+
+restart|force-reload)
+$0 stop
+$0 start
+;;
+
+*)
+echo "Usage: /etc/init.d/rt { stop | start | restart }"
+exit 1
+;;
+esac

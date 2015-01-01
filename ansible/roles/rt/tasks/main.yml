@@ -15,6 +15,7 @@
   - libnet-smtp-ssl-perl 
   - libdatetime-event-ical-perl
   - procmail
+  - spawn-fcgi
 
 - name: get latest RT release
   get_url: url=https://download.bestpractical.com/pub/rt/release/rt-4.2.9.tar.gz dest=/opt/
