@@ -16,3 +16,6 @@ postfix_smtpd_recipient_restrictions:
   - reject_rbl_client zen.spamhaus.org
   - reject_rbl_client dnsbl-1.uceprotect.net
 
+# nginx config
+sites_enabled
+  - rt.okfn.org
