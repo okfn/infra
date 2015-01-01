@@ -12,7 +12,7 @@
     - awscli_install
 
 - name: Create directory for aws config
-  file: path={{ aws_user_home }}/.aws state=directory
+  file: path={{ awscli_user_home }}/.aws state=directory
     owner={{ awscli_user }}
     group={{ awscli_group }}
     mode=0755
@@ -21,7 +21,7 @@
     - awscli_create_config_dir
 
 - name: Create config file with secret keys
-  template: src=awscli_config.j2 dest={{ aws_user_home }}/.aws/config
+  template: src=awscli_config.j2 dest={{ awscli_user_home }}/.aws/config
      owner={{ awscli_user }}
      group={{ awscli_group }}
      mode=0644
