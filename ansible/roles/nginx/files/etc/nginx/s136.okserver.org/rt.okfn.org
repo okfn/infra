@@ -1,0 +1,48 @@
+server {
+  listen 80;
+  server_name rt.okfn.org;
+  return 301 https://$host$request_uri;
+}
+
+
+server {
+  listen 443;
+  server_name rt.okfn.org;
+
+  ssl on;
+  include ssl_params;
+  ssl_certificate /etc/nginx/ssl/star_okfn_org.crt;
+  ssl_certificate_key /etc/nginx/ssl/star_okfn_org.key;
+
+  access_log /var/log/nginx/rt.okfn.org-access.log;
+  error_log /var/log/nginx/rt.okfn.org-error.log;
+
+
+  location / {
+  fastcgi_param QUERY_STRING $query_string;
+  fastcgi_param REQUEST_METHOD $request_method;
+  fastcgi_param CONTENT_TYPE $content_type;
+  fastcgi_param CONTENT_LENGTH $content_length;
+
+  fastcgi_param SCRIPT_NAME "";
+  fastcgi_param PATH_INFO $uri;
+  fastcgi_param REQUEST_URI $request_uri;
+  fastcgi_param DOCUMENT_URI $document_uri;
+  fastcgi_param DOCUMENT_ROOT $document_root;
+  fastcgi_param SERVER_PROTOCOL $server_protocol;
+
+  fastcgi_param GATEWAY_INTERFACE CGI/1.1;
+  fastcgi_param SERVER_SOFTWARE nginx/$nginx_version;
+
+  fastcgi_param REMOTE_ADDR $remote_addr;
+  fastcgi_param REMOTE_PORT $remote_port;
+  fastcgi_param SERVER_ADDR $server_addr;
+  fastcgi_param SERVER_PORT $server_port;
+  fastcgi_param SERVER_NAME $server_name;
+  fastcgi_pass 127.0.0.1:9000;
+}
+
+location /NoAuth/images {
+root /opt/rt4/share/html;
+}
+}
