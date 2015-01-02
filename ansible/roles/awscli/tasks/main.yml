@@ -2,13 +2,11 @@
 - name: Make sure that pip is installed
   apt: name=python-pip state=installed
   tags: 
-    - awscli
     - awscli_pip_install
 
 - name: Install aws cli through pip
   pip: name=awscli
   tags: 
-    - awscli
     - awscli_install
 
 - name: Create directory for aws config
@@ -17,7 +15,6 @@
     group={{ awscli_group }}
     mode=0755
   tags:
-    - awscli
     - awscli_create_config_dir
 
 - name: Create config file with secret keys
@@ -26,6 +23,5 @@
      group={{ awscli_group }}
      mode=0644
   tags:
-    - awscli
     - awscli_configure
 
