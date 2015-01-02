@@ -40,6 +40,10 @@
   sudo: true
   roles: 
     - { role: rt, tags: ['rt'] }
+    - { role: postfix, tags: ['postfix'] }
+    - { role: nginx, tags: ['nginx'] }
+    - { role: supervisor, tags: ['supervisor'] }
+
 
 - hosts: openspending-solr
   sudo: true

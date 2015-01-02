@@ -119,6 +119,7 @@ openspending-web
 wiki
 labs
 listserv
+rt
 
 [dbservers:children]
 ckan-db-prod
