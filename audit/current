@@ -48,8 +48,9 @@ s095.okserver.org services="OS,farmsubsidy frontend (varnish, nginx, py, postgre
 ## Gandi
 s120.okserver.org services="transparence.ambafrance-ml.org
 ## AWS
-s126.okserver.org services="openspending and farmsubsidy solr"
+s126.okserver.org services="openspending and farmsubsidy solr (old), to be decommissioned on Jan 5th"
 s133.okserver.org services="openspending and farmsubsidy frontend"
+s139.okserver.org services="openspending and farmsubsidy solr"
 --------
 
 # Operations

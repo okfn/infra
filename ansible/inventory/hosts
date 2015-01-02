@@ -11,8 +11,8 @@ s125.okserver.org hosted=aws
 s133.okserver.org hosted=aws
 
 [openspending-solr]
-# Solr server in AWS for OpenSpending, FarmSubsidies
 s126.okserver.org hosted=aws
+s139.okserver.org hosted=aws
 
 [ckan-web-dev]
 s080.okserver.org hosted=rackspace
