@@ -51,11 +51,11 @@ awscli_configure
 
 ## Usage
 
-Ideally specify the variables in main.yml, but you can pass them on the command line like this:
+Ideally specify the variables in the two yml files as above, but you can pass them on the command line like this:
 
 ansible-playbook main.yml --verbose -i inventory/hosts --extra-vars="private_dir=/path/to/dir awscli_user_home=/root awscli_user=root awscli_group=root" -t awscli -l s138.okserver.org -s
 
-So assuming that you've defined everything in main.yml just:
+So assuming that you've defined everything correctly just:
 
 ansible-playbook main.yml --verbose -i inventory/hosts --extra-vars="private_dir=/path/to/dir" -t awscli -l s138.okserver.org -s
 
