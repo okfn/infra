@@ -17,19 +17,28 @@
   - procmail
   - spawn-fcgi
 
+- name: check if RT is installed
+  stat: path=/opt/rt4
+  register: rt_exists
+
 - name: get latest RT release
   get_url: url=https://download.bestpractical.com/pub/rt/release/rt-4.2.9.tar.gz dest=/opt/
+  when: rt_exists.stat.exists == false
 
 - name: extract RT 
   unarchive: src=/opt/rt-4.2.9.tar.gz dest=/opt/ copy=no
+  when: rt_exists.stat.exists == false
 
 - name: copy rt dir to rt4 dir
   command: mv /opt/rt-4.2.9 /opt/rt4-install
+  register: rtdirectory
+  when: rt_exists.stat.exists == false
 
 - name: configure RT install
   command: ./configure
   args:  
     chdir: /opt/rt4-install
+  when: rt_exists.stat.exists == false
 
 - name: configure cpan
   command: perl -MCPAN -e 'my $c = "CPAN::HandleConfig"; $c->load(doit => 1, autoconfig => 1); $c->edit(prerequisites_policy => "follow"); $c->edit(build_requires_install_policy => "yes"); $c->commit'
@@ -37,19 +46,23 @@
     chdir: /opt/rt4-install
   async: 3600
   poll: 60
+  when: rt_exists.stat.exists == false
 
 - name: install RTx to install RT extensions
   command: /usr/bin/perl -MCPAN -e 'install Module::Install::RTx::Runtime'
+  when: rt_exists.stat.exists == false
 
 - name: make fixdeps
   shell: cd /opt/rt4-install && make fixdeps
   async: 3600
   poll: 60
+  when: rt_exists.stat.exists == false
 
 - name: make install
   command: make install
   args:
     chdir: /opt/rt4-install
+  when: rt_exists.stat.exists == false
 
 # Extra plugins
 # To add an extra plugin, just add it to the with_items below
@@ -67,6 +80,8 @@
     - rt-extension-repeatticket
     - rt-extension-resetpassword
     - rt-extension-spawnlinkedticketinqueue
+  when: rt_exists.stat.exists == false
+
 
 - name: get nagios all nagios plugins
   get_url: url={{ item.url }} dest=/opt/{{ item.name }}/master.zip
@@ -78,6 +93,7 @@
     - { url: 'https://github.com/bestpractical/rt-extension-repeatticket/archive/master.zip', name: 'rt-extension-repeatticket' }
     - { url: 'https://github.com/gitpan/RT-Extension-ResetPassword/archive/master.zip', name: 'rt-extension-resetpassword' }
     - { url: 'https://github.com/bestpractical/rt-extension-spawnlinkedticketinqueue/archive/master.zip', name: 'rt-extension-spawnlinkedticketinqueue' }
+  when: rt_exists.stat.exists == false
 
 - name: extract all nagios plugins
   unarchive: src=/opt/{{ item }}/master.zip dest=/opt/ copy=no
@@ -89,6 +105,7 @@
     - rt-extension-repeatticket
     - rt-extension-resetpassword
     - rt-extension-spawnlinkedticketinqueue
+  when: rt_exists.stat.exists == false
 
 
 # Due to the way the files get extracted, everything ends up in lower-case with 
@@ -106,6 +123,7 @@
     - rt-extension-repeatticket-master
     - RT-Extension-ResetPassword-master
     - rt-extension-spawnlinkedticketinqueue-master
+  when: rt_exists.stat.exists == false
 
 - name: run make for nagios plugins
   command: make
@@ -119,6 +137,7 @@
     - rt-extension-repeatticket-master
     - RT-Extension-ResetPassword-master
     - rt-extension-spawnlinkedticketinqueue-master
+  when: rt_exists.stat.exists == false
 
 - name: run make install for nagios plugins
   command: make install
@@ -132,6 +151,7 @@
     - rt-extension-repeatticket-master
     - RT-Extension-ResetPassword-master
     - rt-extension-spawnlinkedticketinqueue-master
+  when: rt_exists.stat.exists == false
 
 
 
@@ -141,8 +161,11 @@
 
 - name: configure rt server
   copy: src=RT_SiteConfig.pm dest=/opt/rt4/etc owner=root group=www-data mode=0640
+  when: rt_exists.stat.exists == false
 
 # Configure Procmail
 
 - name: configure procmail
   copy: src=procmailrc.rt dest=/opt/rt4/etc/procmailrc.rt owner=root group=root mode=0644
+  when: rt_exists.stat.exists == false
+
