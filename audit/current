@@ -14,7 +14,6 @@ s084.okserver.org services="{disqus,edo, andothers}.staging.ckanhosted.com front
 s085.okserver.org services="postgres backend host for s082,s083,s084" notes="to be migrated to Linode"
 s102.okserver.org services="edostate.ckanhosted.com webserver" notes="to be migrated to Linode"
 s103.okserver.org services="edostate.ckanhosted.com db, solr" notes="to be migrated to Linode"
-
 s122.okserver.org services="datapackager" notes="To be migrated to Linode"
 s123.okserver.org services="datapackager ckan-web, ckan-db, and ckan-solr" notes="To be migrated to Linode"
 ## Linode Managed
