@@ -19,3 +19,6 @@ postfix_smtpd_recipient_restrictions:
 # nginx config
 sites_enabled:
   - rt.okfn.org
+
+nginx_ssl_certs:
+  - star_okfn_org

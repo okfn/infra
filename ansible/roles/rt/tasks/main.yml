@@ -13,6 +13,7 @@
   - libdbd-mysql-perl
   - libnet-smtp-ssl-perl 
   - libdatetime-event-ical-perl
+  - libdbd-pg-perl
   - procmail
   - spawn-fcgi
 
@@ -159,7 +160,7 @@
 # Configure RT
 
 - name: configure rt server
-  copy: src=RT_SiteConfig.pm dest=/opt/rt4/etc owner=root group=www-data mode=0640
+  template: src=RT_SiteConfig.pm dest=/opt/rt4/etc owner=root group=www-data mode=0660
   when: rt_exists.stat.exists == false
 
 # Configure Procmail

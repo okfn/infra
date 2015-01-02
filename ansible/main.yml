@@ -38,6 +38,8 @@
 
 - hosts: rt
   sudo: true
+  vars_files:
+    - "{{ private_dir }}/p.yml"
   roles: 
     - { role: rt, tags: ['rt'] }
     - { role: postfix, tags: ['postfix'] }
