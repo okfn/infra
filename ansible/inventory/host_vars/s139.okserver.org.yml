@@ -1,7 +1,3 @@
----
-hosted: aws
-
-#for nagios
 solr_port: 8080
 sudo_extras:
   - tryggvib
