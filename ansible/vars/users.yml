@@ -2,10 +2,6 @@
 #
 users:
   sysadmin:
-    - name: 'joel.re'
-      group: 'sysadmin'
-      authorized_keys:
-        - joel.re
     - name: 'rgrp'
       group: 'sysadmin'
       authorized_keys:
@@ -14,10 +10,6 @@ users:
       group: 'sysadmin'
       authorized_keys:
         - okfn
-    - name: 'borior'
-      group: 'sysadmin'
-      authorized_keys:
-        - borior
     - name: 'nigelb'
       group: 'sysadmin'
       authorized_keys:
@@ -62,16 +54,6 @@ users:
       group: 'ckan_dev'
       authorized_keys:
         - brook
-
-  sparql_dev:
-    - name: 'pierre.yves'
-      group: 'sparql_dev'
-      authorized_keys:
-        - pierre.yves
-    - name: 'umbrich'
-      group: 'sparql_dev'
-      authorized_keys:
-        - umbrich
 
   openspending_dev:
     - name: 'vitor'
@@ -120,10 +102,6 @@ users:
       group: 'labs_dev'
       authorized_keys:
         - umbrich
-
-    # UGH! Michael and Tony don't need to be in 'labs_dev' but he's here because
-    # we can't manage users in a more sensible way without a total overhaul of
-    # the users role.
     - name: mihi
       authorized_keys:
         - mihi

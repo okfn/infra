@@ -42,12 +42,9 @@ s108.okserver.org services="datahub.io db, solr" owner="rgrp,rossjones" notes="t
 --------
 
 # Knowledge
-## Rax managed
-s095.okserver.org services="OS,farmsubsidy frontend (varnish, nginx, py, postgres)" notes="migrated to s133, shutdown mid Nov"
 ## Gandi
-s120.okserver.org services="transparence.ambafrance-ml.org
+s120.okserver.org services="transparence.ambafrance-ml.org"
 ## AWS
-s126.okserver.org services="openspending and farmsubsidy solr (old), to be decommissioned on Jan 5th"
 s133.okserver.org services="openspending and farmsubsidy frontend"
 s139.okserver.org services="openspending and farmsubsidy solr"
 --------
@@ -59,9 +56,11 @@ s098.okserver.org services="product-open-data.com" notes="Old wikifarm. To be mi
 s117.okserver.org services="nagios.okfn.org,graphite.okfn.org"
 s125.okserver.org services="docker: booktype, etherpad, RT, sendy"
 s134.okserver.org services="backup server"
-s135.okserver.org services="wikifarm" notes="to replace s098"
+s135.okserver.org services="wikifarm"
 s136.okserver.org services="new RT server"
-## DigitalOcean
-s115.okserver.org services="docker" notes="to be shutdown mid Nov"
 ## Bytemark
 s116.okserver.org services="lists.okfn.org"
+
+# Projects
+## DigitalOcean
+omeka-test.okserver.org services="omeka test server" notes="temporary. owned by Marieke"
