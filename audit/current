@@ -50,8 +50,6 @@ s139.okserver.org services="openspending and farmsubsidy solr"
 --------
 
 # Operations
-## Rax
-s098.okserver.org services="product-open-data.com" notes="Old wikifarm. To be migrated to killed shortly"
 ## AWS
 s117.okserver.org services="nagios.okfn.org,graphite.okfn.org"
 s125.okserver.org services="docker: booktype, etherpad, RT, sendy"
