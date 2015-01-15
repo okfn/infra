@@ -26,6 +26,7 @@ users_extra: []
 users_purge:
   - joel.re
   - borior
+  - david
 
 sudo_default:
   - "%sudo"
