@@ -45,6 +45,7 @@
 - name: Purging old users
   user: name={{ item }} state=absent
   with_items: users_purge
+  tags: purge_users
 
 - include: project.yml
   when: devs_group != 'False'
