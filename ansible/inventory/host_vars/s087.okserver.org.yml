@@ -1,4 +1,0 @@
----
-sites_to_monitor: ['lov.okfn.org:80:301']
-sudo_extras:
-  - pierre.yves

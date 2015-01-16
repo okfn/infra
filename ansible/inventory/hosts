@@ -65,9 +65,6 @@ s138.okserver.org hosted=digital-ocean
 [listserv]
 s116.okserver.org hosted=bytemark
 
-[LOV]
-s087.okserver.org hosted=rackspace-managed
-
 [backup]
 s134.okserver.org hosted=aws
 

@@ -35,7 +35,6 @@ s131.okserver.org services="CKAN-X birmingham frontend and db/solr"
 s033.okserver.org services="labs"
 s110.okserver.org services="labs"
 ## Rax managed
-s087.okserver.org services="lov.okfn.org (apache, java, nodejs based apps) " notes="in process of migration to s033, shutdown mid Nov"
 s107.okserver.org services="datahub.io webhead" owner="rgrp,rossjones" notes="to be migrated to AWS"
 s108.okserver.org services="datahub.io db, solr" owner="rgrp,rossjones" notes="to be migrated to AWS"
 
