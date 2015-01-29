@@ -1,4 +1,10 @@
 # Set up a simple sudoers file
 ---
+- name: setup facts
+  set_fact:
+     sudo_users: "{{ sudo_default + sudo_extras }}"
+
 - name: Sudoers file
   template: src=sudoers.j2 dest=/etc/sudoers validate='/usr/sbin/visudo -cf %s'
+
+
