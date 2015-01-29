@@ -1,5 +1,0 @@
----
-
-- name: setup facts
-  set_fact:
-     sudo_users: "{{ sudo_default + sudo_extras }}"
