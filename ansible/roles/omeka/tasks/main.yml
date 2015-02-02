@@ -1,0 +1,15 @@
+---
+# Check to see if it's installed and if yes, don't continue
+
+# Get the source
+
+# Unpack the source
+
+# Move to the right directory - make sure perms are set to 
+
+# Setup the database - if it's in RDS, might not be needed 
+# maybe put a check in here
+
+# Plugins?  See if I can loop over them ala RT
+
+# ???
