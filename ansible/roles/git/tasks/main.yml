@@ -1,3 +1,0 @@
-- name: install git
-  apt: pkg=git state=installed
-
