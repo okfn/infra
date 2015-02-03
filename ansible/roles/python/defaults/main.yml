@@ -1,2 +1,0 @@
-# By default, don't install Python 3
-install_python3: false
