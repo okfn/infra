@@ -40,9 +40,7 @@ s108.okserver.org services="datahub.io db, solr" owner="rgrp,rossjones" notes="t
 
 --------
 
-# Knowledge
-## Gandi
-s120.okserver.org services="transparence.ambafrance-ml.org"
+# Projects
 ## AWS
 s133.okserver.org services="openspending and farmsubsidy frontend"
 s139.okserver.org services="openspending and farmsubsidy solr"
