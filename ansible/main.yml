@@ -29,7 +29,7 @@
 - hosts: openspending-solr
   sudo: true
   roles:
-    - { role: python, tags: ['python'] }
+    - { role: apt, tags: ['python'], pkg_list: ['python-setuptools', 'python-virtualenv'] }
     - { role: supervisor, tags: ['supervisor'] }
 
 - hosts: openspending-web
@@ -78,9 +78,6 @@
   sudo: true
   roles:
     - { role: nginx, tags: ['nginx'] }
-    - role: python
-      tags: ['python']
-      install_python3: true
 
 - hosts: s079.okserver.org
   sudo: true
