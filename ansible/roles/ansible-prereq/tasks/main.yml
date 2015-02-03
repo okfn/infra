@@ -1,7 +1,0 @@
----
-# This playbook deploys basic packages required by ansible
-- name: -> install_ansible_prereq
-  apt: pkg={{ item }} state=installed
-  with_items:
-     - python-simplejson
-  tags: install_ansible_prereq
