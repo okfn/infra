@@ -1,5 +1,0 @@
----
-# This playbook deploys nagios plugins for monitoring purposes.
-- name: -> install_sysstat
-  apt: pkg=sysstat state=installed
-  tags: install_sysstat
