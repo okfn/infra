@@ -2,7 +2,8 @@
 # Check to see if it's installed and if yes, don't continue
 
 # Get the source
-
+ - name: Get the omeka source code
+   get_url: url
 # Unpack the source
 
 # Move to the right directory - make sure perms are set to 
