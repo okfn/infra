@@ -17,14 +17,14 @@
     - postfix
     - { role: knopki.timezone, tags: ['time'] }
     - { role: bennojoy.ntp, tags: ['time'] }
-    - { role: sysstat, tags: ['sysstat'] }
     - { role: update-notifier, tags: ['update-notifier'] }
     - { role: users, tags: ['users'] }
     - { role: sudo , tags: ['sudo'] }
-    - { role: git, tags: ['git'] }
     - { role: db-backup, tags: ['db-backup'] }
     - { role: apt-mirror-config, tags: ['apt-mirror-config'] }
     - { role: unattended-upgrades, tags: ['unattended-upgrades'] }
+    - { role: apt, tags: ['git'], pkg_list: ['git'] }
+    - { role: apt, tags: ['sysstat'], pkg_list: ['sysstat'] }
 
 - hosts: openspending-solr
   sudo: true
@@ -49,11 +49,11 @@
     - { role: okfn-org-manager, tags: ['heroku-backup'] }
 
 - hosts: s138.okserver.org
-  sudo: true 
+  sudo: true
   vars_files:
     - "{{ private_dir }}/p.yml"
-  roles:    
-    - role: awscli 
+  roles:
+    - role: awscli
       tags: ['awscli']
       key: "{{ aws_keys[0].key }}"
       secret_key: "{{ aws_keys[0].secret_key }}"
