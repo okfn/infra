@@ -39,7 +39,6 @@
   roles:
     - { role: varnish, tags: ['varnish'] }
     - { role: nginx, tags: ['nginx'] }
-    - { role: statsd, tags: ['statsd'] }
 
 - hosts: s134.okserver.org
   sudo: true
