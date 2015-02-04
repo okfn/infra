@@ -30,8 +30,20 @@
    when: omeka_exists.stat.exists == false
 
 # The database is already setup in RDS, so no work needs to be done on the DB.
-# maybe put a check in here
 
-# Plugins?  See if I can loop over them ala RT
+# Download all the plugins
+ - name: Download all the plugins
+   get_url: url={{ item.url }} dest=/tmp/
+   with_items:
+     - { url : 'http://omeka.org/wordpress/wp-content/uploads/Guest-User-1.1.1.zip', name: 'guest-user' }
+     - { url : 'http://omeka.org/wordpress/wp-content/uploads/Geolocation-2.2.3.zip', name: 'geolocation' }
+     - { url : 'http://omeka.org/wordpress/wp-content/uploads/Embed-Codes-1.0.zip', name: 'embed-codes' }
+     - { url : 'http://omeka.org/wordpress/wp-content/uploads/Contribution-3.0.1.zip', name: 'contribution' }
+     - { url : 'http://omeka.org/wordpress/wp-content/uploads/Derivative-Images-2.0.zip', name: 'derivative-images' }
+     - { url : 'http://omeka.org/wordpress/wp-content/uploads/Commenting-2.1.2.zip', name: 'commenting' }
+     - { url : 'http://omeka.org/wordpress/wp-content/uploads/CSV-Import-2.0.3.zip', name: 'csv-import' }
+     - { url : 'http://omeka.org/wordpress/wp-content/uploads/Digital-Object-Linker-Plugin-1.0.zip', name: 'digital-object-linker' }
+     - { url : 'http://omeka.org/wordpress/wp-content/uploads/Search-By-Metadata-1.2.zip', name: 'search-by-metadata' }
 
-# ???
+# Extract all the plugins into /tmp
+
