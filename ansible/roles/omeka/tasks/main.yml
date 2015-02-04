@@ -1,14 +1,31 @@
 ---
 # Check to see if it's installed and if yes, don't continue
+ - name: check if omeka is installed
+   stat: path=/var/www/omeka
+   register: omeka_exists
 
 # Get the source
  - name: Get the omeka source code
-   get_url: url
+   get_url: http://omeka.org/files/omeka-2.2.2.zip
+   dest: /tmp/
+   when: omeka_exists.stat.exists == false
+
 # Unpack the source
+ - name: Unzip the source code
+   unarchive: src=/tmp/omeka-2.2.2.zip dest=/var/www/omeka/ copy=no
+   when: omeka_exists.stat.exists == false
+
+# Move the config file over into the Omeka directory
+ - name: Copy config file over to Omeka
+   copy: src=db.ini dest=/var/www/omeka
+   when: omeka_exists.stat.exists == false
 
 # Move to the right directory - make sure perms are set to 
+ - name: Set the permissions on the Omeka directory
+   file: path=/var/www/omeka owner=www-data group=www-data recurse=yes
+   when: omeka_exists.stat.exists == false
 
-# Setup the database - if it's in RDS, might not be needed 
+# The database is already setup in RDS, so no work needs to be done on the DB.
 # maybe put a check in here
 
 # Plugins?  See if I can loop over them ala RT
