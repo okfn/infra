@@ -30,6 +30,7 @@
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
+    - { role: apt, tags: ['unzip'], pkg_list: ['unzip'] }
     - { role: omeka, tags: ['omeka'] }
 
 - hosts: openspending-solr
