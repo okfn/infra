@@ -21,7 +21,7 @@
 
 # Move the config file over into the Omeka directory
  - name: Copy config file over to Omeka
-   template: src=db.ini dest=/var/www/omeka owner=www-data group=www-data mode=0644
+   template: src=db.ini.j2 dest=/var/www/omeka owner=www-data group=www-data mode=0644
    when: omeka_exists.stat.exists == false
 
 # Move to the right directory - make sure perms are set to 
