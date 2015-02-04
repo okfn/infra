@@ -25,6 +25,7 @@
     - { role: unattended-upgrades, tags: ['unattended-upgrades'] }
     - { role: apt, tags: ['git'], pkg_list: ['git'] }
     - { role: apt, tags: ['sysstat'], pkg_list: ['sysstat'] }
+    - { role: sshd, tags: ['sshd'] }
 
 - hosts: openspending-solr
   sudo: true
