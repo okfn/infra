@@ -25,7 +25,7 @@
     - { role: apt, tags: ['sysstat'], pkg_list: ['sysstat'] }
     - { role: sshd, tags: ['sshd'] }
 
-- hosts: omeka.okserver.org
+- hosts: s140.okserver.org
   sudo: true
   vars_files:
     - "{{ private_dir }}/p.yml"

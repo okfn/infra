@@ -6,8 +6,12 @@
 
 # Get the source
  - name: Get the omeka source code
-   get_url: http://omeka.org/files/omeka-2.2.2.zip
-   dest: /tmp/
+   get_url: url=http://omeka.org/files/omeka-2.2.2.zip dest=/tmp
+   when: omeka_exists.stat.exists == false
+
+# Create the directory to put omeka in
+ - name: Create the omeka directory in /var/www
+   file: path=/var/www/omeka owner=www-data group=www-data state=directory
    when: omeka_exists.stat.exists == false
 
 # Unpack the source
