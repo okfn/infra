@@ -9,14 +9,14 @@
    get_url: url=http://omeka.org/files/omeka-2.2.2.zip dest=/tmp
    when: omeka_exists.stat.exists == false
 
-# Create the directory to put omeka in
- - name: Create the omeka directory in /var/www
-   file: path=/var/www/omeka owner=www-data group=www-data state=directory
-   when: omeka_exists.stat.exists == false
-
 # Unpack the source
  - name: Unzip the source code
-   unarchive: src=/tmp/omeka-2.2.2.zip dest=/var/www/omeka/ copy=no
+   unarchive: src=/tmp/omeka-2.2.2.zip dest=/tmp copy=no creates=no
+   when: omeka_exists.stat.exists == false
+
+# Move omeka code into /var/www/
+ - name: Move omeka code into /var/www/omeka
+   command: mv /tmp/omeka-2.2.2/ /var/www/omeka/
    when: omeka_exists.stat.exists == false
 
 # Move the config file over into the Omeka directory
