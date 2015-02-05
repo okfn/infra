@@ -1,9 +1,8 @@
 # Upstream to abstract backend connection(s) for php
 upstream php {
-        server unix:/tmp/php-cgi.socket;
-        server 127.0.0.1:9000;
-}
- 
+        server unix:/var/run/php5-fpm.sock;
+} 
+
 server {
         ## Your website name goes here.
         server_name omeka.okfn.org;
@@ -28,11 +27,17 @@ server {
                 # include the "?$args" part so non-default permalinks doesn't break when using query string
                 try_files $uri $uri/ /index.php?$args;
         }
- 
+
+        location /admin {
+                try_files $uri /admin/index.php?$args;
+        } 
+
         location ~ \.php$ {
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
                 #NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
-                include fastcgi.conf;
+                include fastcgi_params;
                 fastcgi_intercept_errors on;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
                 fastcgi_pass php;
         }
  
