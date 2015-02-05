@@ -1,4 +1,7 @@
 ---
 hosted: aws
 sites_enabled:
-- wikifarm
+- omeka
+sites_to_monitor:
+  - omeka.okfn.org:80:301
+
