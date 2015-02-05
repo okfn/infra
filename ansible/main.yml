@@ -7,7 +7,6 @@
     - "{{ private_dir }}/p.yml"
   roles:
     - { role: set-facts, tags: ['sudo'] }
-    - { role: ansible-prereq, tags: ['ansible-prereq'] }
     - { role: check-mk-agent, tags: ['check-mk-agent'] }
     - { role: collectd, tags: ['collectd'] }
     - { role: cron, tags: ['cron'] }
@@ -61,19 +60,6 @@
       awscli_user: root
       awscli_group: root
       awscli_user_home: /root
-
-- hosts: s113.okserver.org
-  gather_facts: True
-  sudo: true
-  vars_files:
-    - "{{ private_dir }}/p.yml"
-  roles:
-    - role: etherpad-lite
-      tags: ['etherpad-lite']
-      install_path: /var/www/etherpad-lite
-      user: etherpad-lite
-      group: etherpad-lite
-      version: 1.3.0
 
 - hosts: s079.okserver.org
   sudo: true
