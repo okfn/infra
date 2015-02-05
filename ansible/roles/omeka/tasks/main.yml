@@ -33,7 +33,7 @@
 
 # Download all the plugins
  - name: Download all the plugins
-   get_url: url={{ item.url }} dest=/tmp/
+   get_url: url={{ item.url }} dest=/tmp
    with_items:
      - { url : 'http://omeka.org/wordpress/wp-content/uploads/Guest-User-1.1.1.zip', name: 'guest-user' }
      - { url : 'http://omeka.org/wordpress/wp-content/uploads/Geolocation-2.2.3.zip', name: 'geolocation' }
@@ -45,5 +45,16 @@
      - { url : 'http://omeka.org/wordpress/wp-content/uploads/Digital-Object-Linker-Plugin-1.0.zip', name: 'digital-object-linker' }
      - { url : 'http://omeka.org/wordpress/wp-content/uploads/Search-By-Metadata-1.2.zip', name: 'search-by-metadata' }
 
-# Extract all the plugins into /tmp
-
+# Extract all the plugins into Omeka webroot
+ - name: Extract all the plugins into plugin directory
+   unarchive: src=/tmp/{{ item }} dest=/var/www/omeka/plugins/ copy=no
+   with_items:
+     - Guest-User-1.1.1.zip
+     - Geolocation-2.2.3.zip
+     - Embed-Codes-1.0.zip
+     - Contribution-3.0.1.zip
+     - Derivative-Images-2.0.zip
+     - Commenting-2.1.2.zip
+     - CSV-Import-2.0.3.zip
+     - Digital-Object-Linker-Plugin-1.0.zip
+     - Search-By-Metadata-1.2.zip
