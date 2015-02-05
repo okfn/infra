@@ -25,13 +25,14 @@
     - { role: apt, tags: ['sysstat'], pkg_list: ['sysstat'] }
     - { role: sshd, tags: ['sshd'] }
 
-- hosts: s140.okserver.org
+- hosts: omeka
   sudo: true
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
-    - { role: apt, tags: ['unzip'], pkg_list: ['unzip'] }
+    - { role: apt, tags: ['unzip'], pkg_list: ['unzip', 'php5-fpm'] }
     - { role: omeka, tags: ['omeka'] }
+    - { role: nginx, tags: ['nginx'] }
 
 - hosts: openspending-solr
   sudo: true
