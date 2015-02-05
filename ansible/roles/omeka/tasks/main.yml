@@ -44,6 +44,7 @@
      - { url : 'http://omeka.org/wordpress/wp-content/uploads/CSV-Import-2.0.3.zip', name: 'csv-import' }
      - { url : 'http://omeka.org/wordpress/wp-content/uploads/Digital-Object-Linker-Plugin-1.0.zip', name: 'digital-object-linker' }
      - { url : 'http://omeka.org/wordpress/wp-content/uploads/Search-By-Metadata-1.2.zip', name: 'search-by-metadata' }
+   when: omeka_exists.stat.exists == false
 
 # Extract all the plugins into Omeka webroot
  - name: Extract all the plugins into plugin directory
@@ -58,3 +59,4 @@
      - CSV-Import-2.0.3.zip
      - Digital-Object-Linker-Plugin-1.0.zip
      - Search-By-Metadata-1.2.zip
+   when: omeka_exists.stat.exists == false
