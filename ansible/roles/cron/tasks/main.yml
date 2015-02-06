@@ -1,6 +1,12 @@
 ---
 - name: backups_to_s3_cron
-  copy: src={{ inventory_hostname }}/backups_to_s3 dest=/etc/cron.daily/ mode=0755
+  copy: src=backups_to_s3 dest=/etc/cron.daily/ mode=0755
   when: backup_host is defined and backup_host == True
   tags:
      - backups_to_s3_cron
+
+- name: openscience_feed_cron
+  copy: src=openscience_feed dest=/etc/cron.d/ mode=0600
+  when: openscience_cron is defined and openscience_cron == True
+  tags:
+     - openscience_feed_cron
