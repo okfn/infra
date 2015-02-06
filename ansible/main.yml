@@ -6,7 +6,6 @@
     - vars/users.yml
     - "{{ private_dir }}/p.yml"
   roles:
-    - { role: set-facts, tags: ['sudo'] }
     - { role: ansible-prereq, tags: ['ansible-prereq'] }
     - { role: check-mk-agent, tags: ['check-mk-agent'] }
     - { role: collectd, tags: ['collectd'] }
