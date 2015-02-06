@@ -54,7 +54,7 @@ backup_scripts: ['mysql_backup.sh', 'psql_backup.sh']
 #for mysql backups
 backup_mysql: true
 #snitches for backups
-mysql_snitch: ecc09ca67b 
+mysql_snitch: ecc09ca67b
 psql_snitch: 304f7bf902
 db_type: mysql
 mysql_host: db002.cxglaymtrf0h.eu-west-1.rds.amazonaws.com
@@ -87,3 +87,6 @@ users_extra:
       - sysadmin
     authorized_keys:
       - 'vitor'
+
+# openscience feed cron
+openscience_cron: True
