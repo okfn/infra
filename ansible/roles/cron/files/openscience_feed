@@ -1,0 +1,2 @@
+# m  h dom mon dow user command
+*/10 * *   *   *   root /usr/bin/curl --silent http://science.okblogfarm.org?update_feedwordpress=1
