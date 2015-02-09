@@ -71,6 +71,9 @@ s136.okserver.org hosted=aws
 [wiki]
 s135.okserver.org hosted=aws
 
+[omeka]
+s140.okserver.org hosted=digital-ocean
+
 [labs]
 s033.okserver.org hosted=hetzner
 s110.okserver.org hosted=hetzner
