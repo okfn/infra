@@ -1,5 +1,4 @@
 ---
-ckan_project: publicdata.eu
 sites_enabled:
   - publicdata.eu
 nginx_ssl_certs:

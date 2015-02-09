@@ -1,5 +1,4 @@
 ---
-ckan_project: demosites
 users_extra:
   - name: 'sam.smith'
     groups:
