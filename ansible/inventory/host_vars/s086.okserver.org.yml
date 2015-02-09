@@ -4,5 +4,3 @@ dbserver_private_ip: 10.176.41.136
 solrserver_private_ip: 10.176.41.136
 sites_to_monitor:
   - iatiregistry.org:80:200
-  - datacatalogs.org:80:200
-  - wordpress.iatiregistry.org:80:200
