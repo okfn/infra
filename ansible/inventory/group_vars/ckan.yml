@@ -1,10 +1,4 @@
 ---
-#variables that you'd like to apply to all ckan servers
-project: 'ckan'
 devs_group: 'ckan_dev'
-postgres_port: 5432
-solr_port: 8983
-db_type: postgres
-ckan_locale_default: en
 sudo_extras:
   - '%ckan_dev'

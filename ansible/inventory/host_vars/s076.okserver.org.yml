@@ -2,18 +2,18 @@
 ckan_project: iati
 backup_scripts:
   - psql_backup.sh
-psql_exclude_dbs: 
-  - datacatalogs       
-  - datagm20           
-  - datagm20-datastore 
-  - datanl             
-  - iati2              
-  - postgres           
-  - sa                 
-  - sa-datastore       
-  - template0          
-  - template1          
-  
+psql_exclude_dbs:
+  - datacatalogs
+  - datagm20
+  - datagm20-datastore
+  - datanl
+  - iati2
+  - postgres
+  - sa
+  - sa-datastore
+  - template0
+  - template1
+
 backup_postgres: true
 webserver_private_ip: 10.176.42.94
 db_type: postgres

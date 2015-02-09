@@ -1,9 +1,0 @@
----
-site_id: sa
-webserver_private_ip: 10.179.187.168
-solr_cores: [ 'ckan-schema-1.4', 'ckan-schema-2.0' ]
-sites_enabled:
-    - [ 'sa.ckanhosted.com', [[ 'www.sa.ckanhosted.com', 'data.sa.au', 'www.data.sa.au' ]], '0.0.0.0', '8080' ]
-ckan_plugins: [ 'stats', 'datastore', 'sa', 'recline_preview', 'googleanalytics' ]
-ckan_site_title: data.edostate.gov.ng
-ckan_site_url: http://edo.staging.ckanhosted.com

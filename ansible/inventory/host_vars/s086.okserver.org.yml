@@ -1,5 +1,4 @@
 ---
-ckan_project: iatiregistry.org
 dbserver_private_ip: 10.176.41.136
 solrserver_private_ip: 10.176.41.136
 sites_to_monitor:

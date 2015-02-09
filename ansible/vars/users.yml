@@ -28,10 +28,6 @@ users:
       group: 'ckan_dev'
       authorized_keys:
         - amercader
-    - name: 'david'
-      group: 'ckan_dev'
-      authorized_keys:
-        - david
     - name: 'joetsoi'
       group: 'ckan_dev'
       authorized_keys:
@@ -108,16 +104,6 @@ users:
     - name: tonyh
       authorized_keys:
         - tonyh
-
-  iatimali:
-    - name: 'tryggvib'
-      group: 'iatimali'
-      authorized_keys:
-        - tryggvib
-    - name: 'yohan.boniface'
-      group: 'iatimali'
-      authorized_keys:
-        - yohan.boniface
 
   monitoring:
     - name: 'nagios'

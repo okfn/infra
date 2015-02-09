@@ -1,18 +1,7 @@
 ---
-ckan_project: datahub.io
-site_id: datahub
 dbserver_private_ip: 10.181.26.142
 solrserver_private_ip: 10.181.26.142
 elasticserver_private_ip: 10.181.26.142
 sites_to_monitor: ['datahub.io:80:200'] #sitename,port,http status
 sites_enabled:
-    - [ 'thedatahub.org', [[ 'www.thedatahub.org', 'datahub.io' ]], '0.0.0.0', '8080' ]
-ckan_plugins: [ 'datahub', 'disqus', 'social', 'synchronous_search', 'googleanalytics', 'stats', 'qa', 'datastore', 'datastorer' ]
-ckan_site_title: the Data Hub
-ckan_site_logo: http://assets.okfn.org/p/ckan/img/ckan_logo_box.png
-ckan_site_url: http://thedatahub.org
-ckan_site_description: The easy way to get, use and share data
-googleanalytics_id: UA-8271754-2
-googleanalytics_username: ckan.analytics@gmail.com
-googleanalytics_password: $ckan_analytics_pass
-ckan_locale_default: en_GB
+    - [ 'thedatahub.org' ]

@@ -1,4 +1,4 @@
 ---
 backup_postgres: true
 backup_scripts:
-   - psql_backup.sh 
+   - psql_backup.sh
