@@ -100,10 +100,12 @@ backup
 labs
 listserv
 docker-host
+omeka
 
 [sysadmin-web:children]
 wiki
 listserv
+omeka
 
 [webservers:children]
 ckan-web-dev
