@@ -21,7 +21,7 @@
   tags: scripts
 
 - name: install pip
-  apt: pkg=python-pip state=installed
+  apt: pkg=python-pip state=installed update_cache=yes
   tags: scripts
 
 - name: ensure_configparser

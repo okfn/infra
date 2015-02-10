@@ -1,6 +1,6 @@
 ---
 - name: apt_install
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=installed update_cache=yes
   when: pkg_list is defined
   with_items: pkg_list
   tags:
