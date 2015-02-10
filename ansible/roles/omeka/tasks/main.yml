@@ -1,37 +1,34 @@
 ---
-# Check to see if it's installed and if yes, don't continue
  - name: check if omeka is installed
    stat: path=/var/www/omeka
    register: omeka_exists
 
-# Get the source
  - name: Get the omeka source code
    get_url: url=http://omeka.org/files/omeka-2.2.2.zip dest=/tmp
    when: omeka_exists.stat.exists == false
 
-# Unpack the source
  - name: Unzip the source code
    unarchive: src=/tmp/omeka-2.2.2.zip dest=/tmp copy=no creates=no
    when: omeka_exists.stat.exists == false
 
-# Move omeka code into /var/www/
+ - name: Create /var/www
+   file: path=/var/www state=directory
+   when: omeka_exists.stat.exists == false
+
  - name: Move omeka code into /var/www/omeka
    command: mv /tmp/omeka-2.2.2/ /var/www/omeka/
    when: omeka_exists.stat.exists == false
 
-# Move the config file over into the Omeka directory
  - name: Copy config file over to Omeka
    template: src=db.ini.j2 dest=/var/www/omeka/db.ini owner=www-data group=www-data mode=0644
    when: omeka_exists.stat.exists == false
 
-# Move to the right directory - make sure perms are set to 
  - name: Set the permissions on the Omeka directory
    file: path=/var/www/omeka owner=www-data group=www-data recurse=yes
    when: omeka_exists.stat.exists == false
 
 # The database is already setup in RDS, so no work needs to be done on the DB.
 
-# Download all the plugins
  - name: Download all the plugins
    get_url: url={{ item.url }} dest=/tmp
    with_items:
@@ -46,7 +43,6 @@
      - { url : 'http://omeka.org/wordpress/wp-content/uploads/Search-By-Metadata-1.2.zip', name: 'search-by-metadata' }
    when: omeka_exists.stat.exists == false
 
-# Extract all the plugins into Omeka webroot
  - name: Extract all the plugins into plugin directory
    unarchive: src=/tmp/{{ item }} dest=/var/www/omeka/plugins/ copy=no
    with_items:
