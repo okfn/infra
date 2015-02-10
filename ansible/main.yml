@@ -31,7 +31,7 @@
     - "{{ private_dir }}/p.yml"
   roles:
     - { role: apt, tags: ['unzip'], pkg_list: ['unzip', 'php5-fpm', 'php5-mysql'] }
-    - { role: apt, tags: ['imagemagick'], pkg_list: ['imagemagick', 'php5-imagemagick'] }
+    - { role: apt, tags: ['imagemagick'], pkg_list: ['imagemagick', 'php5-imagick'] }
     - { role: omeka, tags: ['omeka'] }
     - { role: nginx, tags: ['nginx'] }
 
