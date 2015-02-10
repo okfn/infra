@@ -1,6 +1,6 @@
 ---
  - name: check if omeka is installed
-   stat: path=/var/www/omeka
+   stat: path=/var/www/omeka/.installed
    register: omeka_exists
 
  - name: Get the omeka source code
@@ -56,3 +56,7 @@
      - Digital-Object-Linker-Plugin-1.0.zip
      - Search-By-Metadata-1.2.zip
    when: omeka_exists.stat.exists == false
+
+- name: Create installed file in /var/www/omeka
+  file: path=/var/www/omeka/.installed owner=www-data group=www-data mode=0644 state=file
+  when: omeka_exists.stat.exists == false
