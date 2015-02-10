@@ -10,7 +10,7 @@
 ; <http://omeka.org/codex/Database_Configuration_File>.
 
 [database]
-host     = "db002.cxglaymtrf0h.eu-west-1.rds.amazonaws.com"
+host     = "{{ omeka_db_server }}"
 username = "omeka"
 password = "{{ omeka_db_password }}"
 dbname   = "omeka"
