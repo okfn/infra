@@ -66,28 +66,28 @@ legacy_checks = [
 # each array element looks like '<metric.datapoint>:timeperiod:<warning level>:<critical level>'
 
 #webservice monitoring
-{% for host in groups['all'] %}
+{% for host in groups['all'] -%}
 
-  {% if hostvars[host]['sites_to_monitor'] is defined %}
+  {%- if hostvars[host]['sites_to_monitor'] is defined -%}
     {% for site in hostvars[host]['sites_to_monitor'] %}
 ( ( "check_http_basic!{{ host }}!{{ site.split(':')[0] }}!{{ site.split(':')[1] }}!{{ site.split(':')[2] }}", "HTTP {{ site.split(':')[0] }}", False), [ "{{ host }}" ] ),
     {% endfor %}
-  {% endif %}
+  {%- endif -%}
 
-  {% if hostvars[host]['ssl_sites_to_monitor'] is defined %}
+  {%- if hostvars[host]['ssl_sites_to_monitor'] is defined -%}
     {% for site in hostvars[host]['ssl_sites_to_monitor'] %}
 ( ( "check_http_ssl_works!{{ site }}", "HTTPS {{ site }}", False), [ "{{ host }}" ] ),
 ( ( "check_http_ssl_cert!{{ site }}", "HTTPS SSL valid {{ site }}", False), [ "{{ host }}" ] ),
     {% endfor %}
-  {% endif %}
+  {%- endif -%}
 
-  {% if hostvars[host]['check_graphite'] is defined %}
+  {%- if hostvars[host]['check_graphite'] is defined -%}
    {% for check in hostvars[host]['check_graphite'] %}
 ( ( "check_graphite!{{ check.split(':')[0] }}!{{ check.split(':')[1] }}!{{ check.split(':')[2] }}!{{ check.split(':')[3] }}", "Mailman subscription rate", False), [ "{{ host }}" ] ),
    {% endfor %}
-  {% endif %}
+  {%- endif -%}
 
-{% endfor %}
+{%- endfor %}
 
 
 
