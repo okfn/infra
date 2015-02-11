@@ -3,5 +3,5 @@ hosted: aws
 sites_enabled:
 - omeka
 sites_to_monitor:
-  - omeka.okfn.org:80:301
+  - omeka.okfn.org:80:200
 omeka_db_server: db002.cxglaymtrf0h.eu-west-1.rds.amazonaws.com
