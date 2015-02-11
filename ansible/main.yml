@@ -24,6 +24,7 @@
     - { role: apt, tags: ['git'], pkg_list: ['git'] }
     - { role: apt, tags: ['sysstat'], pkg_list: ['sysstat'] }
     - { role: sshd, tags: ['sshd'] }
+    - { role: fail2ban, tags: ['fail2ban'] }
 
 - hosts: omeka
   sudo: true
