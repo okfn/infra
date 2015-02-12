@@ -1,6 +1,6 @@
 
 - name: Install RT pre-reqs through apt-get
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=installed update_cache=yes
   with_items:
   - build-essential 
   - postgresql-client 
