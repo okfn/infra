@@ -18,7 +18,7 @@
   - spawn-fcgi
 
 - name: check if RT is installed
-  stat: path=/opt/rt4
+  stat: path=/opt/rt4/.installed
   register: rt_exists
 
 - name: get latest RT release
@@ -167,5 +167,9 @@
 
 - name: configure procmail
   copy: src=procmailrc.rt dest=/opt/rt4/etc/procmailrc.rt owner=root group=root mode=0644
+  when: rt_exists.stat.exists == false
+
+- name: Create .installed file now that RT is installed
+  file: path=/opt/rt4/.installed state=file
   when: rt_exists.stat.exists == false
 
