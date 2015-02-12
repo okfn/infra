@@ -22,20 +22,20 @@
   register: rt_exists
 
 - name: get latest RT release
-  get_url: url=https://download.bestpractical.com/pub/rt/release/rt-4.2.9.tar.gz dest=/opt/
+  get_url: url=https://download.bestpractical.com/pub/rt/release/rt-{{ rt_version }}.tar.gz dest=/opt/
   when: rt_exists.stat.exists == false
 
 - name: extract RT 
-  unarchive: src=/opt/rt-4.2.9.tar.gz dest=/opt/ copy=no
+  unarchive: src=/opt/rt-{{ rt_version }}.tar.gz dest=/opt/ copy=no
   when: rt_exists.stat.exists == false
 
 - name: copy rt dir to rt4 dir
-  command: mv /opt/rt-4.2.9 /opt/rt4-install
+  command: mv /opt/rt-{{ rt_version }} /opt/rt4-install
   register: rtdirectory
   when: rt_exists.stat.exists == false
 
 - name: configure RT install
-  command: ./configure
+  {command: ./configure
   args:  
     chdir: /opt/rt4-install
   when: rt_exists.stat.exists == false

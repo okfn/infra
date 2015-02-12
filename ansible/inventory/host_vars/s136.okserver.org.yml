@@ -1,7 +1,7 @@
 ---
 hosted: aws
 rt: true
-
+rt_version: 4.2.9
 postfix_additional_trusted_networks: "172.17.0.0/16"
 postfix_relay_domains:
   - rt.okfn.org
