@@ -8,7 +8,7 @@
   tags: install_iptables_persistent
 
 - name: iptables_config
-  template: src=etc/iptables/iptables.j2 dest=/etc/iptables/rules.v4
+  template: src=iptables.j2 dest=/etc/iptables/rules.v4
   notify: restart iptables-persistent
   tags: iptables_config
 
