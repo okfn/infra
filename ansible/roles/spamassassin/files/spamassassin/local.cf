@@ -15,8 +15,10 @@
 #   modifying the original message (0: off, 2: use text/plain instead)
 #
 # report_safe 1
-
-
+ 
+# Whitelist okfn emails
+whitelist_from *@okfn.org
+ 
 #   Set which networks or hosts are considered 'trusted' by your mail
 #   server (i.e. not spammers)
 #

@@ -6,7 +6,7 @@
      - spamassassin
 
 - name: spamd_default
-  file: src=etc/default/spamassassin dest=/etc/default/spamassassin
+  file: src=default/spamassassin dest=/etc/default/spamassassin
   notify: reload spamassasin
   tags:
      - spamd_default
@@ -16,7 +16,7 @@
 - name: spamassassin_config
   copy: src={{ item }} dest=/etc/spamassassin/
   with_fileglob:
-     - etc/spamassassin/*
+     - spamassassin/*
   notify: reload spamassassin
   tags:
      - spamassassin_config
