@@ -6,8 +6,8 @@
 - name: supervisor_config
   copy: src={{ item }} dest=/etc/supervisor/supervisord.conf
   with_first_found:
-     - {{ project }}/supervisord.conf
-     - {{ inventory_hostname }}_supervisord.conf
+     - "{{ project }}/supervisord.conf"
+     - "{{ inventory_hostname }}_supervisord.conf"
      - default_supervisord.conf
   notify: restart supervisor
   tags: supervisor_config
