@@ -35,7 +35,7 @@
   when: rt_exists.stat.exists == false
 
 - name: configure RT install
-  {command: ./configure
+  command: ./configure
   args:  
     chdir: /opt/rt4-install
   when: rt_exists.stat.exists == false

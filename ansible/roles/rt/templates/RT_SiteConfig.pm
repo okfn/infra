@@ -6,7 +6,7 @@ Set( $WebDomain, "rt.okfn.org" );
 Set( $WebSecureCookies, 1 );
 
 Set( $DatabaseType, "Pg" );
-Set( $DatabaseHost, "db001.cxglaymtrf0h.eu-west-1.rds.amazonaws.com" );
+Set( $DatabaseHost, "{{ rds_server }}" );
 Set( $DatabasePort, 5432 );
 Set( $DatabaseName, "rt4" );
 Set( $DatabaseUser, "rt_user" );
