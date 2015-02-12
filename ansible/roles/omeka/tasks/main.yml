@@ -23,10 +23,6 @@
    template: src=db.ini.j2 dest=/var/www/omeka/db.ini owner=www-data group=www-data mode=0644
    when: omeka_exists.stat.exists == false
 
- - name: Set the permissions on the Omeka directory
-   file: path=/var/www/omeka owner=www-data group=www-data recurse=yes
-   when: omeka_exists.stat.exists == false
-
 # The database is already setup in RDS, so no work needs to be done on the DB.
 
  - name: Download all the plugins
@@ -55,6 +51,10 @@
      - CSV-Import-2.0.3.zip
      - Digital-Object-Linker-Plugin-1.0.zip
      - Search-By-Metadata-1.2.zip
+   when: omeka_exists.stat.exists == false
+
+ - name: Set the permissions on the Omeka directory
+   file: path=/var/www/omeka owner=www-data group=www-data recurse=yes
    when: omeka_exists.stat.exists == false
 
  - name: Create installed file in /var/www/omeka
