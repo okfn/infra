@@ -16,6 +16,7 @@
   - libdbd-pg-perl
   - procmail
   - spawn-fcgi
+  - unzip
 
 - name: check if RT is installed
   stat: path=/opt/rt4/.installed
