@@ -171,6 +171,6 @@
   when: rt_exists.stat.exists == false
 
 - name: Create .installed file now that RT is installed
-  file: path=/opt/rt4/.installed state=file
+  file: path=/opt/rt4/.installed state=touch
   when: rt_exists.stat.exists == false
 
