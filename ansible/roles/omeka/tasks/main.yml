@@ -70,5 +70,5 @@
    when: omeka_exists.stat.exists == false
 
  - name: Create installed file in /var/www/omeka
-   file: path=/var/www/omeka/.installed owner=www-data group=www-data mode=0644 state=file
+   file: path=/var/www/omeka/.installed owner=www-data group=www-data mode=0644 state=touch
    when: omeka_exists.stat.exists == false
