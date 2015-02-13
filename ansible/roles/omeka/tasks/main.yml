@@ -54,7 +54,19 @@
    when: omeka_exists.stat.exists == false
 
  - name: Set the permissions on the Omeka directory
-   file: path=/var/www/omeka owner=www-data group=www-data recurse=yes
+   file: path=/var/www/omeka/files owner=www-data group=www-data recurse=yes
+   when: omeka_exists.stat.exists == false
+
+ - name: Set the permissions on the Omeka directory
+   file: path=/var/www/omeka/admin owner=www-data group=www-data recurse=yes
+   when: omeka_exists.stat.exists == false
+
+ - name: Set the permissions on the Omeka directory
+   file: path=/var/www/omeka/plugins owner=www-data group=www-data recurse=yes
+   when: omeka_exists.stat.exists == false
+
+ - name: Set the permissions on the Omeka directory
+   file: path=/var/www/omeka/application owner=www-data group=www-data recurse=yes
    when: omeka_exists.stat.exists == false
 
  - name: Create installed file in /var/www/omeka
