@@ -7,7 +7,7 @@
   notify: restart iptables-persistent
   tags: install_iptables_persistent
 
-- name: iptables_config
+- name: Copy iptables template rules over to /etc/iptables
   template: src=iptables.j2 dest=/etc/iptables/rules.v4
   notify: restart iptables-persistent
   tags: iptables_config
