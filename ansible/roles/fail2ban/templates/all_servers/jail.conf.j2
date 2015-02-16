@@ -99,7 +99,7 @@ filter   = sshd
 logpath  = /var/log/auth.log
 maxretry = 6
 
-{% if fail2ban_mailman is defined %}
+{% if fail2ban_mailman %}
 [mailman-subscribe]
 enabled = true
 port    = http,https
