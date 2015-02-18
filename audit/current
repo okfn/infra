@@ -59,4 +59,4 @@ s116.okserver.org services="lists.okfn.org"
 
 # Projects
 ## DigitalOcean
-omeka-test.okserver.org services="omeka test server" notes="temporary. owned by Marieke"
+s140.okserver.org services="omeka server" notes="owned by eSpace project"
