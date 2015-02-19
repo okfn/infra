@@ -4,6 +4,6 @@ sites_enabled:
 - omeka
 sites_to_monitor:
   - omeka.okfn.org:80:200
-enabled_plugin_checks: mk_inode
+enabled_plugin_checks: mk_inodes
 omeka_db_server: db002.cxglaymtrf0h.eu-west-1.rds.amazonaws.com
 
