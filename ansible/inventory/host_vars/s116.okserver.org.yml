@@ -59,3 +59,5 @@ mail_scripts: true
 rsnapshot_backup:
   - src: 'root@s116.okserver.org:/var/lib/mailman'
     dest: 's116.okserver.org/mailman'
+
+fail2ban_mailman: true

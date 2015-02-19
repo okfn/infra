@@ -2,15 +2,15 @@
 - name: install fail2ban
   apt: pkg=fail2ban state=installed
 
-- name: setup fail2ban config
-  copy: src={{ item }} dest=/etc/fail2ban/
-  with_items:
-    - etc/fail2ban/{{ inventory_hostname }}/fail2ban.conf
-    - etc/fail2ban/{{ inventory_hostname }}/jail.conf
+- name: Copy fail2ban config to server
+  copy: src=all_servers/fail2ban.conf dest=/etc/fail2ban/
+
+- name: Setup jail.conf config to server
+  template: src=all_servers/jail.conf.j2 dest=/etc/fail2ban/jail.conf
   notify: reload fail2ban
 
-- name: setup fail2ban filters
+- name: Setup fail2ban filters with ssh - all servers
   copy: src={{ item }} dest=/etc/fail2ban/filter.d/
-  with_fileglob: 
-    - etc/fail2ban/{{ inventory_hostname }}/filter.d/*
+  with_fileglob:
+    - all_servers/filter.d/*
   notify: reload fail2ban
