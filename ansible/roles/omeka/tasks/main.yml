@@ -57,16 +57,15 @@
    file: path=/var/www/omeka/files owner=www-data group=www-data recurse=yes
    when: omeka_exists.stat.exists == false
 
- - name: Set the permissions on the Omeka directory
-   file: path=/var/www/omeka/admin owner=www-data group=www-data recurse=yes
+ - name: Set the permissions on the Omeka csv-plugin directory
+   file: path=/var/www/omeka/plugins/CsvImport/csv_files owner=www-data group=www-data recurse=yes
    when: omeka_exists.stat.exists == false
 
- - name: Set the permissions on the Omeka directory
-   file: path=/var/www/omeka/plugins owner=www-data group=www-data recurse=yes
-   when: omeka_exists.stat.exists == false
+ - name: Set the permissions on the Omeka contribution plugin
+   file: path=/var/www/omeka/plugins/Contribution/upgrade_files
 
- - name: Set the permissions on the Omeka directory
-   file: path=/var/www/omeka/application owner=www-data group=www-data recurse=yes
+ - name: Set the permissions on the Omeka applications logs directory
+   file: path=/var/www/omeka/application/logs owner=www-data group=www-data recurse=yes
    when: omeka_exists.stat.exists == false
 
  - name: Create installed file in /var/www/omeka
