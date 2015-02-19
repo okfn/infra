@@ -63,6 +63,7 @@
 
  - name: Set the permissions on the Omeka contribution plugin
    file: path=/var/www/omeka/plugins/Contribution/upgrade_files
+   when: omeka_exists.stat.exists == false
 
  - name: Set the permissions on the Omeka applications logs directory
    file: path=/var/www/omeka/application/logs owner=www-data group=www-data recurse=yes
