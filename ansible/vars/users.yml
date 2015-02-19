@@ -104,6 +104,9 @@ users:
     - name: tonyh
       authorized_keys:
         - tonyh
+    - name: dfowler
+      authorized_keys:
+        - dfowler
 
   monitoring:
     - name: 'nagios'
