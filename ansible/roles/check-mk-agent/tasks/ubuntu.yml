@@ -3,7 +3,7 @@
 
 - name: set pkg name
   when: ansible_distribution_version != "trusty"
-  set_fact: pkg_name=check-mk-agent=1.2.4-0ubuntu1~ubuntu{{ansible_distribution_version}}.1~ppa1
+  set_fact: pkg_name=check-mk-agent
 
 - name: set pkg name
   when: ansible_distribution_version == "trusty"

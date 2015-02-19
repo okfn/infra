@@ -21,7 +21,6 @@
   notify: restart iptables-persistent
 
 - name: setup_plugin_checks
-
   copy: src=usr/lib/check_mk_agent/plugins/{{ item }}
         dest=/usr/lib/check_mk_agent/plugins/{{ item }}
   with_items: enabled_plugin_checks
