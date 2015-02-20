@@ -16,6 +16,7 @@ mail_domains: []
 monitoring_server: nagios.okfn.org
 #monitoring_server_ip is required by the check_mk agent role
 monitoring_server_ip: 54.211.250.65
+enabled_plugin_checks: mk_inode
 munin_port: 4949
 nagios_additional_hosts:
   - blogfarm.okserver.org
