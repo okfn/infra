@@ -38,13 +38,14 @@ s110.okserver.org services="labs"
 ## Rax managed
 s107.okserver.org services="datahub.io webhead" owner="rgrp,rossjones" notes="to be migrated to AWS"
 s108.okserver.org services="datahub.io db, solr" owner="rgrp,rossjones" notes="to be migrated to AWS"
-
 --------
 
 # Projects
 ## AWS
 s133.okserver.org services="openspending and farmsubsidy frontend"
 s139.okserver.org services="openspending and farmsubsidy solr"
+## DigitalOcean
+s140.okserver.org services="omeka server" notes="owned by eSpace project"
 --------
 
 # Operations
@@ -56,7 +57,3 @@ s135.okserver.org services="wikifarm"
 s136.okserver.org services="new RT server"
 ## Bytemark
 s116.okserver.org services="lists.okfn.org"
-
-# Projects
-## DigitalOcean
-s140.okserver.org services="omeka server" notes="owned by eSpace project"
