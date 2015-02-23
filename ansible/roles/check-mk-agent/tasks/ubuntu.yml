@@ -2,11 +2,11 @@
   apt_repository: repo=ppa:deathon2legs/check-mk-backport
 
 - name: set pkg name
-  when: ansible_distribution_version != "trusty"
+  when: ansible_distribution_version != "14.04"
   set_fact: pkg_name=check-mk-agent=1.2.4-0ubuntu1~ubuntu{{ansible_distribution_version}}.1~ppa1
 
 - name: set pkg name
-  when: ansible_distribution_version == "trusty"
+  when: ansible_distribution_version == "14.04"
   set_fact: pkg_name=check-mk-agent=1.2.4-0ubuntu1
 
 - name: install check-mk-agent

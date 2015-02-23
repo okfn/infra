@@ -1,0 +1,16 @@
+#!/bin/bash
+
+WARN=80
+CRIT=90
+
+df_check=`df -PTlhi -x smbfs -x tmpfs -x cifs -x iso9660 -x udf -x nfsv4 | grep -v \/mnt| sed 1d`
+
+df -PTlhi -x smbfs -x tmpfs -x cifs -x iso9660 -x udf -x nfsv4 | grep -v \/mnt| sed 1d| awk -v WARN=$WARN -v CRIT=$CRIT '(match($6, /[0123456789]+/)) {
+	iperc= int(substr($6, RSTART, RLENGTH));
+	if (iperc < WARN )
+		print "0 Inode_check:"$1" IUse%="$6";"WARN"%;"CRIT"%;0%;100% OK - IUse%:"$6" - FStype:"$2" - Tot_I:"$3" - Used_I:"$4" - Free_I:"$5" - Mounted_on:"$7;
+	else if (iperc >= WARN && iperc < CRIT)
+		{print "1 Inode_check:"$1" IUse%="$6";"WARN"%;"CRIT"%;0%;100% WARNING - IUse%:"$6" - FStype:"$2" - Tot_I:"$3" - Used_I:"$4" - Free_I:"$5" - Mounted_on:"$7;}
+	else if (iperc >= CRIT)
+		{print "2 Inode_check:"$1" IUse%="$6";"WARN"%;"CRIT"%;0%;100% CRITICAL - IUse%:"$6" - FStype:"$2" - Tot_I:"$3" - Used_I:"$4" - Free_I:"$5" - Mounted_on:"$7;}
+}'
