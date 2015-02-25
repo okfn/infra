@@ -1,0 +1,5 @@
+users_extra:
+  - name: 'arturas'
+    group: 'ckan_dev'
+    authorized_keys:
+      - arturas
