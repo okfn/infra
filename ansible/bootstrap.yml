@@ -85,3 +85,4 @@
      - tmpreaper
      - postfix
      - users
+     - sudo
