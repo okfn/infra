@@ -25,9 +25,7 @@ sysadmin_email: 'sysadmin-alert@okfn.org'
 timezone: Etc/UTC
 users_extra: []
 users_purge:
-  - joel.re
-  - borior
-  - david
+  - adam
 
 sudo_default:
   - "%sudo"
