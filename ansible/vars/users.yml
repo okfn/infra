@@ -99,6 +99,7 @@ users:
       authorized_keys:
         - tonyh
     - name: dfowler
+      group: 'labs_dev'
       authorized_keys:
         - dfowler
 
