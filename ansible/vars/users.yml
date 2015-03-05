@@ -20,10 +20,6 @@ users:
         - matt
 
   ckan_dev:
-    - name: 'seanh'
-      group: 'ckan_dev'
-      authorized_keys:
-        - seanh
     - name: 'amercader'
       group: 'ckan_dev'
       authorized_keys:
