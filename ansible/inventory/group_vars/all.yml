@@ -26,7 +26,7 @@ timezone: Etc/UTC
 users_extra: []
 users_purge:
   - adam
-
+  - seanh
 sudo_default:
   - "%sudo"
   - "%sysadmin"
