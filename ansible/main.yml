@@ -47,8 +47,16 @@
   vars_files:
     - "{{ private_dir }}/p.yml"
   roles:
-    - { role: varnish, tags: ['varnish'] }
     - { role: nginx, tags: ['nginx'] }
+
+- hosts: s133.okserver.org
+  sudo: true
+  vars_files:
+    - "{{ private_dir }}/p.yml"
+  roles:
+    - role: varnish
+      tags: ['varnish']
+      secret: "{{ varnish_secret[0].secret }}"
 
 - hosts: s134.okserver.org
   sudo: true
