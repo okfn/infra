@@ -22,7 +22,6 @@
      - add_config_default_varnish
      - varnish
 
-
 - name: secrets_varnish
   template: src=.j2 dest=/etc/varnish/secret
   when: hostvars[inventory_hostname]_varnish_secret is defined
