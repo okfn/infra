@@ -78,7 +78,6 @@ s135.okserver.org hosted=aws
 s140.okserver.org hosted=digital-ocean
 
 [labs]
-s033.okserver.org hosted=hetzner
 s110.okserver.org hosted=hetzner
 
 [openspending:children]
