@@ -6,14 +6,14 @@
 - name: supervisor_config
   copy: src={{ item }} dest=/etc/supervisor/supervisord.conf
   with_first_found:
-     - etc/supervisor/{{ project }}/supervisord.conf
-     - etc/supervisor/{{ inventory_hostname }}_supervisord.conf
-     - etc/supervisor/default_supervisord.conf
+     - "{{ project }}/supervisord.conf"
+     - "{{ inventory_hostname }}_supervisord.conf"
+     - default_supervisord.conf
   notify: restart supervisor
   tags: supervisor_config
 
 - name:  supervisor_confd
   copy: src={{ item }} dest=/etc/supervisor/conf.d/
   notify: reread supervisor_confd
-  with_fileglob: etc/supervisor/conf.d/{{ inventory_hostname }}/*
+  with_fileglob: conf.d/{{ inventory_hostname }}/*
   tags: supervisor_confd
