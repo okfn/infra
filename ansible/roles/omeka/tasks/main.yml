@@ -25,9 +25,9 @@
 
 # The database is already setup in RDS, so no work needs to be done on the DB.
 
-- name: Check if omeka infra repo is there
-  stat: path=/opt/infra-omeka
-  register: omeka_repo_exists
+ - name: Check if omeka infra repo is there
+   stat: path=/opt/infra-omeka
+   register: omeka_repo_exists
 
  - name: Clone okfn omeka plugin and themes repo
    git: repo:https://github.com/okfn/infra-omeka.git
