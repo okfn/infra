@@ -25,22 +25,11 @@
 
 # The database is already setup in RDS, so no work needs to be done on the DB.
 
- - name: Check if omeka infra repo is there
-   stat: path=/opt/infra-omeka
-   register: omeka_repo_exists
-
  - name: Clone okfn omeka plugin and themes repo
-   git: repo:https://github.com/okfn/infra-omeka.git
-        dest=/opt/infra-omeka
-        accept_hostkey_yes
-   when: omeka_repo_exists.stat.exists == false
-
- - name: Make sure omeka infra repo is up to date
    git: repo=https://github.com/okfn/infra-omeka.git
         dest=/opt/infra-omeka
         update=yes
-   tags:
-     - omeka_update_infra_repo
+        accept_hostkey=yes
 
  - name: Symlink plugins from repo into plugin directory
    file: src=/opt/infra-omeka/plugins/{{ item }} dest=/var/www/omeka/plugins/{{ item }} state=link
@@ -56,7 +45,6 @@
      - SearchByMetadata
    tags:
      - omeka_symlink_plugins
-   when: omeka_exists.stat.exists == false
 
  - name: Set the permissions on the Omeka directory
    file: path=/var/www/omeka/files owner=www-data group=www-data recurse=yes
