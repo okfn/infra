@@ -98,6 +98,10 @@ users:
       group: 'labs_dev'
       authorized_keys:
         - dfowler
+    - name: caleb
+      group: 'labs_dev'
+      authorized_keys:
+        - caleb
 
   monitoring:
     - name: 'nagios'
