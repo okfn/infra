@@ -5,8 +5,8 @@
   tags: create_backup_directory
 
 - name: rsnapshot_config
-  template: src=etc/rsnapshot.conf.j2 dest=/etc/rsnapshot.conf
+  template: src=rsnapshot.conf.j2 dest=/etc/rsnapshot.conf
 
 - name: configure rsnapshot file in cron.daily to run
   copy: src=rsnapshot.cron dest=/etc/cron.d/rsnapshot
- 
+
