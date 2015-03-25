@@ -1,5 +1,5 @@
 server {
-    server_name wikitest.okfn.org wiki.okfn.org wiki.okfn.de wiki.opendataday.org wiki.okfn.jp wiki.offenerhaushalt.de jp.wiki.okfn.org wiki.dm2e.eu wiki.okfestival.org;
+    server_name wiki.okfn.org wiki.okfn.de wiki.opendataday.org wiki.dm2e.eu wiki.okfestival.org;
     index /wiki/index.php;
     autoindex off;
     root /var/www/wikifarm/;
@@ -15,7 +15,7 @@ server {
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_pass 127.0.0.1:9000;
-    } 
+    }
     if ($http_user_agent ~* (bot|spider) ) {
         return 403;
     }

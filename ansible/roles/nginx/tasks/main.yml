@@ -5,23 +5,22 @@
 - name: install nginx.conf
   copy: src={{ item }} dest=/etc/nginx/nginx.conf
   with_first_found:
-    - etc/nginx/{{ project }}/{{ inventory_hostname }}_nginx.conf
-    - etc/nginx/{{ inventory_hostname }}/nginx.conf
-    - etc/nginx/default_nginx.conf
+    - {{ inventory_hostname }}/nginx.conf
+    - extra/default_nginx.conf
   notify: reload nginx
 
 - name: install additional config
   copy: src={{ item }} dest=/{{item}}
   with_items:
-    - etc/nginx/mime.types
-    - etc/nginx/proxy_params
-    - etc/nginx/ssl_params
+    - extra/mime.types
+    - extra/proxy_params
+    - extra/ssl_params
   notify: reload nginx
 
 - name: install sites-available
   copy: src={{ item }} dest=/etc/nginx/sites-available/
   with_fileglob:
-    - etc/nginx/{{ inventory_hostname }}/sites-available/*
+    - {{ inventory_hostname }}/*
   notify: reload nginx
 
 - include: ssl.yml
