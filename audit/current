@@ -23,7 +23,7 @@ s129.okserver.org services="barnet db, solr" notes="convert to web head in futur
 s132.okserver.org services="pakistan frontend"
 ## Linode
 s130.okserver.org services="sweden, pakistan, mexico, and edo staging; and servicesdemo"
-s137.okserver.org services="datagm staging"
+s137.okserver.org services="datagm, cabq staging"
 s141.okserver.org services="monitor staging"
 ## Digital Ocean
 s138.okserver.org services="ckan packaging"
