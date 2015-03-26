@@ -51,6 +51,9 @@
      - CsvImport
      - DigitalObjectLinker
      - SearchByMetadata
+     - RecordRelations
+     - UserProfiles
+     - SocialBookmarking
    tags:
      - omeka_symlink_plugins
 
