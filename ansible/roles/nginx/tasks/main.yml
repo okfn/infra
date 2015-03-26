@@ -5,7 +5,7 @@
 - name: install nginx.conf
   copy: src={{ item }} dest=/etc/nginx/nginx.conf
   with_first_found:
-    - {{ inventory_hostname }}/nginx.conf
+    - "{{ inventory_hostname }}/nginx.conf"
     - extra/default_nginx.conf
   notify: reload nginx
 
@@ -20,7 +20,7 @@
 - name: install sites-available
   copy: src={{ item }} dest=/etc/nginx/sites-available/
   with_fileglob:
-    - {{ inventory_hostname }}/*
+    - "{{ inventory_hostname }}/*"
   notify: reload nginx
 
 - include: ssl.yml
