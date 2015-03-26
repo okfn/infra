@@ -30,12 +30,16 @@
         dest=/opt/infra-omeka
         update=yes
         accept_hostkey=yes
+   tags:
+     - clone_plugin_repo
 
  - name: Clone okfn omeka theme repo
    git: repo=https://github.com/okfn/omeka-theme-glam.git
         dest=/opt/omeka-theme-glam
         update=yes
         accept_hostkey=yes
+   tags:
+     - clone_theme_repo
 
  - name: Symlink plugins from repo into plugin directory
    file: src=/opt/infra-omeka/plugins/{{ item }}
