@@ -1,7 +1,7 @@
 ---
 hosted: aws
 rt: true
-rt_version: 4.2.9
+rt_version: 4.2.10
 rds_server: db001.cxglaymtrf0h.eu-west-1.rds.amazonaws.com
 postfix_additional_trusted_networks: "172.17.0.0/16"
 postfix_relay_domains:
