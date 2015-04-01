@@ -10,7 +10,7 @@
   notify: reload nginx
 
 - name: install additional config
-  copy: src={{ item }} dest=/{{item}}
+  copy: src={{ item }} dest=/etc/nginx/
   with_items:
     - extra/mime.types
     - extra/proxy_params
