@@ -35,7 +35,7 @@
     - { role: apt, tags: ['imagemagick'], pkg_list: ['imagemagick', 'php5-imagick'] }
     - { role: omeka, tags: ['omeka-opencollections'], install_dir: '/var/www/omeka', omeka_db_password: "{{ omeka[0].db_password }}", omeka_db_name: 'omeka' }
     - { role: omeka, tags: ['omeka-espace'], install_dir: '/var/www/espace-omeka', 
-omeka_db_password: "{{ omeka[1].db_password }}", omeka_db_name: 'espace-omeka' }
+omeka_db_password: "{{ omeka[1].db_password }}", omeka_db_name: 'espace_omeka' }
     - { role: nginx, tags: ['nginx'] }
 
 - hosts: rt
