@@ -2,6 +2,10 @@
 hosted: aws
 sites_enabled:
 - omeka
+- espace
+- open-collections
 sites_to_monitor:
   - omeka.okfn.org:80:200
+  - open-collections.okfn.org:80:200
+  - espace.okfn.org:80:200
 omeka_db_server: db002.cxglaymtrf0h.eu-west-1.rds.amazonaws.com
