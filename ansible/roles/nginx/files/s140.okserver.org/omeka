@@ -1,7 +1,4 @@
 # Upstream to abstract backend connection(s) for php
-upstream php {
-        server unix:/var/run/php5-fpm.sock;
-}
 
 server {
         ## Your website name goes here.
