@@ -75,6 +75,6 @@
    file: path={{ install_dir }}/application/logs owner=www-data group=www-data recurse=yes
    when: omeka_exists.stat.exists == false
 
- - name: Create installed file in /var/www/omeka
+ - name: Create installed file
    file: path={{ install_dir }}/.installed owner=www-data group=www-data mode=0644 state=touch
    when: omeka_exists.stat.exists == false
