@@ -1,4 +1,3 @@
-# Upstream to abstract backend connection(s) for php
 
 server {
         ## Your website name goes here.
