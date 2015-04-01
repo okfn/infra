@@ -33,7 +33,8 @@
   roles:
     - { role: apt, tags: ['unzip'], pkg_list: ['unzip', 'php5-fpm', 'php5-mysql'] }
     - { role: apt, tags: ['imagemagick'], pkg_list: ['imagemagick', 'php5-imagick'] }
-    - { role: omeka, tags: ['omeka'] }
+    - { role: omeka, tags: ['omeka'], install_dir: '/var/www/omeka', omeka_db_password: "{{ omeka[0].db_password }}" }
+    - { role: omeka, tags: ['omeka-espace'], install_dir: '/var/www/espace-omeka', omeka_db_password: "{{ omeka[1].db_password }}" }
     - { role: nginx, tags: ['nginx'] }
 
 - hosts: rt
