@@ -30,16 +30,25 @@ LOGFILE=/var/log/procmail/rt.log
 * ^Subject:.*\[CloudFlare\] Invoice
 ! payments@okfn.org
 
+:0w
+* ^From.service@paypal.co.uk
+* ^Subject:.You have received a subscription payment.
+/dev/null
+
+:0w
+* ^From.help@expensify.com
+/dev/null
+
 #Is it spam?
 :0fw: spamassassin.lock
 * < 300000
 | spamc
- 
+
 #if the spam trigger is fired send to spam queue
 :0w
 * ^X-Spam-Flag: YES
 | rt-mailgate --queue spam --action correspond --url https://rt.okfn.org/
- 
+
 #if the spam trigger is not fired then send to expected destination
 :0w
 | rt-mailgate --queue $QUEUE --action $ACTION --url https://rt.okfn.org/
