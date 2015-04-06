@@ -4,11 +4,11 @@
    register: omeka_exists
 
  - name: Get the omeka source code
-   get_url: url=http://omeka.org/files/omeka-2.2.2.zip dest=/tmp
+   get_url: url=http://omeka.org/files/omeka-2.3zip dest=/tmp
    when: omeka_exists.stat.exists == false
 
  - name: Unzip the source code
-   unarchive: src=/tmp/omeka-2.2.2.zip dest=/tmp copy=no creates=no
+   unarchive: src=/tmp/omeka-2.3.zip dest=/tmp copy=no creates=no
    when: omeka_exists.stat.exists == false
 
  - name: Create /var/www
@@ -16,7 +16,7 @@
    when: omeka_exists.stat.exists == false
 
  - name: Move omeka code into {{ install_dir }}
-   command: mv /tmp/omeka-2.2.2/ {{ install_dir }}/
+   command: mv /tmp/omeka-2.3/ {{ install_dir }}/
    when: omeka_exists.stat.exists == false
 
  - name: Copy config file over to Omeka
