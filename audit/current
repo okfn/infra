@@ -55,5 +55,6 @@ s125.okserver.org services="docker: booktype, etherpad, sendy"
 s134.okserver.org services="backup server"
 s135.okserver.org services="wikifarm"
 s136.okserver.org services="RT server"
+s142.okserver.org services="Icinga server"
 ## Bytemark
 s116.okserver.org services="lists.okfn.org"
