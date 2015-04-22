@@ -24,7 +24,7 @@ s132.okserver.org services="pakistan frontend"
 ## Linode
 s130.okserver.org services="sweden, pakistan, mexico, and edo staging; and servicesdemo"
 s137.okserver.org services="datagm, cabq staging"
-s141.okserver.org services="monitor staging"
+s141.okserver.org services="monitor staging, nz staging"
 ## Digital Ocean
 s138.okserver.org services="ckan packaging"
 ## AWS
