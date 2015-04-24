@@ -41,6 +41,12 @@
    tags:
      - clone_theme_repo
 
+ - name: Clone espace theme repo
+   git: repo=https://github.com/okfn/omeka-theme-espace.git
+        dest=/opt/omeka-theme-espace
+        update=yes
+        accept_hostkey=yes
+
  - name: Symlink plugins from repo into plugin directory
    file: src=/opt/infra-omeka/plugins/{{ item }}
          dest={{ install_dir }}/plugins/{{ item }}
@@ -64,6 +70,11 @@
  - name: Symlink theme from repo into theme directory
    file: src=/opt/omeka-theme-glam
          dest={{ install_dir }}/themes/omeka-theme-glam
+         state=link
+
+ - name: Symlink espace theme from repo into theme directory
+   file: src=/opt/omeka-theme-espace
+         dest=/var/www/espace-omeka/themes/omeka-theme-espace
          state=link
 
  - name: Set the permissions on the Omeka directory
