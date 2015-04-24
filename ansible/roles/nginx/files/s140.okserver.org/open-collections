@@ -1,7 +1,12 @@
+# Upstream to abstract backend connection(s) for php
+
+upstream php {
+        server unix:/var/run/php5-fpm.sock;
+}
 
 server {
         ## Your website name goes here.
-        server_name omeka.okfn.org;
+        server_name open-collections.okfn.org;
         ## Your only path reference.
         root /var/www/omeka;
         ## This should be in your http block and if it is, it's not needed here.

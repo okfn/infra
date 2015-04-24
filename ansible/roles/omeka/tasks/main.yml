@@ -1,26 +1,26 @@
 ---
  - name: check if omeka is installed
-   stat: path=/var/www/omeka/.installed
+   stat: path={{ install_dir }}/.installed
    register: omeka_exists
 
  - name: Get the omeka source code
-   get_url: url=http://omeka.org/files/omeka-2.2.2.zip dest=/tmp
+   get_url: url=http://omeka.org/files/omeka-2.3zip dest=/tmp
    when: omeka_exists.stat.exists == false
 
  - name: Unzip the source code
-   unarchive: src=/tmp/omeka-2.2.2.zip dest=/tmp copy=no creates=no
+   unarchive: src=/tmp/omeka-2.3.zip dest=/tmp copy=no creates=no
    when: omeka_exists.stat.exists == false
 
  - name: Create /var/www
    file: path=/var/www state=directory
    when: omeka_exists.stat.exists == false
 
- - name: Move omeka code into /var/www/omeka
-   command: mv /tmp/omeka-2.2.2/ /var/www/omeka/
+ - name: Move omeka code into {{ install_dir }}
+   command: mv /tmp/omeka-2.3/ {{ install_dir }}/
    when: omeka_exists.stat.exists == false
 
  - name: Copy config file over to Omeka
-   template: src=db.ini.j2 dest=/var/www/omeka/db.ini owner=www-data group=www-data mode=0644
+   template: src=db.ini.j2 dest={{ install_dir }}/db.ini owner=www-data group=www-data mode=0644
    when: omeka_exists.stat.exists == false
 
 # The database is already setup in RDS, so no work needs to be done on the DB.
@@ -39,7 +39,7 @@
 
  - name: Symlink plugins from repo into plugin directory
    file: src=/opt/infra-omeka/plugins/{{ item }}
-         dest=/var/www/omeka/plugins/{{ item }}
+         dest={{ install_dir }}/plugins/{{ item }}
          state=link
    with_items:
      - GuestUser
@@ -56,25 +56,25 @@
 
  - name: Symlink theme from repo into theme directory
    file: src=/opt/omeka-theme-glam
-         dest=/var/www/omeka/themes/omeka-theme-glam
+         dest={{ install_dir }}/themes/omeka-theme-glam
          state=link
 
  - name: Set the permissions on the Omeka directory
-   file: path=/var/www/omeka/files owner=www-data group=www-data recurse=yes
+   file: path={{ install_dir }}/files owner=www-data group=www-data recurse=yes
    when: omeka_exists.stat.exists == false
 
  - name: Set the permissions on the Omeka csv-plugin directory
-   file: path=/var/www/omeka/plugins/CsvImport/csv_files owner=www-data group=www-data recurse=yes
+   file: path={{ install_dir }}/plugins/CsvImport/csv_files owner=www-data group=www-data recurse=yes
    when: omeka_exists.stat.exists == false
 
  - name: Set the permissions on the Omeka contribution plugin
-   file: path=/var/www/omeka/plugins/Contribution/upgrade_files
+   file: path={{ install_dir }}/plugins/Contribution/ owner=www-data group=www-data recurse=yes
    when: omeka_exists.stat.exists == false
 
  - name: Set the permissions on the Omeka applications logs directory
-   file: path=/var/www/omeka/application/logs owner=www-data group=www-data recurse=yes
+   file: path={{ install_dir }}/application/logs owner=www-data group=www-data recurse=yes
    when: omeka_exists.stat.exists == false
 
- - name: Create installed file in /var/www/omeka
-   file: path=/var/www/omeka/.installed owner=www-data group=www-data mode=0644 state=touch
+ - name: Create installed file
+   file: path={{ install_dir }}/.installed owner=www-data group=www-data mode=0644 state=touch
    when: omeka_exists.stat.exists == false
