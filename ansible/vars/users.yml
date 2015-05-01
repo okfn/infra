@@ -14,10 +14,6 @@ users:
       group: 'sysadmin'
       authorized_keys:
         - nigelb
-    - name: 'matt'
-      group: 'sysadmin'
-      authorized_keys:
-        - matt
 
   ckan_dev:
     - name: 'amercader'
