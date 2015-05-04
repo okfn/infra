@@ -168,7 +168,6 @@
 
 - name: configure procmail
   copy: src=procmailrc.rt dest=/opt/rt4/etc/procmailrc.rt owner=root group=root mode=0644
-  when: rt_exists.stat.exists == false
 
 - name: Create .installed file now that RT is installed
   file: path=/opt/rt4/.installed state=touch
