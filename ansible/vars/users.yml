@@ -36,6 +36,10 @@ users:
       group: 'ckan_dev'
       authorized_keys:
         - brook
+    - name: 'pwalsh'
+      group: 'ckan_dev'
+      authorized_keys:
+        - paul
 
   openspending_dev:
     - name: 'vitor'
