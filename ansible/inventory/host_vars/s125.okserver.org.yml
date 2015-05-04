@@ -80,13 +80,5 @@ rt_org: rt.okfn.org
 rt_web_port: 443
 rt_web_domain: rt.okfn.org
 
-users_extra:
-  - name: 'vitor'
-    groups:
-      - docker
-      - sysadmin
-    authorized_keys:
-      - 'vitor'
-
 # openscience feed cron
 openscience_cron: True

@@ -24,10 +24,6 @@ users:
       group: 'ckan_dev'
       authorized_keys:
         - joetsoi
-    - name: 'vitor'
-      group: 'ckan_dev'
-      authorized_keys:
-        - vitor
     - name: 'tryggvib'
       group: 'ckan_dev'
       authorized_keys:
@@ -42,10 +38,6 @@ users:
         - paul
 
   openspending_dev:
-    - name: 'vitor'
-      group: 'openspending_dev'
-      authorized_keys:
-        - vitor
     - name: 'tryggvib'
       group: 'openspending_dev'
       authorized_keys:
