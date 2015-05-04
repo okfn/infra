@@ -2,16 +2,16 @@
 - name: Install RT pre-reqs through apt-get
   apt: pkg={{ item }} state=installed update_cache=yes
   with_items:
-  - build-essential 
-  - postgresql-client 
-  - mailutils 
-  - openssl 
-  - libyaml-perl 
-  - libyaml-appconfig-perl 
-  - libssl-dev 
+  - build-essential
+  - postgresql-client
+  - mailutils
+  - openssl
+  - libyaml-perl
+  - libyaml-appconfig-perl
+  - libssl-dev
   - libexpat1-dev
   - libdbd-mysql-perl
-  - libnet-smtp-ssl-perl 
+  - libnet-smtp-ssl-perl
   - libdatetime-event-ical-perl
   - libdbd-pg-perl
   - procmail
@@ -26,7 +26,7 @@
   get_url: url=https://download.bestpractical.com/pub/rt/release/rt-{{ rt_version }}.tar.gz dest=/opt/
   when: rt_exists.stat.exists == false
 
-- name: extract RT 
+- name: extract RT
   unarchive: src=/opt/rt-{{ rt_version }}.tar.gz dest=/opt/ copy=no
   when: rt_exists.stat.exists == false
 
@@ -37,13 +37,13 @@
 
 - name: configure RT install
   command: ./configure
-  args:  
+  args:
     chdir: /opt/rt4-install
   when: rt_exists.stat.exists == false
 
 - name: configure cpan
   command: perl -MCPAN -e 'my $c = "CPAN::HandleConfig"; $c->load(doit => 1, autoconfig => 1); $c->edit(prerequisites_policy => "follow"); $c->edit(build_requires_install_policy => "yes"); $c->commit'
-  args: 
+  args:
     chdir: /opt/rt4-install
   async: 3600
   poll: 60
@@ -109,7 +109,7 @@
   when: rt_exists.stat.exists == false
 
 
-# Due to the way the files get extracted, everything ends up in lower-case with 
+# Due to the way the files get extracted, everything ends up in lower-case with
 # -master, hence the item names below.
 
 - name: run perl Makefile.PL for all nagios plugins
