@@ -10,7 +10,7 @@ s080.okserver.org services="{br,cz,ie,it,no}.ckan.org frontend (nginx, py)" note
 s081.okserver.org services="{br,cz,ie,it,no}.ckan.org backend (postgres)" notes="To be sunsetted by Adam"
 s082.okserver.org services="{asheville,ausgoal,birmingham + 11 other}.ckanhosted.org site frontend" notes="To be sunsetted by Adam"
 s083.okserver.org services="demo.ckan.org frontent (apache, nginx, py)" notes="to be migrated to Linode"
-s084.okserver.org services="{disqus,edo, andothers}.staging.ckanhosted.com frontend setup (apache, nginx)" notes="to be migrated to Linode"
+s084.okserver.org services="{disqus and others}.staging.ckanhosted.com frontend setup (apache, nginx), master.ckan.org, beta.ckan.org" notes="to be migrated to Linode"
 s085.okserver.org services="postgres backend host for s082,s083,s084" notes="to be migrated to Linode"
 s102.okserver.org services="edostate.ckanhosted.com webserver" notes="to be migrated to Linode"
 s103.okserver.org services="edostate.ckanhosted.com db, solr" notes="to be migrated to Linode"
