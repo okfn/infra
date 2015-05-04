@@ -39,16 +39,20 @@ LOGFILE=/var/log/procmail/rt.log
 * ^Subject:.*\[Expensify\]*
 /dev/null
 
+:0w
+* ^Subject:.*\[Turbine\]*
+/dev/null
+
 #Is it spam?
 :0fw: spamassassin.lock
 * < 300000
 | spamc
- 
+
 #if the spam trigger is fired send to spam queue
 :0w
 * ^X-Spam-Flag: YES
 | rt-mailgate --queue spam --action correspond --url https://rt.okfn.org/
- 
+
 #if the spam trigger is not fired then send to expected destination
 :0w
 | rt-mailgate --queue $QUEUE --action $ACTION --url https://rt.okfn.org/
