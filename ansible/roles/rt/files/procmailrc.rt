@@ -1,5 +1,6 @@
 PATH=/bin:/usr/bin:/opt/rt4/bin
 LOGFILE=/var/log/procmail/rt.log
+MAILDIR=/tmp
 
 #Messages >300000 characters proceed to recipient (unlikely to be spam)
 :0w
@@ -16,19 +17,19 @@ LOGFILE=/var/log/procmail/rt.log
 
 :0w
 * ^Subject:.*\[billing\] Heroku Invoice
-! payments@okfn.org
+| rt-mailgate --queue payments --action correspond --url https://rt.okfn.org/
 
 :0w
 * ^Subject:.*\[GANDI\] Insufficient funds
-! payments@okfn.org
+| rt-mailgate --queue payments --action correspond --url https://rt.okfn.org/
 
 :0w
 * ^Subject:.*\[GANDI\] Invoice
-! payments@okfn.org
+| rt-mailgate --queue payments --action correspond --url https://rt.okfn.org/
 
 :0w
 * ^Subject:.*\[CloudFlare\] Invoice
-! payments@okfn.org
+| rt-mailgate --queue payments --action correspond --url https://rt.okfn.org/
 
 :0w
 * ^From.service@paypal.co.uk
