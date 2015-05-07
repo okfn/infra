@@ -81,10 +81,10 @@ if [ "$#" -ne 2 ]; then
 fi
 
 status "making backup of source database"
-maybe quietly heroku pgbackups:capture -e -a "${SRC_APP}"
+maybe quietly heroku pg:backups capture -e -a "${SRC_APP}"
 
 status "making backup of destination database"
-maybe quietly heroku pgbackups:capture -e -a "$DST_APP"
+maybe quietly heroku pg:backups capture -e -a "$DST_APP"
 
 status "enabling maintenance mode on destination app"
 maybe quietly heroku maintenance:on -a "$DST_APP"
