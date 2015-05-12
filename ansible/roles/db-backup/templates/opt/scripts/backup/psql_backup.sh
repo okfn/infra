@@ -13,30 +13,30 @@ psql_exclude_dbs='template1 template0'
 if [ -f $backup_config ];
 then
 	rsync_target=$(awk -F: /backup_rsync_target/'{print $2}' $backup_config | sed -e 's/^ //g')
-	
+
 	port=$(awk -F: /psql_port/'{print $2}' ${backup_config} | sed -e 's/^ //g')
 	if [ ! -z "${port}" ];
 	then
 	        db_port=${port}
 	fi
-	
+
 	host=$(awk -F: /psql_host/'{print $2}' ${backup_config} | sed -e 's/^ //g')
 	if [ ! -z "${host}" ];
 	then
 	        db_host=${host}
 	fi
-	
+
 	dbadmin=$(awk -F: /psql_db_admin/'{print $2}' ${backup_config} | sed -e 's/^ //g')
 	if [ ! -z "${dbadmin}" ];
 	then
 	        db_admin=${dbadmin}
 	fi
-		
-		
+
+
 	if [ "$db_admin" = "postgres" ]; #we assume the db is locally hosted
 	then
 		db_list=$(su - postgres -c "psql -l -t" | awk -F'|' '{print $1}' | sed  -e '/^\s*$/d'  -e 's/^ //g')
-	else	
+	else
 		db_list=$(psql -U${db_admin} -h${db_host} -p${db_port} -l -t | awk -F'|' '{print $1}' | sed  -e '/^\s*$/d'  -e 's/^ //g')
 		if [ ! -f ${pg_pass} ];
 		then
@@ -61,26 +61,26 @@ then
 	then
 		mkdir -p ${backup_dir}
 	fi
-		
-	#delete any backup archives older than 3 days.  
+
+	#delete any backup archives older than 3 days.
 	find ${backup_dir}/* -mtime +3 -exec rm {} \;
 
 	for db in $db_list;
-	do  
+	do
 		echo $psql_exclude_dbs | grep -P '\b'${db}'\b' -q
 		if [ $? -eq 1 ];
 		then
-		
+
 			ts=$(date +%s)
 			backup_archive="${ts}-$(hostname -s)-${db}-pql.gz"
 
 			if [ "$db_admin" = "postgres" ]; #we assume the db is locally hosted
 			then
 				su - postgres -c "/usr/bin/pg_dump ${db}" | gzip > ${backup_dir}/${backup_archive}
-			else	
+			else
 				/usr/bin/pg_dump -U${db_admin} -h${db_host} -p${db_port} ${db} | gzip > ${backup_dir}/${backup_archive}
 			fi
-			
+
 			if [ -s ${backup_dir}/${backup_archive} ];
 			then
 			    /usr/bin/rsync ${backup_dir}/${backup_archive} rsync://${rsync_target}/psql_backups
@@ -91,8 +91,8 @@ then
 					exit 1
 				fi
 	   		fi
-		fi		
-        {% if psql_snitch %}
+		fi
+        {% if psql_snitch is defined %}
         curl "https://nosnch.in/{{ psql_snitch }}" &> /dev/null
         {% endif %}
 
