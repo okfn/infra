@@ -80,9 +80,6 @@ if [ "$#" -ne 2 ]; then
   exit 1
 fi
 
-status "making backup of source database"
-maybe quietly heroku pg:backups capture -e -a "${SRC_APP}"
-
 status "making backup of destination database"
 maybe quietly heroku pg:backups capture -e -a "$DST_APP"
 
