@@ -81,7 +81,7 @@ if [ "$#" -ne 2 ]; then
 fi
 
 status "making backup of destination database"
-maybe quietly heroku pg:backups capture -e -a "$DST_APP"
+maybe quietly heroku pg:backups capture -a "$DST_APP"
 
 status "enabling maintenance mode on destination app"
 maybe quietly heroku maintenance:on -a "$DST_APP"
@@ -90,8 +90,8 @@ status "removing existing destination database"
 maybe quietly heroku pg:reset DATABASE_URL -a "$DST_APP" --confirm
 
 status "transferring data from source to destination"
-maybe quietly heroku pgbackups:transfer -a "$DST_APP" --confirm "$DST_APP" \
-  "$SRC_APP"::DATABASE_URL DATABASE_URL
+maybe quietly heroku pg:copy "$SRC_APP"::DATABASE_URL DATABASE_URL -a \
+    "$DST_APP" --confirm okfn-staging
 
 status "syncing asset buckets"
 syncassets "$SRC_APP" "$DST_APP"
