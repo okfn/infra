@@ -1,0 +1,11 @@
+users_extra:
+  - name: 'wardi'
+    groups:
+      - ckan_dev
+    authorized_keys:
+      - 'wardi'
+  - name: 'dread'
+    groups:
+      - ckan_dev
+    authorized_keys:
+      - 'dread'
