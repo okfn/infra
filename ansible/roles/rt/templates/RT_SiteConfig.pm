@@ -23,6 +23,7 @@ Plugin('RT::Extension::Nagios');
 Plugin( "RT::Extension::CommandByMail" );
 Set( @MailPlugins, qw(Auth::MailFrom Filter::TakeAction) );
 Set( $CommandByMailHeader, "X-OKF-UZOQU0" );
+Set( $CommandByMailGroup, 357 );
 
 Plugin( "RT::Extension::RepeatTicket" );
 Set( $RepeatTicketCoexistentNumber, 1 ); # Optional
