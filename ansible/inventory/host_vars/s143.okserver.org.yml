@@ -1,0 +1,8 @@
+---
+aws: true
+sites_enabled:
+  - status.okfn.org
+  - apt.okserver.org
+  - graphite.okfn.org
+postfix_managed: true
+postfix_map_files: ['generic']
