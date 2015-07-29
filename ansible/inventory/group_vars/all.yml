@@ -9,7 +9,6 @@ graphite_port: 2003
 graphite_server: graphite.okfn.org
 hostname_tld: okserver.org
 iptables_config_file: '/etc/iptables/rules.v4'
-enabled_local_checks: ['apt-security-check']
 locale_list:
   - en_GB.utf8
 mail_domains: []
