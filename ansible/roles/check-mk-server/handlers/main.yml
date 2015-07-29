@@ -1,5 +1,5 @@
 ---
 - name: reload check_mk
   shell: /usr/bin/check_mk -u -II && /usr/bin/check_mk -O
-  async: 120
+  async: 300
   poll: 15
