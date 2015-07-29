@@ -8,7 +8,7 @@
 - name: add_php-fpm_config
   copy: src={{ item }} dest=/etc/php5/fpm/
   with_items:
-     -  etc/php-fpm/php-fpm.conf
+     -  php-fpm.conf
   notify: restart php5-fpm
   tags:
      - add_config_fpm
@@ -17,7 +17,7 @@
 - name: add_php-fpm_pool_config
   copy: src={{ item }} dest=/etc/php5/fpm/pool.d/
   with_items:
-     - etc/php-fpm/{{ inventory_hostname }}/fpm_pool_sites.conf
+     - "{{ inventory_hostname }}/fpm_pool_sites.conf"
   notify: restart php5-fpm
   tags:
      - add_php-fpm_pool_config
