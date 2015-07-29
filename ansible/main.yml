@@ -144,8 +144,9 @@ omeka_db_password: "{{ omeka[1].db_password }}", omeka_db_name: 'espace_omeka' }
     - "{{ private_dir }}/p.yml"
   roles:
     - { role: nagios-server, tags: ['nagios-server'] }
-    - check-mk-server
+    - { role: check-mk-server, tags: ['check-mk-server'] }
     - { role: graphite, tags: ['graphite'] }
+    - { role: nginx, tags: ['nginx'] }
 
 - hosts: listserv
   sudo: true
