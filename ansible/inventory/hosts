@@ -1,5 +1,4 @@
 [monitoring]
-s117.okserver.org hosted=aws
 s143.okserver.org hosted=aws
 
 [docker-host]
