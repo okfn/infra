@@ -1,56 +1,56 @@
 server {
-	listen 80;
-	client_max_body_size 4M;
-	server_name graphite.okfn.org;
-	access_log /var/log/nginx/graphite.okfn.org.access.log;
-	error_log /var/log/nginx/graphite.okfn.org.error.log;	
-	
-	satisfy any;
-        allow 54.211.250.65;
-        deny all;	
-	auth_basic      "Magic word?";
+    listen 80;
+    client_max_body_size 4M;
+    server_name graphite.okfn.org;
+    access_log /var/log/nginx/graphite.okfn.org.access.log;
+    error_log /var/log/nginx/graphite.okfn.org.error.log;
+
+    satisfy any;
+        allow 52.5.139.123;
+        deny all;
+        auth_basic      "Magic word?";
         auth_basic_user_file    htpasswd;
-	
-	location /graphite/ {
-		gzip off;
-		include uwsgi_params;
-		uwsgi_pass 127.0.0.1:3031;
-	}
-	location /content {
-		alias /opt/graphite/webapp/graphite/content;
-		gzip off;
-		include uwsgi_params;
-		uwsgi_pass 127.0.0.1:3031;
-	}
-	location /metrics {
-		alias /opt/graphite/webapp/graphite/metrics;
-		gzip off;
-		include uwsgi_params;
-		uwsgi_pass 127.0.0.1:3031;
-	}
-	location /dashboard {
-		alias /opt/graphite/webapp/graphite/dashboard;
-		gzip off;
-		include uwsgi_params;
-		uwsgi_pass 127.0.0.1:3031;
-	}
-	location /render {
-		alias /opt/graphite/webapp/graphite/render;
-		gzip off;
-		include uwsgi_params;
-		uwsgi_pass 127.0.0.1:3031;
-	}
-	location /browser {
-		alias /opt/graphite/webapp/graphite/browser;
-		gzip off;
-		include uwsgi_params;
-		uwsgi_pass 127.0.0.1:3031;
-	}
-	location /composer {
-		alias /opt/graphite/webapp/graphite/composer;
-		gzip off;
-		include uwsgi_params;
-		uwsgi_pass 127.0.0.1:3031;
-	}
+
+    location /graphite/ {
+        gzip off;
+        include uwsgi_params;
+        uwsgi_pass 127.0.0.1:3031;
+    }
+    location /content {
+        alias /opt/graphite/webapp/graphite/content;
+        gzip off;
+        include uwsgi_params;
+        uwsgi_pass 127.0.0.1:3031;
+    }
+    location /metrics {
+        alias /opt/graphite/webapp/graphite/metrics;
+        gzip off;
+        include uwsgi_params;
+        uwsgi_pass 127.0.0.1:3031;
+    }
+    location /dashboard {
+        alias /opt/graphite/webapp/graphite/dashboard;
+        gzip off;
+        include uwsgi_params;
+        uwsgi_pass 127.0.0.1:3031;
+    }
+    location /render {
+        alias /opt/graphite/webapp/graphite/render;
+        gzip off;
+        include uwsgi_params;
+        uwsgi_pass 127.0.0.1:3031;
+    }
+    location /browser {
+        alias /opt/graphite/webapp/graphite/browser;
+        gzip off;
+        include uwsgi_params;
+        uwsgi_pass 127.0.0.1:3031;
+    }
+    location /composer {
+        alias /opt/graphite/webapp/graphite/composer;
+        gzip off;
+        include uwsgi_params;
+        uwsgi_pass 127.0.0.1:3031;
+    }
 }
 

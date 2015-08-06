@@ -1,15 +1,15 @@
 server {
-	listen 80;
-	server_name apt.okserver.org;
-	root /var/www/pkgs;
+    listen 80;
+    server_name apt.okserver.org;
+    root /var/www/pkgs;
 
 
-	access_log /var/log/nginx/apt.access.log;
-	error_log /var/log/nginx/apt.error.log;
-	
-	location / {
-	
-		autoindex on;
-	}
+    access_log /var/log/nginx/apt.access.log;
+    error_log /var/log/nginx/apt.error.log;
+
+    location / {
+
+        autoindex on;
+    }
 }
 
