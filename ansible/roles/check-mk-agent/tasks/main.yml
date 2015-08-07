@@ -18,6 +18,7 @@
   lineinfile: dest="{{ iptables_config_file }}"
               regexp='dport "{{ check_mk_port }}" -j monitoring$'
               line='-A INPUT -s "{{ monitoring_server }}" -p tcp -m tcp --dport "{{ check_mk_port }}" -j monitoring' insertbefore='^COMMIT' state=present
+  tags: check-mk-iptables
   notify: restart iptables-persistent
 
 - name: setup_plugin_checks

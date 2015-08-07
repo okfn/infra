@@ -34,6 +34,14 @@
 -A ban_abusive_ips -j DROP
 
 #Ansible template note: indentation for jinja conditionals was not done, cause resulting space characters in the iptables file was causing issues with iptables-restore
+# respond to pings
+-A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+-A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
+
+# allow loopback network
+-A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+
 #\{\%- trims spaces, but ensure the line is separated by an empty line.
 {% if inventory_hostname in groups['dbservers'] %}
 {% if hostvars[inventory_hostname]['webserver_private_ip_list'] is defined %}
