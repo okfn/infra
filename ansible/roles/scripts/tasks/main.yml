@@ -1,7 +1,6 @@
 #Adds scripts, which can be defined per host/group basis, these variables which accept a list,
 #
 # scripts: generic scripts
-# graphite_collectors : list of  graphite collector script names to be included
 # enabled_local_checks: list of check_mk local checks which should be enabled - http://mathias-kettner.de/checkmk_localchecks.html
 # disabled_local_checks: local checks that should be disabled
 #
@@ -47,24 +46,6 @@
   with_items:
      - '/opt/scripts/graphite_collectors'
      - '/opt/scripts/graphite_collectors/myutils'
-  tags:
-     - scripts
-     - graphite_collectors
-
-- name: add_myutils
-  copy: src={{ item }} dest=/opt/scripts/graphite_collectors/myutils/
-  with_fileglob:
-     - opt/scripts/graphite_collectors/myutils/*
-  when: graphite_collectors is defined
-  tags:
-     - scripts
-     - graphite_utils
-     - graphite_collectors
-
-- name: ensure_collectors
-  copy: src=opt/scripts/graphite_collectors/{{ item }} dest=/opt/scripts/graphite_collectors/
-  with_items: graphite_collectors
-  when: graphite_collectors is defined
   tags:
      - scripts
      - graphite_collectors

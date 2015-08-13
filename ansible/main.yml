@@ -9,7 +9,7 @@
     - "{{ private_dir }}/p.yml"
   roles:
     - { role: check-mk-agent, tags: ['check-mk-agent'] }
-    - { role: collectd, tags: ['collectd'] }
+    #- { role: collectd, tags: ['collectd'] }
     - { role: cron, tags: ['cron'] }
     - { role: iptables-persistent, tags: ['iptables-persistent'] }
     - { role: motd, tags: ['motd'] }
@@ -145,7 +145,6 @@ omeka_db_password: "{{ omeka[1].db_password }}", omeka_db_name: 'espace_omeka' }
   roles:
     - { role: nagios-server, tags: ['nagios-server'] }
     - { role: check-mk-server, tags: ['check-mk-server'] }
-    - { role: graphite, tags: ['graphite'] }
     - { role: nginx, tags: ['nginx'] }
 
 - hosts: listserv

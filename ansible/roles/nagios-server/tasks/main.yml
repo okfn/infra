@@ -65,7 +65,6 @@
         group=nagios
   notify: reload nagios
   with_items:
-    - check_graphite.py
     - pagerduty_nagios.pl
 
 - name: install pagerduty config

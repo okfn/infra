@@ -5,8 +5,6 @@ backup_rsync_target: s134.okserver.org
 check_mk_port: 6556
 ckan_sysadmin_email: 'ckan-sysadmin@okfn.org'
 docker_host: false
-graphite_port: 2003
-graphite_server: graphite.okfn.org
 hostname_tld: okserver.org
 iptables_config_file: '/etc/iptables/rules.v4'
 locale_list:

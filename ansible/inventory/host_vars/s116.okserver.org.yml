@@ -9,8 +9,6 @@ sites_to_monitor:
 ssl_sites_to_monitor:
   - lists.okfn.org
 
-graphite_collectors: [ 'mailman_stats.py', 'postfix_spam_stats.py' ]
-check_graphite: ['sum(mail_metrics.mailman.subscribe.*.pending):-1hours:20:30']
 check_parameters: ['Postfix Queue:80:120']
 
 postfix_additional_aliases: |

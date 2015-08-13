@@ -18,15 +18,6 @@ need to be enabled on the host. Setting this var adds the script into the `check
 
     local_checks: ['exim_mailqueue']
 
-## `check_graphite`
-
-`check_graphite` is an array of metrics from graphite to be monitored, each array element looks like 
-
-    <metric.datapoint>:timeperiod:<warning level>:<critical level>
-e.g
-
-    ['mail_metrics.mailman.subscribe.lod2.pending:-1hours:20:30']
-
 ## `check_parameters`
 
 `check_parameters` is an array of parameters which should be setup per check, these apply to both inventorized and manually defined checks,
@@ -34,7 +25,7 @@ each array element should be in the format:
 
     <check name>:<warning level>:<critical level>
 
- e.g: 
+ e.g:
 
      check_parameters: ['Postfix Queue:80:120']
 
@@ -105,19 +96,11 @@ This var expects an array of rules that should be directly applied to the
 server, was added to allow adding custom rules without having to create rule
 files for each host.
 
-## `graphite_collectors`
-
-This variable expects an array of graphite collector script names. This allows
-us to include just the right collector scripts, and add its cronjob on each
-host/group.
-
-    graphite_collectors: ['exim_stats.py', 'mailman_stats.py']
-
 ## `timezone`
 
 This variable allows us to define the timezone for each host/group, which is
 then setup by the ntpd role. The defined timezone should be a tz file defined under `/usr/share/zoneinfo`
- 
+
     timezone: UTC
 
 ## `postfix_map_files`
