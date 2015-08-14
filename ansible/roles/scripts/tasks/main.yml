@@ -3,14 +3,12 @@
 # scripts: generic scripts
 # enabled_local_checks: list of check_mk local checks which should be enabled - http://mathias-kettner.de/checkmk_localchecks.html
 # disabled_local_checks: local checks that should be disabled
-#
-# The script sets up /opt/scripts/config/config.cfg which is required by some scripts.
+
 ---
 - name: ensure_directory
   file: state=directory dest={{ item }} owner=root group=root
   with_items:
      - /opt/scripts
-     - /opt/scripts/config
   tags: scripts
 
 - name: ensure_scripts
@@ -26,38 +24,6 @@
 - name: ensure_configparser
   pip: name=configparser
   tags: scripts
-
-#some script config might be private
-- name: ensure_script_config
-  template: src={{ item }} dest=/opt/scripts/config/config.ini
-  with_first_found:
-     - files:
-        - opt/scripts/config/{{ inventory_hostname }}/config.j2
-        - opt/scripts/config/config.j2
-       paths:
-        - ../templates
-  ignore_errors: true
-  tags: scripts
-
-## tasks for graphite collector scripts
-- name: ensure_graphite_scripts_dir
-  file: path={{ item }} state=directory
-  when: graphite_collectors is defined
-  with_items:
-     - '/opt/scripts/graphite_collectors'
-     - '/opt/scripts/graphite_collectors/myutils'
-  tags:
-     - scripts
-     - graphite_collectors
-
-- name: ensure_collector_cronjobs
-  copy: src=opt/scripts/graphite_collectors/cron.d/{{ item.split('.')[0] }}_graphite dest=/etc/cron.d/ owner=root group=root
-  with_items: graphite_collectors
-  when: graphite_collectors is defined
-  tags:
-     - scripts
-     - graphite_collectors
-
 
 ## tasks for check_mk check scripts
 - name: setup_local_checks_dir
