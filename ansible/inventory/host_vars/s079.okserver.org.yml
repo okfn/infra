@@ -5,3 +5,5 @@ nginx_ssl_certs:
   - publicdata.eu
 db_type: postgres
 sites_to_monitor: ['publicdata.eu:80:200']
+ssl_sites_to_monitor:
+  - publicdata.eu
