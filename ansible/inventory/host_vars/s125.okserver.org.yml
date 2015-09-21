@@ -6,17 +6,14 @@ docker_host: true
 sites_to_monitor:
   - pad.okfn.org:80:301 # monitor port 80, and check for status 200
   - booktype.okfn.org:80:200
-  - rt.okfn.org:80:301 # SSL redirect
   - sendy.okfn.org:80:301 # SSL redirect
 
 ssl_sites_to_monitor:
-  - rt.okfn.org
   - pad.okfn.org
   - sendy.okfn.org
 
 ##for nginx
 sites_enabled:
-  - rt.okfn.org
   - pad.okfn.org
   - booktype.okfn.org
   - sendy.okfn.org
@@ -28,10 +25,7 @@ nginx_ssl_certs:
 postfix_additional_aliases: |
   school-of-data: /dev/null
 postfix_additional_trusted_networks: "172.17.0.0/16"
-postfix_relay_domains:
-  - rt.okfn.org
 postfix_transport: |
-  rt.okfn.org                   smtp:127.0.0.1:49153
   school-of-data@lists.okfn.org local:
 # We use recipient_access to enable restrictions on outbound mail from RT. Use
 # DISCARD rather than reject (thus simulating successful delivery) to prevent
@@ -71,14 +65,6 @@ psql_exclude_dbs:
   - postgres
   - rdsadmin
   - dbadmin
-
-#RT docker instance config
-rt_db_user: rt_user
-rt_db_name: rt4
-rt_name: rt.okfn.org
-rt_org: rt.okfn.org
-rt_web_port: 443
-rt_web_domain: rt.okfn.org
 
 # openscience feed cron
 openscience_cron: True
