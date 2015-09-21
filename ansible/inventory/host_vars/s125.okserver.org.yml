@@ -68,3 +68,9 @@ psql_exclude_dbs:
 
 # openscience feed cron
 openscience_cron: True
+users_extra:
+  - name: 'dfowler'
+    groups:
+      - sysadmin
+    authorized_keys:
+      - 'dfowler'
