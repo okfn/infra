@@ -25,6 +25,7 @@ s137.okserver.org services="datagm, staging"
 s141.okserver.org services="monitor, staging"
 ## Digital Ocean
 s138.okserver.org services="ckan packaging"
+s142.okserver.org services="piwik analytics"
 ## AWS
 s131.okserver.org services="CKAN-X birmingham frontend and db/solr"
 --------

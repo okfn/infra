@@ -73,6 +73,9 @@ s135.okserver.org hosted=aws
 [omeka]
 s140.okserver.org hosted=digital-ocean
 
+[piwik]
+s142.okserver.org hosted=digital-ocean
+
 [labs]
 s110.okserver.org hosted=hetzner
 
@@ -90,6 +93,7 @@ ckan-web-prod
 ckan-db-prod
 ckan-packaging
 ckan-solr-prod
+piwik
 
 [test-group:children]
 backup
