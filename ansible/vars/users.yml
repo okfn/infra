@@ -50,6 +50,10 @@ users:
       group: 'openspending_dev'
       authorized_keys:
         - holger
+    - name: dfowler
+      group: 'labs_dev'
+      authorized_keys:
+        - dfowler
 
   labs_dev:
     - name: 'rowan.crawford'
