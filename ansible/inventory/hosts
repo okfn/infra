@@ -84,7 +84,6 @@ ckan-web-dev
 ckan-db-dev
 ckan-web-prod
 ckan-db-prod
-ckan-packaging
 ckan-solr-prod
 piwik
 
