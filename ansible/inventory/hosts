@@ -30,14 +30,12 @@ s086.okserver.org hosted=rackspace-managed
 s102.okserver.org hosted=rackspace
 s122.okserver.org hosted=rackspace
 s131.okserver.org hosted=aws
-s132.okserver.org hosted=linode
 
 [ckan-db-prod]
 s076.okserver.org hosted=rackspace-managed
 s078.okserver.org hosted=rackspace-managed
 s103.okserver.org hosted=rackspace
 s123.okserver.org hosted=rackspace
-s124.okserver.org hosted=linode
 s131.okserver.org hosted=aws
 
 [ckan-solr-prod]
