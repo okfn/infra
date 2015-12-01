@@ -97,22 +97,6 @@ omeka_db_password: "{{ omeka[1].db_password }}", omeka_db_name: 'espace_omeka' }
       awscli_user_home: /home/heroku
     - { role: okfn-org-manager, tags: ['heroku-backup'] }
 
-- hosts: s138.okserver.org
-  sudo: true
-  vars:
-     - private_dir: ../../credentials/ansible
-  vars_files:
-    - "{{ private_dir }}/p.yml"
-  roles:
-    - role: awscli
-      tags: ['awscli']
-      key: "{{ aws_keys[0].key }}"
-      secret_key: "{{ aws_keys[0].secret_key }}"
-      region: "{{ aws_keys[0].region }}"
-      awscli_user: root
-      awscli_group: root
-      awscli_user_home: /root
-
 - hosts: s079.okserver.org
   sudo: true
   roles:

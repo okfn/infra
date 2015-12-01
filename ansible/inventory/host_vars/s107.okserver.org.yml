@@ -1,7 +1,0 @@
----
-dbserver_private_ip: 10.181.26.142
-solrserver_private_ip: 10.181.26.142
-elasticserver_private_ip: 10.181.26.142
-sites_to_monitor: ['datahub.io:80:200'] #sitename,port,http status
-sites_enabled:
-    - [ 'thedatahub.org' ]

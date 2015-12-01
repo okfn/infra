@@ -1,6 +1,0 @@
----
-webserver_private_ip: 10.181.26.71
-db_type: postgres
-backup_postgres: true
-backup_scripts:
-   - psql_backup.sh

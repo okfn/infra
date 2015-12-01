@@ -24,7 +24,6 @@ s130.okserver.org services="sweden, pakistan, mexico, and edo staging; and servi
 s137.okserver.org services="datagm, staging"
 s141.okserver.org services="monitor, staging"
 ## Digital Ocean
-s138.okserver.org services="ckan packaging"
 s142.okserver.org services="piwik analytics"
 ## AWS
 s131.okserver.org services="CKAN-X birmingham frontend and db/solr"
@@ -33,9 +32,6 @@ s131.okserver.org services="CKAN-X birmingham frontend and db/solr"
 # Labs
 ## Hetzner
 s110.okserver.org services="labs"
-## Rax managed
-s107.okserver.org services="datahub.io webhead" owner="rgrp,rossjones" notes="to be migrated to AWS"
-s108.okserver.org services="datahub.io db, solr" owner="rgrp,rossjones" notes="to be migrated to AWS"
 --------
 
 # Projects
