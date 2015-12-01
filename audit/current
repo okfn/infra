@@ -15,10 +15,7 @@ s122.okserver.org services="datapackager" notes="To be migrated to Linode"
 s123.okserver.org services="datapackager ckan-web, ckan-db, and ckan-solr" notes="To be migrated to Linode"
 ## Linode Managed
 s124.okserver.org services="prod db and solr cluster on linode"
-s128.okserver.org services="barnet webhead"
-s129.okserver.org services="barnet db, solr" notes="convert to web head in future and move db/solr to s124"
 s132.okserver.org services="pakistan frontend"
-s144.okserver.org services="NI frontend"
 ## Linode
 s130.okserver.org services="sweden, pakistan, mexico, and edo staging; and servicesdemo"
 s137.okserver.org services="datagm, staging"
