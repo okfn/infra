@@ -13,6 +13,7 @@ users_extra:
       - 'stiivi'
 sudo_extras:
   - tryggvib
+  - dfowler
 sudo_extra_lines:
   - '%openspending_dev ALL=(ALL) NOPASSWD: /usr/bin/supervisorctl *'
 sites_to_monitor:
