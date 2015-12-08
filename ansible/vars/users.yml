@@ -20,14 +20,6 @@ users:
       group: 'ckan_dev'
       authorized_keys:
         - amercader
-    - name: 'joetsoi'
-      group: 'ckan_dev'
-      authorized_keys:
-        - joetsoi
-    - name: 'tryggvib'
-      group: 'ckan_dev'
-      authorized_keys:
-        - tryggvib
     - name: 'brook'
       group: 'ckan_dev'
       authorized_keys:
@@ -84,9 +76,6 @@ users:
       group: 'labs_dev'
       authorized_keys:
         - umbrich
-    - name: mihi
-      authorized_keys:
-        - mihi
     - name: tonyh
       authorized_keys:
         - tonyh
