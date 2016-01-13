@@ -89,3 +89,29 @@ users:
       group: 'monitoring'
       authorized_keys:
         - nagios
+
+  openspending:
+    - name: 'pwalsh'
+      group: 'openspending'
+      authorized_keys:
+        - paul
+    - name: dfowler
+      group: 'openspending'
+      authorized_keys:
+        - dfowler
+    - name: akariv
+      group: 'openspending'
+      authorized_keys:
+        - akariv
+    - name: roll
+      group: 'openspending'
+      authorized_keys:
+        - roll
+    - name: lkravets
+      group: 'openspending'
+      authorized_keys:
+        - lkravets
+    - name: iborysyuk
+      group: 'openspending'
+      authorized_keys:
+        - iborysyuk
