@@ -1,3 +1,5 @@
 ---
 devs_group: 'openspending'
 sysadmin_email: "{{ openspending_sysadmin_email }}"
+sudo_extras:
+  - '%openspending'
