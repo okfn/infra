@@ -13,6 +13,12 @@ s145.okserver.org hosted=aws
 [openspending-solr]
 s139.okserver.org hosted=aws
 
+[opentrials-web]
+s146.okserver.org hosted=aws
+
+[opentrials:children]
+opentrials-web
+
 [ckan-web-dev]
 s083.okserver.org hosted=rackspace
 s084.okserver.org hosted=rackspace

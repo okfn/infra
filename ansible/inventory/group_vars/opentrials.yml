@@ -1,0 +1,5 @@
+---
+devs_group: 'opentrials'
+sudo_extras:
+  - '%opentrials'
+

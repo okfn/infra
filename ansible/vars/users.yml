@@ -115,3 +115,17 @@ users:
       group: 'openspending'
       authorized_keys:
         - iborysyuk
+
+  opentrials:
+    - name: 'pwalsh'
+      group: 'opentrials'
+      authorized_keys:
+        - paul
+    - name: dfowler
+      group: 'opentrials'
+      authorized_keys:
+        - dfowler
+    - name: akariv
+      group: 'opentrials'
+      authorized_keys:
+        - akariv
