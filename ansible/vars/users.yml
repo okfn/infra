@@ -129,3 +129,7 @@ users:
       group: 'opentrials'
       authorized_keys:
         - akariv
+    - name: roll
+      group: 'opentrials'
+      authorized_keys:
+        - roll
