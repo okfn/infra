@@ -33,6 +33,7 @@ s110.okserver.org services="labs"
 s133.okserver.org services="openspending and farmsubsidy frontend"
 s139.okserver.org services="openspending and farmsubsidy solr"
 s145.okserver.org services="openspending frontend"
+s146.okserver.org services="opentrials frontend"
 ## DigitalOcean
 s140.okserver.org services="omeka server" notes="owned by eSpace project"
 --------
