@@ -28,6 +28,10 @@ users:
       group: 'ckan_dev'
       authorized_keys:
         - paul
+    - name: 'vitor'
+      group: 'ckan_dev'
+      authorized_keys:
+        - vitor
 
   openspending_dev:
     - name: 'tryggvib'
