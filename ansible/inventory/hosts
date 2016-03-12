@@ -37,14 +37,12 @@ s141.okserver.org hosted=linode
 s079.okserver.org hosted=rackspace-managed
 s086.okserver.org hosted=rackspace-managed
 s102.okserver.org hosted=rackspace
-s122.okserver.org hosted=rackspace
 s131.okserver.org hosted=aws
 
 [ckan-db-prod]
 s076.okserver.org hosted=rackspace-managed
 s078.okserver.org hosted=rackspace-managed
 s103.okserver.org hosted=rackspace
-s123.okserver.org hosted=rackspace
 s131.okserver.org hosted=aws
 
 [ckan-solr-prod]
@@ -82,6 +80,7 @@ s136.okserver.org hosted=aws
 [openspending:children]
 openspending-solr
 openspending-web
+openspending-new
 
 [ckan:children]
 ckan-web-dev
@@ -112,6 +111,7 @@ omeka
 ckan-web-dev
 ckan-web-prod
 openspending-web
+openspending-new
 wiki
 labs
 listserv

@@ -16,6 +16,11 @@ all_hosts = [
 "{{ host }}|openspending",
   {% endif %}
 {% endfor %}
+{% for host in groups['opentrials'] %}
+  {% if hostvars[host]['disable_nagios_checks'] is not defined %}
+"{{ host }}|opentrials",
+  {% endif %}
+{% endfor %}
 {% for host in nagios_additional_hosts %}
 "{{ host }}",
 {% endfor %}
@@ -120,6 +125,7 @@ define_hostgroups = {
  "Sysadmin-servers" : "These servers are not specific to any project.",
  "CKAN-Servers" : "These servers run CKAN.",
  "Openspending-Servers" : "These servers run Openspending and related webservices.",
+ "Opentrials": "These servers run opentrials",
  "Rackspace" : "Hosts at rackspace",
  "Hetzner" : "Hosts at hetzner",
  "AWS": "Hosts at AWS",
@@ -130,6 +136,7 @@ host_groups = [
 ('Sysadmin-Servers', [ {% for host in groups['sysadmin-servers'] %} '{{ host }}', {% endfor %} ] ),
 ('CKAN-Servers', [ {% for host in groups['ckan']  %} '{{ host }}', {% endfor %} ] ),
 ('Openspending-Servers', [ {% for host in groups['openspending'] %} '{{ host }}', {% endfor %} ] ),
+('Opentrials', [ {% for host in groups['opentrials'] %} '{{ host }}', {% endfor %} ] ),
 ('Rackspace', [ {% for host in groups['all'] %}{% if hostvars[host]['hosted'] == 'rackspace' or hostvars[host]['hosted'] == 'rackspace-managed' %} '{{ host }}', {% endif %}{% endfor %} ] ),
 ('AWS', [ {% for host in groups['all'] %}{% if hostvars[host]['hosted'] == 'aws' %} '{{ host }}', {% endif %}{% endfor %} ] ),
 ('Hetzner', [ {% for host in groups['all'] %}{% if hostvars[host]['hosted'] == 'hetzner' %} '{{ host }}', {% endif %}{% endfor %} ] ),
@@ -166,7 +173,7 @@ define serviceescalation {
 }
 
 define hostescalation {
-    hostgroup_name  Sysadmin-Servers,CKAN-Servers,Openspending-Servers
+    hostgroup_name  Sysadmin-Servers,CKAN-Servers,Openspending-Servers,Opentrials
     first_notification      5
     last_notification       0
     notification_interval   60
