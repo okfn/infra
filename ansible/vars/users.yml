@@ -119,6 +119,10 @@ users:
       group: 'openspending'
       authorized_keys:
         - iborysyuk
+    - name: 'vitor'
+      group: 'openspending'
+      authorized_keys:
+        - vitor
 
   opentrials:
     - name: 'pwalsh'
@@ -137,3 +141,7 @@ users:
       group: 'opentrials'
       authorized_keys:
         - roll
+    - name: 'vitor'
+      group: 'opentrials'
+      authorized_keys:
+        - vitor
