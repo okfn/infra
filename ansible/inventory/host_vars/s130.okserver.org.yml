@@ -1,3 +1,0 @@
----
-sudo_extra_lines:
-  - 'deploy ALL=(ALL) NOPASSWD: /usr/bin/service apache2 *'
