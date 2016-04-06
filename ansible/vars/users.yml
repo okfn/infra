@@ -2,10 +2,6 @@
 #
 users:
   sysadmin:
-    - name: 'rgrp'
-      group: 'sysadmin'
-      authorized_keys:
-        - rgrp
     - name: 'okfn'
       group: 'sysadmin'
       authorized_keys:
@@ -14,30 +10,26 @@ users:
       group: 'sysadmin'
       authorized_keys:
         - nigelb
-
-  ckan_dev:
+    - name: 'pwalsh'
+      group: 'sysadmin'
+      authorized_keys:
+        - paul
     - name: 'amercader'
-      group: 'ckan_dev'
+      group: 'sysadmin'
       authorized_keys:
         - amercader
     - name: 'brook'
-      group: 'ckan_dev'
+      group: 'sysadmin'
       authorized_keys:
         - brook
-    - name: 'pwalsh'
-      group: 'ckan_dev'
-      authorized_keys:
-        - paul
+
+  ckan_dev:
     - name: 'vitor'
       group: 'ckan_dev'
       authorized_keys:
         - vitor
 
   openspending_dev:
-    - name: 'tryggvib'
-      group: 'openspending_dev'
-      authorized_keys:
-        - tryggvib
     - name: 'stefan'
       group: 'openspending_dev'
       authorized_keys:
@@ -95,10 +87,6 @@ users:
         - nagios
 
   openspending:
-    - name: 'pwalsh'
-      group: 'openspending'
-      authorized_keys:
-        - paul
     - name: dfowler
       group: 'openspending'
       authorized_keys:
@@ -125,10 +113,6 @@ users:
         - vitor
 
   opentrials:
-    - name: 'pwalsh'
-      group: 'opentrials'
-      authorized_keys:
-        - paul
     - name: dfowler
       group: 'opentrials'
       authorized_keys:

@@ -1,11 +1,4 @@
 ---
-users_extra:
-  - name: 'everton'
-    groups:
-      - docker
-      - sysadmin
-    authorized_keys:
-      - 'everton'
 custom_iptables_rules:
     - "-A FORWARD -i docker0 -o eth0 -j ACCEPT"
     - "-A FORWARD -i eth0 -o docker0 -j ACCEPT"

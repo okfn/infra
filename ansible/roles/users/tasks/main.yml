@@ -47,6 +47,6 @@
   with_items: users_purge
   tags: purge_users
 
-- include: project.yml
-  when: devs_group != 'False'
-  tags: project_users
+#- include: project.yml
+  #when: devs_group != 'False'
+  #tags: project_users
