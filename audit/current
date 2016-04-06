@@ -1,8 +1,6 @@
 # Commercial
 ## Rax Managed
 s076.okserver.org services="datagm, iati backend (postgres + solr)" notes="to be migrated to linode"
-s078.okserver.org services="publicdata.eu backend (postgres + solr)" notes="to be migrated to linode"
-s079.okserver.org services="publicdata.eu frontend (nginx, py, rabbitmq), postgres" notes="to be migrated to linode"
 s086.okserver.org services="iatiregistry.org frontend (apache, nginx, py)" notes="to be migrated to linode"
 s099.okserver.org services="datagm.org.uk, sa-live.ckanhosted.com frontend (apache, nginx, py)" notes="to be migrated to linode"
 ## Rax
