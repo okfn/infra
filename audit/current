@@ -9,8 +9,6 @@ s084.okserver.org services="{disqus and others}.staging.ckanhosted.com frontend 
 s085.okserver.org services="postgres backend host for s082,s083,s084" notes="to be migrated to Linode"
 ## Linode
 s130.okserver.org services="sweden, pakistan, mexico, and edo staging; and servicesdemo"
-## Digital Ocean
-s142.okserver.org services="piwik analytics"
 ## AWS
 s131.okserver.org services="CKAN-X birmingham frontend and db/solr"
 --------
