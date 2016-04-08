@@ -10,7 +10,7 @@
         owner=root
         group=root
         mode=644
-#notify: reload docker 
+#notify: reload docker
   tags: upstart-docker
 
 - name: setup quay.io /root/.docker.cfg
@@ -26,30 +26,7 @@
 - name: ensure /data/mariadb directory for mariadb55 container
   file: path=/data/mariadb state=directory
 
-#docker run -d -v /data/mariadb:/var/lib/mysql/ -p 127.0.0.1:3333:3306 -name mariadb55 be82b3429287
-#expects the okfn/mariadb56 image to be present
-- name: ensure mariadb55 container is running
-  docker: image=okfn/mariadb55 volumes=/data/mariadb:/var/lib/mysql ports=127.0.0.1:3306:3306 name=mariadb55 env='MARIADB_ROOT_PW={{ mariadb55_pw }}'
-  tags: start-mariadb55
-
-#docker run -d -p  127.0.0.1:9001:9001 -link mariadb55:db -name etherpad_lite f8f7284f1e42
-- name: ensure etherpad container is running
-  docker: image=okfn/etherpad_lite ports=127.0.0.1:9001:9001 links=mariadb55:db name=okfnpad.org
-  tags: start-okfnpad
-
-#docker run -d -p  127.0.0.1:8000:8000  --name booktype.okfn.org okfn/booktype.okfn.org
-- name: ensure booktype container is running
-  docker: image=okfn/booktype.okfn.org ports=127.0.0.1:8000:8000 name=booktype.okfn.org
-  tags: start-booktype
-
 #docker run -d --env="APP_PATH=https://sendy.okfn.org DATABASE_PASS=***" -p  127.0.0.1:8001:80 --link="mariadb55:db" --name sendy.okfn.org  okfn/opensendy:1.1.9~2
 - name: ensure sendy container is running
   docker: image=okfn/opensendy:1.1.9~2 ports=127.0.0.1:8001:80 name=sendy.okfn.org links=mariadb55:db env="DATABASE_PASS={{ sendy_okfn_org_db_pw }},APP_PATH=https://sendy.okfn.org"
-  tags: start-sendy 
-
-#need to figure how to multiline the env="" section for readability
-- name: ensure rt.okfn.org is running
-  docker: >
-    image=rt.okfn.org env="DATABASE_HOST={{ aws_rds_host }},DATABASE_USER={{ rt_db_user }},DATABASE_PASSWORD={{ rt_db_pass }},DATABASE_NAME={{ rt_db_name }},RT_NAME={{ rt_name }},Organization={{ rt_org }},WEB_PORT={{ rt_web_port }},WEB_DOMAIN={{ rt_web_domain }}"
-    ports=25,80
-  tags: start-rt
+  tags: start-sendy

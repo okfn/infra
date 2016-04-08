@@ -86,6 +86,7 @@ labs
 listserv
 docker-host
 omeka
+rt
 
 [sysadmin-web:children]
 wiki
