@@ -10,6 +10,7 @@ postfix_sender_access: |
   tenderapp.com REJECT
   pm.mtasv.net REJECT
   rackspacecloud.com REJECT
+  fencing.dreamhost.com REJECT
 
 postfix_smtpd_recipient_restrictions:
   - check_policy_service inet:127.0.0.1:10023
