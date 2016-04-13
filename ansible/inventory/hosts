@@ -19,19 +19,13 @@ s146.okserver.org hosted=aws
 [opentrials:children]
 opentrials-web
 
-[ckan-web-dev]
-s099.okserver.org hosted=rackspace-managed
-s130.okserver.org hosted=linode
-
-[ckan-db-dev]
-s130.okserver.org hosted=linode
-
 [ckan-web-prod]
 s086.okserver.org hosted=rackspace-managed
 s131.okserver.org hosted=aws
 
 [ckan-db-prod]
 s076.okserver.org hosted=rackspace-managed
+s099.okserver.org hosted=rackspace-managed
 s131.okserver.org hosted=aws
 
 [ckan-solr-prod]
@@ -65,8 +59,6 @@ openspending-web
 openspending-new
 
 [ckan:children]
-ckan-web-dev
-ckan-db-dev
 ckan-web-prod
 ckan-db-prod
 ckan-solr-prod
@@ -90,7 +82,6 @@ listserv
 omeka
 
 [webservers:children]
-ckan-web-dev
 ckan-web-prod
 openspending-web
 openspending-new
@@ -101,7 +92,6 @@ rt
 
 [dbservers:children]
 ckan-db-prod
-ckan-db-dev
 
 [solrservers:children]
 openspending-solr
