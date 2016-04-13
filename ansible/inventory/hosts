@@ -20,13 +20,10 @@ s146.okserver.org hosted=aws
 opentrials-web
 
 [ckan-web-dev]
-s083.okserver.org hosted=rackspace
-s084.okserver.org hosted=rackspace
 s099.okserver.org hosted=rackspace-managed
 s130.okserver.org hosted=linode
 
 [ckan-db-dev]
-s085.okserver.org hosted=rackspace
 s130.okserver.org hosted=linode
 
 [ckan-web-prod]
@@ -39,7 +36,6 @@ s131.okserver.org hosted=aws
 
 [ckan-solr-prod]
 s076.okserver.org hosted=rackspace-managed
-s085.okserver.org hosted=rackspace
 s131.okserver.org hosted=linode
 
 [listserv]

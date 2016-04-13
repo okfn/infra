@@ -3,10 +3,6 @@
 s076.okserver.org services="production server"
 s086.okserver.org services="production server"
 s099.okserver.org services="production server backend"
-## Rax
-s083.okserver.org services="staging server"
-s084.okserver.org services="staging server"
-s085.okserver.org services="staging server backend"
 ## Linode
 s130.okserver.org services="staging server"
 ## AWS

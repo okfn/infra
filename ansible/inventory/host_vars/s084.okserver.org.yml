@@ -1,7 +1,0 @@
----
-users_extra:
-  - name: 'sam.smith'
-    groups:
-      - sysadmin
-    authorized_keys:
-      - 'sam.smith'
