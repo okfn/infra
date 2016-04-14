@@ -21,11 +21,11 @@ opentrials-web
 
 [ckan-web-prod]
 s086.okserver.org hosted=rackspace-managed
+s099.okserver.org hosted=rackspace-managed
 s131.okserver.org hosted=aws
 
 [ckan-db-prod]
 s076.okserver.org hosted=rackspace-managed
-s099.okserver.org hosted=rackspace-managed
 s131.okserver.org hosted=aws
 
 [ckan-solr-prod]
