@@ -31,3 +31,5 @@ s136.okserver.org services="RT server"
 s143.okserver.org services="Nagios+Graphite"
 ## Bytemark
 s116.okserver.org services="lists.okfn.org"
+## Digital Ocean
+s147.okserver.org services="sendy"

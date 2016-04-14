@@ -75,11 +75,13 @@ listserv
 docker-host
 omeka
 rt
+sendy
 
 [sysadmin-web:children]
 wiki
 listserv
 omeka
+sendy
 
 [webservers:children]
 ckan-web-prod
@@ -96,5 +98,8 @@ ckan-db-prod
 [solrservers:children]
 openspending-solr
 ckan-solr-prod
+
+[sendy]
+s147.okserver.org hosted=digital-ocean
 
 # vim:ft=ini
