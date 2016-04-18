@@ -1,8 +1,8 @@
 # Commercial
 ## Rax Managed
-s076.okserver.org services="production server"
+s076.okserver.org services="production server backend"
 s086.okserver.org services="production server"
-s099.okserver.org services="production server backend"
+s099.okserver.org services="production server"
 ## AWS
 s131.okserver.org services="commercial server"
 --------
