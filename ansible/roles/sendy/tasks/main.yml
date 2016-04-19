@@ -1,3 +1,13 @@
+---
+ - name: Clone sendy
+   git: repo=https://github.com/okfn/opensendy.git
+        dest=/var/www/sendy
+        update=yes
+        accept_hostkey=yes
+   tags:
+     - clone_plugin_repo
+
+
 # Clone sendy
 # Setup configuration
 # PROFIT!?!
