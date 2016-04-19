@@ -154,3 +154,14 @@ omeka_db_password: "{{ omeka[1].db_password }}", omeka_db_name: 'espace_omeka' }
     - { role: postgrey }
     - { role: postfix }
 
+- hosts: sendy
+  sudo: true
+  vars:
+     - private_dir: ../../credentials/ansible
+  vars_files:
+    - "{{ private_dir }}/p.yml"
+  roles:
+    - { role: apt, tags: ['deps'], pkg_list: ['git-core', 'php5-mysql', 'nginx'] }
+    - { role: php-fpm, tags: ['php-fpm'] }
+    - { role: nginx, tags: ['nginx'] }
+
