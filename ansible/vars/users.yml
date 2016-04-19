@@ -22,6 +22,10 @@ users:
       group: 'sysadmin'
       authorized_keys:
         - brook
+    - name: dfowler
+      group: 'sysadmin'
+      authorized_keys:
+        - dfowler
 
   ckan_dev:
     - name: 'vitor'
@@ -38,10 +42,6 @@ users:
       group: 'openspending_dev'
       authorized_keys:
         - holger
-    - name: dfowler
-      group: 'labs_dev'
-      authorized_keys:
-        - dfowler
 
   labs_dev:
     - name: 'rowan.crawford'
@@ -75,10 +75,6 @@ users:
     - name: tonyh
       authorized_keys:
         - tonyh
-    - name: dfowler
-      group: 'labs_dev'
-      authorized_keys:
-        - dfowler
 
   monitoring:
     - name: 'nagios'
@@ -87,10 +83,6 @@ users:
         - nagios
 
   openspending:
-    - name: dfowler
-      group: 'openspending'
-      authorized_keys:
-        - dfowler
     - name: akariv
       group: 'openspending'
       authorized_keys:
@@ -113,10 +105,6 @@ users:
         - vitor
 
   opentrials:
-    - name: dfowler
-      group: 'opentrials'
-      authorized_keys:
-        - dfowler
     - name: akariv
       group: 'opentrials'
       authorized_keys:
