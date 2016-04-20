@@ -5,22 +5,50 @@
         owner=root
         group=root
         mode=600
-  tags: clone_sendy_repo
+  tags: sendy_clone_repo
+
 - name: Clone sendy
   git: repo=git@github.com:okfn/opensendy.git
        dest=/var/www/sendy
        update=yes
        accept_hostkey=yes
        key_file=/root/.ssh/id_rsa
-  tags: clone_sendy_repo
+  tags: sendy_clone_repo
+
 - name: Setup the config file
   template: src=config.php
             dest=/var/www/sendy/src/config.php
             owner=www-data group=root
             mode=0644
-- name: create uploads folder
+
+- name: Create uploads folder
   file: state=directory
         owner=www-data
         group=www-data
         mode=0755
         path=/var/www/sendy/src/uploads
+  tags: sendy_setup_uploads
+
+- name: Setup cron jobs
+  cron: cron_file=sendy
+        user=www-data
+        minute="*/5"
+        name="scheduled"
+        job="/usr/bin/php /src/scheduled.php >/dev/null 2>&1"
+  tags: sendy_setup_cron
+
+- name: Setup cron jobs
+  cron: cron_file=sendy
+        user=www-data
+        minute="*/1"
+        name="import-csv"
+        job="/usr/bin/php /src/import-csv.php >/dev/null 2>&1"
+  tags: sendy_setup_cron
+
+- name: Setup cron jobs
+  cron: cron_file=sendy
+        user=www-data
+        minute="*/1"
+        name="autoresponders"
+        job="/usr/bin/php /src/autoresponders.php >/dev/null 2>&1"
+  tags: sendy_setup_cron
