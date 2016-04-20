@@ -16,7 +16,7 @@ server {
     access_log /var/log/nginx/sendy.okfn.org-access.log;
     error_log /var/log/nginx/sendy.okfn.org-error.log;
 
-    home /var/www/sendy/src;
+    root /var/www/sendy/src;
     index index.php;
     gzip on;
     gzip_disable "msie6";
