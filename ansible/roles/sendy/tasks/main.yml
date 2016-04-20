@@ -13,8 +13,11 @@
        accept_hostkey=yes
        key_file=/root/.ssh/id_rsa
   tags: clone_sendy_repo
+- name: Setup the config file
+  template: src=config.php
+            dest=/var/www/sendy/src/config.php
+            owner=www-data group=root
+            mode=0644
 
-
-# Clone sendy
 # Setup configuration
 # PROFIT!?!
