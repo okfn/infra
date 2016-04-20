@@ -18,6 +18,9 @@
             dest=/var/www/sendy/src/config.php
             owner=www-data group=root
             mode=0644
-
-# Setup configuration
-# PROFIT!?!
+- name: create uploads folder
+  file: state=directory
+        owner=www-data
+        group=www-data
+        mode=0755
+        path=/var/www/sendy/src/uploads
