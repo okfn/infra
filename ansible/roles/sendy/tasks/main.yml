@@ -9,7 +9,7 @@
 
 - name: Clone sendy
   git: repo=git@github.com:okfn/opensendy.git
-       dest=/var/www/sendy
+       dest="{{ install_dir }}"
        update=yes
        accept_hostkey=yes
        key_file=/root/.ssh/id_rsa
@@ -17,7 +17,7 @@
 
 - name: Setup the config file
   template: src=config.php
-            dest=/var/www/sendy/src/includes/config.php
+            dest="{{ install_dir }}/src/includes/config.php"
             owner=www-data group=root
             mode=0644
 
@@ -26,7 +26,7 @@
         owner=www-data
         group=www-data
         mode=0755
-        path=/var/www/sendy/src/uploads
+        path="{{ install_dir }}/src/uploads"
   tags: sendy_setup_uploads
 
 - name: Setup cron jobs
@@ -34,7 +34,7 @@
         user=www-data
         minute="*/5"
         name="scheduled"
-        job="/usr/bin/php /src/scheduled.php >/dev/null 2>&1"
+        job="/usr/bin/php {{ install_dir }}/src/scheduled.php >/dev/null 2>&1"
   tags: sendy_setup_cron
 
 - name: Setup cron jobs
@@ -42,7 +42,7 @@
         user=www-data
         minute="*/1"
         name="import-csv"
-        job="/usr/bin/php /src/import-csv.php >/dev/null 2>&1"
+        job="/usr/bin/php {{ install_dir }}/src/import-csv.php >/dev/null 2>&1"
   tags: sendy_setup_cron
 
 - name: Setup cron jobs
@@ -50,5 +50,5 @@
         user=www-data
         minute="*/1"
         name="autoresponders"
-        job="/usr/bin/php /src/autoresponders.php >/dev/null 2>&1"
+        job="/usr/bin/php {{ install_dir }}/src/autoresponders.php >/dev/null 2>&1"
   tags: sendy_setup_cron
