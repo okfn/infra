@@ -1,0 +1,54 @@
+---
+- name: Add deploy key for opensendy
+  copy: src='{{ private_dir }}/../keys/opensendy'
+        dest=/root/.ssh/id_rsa
+        owner=root
+        group=root
+        mode=600
+  tags: sendy_clone_repo
+
+- name: Clone sendy
+  git: repo=git@github.com:okfn/opensendy.git
+       dest="{{ install_dir }}"
+       update=yes
+       accept_hostkey=yes
+       key_file=/root/.ssh/id_rsa
+  tags: sendy_clone_repo
+
+- name: Setup the config file
+  template: src=config.php
+            dest="{{ install_dir }}/src/includes/config.php"
+            owner=www-data group=root
+            mode=0644
+
+- name: Create uploads folder
+  file: state=directory
+        owner=www-data
+        group=www-data
+        mode=0755
+        path="{{ install_dir }}/src/uploads"
+  tags: sendy_setup_uploads
+
+- name: Setup cron jobs
+  cron: cron_file=sendy
+        user=www-data
+        minute="*/5"
+        name="scheduled"
+        job="/usr/bin/php {{ install_dir }}/src/scheduled.php >/dev/null 2>&1"
+  tags: sendy_setup_cron
+
+- name: Setup cron jobs
+  cron: cron_file=sendy
+        user=www-data
+        minute="*/1"
+        name="import-csv"
+        job="/usr/bin/php {{ install_dir }}/src/import-csv.php >/dev/null 2>&1"
+  tags: sendy_setup_cron
+
+- name: Setup cron jobs
+  cron: cron_file=sendy
+        user=www-data
+        minute="*/1"
+        name="autoresponders"
+        job="/usr/bin/php {{ install_dir }}/src/autoresponders.php >/dev/null 2>&1"
+  tags: sendy_setup_cron

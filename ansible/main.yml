@@ -154,3 +154,14 @@ omeka_db_password: "{{ omeka[1].db_password }}", omeka_db_name: 'espace_omeka' }
     - { role: postgrey }
     - { role: postfix }
 
+- hosts: sendy
+  sudo: true
+  vars:
+     - private_dir: ../../credentials/ansible
+  vars_files:
+    - "{{ private_dir }}/p.yml"
+  roles:
+    - { role: apt, tags: ['apt'], pkg_list: ['php5-mysql', 'php5-curl', 'php5-cli'] }
+    - { role: php-fpm, tags: ['php-fpm'] }
+    - { role: nginx, tags: ['nginx'] }
+    - { role: sendy, tags: ['sendy'], install_dir: '/var/www/sendy', db_host: "{{ sendy.db_host }}", db_user: "{{ sendy.db_user }}", db_name: 'sendy', db_password: "{{ sendy.db_pass }}"}

@@ -1,0 +1,66 @@
+server {
+  listen 80;
+  server_name sendy.okfn.org;
+  return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443;
+    server_name sendy.okfn.org;
+
+    ssl on;
+    include ssl_params;
+    ssl_certificate /etc/nginx/ssl/star_okfn_org.crt;
+    ssl_certificate_key /etc/nginx/ssl/star_okfn_org.key;
+
+    access_log /var/log/nginx/sendy.okfn.org-access.log;
+    error_log /var/log/nginx/sendy.okfn.org-error.log;
+
+    root /var/www/sendy/src;
+    index index.php;
+    gzip on;
+    gzip_disable "msie6";
+
+
+    location = / {
+        index index.php;
+    }
+
+    location / {
+        if (!-f $request_filename){
+            rewrite ^/([a-zA-Z0-9-]+)$ /$1.php last;
+        }
+    }
+
+    location /l/ {
+        rewrite ^/l/([a-zA-Z0-9/]+)$ /l.php?i=$1 last;
+    }
+
+    location /t/ {
+        rewrite ^/t/([a-zA-Z0-9/]+)$ /t.php?i=$1 last;
+    }
+
+    location /w/ {
+        rewrite ^/w/([a-zA-Z0-9/]+)$ /w.php?i=$1 last;
+    }
+
+    location /unsubscribe/ {
+        rewrite ^/unsubscribe/(.*)$ /unsubscribe.php?i=$1 last;
+    }
+
+    location /subscribe/ {
+        rewrite ^/subscribe/(.*)$ /subscribe.php?i=$1 last;
+    }
+
+    location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
+        expires max;
+        log_not_found off;
+    }
+    location ~ \.php {
+        fastcgi_index index.php;
+        include fastcgi_params;
+        keepalive_timeout 0;
+        fastcgi_param   SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        fastcgi_pass    127.0.0.1:9000;
+    }
+}
