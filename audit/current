@@ -21,7 +21,6 @@ s140.okserver.org services="omeka server" notes="owned by eSpace project"
 
 # Operations
 ## AWS
-s125.okserver.org services="docker: booktype, etherpad, sendy"
 s134.okserver.org services="backup server"
 s135.okserver.org services="wikifarm"
 s136.okserver.org services="RT server"
