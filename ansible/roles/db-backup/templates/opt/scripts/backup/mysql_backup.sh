@@ -56,9 +56,6 @@ then
                                 /usr/bin/rsync ${backup_dir}/${backup_archive} rsync://${rsync_target}/mysql_backups/
                         fi
                 fi
-	{% if mysql_snitch %}
-        curl "https://nosnch.in/{{ mysql_snitch }}" &> /dev/null
-	{% endif %}
 	done
 else
         echo "$backup_config not found, please check if you've defined the dbs to be backed up in ansible."

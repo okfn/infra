@@ -10,5 +10,5 @@
         user=heroku
         hour=2
         minute=30
-        job="PATH=/usr/local/bin:$PATH QUIET=1 /usr/local/bin/okfn-heroku-copyapp okfn-production okfn-staging && curl https://nosnch.in/{{ okfn_org_manager_snitch_id }} >/dev/null 2>&1"
+        job="PATH=/usr/local/bin:$PATH QUIET=1 /usr/local/bin/okfn-heroku-copyapp okfn-production okfn-staging >/dev/null 2>&1"
         state=present

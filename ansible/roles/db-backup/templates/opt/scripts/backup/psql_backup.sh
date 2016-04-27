@@ -92,9 +92,6 @@ then
 				fi
 	   		fi
 		fi
-        {% if psql_snitch is defined %}
-        curl "https://nosnch.in/{{ psql_snitch }}" &> /dev/null
-        {% endif %}
 
 
 	done
